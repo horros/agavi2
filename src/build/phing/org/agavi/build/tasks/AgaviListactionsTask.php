@@ -66,7 +66,7 @@ class AgaviListactionsTask extends AgaviTask
 			throw new BuildException('The path attribute must be specified');
 		}
 		
-		$check = new AgaviModuleFilesystemCheck();
+		$check = new \Agavi\Build\Check\ModuleFilesystemCheck();
 		$check->setConfigDirectory($this->project->getProperty('module.config.directory'));
 		
 		$check->setPath($this->path->getAbsolutePath());
@@ -78,16 +78,16 @@ class AgaviListactionsTask extends AgaviTask
 		 * values we want properly. */
 		$this->tryLoadAgavi();
 		$this->tryBootstrapAgavi();
-		
-		require_once(AgaviConfigCache::checkConfig(
+
+		require_once(\Agavi\Config\ConfigCache::checkConfig(
 			sprintf('%s/%s/module.xml',
 				$this->path->getAbsolutePath(),
 				(string)$this->project->getProperty('module.config.directory')
 			)
 		));
 		
-		$actionPath = AgaviToolkit::expandVariables(
-			AgaviToolkit::expandDirectives(AgaviConfig::get(
+		$actionPath = \Agavi\Util\Toolkit::expandVariables(
+			\Agavi\Util\Toolkit::expandDirectives(\Agavi\Config\Config::get(
 				sprintf('modules.%s.agavi.action.path', strtolower($this->path->getName())),
 				'%core.module_dir%/${moduleName}/actions/${actionName}Action.class.php'
 			)),
@@ -95,7 +95,7 @@ class AgaviListactionsTask extends AgaviTask
 				'moduleName' => $this->path->getName()
 			)
 		);
-		$pattern = '#^' . AgaviToolkit::expandVariables(
+		$pattern = '#^' . \Agavi\Util\Toolkit::expandVariables(
 			/* Blaaaaaaaaauuuuuughhhhhhh... */
 			str_replace('\\$\\{actionName\\}', '${actionName}', preg_quote($actionPath, '#')),
 			array('actionName' => '(?P<action_name>.*?)')
@@ -115,7 +115,7 @@ class AgaviListactionsTask extends AgaviTask
 			}
 		}
 		
-		$list = new AgaviArraytostringTransform();
+		$list = new \Agavi\Build\Transform\ArraytostringTransform();
 		$list->setInput($actions);
 		$list->setDelimiter(' ');
 		

@@ -1,12 +1,16 @@
 <?php
+namespace Agavi\Tests\Unit\Config;
+use Agavi\Config\Config;
+use Agavi\Config\ReturnArrayConfigHandler;
+
 require_once(__DIR__ . '/ConfigHandlerTestBase.php');
 
 class AgaviXmlConfigHandlerTest extends ConfigHandlerTestBase
 {
 	public function testParseXincludeSimple()
 	{
-		$RACH = new AgaviReturnArrayConfigHandler();
-		$document = $this->parseConfiguration(AgaviConfig::get('core.config_dir') . '/tests/xinclude_simple.xml');
+		$RACH = new ReturnArrayConfigHandler();
+		$document = $this->parseConfiguration(Config::get('core.config_dir') . '/tests/xinclude_simple.xml');
 		$actual = $this->includeCode($RACH->execute($document));
 		$expected = array(
 			'Name' => 'A',
@@ -20,8 +24,8 @@ class AgaviXmlConfigHandlerTest extends ConfigHandlerTestBase
 		if(defined('HHVM_VERSION')) {
 			$this->markTestSkipped('This tests triggers a bug in HHVM. See https://github.com/facebook/hhvm/issues/4972 for details');
 		}
-		$RACH = new AgaviReturnArrayConfigHandler();
-		$document = $this->parseConfiguration(AgaviConfig::get('core.config_dir') . '/tests/xinclude_glob_simple.xml');
+		$RACH = new ReturnArrayConfigHandler();
+		$document = $this->parseConfiguration(Config::get('core.config_dir') . '/tests/xinclude_glob_simple.xml');
 		$actual = $this->includeCode($RACH->execute($document));
 		$expected = array(
 			'Name' => 'C',
@@ -32,8 +36,8 @@ class AgaviXmlConfigHandlerTest extends ConfigHandlerTestBase
 
 	public function testParseXincludeGlobBrace()
 	{
-		$RACH = new AgaviReturnArrayConfigHandler();
-		$document = $this->parseConfiguration(AgaviConfig::get('core.config_dir') . '/tests/xinclude_glob_brace.xml');
+		$RACH = new ReturnArrayConfigHandler();
+		$document = $this->parseConfiguration(Config::get('core.config_dir') . '/tests/xinclude_glob_brace.xml');
 		$actual = $this->includeCode($RACH->execute($document));
 		$expected = array(
 			'Name' => 'B',
@@ -47,8 +51,8 @@ class AgaviXmlConfigHandlerTest extends ConfigHandlerTestBase
 		if(defined('HHVM_VERSION')) {
 			$this->markTestSkipped('This tests triggers a bug in HHVM. See https://github.com/facebook/hhvm/issues/4972 for details');
 		}
-		$RACH = new AgaviReturnArrayConfigHandler();
-		$document = $this->parseConfiguration(AgaviConfig::get('core.config_dir') . '/tests/xinclude_encoding.xml');
+		$RACH = new ReturnArrayConfigHandler();
+		$document = $this->parseConfiguration(Config::get('core.config_dir') . '/tests/xinclude_encoding.xml');
 		$actual = $this->includeCode($RACH->execute($document));
 		$expected = array(
 			'Name' => 'C',
@@ -58,8 +62,8 @@ class AgaviXmlConfigHandlerTest extends ConfigHandlerTestBase
 
 	public function testParseEntities()
 	{
-		$RACH = new AgaviReturnArrayConfigHandler();
-		$document = $this->parseConfiguration(AgaviConfig::get('core.config_dir') . '/tests/entities.xml');
+		$RACH = new ReturnArrayConfigHandler();
+		$document = $this->parseConfiguration(Config::get('core.config_dir') . '/tests/entities.xml');
 		$actual = $this->includeCode($RACH->execute($document));
 		$expected = array(
 			'Name' => 'bar',

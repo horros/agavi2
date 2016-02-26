@@ -1,6 +1,12 @@
 <?php
+namespace Agavi\Tests\Unit\Validator;
 
-class EmailValidatorWrapper extends AgaviEmailValidator
+use Agavi\Core\Context;
+use Agavi\Testing\UnitTestCase;
+use Agavi\Validator\EmailValidator;
+use Agavi\Validator\ValidationManager;
+
+class EmailValidatorWrapper extends EmailValidator
 {
 	protected $data;
 
@@ -22,14 +28,18 @@ class EmailValidatorWrapper extends AgaviEmailValidator
 
 }
 
-class AgaviEmailValidatorTest extends AgaviUnitTestCase
+class AgaviEmailValidatorTest extends UnitTestCase
 {
-	protected $_vm, $validator;
+	/** @var  ValidationManager */
+	protected $_vm;
+
+	/** @var  EmailValidator */
+	protected $validator;
 	
 	public function setUp()
 	{
 		$this->_vm = $this->getContext()->createInstanceFor('validation_manager');
-		$this->validator = $this->_vm->createValidator('EmailValidatorWrapper', array());
+		$this->validator = $this->_vm->createValidator('Agavi\\Tests\\Unit\\Validator\\EmailValidatorWrapper', array());
 	}
 
 	public function tearDown()
@@ -39,7 +49,7 @@ class AgaviEmailValidatorTest extends AgaviUnitTestCase
 
 	public function testgetContext()
 	{
-		$this->assertTrue($this->validator->getContext() instanceof AgaviContext);
+		$this->assertTrue($this->validator->getContext() instanceof Context);
 	}
 	
 	public function testexecute()

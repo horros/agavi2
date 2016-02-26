@@ -71,16 +71,18 @@ class AgaviCarTask extends AgaviTask
 	public function main()
 	{
 		if($this->property === null) {
-			throw new BuildException('The property attribute must be specified');
+			throw new \Agavi\Build\Exception\BuildException('The property attribute must be specified');
 		} elseif($this->list === null) {
-			throw new BuildException('The list attribute must be specified');
+			throw new \Agavi\Build\Exception\BuildException('The list attribute must be specified');
 		}
 		
-		$transform = new AgaviStringtoarrayTransform();
+		$transform = new \Agavi\Build\Transform\StringtoarrayTransform();
 		$transform->setInput($this->list);
 		$transform->setDelimiter($this->delimiter);
-		
-		$this->project->setUserProperty($this->property, reset($transform->transform()));
+
+		$t = reset($transform->transform());
+
+		$this->project->setUserProperty($this->property, $t);
 	}
 }
 

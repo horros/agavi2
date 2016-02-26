@@ -1,6 +1,6 @@
 <?php
 
-class ContextTestSingletonModel extends AgaviModel implements AgaviISingletonModel
+class ContextTestSingletonModel extends \Agavi\Model\Model implements \Agavi\Model\SingletonModelInterface
 {
 }
 

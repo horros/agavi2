@@ -14,7 +14,7 @@
 // |   End:                                                                    |
 // +---------------------------------------------------------------------------+
 
-class AgaviSampleAppUser extends AgaviRbacSecurityUser
+class AgaviSampleAppUser extends RbacSecurityUserInterface
 {
 	/**
 	 * Let's pretend this is our database. For the sake of example ;)
@@ -38,7 +38,7 @@ class AgaviSampleAppUser extends AgaviRbacSecurityUser
 			$login = $reqData->getCookie('autologon');
 			try {
 				$this->login($login['username'], $login['password'], true);
-			} catch(AgaviSecurityException $e) {
+			} catch(SecurityException $e) {
 				$response = $this->getContext()->getController()->getGlobalResponse();
 				// login didn't work. that cookie sucks, delete it.
 				$response->setCookie('autologon[username]', false);
@@ -50,7 +50,7 @@ class AgaviSampleAppUser extends AgaviRbacSecurityUser
 	public function login($username, $password, $isPasswordHashed = false)
 	{
 		if(!isset(self::$users[$username])) {
-			throw new AgaviSecurityException('username');
+			throw new SecurityException('username');
 		}
 		
 		if(!$isPasswordHashed) {
@@ -58,7 +58,7 @@ class AgaviSampleAppUser extends AgaviRbacSecurityUser
 		}
 		
 		if($password != self::$users[$username]['password']) {
-			throw new AgaviSecurityException('password');
+			throw new SecurityException('password');
 		}
 		
 		$this->setAuthenticated(true);

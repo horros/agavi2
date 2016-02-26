@@ -13,9 +13,9 @@ factories.xml needs a configuration section similar to this:
 		<!-- the important bit: don't clear argc and argv -->
 		<ae:parameter name="unset_input">false</ae:parameter>
 	</request>
-	<response class="AgaviConsoleResponse" />
-	<routing class="AgaviConsoleRouting" />
-	<storage class="AgaviNullStorage" />
+	<response class="ConsoleResponse" />
+	<routing class="ConsoleRouting" />
+	<storage class="NullStorage" />
 	<user class="AgaviSecurityUser" />
 </ae:configuration>
 

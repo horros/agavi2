@@ -1,6 +1,14 @@
 <?php
+namespace Agavi\Tests\Unit\Routing;
+use Agavi\Config\Config;
+use Agavi\Config\ConfigCache;
+use Agavi\Controller\ExecutionContainer;
+use Agavi\Exception\AgaviException;
+use Agavi\Routing\Routing;
+use Agavi\Routing\RoutingCallback;
+use Agavi\Testing\UnitTestCase;
 
-class SampleRouting extends AgaviRouting
+class SampleRouting extends Routing
 {
 	public function setInput($input)
 	{
@@ -9,11 +17,11 @@ class SampleRouting extends AgaviRouting
 
 	public function loadTestConfig($cfg, $ctx = null)
 	{
-		$this->importRoutes(unserialize(file_get_contents(AgaviConfigCache::checkConfig($cfg, $ctx))));
+		$this->importRoutes(unserialize(file_get_contents(ConfigCache::checkConfig($cfg, $ctx))));
 	}
 }
 
-class BaseTestCallback extends AgaviRoutingCallback
+class BaseTestCallback extends RoutingCallback
 {
 	public function onGenerate(array $defaultParameters, array &$userParameters, array &$userOptions)
 	{
@@ -30,7 +38,7 @@ class BaseTestCallback extends AgaviRoutingCallback
 	}
 }
 
-class TestCallbackLAN extends AgaviRoutingCallback
+class TestCallbackLAN extends RoutingCallback
 {
 	public function onGenerate(array $defaultParameters, array &$userParameters, array &$userOptions)
 	{
@@ -40,9 +48,9 @@ class TestCallbackLAN extends AgaviRoutingCallback
 		return true;
 	}
 }
-class TestCallbackRAN extends AgaviRoutingCallback
+class TestCallbackRAN extends RoutingCallback
 {
-	public function onMatched(array &$parameters, AgaviExecutionContainer $container)
+	public function onMatched(array &$parameters, ExecutionContainer $container)
 	{
 		return false;
 	}
@@ -61,8 +69,11 @@ class TestCallbackCS extends BaseTestCallback
 }
 
 
-class AgaviRoutingCasesTest extends AgaviUnitTestCase
+class AgaviRoutingCasesTest extends UnitTestCase
 {
+	/**
+	 * @var SampleRouting
+	 */
 	protected $_r = null;
 	protected $_config = null;
 	protected $_context = null;
@@ -75,7 +86,7 @@ class AgaviRoutingCasesTest extends AgaviUnitTestCase
 
 	protected function setConfig($config, $context = 'test')
 	{
-		$this->_config = AgaviConfig::get('core.config_dir') . '/tests/' . $config;
+		$this->_config = Config::get('core.config_dir') . '/tests/' . $config;
 		$this->_context = $context;
 		$this->initConfig();
 	}
@@ -117,7 +128,7 @@ class AgaviRoutingCasesTest extends AgaviUnitTestCase
 	public function testSimple()
 	{
 		$r = $this->_r;
-		$r->loadTestConfig(AgaviConfig::get('core.config_dir') . '/tests/routing_simple.xml', 'test1');
+		$r->loadTestConfig(Config::get('core.config_dir') . '/tests/routing_simple.xml', 'test1');
 
 		$rq = $r->getContext()->getRequest();
 		$rq->setParameter('use_module_action_parameters', true);
@@ -257,19 +268,19 @@ class AgaviRoutingCasesTest extends AgaviUnitTestCase
 		$r = $this->_r;
 
 		try {
-			$r->loadTestConfig(AgaviConfig::get('core.config_dir') . '/tests/routing_errors.xml', 'SameNameDirectChild');
+			$r->loadTestConfig(Config::get('core.config_dir') . '/tests/routing_errors.xml', 'SameNameDirectChild');
 			$this->fail('Expected AgaviException not thrown for declaring direct childs with the same name!');
 		} catch(AgaviException $e) {
 		}
 
 		try {
-			$r->loadTestConfig(AgaviConfig::get('core.config_dir') . '/tests/routing_errors.xml', 'SameNameIndirectChild');
+			$r->loadTestConfig(Config::get('core.config_dir') . '/tests/routing_errors.xml', 'SameNameIndirectChild');
 			$this->fail('Expected AgaviException not thrown for declaring indirect childs with the same name!');
 		} catch(AgaviException $e) {
 		}
 
 		try {
-			$r->loadTestConfig(AgaviConfig::get('core.config_dir') . '/tests/routing_errors.xml', 'SameNameInOverwrittenHierarchy');
+			$r->loadTestConfig(Config::get('core.config_dir') . '/tests/routing_errors.xml', 'SameNameInOverwrittenHierarchy');
 			$this->fail('Expected AgaviException not thrown for declaring childs with the same name when inserting a new child hierarchy on overwriting a pattern!');
 		} catch(AgaviException $e) {
 		}
@@ -284,7 +295,7 @@ class AgaviRoutingCasesTest extends AgaviUnitTestCase
 		$this->setConfig('routing_callbacks.xml', 'test_callbacks');
 		$this->initConfig();
 		$r = $this->_r;
-		$rq = $r->getContext()->getRequest(); /** @var $rq TestWebRequest */
+		$rq = $r->getContext()->getRequest(); /** @var $rq \TestWebRequest */
 		$rd = $rq->getRequestData();
 
 		$rd->clearParameters();

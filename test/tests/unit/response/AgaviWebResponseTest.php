@@ -1,8 +1,13 @@
 <?php
+namespace Agavi\Response;
+use Agavi\Controller\OutputType;
+use Agavi\Exception\AgaviException;
+use Agavi\Testing\UnitTestCase;
+use DoctrineTest\InstantiatorTestAsset\ExceptionAsset;
 
-class TestAgaviWebResponse extends AgaviWebResponse
+class TestAgaviWebResponse extends WebResponse
 {
-	protected function sendHttpResponseHeaders(AgaviOutputType $outputType = null)
+	protected function sendHttpResponseHeaders(OutputType $outputType = null)
 	{
 		// suppress errors when headers cannot be sent
 		set_error_handler(function($errNo, $errStr) {
@@ -15,11 +20,11 @@ class TestAgaviWebResponse extends AgaviWebResponse
 	}
 }
 
-class AgaviWebResponseTest extends AgaviUnitTestCase
+class AgaviWebResponseTest extends UnitTestCase
 {
 	
 	/**
-	 * @var \TestAgaviWebResponse
+	 * @var TestAgaviWebResponse
 	 */
 	private $_r = null;
 
@@ -37,7 +42,7 @@ class AgaviWebResponseTest extends AgaviUnitTestCase
 		ob_start();
 		try {
 			$r->send();
-		} catch(AgaviException $e) {
+		} catch(\Exception $e) {
 			// discard exception about headers already sent
 		}
 		$content = ob_get_contents();

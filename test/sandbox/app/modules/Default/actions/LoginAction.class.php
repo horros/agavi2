@@ -2,7 +2,7 @@
 
 class Default_LoginAction extends SandboxDefaultBaseAction
 {
-	public function execute(AgaviRequestDataHolder $rd)
+	public function execute(RequestDataHolder $rd)
 	{
 		// remove this execute() method and create executeRead() and executeWrite() methods or equivalents
 		throw new Exception('Default_LoginAction is not yet implemented. ' .

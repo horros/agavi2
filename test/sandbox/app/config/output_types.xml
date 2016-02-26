@@ -8,7 +8,7 @@
 			<output_type name="html">
 				
 				<renderers default="php">
-					<renderer name="php" class="AgaviPhpRenderer">
+					<renderer name="php" class="Agavi\Renderer\PhpRenderer">
 						<parameter name="assigns">
 							<parameter name="routing">ro</parameter>
 							<parameter name="request">rq</parameter>

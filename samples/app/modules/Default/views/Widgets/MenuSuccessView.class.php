@@ -16,7 +16,7 @@
 class Default_Widgets_MenuSuccessView extends AgaviSampleAppDefaultBaseView
 {
 
-	public function executeHtml(AgaviRequestDataHolder $rd)
+	public function executeHtml(RequestDataHolder $rd)
 	{
 		// will automatically load "slot" layout for us
 		$this->setupHtml($rd);

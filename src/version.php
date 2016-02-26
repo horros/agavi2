@@ -13,6 +13,7 @@
 // |   End:                                                                    |
 // +---------------------------------------------------------------------------+
 
+use Agavi\Config\Config;
 /**
  * Version initialization script.
  *
@@ -27,33 +28,33 @@
  * @version    $Id$
  */
 
-AgaviConfig::set('agavi.name', 'Agavi');
+Config::set('agavi.name', 'Agavi');
 
-AgaviConfig::set('agavi.major_version', '1');
-AgaviConfig::set('agavi.minor_version', '1');
-AgaviConfig::set('agavi.micro_version', '0');
-AgaviConfig::set('agavi.status', 'dev');
-AgaviConfig::set('agavi.branch', 'trunk');
+Config::set('agavi.major_version', '1');
+Config::set('agavi.minor_version', '1');
+Config::set('agavi.micro_version', '0');
+Config::set('agavi.status', 'dev');
+Config::set('agavi.branch', 'trunk');
 
-AgaviConfig::set('agavi.version',
-	AgaviConfig::get('agavi.major_version') . '.' .
-	AgaviConfig::get('agavi.minor_version') . '.' .
-	AgaviConfig::get('agavi.micro_version') .
-	(AgaviConfig::has('agavi.status')
-		? '-' . AgaviConfig::get('agavi.status')
+Config::set('agavi.version',
+	Config::get('agavi.major_version') . '.' .
+	Config::get('agavi.minor_version') . '.' .
+	Config::get('agavi.micro_version') .
+	(Config::has('agavi.status')
+		? '-' . Config::get('agavi.status')
 		: '')
 );
 
-AgaviConfig::set('agavi.release',
-	AgaviConfig::get('agavi.name') . '/' .
-	AgaviConfig::get('agavi.version')
+Config::set('agavi.release',
+	Config::get('agavi.name') . '/' .
+	Config::get('agavi.version')
 );
 
-AgaviConfig::set('agavi.url', 'http://www.agavi.org');
+Config::set('agavi.url', 'http://www.agavi.org');
 
-AgaviConfig::set('agavi_info',
-	AgaviConfig::get('agavi.release') . ' (' .
-	AgaviConfig::get('agavi.url') . ')'
+Config::set('agavi_info',
+	Config::get('agavi.release') . ' (' .
+	Config::get('agavi.url') . ')'
 );
 
 ?>

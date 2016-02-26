@@ -2,7 +2,7 @@
 
 class Products_IndexAction extends AgaviSampleAppProductsBaseAction
 {
-	public function execute(AgaviRequestDataHolder $rd)
+	public function execute(RequestDataHolder $rd)
 	{
 		$products = $this->getContext()->getModel('ProductFinder')->retrieveAll();
 		

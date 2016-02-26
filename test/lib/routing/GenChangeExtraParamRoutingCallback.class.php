@@ -1,6 +1,6 @@
 <?php
 
-class GenChangeExtraParamRoutingCallback extends AgaviRoutingCallback
+class GenChangeExtraParamRoutingCallback extends \Agavi\Routing\RoutingCallback
 {
 	/**
 	 * Gets executed when the route of this callback is about to be reverse 

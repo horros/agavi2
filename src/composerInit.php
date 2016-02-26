@@ -1,22 +1,22 @@
 <?php
 
-class AgaviComposerLoaderShim {
+class ComposerLoaderShim {
 	protected $triggerClasses = array(
-		'AgaviConfig' => true,
-		'Agavi' => true,
-		'AgaviAutoloader' => true,
-		'AgaviInflector' => true,
-		'AgaviArrayPathDefinition' => true,
-		'AgaviVirtualArrayPath' => true,
-		'AgaviParameterHolder' => true,
-		'AgaviConfigCache' => true,
-		'AgaviException' => true,
-		'AgaviAutoloadException' => true,
-		'AgaviCacheException' => true,
-		'AgaviConfigurationException' => true,
-		'AgaviUnreadableException' => true,
-		'AgaviParseException' => true,
-		'AgaviToolkit' => true,
+		'Agavi\\Config\\Config' => true,
+		'Agavi\\Core\\Agavi' => true,
+		'Agavi\\Util\\Autoloader' => true,
+		'Agavi\\Util\\Inflector' => true,
+		'Agavi\\Util\\ArrayPathDefinition' => true,
+		'Agavi\\Util\\VirtualArrayPath' => true,
+		'Agavi\\Util\\ParameterHolder' => true,
+		'Agavi\\Config\\ConfigCache' => true,
+		'Agavi\\Exception\\AgaviException' => true,
+		'Agavi\\Exception\\AutoloadException' => true,
+		'Agavi\\Exception\\CacheException' => true,
+		'Agavi\\Exception\\ConfigurationException' => true,
+		'Agavi\\Exception\\UnreadableException' => true,
+		'Agavi\\Exception\\ParseException' => true,
+		'Agavi\\Util\\Toolkit' => true,
 	);
 	
 	public function trigger($className) {
@@ -26,6 +26,6 @@ class AgaviComposerLoaderShim {
 	}
 }
 
-spl_autoload_register(array(new AgaviComposerLoaderShim(), 'trigger'));
+spl_autoload_register(array(new ComposerLoaderShim(), 'trigger'));
 
 ?>

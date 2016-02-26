@@ -1,17 +1,23 @@
 <?php
-if(!class_exists('AgaviToolkit')) {
-	include(__DIR__ . '/../../../../src/util/AgaviToolkit.class.php');
+namespace Agavi\Tests\Unit\Util;
+
+use Agavi\Config\Config;
+use Agavi\Testing\PhpUnitTestCase;
+use Agavi\Util\Toolkit;
+
+if(!class_exists('Agavi\\Util\\Toolkit')) {
+	include(__DIR__ . '/../../../../src/util/Toolkit.class.php');
 }
 
-if(!class_exists('AgaviConfig')) {
-	include(__DIR__ . '/../../../../src/config/AgaviConfig.class.php');
+if(!class_exists('Agavi\\Config\\Config')) {
+	include(__DIR__ . '/../../../../src/config/Config.class.php');
 }
 
-if(!class_exists('AgaviException')) {
+if(!class_exists('Agavi\\Exception\\AgaviException')) {
 	include(__DIR__ . '/../../../../src/exception/AgaviException.class.php');
 }
 
-class AgaviToolkitTest extends AgaviPhpUnitTestCase
+class AgaviToolkitTest extends PhpUnitTestCase
 {
 
 	public function __construct($name = NULL, $data = array(), $dataName = '')
@@ -22,53 +28,53 @@ class AgaviToolkitTest extends AgaviPhpUnitTestCase
 
 	public function testNormalizePath()
 	{
-		$this->assertEquals('path', AgaviToolkit::normalizePath("path"));
-		$this->assertEquals('/path/warm/hot/unbearable', AgaviToolkit::normalizePath('/path/warm/hot/unbearable'));
-		$this->assertEquals('/path/warm/hot/unbearable', AgaviToolkit::normalizePath('\path\warm\hot\unbearable'));
-		$this->assertEquals('/path/warm/hot//unbearable', AgaviToolkit::normalizePath('\path\\warm\hot\\\\unbearable'));
+		$this->assertEquals('path', Toolkit::normalizePath("path"));
+		$this->assertEquals('/path/warm/hot/unbearable', Toolkit::normalizePath('/path/warm/hot/unbearable'));
+		$this->assertEquals('/path/warm/hot/unbearable', Toolkit::normalizePath('\path\warm\hot\unbearable'));
+		$this->assertEquals('/path/warm/hot//unbearable', Toolkit::normalizePath('\path\\warm\hot\\\\unbearable'));
 	}
 
 	public function testMkdir()
 	{
-		$this->assertTrue(AgaviToolkit::mkdir('_testing_path'));
+		$this->assertTrue(Toolkit::mkdir('_testing_path'));
 		rmdir('_testing_path');
 	}
 
 	public function testStringBase()
 	{
 		$amount = 0;
-		$this->assertEquals("string", AgaviToolkit::stringBase("stringbase", "stringother"));
-		$this->assertEquals("string", AgaviToolkit::stringBase("stringbase", "stringother", $amount));
+		$this->assertEquals("string", Toolkit::stringBase("stringbase", "stringother"));
+		$this->assertEquals("string", Toolkit::stringBase("stringbase", "stringother", $amount));
 		$this->assertEquals(6, $amount);
-		$this->assertEquals("hu", AgaviToolkit::stringBase("hurray", "hungry"));
-		$this->assertEquals(NULL, AgaviToolkit::stringBase("astringbase", "stringother"));
+		$this->assertEquals("hu", Toolkit::stringBase("hurray", "hungry"));
+		$this->assertEquals(NULL, Toolkit::stringBase("astringbase", "stringother"));
 	}
 
 	public function testExpandVariables()
 	{
 		$string = "{bbq}";
 		$arguments = array('hehe' => 'hihi', '{bbq}' => 'soon');
-		$this->assertEquals('{bbq}', AgaviToolkit::expandVariables($string));
-		$this->assertEquals('${foo}', AgaviToolkit::expandVariables('$foo'));
-		$this->assertEquals('${foo}', AgaviToolkit::expandVariables('{$foo}'));
+		$this->assertEquals('{bbq}', Toolkit::expandVariables($string));
+		$this->assertEquals('${foo}', Toolkit::expandVariables('$foo'));
+		$this->assertEquals('${foo}', Toolkit::expandVariables('{$foo}'));
 	}
 
 	public function testExpandDirectives()
 	{
-		AgaviConfig::set('whatever', 'something');
+		Config::set('whatever', 'something');
 		$value = "whatever %directive% asdasdasd %whatever% ";
 		$result = "whatever %directive% asdasdasd something ";
-		$this->assertEquals($result, AgaviToolkit::expandDirectives($value));
+		$this->assertEquals($result, Toolkit::expandDirectives($value));
 	}
 
 	public function testFloorDivide()
 	{
 		$rem = 0;
-		$this->assertEquals(3, AgaviToolkit::floorDivide(10, 3, $rem));
+		$this->assertEquals(3, Toolkit::floorDivide(10, 3, $rem));
 		$this->assertEquals(1, $rem);
-		$this->assertEquals(0, AgaviToolkit::floorDivide(0, 2, $rem));
+		$this->assertEquals(0, Toolkit::floorDivide(0, 2, $rem));
 		$this->assertEquals(0, $rem);
-		$this->assertEquals(3, AgaviToolkit::floorDivide(10.5, 3, $rem));
+		$this->assertEquals(3, Toolkit::floorDivide(10.5, 3, $rem));
 		$this->assertEquals(1, $rem);
 	}
 
@@ -78,52 +84,52 @@ class AgaviToolkitTest extends AgaviPhpUnitTestCase
 	 */
 	public function testFloorDivideException()
 	{
-		$this->setExpectedException('AgaviException');
-		AgaviToolkit::floorDivide(6.9, 3.4, $rem);
+		$this->setExpectedException('Agavi\\Exception\\AgaviException');
+		Toolkit::floorDivide(6.9, 3.4, $rem);
 	}
 
 	 /**
-	 * @expectedException PHPUnit_Framework_Error
+	 * @expectedException \PHPUnit_Framework_Error
 	 */
 	public function testFloorDivideByZero()
 	{
-		AgaviToolkit::floorDivide(10, 0, $rem);
+		Toolkit::floorDivide(10, 0, $rem);
 	}
 
 	public function testIsPortNecessary()
 	{
-		$this->assertTrue(AgaviToolkit::isPortNecessary('some scheme', 8800));
-		$this->assertFalse(AgaviToolkit::isPortNecessary('ftp', 21));
-		$this->assertFalse(AgaviToolkit::isPortNecessary('ssh', 22));
-		$this->assertFalse(AgaviToolkit::isPortNecessary('https', 443));
-		$this->assertFalse(AgaviToolkit::isPortNecessary('nttp', 119));
+		$this->assertTrue(Toolkit::isPortNecessary('some scheme', 8800));
+		$this->assertFalse(Toolkit::isPortNecessary('ftp', 21));
+		$this->assertFalse(Toolkit::isPortNecessary('ssh', 22));
+		$this->assertFalse(Toolkit::isPortNecessary('https', 443));
+		$this->assertFalse(Toolkit::isPortNecessary('nttp', 119));
 	}
 
 	public function testGetValueByKeyList()
 	{
 		$array = array('one' => 'edno', 'two' => 'dve', 'three' => 'tri', 'four' => 'chetiri');
 		$keys = array('one', 'two', 'three');
-		$this->assertEquals('edno', AgaviToolkit::getValueByKeyList($array, $keys));
-		$this->assertEquals('dve', AgaviToolkit::getValueByKeyList($array, array('two')));
-		$this->assertEquals('dve', AgaviToolkit::getValueByKeyList($array, array('two'), 'default'));
-		$this->assertEquals(NULL, AgaviToolkit::getValueByKeyList($array, array('five')));
-		$this->assertEquals('pet', AgaviToolkit::getValueByKeyList($array, array('five'), 'pet'));
+		$this->assertEquals('edno', Toolkit::getValueByKeyList($array, $keys));
+		$this->assertEquals('dve', Toolkit::getValueByKeyList($array, array('two')));
+		$this->assertEquals('dve', Toolkit::getValueByKeyList($array, array('two'), 'default'));
+		$this->assertEquals(NULL, Toolkit::getValueByKeyList($array, array('five')));
+		$this->assertEquals('pet', Toolkit::getValueByKeyList($array, array('five'), 'pet'));
 	}
 
 	public function testIsNotArray()
 	{
 		$value1 = array('baz' => 'boo');
 		$value2 = array('baz', 'boo');
-		$this->assertTrue(AgaviToolkit::isNotArray("path"));
-		$this->assertFalse(AgaviToolkit::isNotArray($value1));
-		$this->assertFalse(AgaviToolkit::isNotArray($value2));
+		$this->assertTrue(Toolkit::isNotArray("path"));
+		$this->assertFalse(Toolkit::isNotArray($value1));
+		$this->assertFalse(Toolkit::isNotArray($value2));
 	}
 
 	public function testUniqid()
 	{
-		$id1 = AgaviToolkit::uniqid();
-		$id2 = AgaviToolkit::uniqid();
-		$id3 = AgaviToolkit::uniqid();
+		$id1 = Toolkit::uniqid();
+		$id2 = Toolkit::uniqid();
+		$id3 = Toolkit::uniqid();
 		$this->assertNotEquals($id1, $id2);
 		$this->assertNotEquals($id3, $id2);
 		$this->assertNotEquals($id1, $id3);
@@ -131,27 +137,27 @@ class AgaviToolkitTest extends AgaviPhpUnitTestCase
 
 	public function testUniqidWithPrefix()
 	{
-		$id1 = AgaviToolkit::uniqid('001');
-		$id2 = AgaviToolkit::uniqid('001');
+		$id1 = Toolkit::uniqid('001');
+		$id2 = Toolkit::uniqid('001');
 		$this->assertNotEquals($id1, $id2);
 		$this->assertContains('001', $id1);
 	}
 
 	public function testCanonicalName()
 	{
-		$this->assertEquals('path', AgaviToolkit::canonicalName("path"));
-		$this->assertEquals('/path/warm/hot/unbearable', AgaviToolkit::canonicalName("/path/warm/hot/unbearable"));
-		$this->assertEquals('path/warm/hot/unbearable', AgaviToolkit::canonicalName("path.warm.hot.unbearable"));
-		$this->assertEquals('/path//warm/hot///unbearable', AgaviToolkit::canonicalName(".path..warm.hot...unbearable"));
+		$this->assertEquals('path', Toolkit::canonicalName("path"));
+		$this->assertEquals('/path/warm/hot/unbearable', Toolkit::canonicalName("/path/warm/hot/unbearable"));
+		$this->assertEquals('path/warm/hot/unbearable', Toolkit::canonicalName("path.warm.hot.unbearable"));
+		$this->assertEquals('/path//warm/hot///unbearable', Toolkit::canonicalName(".path..warm.hot...unbearable"));
 	}
 
 	public function testEvaluateModuleDirective()
 	{
-		AgaviConfig::set('replace.me', 'replaced value $foo $bar $baz');
-		AgaviConfig::set('modules.foo.bar', 'value $foo %replace.me% %nonexistant%');
+		Config::set('replace.me', 'replaced value $foo $bar $baz');
+		Config::set('modules.foo.bar', 'value $foo %replace.me% %nonexistant%');
 		$array = array('foo' => 'replaced_foo', 'bar' => 'replaced_bar');
 		$retval = 'value replaced_foo replaced value replaced_foo replaced_bar ${baz} %nonexistant%';
-		$actual = AgaviToolkit::evaluateModuleDirective('foo', 'bar', $array);
+		$actual = Toolkit::evaluateModuleDirective('foo', 'bar', $array);
 		$this->assertEquals($retval, $actual);
 	}
 	
@@ -161,10 +167,10 @@ class AgaviToolkitTest extends AgaviPhpUnitTestCase
 	public function testLiteralize($rawValue, $expectedResult, $settings)
 	{
 		foreach($settings as $key => $value) {
-			AgaviConfig::set($key, $value);
+			Config::set($key, $value);
 		}
 		
-		$literalized = AgaviToolkit::literalize($rawValue);
+		$literalized = Toolkit::literalize($rawValue);
 		
 		$this->assertEquals($expectedResult, $literalized);
 	}
@@ -197,9 +203,9 @@ class AgaviToolkitTest extends AgaviPhpUnitTestCase
 	public function testIsPathAbsolute($path, $expected)
 	{
 		if($expected) {
-			$this->assertTrue(AgaviToolkit::isPathAbsolute($path));
+			$this->assertTrue(Toolkit::isPathAbsolute($path));
 		} else {
-			$this->assertFalse(AgaviToolkit::isPathAbsolute($path));
+			$this->assertFalse(Toolkit::isPathAbsolute($path));
 		}
 	}
 	
@@ -242,7 +248,7 @@ class AgaviToolkitTest extends AgaviPhpUnitTestCase
 	 */
 	public function testBuildUrl($parts, $url)
 	{
-		$this->assertEquals($url, AgaviToolkit::buildUrl($parts));
+		$this->assertEquals($url, Toolkit::buildUrl($parts));
 	}
 	
 	public function urlData()

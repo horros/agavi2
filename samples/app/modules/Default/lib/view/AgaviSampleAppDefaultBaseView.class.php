@@ -1,6 +1,6 @@
 <?php
 
-class AgaviSampleAppDefaultBaseView extends AgaviSampleAppBaseView
+class AgaviSampleAppDefaultBaseView extends SampleAppBaseView
 {
 	/*
 		This is the base view all your module's views should extend. This way,

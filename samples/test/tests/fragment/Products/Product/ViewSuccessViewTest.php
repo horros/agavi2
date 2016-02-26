@@ -1,6 +1,6 @@
 <?php 
 
-class Products_Product_ViewSuccessViewTest extends AgaviViewTestCase
+class Products_Product_ViewSuccessViewTest extends ViewTestCase
 {
 
 	public function __construct($name = NULL, array $data = array(), $dataName = '')
@@ -39,7 +39,7 @@ class Products_Product_ViewSuccessViewTest extends AgaviViewTestCase
 	// FIXME: needs to be updated
 	public function testResponseHtml()
 	{		
-		$this->setArguments($this->createRequestDataHolder(array(AgaviWebRequestDataHolder::SOURCE_PARAMETERS => array('product_name' => 'spam'))));
+		$this->setArguments($this->createRequestDataHolder(array(WebRequestDataHolder::SOURCE_PARAMETERS => array('product_name' => 'spam'))));
 
 		$this->setAttribute('product_id', 1234);
 		$this->setAttribute('product_name', 'spam');

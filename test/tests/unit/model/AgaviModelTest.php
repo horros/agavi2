@@ -1,8 +1,12 @@
 <?php
+namespace Agavi\Tests\Unit\Model;
 
-class SampleModel extends AgaviModel {}
+use Agavi\Model\Model;
+use Agavi\Testing\UnitTestCase;
 
-class AgaviModelTest extends AgaviUnitTestCase
+class SampleModel extends Model {}
+
+class AgaviModelTest extends UnitTestCase
 {
 	public function testGetContext()
 	{

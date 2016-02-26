@@ -1,6 +1,9 @@
 <?php
+namespace Agavi\Tests\Unit\Translation;
 
-class AgaviLocaleTest extends AgaviUnitTestCase
+use Agavi\Testing\UnitTestCase;
+
+class AgaviLocaleTest extends UnitTestCase
 {
 	
 	

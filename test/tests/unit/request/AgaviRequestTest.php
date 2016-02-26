@@ -1,12 +1,19 @@
 <?php
+namespace Agavi\Tests\Unit\Request;
 
-class SampleRequest extends AgaviRequest
+use Agavi\Request\Request;
+use Agavi\Testing\UnitTestCase;
+
+class SampleRequest extends Request
 {
 	public function shutdown() {}
 }
 
-class AgaviRequestTest extends AgaviUnitTestCase
+class AgaviRequestTest extends UnitTestCase
 {
+	/**
+	 * @var Request
+	 */
 	private $_r = null;
 
 	public function setUp()

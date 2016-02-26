@@ -1,6 +1,6 @@
 <?php 
 
-class ProductFinderModelTest extends AgaviUnitTestCase
+class ProductFinderModelTest extends UnitTestCase
 {
 	protected static $products = array(
 		array(

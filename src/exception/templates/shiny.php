@@ -13,6 +13,10 @@
 // |   End:                                                                    |
 // +---------------------------------------------------------------------------+
 
+namespace Agavi\Exception\Templates;
+
+use Agavi\Config\Config;
+use Agavi\Exception\Exception;
 /**
  * A drop dead gorgeous exception template with eye candy embedded as inline SVG
  *
@@ -383,16 +387,16 @@ foreach(array(
 	'core.app_dir',
 	'core.agavi_dir',
 ) as $directive) {
-	$filepaths['#^' . preg_quote(AgaviConfig::get($directive)) . '(?<=.)#'] = sprintf('<abbr title="%s">%s</abbr>', htmlspecialchars(AgaviConfig::get($directive)), $directive);
+	$filepaths['#^' . preg_quote(Config::get($directive)) . '(?<=.)#'] = sprintf('<abbr title="%s">%s</abbr>', htmlspecialchars(Config::get($directive)), $directive);
 } 
-$fixedTrace = AgaviException::getFixedTrace($e, isset($exceptions[$ei+1]) ? $exceptions[$ei+1] : null);
+$fixedTrace = Exception::getFixedTrace($e, isset($exceptions[$ei+1]) ? $exceptions[$ei+1] : null);
 foreach($fixedTrace as $trace):
 	$i++;
 	if(isset($trace['file']) && !isset($highlights[$trace['file']])) {
-		$highlights[$trace['file']] = AgaviException::highlightFile($trace['file']);
+		$highlights[$trace['file']] = Exception::highlightFile($trace['file']);
 	}
 ?>
-					<li id="exception<?php echo $ei; ?>frame<?php echo $i; ?>"<?php if($i != 2 && count($fixedTrace) > 1): ?> class="closed"<?php endif; ?>>at <?php if($i > 1): ?><strong><?php if(isset($trace['class'])): ?><?php echo $trace['class'], htmlspecialchars($trace['type']); ?><?php endif; ?><?php echo $trace['function']; ?>(</strong><?php if(isset($trace['args'])): ?><?php echo AgaviException::buildParamList($trace['args']); ?><strong>)</strong><?php endif; ?><?php else: ?><em>exception origin</em><?php endif; ?><br />in <?php if(isset($trace['file'])): echo preg_replace(array_keys($filepaths), $filepaths, $trace['file']); ?> <a href="#frame<?php echo $i; ?>" class="toggle" title="Toggle source code snippet" onclick="this.parentNode.className = this.parentNode.className == 'closed' ? '' : 'closed'; return false;">line <?php echo $trace['line']; ?></a><ol start="<?php echo $start = $trace['line'] < 4 ? 1 : $trace['line'] - 3; ?>" style="padding-left:<?php echo strlen($start+6)*0.6+2; ?>em"><?php
+					<li id="exception<?php echo $ei; ?>frame<?php echo $i; ?>"<?php if($i != 2 && count($fixedTrace) > 1): ?> class="closed"<?php endif; ?>>at <?php if($i > 1): ?><strong><?php if(isset($trace['class'])): ?><?php echo $trace['class'], htmlspecialchars($trace['type']); ?><?php endif; ?><?php echo $trace['function']; ?>(</strong><?php if(isset($trace['args'])): ?><?php echo Exception::buildParamList($trace['args']); ?><strong>)</strong><?php endif; ?><?php else: ?><em>exception origin</em><?php endif; ?><br />in <?php if(isset($trace['file'])): echo preg_replace(array_keys($filepaths), $filepaths, $trace['file']); ?> <a href="#frame<?php echo $i; ?>" class="toggle" title="Toggle source code snippet" onclick="this.parentNode.className = this.parentNode.className == 'closed' ? '' : 'closed'; return false;">line <?php echo $trace['line']; ?></a><ol start="<?php echo $start = $trace['line'] < 4 ? 1 : $trace['line'] - 3; ?>"style="padding-left:<?php echo strlen($start+6)*0.6+2; ?>em"><?php
 $lines = array_slice($highlights[$trace['file']], $start - 1, 7, true);
 foreach($lines as $key => &$line) {
 	if($key + 1 == $trace['line']): ?><li class="highlight"><?php if($svg): ?><div style="float:left; width:1em; height:1em; margin-left:-1.35em; background-color:#FFF;"><svg:svg viewBox="3 3 42 42" preserveAspectRatio="xMaxYMax meet" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><svg:use xlink:href="#warningSign" /></svg:svg></div><?php endif; else: ?><li><?php endif; ?><code><?php
@@ -411,7 +415,7 @@ endforeach;
 			<div class="container">
 				<dl>
 					<dt>Agavi:</dt>
-					<dd><?php echo htmlspecialchars(AgaviConfig::get('agavi.version')); ?></dd>
+					<dd><?php echo htmlspecialchars(Config::get('agavi.version')); ?></dd>
 					<dt>PHP:</dt>
 					<dd><?php echo htmlspecialchars(phpversion()); ?></dd>
 					<dt>System:</dt>

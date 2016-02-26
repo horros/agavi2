@@ -1,20 +1,31 @@
 <?php
+namespace Agavi\Testing\Unit\Controller;
 
-class TestController extends AgaviController
+use Agavi\Config\Config;
+use Agavi\Core\Context;
+use Agavi\Controller\Controller;
+use Agavi\Exception\AgaviException;
+use Agavi\Exception\FileNotFoundException;
+use Agavi\Testing\UnitTestCase;
+
+class TestController extends Controller
 {
 	public function redirect($to)
 	{
-		throw new AgaviException('N/A');
+		throw new \Exception('N/A');
 	}
 }
 
 /**
  * runTestsInSeparateProcesses
  */
-class AgaviControllerTest extends AgaviUnitTestCase
+class AgaviControllerTest extends UnitTestCase
 {
+	/** @var Controller */
 	protected $_controller = null;
 
+	/** @var Context */
+	protected $_context = null;
 	public function setUp()
 	{
 		// ReInitialize the Context between tests to start fresh
@@ -26,8 +37,8 @@ class AgaviControllerTest extends AgaviUnitTestCase
 	public function testNewController()
 	{
 		$controller = $this->_controller;
-		$this->assertInstanceOf('AgaviController', $controller);
-		$this->assertInstanceOf('AgaviContext', $controller->getContext());
+		$this->assertInstanceOf('Agavi\\Controller\\Controller', $controller);
+		$this->assertInstanceOf('Agavi\\Core\\Context', $controller->getContext());
 		$ctx1 = $controller->getContext();
 		$ctx2 = $this->getContext();
 		$this->assertSame($ctx1, $ctx2);
@@ -36,11 +47,11 @@ class AgaviControllerTest extends AgaviUnitTestCase
 	public function testactionFileExists()
 	{
 		// actionExists actually checks the filesystem, 
-		$this->assertTrue(file_exists(AgaviConfig::get('core.app_dir') . '/modules/ControllerTests/actions/ControllerTestAction.class.php'));
-		$this->assertFalse(file_exists(AgaviConfig::get('core.app_dir') . '/modules/ControllerTests/actions/BunkAction.class.php'));
-		$this->assertFalse(file_exists(AgaviConfig::get('core.app_dir') . '/modules/Bunk/actions/BunkAction.class.php'));
+		$this->assertTrue(file_exists(Config::get('core.app_dir') . '/modules/ControllerTests/actions/ControllerTestAction.class.php'));
+		$this->assertFalse(file_exists(Config::get('core.app_dir') . '/modules/ControllerTests/actions/BunkAction.class.php'));
+		$this->assertFalse(file_exists(Config::get('core.app_dir') . '/modules/Bunk/actions/BunkAction.class.php'));
 		$controller = $this->_controller;
-		$this->assertEquals(AgaviConfig::get('core.app_dir') . '/modules/ControllerTests/actions/ControllerTestAction.class.php', $controller->checkActionFile('ControllerTests', 'ControllerTest'));
+		$this->assertEquals(Config::get('core.app_dir') . '/modules/ControllerTests/actions/ControllerTestAction.class.php', $controller->checkActionFile('ControllerTests', 'ControllerTest'));
 		$this->assertFalse($controller->checkActionFile('ControllerTests', 'Bunk'), 'actionFileExists did not return false for non-existing action in existing module');
 		$this->assertFalse($controller->checkActionFile('Bunk', 'Bunk'), 'actionFileExists did not return false for non-existing action in non-existing module');
 	}
@@ -51,12 +62,12 @@ class AgaviControllerTest extends AgaviUnitTestCase
 
 		$action = $this->_controller->createActionInstance('ControllerTests', 'ControllerTest');
 		$this->assertInstanceOf('ControllerTests_ControllerTestAction', $action);
-		$this->assertInstanceOf('AgaviAction', $action);
+		$this->assertInstanceOf('Agavi\\Action\\Action', $action);
 
 	}
 
 	/**
-	 * @expectedException AgaviFileNotFoundException
+	 * @expectedException Agavi\Exception\FileNotFoundException
 	 */
 	public function testGetInvalidActionFromModule() {
 		$this->_controller->createActionInstance('ControllerTests', 'NonExistant');
@@ -135,7 +146,7 @@ class AgaviControllerTest extends AgaviUnitTestCase
 	// TODO: moved to AgaviResponse
 	public function testsetContentType()
 	{
-		$controller = AgaviContext::getInstance('test')->getController();
+		$controller = Context::getInstance('test')->getController();
 		$ctype = $controller->getContentType();
 		$controller->setContentType('image/jpeg');
 		$this->assertEquals($controller->getContentType(), 'image/jpeg');
@@ -144,20 +155,20 @@ class AgaviControllerTest extends AgaviUnitTestCase
 	
 	public function testclearHTTPHeaders()
 	{
-		$controller = AgaviContext::getInstance('test')->getController();
+		$controller = Context::getInstance('test')->getController();
 		$controller->clearHTTPHeaders();
 		$this->assertEquals($controller->getHTTPHeaders(), array());
 	}
 	
 	public function testgetHTTPHeader()
 	{
-		$controller = AgaviContext::getInstance('test')->getController();
+		$controller = Context::getInstance('test')->getController();
 		$this->assertEquals($controller->getHTTPHeader('unset'), null);
 	}
 
 	public function testhasHTTPHeader()
 	{
-		$controller = AgaviContext::getInstance('test')->getController();
+		$controller = Context::getInstance('test')->getController();
 		$controller->clearHTTPHeaders();
 		$controller->setHTTPHeader('testme', 'whatever');
 		$this->assertTrue($controller->hasHTTPHeader('testme'));
@@ -166,7 +177,7 @@ class AgaviControllerTest extends AgaviUnitTestCase
 	
 	public function testsetHTTPHeader()
 	{
-		$controller = AgaviContext::getInstance('test')->getController();
+		$controller = Context::getInstance('test')->getController();
 		$controller->setHTTPHeader('sometest', 'fubar');
 		$this->assertEquals($controller->getHTTPHeader('sometest'), array('fubar'));
 		$controller->setHTTPHeader('sometest', 'foo');
@@ -179,13 +190,13 @@ class AgaviControllerTest extends AgaviUnitTestCase
 	
 	public function testgetHTTPStatusCode()
 	{
-		$controller = AgaviContext::getInstance('test')->getController();
+		$controller = Context::getInstance('test')->getController();
 		$this->assertEquals($controller->getHTTPStatusCode(), null);
 	}
 	
 	public function testsetHTTPStatusCode()
 	{
-		$controller = AgaviContext::getInstance('test')->getController();
+		$controller = Context::getInstance('test')->getController();
 		$controller->setHTTPStatusCode('404');
 		$this->assertEquals($controller->getHTTPStatusCode(), '404');
 		$controller->setHTTPStatusCode(403);
@@ -199,7 +210,7 @@ class AgaviControllerTest extends AgaviUnitTestCase
 	// TODO: moved to routing
 	function testgenURL()
 	{
-		$routing = AgaviContext::getInstance('test')->getRouting();
+		$routing = Context::getInstance('test')->getRouting();
 		$this->assertEquals($controller->genURL('index.php', array('foo' =>'bar')), 'index.php?foo=bar');
 		$this->assertEquals($controller->genURL(null, array('foo' =>'bar')), $_SERVER['SCRIPT_NAME'] . '?foo=bar');
 		$this->assertEquals($controller->genURL(array('foo' =>'bar'), 'index.php'), 'index.php?foo=bar');

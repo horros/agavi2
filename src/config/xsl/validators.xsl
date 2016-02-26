@@ -25,7 +25,7 @@
 	</xsl:template>
 	
 	<!-- add a "parent" attribute pointing to our default validators.xml for 0.11 configs that lack it -->
-	<!-- we moved the default mappings ("string" => AgaviStringValidator with "min"=1 etc) from the config handler to that file -->
+	<!-- we moved the default mappings ("string" => StringValidator with "min"=1 etc) from the config handler to that file -->
 	<xsl:template match="envelope_0_11:configurations[not(@parent)]">
 		<xsl:call-template name="_common-migrate-envelope-element">
 			<xsl:with-param name="attributes"><dummy parent="%core.agavi_dir%/config/defaults/validators.xml" /></xsl:with-param>

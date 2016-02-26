@@ -15,7 +15,7 @@
 
 class Default_LoginInputView extends AgaviSampleAppDefaultBaseView
 {
-	public function executeHtml(AgaviRequestDataHolder $rd)
+	public function executeHtml(RequestDataHolder $rd)
 	{
 		$this->setupHtml($rd);
 		

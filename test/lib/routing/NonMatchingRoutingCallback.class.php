@@ -1,8 +1,8 @@
 <?php
 
-class NonMatchingRoutingCallback extends AgaviRoutingCallback
+class NonMatchingRoutingCallback extends \Agavi\Routing\RoutingCallback
 {
-	public function onMatched(array &$parameters, AgaviExecutionContainer $container)
+	public function onMatched(array &$parameters, \Agavi\Controller\ExecutionContainer $container)
 	{
 		return false;
 	}

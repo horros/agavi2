@@ -1,6 +1,6 @@
 <?php
 
-class AgaviSampleAppBaseView extends AgaviView
+class SampleAppBaseView extends View
 {
 	/*
 		This is the base view all your application's views should extend.
@@ -27,17 +27,17 @@ class AgaviSampleAppBaseView extends AgaviView
 	const DEFAULT_SLOT_LAYOUT_NAME = 'slot';
 	
 	/**
-	 * @var        AgaviRouting
+	 * @var        Routing
 	 */
 	protected $ro;
 	
 	/**
-	 * @var        AgaviRequest
+	 * @var        Request
 	 */
 	protected $rq;
 	
 	/**
-	 * @var        AgaviTranslationManager
+	 * @var        TranslationManager
 	 */
 	protected $tm;
 	
@@ -46,7 +46,7 @@ class AgaviSampleAppBaseView extends AgaviView
 	 */
 	protected $us;
 	
-	public function initialize(AgaviExecutionContainer $container)
+	public function initialize(ExecutionContainer $container)
 	{
 		parent::initialize($container);
 		
@@ -56,9 +56,9 @@ class AgaviSampleAppBaseView extends AgaviView
 		$this->us = $this->getContext()->getUser();
 	}
 	
-	public final function execute(AgaviRequestDataHolder $rd)
+	public final function execute(RequestDataHolder $rd)
 	{
-		throw new AgaviViewException(sprintf(
+		throw new ViewException(sprintf(
 			'The View "%1$s" does not implement an "execute%3$s()" method to serve '.
 			'the Output Type "%2$s", and the base View "%4$s" does not implement an '.
 			'"execute%3$s()" method to handle this situation.',
@@ -69,9 +69,9 @@ class AgaviSampleAppBaseView extends AgaviView
 		));
 	}
 	
-	public function executeHtml(AgaviRequestDataHolder $rd)
+	public function executeHtml(RequestDataHolder $rd)
 	{
-		throw new AgaviViewException(sprintf(
+		throw new ViewException(sprintf(
 			'The View "%1$s" does not implement an "execute%3$s()" method to serve '.
 			'the Output Type "%2$s". It is recommended that you change the code of '.
 			'the method "execute%3$s()" in the base View "%4$s" that is throwing '.
@@ -87,9 +87,9 @@ class AgaviSampleAppBaseView extends AgaviView
 		));
 	}
 	
-	public function executeJson(AgaviRequestDataHolder $rd)
+	public function executeJson(RequestDataHolder $rd)
 	{
-		throw new AgaviViewException(sprintf(
+		throw new ViewException(sprintf(
 			'The View "%1$s" does not implement an "execute%3$s()" method to serve '.
 			'the Output Type "%2$s". It is recommended that you change the code of '.
 			'the method "execute%3$s()" in the base View "%4$s" that is throwing '.
@@ -105,7 +105,7 @@ class AgaviSampleAppBaseView extends AgaviView
 		));
 	}
 	
-	public function setupHtml(AgaviRequestDataHolder $rd, $layoutName = null)
+	public function setupHtml(RequestDataHolder $rd, $layoutName = null)
 	{
 		if($layoutName === null && $this->getContainer()->getParameter('is_slot', false)) {
 			$layoutName = self::DEFAULT_SLOT_LAYOUT_NAME;

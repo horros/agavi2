@@ -16,7 +16,7 @@
 class Default_IndexSuccessView extends AgaviSampleAppDefaultBaseView
 {
 
-	public function executeHtml(AgaviRequestDataHolder $rd)
+	public function executeHtml(RequestDataHolder $rd)
 	{
 		$this->setupHtml($rd);
 

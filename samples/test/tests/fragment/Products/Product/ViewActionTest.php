@@ -3,7 +3,7 @@
  * @AgaviActionName Products.View
  * @AgaviModuleName Products
  */
-class Products_Product_ViewActionTest extends AgaviActionTestCase
+class Products_Product_ViewActionTest extends ActionTestCase
 {
 	protected static $products = array(
 		array(
@@ -46,7 +46,7 @@ class Products_Product_ViewActionTest extends AgaviActionTestCase
 	public function testSuccessViewValidProducts($parameters, $price)
 	{
 		$this->setRequestMethod('read');
-		$this->setRequestData($this->createRequestDataHolder(array(AgaviWebRequestDataHolder::SOURCE_PARAMETERS => $parameters)));
+		$this->setRequestData($this->createRequestDataHolder(array(WebRequestDataHolder::SOURCE_PARAMETERS => $parameters)));
 		$this->runAction();
 		$this->assertValidatedArgument('id');
 		$this->assertViewNameEquals('Success');
@@ -73,7 +73,7 @@ class Products_Product_ViewActionTest extends AgaviActionTestCase
 	public function testErrorViewInvalidProducts($parameters)
 	{
 		$this->setRequestMethod('read');
-		$this->setArguments($this->createRequestDataHolder(array(AgaviWebRequestDataHolder::SOURCE_PARAMETERS => $parameters)));
+		$this->setArguments($this->createRequestDataHolder(array(WebRequestDataHolder::SOURCE_PARAMETERS => $parameters)));
 		$this->runAction();
 		$this->assertValidatedArgument('id');
 		$this->assertViewNameEquals('Error');
@@ -83,7 +83,7 @@ class Products_Product_ViewActionTest extends AgaviActionTestCase
 	public function testErrorViewFailedProductValidation()
 	{
 		$this->setRequestMethod('read');
-		$this->setArguments($this->createRequestDataHolder(array(AgaviWebRequestDataHolder::SOURCE_PARAMETERS => array('id' => ''))));
+		$this->setArguments($this->createRequestDataHolder(array(WebRequestDataHolder::SOURCE_PARAMETERS => array('id' => ''))));
 		$this->runAction();
 		$this->assertValidatedArgument('id');
 		$this->assertFailedArgument('id');

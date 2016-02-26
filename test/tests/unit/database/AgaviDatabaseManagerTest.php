@@ -1,10 +1,12 @@
 <?php
+namespace Agavi\Testing\Unit\Database;
+use Agavi\Testing\UnitTestCase;
 
 /**
  * @runTestsInSeparateProcesses
  * @agaviIsolationEnvironment testing-use_database_on
  */
-class AgaviDatabaseManagerTest extends AgaviUnitTestCase
+class AgaviDatabaseManagerTest extends UnitTestCase
 {
 	private $_dbm = null;
 	
@@ -20,7 +22,7 @@ class AgaviDatabaseManagerTest extends AgaviUnitTestCase
 
 	public function testInitialization()
 	{
-		$this->assertInstanceOf('AgaviDatabaseManager', $this->_dbm);
+		$this->assertInstanceOf('Agavi\\Database\\DatabaseManager', $this->_dbm);
 	}
 
 }

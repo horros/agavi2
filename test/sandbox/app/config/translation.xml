@@ -46,7 +46,7 @@
 			<translator domain="default">
 				
 				<translator domain="errors">
-					<message_translator class="AgaviSimpleTranslator">
+					<message_translator class="Agavi\Translation\SimpleTranslator">
 						<ae:parameter name="Login">
 							<ae:parameter name="de">
 								<ae:parameter name="Wrong Password">Falsches Passwort</ae:parameter>
@@ -58,7 +58,7 @@
 					</message_translator>
 				</translator>
 				
-				<message_translator class="AgaviGettextTranslator">
+				<message_translator class="Agavi\Translation\GettextTranslator">
 					<ae:parameter name="text_domains">
 						<ae:parameter name="menu">%core.app_dir%/data/i18n</ae:parameter>
 						<ae:parameter name="layout">%core.app_dir%/data/i18n</ae:parameter>

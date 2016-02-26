@@ -1,5 +1,5 @@
 <?php
-
+namespace Agavi\Testing;
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -13,7 +13,12 @@
 // |   End:                                                                    |
 // +---------------------------------------------------------------------------+
 
-
+use Agavi\Config\Config;
+use Agavi\Config\ConfigCache;
+use Agavi\Exception\AgaviException;
+use Agavi\Util\RecursiveDirectoryFilterIterator;
+use Agavi\Util\Toolkit;
+use PHP_CodeCoverage_Filter;
 /**
  * Main framework class used for autoloading and initial bootstrapping of the 
  * Agavi testing environment
@@ -25,7 +30,7 @@
  * @copyright  The Agavi Project
  *
  * @since      1.0.0
- * @deprecated 1.1.0 Use AgaviPhpUnitCli
+ * @deprecated 1.1.0 Use PhpUnitCli
  *
  * @version    $Id$
  */
@@ -46,7 +51,7 @@ class AgaviTesting
 	 *
 	 * @author     David Zülke <david.zuelke@bitextender.com>
 	 * @since      1.0.7
-	 * @deprecated 1.1.0 Use AgaviPhpUnitCli
+	 * @deprecated 1.1.0 Use PhpUnitCli
 	 */
 	public static function getCodeCoverageFilter()
 	{
@@ -61,36 +66,36 @@ class AgaviTesting
 	/**
 	 * Startup the Agavi core
 	 *
-	 * @param      string environment the environment to use for this session.
+	 * @param      string $environment environment the environment to use for this session.
 	 *
 	 * @author     Felix Gilcher <felix.gilcher@exozet.com>
 	 * @since      1.0.0
-	 * @deprecated 1.1.0 Use AgaviPhpUnitCli
+	 * @deprecated 1.1.0 Use PhpUnitCli
 	 */
 	public static function bootstrap($environment = null)
 	{
-		AgaviPhpUnitCli::bootstrap($environment);
+		PhpUnitCli::bootstrap($environment);
 	}
 
 	/**
 	 * Dispatch the test run.
 	 *
-	 * @param      array An array of arguments configuring PHPUnit behavior.
-	 * @param      bool  Whether exit() should be called with an appropriate shell
+	 * @param      array $arguments An array of arguments configuring PHPUnit behavior.
+	 * @param      bool  $exit Whether exit() should be called with an appropriate shell
 	 *                   exit status to indicate success or failures/errors.
 	 *
-	 * @return     PHPUnit_Framework_TestResult The PHPUnit result object.
+	 * @return     \PHPUnit_Framework_TestResult The PHPUnit result object.
 	 *
 	 * @author     Felix Gilcher <felix.gilcher@bitextender.com>
 	 * @author     David Zülke <david.zuelke@bitextender.com>
 	 * @since      1.0.0
-	 * @deprecated 1.1.0 Use AgaviPhpUnitCli
+	 * @deprecated 1.1.0 Use PhpUnitCli
 	 */
 	public static function dispatch($arguments = array(), $exit = true)
 	{
 		
-		$suites = include AgaviConfigCache::checkConfig(AgaviConfig::get('core.testing_dir').'/config/suites.xml');
-		$master_suite = new AgaviTestSuite('Master');
+		$suites = include ConfigCache::checkConfig(Config::get('core.testing_dir').'/config/suites.xml');
+		$master_suite = new TestSuite('Master');
 		
 		if(!empty($arguments['include-suite'])) {
 			
@@ -99,7 +104,7 @@ class AgaviTesting
 			
 			foreach($names as $name) {
 				if(empty($suites[$name])) {
-					throw new InvalidArgumentException(sprintf('Invalid suite name %1$s.', $name));
+					throw new \InvalidArgumentException(sprintf('Invalid suite name %1$s.', $name));
 				}
 				
 				$master_suite->addTest(self::createSuite($name, $suites[$name]));		
@@ -118,12 +123,12 @@ class AgaviTesting
 			}
 		}
 		
-		if(version_compare(PHPUnit_Runner_Version::id(), '3.6', '<')) {
+		if(version_compare(\PHPUnit_Runner_Version::id(), '3.6', '<')) {
 			// PHP_CodeCoverage_Filter is a singleton
-			$runner = new PHPUnit_TextUI_TestRunner();
+			$runner = new \PHPUnit_TextUI_TestRunner();
 		} else {
 			// PHP_CodeCoverage_Filter instance must be passed to the test runner
-			$runner = new PHPUnit_TextUI_TestRunner(null, self::$codeCoverageFilter);
+			$runner = new \PHPUnit_TextUI_TestRunner(null, self::$codeCoverageFilter);
 		}
 		$result = $runner->doRun($master_suite, $arguments);
 		if($exit) {
@@ -142,16 +147,16 @@ class AgaviTesting
 	 * @param      PHPUnit_Framework_TestResult The test result object.
 	 *
 	 * @return     int The shell exit code.
-	 * @deprecated 1.1.0 Use AgaviPhpUnitCli
+	 * @deprecated 1.1.0 Use PhpUnitCli
 	 */
-	public static function getExitStatus(PHPUnit_Framework_TestResult $result)
+	public static function getExitStatus(\PHPUnit_Framework_TestResult $result)
 	{
 		if($result->wasSuccessful()) {
-			return PHPUnit_TextUI_TestRunner::SUCCESS_EXIT;
+			return \PHPUnit_TextUI_TestRunner::SUCCESS_EXIT;
 		} elseif($result->errorCount()) {
-			return PHPUnit_TextUI_TestRunner::EXCEPTION_EXIT;
+			return \PHPUnit_TextUI_TestRunner::EXCEPTION_EXIT;
 		} else {
-			return PHPUnit_TextUI_TestRunner::FAILURE_EXIT;
+			return \PHPUnit_TextUI_TestRunner::FAILURE_EXIT;
 		}
 	}
 	
@@ -161,28 +166,28 @@ class AgaviTesting
 	 * @param      string Name of the suite
 	 * @param      array  An array containing information about the suite
 	 *
-	 * @return     AgaviTestSuite The initialized test suite object.
+	 * @return     TestSuite The initialized test suite object.
 	 *
 	 * @author     Felix Gilcher <felix.gilcher@bitextender.com>
 	 * @since      1.0.0
-	 * @deprecated 1.1.0 Use AgaviPhpUnitCli
+	 * @deprecated 1.1.0 Use PhpUnitCli
 	 */
 	protected static function createSuite($name, array $suite) 
 	{
 		$base = (null == $suite['base']) ? 'tests' : $suite['base'];
-		if(!AgaviToolkit::isPathAbsolute($base)) {
-			$base = AgaviConfig::get('core.testing_dir').'/'.$base;
+		if(!Toolkit::isPathAbsolute($base)) {
+			$base = Config::get('core.testing_dir').'/'.$base;
 		}
 		$s = new $suite['class']($name);
 		if(!empty($suite['includes'])) {
 			foreach(
-				new RecursiveIteratorIterator(
-					new AgaviRecursiveDirectoryFilterIterator(
-						new RecursiveDirectoryIterator($base), 
+				new \RecursiveIteratorIterator(
+					new RecursiveDirectoryFilterIterator(
+						new \RecursiveDirectoryIterator($base),
 						$suite['includes'], 
 						$suite['excludes']
 					), 
-					RecursiveIteratorIterator::CHILD_FIRST
+					\RecursiveIteratorIterator::CHILD_FIRST
 				) as $finfo) {
 					
 				if($finfo->isFile()) {
@@ -191,7 +196,7 @@ class AgaviTesting
 			}
 		}
 		foreach($suite['testfiles'] as $file) {
-			if(!AgaviToolkit::isPathAbsolute($file)) {
+			if(!Toolkit::isPathAbsolute($file)) {
 				$file = $base.'/'.$file;
 			}
 			$s->addTestFile($file);
@@ -206,7 +211,7 @@ class AgaviTesting
 	 * 
 	 * @author     Felix Gilcher <felix.gilcher@bitextender.com>
 	 * @since      1.0.0
-	 * @deprecated 1.1.0 Use AgaviPhpUnitCli
+	 * @deprecated 1.1.0 Use PhpUnitCli
 	 */
 	public static function processCommandlineOptions()
 	{
@@ -230,13 +235,13 @@ class AgaviTesting
 		);
 		
 		try {
-			$options = PHPUnit_Util_Getopt::getopt(
+			$options = \PHPUnit_Util_Getopt::getopt(
 				$_SERVER['argv'],
 				'd:',
 				$longOptions
 			);
-		} catch(RuntimeException $e) {
-			PHPUnit_TextUI_TestRunner::showError($e->getMessage());
+		} catch(\RuntimeException $e) {
+			\PHPUnit_TextUI_TestRunner::showError($e->getMessage());
 		}
 		
 		$arguments = array(); 
@@ -273,7 +278,7 @@ class AgaviTesting
 				
 				case '--help':
 					self::showHelp();
-					exit(PHPUnit_TextUI_TestRunner::SUCCESS_EXIT);
+					exit(\PHPUnit_TextUI_TestRunner::SUCCESS_EXIT);
 					break;
 				
 				case '--log-json':
@@ -281,10 +286,10 @@ class AgaviTesting
 					break;
 				
 				case '--log-graphviz':
-					if(PHPUnit_Util_Filesystem::fileExistsInIncludePath('Image/GraphViz.php')) {
+					if(\PHPUnit_Util_Filesystem::fileExistsInIncludePath('Image/GraphViz.php')) {
 						$arguments['graphvizLogfile'] = $option[1];
 					} else {
-						throw new AgaviException('The Image_GraphViz package is not installed.');
+						throw new \Exception('The Image_GraphViz package is not installed.');
 					}
 					break;
 				
@@ -326,11 +331,11 @@ class AgaviTesting
 	 * are met. 
 	 * 
 	 * @return     true if all deps are met
-	 * @throws     AgaviExecption if a dependency is missing
+	 * @throws     AgaviException if a dependency is missing
 	 * 
 	 * @author     Felix Gilcher <felix.gilcher@bitextender.com>
 	 * @since      1.0.0
-	 * @deprecated 1.1.0 Use AgaviPhpUnitCli
+	 * @deprecated 1.1.0 Use PhpUnitCli
 	 */
 	protected static function checkCodeCoverageDeps()
 	{
@@ -352,11 +357,11 @@ class AgaviTesting
 	 * 
 	 * @author     Felix Gilcher <felix.gilcher@bitextender.com>
 	 * @since      1.0.0
-	 * @deprecated 1.1.0 Use AgaviPhpUnitCli
+	 * @deprecated 1.1.0 Use PhpUnitCli
 	 */
 	protected static function showHelp()
 	{
-		PHPUnit_TextUI_TestRunner::printVersionString();
+		\PHPUnit_TextUI_TestRunner::printVersionString();
 
 		print <<<EOT
 Usage: run-tests.php [switches]

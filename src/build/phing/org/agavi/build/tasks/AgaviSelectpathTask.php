@@ -93,10 +93,10 @@ class AgaviSelectpathTask extends AgaviTask
 	public function main()
 	{
 		if($this->property === null) {
-			throw new BuildException('The property attribute must be specified');
+			throw new \Agavi\Build\Exception\BuildException('The property attribute must be specified');
 		}
 		if(count($this->froms) === 0) {
-			throw new BuildException('At least one from tag must be specified');
+			throw new \Agavi\Build\Exception\BuildException('At least one from tag must be specified');
 		}
 		
 		foreach($this->froms as $from) {

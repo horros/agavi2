@@ -1,6 +1,6 @@
 <?php
 
-class Ticket1051RoutingCallback extends AgaviRoutingCallback
+class Ticket1051RoutingCallback extends \Agavi\Routing\RoutingCallback
 {
 	public function onGenerate(array $defaultParameters, array &$userParameters, array &$userOptions)
 	{

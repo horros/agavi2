@@ -2,7 +2,7 @@
 
 class Default_ModuleDisabledSuccessView extends SandboxDefaultBaseView
 {
-	public function executeHtml(AgaviRequestDataHolder $rd)
+	public function executeHtml(RequestDataHolder $rd)
 	{
 		$this->setupHtml($rd);
 		

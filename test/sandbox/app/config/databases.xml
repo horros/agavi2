@@ -4,7 +4,7 @@
 	<ae:configuration>
 		<databases default="pdo_mysql_main">
 			
-			<database name="pdo_mysql_main" class="AgaviPdoDatabase">
+			<database name="pdo_mysql_main" class="Agavi\Database\PdoDatabase">
 				<ae:parameter name="dsn">mysql:host=localhost;dbname=agsmplapp</ae:parameter>
 				<ae:parameter name="username">root</ae:parameter>
 				<ae:parameter name="password"></ae:parameter>

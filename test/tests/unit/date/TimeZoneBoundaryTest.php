@@ -1,4 +1,8 @@
 <?php
+namespace Agavi\Testing\Unit\Date;
+use Agavi\Date\Calendar;
+use Agavi\Date\DateDefinitions;
+use Agavi\Date\SimpleTimeZone;
 
 require_once(__DIR__ . '/BaseCalendarTest.php');
 
@@ -127,7 +131,16 @@ TimeZoneBoundaryTest::showNN(int32_t n)
 */
  
 // -------------------------------------
- 
+
+	/**
+	 * @param $d
+	 * @param $time_zone SimpleTimeZone
+	 * @param $expUseDaylightTime
+	 * @param $expInDaylightTime
+	 * @param $expZoneOffset
+	 * @param $expDSTOffset
+	 * @throws \Agavi\Exception\AgaviException
+	 */
 	protected function verifyDST($d, $time_zone, $expUseDaylightTime, $expInDaylightTime, $expZoneOffset, $expDSTOffset)
 	{
 		$this->assertEquals($expInDaylightTime, $time_zone->inDaylightTime($d), 'expected ' . $expInDaylightTime. ' was ' . (int)$time_zone->inDaylightTime($d) . ' at ' . $this->dateToString($d) . ' in zone ' . $time_zone->getId() . '(' . get_class($time_zone) . ')');
@@ -136,10 +149,10 @@ TimeZoneBoundaryTest::showNN(int32_t n)
 
 		$gc = $this->tm->createCalendar(clone $time_zone);
 		$gc->setTime($d);
-		$offset = $time_zone->getOffset($gc->get(AgaviDateDefinitions::ERA),
-				$gc->get(AgaviDateDefinitions::YEAR), $gc->get(AgaviDateDefinitions::MONTH),
-				$gc->get(AgaviDateDefinitions::DATE), $gc->get(AgaviDateDefinitions::DAY_OF_WEEK),
-				(($gc->get(AgaviDateDefinitions::HOUR_OF_DAY) * 60 + $gc->get(AgaviDateDefinitions::MINUTE)) * 60 + $gc->get(AgaviDateDefinitions::SECOND)) * 1000 + $gc->get(AgaviDateDefinitions::MILLISECOND)
+		$offset = $time_zone->getOffset($gc->get(DateDefinitions::ERA),
+				$gc->get(DateDefinitions::YEAR), $gc->get(DateDefinitions::MONTH),
+				$gc->get(DateDefinitions::DATE), $gc->get(DateDefinitions::DAY_OF_WEEK),
+				(($gc->get(DateDefinitions::HOUR_OF_DAY) * 60 + $gc->get(DateDefinitions::MINUTE)) * 60 + $gc->get(DateDefinitions::SECOND)) * 1000 + $gc->get(DateDefinitions::MILLISECOND)
 		);
 
 		$this->assertEquals($expDSTOffset, (int) $offset, 'expected ' . $expDSTOffset. ' was ' . $offset . ' at ' . $this->dateToString($d) . ' in zone ' . $time_zone->getId() . '(' . get_class($time_zone) . ')');
@@ -153,7 +166,8 @@ TimeZoneBoundaryTest::showNN(int32_t n)
 	 * including the calendar time->fields and fields->time and
 	 * the time zone getOffset method.
 	 *
-	 * @param epochHours hours after Jan 1 1970 0:00 GMT.
+	 * @param Calendar $cal
+	 * @param int $epochHours hours after Jan 1 1970 0:00 GMT.
 	 */
 	protected function verifyMapping(&$cal, $year, $month, $dom, $hour, $epochHours)
 	{
@@ -165,10 +179,10 @@ TimeZoneBoundaryTest::showNN(int32_t n)
 		$this->assertEquals($epochHours, $e);
 
 		$cal->setTime($ed);
-		$this->assertEquals($year, $cal->get(AgaviDateDefinitions::YEAR));
-		$this->assertEquals($month, $cal->get(AgaviDateDefinitions::MONTH));
-		$this->assertEquals($dom, $cal->get(AgaviDateDefinitions::DATE));
-		$this->assertEquals(floatval($hour * 3600000), $cal->get(AgaviDateDefinitions::MILLISECONDS_IN_DAY));
+		$this->assertEquals($year, $cal->get(DateDefinitions::YEAR));
+		$this->assertEquals($month, $cal->get(DateDefinitions::MONTH));
+		$this->assertEquals($dom, $cal->get(DateDefinitions::DATE));
+		$this->assertEquals(floatval($hour * 3600000), $cal->get(DateDefinitions::MILLISECONDS_IN_DAY));
 }
 
 	/**
@@ -180,17 +194,17 @@ TimeZoneBoundaryTest::showNN(int32_t n)
 	{
 		$pst = $this->tm->createTimeZone("America/Los_Angeles");
 		$tempcal = $this->tm->createCalendar($pst);
-		$this->verifyMapping($tempcal, 1997, AgaviDateDefinitions::APRIL, 3,  0, 238904.0);
-		$this->verifyMapping($tempcal, 1997, AgaviDateDefinitions::APRIL, 4,  0, 238928.0);
-		$this->verifyMapping($tempcal, 1997, AgaviDateDefinitions::APRIL, 5,  0, 238952.0);
-		$this->verifyMapping($tempcal, 1997, AgaviDateDefinitions::APRIL, 5, 23, 238975.0);
-		$this->verifyMapping($tempcal, 1997, AgaviDateDefinitions::APRIL, 6,  0, 238976.0);
-		$this->verifyMapping($tempcal, 1997, AgaviDateDefinitions::APRIL, 6,  1, 238977.0);
-		$this->verifyMapping($tempcal, 1997, AgaviDateDefinitions::APRIL, 6,  3, 238978.0);
+		$this->verifyMapping($tempcal, 1997, DateDefinitions::APRIL, 3,  0, 238904.0);
+		$this->verifyMapping($tempcal, 1997, DateDefinitions::APRIL, 4,  0, 238928.0);
+		$this->verifyMapping($tempcal, 1997, DateDefinitions::APRIL, 5,  0, 238952.0);
+		$this->verifyMapping($tempcal, 1997, DateDefinitions::APRIL, 5, 23, 238975.0);
+		$this->verifyMapping($tempcal, 1997, DateDefinitions::APRIL, 6,  0, 238976.0);
+		$this->verifyMapping($tempcal, 1997, DateDefinitions::APRIL, 6,  1, 238977.0);
+		$this->verifyMapping($tempcal, 1997, DateDefinitions::APRIL, 6,  3, 238978.0);
 
 		$utc = $this->tm->createTimeZone("UTC");
 		$utccal =  $this->tm->createCalendar($utc);
-		$this->verifyMapping($utccal, 1997, AgaviDateDefinitions::APRIL, 6, 0, 238968.0);
+		$this->verifyMapping($utccal, 1997, DateDefinitions::APRIL, 6, 0, 238968.0);
 
 		$save = $this->tm->getDefaultTimeZone();
 		//AgaviTimeZone::setDefault($pst);
@@ -199,7 +213,7 @@ TimeZoneBoundaryTest::showNN(int32_t n)
 		// DST changeover for PST is 4/6/1997 at 2 hours past midnight
 		// at 238978.0 epoch hours.
 		$tempcal->clear();
-		$tempcal->set(1997, AgaviDateDefinitions::APRIL, 6);
+		$tempcal->set(1997, DateDefinitions::APRIL, 6);
 		$d = $tempcal->getTime();
 
 
@@ -214,7 +228,7 @@ TimeZoneBoundaryTest::showNN(int32_t n)
 		$this->tm->setDefaultTimeZone($save->getId());
 
 
-			$d = $this->date(97, AgaviDateDefinitions::APRIL, 6);
+			$d = $this->date(97, DateDefinitions::APRIL, 6);
 			$z = $this->tm->createTimeZone("America/Los_Angeles");
 			for($i = 60; $i <= 180; $i += 15) {
 				$inDST = ($i >= 120);
@@ -236,6 +250,11 @@ TimeZoneBoundaryTest::showNN(int32_t n)
 			$this->findDaylightBoundaryUsingTimeZone($this->date(97, 6, 1), true, $this->PST_1997_END);
 	}
 
+	/**
+	 * @param $tz SimpleTimeZone
+	 * @param $d
+	 * @param $expectedBoundary
+	 */
 	protected function myTestUsingBinarySearch($tz, $d, $expectedBoundary)
 	{
 		$min = $d;
@@ -264,20 +283,27 @@ TimeZoneBoundaryTest::showNN(int32_t n)
 	 */
 	public function TestNewRules()
 	{
-		$tz = new AgaviSimpleTimeZone($this->tm, -8 * $this->ONE_HOUR, "Test_1", AgaviDateDefinitions::AUGUST, 2, AgaviDateDefinitions::TUESDAY, 2 * $this->ONE_HOUR, AgaviDateDefinitions::MARCH, 15, 0, 2 * $this->ONE_HOUR);
+		$tz = new SimpleTimeZone($this->tm, -8 * $this->ONE_HOUR, "Test_1", DateDefinitions::AUGUST, 2, DateDefinitions::TUESDAY, 2 * $this->ONE_HOUR, DateDefinitions::MARCH, 15, 0, 2 * $this->ONE_HOUR);
 		$this->myTestUsingBinarySearch($tz, $this->date(97, 0, 1), 858416400000.0);
 		$this->myTestUsingBinarySearch($tz, $this->date(97, 6, 1), 871380000000.0);
 
-		$tz = new AgaviSimpleTimeZone($this->tm -8 * $this->ONE_HOUR, "Test_2", AgaviDateDefinitions::APRIL, 14, - AgaviDateDefinitions::WEDNESDAY, 2 * $this->ONE_HOUR, AgaviDateDefinitions::SEPTEMBER, -20, - AgaviDateDefinitions::SUNDAY, 2 * $this->ONE_HOUR);
+		$tz = new SimpleTimeZone($this->tm -8 * $this->ONE_HOUR, "Test_2", DateDefinitions::APRIL, 14, - DateDefinitions::WEDNESDAY, 2 * $this->ONE_HOUR, DateDefinitions::SEPTEMBER, -20, - DateDefinitions::SUNDAY, 2 * $this->ONE_HOUR);
 		$this->myTestUsingBinarySearch($tz, $this->date(97, 0, 1), 861184800000.0);
 		$this->myTestUsingBinarySearch($tz, $this->date(97, 6, 1), 874227600000.0);
 	}
 
 // -------------------------------------
 
+	/**
+	 * @param $year
+	 * @param $interval
+	 * @param $z SimpleTimeZone
+	 * @param $expectedChanges
+	 * @throws \Agavi\Exception\AgaviException
+	 */
 	protected function findBoundariesStepwise($year, $interval, $z, $expectedChanges)
 	{
-		$d = $this->date($year - 1900, AgaviDateDefinitions::JANUARY, 1);
+		$d = $this->date($year - 1900, DateDefinitions::JANUARY, 1);
 		$time = $d;
 		$limit = $time + $this->ONE_YEAR + $this->ONE_DAY;
 		$cal = $this->tm->createCalendar($z);

@@ -1,6 +1,10 @@
 <?php
+namespace Agavi\Testing\Unit\Date;
+use Agavi\Date\TimeZone;
+use Agavi\Testing\UnitTestCase;
 
-class Ticket958Test extends AgaviUnitTestCase
+
+class Ticket958Test extends UnitTestCase
 {
 	/**
 	 * @expectedException InvalidArgumentException
@@ -8,7 +12,7 @@ class Ticket958Test extends AgaviUnitTestCase
 	public function testTicket958()
 	{
 		$tm = $this->getContext()->getTranslationManager();
-		$tz = AgaviTimeZone::createCustomTimeZone($tm, '+01:00');
+		$tz = TimeZone::createCustomTimeZone($tm, '+01:00');
 	}
 }
 

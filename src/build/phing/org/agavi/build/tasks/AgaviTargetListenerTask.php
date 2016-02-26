@@ -34,7 +34,7 @@ class AgaviTargetListenerTask extends AgaviListenerTask
 	public function main()
 	{
 		if($this->object === null) {
-			throw new BuildException('The object attribute must be specified');
+			throw new \Agavi\Build\Exception\BuildException('The object attribute must be specified');
 		}
 		
 		$objectType = $this->object->getReferencedObject($this->project);
@@ -43,12 +43,12 @@ class AgaviTargetListenerTask extends AgaviListenerTask
 		}
 		
 		$object = $objectType->getInstance();
-		if(!$object instanceof AgaviIPhingTargetListener) {
+		if(!$object instanceof \Agavi\Build\Phing\PhingTargetListenerInterface) {
 			throw new BuildException(sprintf('Cannot add target listener: Object is of type %s which does not implement %s',
-				get_class($object), 'AgaviIPhingTargetListener'));
+				get_class($object), 'Agavi\\Build\\Phing\\PhingTargetListenerInterface'));
 		}
 		
-		$dispatcher = AgaviPhingEventDispatcherManager::get($this->project);
+		$dispatcher = \Agavi\Build\Phing\PhingEventDispatcherManager::get($this->project);
 		$dispatcher->addTargetListener($object);
 	}
 }

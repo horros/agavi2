@@ -3,29 +3,29 @@
 	<ae:configuration context="test_callbacks">
 		<routes>
 			<route name="left_anchored_nonstop" pattern="^/(language:[a-z]\{2\}(?=/))" stop="false" cut="true">
-				<callback class="TestCallbackLAN" />
+				<callback class="Agavi\Tests\Unit\Routing\TestCallbackLAN" />
 				<default for="language">de</default>
 			</route>
 
 			<!-- the callback makes this route never match -->
 			<route name="right_anchored_nonstop" pattern="/(type:[a-z]+)$" stop="false" cut="true">
-				<callback class="TestCallbackRAN" />
+				<callback class="Agavi\Tests\Unit\Routing\TestCallbackRAN" />
 				<default for="type">rss</default>
 			</route>
 
 			<route name="parent" pattern="^/parent(/{parent_id:[0-9]+})?" module="module_parent">
-				<callback class="TestCallbackParent" />
+				<callback class="Agavi\Tests\Unit\Routing\TestCallbackParent" />
 				<default for="parent_id">/{23}</default>
 
 				<routes>
 					<route name="child_nonstop" pattern="(title:(?&lt;=/)[a-z_-]+)$" cut="true" stop="false">
-						<callback class="TestCallbackCN" />
+						<callback class="Agavi\Tests\Unit\Routing\TestCallbackCN" />
 					</route>
 					<route name="child_complex" pattern="^/(opt,{optional1:35}/)?p1/(part1:[a-z0-9]+)/p2/(part2:[a-z0-9]+)?$" action="action_child_complex">
-						<callback class="TestCallbackCC" />
+						<callback class="Agavi\Tests\Unit\Routing\TestCallbackCC" />
 					</route>
 					<route name="child_simple" pattern="^/({part1:\w*}/)?({part2:\w+}/)?({part3:\w*}/)?$" action="action_child_simple">
-						<callback class="TestCallbackCS" />
+						<callback class="Agavi\Tests\Unit\Routing\TestCallbackCS" />
 						<default for="part1">{part1_default}/</default>
 						<default for="part2">{part2_default}/</default>
 						<default for="part3">xx{part3_default}xx/</default>
@@ -34,7 +34,7 @@
 			</route>
 			
 			<route name="httpredirect" pattern="^/httpredirect">
-				<callback class="AgaviHttpRedirectRoutingCallback">
+				<callback class="Agavi\Routing\HttpRedirectRoutingCallback">
 					<ae:parameter name="scheme">https</ae:parameter>
 				</callback>
 			</route>

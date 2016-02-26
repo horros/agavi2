@@ -84,10 +84,10 @@ class AgaviResolveconfigurationTask extends AgaviTask
 	public function main()
 	{
 		if($this->property === null) {
-			throw new BuildException('The property attribute must be specified');
+			throw new \Agavi\Build\Exception\BuildException('The property attribute must be specified');
 		}
 		if($this->string === null) {
-			throw new BuildException('The string attribute must be specified');
+			throw new \Agavi\Build\Exception\BuildException('The string attribute must be specified');
 		}
 		
 		$this->tryLoadAgavi();
@@ -98,8 +98,8 @@ class AgaviResolveconfigurationTask extends AgaviTask
 			$assigns[$variable->getName()] = $variable->getValue();
 		}
 		
-		$result = AgaviToolkit::expandVariables(
-			$this->expandDirectives ? AgaviToolkit::expandDirectives($this->string) : $this->string,
+		$result = \Agavi\Util\Toolkit::expandVariables(
+			$this->expandDirectives ? \Agavi\Util\Toolkit::expandDirectives($this->string) : $this->string,
 			$assigns
 		);
 		

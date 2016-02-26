@@ -1,6 +1,9 @@
 <?php
+namespace Agavi\Tests\Unit\Exception;
+use Agavi\Exception\AgaviException;
+use Agavi\Testing\UnitTestCase;
 
-class AgaviExceptionTest extends AgaviUnitTestCase
+class AgaviExceptionTest extends UnitTestCase
 {
 	public function highlightSnippets()
 	{
@@ -52,7 +55,7 @@ ob_end_clean();
 		$highlighted = AgaviException::highlightString($code);
 		$highlighted = "<ol>\n<li><code>" . implode("</code></li>\n<li><code>", $highlighted) . "</code></li>\n</ol>";
 
-		$doc = new DOMDocument();
+		$doc = new \DOMDocument();
 
 		$luie = libxml_use_internal_errors(true);
 		$doc->loadXML($highlighted);

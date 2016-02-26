@@ -1,20 +1,26 @@
 <?php
+namespace Agavi\Tests\Unit\Logging;
+use Agavi\Core\Context;
+use Agavi\Logging\LoggerAppender;
+use Agavi\Logging\LoggerLayout;
+use Agavi\Logging\LoggerMessage;
+use Agavi\Testing\UnitTestCase;
 
-class Sample2Layout extends AgaviLoggerLayout
+class Sample2Layout extends LoggerLayout
 {
-	public function format(AgaviLoggerMessage $message)
+	public function format(LoggerMessage $message)
 	{
 	}
 }
 
-class SampleAppender extends AgaviLoggerAppender
+class SampleAppender extends LoggerAppender
 {
-	public function initialize(AgaviContext $context, array $params = array()) {}
+	public function initialize(Context $context, array $params = array()) {}
 	public function shutdown() {}
-	public function write(AgaviLoggerMessage $message) {}
+	public function write(LoggerMessage $message) {}
 }
 
-class AgaviLoggerAppenderTest extends AgaviUnitTestCase
+class AgaviLoggerAppenderTest extends UnitTestCase
 {
 	public function testGetSetLayout()
 	{

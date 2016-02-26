@@ -1,6 +1,10 @@
 <?php
+namespace Agavi\Tests\Unit\Validator;
+use Agavi\Exception\ValidatorException;
+use Agavi\Util\VirtualArrayPath;
+use Agavi\Validator\Validator;
 
-class SampleValidator extends AgaviValidator
+class SampleValidator extends Validator
 {
 	public $bases = array();
 	public $val_result = true;
@@ -19,20 +23,20 @@ class SampleValidator extends AgaviValidator
 	public function getAffectedFields2($fields) { $this->AffectedFieldNames = $fields; return $this->getAffectedFields(); }
 	public function export2($value) { $this->export($value); }
 	
-	protected function validateInBase(AgaviVirtualArrayPath $base) { array_push($this->bases, $base); return parent::validateInBase($base); }
+	protected function validateInBase(VirtualArrayPath $base) { array_push($this->bases, $base); return parent::validateInBase($base); }
 	public function validateInBase2($base) { return $this->validateInBase($base); }
 }
 
-class SampleValidator2 extends AgaviValidator
+class SampleValidator2 extends Validator
 {
 	public $base = '';
 	public $val_result = 0;
 	
 	protected function validate() { return true; }
-	protected function validateInBase(AgaviVirtualArrayPath $base) { $this->base = $base; return $this->val_result; }
+	protected function validateInBase(VirtualArrayPath $base) { $this->base = $base; return $this->val_result; }
 }
 
-class ExportingSampleValidator extends AgaviValidator
+class ExportingSampleValidator extends Validator
 {
 	protected function validate() { $this->export('test'); return true; }
 }
@@ -74,25 +78,25 @@ class AgaviValidatorTest extends BaseValidatorTest
 	
 	public function testMapErrorCode()
 	{
-		$this->assertEquals(AgaviValidator::mapErrorCode('info'), AgaviValidator::INFO);
-		$this->assertEquals(AgaviValidator::mapErrorCode('none'), AgaviValidator::NONE);
-		$this->assertEquals(AgaviValidator::mapErrorCode('silent'), AgaviValidator::NONE);
-		$this->assertEquals(AgaviValidator::mapErrorCode('notice'), AgaviValidator::NOTICE);
-		$this->assertEquals(AgaviValidator::mapErrorCode('error'), AgaviValidator::ERROR);
-		$this->assertEquals(AgaviValidator::mapErrorCode('critical'), AgaviValidator::CRITICAL);
-		$this->assertEquals(AgaviValidator::mapErrorCode('cRiTiCaL'), AgaviValidator::CRITICAL);
+		$this->assertEquals(Validator::mapErrorCode('info'), Validator::INFO);
+		$this->assertEquals(Validator::mapErrorCode('none'), Validator::NONE);
+		$this->assertEquals(Validator::mapErrorCode('silent'), Validator::NONE);
+		$this->assertEquals(Validator::mapErrorCode('notice'), Validator::NOTICE);
+		$this->assertEquals(Validator::mapErrorCode('error'), Validator::ERROR);
+		$this->assertEquals(Validator::mapErrorCode('critical'), Validator::CRITICAL);
+		$this->assertEquals(Validator::mapErrorCode('cRiTiCaL'), Validator::CRITICAL);
 		
 		try {
-			AgaviValidator::mapErrorCode('foo');
+			Validator::mapErrorCode('foo');
 			$this->fail();
-		} catch(AgaviValidatorException $e) {
+		} catch(ValidatorException $e) {
 			$this->assertEquals($e->getMessage(), 'unknown error code: foo');
 		}
 	}
 
 	public function testExport()
 	{
-		$res = $this->executeValidator('ExportingSampleValidator', 'test', array(), array(
+		$res = $this->executeValidator('Agavi\\Tests\\Unit\\Validator\\ExportingSampleValidator', 'test', array(), array(
 			'export' => 'foo',
 		));
 		$this->assertEquals($res['rd']->getParameter('foo'), 'test');
@@ -100,18 +104,18 @@ class AgaviValidatorTest extends BaseValidatorTest
 
 	public function testExportSeverity()
 	{
-		$res = $this->executeValidator('ExportingSampleValidator', 'test', array(), array(
+		$res = $this->executeValidator('Agavi\\Tests\\Unit\\Validator\\ExportingSampleValidator', 'test', array(), array(
 			'export' => 'foo',
 		));
 		$ar = $res['vm']->getReport()->getArgumentResults();
-		$this->assertEquals($ar['parameters/foo'][0]['severity'], AgaviValidator::SUCCESS);
+		$this->assertEquals($ar['parameters/foo'][0]['severity'], Validator::SUCCESS);
 
-		$res = $this->executeValidator('ExportingSampleValidator', 'test', array(), array(
+		$res = $this->executeValidator('Agavi\\Tests\\Unit\\Validator\\ExportingSampleValidator', 'test', array(), array(
 			'export'          => 'foo',
-			'export_severity' => 'AgaviValidator::NOT_PROCESSED',
+			'export_severity' => 'Agavi\\Validator\\Validator::NOT_PROCESSED',
 		));
 		$ar = $res['vm']->getReport()->getArgumentResults();
-		$this->assertEquals($ar['parameters/foo'][0]['severity'], AgaviValidator::NOT_PROCESSED);
+		$this->assertEquals($ar['parameters/foo'][0]['severity'], Validator::NOT_PROCESSED);
 	}
 }
 

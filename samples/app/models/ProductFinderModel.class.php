@@ -1,6 +1,6 @@
 <?php
 
-class ProductFinderModel extends AgaviSampleAppBaseModel implements AgaviISingletonModel
+class ProductFinderModel extends AgaviSampleAppBaseModel implements SingletonModel
 {
 	// imagine this stuff is in a database :)
 	protected static $products = array(

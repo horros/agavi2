@@ -60,17 +60,17 @@ class AgaviReadconfigurationTask extends AgaviTask
 	public function main()
 	{
 		if($this->property === null) {
-			throw new BuildException('The property attribute must be specified');
+			throw new \Agavi\Build\Exception\BuildException('The property attribute must be specified');
 		}
 		if($this->configurationValue === null) {
-			throw new BuildException('The configurationValue attribute must be specified');
+			throw new \Agavi\Build\Exception\BuildException('The configurationValue attribute must be specified');
 		}
 		
 		$this->tryLoadAgavi();
 		/* XXX: We don't need to be bootstrapped for this. That said, we also can't
 		 * read configuration data from projects this way. Oh well. */
 		
-		$this->project->setUserProperty($this->property, AgaviConfig::get($this->configurationValue));
+		$this->project->setUserProperty($this->property, \Agavi\Config\Config::get($this->configurationValue));
 	}
 }
 

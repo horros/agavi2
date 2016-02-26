@@ -16,7 +16,7 @@
 class Default_Error404SuccessView extends AgaviSampleAppDefaultBaseView
 {
 
-	public function executeHtml(AgaviRequestDataHolder $rd)
+	public function executeHtml(RequestDataHolder $rd)
 	{
 		$this->setupHtml($rd);
 
@@ -26,7 +26,7 @@ class Default_Error404SuccessView extends AgaviSampleAppDefaultBaseView
 		$this->container->getResponse()->setHttpStatusCode('404');
 	}
 
-	public function executeXmlrpc(AgaviRequestDataHolder $rd)
+	public function executeXmlrpc(RequestDataHolder $rd)
 	{
 		return array(
 			'faultCode' => -32601, // as per http://xmlrpc-epi.sourceforge.net/specs/rfc.fault_codes.php
@@ -34,7 +34,7 @@ class Default_Error404SuccessView extends AgaviSampleAppDefaultBaseView
 		);
 	}
 	
-	public function executeText(AgaviRequestDataHolder $rd)
+	public function executeText(RequestDataHolder $rd)
 	{
 		return
 			'Usage: console.php <command> [OPTION]...' . PHP_EOL .

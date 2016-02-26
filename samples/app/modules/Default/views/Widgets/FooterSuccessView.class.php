@@ -16,14 +16,14 @@
 class Default_Widgets_FooterSuccessView extends AgaviSampleAppDefaultBaseView
 {
 
-	public function executeHtml(AgaviRequestDataHolder $rd)
+	public function executeHtml(RequestDataHolder $rd)
 	{
 		// will automatically load "slot" layout for us
 		$this->setupHtml($rd);
 		
 		$this->setAttribute('locales', $this->tm->getAvailableLocales());
 		$this->setAttribute('current_locale', $this->tm->getCurrentLocaleIdentifier());
-		$this->setAttribute('agavi_plug', AgaviConfig::get('agavi.release'));
+		$this->setAttribute('agavi_plug', Config::get('agavi.release'));
 	}
 
 }

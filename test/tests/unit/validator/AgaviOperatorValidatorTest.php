@@ -1,6 +1,13 @@
 <?php
+namespace Agavi\Tests\Unit\Validator;
+use Agavi\Request\RequestDataHolder;
+use Agavi\Test\Validator\DummyValidator;
+use Agavi\Testing\UnitTestCase;
+use Agavi\Validator\OperatorValidator;
+use Agavi\Validator\ValidationManager;
+use Agavi\Validator\Validator;
 
-class MyOperatorValidator extends AgaviOperatorValidator
+class MyOperatorValidator extends OperatorValidator
 {
 	public $checked = false;
 	
@@ -9,9 +16,13 @@ class MyOperatorValidator extends AgaviOperatorValidator
 	public function getChildren() {return $this->children;}
 }
 
-class AgaviOperatorValidatorTest extends AgaviUnitTestCase
+class AgaviOperatorValidatorTest extends UnitTestCase
 {
 	private $context;
+
+	/**
+	 * @var ValidationManager
+	 */
 	private $vm;
 	
 	public function setUp()
@@ -28,8 +39,10 @@ class AgaviOperatorValidatorTest extends AgaviUnitTestCase
 	
 	public function testShutdown()
 	{
-		$val = $this->vm->createValidator('DummyValidator', array());
-		$v = $this->vm->createValidator('MyOperatorValidator', array());
+		/** @var DummyValidator $val */
+		$val = $this->vm->createValidator('Agavi\\Test\\Validator\\DummyValidator', array());
+		/** @var MyOperatorValidator $v */
+		$v = $this->vm->createValidator('Agavi\\Tests\\Unit\\Validator\\MyOperatorValidator', array());
 		$v->addChild($val);
 		
 		$this->assertFalse($val->shutdown);
@@ -39,10 +52,13 @@ class AgaviOperatorValidatorTest extends AgaviUnitTestCase
 	
 	public function testRegisterValidators()
 	{
-		$val1 = $this->vm->createValidator('DummyValidator', array(), array(), array('name' => 'val1'));
-		$val2 = $this->vm->createValidator('DummyValidator', array(), array(), array('name' => 'val2'));
-		
-		$v = $this->vm->createValidator('MyOperatorValidator', array(), array(), array());
+		/** @var DummyValidator $val1 */
+		$val1 = $this->vm->createValidator('Agavi\\Test\\Validator\\DummyValidator', array(), array(), array('name' => 'val1'));
+		/** @var DummyValidator $val2 */
+		$val2 = $this->vm->createValidator('Agavi\\Test\\Validator\\DummyValidator', array(), array(), array('name' => 'val2'));
+
+		/** @var MyOperatorValidator $v */
+		$v = $this->vm->createValidator('Agavi\\Tests\\Unit\\Validator\\MyOperatorValidator', array(), array(), array());
 		$this->assertEquals($v->getChildren(), array());
 		$v->registerValidators(array($val1, $val2));
 		$this->assertEquals($v->getChildren(), array('val1' => $val1, 'val2' =>$val2));
@@ -50,8 +66,10 @@ class AgaviOperatorValidatorTest extends AgaviUnitTestCase
 	
 	public function testAddChild()
 	{
-		$val = $this->vm->createValidator('DummyValidator', array(), array(), array('name' => 'val'));
-		$v = $this->vm->createValidator('MyOperatorValidator', array());
+		/** @var DummyValidator $val */
+		$val = $this->vm->createValidator('Agavi\\Test\\Validator\\DummyValidator', array(), array(), array('name' => 'val'));
+		/** @var MyOperatorValidator $v */
+		$v = $this->vm->createValidator('Agavi\\Tests\\Unit\\Validator\\MyOperatorValidator', array());
 
 		$this->assertEquals($v->getChildren(), array());
 		$v->addChild($val);
@@ -60,9 +78,10 @@ class AgaviOperatorValidatorTest extends AgaviUnitTestCase
 	
 	public function testExecute()
 	{
-		$v = $this->vm->createValidator('MyOperatorValidator', array());
+		/** @var MyOperatorValidator $v */
+		$v = $this->vm->createValidator('Agavi\\Tests\\Unit\\Validator\\MyOperatorValidator', array());
 		$this->assertFalse($v->checked);
-		$this->assertEquals($v->execute(new AgaviRequestDataHolder()), AgaviValidator::SUCCESS);
+		$this->assertEquals($v->execute(new RequestDataHolder()), Validator::SUCCESS);
 		$this->assertTrue($v->checked);
 	}
 }

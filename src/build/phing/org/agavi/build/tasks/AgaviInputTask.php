@@ -130,10 +130,10 @@ class AgaviInputTask extends AgaviTask
 	public function main()
 	{
 		if($this->property === null) {
-			throw new BuildException('The property attribute must be specified');
+			throw new \Agavi\Build\Exception\BuildException('The property attribute must be specified');
 		}
 		if($this->message === '') {
-			throw new BuildException('The message attribute must be specified or the element must contain a message');
+			throw new \Agavi\Build\Exception\BuildException('The message attribute must be specified or the element must contain a message');
 		}
 		
 		if($this->ignoreIfSet && $this->project->getProperty($this->property) !== null) {

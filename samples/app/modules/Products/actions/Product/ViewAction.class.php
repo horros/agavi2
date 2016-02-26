@@ -2,7 +2,7 @@
 
 class Products_Product_ViewAction extends AgaviSampleAppProductsBaseAction
 {
-	public function executeRead(AgaviRequestDataHolder $rd)
+	public function executeRead(RequestDataHolder $rd)
 	{
 		// the validator already pulled the product object from the database and put it into the request data
 		// so there's not much we need to do here

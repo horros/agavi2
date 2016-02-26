@@ -37,9 +37,9 @@ class AgaviOlsonCompileTask extends Task
 		$this->olsonDir = realpath($this->olsonDir);
 		$this->outputDir = realpath($this->outputDir);
 
-		AgaviConfig::set('olson.dir', $this->olsonDir);
+		Config::set('olson.dir', $this->olsonDir);
 
-		AgaviConfig::set('core.app_dir', getcwd() . '/etc/olson/agavi/app');
+		Config::set('core.app_dir', getcwd() . '/etc/olson/agavi/app');
 		Agavi::bootstrap('');
 
 		$context = AgaviContext::getInstance('');
@@ -64,7 +64,7 @@ class AgaviOlsonCompileTask extends Task
 				// and we don't want the factory time zone
 				if(strpos($file->getFilename(), '.') === false && $file->getFilename() != 'factory') {
 					$this->log(sprintf('compiling %s', $file->getPathname()), PROJECT_MSG_INFO);
-					$parser = new AgaviTimeZoneDataParser();
+					$parser = new TimeZoneDataParser();
 					$parser->initialize(AgaviContext::getInstance($context));
 					$rules = $parser->parse($file->getPathname());
 					$zones = $rules['zones'] + $zones;

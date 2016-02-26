@@ -1,6 +1,11 @@
 <?php
+namespace Agavi\Tests\Unit\Session;
 
-class AgaviSessionStorageTest extends AgaviUnitTestCase
+use Agavi\Core\Context;
+use Agavi\Storage\SessionStorage;
+use Agavi\Testing\UnitTestCase;
+
+class AgaviSessionStorageTest extends UnitTestCase
 {
 	
 	/**
@@ -10,8 +15,8 @@ class AgaviSessionStorageTest extends AgaviUnitTestCase
 	{
 		// test for bug #1541
 		ini_set('session.cookie_secure', 0);
-		$context = AgaviContext::getInstance('agavi-session-storage-test::tests-startup-sets-cookie-secure-flag');
-		$storage = new AgaviSessionStorage();
+		$context = Context::getInstance('agavi-session-storage-test::tests-startup-sets-cookie-secure-flag');
+		$storage = new SessionStorage();
 		$storage->initialize($context);
 		$storage->startup();
 		$cookieParams = session_get_cookie_params();
@@ -23,8 +28,8 @@ class AgaviSessionStorageTest extends AgaviUnitTestCase
 	 */
 	public function testStaticSessionId()
 	{
-		$context = AgaviContext::getInstance('agavi-session-storage-test::tests-static-session-id');
-		$storage = new AgaviSessionStorage();
+		$context = Context::getInstance('agavi-session-storage-test::tests-static-session-id');
+		$storage = new SessionStorage();
 		$storage->initialize($context);
 		$storage->startup();
 		$this->assertEquals(session_id(), 'foobar');

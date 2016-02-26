@@ -1,12 +1,16 @@
 <?php
+namespace Agavi\Tests\Unit\Config;
+use Agavi\Config\Config;
+use Agavi\Config\ReturnArrayConfigHandler;
+
 require_once(__DIR__ . '/ConfigHandlerTestBase.php');
 
 class AgaviReturnArrayConfigHandlerTest extends ConfigHandlerTestBase
 {
 	public function testParseMixed()
 	{
-		$RACH = new AgaviReturnArrayConfigHandler();
-		$document = $this->parseConfiguration(AgaviConfig::get('core.config_dir') . '/tests/rach_mixed.xml');
+		$RACH = new ReturnArrayConfigHandler();
+		$document = $this->parseConfiguration(Config::get('core.config_dir') . '/tests/rach_mixed.xml');
 		$actual = $this->includeCode($RACH->execute($document));
 		$expected = array(
 			'section1' => array('One' => 'A', 'Two' => 'B', 'Three' => 'C'), 
@@ -19,12 +23,12 @@ class AgaviReturnArrayConfigHandlerTest extends ConfigHandlerTestBase
 
 	public function testParseAttributes()
 	{
-		$RACH = new AgaviReturnArrayConfigHandler();
-		$document = $this->parseConfiguration(AgaviConfig::get('core.config_dir') . '/tests/rach_attributes.xml');
+		$RACH = new ReturnArrayConfigHandler();
+		$document = $this->parseConfiguration(Config::get('core.config_dir') . '/tests/rach_attributes.xml');
 		$actual = $this->includeCode($RACH->execute($document));
 		$expected = array(
 			'section1' => array('One' => 'A', 'Two' => 'B', 'Three' => 'C', 'value' => ''), 
-			'section2' => array('Three' => AgaviConfig::get('core.config_dir'), 'Two' => false, 'One' => true, 'value' => ''),
+			'section2' => array('Three' => Config::get('core.config_dir'), 'Two' => false, 'One' => true, 'value' => ''),
 		);
 		$this->assertSame($expected, $actual);
 	}
@@ -32,8 +36,8 @@ class AgaviReturnArrayConfigHandlerTest extends ConfigHandlerTestBase
 
 	public function testParseTags()
 	{
-		$RACH = new AgaviReturnArrayConfigHandler();
-		$document = $this->parseConfiguration(AgaviConfig::get('core.config_dir') . '/tests/rach_tags.xml');
+		$RACH = new ReturnArrayConfigHandler();
+		$document = $this->parseConfiguration(Config::get('core.config_dir') . '/tests/rach_tags.xml');
 		$actual = $this->includeCode($RACH->execute($document));
 		$expected = array(
 			'section1' => array('One' => 'A', 'Two' => 'B', 'Three' => 'C'), 
@@ -44,15 +48,15 @@ class AgaviReturnArrayConfigHandlerTest extends ConfigHandlerTestBase
 
 	public function testParseComplex()
 	{
-		$RACH = new AgaviReturnArrayConfigHandler();
-		$document = $this->parseConfiguration(AgaviConfig::get('core.config_dir') . '/tests/rach_complex.xml');
+		$RACH = new ReturnArrayConfigHandler();
+		$document = $this->parseConfiguration(Config::get('core.config_dir') . '/tests/rach_complex.xml');
 		$actual = $this->includeCode($RACH->execute($document));
 
 		$expected = array(
 			'cachings' => array(
 				'Browse' => array(
 					'enabled' => true,
-					'action' => AgaviConfig::get('core.app_dir'),
+					'action' => Config::get('core.app_dir'),
 					'groups' => array(
 						'foo' => 'bar',
 						'categories' => '',

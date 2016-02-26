@@ -3,7 +3,7 @@
 class Confidential_SecretSuccessView extends AgaviSampleAppConfidentialBaseView
 {
 
-	public function executeHtml(AgaviRequestDataHolder $rd)
+	public function executeHtml(RequestDataHolder $rd)
 	{
 		$this->setupHtml($rd);
 

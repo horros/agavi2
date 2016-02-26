@@ -1,6 +1,6 @@
 <?php
 
-class AgaviSampleAppLanguageRoutingCallback extends AgaviRoutingCallback
+class AgaviSampleAppLanguageRoutingCallback extends RoutingCallback
 {
 	protected $availableLocales = array();
 	
@@ -15,7 +15,7 @@ class AgaviSampleAppLanguageRoutingCallback extends AgaviRoutingCallback
 		$this->availableLocales = $this->context->getTranslationManager()->getAvailableLocales();
 	}
 	
-	public function onMatched(array &$parameters, AgaviExecutionContainer $container)
+	public function onMatched(array &$parameters, ExecutionContainer $container)
 	{
 		// let's check if the locale is allowed
 		try {
@@ -23,14 +23,14 @@ class AgaviSampleAppLanguageRoutingCallback extends AgaviRoutingCallback
 			// yup, worked. now lets set that as a cookie
 			$this->context->getController()->getGlobalResponse()->setCookie('locale', $parameters['locale'], '+1 month');
 			return true;
-		} catch(AgaviException $e) {
+		} catch(Exception $e) {
 			// uregistered or ambigious locale... uncool!
 			// onNotMatched will be called for us next
 			return false;
 		}
 	}
 
-	public function onNotMatched(AgaviExecutionContainer $container)
+	public function onNotMatched(ExecutionContainer $container)
 	{
 		// the pattern didn't match, or onMatched() returned false.
 		// that's sad. let's see if there's a locale set in a cookie from an earlier visit.
@@ -41,7 +41,7 @@ class AgaviSampleAppLanguageRoutingCallback extends AgaviRoutingCallback
 			try {
 				$this->translationManager->setLocale($cookie);
 				return;
-			} catch(AgaviException $e) {
+			} catch(Exception $e) {
 				// bad cookie :<
 				$this->context->getController()->getGlobalResponse()->unsetCookie('locale');
 			}
@@ -60,7 +60,7 @@ class AgaviSampleAppLanguageRoutingCallback extends AgaviRoutingCallback
 					}
 					$this->translationManager->setLocale($locale);
 					return;
-				} catch(AgaviException $e) {
+				} catch(Exception $e) {
 				}
 			}
 		}

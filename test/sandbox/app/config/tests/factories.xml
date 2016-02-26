@@ -1,105 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ae:configurations xmlns:ae="http://agavi.org/agavi/config/global/envelope/1.1" xmlns="http://agavi.org/agavi/config/parts/factories/1.1">
 	<ae:configuration>
-		<controller class="FCHTestController">
+		<controller class="Agavi\Tests\Unit\Config\FCHTestController">
 			<ae:parameters>
 				<ae:parameter name="p1">v1</ae:parameter>
 				<ae:parameter name="p2">v2</ae:parameter>
 			</ae:parameters>
 		</controller>
 
-		<dispatch_filter class="FCHTestDispatchFilter">
+		<dispatch_filter class="Agavi\Tests\Unit\Config\FCHTestDispatchFilter">
 			<ae:parameters>
 				<ae:parameter name="p1">v1</ae:parameter>
 				<ae:parameter name="p2">v2</ae:parameter>
 			</ae:parameters>
 		</dispatch_filter>
 
-		<execution_container class="FCHTestExecutionContainer">
+		<execution_container class="Agavi\Tests\Unit\Config\FCHTestExecutionContainer">
 			<ae:parameters>
 				<ae:parameter name="p1">v1</ae:parameter>
 				<ae:parameter name="p2">v2</ae:parameter>
 			</ae:parameters>
 		</execution_container>
 
-		<execution_filter class="FCHTestExecutionFilter">
+		<execution_filter class="Agavi\Tests\Unit\Config\FCHTestExecutionFilter">
 			<ae:parameters>
 				<ae:parameter name="p1">v1</ae:parameter>
 				<ae:parameter name="p2">v2</ae:parameter>
 			</ae:parameters>
 		</execution_filter>
 
-		<filter_chain class="FCHTestFilterChain">
+		<filter_chain class="Agavi\Tests\Unit\Config\FCHTestFilterChain">
 			<ae:parameters>
 				<ae:parameter name="p1">v1</ae:parameter>
 				<ae:parameter name="p2">v2</ae:parameter>
 			</ae:parameters>
 		</filter_chain>
 
-		<logger_manager class="FCHTestLoggerManager">
+		<logger_manager class="Agavi\Tests\Unit\Config\FCHTestLoggerManager">
 			<ae:parameters>
 				<ae:parameter name="p1">v1</ae:parameter>
 				<ae:parameter name="p2">v2</ae:parameter>
 			</ae:parameters>
 		</logger_manager>
 
-		<request class="FCHTestRequest">
+		<request class="Agavi\Tests\Unit\Config\FCHTestRequest">
 			<ae:parameters>
 				<ae:parameter name="p1">v1</ae:parameter>
 				<ae:parameter name="p2">v2</ae:parameter>
 			</ae:parameters>
 		</request>
 
-		<response class="FCHTestResponse">
+		<response class="Agavi\Tests\Unit\Config\FCHTestResponse">
 			<ae:parameters>
 				<ae:parameter name="p1">v1</ae:parameter>
 				<ae:parameter name="p2">v2</ae:parameter>
 			</ae:parameters>
 		</response>
 
-		<routing class="FCHTestRouting">
+		<routing class="Agavi\Tests\Unit\Config\FCHTestRouting">
 			<ae:parameters>
 				<ae:parameter name="p1">v1</ae:parameter>
 				<ae:parameter name="p2">v2</ae:parameter>
 			</ae:parameters>
 		</routing>
 
-		<storage class="FCHTestStorage">
+		<storage class="Agavi\Tests\Unit\Config\FCHTestStorage">
 			<ae:parameters>
 				<ae:parameter name="p1">v1</ae:parameter>
 				<ae:parameter name="p2">v2</ae:parameter>
 			</ae:parameters>
 		</storage>
 
-		<validation_manager class="FCHTestValidationManager">
+		<validation_manager class="Agavi\Tests\Unit\Config\FCHTestValidationManager">
 			<ae:parameters>
 				<ae:parameter name="p1">v1</ae:parameter>
 				<ae:parameter name="p2">v2</ae:parameter>
 			</ae:parameters>
 		</validation_manager>
 
-		<translation_manager class="FCHTestTranslationManager">
+		<translation_manager class="Agavi\Tests\Unit\Config\FCHTestTranslationManager">
 			<ae:parameters>
 				<ae:parameter name="p1">v1</ae:parameter>
 				<ae:parameter name="p2">v2</ae:parameter>
 			</ae:parameters>
 		</translation_manager>
 
-		<database_manager class="FCHTestDBManager">
+		<database_manager class="Agavi\Tests\Unit\Config\FCHTestDBManager">
 			<ae:parameters>
 				<ae:parameter name="p1">v1</ae:parameter>
 				<ae:parameter name="p2">v2</ae:parameter>
 			</ae:parameters>
 		</database_manager>
 
-		<security_filter class="FCHTestSecurityFilter">
+		<security_filter class="Agavi\Tests\Unit\Config\FCHTestSecurityFilter">
 			<ae:parameters>
 				<ae:parameter name="p1">v1</ae:parameter>
 				<ae:parameter name="p2">v2</ae:parameter>
 			</ae:parameters>
 		</security_filter>
 
-		<user class="FCHTestUser">
+		<user class="Agavi\Tests\Unit\Config\FCHTestUser">
 			<ae:parameters>
 				<ae:parameter name="p1">v1</ae:parameter>
 				<ae:parameter name="p2">v2</ae:parameter>

@@ -23,7 +23,7 @@
 		<appenders>
 
 			<!--
-				Debug logs are rotated in a 7 day (AgaviRotatingFileLoggerAppender default) cycle
+				Debug logs are rotated in a 7 day (RotatingFileLoggerAppender default) cycle
 				Use 'cycle' parameter to alter the cycle.
 			-->
 			<appender name="DebugLogAppender" class="AgaviRotatingFileLoggerAppender" layout="DateTimeLayout">

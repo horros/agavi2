@@ -9,7 +9,7 @@
 		
 		<dispatch_filter class="AgaviDispatchFilter" />
 		
-		<execution_container class="AgaviExecutionContainer" />
+		<execution_container class="ExecutionContainer" />
 		
 		<execution_filter class="AgaviExecutionFilter" />
 		

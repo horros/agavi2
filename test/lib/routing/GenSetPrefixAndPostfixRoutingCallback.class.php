@@ -1,6 +1,6 @@
 <?php
 
-class GenSetPrefixAndPostfixRoutingCallback extends AgaviRoutingCallback
+class GenSetPrefixAndPostfixRoutingCallback extends \Agavi\Routing\RoutingCallback
 {
 	public function onGenerate(array $defaultParameters, array &$userParameters, array &$userOptions)
 	{

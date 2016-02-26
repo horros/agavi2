@@ -3,7 +3,7 @@
 	<ae:configuration>
 		<databases default="test1">
 
-			<database name="test1" class="DCHTestDatabase">
+			<database name="test1" class="Agavi\Tests\Unit\Config\DCHTestDatabase">
 				<ae:parameters>
 					<ae:parameter name="host">localhost1</ae:parameter>
 					<ae:parameter name="user">username1</ae:parameter>
@@ -16,7 +16,7 @@
 
 	<ae:configuration environment="missing-default-does-not-reset">
 		<databases>
-			<database name="test2" class="DCHTestDatabase"></database>
+			<database name="test2" class="Agavi\Tests\Unit\Config\DCHTestDatabase"></database>
 		</databases>
 	</ae:configuration>
 
@@ -31,7 +31,7 @@
 				</ae:parameters>
 			</database>
 			
-			<database name="test2" class="DCHTestDatabase"></database>
+			<database name="test2" class="Agavi\Tests\Unit\Config\DCHTestDatabase"></database>
 			
 		</databases>
 	</ae:configuration>
@@ -39,7 +39,7 @@
 	<!-- testDefaultDatabase() -->
 	<ae:configuration environment="test-default">
 		<databases>
-			<database name="test2" class="DCHTestDatabase"></database>
+			<database name="test2" class="Agavi\Tests\Unit\Config\DCHTestDatabase"></database>
 		</databases>
 	</ae:configuration>
 	<ae:configuration environment="test-default">
@@ -49,7 +49,7 @@
 	<!-- testDefaultDatabase1_0() -->
 	<ae:configuration environment="test-default-1.0">
 		<databases xmlns="http://agavi.org/agavi/config/parts/databases/1.0">
-			<database name="test2" class="DCHTestDatabase"></database>
+			<database name="test2" class="Agavi\Tests\Unit\Config\DCHTestDatabase"></database>
 		</databases>
 	</ae:configuration>
 	<ae:configuration environment="test-default-1.0">

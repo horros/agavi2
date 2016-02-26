@@ -2,7 +2,7 @@
 
 class Disabled_IndexSuccessView extends AgaviSampleAppDisabledBaseView
 {
-	public function executeHtml(AgaviRequestDataHolder $rd)
+	public function executeHtml(RequestDataHolder $rd)
 	{
 		$this->setupHtml($rd);
 

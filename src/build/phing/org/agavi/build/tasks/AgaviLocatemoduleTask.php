@@ -71,10 +71,10 @@ class AgaviLocatemoduleTask extends AgaviTask
 	public function main()
 	{
 		if($this->property === null) {
-			throw new BuildException('The property attribute must be specified');
+			throw new \Agavi\Build\Exception\BuildException('The property attribute must be specified');
 		}
 		if($this->path === null) {
-			throw new BuildException('The path attribute must be specified');
+			throw new \Agavi\Build\Exception\BuildException('The path attribute must be specified');
 		}
 		
 		if($this->ignoreIfSet && $this->project->getProperty($this->property) !== null) {
@@ -82,7 +82,7 @@ class AgaviLocatemoduleTask extends AgaviTask
 		}
 		
 		if(!$this->path->exists()) {
-			throw new BuildException('The path ' . $this->path->getAbsolutePath() . ' does not exist');
+			throw new \Agavi\Build\Exception\BuildException('The path ' . $this->path->getAbsolutePath() . ' does not exist');
 		}
 		$this->path = $this->path->getAbsoluteFile();
 		if(!$this->path->isDirectory()) {
@@ -90,7 +90,7 @@ class AgaviLocatemoduleTask extends AgaviTask
 		}
 		
 		/* Check if the current directory is a project directory. */
-		$check = new AgaviModuleFilesystemCheck();
+		$check = new \Agavi\Build\Check\ModuleFilesystemCheck();
 		$check->setConfigDirectory($this->project->getProperty('module.config.directory'));
 		
 		$check->setPath($this->path->getAbsolutePath());
@@ -103,8 +103,8 @@ class AgaviLocatemoduleTask extends AgaviTask
 		
 		$check->setPath($this->path->getAbsolutePath());
 		if($check->check()) {
-			$this->log('Module base directory: ' . $directory);
-			$this->project->setUserProperty($this->property, $directory->getName());
+			$this->log('Module base directory: ' . $this->path);
+			$this->project->setUserProperty($this->property, $this->path->getName());
 			return;
 		}
 		

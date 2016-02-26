@@ -1,13 +1,13 @@
 <?php
 
-class AgaviSampleAppProductValidator extends AgaviValidator
+class AgaviSampleAppProductValidator extends Validator
 {
 	public function validate()
 	{
 		if($this->hasMultipleArguments()) {
 			$arguments = $this->getArguments();
 			if(!isset($arguments['id']) || !isset($arguments['name'])) {
-				throw new AgaviException('Expecting arguments "id" and "name"');
+				throw new Exception('Expecting arguments "id" and "name"');
 			}
 			$id = $this->getData($arguments['id']);
 			$name = $this->getData($arguments['name']);

@@ -1,7 +1,8 @@
 <?php
+use \Agavi\Config\Config;
 
-AgaviConfig::set('core.testing_dir', realpath(__DIR__));
-AgaviConfig::set('core.app_dir', realpath(__DIR__.'/sandbox/app/'));
-AgaviConfig::set('core.cache_dir', AgaviConfig::get('core.app_dir') . '/cache'); // for the clearCache() before bootstrap()
+Config::set('core.testing_dir', realpath(__DIR__));
+Config::set('core.app_dir', realpath(__DIR__.'/sandbox/app/'));
+Config::set('core.cache_dir', Config::get('core.app_dir') . '/cache'); // for the clearCache() before bootstrap()
 
 ?>

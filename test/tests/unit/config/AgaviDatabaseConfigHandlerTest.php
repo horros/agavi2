@@ -1,4 +1,9 @@
 <?php
+namespace Agavi\Tests\Unit\Config;
+use Agavi\Config\Config;
+use Agavi\Config\DatabaseConfigHandler;
+use Agavi\Exception\ConfigurationException;
+
 require_once(__DIR__ . '/ConfigHandlerTestBase.php');
 
 class DCHTestDatabase
@@ -22,11 +27,11 @@ class AgaviDatabaseConfigHandlerTest extends ConfigHandlerTestBase
 	}
 	
 	protected function loadTestConfig($env = null) {
-		$DBCH = new AgaviDatabaseConfigHandler();
+		$DBCH = new DatabaseConfigHandler();
 		
 		$document = $this->parseConfiguration(
-			AgaviConfig::get('core.config_dir') . '/tests/databases.xml',
-			AgaviConfig::get('core.agavi_dir') . '/config/xsl/databases.xsl',
+			Config::get('core.config_dir') . '/tests/databases.xml',
+			Config::get('core.agavi_dir') . '/config/xsl/databases.xsl',
 			$env
 		);
 
@@ -38,11 +43,11 @@ class AgaviDatabaseConfigHandlerTest extends ConfigHandlerTestBase
 	{
 		$this->loadTestConfig();
 
-		$this->assertInstanceOf('DCHTestDatabase', $this->databases['test1']);
+		$this->assertInstanceOf('Agavi\\Tests\\Unit\\Config\\DCHTestDatabase', $this->databases['test1']);
 		$paramsExpected = array(
 			'host' => 'localhost1',
 			'user' => 'username1',
-			'config' => AgaviConfig::get('core.app_dir') . '/config/project-conf.php',
+			'config' => Config::get('core.app_dir') . '/config/project-conf.php',
 		);
 		$this->assertSame($paramsExpected, $this->databases['test1']->params);
 
@@ -53,11 +58,11 @@ class AgaviDatabaseConfigHandlerTest extends ConfigHandlerTestBase
 	{
 		$this->loadTestConfig('env2');
 
-		$this->assertInstanceOf('DCHTestDatabase', $this->databases['test1']);
+		$this->assertInstanceOf('Agavi\\Tests\\Unit\\Config\\DCHTestDatabase', $this->databases['test1']);
 		$paramsExpected = array(
 			'host' => 'localhost1',
 			'user' => 'testuser1',
-			'config' => AgaviConfig::get('core.app_dir') . '/config/project-conf.php',
+			'config' => Config::get('core.app_dir') . '/config/project-conf.php',
 		);
 		$this->assertSame($paramsExpected, $this->databases['test1']->params);
 
@@ -84,7 +89,7 @@ class AgaviDatabaseConfigHandlerTest extends ConfigHandlerTestBase
 	}
 	
 	/**
-	 * @expectedException AgaviConfigurationException
+	 * @expectedException Agavi\Exception\ConfigurationException
 	 */
 	public function testNonExistentDefault() {
 		$this->loadTestConfig('nonexistent-default');

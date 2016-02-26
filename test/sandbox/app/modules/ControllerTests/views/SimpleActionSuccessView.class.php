@@ -2,7 +2,7 @@
 
 class ControllerTests_SimpleActionSuccessView extends SandboxControllerTestsBaseView
 {
-	public function executeHtml(AgaviRequestDataHolder $rd)
+	public function executeHtml(\Agavi\Request\RequestDataHolder $rd)
 	{
 		$this->setupHtml($rd);
 

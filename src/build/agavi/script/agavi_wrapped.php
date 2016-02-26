@@ -1,4 +1,5 @@
 <?php
+use Agavi\Build\OptionParser;
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -31,12 +32,18 @@ define('BUILD_DIRECTORY', realpath(__DIR__ . '/../..'));
 define('START_DIRECTORY', getcwd());
 define('MIN_PHING_VERSION', '2.4.0');
 
-require('phing/Phing.php');
+/** Probably a composer install  *//*
+if (file_exists(__DIR__ . '/../../../../vendor/autoload.php')) {
+	require_once(__DIR__ . '/../../../../vendor/autoload.php');
+} else {
+	// Let's hope Phing is on the include path*/
+	require('phing/Phing.php');
+//}
 
 require(__DIR__ . '/../build.php');
-AgaviBuild::bootstrap();
+\Agavi\Build\Build::bootstrap();
 
-require(__DIR__ . '/AgaviOptionParser.class.php');
+require(__DIR__ . '/OptionParser.class.php');
 
 $GLOBALS['OUTPUT'] = new OutputStream(fopen('php://stdout', 'w'));
 $GLOBALS['ERROR'] = new OutputStream(fopen('php://stderr', 'w'));
@@ -45,10 +52,12 @@ $GLOBALS['INPUT'] = new InputStream(fopen('php://stdin', 'r'));
 /* Initialize Phing. */
 try {
 	Phing::startup();
+
+//	$GLOBALS['OUTPUT']->write('Phing version ' . Phing::getPhingVersion() . "\n");
 	
 	Phing::setProperty('phing.home', getenv('PHING_HOME'));
 	
-	if(!defined('DISABLE_PHING_VERSION_CHECK')) {
+	if(!defined('DISABLE_PHING_VERSION_CHECK')/* && Phing::getPhingVersion() != 'Phing DEV'*/) {
 		try {
 			if(!version_compare(preg_replace('/^Phing(?:\s*version)?\s*([0-9\.]+)/i', '$1', Phing::getPhingVersion()), MIN_PHING_VERSION, 'ge')) {
 				$GLOBALS['ERROR']->write(sprintf('Error: Phing version %s or later required', MIN_PHING_VERSION) . PHP_EOL);
@@ -86,25 +95,25 @@ function input_help_display()
 	$GLOBALS['OUTPUT']->write('  --logger <class>                 Sets the configuration logger class to <class>' . PHP_EOL);
 }
 
-function input_help(AgaviOptionParser $parser, $name, $arguments, $scriptArguments)
+function input_help(OptionParser $parser, $name, $arguments, $scriptArguments)
 {
 	input_help_display();
 	exit(0);
 }
 
-function input_version(AgaviOptionParser $parser, $name, $arguments, $scriptArguments)
+function input_version(OptionParser $parser, $name, $arguments, $scriptArguments)
 {
 	$GLOBALS['OUTPUT']->write('Agavi project configuration system, script version $Id$' . PHP_EOL);
 	$GLOBALS['OUTPUT']->write(Phing::getPhingVersion() . PHP_EOL);
 	exit(0);
 }
 
-function input_list(AgaviOptionParser $parser, $name, $arguments, $scriptArguments)
+function input_list(OptionParser $parser, $name, $arguments, $scriptArguments)
 {
 	$GLOBALS['SHOW_LIST'] = true;
 }
 
-function input_define(AgaviOptionParser $parser, $name, $arguments, $scriptArguments)
+function input_define(OptionParser $parser, $name, $arguments, $scriptArguments)
 {
 	$name = $arguments[0];
 	$value = $arguments[1];
@@ -112,12 +121,12 @@ function input_define(AgaviOptionParser $parser, $name, $arguments, $scriptArgum
 	$GLOBALS['PROPERTIES'][$name] = $value;
 }
 
-function input_verbose(AgaviOptionParser $parser, $name, $arguments, $scriptArguments)
+function input_verbose(OptionParser $parser, $name, $arguments, $scriptArguments)
 {
 	$GLOBALS['VERBOSE'] = true;
 }
 
-function input_agavi_source_directory(AgaviOptionParser $parser, $name, $arguments, $scriptArguments)
+function input_agavi_source_directory(OptionParser $parser, $name, $arguments, $scriptArguments)
 {
 	$path = new PhingFile($arguments[0]);
 	$path = $path->isAbsolute() ? $path : new PhingFile(START_DIRECTORY, (string)$path);
@@ -125,7 +134,7 @@ function input_agavi_source_directory(AgaviOptionParser $parser, $name, $argumen
 	$GLOBALS['PROPERTIES']['agavi.directory.src'] = $path;
 }
 
-function input_include_path(AgaviOptionParser $parser, $name, $arguments, $scriptArguments)
+function input_include_path(OptionParser $parser, $name, $arguments, $scriptArguments)
 {
 	$path = new PhingFile($arguments[0]);
 	$path = $path->isAbsolute() ? $path : new PhingFile(START_DIRECTORY, (string)$path);
@@ -133,7 +142,7 @@ function input_include_path(AgaviOptionParser $parser, $name, $arguments, $scrip
 	set_include_path($path->getAbsolutePath() . PATH_SEPARATOR . get_include_path());
 }
 
-function input_logger(AgaviOptionParser $parser, $name, $arguments, $scriptArguments)
+function input_logger(OptionParser $parser, $name, $arguments, $scriptArguments)
 {
 	$logger = $arguments[0];
 	
@@ -141,7 +150,7 @@ function input_logger(AgaviOptionParser $parser, $name, $arguments, $scriptArgum
 }
 
 /* Parse incoming arguments. */
-$parser = new AgaviOptionParser(array_slice($_SERVER['argv'], 1));
+$parser = new OptionParser(array_slice($_SERVER['argv'], 1));
 $parser->addOption('help', array('h', '?'), array('help'), 'input_help');
 $parser->addOption('version', array('v'), array('version'), 'input_version');
 $parser->addOption('list', array('l'), array('list', 'targets'), 'input_list');
@@ -153,7 +162,7 @@ $parser->addOption('logger', array(), array('logger'), 'input_logger', 1);
 
 try {
 	$parser->parse();
-} catch(AgaviOptionException $aae) {
+} catch(\Agavi\Build\OptionException $aae) {
 	$GLOBALS['ERROR']->write('Error: ' . $aae->getMessage() . PHP_EOL);
 	$GLOBALS['ERROR']->write(PHP_EOL);
 	input_help_display();
@@ -272,7 +281,7 @@ try {
 	
 	$GLOBALS['LOGGER'] = Phing::import($GLOBALS['LOGGER']);
 	
-	$logger = new AgaviProxyBuildLogger(new $GLOBALS['LOGGER']());
+	$logger = new \Agavi\Build\Phing\ProxyBuildLogger(new $GLOBALS['LOGGER']());
 	$logger->setMessageOutputLevel($GLOBALS['VERBOSE'] ? Project::MSG_VERBOSE : Project::MSG_INFO);
 	$logger->setOutputStream($GLOBALS['OUTPUT']);
 	$logger->setErrorStream($GLOBALS['ERROR']);

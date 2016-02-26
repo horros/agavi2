@@ -2,13 +2,13 @@
 <ae:configurations xmlns:ae="http://agavi.org/agavi/config/global/envelope/1.1" xmlns="http://agavi.org/agavi/config/parts/config_handlers/1.1" parent="%core.system_config_dir%/config_handlers.xml">
 	<ae:configuration>
 		<handlers>
-			<handler pattern="confighandler-testing" class="AgaviReturnArrayConfigHandler">
+			<handler pattern="confighandler-testing" class="Agavi\Config\ReturnArrayConfigHandler">
 				<validation>confighandler-testing.rng</validation>
 				<transformation>confighandler-testing.xsl</transformation>
 			</handler>
-			<handler pattern="%core.config_dir%/tests/importtest.xml" class="ImportTestHandler" />
-			<handler pattern="%core.config_dir%/tests/importtest_once.xml" class="ImportTestOnceHandler" />
-			<handler pattern="%core.config_dir%/tests/routing_*.xml" class="AgaviRoutingConfigHandler">
+			<handler pattern="%core.config_dir%/tests/importtest.xml" class="Agavi\Test\Config\ImportTestHandler" />
+			<handler pattern="%core.config_dir%/tests/importtest_once.xml" class="Agavi\Test\Config\ImportTestOnceHandler" />
+			<handler pattern="%core.config_dir%/tests/routing_*.xml" class="Agavi\Config\RoutingConfigHandler">
 				<validation>%core.agavi_dir%/config/xsd/routing.xsd</validation>
 				<transformation>%core.agavi_dir%/config/xsl/routing.xsl</transformation>
 			</handler>

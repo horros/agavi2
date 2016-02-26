@@ -15,7 +15,7 @@
 
 class Default_SecureSuccessView extends AgaviSampleAppDefaultBaseView
 {
-	public function executeHtml(AgaviRequestDataHolder $rd)
+	public function executeHtml(RequestDataHolder $rd)
 	{
 		$this->setupHtml($rd);
 

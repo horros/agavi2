@@ -1,6 +1,8 @@
 <?php
+namespace Agavi\Testing\Unit\Controller;
+use Agavi\Testing\UnitTestCase;
 
-class AgaviExecutionContainerTest extends AgaviUnitTestCase
+class ExecutionContainerTest extends UnitTestCase
 {
 	
 	public function testSimpleActionWithoutArguments()

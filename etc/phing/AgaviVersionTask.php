@@ -25,15 +25,15 @@ class AgaviVersionTask extends Task
 
 		require_once($agaviPath);
 		
-		$this->project->setUserProperty('agavi.version', AgaviConfig::get('agavi.version'));
+		$this->project->setUserProperty('agavi.version', Config::get('agavi.version'));
 		$this->project->setUserProperty('agavi.pear.version', sprintf("%d.%d.%d%s", 
-			AgaviConfig::get('agavi.major_version'), 
-			AgaviConfig::get('agavi.minor_version'), 
-			AgaviConfig::get('agavi.micro_version'), 
-			AgaviConfig::has('agavi.status') ? AgaviConfig::get('agavi.status') : ''
+			Config::get('agavi.major_version'),
+			Config::get('agavi.minor_version'),
+			Config::get('agavi.micro_version'),
+			Config::has('agavi.status') ? Config::get('agavi.status') : ''
 		));
 		
-		$status = AgaviConfig::get('agavi.status');
+		$status = Config::get('agavi.status');
 		
 		if($status == 'dev') {
 			$status = 'devel';

@@ -1,6 +1,11 @@
 <?php
+namespace Agavi\Tests\Unit\Translation;
+use Agavi\Core\Context;
+use Agavi\Date\DateFormat;
+use Agavi\Date\SimpleTimeZone;
+use Agavi\Testing\UnitTestCase;
 
-class AgaviTranslationManagerTest extends AgaviUnitTestCase
+class AgaviTranslationManagerTest extends UnitTestCase
 {
 	/**
 	 * @dataProvider dateStrings957
@@ -9,12 +14,12 @@ class AgaviTranslationManagerTest extends AgaviUnitTestCase
 	{
 		$tm = $this->getContext()->getTranslationManager();
 		
-		$dt = new DateTime($dateString);
+		$dt = new \DateTime($dateString);
 		$cal = $tm->createCalendar($dt);
 		
 		$tz = $cal->getTimeZone();
 		$this->assertEquals($expectedId, $tz->getId(), 'Failed asserting that the created timezone is a custom timezone.');
-		$this->assertTrue(($tz instanceof AgaviSimpleTimezone), 'Failed asserting that the created tz is an AgaviSimpleTimezone.');
+		$this->assertTrue(($tz instanceof SimpleTimeZone), 'Failed asserting that the created tz is a SimpleTimezone.');
 		$this->assertEquals($expectedOffset, $tz->getRawOffset(), 'Failed asserting that the timezone has the proper offset.');
 	}
 	
@@ -30,10 +35,10 @@ class AgaviTranslationManagerTest extends AgaviUnitTestCase
 	
 	public function testTicket962()
 	{
-		$ctx = AgaviContext::getInstance();
+		$ctx = Context::getInstance();
 		$tm = $ctx->getTranslationManager();
 		$locale = $tm->getLocale('de@timezone=America/Los_Angeles');
-		$inputFormat = new AgaviDateFormat('yyyy-MM-dd HH:mm:ssZZZ');
+		$inputFormat = new DateFormat('yyyy-MM-dd HH:mm:ssZZZ');
 
 		$cal = $inputFormat->parse('2008-11-19 23:00:00America/Los_Angeles', $locale, false);
 		$originalTimeZoneId = $cal->getTimeZone()->getId();

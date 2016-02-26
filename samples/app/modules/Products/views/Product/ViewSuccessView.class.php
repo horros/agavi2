@@ -7,7 +7,7 @@ class Products_Product_ViewSuccessView extends AgaviSampleAppProductsBaseView
 	 * Execute any presentation logic and set template attributes.
 	 *
 	 */
-	public function executeHtml(AgaviRequestDataHolder $rd)
+	public function executeHtml(RequestDataHolder $rd)
 	{
 		$this->setupHtml($rd);
 
@@ -15,7 +15,7 @@ class Products_Product_ViewSuccessView extends AgaviSampleAppProductsBaseView
 		$this->setAttribute('_title', $this->tm->_('Congratulations!', 'default.SearchEngineSpam'));
 	}
 
-	public function executeText(AgaviRequestDataHolder $rd)
+	public function executeText(RequestDataHolder $rd)
 	{
 		$product = $this->getAttribute('product');
 		
@@ -28,7 +28,7 @@ class Products_Product_ViewSuccessView extends AgaviSampleAppProductsBaseView
 	/**
 	 * Execute any presentation logic for SOAP requests.
 	 */
-	public function executeSoap(AgaviRequestDataHolder $rd)
+	public function executeSoap(RequestDataHolder $rd)
 	{
 		return $this->getAttribute('product');
 	}
@@ -36,7 +36,7 @@ class Products_Product_ViewSuccessView extends AgaviSampleAppProductsBaseView
 	/**
 	 * Execute any presentation logic for XMLRPC requests.
 	 */
-	public function executeXmlrpc(AgaviRequestDataHolder $rd)
+	public function executeXmlrpc(RequestDataHolder $rd)
 	{
 		$product = $this->getAttribute('product');
 		

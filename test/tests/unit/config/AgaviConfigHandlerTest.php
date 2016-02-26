@@ -1,5 +1,9 @@
 <?php
-class MyTestConfigHandler extends AgaviConfigHandler
+namespace Agavi\Tests\Unit\Config;
+use Agavi\Config\ConfigHandler;
+use Agavi\Testing\UnitTestCase;
+
+class MyTestConfigHandler extends ConfigHandler
 {
 	public function execute($config, $context = null)
 	{
@@ -7,7 +11,7 @@ class MyTestConfigHandler extends AgaviConfigHandler
 	}
 }
 
-class AgaviConfigHandlerTest extends AgaviUnitTestCase
+class AgaviConfigHandlerTest extends UnitTestCase
 {
 	protected $ch = null;
 	public function setUp()

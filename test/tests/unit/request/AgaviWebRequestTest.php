@@ -1,7 +1,13 @@
 <?php
+namespace Agavi\Tests\Unit\Request;
+use Agavi\Request\WebRequest;
+use Agavi\Testing\UnitTestCase;
 
-class AgaviWebRequestTest extends AgaviUnitTestCase
+class AgaviWebRequestTest extends UnitTestCase
 {
+	/**
+	 * @var WebRequest
+	 */
 	private $_r = null;
 	private $_SERVER = array();
 
@@ -14,7 +20,7 @@ class AgaviWebRequestTest extends AgaviUnitTestCase
 		$_SERVER['SERVER_NAME'] = 'example.agavi.org';
 		$_SERVER['REQUEST_URI'] = '/foo/bar/baz?id=4815162342';
 		
-		$this->_r = new AgaviWebRequest();
+		$this->_r = new WebRequest();
 		$this->_r->initialize($this->getContext());
 	}
 	

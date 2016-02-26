@@ -16,7 +16,7 @@
 class Default_LoginSuccessView extends AgaviSampleAppDefaultBaseView
 {
 
-	public function executeHtml(AgaviRequestDataHolder $rd)
+	public function executeHtml(RequestDataHolder $rd)
 	{
 		$res = $this->getResponse();
 

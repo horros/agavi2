@@ -1,4 +1,9 @@
 <?php
+namespace Agavi\Testing\Unit\Date;
+use Agavi\Date\DateDefinitions;
+use Agavi\Date\GregorianCalendar;
+use Agavi\Date\SimpleTimeZone;
+use Agavi\Date\TimeZone;
 
 require_once(__DIR__ . '/BaseCalendarTest.php');
 
@@ -22,7 +27,7 @@ class AgaviTimeZoneTest extends BaseCalendarTest
 		$id = "NewGMT";
 		$offset = 12345;
 
-		$zone = new AgaviSimpleTimeZone($this->tm, $offset, $id);
+		$zone = new SimpleTimeZone($this->tm, $offset, $id);
 		$this->assertFalse($zone->useDaylightTime());
 
 		$zoneclone = clone $zone;
@@ -43,7 +48,7 @@ TODO: is_equal doesn't work yet
 //		logln("to get the difference in seconds between coordinated universal");
 //		logln("time and local time. E.g., -28,800 for PST (GMT-8hrs)");
 
-//		$tzoffset = uprv_timezone();
+		$tzoffset = uprv_timezone();
 //		logln(UnicodeString("Value returned from uprv_timezone = ") + tzoffset);
 		// Invert sign because UNIX semantics are backwards
 		if($tzoffset < 0)
@@ -75,25 +80,25 @@ TODO: is_equal doesn't work yet
 	public function TestRuleAPI()
 	{
 		$offset = 60*60*1000*1.75; // Pick a weird offset
-		$zone = new AgaviSimpleTimeZone($this->tm, $offset, "TestZone");
+		$zone = new SimpleTimeZone($this->tm, $offset, "TestZone");
 		$this->assertFalse($zone->useDaylightTime());
 
 		// Establish our expected transition times.  Do this with a non-DST
 		// calendar with the (above) declared local offset.
 		$gc = $this->tm->createCalendar($zone);
 		$gc->clear();
-		$gc->set(1990, AgaviDateDefinitions::MARCH, 1);
+		$gc->set(1990, DateDefinitions::MARCH, 1);
 		$marchOneStd = $gc->getTime(); // Local Std time midnight
 		$gc->clear();
-		$gc->set(1990, AgaviDateDefinitions::JULY, 1);
+		$gc->set(1990, DateDefinitions::JULY, 1);
 		$julyOneStd = $gc->getTime(); // Local Std time midnight
 
 		// Starting and ending hours, WALL TIME
 		$startHour = (int)(2.25 * 3600000);
 		$endHour   = (int)(3.5  * 3600000);
 
-		$zone->setStartRule(AgaviDateDefinitions::MARCH, 1, 0, $startHour);
-		$zone->setEndRule  (AgaviDateDefinitions::JULY,  1, 0, $endHour);
+		$zone->setStartRule(DateDefinitions::MARCH, 1, 0, $startHour);
+		$zone->setEndRule  (DateDefinitions::JULY,  1, 0, $endHour);
 
 		$gc = $this->tm->createCalendar($zone);
 
@@ -106,8 +111,8 @@ TODO: is_equal doesn't work yet
 		$expJulyOne = 646793100000.0;
 		$this->assertEquals($expJulyOne, $julyOne);
 
-		$this->myTestUsingBinarySearch($zone, $this->date(90, AgaviDateDefinitions::JANUARY, 1), $this->date(90, AgaviDateDefinitions::JUNE, 15), $marchOne);
-		$this->myTestUsingBinarySearch($zone, $this->date(90, AgaviDateDefinitions::JUNE, 1), $this->date(90, AgaviDateDefinitions::DECEMBER, 31), $julyOne);
+		$this->myTestUsingBinarySearch($zone, $this->date(90, DateDefinitions::JANUARY, 1), $this->date(90, DateDefinitions::JUNE, 15), $marchOne);
+		$this->myTestUsingBinarySearch($zone, $this->date(90, DateDefinitions::JUNE, 1), $this->date(90, DateDefinitions::DECEMBER, 31), $julyOne);
 
 		$this->assertFalse($zone->inDaylightTime($marchOne - 1000) || !$zone->inDaylightTime($marchOne), 'Start rule broken');
 		$this->assertFalse(!$zone->inDaylightTime($julyOne - 1000) || $zone->inDaylightTime($julyOne), 'End rule broken');
@@ -192,14 +197,14 @@ TODO: is_equal doesn't work yet
 	public function testVariousAPI518()
 	{
 		$time_zone = $this->tm->createTimeZone("America/Los_Angeles");
-		$d = $this->date(97, AgaviDateDefinitions::APRIL, 30);
+		$d = $this->date(97, DateDefinitions::APRIL, 30);
 		$this->assertTrue($time_zone->inDaylightTime($d));
 		$this->assertTrue($time_zone->useDaylightTime());
 		$this->assertEquals(floatval(-8 * self::millisPerHour), $time_zone->getRawOffset());
 
 		$gc = $this->tm->createCalendar();
 		$gc->setTime($d);
-		$this->assertEquals(floatval(-7 * self::millisPerHour), $time_zone->getOffset(AgaviGregorianCalendar::AD, $gc->get(AgaviDateDefinitions::YEAR), $gc->get(AgaviDateDefinitions::MONTH), $gc->get(AgaviDateDefinitions::DATE), $gc->get(AgaviDateDefinitions::DAY_OF_WEEK), 0));
+		$this->assertEquals(floatval(-7 * self::millisPerHour), $time_zone->getOffset(GregorianCalendar::AD, $gc->get(DateDefinitions::YEAR), $gc->get(DateDefinitions::MONTH), $gc->get(DateDefinitions::DATE), $gc->get(DateDefinitions::DAY_OF_WEEK), 0));
 	}
 
 // -------------------------------------
@@ -878,10 +883,10 @@ We don't support the old aliases (yet)
 		//*****************************************************************
 
 		$data = array(
-			array(false, AgaviTimeZone::SHORT, 'PST'),
-			array(true,  AgaviTimeZone::SHORT, 'PDT'),
-			array(false, AgaviTimeZone::LONG, 'Pacific Standard Time'),
-			array(true,  AgaviTimeZone::LONG, 'Pacific Daylight Time'),
+			array(false, TimeZone::SHORT, 'PST'),
+			array(true,  TimeZone::SHORT, 'PDT'),
+			array(false, TimeZone::LONG, 'Pacific Standard Time'),
+			array(true,  TimeZone::LONG, 'Pacific Daylight Time'),
 		);
 
 		foreach($data as $item) {
@@ -894,10 +899,10 @@ We don't support the old aliases (yet)
 
 		// Make sure that we don't display the DST name by constructing a fake
 		// PST zone that has DST all year long.
-		$zone2 = new AgaviSimpleTimeZone($this->tm, 0, "America/Los_Angeles");
+		$zone2 = new SimpleTimeZone($this->tm, 0, "America/Los_Angeles");
 
-		$zone2->setStartRule(AgaviDateDefinitions::JANUARY, 1, 0, 0);
-		$zone2->setEndRule(AgaviDateDefinitions::DECEMBER, 31, 0, 0);
+		$zone2->setStartRule(DateDefinitions::JANUARY, 1, 0, 0);
+		$zone2->setEndRule(DateDefinitions::DECEMBER, 31, 0, 0);
 
 		$inDaylight = '';
 		if($zone2->inDaylightTime(0)) {
@@ -930,7 +935,7 @@ We don't support the old aliases (yet)
 //	************************************************************
 
 		// Now try a non-existent zone
-		$zone2 = new AgaviSimpleTimeZone($this->tm, 90*60*1000, "xyzzy");
+		$zone2 = new SimpleTimeZone($this->tm, 90*60*1000, "xyzzy");
 		$name = $zone2->getDisplayName($enLocale);
 
 		$this->assertTrue($name == 'GMT+01:30' || 
@@ -947,32 +952,32 @@ We don't support the old aliases (yet)
 		// It might be better to find a way to integrate this test into the main TimeZone
 		// tests above, but I don't have time to figure out how to do this (or if it's
 		// even really a good idea).  Let's consider that a future.  --rtg 1/27/98
-		$tz = new AgaviSimpleTimeZone($this->tm, -5 * AgaviDateDefinitions::MILLIS_PER_HOUR, "dstSavingsTest",
-																		AgaviDateDefinitions::MARCH, 1, 0, 0, AgaviDateDefinitions::SEPTEMBER, 1, 0, 0,
-																		(0.5 * AgaviDateDefinitions::MILLIS_PER_HOUR));
+		$tz = new SimpleTimeZone($this->tm, -5 * DateDefinitions::MILLIS_PER_HOUR, "dstSavingsTest",
+																		DateDefinitions::MARCH, 1, 0, 0, DateDefinitions::SEPTEMBER, 1, 0, 0,
+																		(0.5 * DateDefinitions::MILLIS_PER_HOUR));
 
-		$this->assertEquals(-5 * AgaviDateDefinitions::MILLIS_PER_HOUR, $tz->getRawOffset());
+		$this->assertEquals(-5 * DateDefinitions::MILLIS_PER_HOUR, $tz->getRawOffset());
 
 		$this->assertTrue($tz->useDaylightTime(), 'Test time zone should use DST but claims it doesn\'t.');
 		
-		$this->assertEquals(0.5 * AgaviDateDefinitions::MILLIS_PER_HOUR, $tz->getDSTSavings());
+		$this->assertEquals(0.5 * DateDefinitions::MILLIS_PER_HOUR, $tz->getDSTSavings());
 
-		$offset = $tz->getOffset(AgaviGregorianCalendar::AD, 1998, AgaviDateDefinitions::JANUARY, 1, 
-															AgaviDateDefinitions::THURSDAY, 10 * AgaviDateDefinitions::MILLIS_PER_HOUR);
-		$this->assertEquals(-5 * AgaviDateDefinitions::MILLIS_PER_HOUR, $offset);
+		$offset = $tz->getOffset(GregorianCalendar::AD, 1998, DateDefinitions::JANUARY, 1,
+															DateDefinitions::THURSDAY, 10 * DateDefinitions::MILLIS_PER_HOUR);
+		$this->assertEquals(-5 * DateDefinitions::MILLIS_PER_HOUR, $offset);
 
-		$offset = $tz->getOffset(AgaviGregorianCalendar::AD, 1998, AgaviDateDefinitions::JUNE, 1, AgaviDateDefinitions::MONDAY,
-															10 * AgaviDateDefinitions::MILLIS_PER_HOUR);
-		$this->assertEquals(-4.5 * AgaviDateDefinitions::MILLIS_PER_HOUR, $offset);
+		$offset = $tz->getOffset(GregorianCalendar::AD, 1998, DateDefinitions::JUNE, 1, DateDefinitions::MONDAY,
+															10 * DateDefinitions::MILLIS_PER_HOUR);
+		$this->assertEquals(-4.5 * DateDefinitions::MILLIS_PER_HOUR, $offset);
 
-		$tz->setDSTSavings(AgaviDateDefinitions::MILLIS_PER_HOUR);
-		$offset = $tz->getOffset(AgaviGregorianCalendar::AD, 1998, AgaviDateDefinitions::JANUARY, 1,
-															AgaviDateDefinitions::THURSDAY, 10 * AgaviDateDefinitions::MILLIS_PER_HOUR);
-		$this->assertEquals(-5 * AgaviDateDefinitions::MILLIS_PER_HOUR, $offset);
+		$tz->setDSTSavings(DateDefinitions::MILLIS_PER_HOUR);
+		$offset = $tz->getOffset(GregorianCalendar::AD, 1998, DateDefinitions::JANUARY, 1,
+															DateDefinitions::THURSDAY, 10 * DateDefinitions::MILLIS_PER_HOUR);
+		$this->assertEquals(-5 * DateDefinitions::MILLIS_PER_HOUR, $offset);
 
-		$offset = $tz->getOffset(AgaviGregorianCalendar::AD, 1998, AgaviDateDefinitions::JUNE, 1, AgaviDateDefinitions::MONDAY,
-															10 * AgaviDateDefinitions::MILLIS_PER_HOUR);
-		$this->assertEquals(-4 * AgaviDateDefinitions::MILLIS_PER_HOUR, $offset);
+		$offset = $tz->getOffset(GregorianCalendar::AD, 1998, DateDefinitions::JUNE, 1, DateDefinitions::MONDAY,
+															10 * DateDefinitions::MILLIS_PER_HOUR);
+		$this->assertEquals(-4 * DateDefinitions::MILLIS_PER_HOUR, $offset);
 	}
 
 /**
@@ -984,47 +989,47 @@ We don't support the old aliases (yet)
 		// test at the top of this class, but I didn't have time to figure out how to do that.
 		//                      --rtg 1/28/98
 
-		$tz = new AgaviSimpleTimeZone($this->tm, -5 * AgaviDateDefinitions::MILLIS_PER_HOUR, "alternateRuleTest");
+		$tz = new SimpleTimeZone($this->tm, -5 * DateDefinitions::MILLIS_PER_HOUR, "alternateRuleTest");
 
 		// test the day-of-month API
-		$tz->setStartRule(AgaviDateDefinitions::MARCH, 10, 12 * AgaviDateDefinitions::MILLIS_PER_HOUR);
-		$tz->setEndRule(AgaviDateDefinitions::OCTOBER, 20, 12 * AgaviDateDefinitions::MILLIS_PER_HOUR);
+		$tz->setStartRule(DateDefinitions::MARCH, 10, 12 * DateDefinitions::MILLIS_PER_HOUR);
+		$tz->setEndRule(DateDefinitions::OCTOBER, 20, 12 * DateDefinitions::MILLIS_PER_HOUR);
 
-		$offset = $tz->getOffset(AgaviGregorianCalendar::AD, 1998, AgaviDateDefinitions::MARCH, 5,
-															AgaviDateDefinitions::THURSDAY, 10 * AgaviDateDefinitions::MILLIS_PER_HOUR);
-		$this->assertEquals(-5 * AgaviDateDefinitions::MILLIS_PER_HOUR, $offset);
+		$offset = $tz->getOffset(GregorianCalendar::AD, 1998, DateDefinitions::MARCH, 5,
+															DateDefinitions::THURSDAY, 10 * DateDefinitions::MILLIS_PER_HOUR);
+		$this->assertEquals(-5 * DateDefinitions::MILLIS_PER_HOUR, $offset);
 
-		$offset = $tz->getOffset(AgaviGregorianCalendar::AD, 1998, AgaviDateDefinitions::MARCH, 15,
-															AgaviDateDefinitions::SUNDAY, 10 * AgaviDateDefinitions::MILLIS_PER_HOUR);
-		$this->assertEquals(-4 * AgaviDateDefinitions::MILLIS_PER_HOUR, $offset);
+		$offset = $tz->getOffset(GregorianCalendar::AD, 1998, DateDefinitions::MARCH, 15,
+															DateDefinitions::SUNDAY, 10 * DateDefinitions::MILLIS_PER_HOUR);
+		$this->assertEquals(-4 * DateDefinitions::MILLIS_PER_HOUR, $offset);
 
-		$offset = $tz->getOffset(AgaviGregorianCalendar::AD, 1998, AgaviDateDefinitions::OCTOBER, 15,
-															AgaviDateDefinitions::THURSDAY, 10 * AgaviDateDefinitions::MILLIS_PER_HOUR);
-		$this->assertEquals(-4 * AgaviDateDefinitions::MILLIS_PER_HOUR, $offset);
+		$offset = $tz->getOffset(GregorianCalendar::AD, 1998, DateDefinitions::OCTOBER, 15,
+															DateDefinitions::THURSDAY, 10 * DateDefinitions::MILLIS_PER_HOUR);
+		$this->assertEquals(-4 * DateDefinitions::MILLIS_PER_HOUR, $offset);
 
-		$offset = $tz->getOffset(AgaviGregorianCalendar::AD, 1998, AgaviDateDefinitions::OCTOBER, 25,
-															AgaviDateDefinitions::SUNDAY, 10 * AgaviDateDefinitions::MILLIS_PER_HOUR);
-		$this->assertEquals(-5 * AgaviDateDefinitions::MILLIS_PER_HOUR, $offset);
+		$offset = $tz->getOffset(GregorianCalendar::AD, 1998, DateDefinitions::OCTOBER, 25,
+															DateDefinitions::SUNDAY, 10 * DateDefinitions::MILLIS_PER_HOUR);
+		$this->assertEquals(-5 * DateDefinitions::MILLIS_PER_HOUR, $offset);
 
 		// test the day-of-week-after-day-in-month API
-		$tz->setStartRule(AgaviDateDefinitions::MARCH, 10, AgaviDateDefinitions::FRIDAY, intval(12 * AgaviDateDefinitions::MILLIS_PER_HOUR), true);
-		$tz->setEndRule(AgaviDateDefinitions::OCTOBER, 20, AgaviDateDefinitions::FRIDAY, intval(12 * AgaviDateDefinitions::MILLIS_PER_HOUR), false);
+		$tz->setStartRule(DateDefinitions::MARCH, 10, DateDefinitions::FRIDAY, intval(12 * DateDefinitions::MILLIS_PER_HOUR), true);
+		$tz->setEndRule(DateDefinitions::OCTOBER, 20, DateDefinitions::FRIDAY, intval(12 * DateDefinitions::MILLIS_PER_HOUR), false);
 
-		$offset = $tz->getOffset(AgaviGregorianCalendar::AD, 1998, AgaviDateDefinitions::MARCH, 11,
-															AgaviDateDefinitions::WEDNESDAY, 10 * AgaviDateDefinitions::MILLIS_PER_HOUR);
-		$this->assertEquals(-5 * AgaviDateDefinitions::MILLIS_PER_HOUR, $offset);
+		$offset = $tz->getOffset(GregorianCalendar::AD, 1998, DateDefinitions::MARCH, 11,
+															DateDefinitions::WEDNESDAY, 10 * DateDefinitions::MILLIS_PER_HOUR);
+		$this->assertEquals(-5 * DateDefinitions::MILLIS_PER_HOUR, $offset);
 
-		$offset = $tz->getOffset(AgaviGregorianCalendar::AD, 1998, AgaviDateDefinitions::MARCH, 14,
-															AgaviDateDefinitions::SATURDAY, 10 * AgaviDateDefinitions::MILLIS_PER_HOUR);
-		$this->assertEquals(-4 * AgaviDateDefinitions::MILLIS_PER_HOUR, $offset);
+		$offset = $tz->getOffset(GregorianCalendar::AD, 1998, DateDefinitions::MARCH, 14,
+															DateDefinitions::SATURDAY, 10 * DateDefinitions::MILLIS_PER_HOUR);
+		$this->assertEquals(-4 * DateDefinitions::MILLIS_PER_HOUR, $offset);
 
-		$offset = $tz->getOffset(AgaviGregorianCalendar::AD, 1998, AgaviDateDefinitions::OCTOBER, 15,
-															AgaviDateDefinitions::THURSDAY, 10 * AgaviDateDefinitions::MILLIS_PER_HOUR);
-		$this->assertEquals(-4 * AgaviDateDefinitions::MILLIS_PER_HOUR, $offset);
+		$offset = $tz->getOffset(GregorianCalendar::AD, 1998, DateDefinitions::OCTOBER, 15,
+															DateDefinitions::THURSDAY, 10 * DateDefinitions::MILLIS_PER_HOUR);
+		$this->assertEquals(-4 * DateDefinitions::MILLIS_PER_HOUR, $offset);
 
-		$offset = $tz->getOffset(AgaviGregorianCalendar::AD, 1998, AgaviDateDefinitions::OCTOBER, 17,
-															AgaviDateDefinitions::SATURDAY, 10 * AgaviDateDefinitions::MILLIS_PER_HOUR);
-		$this->assertEquals(-5 * AgaviDateDefinitions::MILLIS_PER_HOUR, $offset);
+		$offset = $tz->getOffset(GregorianCalendar::AD, 1998, DateDefinitions::OCTOBER, 17,
+															DateDefinitions::SATURDAY, 10 * DateDefinitions::MILLIS_PER_HOUR);
+		$this->assertEquals(-5 * DateDefinitions::MILLIS_PER_HOUR, $offset);
 	}
 
 	public function testFractionalDST()
@@ -1038,7 +1043,7 @@ We don't support the old aliases (yet)
 
 	public function testHistorical()
 	{
-		$H = AgaviDateDefinitions::MILLIS_PER_HOUR;
+		$H = DateDefinitions::MILLIS_PER_HOUR;
 
 		$data = array(
 				// Add transition points (before/after) as desired to test historical
@@ -1064,7 +1069,7 @@ We don't support the old aliases (yet)
 
 			$raw = 0;
 			$dst = 0;
-			$when = $item['time'] * AgaviDateDefinitions::MILLIS_PER_SECOND;
+			$when = $item['time'] * DateDefinitions::MILLIS_PER_SECOND;
 			$tz->getOffsetRef($when, false, $raw, $dst);
 			$this->assertEquals($item['offset'], $raw + $dst, 'Zone ' . $id);
 		}
@@ -1078,47 +1083,47 @@ We don't support the old aliases (yet)
 		// 
 		// Note: In tzdata2007h, the rule had changed, so no actual zones uses 
 		// lastSun in Feb anymore.
-		$tz1 = new AgaviSimpleTimeZone($this->tm, -3 * AgaviDateDefinitions::MILLIS_PER_HOUR,          // raw offset: 3h before (west of) GMT
+		$tz1 = new SimpleTimeZone($this->tm, -3 * DateDefinitions::MILLIS_PER_HOUR,          // raw offset: 3h before (west of) GMT
 		                               "nov-feb",
-		                               AgaviDateDefinitions::NOVEMBER, 1, AgaviDateDefinitions::SUNDAY,   // start: November, first, Sunday
+		                               DateDefinitions::NOVEMBER, 1, DateDefinitions::SUNDAY,   // start: November, first, Sunday
 		                               0,                               //        midnight wall time
-		                               AgaviDateDefinitions::FEBRUARY, -1, AgaviDateDefinitions::SUNDAY,  // end:   February, last, Sunday
+		                               DateDefinitions::FEBRUARY, -1, DateDefinitions::SUNDAY,  // end:   February, last, Sunday
 		                               0                                //        midnight wall time
 		);
 
 		// Now hardcode the same rules as for Brazil, so that we cover the intended code 
 		// even when in the future zoneinfo hardcodes these transition dates. 
-		$tz2 = new AgaviSimpleTimeZone($this->tm, -3 * AgaviDateDefinitions::MILLIS_PER_HOUR,          // raw offset: 3h before (west of) GMT 
+		$tz2 = new SimpleTimeZone($this->tm, -3 * DateDefinitions::MILLIS_PER_HOUR,          // raw offset: 3h before (west of) GMT
 		                               "nov-feb2", 
-		                               AgaviDateDefinitions::NOVEMBER, 1, -AgaviDateDefinitions::SUNDAY,  // start: November, 1 or after, Sunday 
+		                               DateDefinitions::NOVEMBER, 1, -DateDefinitions::SUNDAY,  // start: November, 1 or after, Sunday
 		                               0,                               //        midnight wall time 
-		                               AgaviDateDefinitions::FEBRUARY, -29, -AgaviDateDefinitions::SUNDAY,// end:   February, 29 or before, Sunday 
+		                               DateDefinitions::FEBRUARY, -29, -DateDefinitions::SUNDAY,// end:   February, 29 or before, Sunday
 		                               0                                //        midnight wall time 
 		); 
 
 		// Gregorian calendar with the UTC time zone for getting sample test date/times.
-		$gc = new AgaviGregorianCalendar(AgaviTimeZone::getGMT($this->tm));
+		$gc = new GregorianCalendar(TimeZone::getGMT($this->tm));
 
 		$data = array(
-			array( 'year' => 2006, 'month' => AgaviDateDefinitions::NOVEMBER, 'day' =>  5, 'hour' => 02, 'minute' => 59, 'second' => 59, 'offsetHours' => -3 ),
-			array( 'year' => 2006, 'month' => AgaviDateDefinitions::NOVEMBER, 'day' =>  5, 'hour' => 03, 'minute' => 00, 'second' => 00, 'offsetHours' => -2 ),
-			array( 'year' => 2007, 'month' => AgaviDateDefinitions::FEBRUARY, 'day' => 25, 'hour' => 01, 'minute' => 59, 'second' => 59, 'offsetHours' => -2 ),
-			array( 'year' => 2007, 'month' => AgaviDateDefinitions::FEBRUARY, 'day' => 25, 'hour' => 02, 'minute' => 00, 'second' => 00, 'offsetHours' => -3 ),
+			array( 'year' => 2006, 'month' => DateDefinitions::NOVEMBER, 'day' =>  5, 'hour' => 02, 'minute' => 59, 'second' => 59, 'offsetHours' => -3 ),
+			array( 'year' => 2006, 'month' => DateDefinitions::NOVEMBER, 'day' =>  5, 'hour' => 03, 'minute' => 00, 'second' => 00, 'offsetHours' => -2 ),
+			array( 'year' => 2007, 'month' => DateDefinitions::FEBRUARY, 'day' => 25, 'hour' => 01, 'minute' => 59, 'second' => 59, 'offsetHours' => -2 ),
+			array( 'year' => 2007, 'month' => DateDefinitions::FEBRUARY, 'day' => 25, 'hour' => 02, 'minute' => 00, 'second' => 00, 'offsetHours' => -3 ),
 
-			array( 'year' => 2007, 'month' => AgaviDateDefinitions::NOVEMBER, 'day' =>  4, 'hour' => 02, 'minute' => 59, 'second' => 59, 'offsetHours' => -3 ),
-			array( 'year' => 2007, 'month' => AgaviDateDefinitions::NOVEMBER, 'day' =>  4, 'hour' => 03, 'minute' => 00, 'second' => 00, 'offsetHours' => -2 ),
-			array( 'year' => 2008, 'month' => AgaviDateDefinitions::FEBRUARY, 'day' => 24, 'hour' => 01, 'minute' => 59, 'second' => 59, 'offsetHours' => -2 ),
-			array( 'year' => 2008, 'month' => AgaviDateDefinitions::FEBRUARY, 'day' => 24, 'hour' => 02, 'minute' => 00, 'second' => 00, 'offsetHours' => -3 ),
+			array( 'year' => 2007, 'month' => DateDefinitions::NOVEMBER, 'day' =>  4, 'hour' => 02, 'minute' => 59, 'second' => 59, 'offsetHours' => -3 ),
+			array( 'year' => 2007, 'month' => DateDefinitions::NOVEMBER, 'day' =>  4, 'hour' => 03, 'minute' => 00, 'second' => 00, 'offsetHours' => -2 ),
+			array( 'year' => 2008, 'month' => DateDefinitions::FEBRUARY, 'day' => 24, 'hour' => 01, 'minute' => 59, 'second' => 59, 'offsetHours' => -2 ),
+			array( 'year' => 2008, 'month' => DateDefinitions::FEBRUARY, 'day' => 24, 'hour' => 02, 'minute' => 00, 'second' => 00, 'offsetHours' => -3 ),
 
-			array( 'year' => 2008, 'month' => AgaviDateDefinitions::NOVEMBER, 'day' =>  2, 'hour' => 02, 'minute' => 59, 'second' => 59, 'offsetHours' => -3 ),
-			array( 'year' => 2008, 'month' => AgaviDateDefinitions::NOVEMBER, 'day' =>  2, 'hour' => 03, 'minute' => 00, 'second' => 00, 'offsetHours' => -2 ),
-			array( 'year' => 2009, 'month' => AgaviDateDefinitions::FEBRUARY, 'day' => 22, 'hour' => 01, 'minute' => 59, 'second' => 59, 'offsetHours' => -2 ),
-			array( 'year' => 2009, 'month' => AgaviDateDefinitions::FEBRUARY, 'day' => 22, 'hour' => 02, 'minute' => 00, 'second' => 00, 'offsetHours' => -3 ),
+			array( 'year' => 2008, 'month' => DateDefinitions::NOVEMBER, 'day' =>  2, 'hour' => 02, 'minute' => 59, 'second' => 59, 'offsetHours' => -3 ),
+			array( 'year' => 2008, 'month' => DateDefinitions::NOVEMBER, 'day' =>  2, 'hour' => 03, 'minute' => 00, 'second' => 00, 'offsetHours' => -2 ),
+			array( 'year' => 2009, 'month' => DateDefinitions::FEBRUARY, 'day' => 22, 'hour' => 01, 'minute' => 59, 'second' => 59, 'offsetHours' => -2 ),
+			array( 'year' => 2009, 'month' => DateDefinitions::FEBRUARY, 'day' => 22, 'hour' => 02, 'minute' => 00, 'second' => 00, 'offsetHours' => -3 ),
 
-			array( 'year' => 2009, 'month' => AgaviDateDefinitions::NOVEMBER, 'day' =>  1, 'hour' => 02, 'minute' => 59, 'second' => 59, 'offsetHours' => -3 ),
-			array( 'year' => 2009, 'month' => AgaviDateDefinitions::NOVEMBER, 'day' =>  1, 'hour' => 03, 'minute' => 00, 'second' => 00, 'offsetHours' => -2 ),
-			array( 'year' => 2010, 'month' => AgaviDateDefinitions::FEBRUARY, 'day' => 28, 'hour' => 01, 'minute' => 59, 'second' => 59, 'offsetHours' => -2 ),
-			array( 'year' => 2010, 'month' => AgaviDateDefinitions::FEBRUARY, 'day' => 28, 'hour' => 02, 'minute' => 00, 'second' => 00, 'offsetHours' => -3 ),
+			array( 'year' => 2009, 'month' => DateDefinitions::NOVEMBER, 'day' =>  1, 'hour' => 02, 'minute' => 59, 'second' => 59, 'offsetHours' => -3 ),
+			array( 'year' => 2009, 'month' => DateDefinitions::NOVEMBER, 'day' =>  1, 'hour' => 03, 'minute' => 00, 'second' => 00, 'offsetHours' => -2 ),
+			array( 'year' => 2010, 'month' => DateDefinitions::FEBRUARY, 'day' => 28, 'hour' => 01, 'minute' => 59, 'second' => 59, 'offsetHours' => -2 ),
+			array( 'year' => 2010, 'month' => DateDefinitions::FEBRUARY, 'day' => 28, 'hour' => 02, 'minute' => 00, 'second' => 00, 'offsetHours' => -3 ),
 		);
 
 		$timezones = array($tz1, $tz2);
@@ -1134,12 +1139,12 @@ We don't support the old aliases (yet)
 				          $data[$i]['hour'], $data[$i]['minute'], $data[$i]['second']);
 				$dt = $gc->getTime();
 				$tz->getOffsetRef($dt, false, $raw, $dst);
-				if(($raw + $dst) != $data[$i]['offsetHours'] * AgaviDateDefinitions::MILLIS_PER_HOUR) {
+				if(($raw + $dst) != $data[$i]['offsetHours'] * DateDefinitions::MILLIS_PER_HOUR) {
 					$this->fail(sprintf("test case %d.%d: tz.getOffset(%04d-%02d-%02d %02d:%02d:%02d) returns %d+%d != %d",
 					                    $t, $i,
 					                    $data[$i]['year'], $data[$i]['month'] + 1, $data[$i]['day'],
 					                    $data[$i]['hour'], $data[$i]['minute'], $data[$i]['second'],
-					                    $raw, $dst, $data[$i]['offsetHours'] * AgaviDateDefinitions::MILLIS_PER_HOUR)
+					                    $raw, $dst, $data[$i]['offsetHours'] * DateDefinitions::MILLIS_PER_HOUR)
 					);
 				}
 			}

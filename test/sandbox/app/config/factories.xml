@@ -3,42 +3,42 @@
 	
 	<ae:configuration>
 		
-		<controller class="AgaviController" />
+		<controller class="Agavi\Controller\Controller" />
 		
-		<database_manager class="AgaviDatabaseManager" />
+		<database_manager class="Agavi\Database\DatabaseManager" />
 		
-		<dispatch_filter class="AgaviDispatchFilter" />
+		<dispatch_filter class="Agavi\Filter\DispatchFilter" />
 		
-		<execution_container class="AgaviExecutionContainer" />
+		<execution_container class="Agavi\Controller\ExecutionContainer" />
 		
-		<execution_filter class="AgaviExecutionFilter" />
+		<execution_filter class="Agavi\Filter\ExecutionFilter" />
 		
-		<filter_chain class="AgaviFilterChain" />
+		<filter_chain class="Agavi\Filter\FilterChain" />
 		
-		<logger_manager class="AgaviLoggerManager" />
+		<logger_manager class="Agavi\Logging\LoggerManager" />
 		
-		<request class="AgaviWebRequest" />
+		<request class="Agavi\Request\WebRequest" />
 		
-		<response class="AgaviWebResponse" />
+		<response class="Agavi\Response\WebResponse" />
 		
-		<routing class="AgaviWebRouting" />
+		<routing class="Agavi\Routing\WebRouting" />
 		
-		<security_filter class="AgaviSecurityFilter" />
+		<security_filter class="Agavi\Filter\SecurityFilter" />
 		
-		<storage class="AgaviSessionStorage" />
+		<storage class="Agavi\Storage\SessionStorage" />
 		
-		<translation_manager class="AgaviTranslationManager" />
+		<translation_manager class="Agavi\Translation\TranslationManager" />
 		
-		<user class="AgaviSecurityUser" />
+		<user class="Agavi\User\SecurityUser" />
 		
-		<validation_manager class="AgaviValidationManager">
+		<validation_manager class="Agavi\Validator\ValidationManager">
 			<ae:parameter name="mode">strict</ae:parameter>
 		</validation_manager>
 		
 	</ae:configuration>
 	
 	<ae:configuration environment="testing.*">
-		<storage class="AgaviNullStorage" />
+		<storage class="Agavi\Storage\NullStorage" />
 		
 		<request class="TestWebRequest">
 			<ae:parameter name="sources">
@@ -61,11 +61,11 @@
 	</ae:configuration>
 	
 	<ae:configuration environment="testing-use_security_off">
-		<user class="AgaviUser" />
+		<user class="Agavi\User\User" />
 	</ae:configuration>
 	
 	<ae:configuration environment="testing.*" context="agavi-session-storage-test::tests-startup-sets-cookie-secure-flag">
-		<storage class="AgaviSessionStorage">
+		<storage class="Agavi\Storage\SessionStorage">
 			<ae:parameter name="session_cookie_secure"></ae:parameter>
 		</storage>
 		
@@ -78,18 +78,18 @@
 	</ae:configuration>
 
 	<ae:configuration environment="testing.*" context="agavi-session-storage-test::tests-static-session-id">
-		<storage class="AgaviSessionStorage">
+		<storage class="Agavi\Storage\SessionStorage">
 			<ae:parameter name="session_id">foobar</ae:parameter>
 		</storage>
 	</ae:configuration>
 	
 	<ae:configuration environment="development.*">
 		
-		<response class="AgaviWebResponse">
+		<response class="Agavi\Response\WebResponse">
 			<ae:parameter name="send_content_length">false</ae:parameter>
 		</response>
 	
-		<validation_manager class="AgaviValidationManager">
+		<validation_manager class="Agavi\Validator\ValidationManager">
 			<ae:parameter name="mode">conditional</ae:parameter>
 		</validation_manager>
 		

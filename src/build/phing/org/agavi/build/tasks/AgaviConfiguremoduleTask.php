@@ -67,8 +67,9 @@ class AgaviConfiguremoduleTask extends AgaviTask
 		$this->tryBootstrapAgavi();
 		
 		/* Oookay. This is interesting. */
+
 		$moduleName = $this->name;
-		require_once(AgaviConfigCache::checkConfig(
+		require_once(\Agavi\Config\ConfigCache::checkConfig(
 			sprintf('%s/%s/%s/%s/module.xml',
 				(string)$this->project->getProperty('project.directory'),
 				(string)$this->project->getProperty('project.directory.app.modules'),
@@ -91,52 +92,52 @@ class AgaviConfiguremoduleTask extends AgaviTask
 		$values = array();
 		$lowerModuleName = strtolower($moduleName);
 		
-		$values['action.path'] = AgaviConfig::get(
+		$values['action.path'] = \Agavi\Config\Config::get(
 			sprintf('modules.%s.agavi.action.path', $lowerModuleName),
 			'%core.module_dir%/${moduleName}/actions/${actionName}Action.class.php'
 		);
-		$values['action.path'] = AgaviToolkit::expandVariables(
+		$values['action.path'] = \Agavi\Util\Toolkit::expandVariables(
 			$values['action.path'],
 			array('moduleName' => $moduleName)
 		);
 		
-		$values['cache.path'] = AgaviConfig::get(
+		$values['cache.path'] = \Agavi\Config\Config::get(
 			sprintf('modules.%s.agavi.cache.path', $lowerModuleName),
 			'%core.module_dir%/${moduleName}/cache/${actionName}.xml'
 		);
-		$values['cache.path'] = AgaviToolkit::expandVariables(
+		$values['cache.path'] = \Agavi\Util\Toolkit::expandVariables(
 			$values['cache.path'],
 			array('moduleName' => $moduleName)
 		);
 		
-		$values['templates.directory'] = AgaviConfig::get(
+		$values['templates.directory'] = \Agavi\Config\Config::get(
 			sprintf('modules.%s.agavi.template.directory', $lowerModuleName),
 			'%core.module_dir%/${module}/templates'
 		);
-		$values['templates.directory'] = AgaviToolkit::expandVariables(
+		$values['templates.directory'] = \Agavi\Util\Toolkit::expandVariables(
 			$values['templates.directory'],
 			array('module' => $moduleName)
 		);
 		
-		$values['validate.path'] = AgaviConfig::get(
+		$values['validate.path'] = \Agavi\Config\Config::get(
 			sprintf('modules.%s.agavi.validate.path', $lowerModuleName),
 			'%core.module_dir%/${moduleName}/validate/${actionName}.xml'
 		);
-		$values['validate.path'] = AgaviToolkit::expandVariables(
+		$values['validate.path'] = \Agavi\Util\Toolkit::expandVariables(
 			$values['validate.path'],
 			array('moduleName' => $moduleName)
 		);
 		
-		$values['view.path'] = AgaviConfig::get(
+		$values['view.path'] = \Agavi\Config\Config::get(
 			sprintf('modules.%s.agavi.view.path', $lowerModuleName),
 			'%core.module_dir%/${moduleName}/views/${viewName}View.class.php'
 		);
-		$values['view.path'] = AgaviToolkit::expandVariables(
+		$values['view.path'] = \Agavi\Util\Toolkit::expandVariables(
 			$values['view.path'],
 			array('moduleName' => $moduleName)
 		);
 		
-		$values['view.name'] = AgaviConfig::get(
+		$values['view.name'] = \Agavi\Config\Config::get(
 			sprintf('modules.%s.agavi.view.name', $lowerModuleName),
 			'${actionName}${viewName}'
 		);

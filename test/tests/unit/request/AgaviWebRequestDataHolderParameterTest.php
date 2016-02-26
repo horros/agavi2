@@ -1,4 +1,7 @@
 <?php
+namespace Agavi\Tests\Unit\Request;
+
+use Agavi\Request\WebRequestDataHolder;
 
 class AgaviWebRequestDataHolderParameterTest extends AgaviWebRequestDataHolderTest
 {	    
@@ -96,7 +99,7 @@ class AgaviWebRequestDataHolderParameterTest extends AgaviWebRequestDataHolderTe
 			),
 			'objectvalue' => array(
 				'objectvalue',
-				new stdClass(),
+				new \stdClass(),
 				true, 
 				false,
 			),
@@ -108,7 +111,7 @@ class AgaviWebRequestDataHolderParameterTest extends AgaviWebRequestDataHolderTe
 	 */ 
 	public function testSetParameter($setKey, $setValue, $readKey, $readValue)
 	{
-		$dh = new AgaviWebRequestDataHolder(array());
+		$dh = new WebRequestDataHolder(array());
 		$dh->setParameter($setKey, $setValue);
 		$this->assertEquals($readValue, $dh->getParameter($readKey));
 	}
@@ -250,9 +253,9 @@ class AgaviWebRequestDataHolderParameterTest extends AgaviWebRequestDataHolderTe
 	{
 		$dh = $this->getDefaultDataHolder();
 		
-		$dh2 = new AgaviWebRequestDataHolder(
+		$dh2 = new WebRequestDataHolder(
 			array(
-				AgaviWebRequestDataHolder::SOURCE_PARAMETERS => array(
+				WebRequestDataHolder::SOURCE_PARAMETERS => array(
 					'flat' => 'flatvalue merged',
 					'set'  => 'setCookies',
 				)

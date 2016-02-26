@@ -38,9 +38,9 @@ abstract class AgaviTask extends Task
 	 */
 	public function init()
 	{
-		if(!class_exists('AgaviBuild')) {
+		if(!class_exists('Build')) {
 			require_once(__DIR__ . '/../../../../../agavi/build.php');
-			AgaviBuild::bootstrap();
+			\Agavi\Build\Build::bootstrap();
 		}
 	}
 	
@@ -86,14 +86,14 @@ abstract class AgaviTask extends Task
 		if(!self::$agaviBootstrapped) {
 			/* Something might fuck up. We always use the template that you can
 			 * actually read. */
-			AgaviConfig::set('exception.default_template',
+			\Agavi\Config\Config::set('exception.default_template',
 				sprintf('%s/templates/plaintext.php', (string)$this->project->getProperty('agavi.directory.src.exception')),
 				$overwrite = true,
 				$readonly = true
 			);
 			
 			/* To further prevent fucking up, we force it into debug mode. */
-			AgaviConfig::set('core.debug', true, $overwrite = true, $readonly = true);
+			\Agavi\Config\Config::set('core.debug', true, $overwrite = true, $readonly = true);
 			
 			require_once(
 				sprintf('%s/%s/config.php',
@@ -101,7 +101,7 @@ abstract class AgaviTask extends Task
 					(string)$this->project->getProperty('project.directory.app')
 				)
 			);
-			Agavi::bootstrap($this->project->getProperty('project.build.environment'));
+			\Agavi\Core\Agavi::bootstrap($this->project->getProperty('project.build.environment'));
 			self::$agaviBootstrapped = true;
 		}
 	}

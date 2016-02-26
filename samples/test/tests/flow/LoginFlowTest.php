@@ -4,7 +4,7 @@
 /**
  * @agaviRoutingInput /en/auth/login
  */
-class LoginFlowTest extends AgaviFlowTestCase
+class LoginFlowTest extends FlowTestCase
 {
 	
 	/**

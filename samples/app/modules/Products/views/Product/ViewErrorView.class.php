@@ -6,15 +6,15 @@ class Products_Product_ViewErrorView extends AgaviSampleAppProductsBaseView
 	 * Execute any presentation logic and set template attributes.
 	 *
 	 */
-	public function executeHtml(AgaviRequestDataHolder $rd)
+	public function executeHtml(RequestDataHolder $rd)
 	{
-		return $this->createForwardContainer(AgaviConfig::get('actions.error_404_module'), AgaviConfig::get('actions.error_404_action'));
+		return $this->createForwardContainer(Config::get('actions.error_404_module'), Config::get('actions.error_404_action'));
 	}
 
 	/**
 	 * Execute any presentation logic for JSON requests.
 	 */
-	public function executeJson(AgaviRequestDataHolder $rd)
+	public function executeJson(RequestDataHolder $rd)
 	{
 		return json_encode(
 			array(
@@ -23,7 +23,7 @@ class Products_Product_ViewErrorView extends AgaviSampleAppProductsBaseView
 		);
 	}
 	
-	public function executeText(AgaviRequestDataHolder $rd)
+	public function executeText(RequestDataHolder $rd)
 	{
 		$this->getResponse()->setExitCode(1);
 		
@@ -33,7 +33,7 @@ class Products_Product_ViewErrorView extends AgaviSampleAppProductsBaseView
 	/**
 	 * Execute any presentation logic for SOAP requests.
 	 */
-	public function executeSoap(AgaviRequestDataHolder $rd)
+	public function executeSoap(RequestDataHolder $rd)
 	{
 		// fault code must be "Server", check the SOAP spec
 		// do not throw the exception please. it can be done with some fiddling, but returning it is a much better idea
@@ -43,7 +43,7 @@ class Products_Product_ViewErrorView extends AgaviSampleAppProductsBaseView
 	/**
 	 * Execute any presentation logic for XMLRPC requests.
 	 */
-	public function executeXmlrpc(AgaviRequestDataHolder $rd)
+	public function executeXmlrpc(RequestDataHolder $rd)
 	{
 		return array('faultCode' => 101, 'faultString' => 'Unknown Product ' . $rd->getParameter('id'));
 	}
