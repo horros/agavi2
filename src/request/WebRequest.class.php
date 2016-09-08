@@ -426,7 +426,7 @@ class WebRequest extends Request
 		unset($parts);
 
 		$files = array();
-		$ufc = $this->getParameter('uploaded_file_class', 'AgaviUploadedFile');
+		$ufc = $this->getParameter('uploaded_file_class', 'Agavi\Request\UploadedFile');
 
 		if($this->getMethod() == $methods['PUT']) {
 

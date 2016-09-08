@@ -652,7 +652,9 @@ class ExecutionContainer extends AttributeHolder
 				'actionName' => $actionName,
 			)
 		);
-		if(is_readable($validationConfig)) {
+        $validationManager = $this->getValidationManager();
+
+        if(is_readable($validationConfig)) {
 			// load validation configuration
 			// do NOT use require_once
 			require(ConfigCache::checkConfig($validationConfig, $this->context->getName()));

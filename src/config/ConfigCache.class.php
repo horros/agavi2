@@ -17,9 +17,9 @@
 namespace Agavi\Config;
 
 use Agavi\Exception\AgaviException;
+use Agavi\Exception\CacheException;
 use Agavi\Util\Toolkit;
 use Agavi\Core\Context;
-use Agavi\Exception\Exception;
 use Agavi\Exception\UnreadableException;
 use Agavi\Exception\ConfigurationException;
 

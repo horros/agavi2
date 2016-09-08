@@ -60,7 +60,7 @@ class PropelDatabase extends Database
 	 */
 	protected function connect()
 	{
-		$this->connection = Propel::getConnection($this->getParameter('datasource'));
+		$this->connection = \Propel::getConnection($this->getParameter('datasource'));
 	}
 
 	/**
@@ -90,19 +90,19 @@ class PropelDatabase extends Database
 			}
 		}
 		
-		if(!class_exists('Propel')) {
+		if(!class_exists('\Propel')) {
 			include('propel/Propel.php');
 		}
-		if(!Propel::isInit()) {
-			Propel::init($configPath);
+		if(!\Propel::isInit()) {
+			\Propel::init($configPath);
 		}
 		
-		$is13 = version_compare(Propel::VERSION, '1.4', '<');
+		$is13 = version_compare(\Propel::VERSION, '1.4', '<');
 		
 		// grab the configuration values and inject possibly defined overrides for this data source
 		if($is13) {
 			// old-style config array; PropelConfiguration was added after 1.3.0, http://trac.agavi.org/ticket/1195
-			$config = Propel::getConfiguration();
+			$config = \Propel::getConfiguration();
 			$config['datasources'][$datasource]['adapter'] = $this->getParameter('overrides[adapter]', $config['datasources'][$datasource]['adapter']);
 			$config['datasources'][$datasource]['connection'] = array_merge($config['datasources'][$datasource]['connection'], $this->getParameter('overrides[connection]', array()));
 			
@@ -117,9 +117,9 @@ class PropelDatabase extends Database
 			$config['datasources'][$datasource]['connection']['settings']['queries']['query'] = array_merge((array)$config['datasources'][$datasource]['connection']['settings']['queries']['query'], (array)$this->getParameter('init_queries'));
 			
 			// set the new config
-			Propel::setConfiguration($config);
+			\Propel::setConfiguration($config);
 		} else {
-			$config = Propel::getConfiguration(PropelConfiguration::TYPE_OBJECT);
+			$config = \Propel::getConfiguration(\PropelConfiguration::TYPE_OBJECT);
 			
 			$overrides = (array)$this->getParameter('overrides');
 			
@@ -136,9 +136,9 @@ class PropelDatabase extends Database
 		}
 		
 		if(true === $this->getParameter('enable_instance_pooling')) {
-			Propel::enableInstancePooling();
+			\Propel::enableInstancePooling();
 		} elseif(false === $this->getParameter('enable_instance_pooling')) {
-			Propel::disableInstancePooling();
+			\Propel::disableInstancePooling();
 		}
 	}
 
