@@ -66,8 +66,8 @@
 			<autoload class="Agavi\Database\Database">%core.agavi_dir%/database/Database.class.php</autoload>
 			<autoload class="Agavi\Database\DatabaseManager">%core.agavi_dir%/database/DatabaseManager.class.php</autoload>
 			<autoload class="Agavi\Database\Doctrine2Database">%core.agavi_dir%/database/Doctrine2Database.class.php</autoload>
-			<autoload class="Agavi\Database\Doctrine2dbalDatabase">%core.agavi_dir%/database/Doctrine2dbalDatabase.class.php</autoload>
-			<autoload class="Agavi\Database\Doctrine2ormDatabase">%core.agavi_dir%/database/Doctrine2ormDatabase.class.php</autoload>
+			<autoload class="Agavi\Database\Doctrine2DbalDatabase">%core.agavi_dir%/database/Doctrine2DbalDatabase.class.php</autoload>
+			<autoload class="Agavi\Database\Doctrine2OrmDatabase">%core.agavi_dir%/database/Doctrine2OrmDatabase.class.php</autoload>
 			<autoload class="Agavi\Database\DoctrineDatabase">%core.agavi_dir%/database/DoctrineDatabase.class.php</autoload>
 			<autoload class="Agavi\Database\DoctrineDatabaseEventListener">%core.agavi_dir%/database/doctrine/DoctrineDatabaseEventListener.class.php</autoload>
 			<autoload class="Agavi\Database\MysqlDatabase">%core.agavi_dir%/database/MysqlDatabase.class.php</autoload>
