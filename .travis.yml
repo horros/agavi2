@@ -27,5 +27,10 @@ matrix:
 
 before_script:
   - composer install --ignore-platform-reqs
-
+  - mkdir -p build/logs
 script: php test/run-tests.php $(if [ $PROCESS_ISOLATION -eq 1 ]; then echo "--process-isolation"; fi)
+
+after_success:
+  - travis_retry php vendor/bin/coveralls
+  # or enable logging
+  - travis_retry php vendor/bin/coveralls -v
