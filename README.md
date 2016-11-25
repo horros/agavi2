@@ -1,8 +1,9 @@
-# Agavi
+# Agavi2
 
 - License: [![License](https://poser.pugx.org/horros/agavi2/license)](https://packagist.org/packages/horros/agavi2)
 - Latest Version: [![Latest Stable Version](https://poser.pugx.org/horros/agavi2/v/stable)](https://packagist.org/packages/horros/agavi2)
 - Build: [![Build Status](https://travis-ci.org/horros/agavi2.svg?branch=master)](https://travis-ci.org/horros/agavi2)
+- Code coverage: [![Coverage Status](https://coveralls.io/repos/github/horros/agavi2/badge.svg)](https://coveralls.io/github/horros/agavi2)
 - Homepage: [http://www.agavi.org/](http://www.agavi.org/)
 - Releases: see [downloads page] or [github releases]
 
