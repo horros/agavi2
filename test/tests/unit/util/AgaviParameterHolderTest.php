@@ -1,15 +1,19 @@
 <?php
+namespace Agavi\Tests\Unit\Util;
 
-if(!class_exists('AgaviParameterHolder')) {
-	include(__DIR__ . '/../../../../src/util/AgaviParameterHolder.class.php');
+use Agavi\Testing\PhpUnitTestCase;
+use Agavi\Util\ParameterHolder;
+
+if(!class_exists('Agavi\\Util\\ParameterHolder')) {
+	include(__DIR__ . '/../../../../src/util/ParameterHolder.class.php');
 }
 
-if(!class_exists('AgaviArrayPathDefinition')) {
-	include(__DIR__ . '/../../../../src/util/AgaviArrayPathDefinition.class.php');
+if(!class_exists('Agavi\\Util\\ArrayPathDefinition')) {
+	include(__DIR__ . '/../../../../src/util/ArrayPathDefinition.class.php');
 }
 
-//class AgaviParameterHolderTest extends AgaviUnitTestCase
-class AgaviParameterHolderTest extends AgaviPhpUnitTestCase
+//class ParameterHolderTest extends UnitTestCase
+class ParameterHolderTest extends PhpUnitTestCase
 {
 	
 	public function __construct($name = NULL, array $data = array(), $dataName = '')
@@ -21,9 +25,9 @@ class AgaviParameterHolderTest extends AgaviPhpUnitTestCase
 	public function testConstructAndGetParameters()
 	{
 		$data = array('foo' => 'bar', 'bar' => 'baz', 'baz' => 'qux');
-		$p = new AgaviParameterHolder($data);
-		$p2 = new AgaviParameterHolder(array('bla'));
-		$p3 = new AgaviParameterHolder();
+		$p = new ParameterHolder($data);
+		$p2 = new ParameterHolder(array('bla'));
+		$p3 = new ParameterHolder();
 		$this->assertEquals(array(), $p3->getParameters());
 		$this->assertEquals($data, $p->getParameters());
 		$this->assertEquals(array('bla'), $p2->getParameters());
@@ -35,7 +39,7 @@ class AgaviParameterHolderTest extends AgaviPhpUnitTestCase
 	public function testGetParametersIntegerIndex()
 	{
 		$data2 = array('a' => '11', 'b' => '22', 3 => '33', '44');
-		$p = new AgaviParameterHolder($data2);
+		$p = new ParameterHolder($data2);
 		$this->assertEquals(array('a' => '11', 'b' => '22', 3 => '33', '44'), $p->getParameters());
 		$p->clearParameters();
 		$this->assertEquals(array(), $p->getParameters());
@@ -44,7 +48,7 @@ class AgaviParameterHolderTest extends AgaviPhpUnitTestCase
 	public function testGetParameterNames()
 	{
 		$data2 = array('a' => '11', 'b' => '22', 'c' => '33');
-		$p = new AgaviParameterHolder($data2);
+		$p = new ParameterHolder($data2);
 		$this->assertEquals(array('a', 'b', 'c'), $p->getParameterNames());
 		$p->clearParameters();
 		$this->assertEquals(array(), $p->getParameters());
@@ -53,7 +57,7 @@ class AgaviParameterHolderTest extends AgaviPhpUnitTestCase
 	public function testGetParameterNamesIntegerIndex()
 	{
 		$data2 = array('a' => '11', 'b' => '22', 3 => '33', '44');
-		$p = new AgaviParameterHolder($data2);
+		$p = new ParameterHolder($data2);
 		$this->assertEquals(array('a', 'b', 3, 4), $p->getParameterNames());
 		$p->clearParameters();
 		$this->assertEquals(array(), $p->getParameters());
@@ -62,7 +66,7 @@ class AgaviParameterHolderTest extends AgaviPhpUnitTestCase
 	public function testGetFlatParameterNames()
 	{
 		$data2 = array('a' => '11', 'b' => '22', 'c' => '33');
-		$p = new AgaviParameterHolder($data2);
+		$p = new ParameterHolder($data2);
 		$this->assertEquals(array('a', 'b', 'c'), $p->getFlatParameterNames());
 		$p->clearParameters();
 		$this->assertEquals(array(), $p->getParameters());
@@ -71,7 +75,7 @@ class AgaviParameterHolderTest extends AgaviPhpUnitTestCase
 	public function testGetFlatParameterIntegerIndex()
 	{
 		$data2 = array('a' => '11', 'b' => '22', 3 => '33', '44');
-		$p = new AgaviParameterHolder($data2);
+		$p = new ParameterHolder($data2);
 		$this->assertEquals(array('a', 'b', 3, 4), $p->getFlatParameterNames());
 		$p->clearParameters();
 		$this->assertEquals(array(), $p->getParameters());
@@ -80,7 +84,7 @@ class AgaviParameterHolderTest extends AgaviPhpUnitTestCase
 	public function testGetParameter()
 	{
 		$data = array('stefy' => 'ecuador', 'amy' => 'florida', 'stasy' => 'ukraine', 'lalala');
-		$p = new AgaviParameterHolder($data);
+		$p = new ParameterHolder($data);
 		$this->assertEquals('florida', $p->getParameter('amy'));
 		$this->assertEquals('', $p->getParameter('kiki'));
 		$this->assertEquals('', $p->getParameter('lalala'));
@@ -91,7 +95,7 @@ class AgaviParameterHolderTest extends AgaviPhpUnitTestCase
 	public function testGetParameterIntegerIndex()
 	{
 		$data = array('stefy' => 'ecuador', 0 => 'florida', 'lalala');
-		$p = new AgaviParameterHolder($data);
+		$p = new ParameterHolder($data);
 		$this->assertEquals('florida', $p->getParameter(0));
 		$this->assertEquals('lalala', $p->getParameter(1));
 		$p->clearParameters();
@@ -101,7 +105,7 @@ class AgaviParameterHolderTest extends AgaviPhpUnitTestCase
 	public function testHasParameter()
 	{
 		$data = array('stefy' => 'ecuador', 'amy' => 'florida', 'stasy' => 'ukraine', 'lalala');
-		$p = new AgaviParameterHolder($data);
+		$p = new ParameterHolder($data);
 		$this->assertTrue($p->hasParameter('stefy'));
 		$this->assertFalse($p->hasParameter('kiki'));
 		$this->assertFalse($p->hasParameter('lalala'));
@@ -112,7 +116,7 @@ class AgaviParameterHolderTest extends AgaviPhpUnitTestCase
 	public function testHasParameterIntegerIndex()
 	{
 		$data = array(1 => '111');
-		$p = new AgaviParameterHolder($data);
+		$p = new ParameterHolder($data);
 		$this->assertTrue($p->hasParameter(1));
 		$this->assertFalse($p->hasParameter(0));
 		$p->clearParameters();
@@ -122,7 +126,7 @@ class AgaviParameterHolderTest extends AgaviPhpUnitTestCase
 	public function testRemoveParameter()
 	{
 		$data = array('stef' => 'ecuador', 'amy' => 'florida', 'stasy' => 'ukraine', 'lalala');
-		$p = new AgaviParameterHolder($data);
+		$p = new ParameterHolder($data);
 		$this->assertEquals('ecuador', $p->removeParameter('stef'));
 		$this->assertEquals(NULL, $p->removeParameter('kiki'));
 		$this->assertEquals('lalala', $p->removeParameter(0));
@@ -135,7 +139,7 @@ class AgaviParameterHolderTest extends AgaviPhpUnitTestCase
 	public function testRemoveParameterIntegerIndex()
 	{
 		$data = array(2 => '222', 1 => '111');
-		$p = new AgaviParameterHolder($data);
+		$p = new ParameterHolder($data);
 		$this->assertEquals('222', $p->removeParameter(2));
 		$this->assertEquals(NULL, $p->removeParameter(0));
 		$this->assertEquals(array(1 => '111'), $p->getParameters());
@@ -146,7 +150,7 @@ class AgaviParameterHolderTest extends AgaviPhpUnitTestCase
 	public function testSetParameter()
 	{
 		$data = array('stefy' => 'ecuador', 'amy' => 'florida', 'stasy' => 'ukraine', 'lalala');
-		$p = new AgaviParameterHolder($data);
+		$p = new ParameterHolder($data);
 		$p->setParameter('kiki', 'bulgaria');
 		$p->setParameter('stefy', 'germany');
 		$p->setParameter(0, 'ohh');
@@ -158,7 +162,7 @@ class AgaviParameterHolderTest extends AgaviPhpUnitTestCase
 	public function testSetParameterIntegerIndex()
 	{
 		$data = array(0 => 'ecuador', 'lalala');
-		$p = new AgaviParameterHolder($data);
+		$p = new ParameterHolder($data);
 		$p->setParameter(0, 'bulgaria');
 		$p->setParameter(1, 'germany');
 		$this->assertEquals(array('bulgaria', 'germany'), $p->getParameters());
@@ -169,7 +173,7 @@ class AgaviParameterHolderTest extends AgaviPhpUnitTestCase
 	public function testSetParameterByRef()
 	{
 		$data = array('stefy' => 'ecuador', 'stasy' => 'ukraine');
-		$p = new AgaviParameterHolder($data);
+		$p = new ParameterHolder($data);
 		$amy = 'florida';
 		$p->setParameterByRef('amy', $amy);
 		// amy moves
@@ -179,7 +183,7 @@ class AgaviParameterHolderTest extends AgaviPhpUnitTestCase
 
 	public function testSetGetParameterAsArray()
 	{
-		$p = new AgaviParameterHolder();
+		$p = new ParameterHolder();
 		$p->setParameter('foo', array('bar' => 'baz'));
 		$this->assertEquals('baz', $p->getParameter('foo[bar]'));
 	}
@@ -187,7 +191,7 @@ class AgaviParameterHolderTest extends AgaviPhpUnitTestCase
 	public function testAppendParameter()
 	{
 		$data = array('stefy' => 'ecuador', 'amy' => 'florida', 'stasy' => 'ukraine', 'lalala');
-		$p = new AgaviParameterHolder($data);
+		$p = new ParameterHolder($data);
 		$kiki = 'bulgaria';
 		$p->appendParameter('kiki', $kiki);
 		$kiki = 'munich';
@@ -203,7 +207,7 @@ class AgaviParameterHolderTest extends AgaviPhpUnitTestCase
 	public function testAppendParameterIntegerIndex()
 	{
 		$data = array(0 => 'ecuador', 'lalala', 3);
-		$p = new AgaviParameterHolder($data);
+		$p = new ParameterHolder($data);
 		$p->appendParameter(0, 'ohh');
 		$this->assertEquals(array(0 => array('ecuador', 'ohh'), 1 => 'lalala', 2 => 3), $p->getParameters());
 		$p->clearParameters();
@@ -213,7 +217,7 @@ class AgaviParameterHolderTest extends AgaviPhpUnitTestCase
 	public function testAppendParameterByRef()
 	{
 		$data = array('stefy' => 'ecuador', 'amy' => 'florida', 'stasy' => 'ukraine');
-		$p = new AgaviParameterHolder($data);
+		$p = new ParameterHolder($data);
 		$bg = 'bulgaria';
 		$stefy = 'peru';
 		$la = 'lalala';
@@ -230,7 +234,7 @@ class AgaviParameterHolderTest extends AgaviPhpUnitTestCase
 	public function testSetParameters()
 	{
 		$data = array('stefy' => 'ecuador', 'amy' => 'florida', 'stasy' => 'ukraine', 'lalala');
-		$p = new AgaviParameterHolder($data);
+		$p = new ParameterHolder($data);
 		$p->setParameters(array('kiki' => 'bulgaria', 'stefy' => 'germany', 'ohh'));
 		$this->assertEquals(array('stefy' => 'germany', 'amy' => 'florida', 'stasy' => 'ukraine', 'kiki' => 'bulgaria', 'ohh'), $p->getParameters());
 		$p->clearParameters();
@@ -240,7 +244,7 @@ class AgaviParameterHolderTest extends AgaviPhpUnitTestCase
 	public function testSetParametersIntegerIndex()
 	{
 		$data = array(1 => 'ukraine', 'lalala');
-		$p = new AgaviParameterHolder($data);
+		$p = new ParameterHolder($data);
 		$p->setParameters(array('ohh', 1 => 'london'));
 		// fails in php
 		$this->assertEquals(array('ohh', 'london', 'lalala'), $p->getParameters());
@@ -251,7 +255,7 @@ class AgaviParameterHolderTest extends AgaviPhpUnitTestCase
 	public function testSetParametersByRef()
 	{
 		$data = array('stefy' => 'ecuador', 'amy' => 'florida', 'stasy' => 'ukraine');
-		$p = new AgaviParameterHolder($data);
+		$p = new ParameterHolder($data);
 		$kiki = 'bulgaria';
 		$newparameters = array('kiki' => &$kiki, 'stefy' => 'germany');
 		$p->setParametersByRef($newparameters);
@@ -264,13 +268,13 @@ class AgaviParameterHolderTest extends AgaviPhpUnitTestCase
 	public function testClear()
 	{
 		$data3 = array('a' => '11', 'b' => '22', 'c' => '33', '44');
-		$p = new AgaviParameterHolder($data3);
+		$p = new ParameterHolder($data3);
 		$p->clearParameters();
 		$this->assertEquals(array(), $p->getParameters());
 	}
 
 	public function testGetSetStringInteger() {
-		$p = new AgaviParameterHolder();
+		$p = new ParameterHolder();
 		$p->setParameter('10', 'ten');
 		$this->assertEquals('ten', $p->getParameter(10));
 		$p->setParameter(21, 'twentyone');
@@ -282,7 +286,7 @@ class AgaviParameterHolderTest extends AgaviPhpUnitTestCase
 
 	public function testRemoveInvalidKeyCausesNoNotice()
 	{
-		$ph = new AgaviParameterHolder();
+		$ph = new ParameterHolder();
 		$zomg =& $ph->removeParameter('[]foo[]');
 		$this->assertNull($zomg);
 	}

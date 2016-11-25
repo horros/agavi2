@@ -61,13 +61,13 @@ class AgaviTransformviewclassbaseTask extends AgaviTask
 	public function main()
 	{
 		if($this->property === null) {
-			throw new BuildException('The property attribute must be specified');
+			throw new \Agavi\Build\Exception\BuildException('The property attribute must be specified');
 		}
 		if($this->string === null) {
-			throw new BuildException('The string attribute must be specified');
+			throw new \Agavi\Build\Exception\BuildException('The string attribute must be specified');
 		}
 		
-		$result = str_replace('/', '_', AgaviToolkit::canonicalName($this->string));
+		$result = str_replace('/', '_', \Agavi\Util\Toolkit::canonicalName($this->string));
 		$this->project->setUserProperty($this->property, $result);
 	}
 }

@@ -15,7 +15,7 @@
 			<output_type name="html">
 				<renderers default="php">
 
-					<renderer name="php" class="AgaviPhpRenderer">
+					<renderer name="php" class="Agavi\Renderer\PhpRenderer">
 						<ae:parameter name="assigns">
 							<ae:parameter name="routing">ro</ae:parameter>
 							<ae:parameter name="request">rq</ae:parameter>

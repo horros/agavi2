@@ -97,11 +97,11 @@ class AgaviGenerateViewMethodsTask extends AgaviTask
 	public function main()
 	{
 		if($this->property === null) {
-			throw new BuildException('The property attribute must be specified');
+			throw new \Agavi\Build\Exception\BuildException('The property attribute must be specified');
 		}
 		
 		if($this->methodTemplate === null || !is_readable($this->methodTemplate)) {
-			throw new BuildException(
+			throw new \Agavi\Build\Exception\BuildException(
 				sprintf(
 					'The methodTemplate attribute must be specified and must point to a readable template file. Current value is "%1$s".',
 					$this->methodTemplate

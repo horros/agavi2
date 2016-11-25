@@ -13,7 +13,7 @@
 // |   End:                                                                    |
 // +---------------------------------------------------------------------------+
 
-class Default_UnavailableAction extends AgaviSampleAppDefaultBaseAction
+class Default_UnavailableAction extends SampleAppDefaultBaseAction
 {
 	/**
 	 * This Action does not yet serve any Request methods.

@@ -49,7 +49,7 @@ class AgaviImportTask extends AgaviTask
 	public function main()
 	{
 		if($this->file === null) {
-			throw new BuildException('The file attribute must be specified');
+			throw new \Agavi\Build\Exception\BuildException('The file attribute must be specified');
 		}
 		
 		$return = getcwd();
@@ -59,8 +59,8 @@ class AgaviImportTask extends AgaviTask
 			 * new project file. */
 			chdir($this->file->getAbsoluteFile()->getParent());
 			
-			$project = new AgaviProxyProject($this->project);
-			$project->addReference('phing.parsing.context', new AgaviProxyXmlContext($project));
+			$project = new \Agavi\Build\Phing\ProxyProject($this->project);
+			$project->addReference('phing.parsing.context', new \Agavi\Build\Phing\ProxyXmlContext($project));
 			$project->setUserProperty('phing.file', $this->file->getAbsolutePath());
 			
 			$project->init();
@@ -70,14 +70,14 @@ class AgaviImportTask extends AgaviTask
 			
 			foreach($project->getTargets() as $name => $target) {
 				/* Make sure we don't add proxy targets back to our own project. */
-				if($target instanceof AgaviProxyTarget && $target->getTarget()->getProject() === $this->project) {
+				if($target instanceof \Agavi\Build\Phing\ProxyTarget && $target->getTarget()->getProject() === $this->project) {
 					continue;
 				}
 				if(array_key_exists($name, $this->project->getTargets())) {
 					throw new BuildException(sprintf('Target conflict: %s already exists in project (attempted to add from %s)', $name, $this->file->getAbsolutePath()));
 				}
 				
-				$proxy = new AgaviProxyTarget();
+				$proxy = new \Agavi\Build\Phing\ProxyTarget();
 				$proxy->setName($name);
 				$proxy->setDescription($target->getDescription());
 				$proxy->setTarget($target);

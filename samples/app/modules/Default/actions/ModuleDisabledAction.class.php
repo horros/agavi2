@@ -13,7 +13,7 @@
 // |   End:                                                                    |
 // +---------------------------------------------------------------------------+
 
-class Default_ModuleDisabledAction extends AgaviSampleAppDefaultBaseAction
+class Default_ModuleDisabledAction extends SampleAppDefaultBaseAction
 {
 	/**
 	 * This Action does not yet serve any Request methods.

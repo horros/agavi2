@@ -1,17 +1,25 @@
 <?php
+namespace Agavi\Tests\Unit\Filter;
 
-class AgaviFormPopulationFilterTest extends AgaviUnitTestCase
+use Agavi\Core\Context;
+use Agavi\Filter\FilterChain;
+use Agavi\Filter\FormPopulationFilter;
+use Agavi\Request\RequestDataHolder;
+use Agavi\Testing\UnitTestCase;
+use Agavi\Validator\ValidationManager;
+
+class AgaviFormPopulationFilterTest extends UnitTestCase
 {
 	
 	/**
-	 * @var AgaviContext
+	 * @var Context
 	 */
 	private $_context;
 	
 	
 	public function setUp()
 	{
-		$this->_context = AgaviContext::getInstance('test');
+		$this->_context = Context::getInstance('test');
 	}
 	
 	public function tearDown()
@@ -65,8 +73,8 @@ class AgaviFormPopulationFilterTest extends AgaviUnitTestCase
 			'foo' => 'bar',
 		);
 		
-		$vm = $this->_context->createInstanceFor('validation_manager'); /** @var $vm \AgaviValidationManager */
-		$val1 = $vm->createValidator('DummyValidator', array('foo'), array('' => 'My error message'));
+		$vm = $this->_context->createInstanceFor('validation_manager'); /** @var $vm \ValidationManager */
+		$val1 = $vm->createValidator('Agavi\\Test\\Validator\\DummyValidator', array('foo'), array('' => 'My error message'));
 		$val1->val_result = false;
 		
 		$config = array(
@@ -92,8 +100,8 @@ class AgaviFormPopulationFilterTest extends AgaviUnitTestCase
 			'foo' => 'bar',
 		);
 		
-		$vm = $this->_context->createInstanceFor('validation_manager'); /** @var $vm \AgaviValidationManager */
-		$val1 = $vm->createValidator('DummyValidator', array('foo'), array('' => 'My error message'));
+		$vm = $this->_context->createInstanceFor('validation_manager'); /** @var $vm \ValidationManager */
+		$val1 = $vm->createValidator('Agavi\\Test\\Validator\\DummyValidator', array('foo'), array('' => 'My error message'));
 		$val1->val_result = false;
 		
 		$config = array(
@@ -135,9 +143,9 @@ class AgaviFormPopulationFilterTest extends AgaviUnitTestCase
 		$parameters = array(
 			'foo' => 'bar',
 		);
-		
-		$vm = $this->_context->createInstanceFor('validation_manager'); /** @var $vm \AgaviValidationManager */
-		$val1 = $vm->createValidator('DummyValidator', array('foo'), array('' => 'My error message'));
+		/** @var $vm ValidationManager */
+		$vm = $this->_context->createInstanceFor('validation_manager');
+		$val1 = $vm->createValidator('Agavi\\Test\\Validator\\DummyValidator', array('foo'), array('' => 'My error message'));
 		$val1->val_result = false;
 		
 		$config = array(
@@ -169,8 +177,8 @@ class AgaviFormPopulationFilterTest extends AgaviUnitTestCase
 			'foo' => 'bar',
 		);
 		
-		$vm = $this->_context->createInstanceFor('validation_manager'); /** @var $vm \AgaviValidationManager */
-		$val1 = $vm->createValidator('DummyValidator', array('foo'), array('' => 'My error message'));
+		$vm = $this->_context->createInstanceFor('validation_manager'); /** @var $vm ValidationManager */
+		$val1 = $vm->createValidator('Agavi\\Test\\Validator\\DummyValidator', array('foo'), array('' => 'My error message'));
 		$val1->val_result = false;
 		
 		$config = array(
@@ -189,13 +197,13 @@ class AgaviFormPopulationFilterTest extends AgaviUnitTestCase
 	}
 	
 	public static function _errorCallback($element, array $errorStrings, array $errors) {
-		return new DOMElement('div', implode(',', $errorStrings));
+		return new \DOMElement('div', implode(',', $errorStrings));
 	}
 	
 	/**
 	 * @param string $content
-	 * @param \AgaviRequestDataHolder|array $parameters
-	 * @param \AgaviValidationManager $validationManager
+	 * @param RequestDataHolder|array $parameters
+	 * @param ValidationManager $validationManager
 	 * @param array $config
 	 * @return string
 	 */
@@ -204,11 +212,11 @@ class AgaviFormPopulationFilterTest extends AgaviUnitTestCase
 		$container = $this->_context->getController()->createExecutionContainer('FilterTests', 'FormPopulationFilter');
 		$container->getResponse()->setContent($content);
 		
-		if($parameters instanceof AgaviRequestDataHolder) {
+		if($parameters instanceof RequestDataHolder) {
 			$rd = $parameters;
 		} else {
-			$rd = new AgaviRequestDataHolder(array(
-				AgaviRequestDataHolder::SOURCE_PARAMETERS => $parameters,
+			$rd = new RequestDataHolder(array(
+				RequestDataHolder::SOURCE_PARAMETERS => $parameters,
 			));
 		}
 		
@@ -216,14 +224,14 @@ class AgaviFormPopulationFilterTest extends AgaviUnitTestCase
 			$validationManager->execute($rd);
 		}
 		
-		$fpf = new AgaviFormPopulationFilter();
+		$fpf = new FormPopulationFilter();
 		$fpf->initialize($this->_context, array_merge(array(
 			'populate' => $rd,
 			'validation_report' => $validationManager ? $validationManager->getReport() : null,
 			'force_request_uri' => '/',
 		), $config));
 		
-		$filterChain = new AgaviFilterChain();
+		$filterChain = new FilterChain();
 		$filterChain->initialize($this->_context);
 		
 		$fpf->execute($filterChain, $container);
@@ -236,11 +244,11 @@ class AgaviFormPopulationFilterTest extends AgaviUnitTestCase
 	 * @return \DOMXPath
 	 */
 	protected function loadXpath($content) {
-		$dom = new DOMDocument();
+		$dom = new \DOMDocument();
 		$dom->strictErrorChecking = false;
 		$dom->recover = true;
 		$dom->loadHTML($content);
-		return new DOMXPath($dom);
+		return new \DOMXPath($dom);
 	}
 	
 }

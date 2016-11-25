@@ -1,17 +1,25 @@
 <?php
-class SampleUser extends AgaviUser
+namespace Agavi\Tests\Unit\User;
+use Agavi\Core\Context;
+use Agavi\Testing\UnitTestCase;
+use Agavi\User\User;
+
+class SampleUser extends User
 {
 }
 
-class AgaviUserTest extends AgaviUnitTestCase
+class AgaviUserTest extends UnitTestCase
 {
+	/**
+	 * @var User
+	 */
 	private $_u = null;
 
 	public function setUp()
 	{
 		$this->_u = new SampleUser();
-		$context = AgaviContext::getInstance('test');
-		$this->_u->initialize($this->getContext());
+		$context = Context::getInstance('web');
+		$this->_u->initialize($context);
 	}
 
 	public function testInitialize()

@@ -1,7 +1,14 @@
 <?php
+namespace Agavi\Tests\Unit\Routing;
+use Agavi\Core\Context;
+use Agavi\Testing\PhpUnitTestCase;
+use Agavi\Testing\Routing\TestingWebRouting;
 
-class Ticket1294Test extends AgaviPhpUnitTestCase
+class Ticket1294Test extends PhpUnitTestCase
 {
+	/**
+	 * @var TestingWebRouting
+	 */
 	protected $routing;
 	protected $parameters = array('enabled' => true);
 	
@@ -23,8 +30,8 @@ class Ticket1294Test extends AgaviPhpUnitTestCase
 		$_SERVER['REQUEST_URI'] = '/index.php';
 		$_SERVER['SCRIPT_NAME'] = '/index.php';
 		
-		$this->routing = new AgaviTestingWebRouting();
-		$this->routing->initialize(AgaviContext::getInstance(null), $this->parameters);
+		$this->routing = new TestingWebRouting();
+		$this->routing->initialize(Context::getInstance(null), $this->parameters);
 		$this->routing->startup();
 	}
 	

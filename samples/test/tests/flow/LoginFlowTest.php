@@ -1,10 +1,11 @@
 <?php 
 
+use Agavi\Testing\FlowTestCase;
 
 /**
  * @agaviRoutingInput /en/auth/login
  */
-class LoginFlowTest extends AgaviFlowTestCase
+class LoginFlowTest extends FlowTestCase
 {
 	
 	/**
@@ -28,5 +29,3 @@ class LoginFlowTest extends AgaviFlowTestCase
 		$this->assertResponseHasTag(array('tag' => 'p', 'content' => 'Wrong Password'));
 	}
 }
-
-?>

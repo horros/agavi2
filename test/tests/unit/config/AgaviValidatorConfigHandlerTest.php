@@ -1,13 +1,17 @@
 <?php
+namespace Agavi\Tests\Unit\Config;
+use Agavi\Config\Config;
+use Agavi\Config\ValidatorConfigHandler;
+
 require_once(__DIR__ . '/ConfigHandlerTestBase.php');
 
 class AgaviValidatorConfigHandlerTest extends ConfigHandlerTestBase
 {
 	protected function createValidationManager($environment) {
-		$VCH = new AgaviValidatorConfigHandler();
+		$VCH = new ValidatorConfigHandler();
 		$document = $this->parseConfiguration(
-			AgaviConfig::get('core.config_dir') . '/tests/validators.xml',
-			AgaviConfig::get('core.agavi_dir') . '/config/xsl/validators.xsl',
+			Config::get('core.config_dir') . '/tests/validators.xml',
+			Config::get('core.agavi_dir') . '/config/xsl/validators.xsl',
 			$environment
 		);
 		

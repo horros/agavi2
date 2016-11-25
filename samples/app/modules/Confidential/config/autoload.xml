@@ -2,9 +2,9 @@
 <ae:configurations xmlns="http://agavi.org/agavi/config/parts/autoload/1.1" xmlns:ae="http://agavi.org/agavi/config/global/envelope/1.1">
 	<ae:configuration>
 		<autoloads>
-			<autoload class="AgaviSampleAppConfidentialBaseAction">%core.module_dir%/Confidential/lib/action/AgaviSampleAppConfidentialBaseAction.class.php</autoload>
-			<autoload class="AgaviSampleAppConfidentialBaseModel">%core.module_dir%/Confidential/lib/model/AgaviSampleAppConfidentialBaseModel.class.php</autoload>
-			<autoload class="AgaviSampleAppConfidentialBaseView">%core.module_dir%/Confidential/lib/view/AgaviSampleAppConfidentialBaseView.class.php</autoload>
+			<autoload class="SampleAppConfidentialBaseAction">%core.module_dir%/Confidential/lib/action/SampleAppConfidentialBaseAction.class.php</autoload>
+			<autoload class="SampleAppConfidentialBaseModel">%core.module_dir%/Confidential/lib/model/SampleAppConfidentialBaseModel.class.php</autoload>
+			<autoload class="SampleAppConfidentialBaseView">%core.module_dir%/Confidential/lib/view/SampleAppConfidentialBaseView.class.php</autoload>
 		</autoloads>
 	</ae:configuration>
 </ae:configurations>

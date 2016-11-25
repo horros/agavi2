@@ -1,4 +1,5 @@
 <?php
+namespace Agavi\Test\Config;
 
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
@@ -13,7 +14,9 @@
 // |   End:                                                                    |
 // +---------------------------------------------------------------------------+
 
-class ImportTestOnceHandler extends AgaviConfigHandler
+use Agavi\Config\ConfigHandler;
+
+class ImportTestOnceHandler extends ConfigHandler
 {
 	public function execute($config, $context = null)
 	{

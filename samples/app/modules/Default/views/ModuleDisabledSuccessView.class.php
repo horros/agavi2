@@ -12,10 +12,11 @@
 // |   indent-tabs-mode: t                                                     |
 // |   End:                                                                    |
 // +---------------------------------------------------------------------------+
+use Agavi\Request\RequestDataHolder;
 
-class Default_ModuleDisabledSuccessView extends AgaviSampleAppDefaultBaseView
+class Default_ModuleDisabledSuccessView extends SampleAppDefaultBaseView
 {
-	public function executeHtml(AgaviRequestDataHolder $rd)
+	public function executeHtml(RequestDataHolder $rd)
 	{
 		$this->setupHtml($rd);
 

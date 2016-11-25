@@ -3,7 +3,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 		<base href="<?php echo $ro->getBaseHref(); ?>" />
-		<title><?php if(isset($t['_title'])) echo htmlspecialchars($t['_title']) . ' - '; echo AgaviConfig::get('core.app_name'); ?></title>
+		<title><?php if(isset($t['_title'])) echo htmlspecialchars($t['_title']) . ' - '; echo Agavi\Config\Config::get('core.app_name'); ?></title>
 	</head>
 	<body>
 	<?php if(isset($t['_title'])) echo '<h1>' . htmlspecialchars($t['_title']) . '</h1>'; ?>

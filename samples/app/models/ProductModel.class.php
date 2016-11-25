@@ -1,6 +1,6 @@
 <?php
 
-class ProductModel extends AgaviSampleAppBaseModel
+class ProductModel extends SampleAppBaseModel
 {
 	protected $id;
 	protected $name;
@@ -73,5 +73,3 @@ class ProductModel extends AgaviSampleAppBaseModel
 		return (bool)mt_rand(0, 1);
 	}
 }
-
-?>

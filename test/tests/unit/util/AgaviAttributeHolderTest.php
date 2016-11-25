@@ -1,24 +1,28 @@
 <?php
+namespace Agavi\Tests\Unit\Util;
 
-if(!class_exists('AgaviArrayPathDefinition')) {
-	include(__DIR__ . '/../../../../src/util/AgaviArrayPathDefinition.class.php');
+use Agavi\Testing\PhpUnitTestCase;
+use Agavi\Util\AttributeHolder;
+
+if(!class_exists('Agavi\\Util\\ArrayPathDefinition')) {
+	include(__DIR__ . '/../../../../src/util/ArrayPathDefinition.class.php');
 }
 
-if(!class_exists('AgaviVirtualArrayPath')) {
-	include(__DIR__ . '/../../../../src/util/AgaviVirtualArrayPath.class.php');
+if(!class_exists('Agavi\\Util\\VirtualArrayPath')) {
+	include(__DIR__ . '/../../../../src/util/VirtualArrayPath.class.php');
 }
 
-if(!class_exists('AgaviParameterHolder')) {
-	include(__DIR__ . '/../../../../src/util/AgaviParameterHolder.class.php');
+if(!class_exists('Agavi\\Util\\ParameterHolder')) {
+	include(__DIR__ . '/../../../../src/util/ParameterHolder.class.php');
 }
 
-if(!class_exists('AgaviAttributeHolder')) {
-	include(__DIR__ . '/../../../../src/util/AgaviAttributeHolder.class.php');
+if(!class_exists('Agavi\\Util\\AttributeHolder')) {
+	include(__DIR__ . '/../../../../src/util/AttributeHolder.class.php');
 }
 
-class MyAgaviAttributeHolder extends AgaviAttributeHolder {}
+class MyAgaviAttributeHolder extends AttributeHolder {}
 
-class AgaviAttributeHolderTest extends AgaviPhpUnitTestCase
+class AttributeHolderTest extends PhpUnitTestCase
 {
 
 	public function __construct($name = NULL, array $data = array(), $dataName = '')

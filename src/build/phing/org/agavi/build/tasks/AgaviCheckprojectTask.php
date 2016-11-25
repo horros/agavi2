@@ -78,7 +78,7 @@ class AgaviCheckprojectTask extends AgaviTask
 			throw new BuildException('The path attribute must be specified');
 		}
 		
-		$check = new AgaviProjectFilesystemCheck();
+		$check = new \Agavi\Build\Check\ProjectFilesystemCheck();
 		$check->setAppDirectory($this->project->getProperty('project.directory.app'));
 		$check->setPubDirectory($this->project->getProperty('project.directory.pub'));
 		

@@ -81,13 +81,13 @@ class AgaviWriteconfigurationTask extends AgaviTask
 	public function main()
 	{
 		if($this->file === null) {
-			throw new BuildException('The file attribute must be specified');
+			throw new \Agavi\Build\Exception\BuildException('The file attribute must be specified');
 		}
 		if($this->path === null) {
-			throw new BuildException('The path attribute must be specified');
+			throw new \Agavi\Build\Exception\BuildException('The path attribute must be specified');
 		}
 		if($this->value === null) {
-			throw new BuildException('The value attribute must be specified');
+			throw new \Agavi\Build\Exception\BuildException('The value attribute must be specified');
 		}
 		
 		$document = new DOMDocument();

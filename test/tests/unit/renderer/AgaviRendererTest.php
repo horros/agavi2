@@ -1,15 +1,25 @@
 <?php
+namespace Agavi\Tests\Unit\Renderer;
 
-class TRTestSampleRenderer extends AgaviRenderer
+use Agavi\Renderer\Renderer;
+use Agavi\Testing\UnitTestCase;
+use Agavi\View\TemplateLayer;
+
+class TRTestSampleRenderer extends Renderer
 {
-	public function render(AgaviTemplateLayer $layer, array &$attributes = array(), array &$slots = array(), array &$moreAssigns = array())
+	public function render(TemplateLayer $layer, array &$attributes = array(), array &$slots = array(), array &$moreAssigns = array())
 	{
 	}
 }
 
-class AgaviRendererTest extends AgaviUnitTestCase
+class AgaviRendererTest extends UnitTestCase
 {
-	protected $_r = null, $_v = null;
+	/**
+	 * @var Renderer
+	 */
+	protected $_r = null;
+
+	protected $_v = null;
 
 	public function setUp()
 	{

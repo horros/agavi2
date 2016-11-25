@@ -1,6 +1,11 @@
 <?php
+namespace Agavi\Tests\Unit\Routing;
+use Agavi\Config\Config;
+use Agavi\Core\Context;
+use Agavi\Routing\WebRouting;
+use Agavi\Testing\UnitTestCase;
 
-class AgaviWebRoutingServerCasesTest extends AgaviUnitTestCase
+class AgaviWebRoutingServerCasesTest extends UnitTestCase
 {
 	protected $_r = null;
 
@@ -20,7 +25,7 @@ class AgaviWebRoutingServerCasesTest extends AgaviUnitTestCase
 		$this->_SERVER = $_SERVER;
 		$this->_ENV = $_ENV;
 		$this->_GET = $_GET;
-		AgaviConfig::set('core.use_routing', true);
+		Config::set('core.use_routing', true);
 	}
 
 	public function loadTestCases()
@@ -49,12 +54,12 @@ class AgaviWebRoutingServerCasesTest extends AgaviUnitTestCase
 	{
 		// this has to be first, since the context could just be created and would reset
 		// the superglobals.
-		$ctx = AgaviContext::getInstance('routing-server-cases');
+		$ctx = Context::getInstance('routing-server-cases');
 		$_SERVER = $export['_SERVER'];
 		$_ENV = $export['_ENV'];
 		$_GET = $export['_GET'];
 		$ctx->getRequest()->initialize($ctx);
-		$this->_r = new AgaviWebRouting();
+		$this->_r = new WebRouting();
 		$this->_r->initialize($ctx);
 		
 		if(!isset($export['expectFailure'])) {
@@ -96,10 +101,10 @@ class AgaviWebRoutingServerCasesTest extends AgaviUnitTestCase
 		$_SERVER = $this->_SERVER;
 		$_ENV = $this->_ENV;
 		$_GET = $this->_GET;
-		$ctx = AgaviContext::getInstance('routing-server-cases');
+		$ctx = Context::getInstance('routing-server-cases');
 		$ctx->getRequest()->initialize($ctx);
 		
-		AgaviConfig::set('core.use_routing', false);
+		Config::set('core.use_routing', false);
 	}
 
 }

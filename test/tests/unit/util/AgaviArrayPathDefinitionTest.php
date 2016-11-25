@@ -1,6 +1,10 @@
 <?php
+namespace Agavi\Tests\Unit\Util;
 
-class AgaviArrayPathDefintionTest extends AgaviPhpUnitTestCase
+use Agavi\Testing\PhpUnitTestCase;
+use Agavi\Util\ArrayPathDefinition;
+
+class ArrayPathDefintionTest extends PhpUnitTestCase
 {
 	
 	/**
@@ -11,7 +15,7 @@ class AgaviArrayPathDefintionTest extends AgaviPhpUnitTestCase
 		if(!empty($expectedException)) {
 			$this->setExpectedException($expectedException);
 		}
-		$this->assertEquals($expected, AgaviArrayPathDefinition::getPartsFromPath($path));
+		$this->assertEquals($expected, ArrayPathDefinition::getPartsFromPath($path));
 	}
 	
 	public function getPathPartData()

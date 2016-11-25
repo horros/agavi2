@@ -1,4 +1,13 @@
 <?php
+namespace Agavi\Testing\Unit\Date;
+use Agavi\Date\Calendar;
+use Agavi\Date\DateDefinitions;
+use Agavi\Date\DateFormat;
+use Agavi\Date\GregorianCalendar;
+use Agavi\Date\SimpleTimeZone;
+use Agavi\Date\TimeZone;
+use Agavi\Translation\Locale;
+use Doctrine\Instantiator\Exception\InvalidArgumentException;
 
 require_once(__DIR__ . '/BaseCalendarTest.php');
 
@@ -11,73 +20,73 @@ class AgaviCalendarTest extends BaseCalendarTest
 	protected function fieldName($id)
 	{
 		switch($id) {
-			case AgaviDateDefinitions::ERA:
+			case DateDefinitions::ERA:
 				return 'UCAL_ERA';
 
-			case AgaviDateDefinitions::YEAR:
+			case DateDefinitions::YEAR:
 				return 'UCAL_YEAR';
 
-			case AgaviDateDefinitions::MONTH:
+			case DateDefinitions::MONTH:
 				return 'UCAL_MONTH';
 
-			case AgaviDateDefinitions::WEEK_OF_YEAR:
+			case DateDefinitions::WEEK_OF_YEAR:
 				return 'UCAL_WEEK_OF_YEAR';
 
-			case AgaviDateDefinitions::WEEK_OF_MONTH:
+			case DateDefinitions::WEEK_OF_MONTH:
 				return 'UCAL_WEEK_OF_MONTH';
 
-			case AgaviDateDefinitions::DATE:
+			case DateDefinitions::DATE:
 				return 'UCAL_DATE';
 
-			case AgaviDateDefinitions::DAY_OF_YEAR:
+			case DateDefinitions::DAY_OF_YEAR:
 				return 'UCAL_DAY_OF_YEAR';
 
-			case AgaviDateDefinitions::DAY_OF_WEEK:
+			case DateDefinitions::DAY_OF_WEEK:
 				return 'UCAL_DAY_OF_WEEK';
 
-			case AgaviDateDefinitions::DAY_OF_WEEK_IN_MONTH:
+			case DateDefinitions::DAY_OF_WEEK_IN_MONTH:
 				return 'UCAL_DAY_OF_WEEK_IN_MONTH';
 
-			case AgaviDateDefinitions::AM_PM:
+			case DateDefinitions::AM_PM:
 				return 'UCAL_AM_PM';
 
-			case AgaviDateDefinitions::HOUR:
+			case DateDefinitions::HOUR:
 				return 'UCAL_HOUR';
 
-			case AgaviDateDefinitions::HOUR_OF_DAY:
+			case DateDefinitions::HOUR_OF_DAY:
 				return 'UCAL_HOUR_OF_DAY';
 
-			case AgaviDateDefinitions::MINUTE:
+			case DateDefinitions::MINUTE:
 				return 'UCAL_MINUTE';
 
-			case AgaviDateDefinitions::SECOND:
+			case DateDefinitions::SECOND:
 				return 'UCAL_SECOND';
 
-			case AgaviDateDefinitions::MILLISECOND:
+			case DateDefinitions::MILLISECOND:
 				return 'UCAL_MILLISECOND';
 
-			case AgaviDateDefinitions::ZONE_OFFSET:
+			case DateDefinitions::ZONE_OFFSET:
 				return 'UCAL_ZONE_OFFSET';
 
-			case AgaviDateDefinitions::DST_OFFSET:
+			case DateDefinitions::DST_OFFSET:
 				return 'UCAL_DST_OFFSET';
 
-			case AgaviDateDefinitions::YEAR_WOY:
+			case DateDefinitions::YEAR_WOY:
 				return 'UCAL_YEAR_WOY';
 
-			case AgaviDateDefinitions::DOW_LOCAL:
+			case DateDefinitions::DOW_LOCAL:
 				return 'UCAL_DOW_LOCAL';
 
-			case AgaviDateDefinitions::EXTENDED_YEAR:
+			case DateDefinitions::EXTENDED_YEAR:
 				return 'UCAL_EXTENDED_YEAR';
 
-			case AgaviDateDefinitions::JULIAN_DAY:
+			case DateDefinitions::JULIAN_DAY:
 				return 'UCAL_JULIAN_DAY';
 
-			case AgaviDateDefinitions::MILLISECONDS_IN_DAY:
+			case DateDefinitions::MILLISECONDS_IN_DAY:
 				return 'UCAL_MILLISECONDS_IN_DAY';
 
-			case AgaviDateDefinitions::FIELD_COUNT:
+			case DateDefinitions::FIELD_COUNT:
 				return 'UCAL_FIELD_COUNT';
 		}
 
@@ -96,22 +105,22 @@ class AgaviCalendarTest extends BaseCalendarTest
 		*/
 		$eq = $b4 = $af = false;
 
-		$when = $this->date(90, AgaviDateDefinitions::APRIL, 15);
+		$when = $this->date(90, DateDefinitions::APRIL, 15);
 
 		$tzid = "TestZone";
 		$tzoffset = 123400;
 
-		$zone = new AgaviSimpleTimeZone($this->tm, $tzoffset, $tzid);
+		$zone = new SimpleTimeZone($this->tm, $tzoffset, $tzid);
 		$cal = $this->tm->createCalendar($zone);
 
-		$this->assertTrue($cal->getTimeZone()->__is_equal($zone), 'AgaviCalendar::getTimeZone failed');
+		$this->assertTrue($cal->getTimeZone()->__is_equal($zone), 'Calendar::getTimeZone failed');
 
 		$cal2 = $this->tm->createCalendar($cal->getTimeZone());
 		$cal->setTime($when);
 		$cal2->setTime($when);
 
-		$this->assertTrue($cal->__is_equal($cal2), 'AgaviCalendar::operator== failed');
-		$this->assertFalse($cal->__is_not_equal($cal2), 'AgaviCalendar::operator!= failed');
+		$this->assertTrue($cal->__is_equal($cal2), 'Calendar::operator== failed');
+		$this->assertFalse($cal->__is_not_equal($cal2), 'Calendar::operator!= failed');
 		$this->assertFalse((!$cal->equals($cal2) || $cal->before($cal2) || $cal->after($cal2)), 'equals/before/after failed');
 
 		$cal2->setTime($when + 1000);
@@ -121,12 +130,12 @@ class AgaviCalendarTest extends BaseCalendarTest
 		$b3 = $cal->after($cal2);
 		$this->assertFalse($cal->equals($cal2) || $cal2->before($cal) || $cal->after($cal2), 'equals/before/after failed after setTime(+1000)');
 
-		$cal->roll(AgaviDateDefinitions::SECOND, true);
+		$cal->roll(DateDefinitions::SECOND, true);
 
 		$this->assertFalse(!($eq = $cal->equals($cal2)) || ($b4 = $cal->before($cal2)) || ($af = $cal->after($cal2)), sprintf("equals[%s]/before[%s]/after[%s] failed after roll 1 second [should be T/F/F]", $eq ? 'T' : 'F', $b4 ? 'T' : 'F', $af ? 'T' : 'F'));
 
 		// Roll back to January
-		$cal->roll(AgaviDateDefinitions::MONTH, (int)(1 + AgaviDateDefinitions::DECEMBER - $cal->get(AgaviDateDefinitions::MONTH)));
+		$cal->roll(DateDefinitions::MONTH, (int)(1 + DateDefinitions::DECEMBER - $cal->get(DateDefinitions::MONTH)));
 
 		$this->assertFalse($cal->equals($cal2) || $cal2->before($cal) || $cal->after($cal2), 'equals/before/after failed after rollback to January');
 
@@ -137,7 +146,7 @@ class AgaviCalendarTest extends BaseCalendarTest
 			// Later: Check for lenient behavior
 		}
 
-		for($i = AgaviDateDefinitions::SUNDAY; $i <= AgaviDateDefinitions::SATURDAY; ++$i) {
+		for($i = DateDefinitions::SUNDAY; $i <= DateDefinitions::SATURDAY; ++$i) {
 			$cal->setFirstDayOfWeek($i);
 			$this->assertEquals($i, $cal->getFirstDayOfWeek(), 'set/getFirstDayOfWeek failed');
 		}
@@ -147,7 +156,7 @@ class AgaviCalendarTest extends BaseCalendarTest
 			$this->assertEquals($i, $cal->getMinimalDaysInFirstWeek(), 'set/getFirstDayOfWeek failed');
 		}
 
-		for($i = 0; $i < AgaviDateDefinitions::FIELD_COUNT; ++$i) {
+		for($i = 0; $i < DateDefinitions::FIELD_COUNT; ++$i) {
 			$this->assertEquals($cal->getMinimum($i), $cal->getGreatestMinimum($i), 'getMinimum doesn\'t match getGreatestMinimum for field ' . $i);
 			$this->assertFalse($cal->getLeastMaximum($i) > $cal->getMaximum($i), 'getLeastMaximum larger than getMaximum for field ' . $i);
 			$this->assertFalse($cal->getMinimum($i) >= $cal->getMaximum($i), 'getMinimum not less than getMaximum for field ' . $i);
@@ -156,60 +165,61 @@ class AgaviCalendarTest extends BaseCalendarTest
 		$cal->setTimeZone($this->tm->getDefaultTimeZone());
 		$cal->clear();
 		$cal->set2(1984, 5, 24);
-		$this->assertEquals($this->date(84, 5, 24), $cal->getTime(), 'AgaviCalendarCalendar::set(3 args) failed');
+		$this->assertEquals($this->date(84, 5, 24), $cal->getTime(), 'CalendarCalendar::set(3 args) failed');
 
 		$cal->clear();
 		$cal->set3(1985, 3, 2, 11, 49);
-		$this->assertEquals($this->date(85, 3, 2, 11, 49), $cal->getTime(), 'AgaviCalendar::set(5 args) failed');
+		$this->assertEquals($this->date(85, 3, 2, 11, 49), $cal->getTime(), 'Calendar::set(5 args) failed');
 
 		$cal->clear();
 		$cal->set4(1995, 9, 12, 1, 39, 55);
-		$this->assertEquals($this->date(95, 9, 12, 1, 39, 55), $cal->getTime(), 'AgaviCalendar::set(6 args) failed');
+		$this->assertEquals($this->date(95, 9, 12, 1, 39, 55), $cal->getTime(), 'Calendar::set(6 args) failed');
 
 		$cal->getTime();
 
-		for($i = 0; $i < AgaviDateDefinitions::FIELD_COUNT; ++$i) {
+		for($i = 0; $i < DateDefinitions::FIELD_COUNT; ++$i) {
 			switch($i) {
-				case AgaviDateDefinitions::YEAR: case AgaviDateDefinitions::MONTH: case AgaviDateDefinitions::DATE:
-				case AgaviDateDefinitions::HOUR_OF_DAY: case AgaviDateDefinitions::MINUTE: case AgaviDateDefinitions::SECOND:
-				case AgaviDateDefinitions::EXTENDED_YEAR:
-					$this->assertTrue($cal->_isSet($i), 'AgaviCalendar::isSet F, should be T ' . $this->fieldName($i));
+				case DateDefinitions::YEAR: case DateDefinitions::MONTH: case DateDefinitions::DATE:
+				case DateDefinitions::HOUR_OF_DAY: case DateDefinitions::MINUTE: case DateDefinitions::SECOND:
+				case DateDefinitions::EXTENDED_YEAR:
+					$this->assertTrue($cal->_isSet($i), 'Calendar::isSet F, should be T ' . $this->fieldName($i));
 					break;
 				default:
-					$this->assertFalse($cal->_isSet($i), 'AgaviCalendar::isSet = T, should be F  ' . $this->fieldName($i));
+					$this->assertFalse($cal->_isSet($i), 'Calendar::isSet = T, should be F  ' . $this->fieldName($i));
 			}
 			$cal->clear($i);
-			$this->assertFalse($cal->_isSet($i), 'AgaviCalendar::clear/isSet failed ' + $this->fieldName($i));
+			$this->assertFalse($cal->_isSet($i), 'Calendar::clear/isSet failed ' . $this->fieldName($i));
 		}
 
 		return;
 		// TODO: enable again
 		// TODO: there is no api for this currently
-		
-		$cal = AgaviCalendar::createInstance(AgaviTimeZone::createDefault(), AgaviLocale::getEnglish());
+		/*
+		$cal = Calendar::createInstance(AgaviTimeZone::createDefault(), Locale::getEnglish());
 
-		$cal = AgaviCalendar::createInstance($zone, AgaviLocale::getEnglish());
-
-		$gc = $this->tm->createCalendar($zone);
-
-		$gc = $this->tm->createCalendar(AgaviLocale::getEnglish());
-
-		$gc = $this->tm->createCalendar(AgaviLocale::getEnglish());
-
-		$gc = new AgaviGregorianCalendar($zone, AgaviLocale::getEnglish());
+		$cal = Calendar::createInstance($zone, Locale::getEnglish());
 
 		$gc = $this->tm->createCalendar($zone);
 
-		$gc = new AgaviGregorianCalendar(1998, 10, 14, 21, 43);
+		$gc = $this->tm->createCalendar(Locale::getEnglish());
+
+		$gc = $this->tm->createCalendar(Locale::getEnglish());
+
+		$gc = new GregorianCalendar($zone, Locale::getEnglish());
+
+		$gc = $this->tm->createCalendar($zone);
+
+		$gc = new GregorianCalendar(1998, 10, 14, 21, 43);
 		$this->assertEquals($this->date(98, 10, 14, 21, 43), $gc->getTime());
 
-		$gc = new AgaviGregorianCalendar(1998, 10, 14, 21, 43, 55);
+		$gc = new GregorianCalendar(1998, 10, 14, 21, 43, 55);
 		$this->assertEquals($this->date(98, 10, 14, 21, 43, 55), $gc->getTime());
 
-		$gc2 = new AgaviGregorianCalendar(AgaviLocale::getEnglish());
+		$gc2 = new GregorianCalendar(Locale::getEnglish());
 
 		$gc2 = clone $gc;
 		$this->assertFalse($gc2->__is_not_equal($gc) || !($gc2->__is_equal($gc)), 'AgaviGregorianCalendar assignment/operator==/operator!= failed');
+		*/
 	}
 
 	/**
@@ -221,17 +231,17 @@ class AgaviCalendarTest extends BaseCalendarTest
 		$gc = $this->tm->createCalendar();
 		
 		$year = 1997;
-		$month = AgaviDateDefinitions::APRIL;
+		$month = DateDefinitions::APRIL;
 		$date = 1;
 		$gc->set($year, $month, $date);
-		$gc->set(AgaviDateDefinitions::HOUR_OF_DAY, 23);
-		$gc->set(AgaviDateDefinitions::MINUTE, 0);
-		$gc->set(AgaviDateDefinitions::SECOND, 0);
-		$gc->set(AgaviDateDefinitions::MILLISECOND, 0);
-		for($i = 0; $i < 9; ++$i, $gc->add(AgaviDateDefinitions::DATE, 1)) {
-			$this->assertEquals($year, $gc->get(AgaviDateDefinitions::YEAR));
-			$this->assertEquals($month, $gc->get(AgaviDateDefinitions::MONTH));
-			$this->assertEquals($date + $i, (int)$gc->get(AgaviDateDefinitions::DATE));
+		$gc->set(DateDefinitions::HOUR_OF_DAY, 23);
+		$gc->set(DateDefinitions::MINUTE, 0);
+		$gc->set(DateDefinitions::SECOND, 0);
+		$gc->set(DateDefinitions::MILLISECOND, 0);
+		for($i = 0; $i < 9; ++$i, $gc->add(DateDefinitions::DATE, 1)) {
+			$this->assertEquals($year, $gc->get(DateDefinitions::YEAR));
+			$this->assertEquals($month, $gc->get(DateDefinitions::MONTH));
+			$this->assertEquals($date + $i, (int)$gc->get(DateDefinitions::DATE));
 		}
 	}
 
@@ -249,21 +259,21 @@ class AgaviCalendarTest extends BaseCalendarTest
 	public function dowTest($lenient)
 	{
 		$cal = $this->tm->createCalendar();
-		$cal->set(1997, AgaviDateDefinitions::AUGUST, 12);
+		$cal->set(1997, DateDefinitions::AUGUST, 12);
 		$cal->getTime();
 		$cal->setLenient($lenient);
 		
-		$dow = (int)$cal->get(AgaviDateDefinitions::DAY_OF_WEEK);
+		$dow = (int)$cal->get(DateDefinitions::DAY_OF_WEEK);
 
-		$cal->set(1996, AgaviDateDefinitions::DECEMBER, 1);
+		$cal->set(1996, DateDefinitions::DECEMBER, 1);
 		// TODO: check why phpunit assertEquals doesn't think 1 and 1.0 are equal :s
-		$dow = (int)$cal->get(AgaviDateDefinitions::DAY_OF_WEEK);
+		$dow = (int)$cal->get(DateDefinitions::DAY_OF_WEEK);
 
-		$min = $cal->getMinimum(AgaviDateDefinitions::DAY_OF_WEEK);
-		$max = $cal->getMaximum(AgaviDateDefinitions::DAY_OF_WEEK);
+		$min = $cal->getMinimum(DateDefinitions::DAY_OF_WEEK);
+		$max = $cal->getMaximum(DateDefinitions::DAY_OF_WEEK);
 		$this->assertFalse($dow < $min || $dow > $max, 'Day of week ' . $dow . ' out of range');
-		$this->assertEquals(AgaviDateDefinitions::SUNDAY, $dow, 'Day of week should be SUNDAY['.AgaviDateDefinitions::SUNDAY.'] not ' . $dow);
-		$this->assertFalse($min != AgaviDateDefinitions::SUNDAY || $max != AgaviDateDefinitions::SATURDAY, 'Min/max bad');
+		$this->assertEquals(DateDefinitions::SUNDAY, $dow, 'Day of week should be SUNDAY['.DateDefinitions::SUNDAY.'] not ' . $dow);
+		$this->assertFalse($min != DateDefinitions::SUNDAY || $max != DateDefinitions::SATURDAY, 'Min/max bad');
 	}
 
 
@@ -281,9 +291,9 @@ class AgaviCalendarTest extends BaseCalendarTest
 	{
 		$c = $this->tm->createCalendar();
 		$d = clone $c;
-		$c->set(AgaviDateDefinitions::MILLISECOND, 123);
-		$d->set(AgaviDateDefinitions::MILLISECOND, 456);
-		$this->assertFalse($c->get(AgaviDateDefinitions::MILLISECOND) != 123 || $d->get(AgaviDateDefinitions::MILLISECOND) != 456, 'Clones share fields');
+		$c->set(DateDefinitions::MILLISECOND, 123);
+		$d->set(DateDefinitions::MILLISECOND, 456);
+		$this->assertFalse($c->get(DateDefinitions::MILLISECOND) != 123 || $d->get(DateDefinitions::MILLISECOND) != 456, 'Clones share fields');
 	}
 
 // -------------------------------------
@@ -313,58 +323,58 @@ class AgaviCalendarTest extends BaseCalendarTest
 		$c = $this->tm->createCalendar($this->tm->getLocale('en_US'));
 		$c->setLenient(false);
 		$c->clear();
-		$c->set(AgaviDateDefinitions::YEAR, 1997);
-		$c->set(AgaviDateDefinitions::MONTH, AgaviDateDefinitions::JUNE);
-		$c->set(AgaviDateDefinitions::DATE, 3);
-		$this->verify765("1997 third day of June = ", $c, 1997, AgaviDateDefinitions::JUNE, 3);
+		$c->set(DateDefinitions::YEAR, 1997);
+		$c->set(DateDefinitions::MONTH, DateDefinitions::JUNE);
+		$c->set(DateDefinitions::DATE, 3);
+		$this->verify765("1997 third day of June = ", $c, 1997, DateDefinitions::JUNE, 3);
 		$c->clear();
-		$c->set(AgaviDateDefinitions::YEAR, 1997);
-		$c->set(AgaviDateDefinitions::DAY_OF_WEEK, AgaviDateDefinitions::TUESDAY);
-		$c->set(AgaviDateDefinitions::MONTH, AgaviDateDefinitions::JUNE);
-		$c->set(AgaviDateDefinitions::DAY_OF_WEEK_IN_MONTH, 1);
-		$this->verify765("1997 first Tuesday in June = ", $c, 1997, AgaviDateDefinitions::JUNE, 3);
+		$c->set(DateDefinitions::YEAR, 1997);
+		$c->set(DateDefinitions::DAY_OF_WEEK, DateDefinitions::TUESDAY);
+		$c->set(DateDefinitions::MONTH, DateDefinitions::JUNE);
+		$c->set(DateDefinitions::DAY_OF_WEEK_IN_MONTH, 1);
+		$this->verify765("1997 first Tuesday in June = ", $c, 1997, DateDefinitions::JUNE, 3);
 		$c->clear();
-		$c->set(AgaviDateDefinitions::YEAR, 1997);
-		$c->set(AgaviDateDefinitions::DAY_OF_WEEK, AgaviDateDefinitions::TUESDAY);
-		$c->set(AgaviDateDefinitions::MONTH, AgaviDateDefinitions::JUNE);
-		$c->set(AgaviDateDefinitions::DAY_OF_WEEK_IN_MONTH, - 1);
-		$this->verify765("1997 last Tuesday in June = ", $c, 1997, AgaviDateDefinitions::JUNE, 24);
+		$c->set(DateDefinitions::YEAR, 1997);
+		$c->set(DateDefinitions::DAY_OF_WEEK, DateDefinitions::TUESDAY);
+		$c->set(DateDefinitions::MONTH, DateDefinitions::JUNE);
+		$c->set(DateDefinitions::DAY_OF_WEEK_IN_MONTH, - 1);
+		$this->verify765("1997 last Tuesday in June = ", $c, 1997, DateDefinitions::JUNE, 24);
 
 		$exceptionThrown = false;
 		try {
 				$c->clear();
-				$c->set(AgaviDateDefinitions::YEAR, 1997);
-				$c->set(AgaviDateDefinitions::DAY_OF_WEEK, AgaviDateDefinitions::TUESDAY);
-				$c->set(AgaviDateDefinitions::MONTH, AgaviDateDefinitions::JUNE);
-				$c->set(AgaviDateDefinitions::DAY_OF_WEEK_IN_MONTH, 0);
+				$c->set(DateDefinitions::YEAR, 1997);
+				$c->set(DateDefinitions::DAY_OF_WEEK, DateDefinitions::TUESDAY);
+				$c->set(DateDefinitions::MONTH, DateDefinitions::JUNE);
+				$c->set(DateDefinitions::DAY_OF_WEEK_IN_MONTH, 0);
 				$c->getTime();
 		}
-		catch(InvalidArgumentException $ex /*IllegalArgumentException ex*/) {
+		catch(\InvalidArgumentException $ex /*IllegalArgumentException ex*/) {
 			$exceptionThrown = true;
 		}
 		$this->assertTrue($exceptionThrown);
 		//$this->verify765("1997 zero-th Tuesday in June = ");
 
 		$c->clear();
-		$c->set(AgaviDateDefinitions::YEAR, 1997);
-		$c->set(AgaviDateDefinitions::DAY_OF_WEEK, AgaviDateDefinitions::TUESDAY);
-		$c->set(AgaviDateDefinitions::MONTH, AgaviDateDefinitions::JUNE);
-		$c->set(AgaviDateDefinitions::WEEK_OF_MONTH, 1);
-		$this->verify765("1997 Tuesday in week 1 of June = ", $c, 1997, AgaviDateDefinitions::JUNE, 3);
+		$c->set(DateDefinitions::YEAR, 1997);
+		$c->set(DateDefinitions::DAY_OF_WEEK, DateDefinitions::TUESDAY);
+		$c->set(DateDefinitions::MONTH, DateDefinitions::JUNE);
+		$c->set(DateDefinitions::WEEK_OF_MONTH, 1);
+		$this->verify765("1997 Tuesday in week 1 of June = ", $c, 1997, DateDefinitions::JUNE, 3);
 
 		$c->clear();
-		$c->set(AgaviDateDefinitions::YEAR, 1997);
-		$c->set(AgaviDateDefinitions::DAY_OF_WEEK, AgaviDateDefinitions::TUESDAY);
-		$c->set(AgaviDateDefinitions::MONTH, AgaviDateDefinitions::JUNE);
-		$c->set(AgaviDateDefinitions::WEEK_OF_MONTH, 5);
-		$this->verify765("1997 Tuesday in week 5 of June = ", $c, 1997, AgaviDateDefinitions::JULY, 1);
+		$c->set(DateDefinitions::YEAR, 1997);
+		$c->set(DateDefinitions::DAY_OF_WEEK, DateDefinitions::TUESDAY);
+		$c->set(DateDefinitions::MONTH, DateDefinitions::JUNE);
+		$c->set(DateDefinitions::WEEK_OF_MONTH, 5);
+		$this->verify765("1997 Tuesday in week 5 of June = ", $c, 1997, DateDefinitions::JULY, 1);
 
 		$c->clear();
-		$c->set(AgaviDateDefinitions::YEAR, 1997);
-		$c->set(AgaviDateDefinitions::DAY_OF_WEEK, AgaviDateDefinitions::TUESDAY);
-		$c->set(AgaviDateDefinitions::MONTH, AgaviDateDefinitions::JUNE);
-		$c->set(AgaviDateDefinitions::WEEK_OF_MONTH, 0);
-		$this->verify765("1997 Tuesday in week 0 of June = ", $c, 1997, AgaviDateDefinitions::MAY, 27);
+		$c->set(DateDefinitions::YEAR, 1997);
+		$c->set(DateDefinitions::DAY_OF_WEEK, DateDefinitions::TUESDAY);
+		$c->set(DateDefinitions::MONTH, DateDefinitions::JUNE);
+		$c->set(DateDefinitions::WEEK_OF_MONTH, 0);
+		$this->verify765("1997 Tuesday in week 0 of June = ", $c, 1997, DateDefinitions::MAY, 27);
 
 		/* Note: The following test used to expect YEAR 1997, WOY 1 to
 		 * resolve to a date in Dec 1996; that is, to behave as if
@@ -377,31 +387,31 @@ class AgaviCalendarTest extends BaseCalendarTest
 		 * of 1 (for YEAR_WOY 1998) and a DOW of Tuesday, and falls in the
 		 * _calendar_ year 1997, as specified. - aliu */
 		$c->clear();
-		$c->set(AgaviDateDefinitions::YEAR_WOY, 1997); // aliu
-		$c->set(AgaviDateDefinitions::DAY_OF_WEEK, AgaviDateDefinitions::TUESDAY);
-		$c->set(AgaviDateDefinitions::WEEK_OF_YEAR, 1);
-		$this->verify765("1997 Tuesday in week 1 of yearWOY = ", $c, 1996, AgaviDateDefinitions::DECEMBER, 31);
+		$c->set(DateDefinitions::YEAR_WOY, 1997); // aliu
+		$c->set(DateDefinitions::DAY_OF_WEEK, DateDefinitions::TUESDAY);
+		$c->set(DateDefinitions::WEEK_OF_YEAR, 1);
+		$this->verify765("1997 Tuesday in week 1 of yearWOY = ", $c, 1996, DateDefinitions::DECEMBER, 31);
 
 		$c->clear(); // - add test for YEAR
-		$c->set(AgaviDateDefinitions::YEAR, 1997);
-		$c->set(AgaviDateDefinitions::DAY_OF_WEEK, AgaviDateDefinitions::TUESDAY);
-		$c->set(AgaviDateDefinitions::WEEK_OF_YEAR, 1);
-		$this->verify765("1997 Tuesday in week 1 of year = ", $c, 1997, AgaviDateDefinitions::DECEMBER, 30);
+		$c->set(DateDefinitions::YEAR, 1997);
+		$c->set(DateDefinitions::DAY_OF_WEEK, DateDefinitions::TUESDAY);
+		$c->set(DateDefinitions::WEEK_OF_YEAR, 1);
+		$this->verify765("1997 Tuesday in week 1 of year = ", $c, 1997, DateDefinitions::DECEMBER, 30);
 
 		$c->clear();
-		$c->set(AgaviDateDefinitions::YEAR, 1997);
-		$c->set(AgaviDateDefinitions::DAY_OF_WEEK, AgaviDateDefinitions::TUESDAY);
-		$c->set(AgaviDateDefinitions::WEEK_OF_YEAR, 10);
-		$this->verify765("1997 Tuesday in week 10 of year = ", $c, 1997, AgaviDateDefinitions::MARCH, 4);
+		$c->set(DateDefinitions::YEAR, 1997);
+		$c->set(DateDefinitions::DAY_OF_WEEK, DateDefinitions::TUESDAY);
+		$c->set(DateDefinitions::WEEK_OF_YEAR, 10);
+		$this->verify765("1997 Tuesday in week 10 of year = ", $c, 1997, DateDefinitions::MARCH, 4);
 	}
 
 // -------------------------------------
  
 	protected function verify765($msg, $c, $year, $month, $day)
 	{
-		$y = $c->get(AgaviDateDefinitions::YEAR);
-		$m = $c->get(AgaviDateDefinitions::MONTH);
-		$d = $c->get(AgaviDateDefinitions::DATE);
+		$y = $c->get(DateDefinitions::YEAR);
+		$m = $c->get(DateDefinitions::MONTH);
+		$d = $c->get(DateDefinitions::DATE);
 
 		$this->assertEquals($year, $y, $msg);
 		$this->assertEquals($month, $m, $msg);
@@ -427,24 +437,24 @@ class AgaviCalendarTest extends BaseCalendarTest
 	{
 		$gmtcal = $this->tm->createCalendar($this->tm->createTimeZone("Africa/Casablanca"));
 		$gmtcal->set($yr, $mo - 1, $dt, $hr, $mn, $sc);
-		$gmtcal->set(AgaviDateDefinitions::MILLISECOND, 0);
+		$gmtcal->set(DateDefinitions::MILLISECOND, 0);
 		$date = $gmtcal->getTime();
 		$cal = $this->tm->createCalendar();
 		$cal->setTime($date);
 
-		$offset = $cal->getTimeZone()->getOffset($cal->get(AgaviDateDefinitions::ERA),
-																							$cal->get(AgaviDateDefinitions::YEAR),
-																							$cal->get(AgaviDateDefinitions::MONTH),
-																							$cal->get(AgaviDateDefinitions::DATE),
-																							$cal->get(AgaviDateDefinitions::DAY_OF_WEEK),
-																							$cal->get(AgaviDateDefinitions::MILLISECOND));
+		$offset = $cal->getTimeZone()->getOffset($cal->get(DateDefinitions::ERA),
+																							$cal->get(DateDefinitions::YEAR),
+																							$cal->get(DateDefinitions::MONTH),
+																							$cal->get(DateDefinitions::DATE),
+																							$cal->get(DateDefinitions::DAY_OF_WEEK),
+																							$cal->get(DateDefinitions::MILLISECOND));
 
-		$utc = (($cal->get(AgaviDateDefinitions::HOUR_OF_DAY) * 60 +
-								$cal->get(AgaviDateDefinitions::MINUTE)) * 60 +
-							$cal->get(AgaviDateDefinitions::SECOND)) * 1000 +
-						$cal->get(AgaviDateDefinitions::MILLISECOND) - $offset;
+		$utc = (($cal->get(DateDefinitions::HOUR_OF_DAY) * 60 +
+								$cal->get(DateDefinitions::MINUTE)) * 60 +
+							$cal->get(DateDefinitions::SECOND)) * 1000 +
+						$cal->get(DateDefinitions::MILLISECOND) - $offset;
 		$expected = (($hr * 60 + $mn) * 60 + $sc) * 1000;
-		$this->assertEquals((float) $expected, (float) $utc, 'Discrepancy of ' . ($utc - $expected) + ' millis = ' + (($utc - $expected) / 1000 / 60 / 60.0) . ' hr');
+		$this->assertEquals((float) $expected, (float) $utc, 'Discrepancy of ' . ($utc - $expected) . ' millis = ' . (($utc - $expected) / 1000 / 60 / 60.0) . ' hr');
 	}
 
 // -------------------------------------
@@ -458,18 +468,18 @@ class AgaviCalendarTest extends BaseCalendarTest
 		$d = $this->date(97, 4, 14, 13, 23, 45);
 		$cal = $this->tm->createCalendar();
 		$cal->setTime($d);
-		$cal->add(AgaviDateDefinitions::DATE, -5);
-		$cal->set(AgaviDateDefinitions::HOUR_OF_DAY, 0);
-		$cal->set(AgaviDateDefinitions::MINUTE, 0);
-		$cal->set(AgaviDateDefinitions::SECOND, 0);
+		$cal->add(DateDefinitions::DATE, -5);
+		$cal->set(DateDefinitions::HOUR_OF_DAY, 0);
+		$cal->set(DateDefinitions::MINUTE, 0);
+		$cal->set(DateDefinitions::SECOND, 0);
 		$s1 = $this->dateToString($cal->getTime());
 
 		$cal = $this->tm->createCalendar();
 		$cal->setTime($d);
-		$cal->set(AgaviDateDefinitions::HOUR_OF_DAY, 0);
-		$cal->set(AgaviDateDefinitions::MINUTE, 0);
-		$cal->set(AgaviDateDefinitions::SECOND, 0);
-		$cal->add(AgaviDateDefinitions::DATE, -5);
+		$cal->set(DateDefinitions::HOUR_OF_DAY, 0);
+		$cal->set(DateDefinitions::MINUTE, 0);
+		$cal->set(DateDefinitions::SECOND, 0);
+		$cal->add(DateDefinitions::DATE, -5);
 
 		$s2 = $this->dateToString($cal->getTime());
 		$this->assertEquals($s1, $s2);
@@ -483,23 +493,23 @@ class AgaviCalendarTest extends BaseCalendarTest
 	public function testAdd520()
 	{
 		$y = 1997;
-		$m = AgaviDateDefinitions::FEBRUARY;
+		$m = DateDefinitions::FEBRUARY;
 		$d = 1;
-		$temp = new AgaviGregorianCalendar($this->tm, $y, $m, $d);
+		$temp = new GregorianCalendar($this->tm, $y, $m, $d);
 		$this->check520($temp, $y, $m, $d);
-		$temp->add(AgaviDateDefinitions::YEAR, 1);
+		$temp->add(DateDefinitions::YEAR, 1);
 		++$y;
 		$this->check520($temp, $y, $m, $d);
-		$temp->add(AgaviDateDefinitions::MONTH, 1);
+		$temp->add(DateDefinitions::MONTH, 1);
 		++$m;
 		$this->check520($temp, $y, $m, $d);
-		$temp->add(AgaviDateDefinitions::DATE, 1);
+		$temp->add(DateDefinitions::DATE, 1);
 		++$d;
 		$this->check520($temp, $y, $m, $d);
-		$temp->add(AgaviDateDefinitions::DATE, 2);
+		$temp->add(DateDefinitions::DATE, 2);
 		$d += 2;
 		$this->check520($temp, $y, $m, $d);
-		$temp->add(AgaviDateDefinitions::DATE, 28);
+		$temp->add(DateDefinitions::DATE, 28);
 		$d = 1;
 		++$m;
 		$this->check520($temp, $y, $m, $d);
@@ -514,28 +524,28 @@ class AgaviCalendarTest extends BaseCalendarTest
 	{
 		$maxlimit = 40;
 		$y = 1997;
-		$m = AgaviDateDefinitions::FEBRUARY;
+		$m = DateDefinitions::FEBRUARY;
 		$d = 1;
 		$hr = 1;
 		$min = 1;
 		$sec = 0;
 		$ms = 0;
 
-		$temp = new AgaviGregorianCalendar($this->tm, $y, $m, $d);
+		$temp = new GregorianCalendar($this->tm, $y, $m, $d);
 
-		$temp->set(AgaviDateDefinitions::HOUR, $hr);
-		$temp->set(AgaviDateDefinitions::MINUTE, $min);
-		$temp->set(AgaviDateDefinitions::SECOND, $sec);
-		$temp->set(AgaviDateDefinitions::MILLISECOND, $ms);
+		$temp->set(DateDefinitions::HOUR, $hr);
+		$temp->set(DateDefinitions::MINUTE, $min);
+		$temp->set(DateDefinitions::SECOND, $sec);
+		$temp->set(DateDefinitions::MILLISECOND, $ms);
 
-		$e = AgaviDateDefinitions::YEAR;
-		while($e < AgaviDateDefinitions::FIELD_COUNT) {
+		$e = DateDefinitions::YEAR;
+		while($e < DateDefinitions::FIELD_COUNT) {
 			$limit = $maxlimit;
 			for($i = 0; $i < $limit; ++$i) {
 				try {
 					$temp->add($e, 1);
 				// TODO: specify exact exception here
-				} catch(Exception $ex) {
+				} catch(\Exception $ex) {
 					$limit = $i;
 				}
 			}
@@ -547,14 +557,14 @@ class AgaviCalendarTest extends BaseCalendarTest
 			++$e;
 		}
 
-		$e = AgaviDateDefinitions::YEAR;
-		while($e < AgaviDateDefinitions::FIELD_COUNT) {
+		$e = DateDefinitions::YEAR;
+		while($e < DateDefinitions::FIELD_COUNT) {
 			$limit = $maxlimit;
 			for($i = 0; $i < $limit; ++$i) {
 				try {
 					$temp->roll($e, 1);
 				// TODO: specify exact exception here
-				} catch(Exception $ex) {
+				} catch(\Exception $ex) {
 					$limit = $i;
 				}
 			}
@@ -572,21 +582,21 @@ class AgaviCalendarTest extends BaseCalendarTest
 	protected function check520($c, $y, $m, $d, $hr = -1, $min = -1, $sec = -1, $ms = -1, $field = -1)
 	{
 		if($hr == -1) {
-			$this->assertEquals($y, $c->get(AgaviDateDefinitions::YEAR));
-			$this->assertEquals($m, $c->get(AgaviDateDefinitions::MONTH));
-			$this->assertEquals($d, $c->get(AgaviDateDefinitions::DATE));
+			$this->assertEquals($y, $c->get(DateDefinitions::YEAR));
+			$this->assertEquals($m, $c->get(DateDefinitions::MONTH));
+			$this->assertEquals($d, $c->get(DateDefinitions::DATE));
 
 			return;
 		}
 
 
-		$this->assertEquals($y, $c->get(AgaviDateDefinitions::YEAR));
-		$this->assertEquals($m, $c->get(AgaviDateDefinitions::MONTH));
-		$this->assertEquals($d, $c->get(AgaviDateDefinitions::DATE));
-		$this->assertEquals($hr, $c->get(AgaviDateDefinitions::HOUR));
-		$this->assertEquals($min, $c->get(AgaviDateDefinitions::MINUTE));
-		$this->assertEquals($sec, $c->get(AgaviDateDefinitions::SECOND));
-		$this->assertEquals($ms, $c->get(AgaviDateDefinitions::MILLISECOND));
+		$this->assertEquals($y, $c->get(DateDefinitions::YEAR));
+		$this->assertEquals($m, $c->get(DateDefinitions::MONTH));
+		$this->assertEquals($d, $c->get(DateDefinitions::DATE));
+		$this->assertEquals($hr, $c->get(DateDefinitions::HOUR));
+		$this->assertEquals($min, $c->get(DateDefinitions::MINUTE));
+		$this->assertEquals($sec, $c->get(DateDefinitions::SECOND));
+		$this->assertEquals($ms, $c->get(DateDefinitions::MILLISECOND));
 	}
 
 // -------------------------------------
@@ -598,8 +608,8 @@ class AgaviCalendarTest extends BaseCalendarTest
 	public function testSecondsZero121()
 	{
 		$cal = $this->tm->createCalendar();
-		$cal->setTime(AgaviCalendar::getNow());
-		$cal->set(AgaviDateDefinitions::SECOND, 0);
+		$cal->setTime(Calendar::getNow());
+		$cal->set(DateDefinitions::SECOND, 0);
 		$d = $cal->getTime();
 
 		$s = $this->dateToString($d);
@@ -618,21 +628,21 @@ class AgaviCalendarTest extends BaseCalendarTest
 		$EXPECTED_0610 = "1993/0/5";
 		{
 				$calendar = $this->tm->createCalendar();
-				$calendar->set(1993, AgaviDateDefinitions::JANUARY, 4);
-				$calendar->add(AgaviDateDefinitions::DATE, 1);
+				$calendar->set(1993, DateDefinitions::JANUARY, 4);
+				$calendar->add(DateDefinitions::DATE, 1);
 				$v = $this->value($calendar);
 				$this->assertEquals($EXPECTED_0610, $v);
 		}
 		{
-				$calendar = new AgaviGregorianCalendar($this->tm, 1993, AgaviDateDefinitions::JANUARY, 4);
-				$calendar->add(AgaviDateDefinitions::DATE, 1);
+				$calendar = new GregorianCalendar($this->tm, 1993, DateDefinitions::JANUARY, 4);
+				$calendar->add(DateDefinitions::DATE, 1);
 				$v = $this->value($calendar);
 				$this->assertEquals($EXPECTED_0610, $v);
 		}
 		{
-				$calendar = new AgaviGregorianCalendar($this->tm, 1993, AgaviDateDefinitions::JANUARY, 4);
+				$calendar = new GregorianCalendar($this->tm, 1993, DateDefinitions::JANUARY, 4);
 				$calendar->getTime();
-				$calendar->add(AgaviDateDefinitions::DATE, 1);
+				$calendar->add(DateDefinitions::DATE, 1);
 				$v = $this->value($calendar);
 				$this->assertEquals($EXPECTED_0610, $v);
 		}
@@ -640,9 +650,13 @@ class AgaviCalendarTest extends BaseCalendarTest
 
 // -------------------------------------
 
+	/**
+	 * @param $cal Calendar
+	 * @return string
+	 */
 	protected function value($cal)
 	{
-		return $cal->get(AgaviDateDefinitions::YEAR) . '/' . $cal->get(AgaviDateDefinitions::MONTH) .  '/' . $cal->get(AgaviDateDefinitions::DATE);
+		return $cal->get(DateDefinitions::YEAR) . '/' . $cal->get(DateDefinitions::MONTH) .  '/' . $cal->get(DateDefinitions::DATE);
 	}
 
 // -------------------------------------
@@ -653,16 +667,16 @@ class AgaviCalendarTest extends BaseCalendarTest
 	public function testFields060()
 	{
 		$year = 1997;
-		$month = AgaviDateDefinitions::OCTOBER;
+		$month = DateDefinitions::OCTOBER;
 		$dDate = 22;
-		$calendar = new AgaviGregorianCalendar($this->tm, $year, $month, $dDate);
+		$calendar = new GregorianCalendar($this->tm, $year, $month, $dDate);
 		$expectedFields = array(
-			AgaviDateDefinitions::YEAR => 1997,
-			AgaviDateDefinitions::MONTH => AgaviDateDefinitions::OCTOBER,
-			AgaviDateDefinitions::DATE => 22,
-			AgaviDateDefinitions::DAY_OF_WEEK => AgaviDateDefinitions::WEDNESDAY,
-			AgaviDateDefinitions::DAY_OF_WEEK_IN_MONTH => 4,
-			AgaviDateDefinitions::DAY_OF_YEAR => 295,
+			DateDefinitions::YEAR => 1997,
+			DateDefinitions::MONTH => DateDefinitions::OCTOBER,
+			DateDefinitions::DATE => 22,
+			DateDefinitions::DAY_OF_WEEK => DateDefinitions::WEDNESDAY,
+			DateDefinitions::DAY_OF_WEEK_IN_MONTH => 4,
+			DateDefinitions::DAY_OF_YEAR => 295,
 		);
 		foreach($expectedFields as $field => $value) {
 			$fieldValue = $calendar->get($field);
@@ -690,10 +704,10 @@ class AgaviCalendarTest extends BaseCalendarTest
 			//logln("Warning: Skipping test because " + dateToString(d, str) + " is in DST.");
 		} else {
 			$c->setTime($d);
-			for($i = 0; $i < AgaviDateDefinitions::ZONE_OFFSET; ++$i) {
+			for($i = 0; $i < DateDefinitions::ZONE_OFFSET; ++$i) {
 				$this->assertEquals($EPOCH_FIELDS[$i], (int) $c->get($i));
-				$this->assertEquals($z->getRawOffset(), $c->get(AgaviDateDefinitions::ZONE_OFFSET));
-				$this->assertEquals(0, (int) $c->get(AgaviDateDefinitions::DST_OFFSET));
+				$this->assertEquals($z->getRawOffset(), $c->get(DateDefinitions::ZONE_OFFSET));
+				$this->assertEquals(0, (int) $c->get(DateDefinitions::DST_OFFSET));
 			}
 		}
 	}
@@ -706,7 +720,7 @@ class AgaviCalendarTest extends BaseCalendarTest
 	 */
 	public function testDOWProgression()
 	{
-		$cal = new AgaviGregorianCalendar($this->tm, 1972, AgaviDateDefinitions::OCTOBER, 26);
+		$cal = new GregorianCalendar($this->tm, 1972, DateDefinitions::OCTOBER, 26);
 		$this->marchByDelta($cal, 24);
 	}
 
@@ -725,36 +739,38 @@ class AgaviCalendarTest extends BaseCalendarTest
 		 * to loop_addroll. - aliu */
 		$times = 20;
 		$cal = $this->tm->createCalendar($this->tm->getLocale('de_DE'));
-		$sdf = new AgaviSimpleDateFormat("YYYY'-W'ww-ee", AgaviLocale::getGermany());
+		$sdf = new DateFormat("YYYY'-W'ww-ee", Locale::getGermany());
 		// ICU no longer use localized date-time pattern characters by default (ticket#5597)
 		/*
 		$sdf->applyLocalizedPattern("JJJJ'-W'ww-ee");
 		*/
 		$cal->clear();
-		$cal->set(1997, AgaviDateDefinitions::DECEMBER, 25);
+		$cal->set(1997, DateDefinitions::DECEMBER, 25);
 		$this->doYEAR_WOYLoop($cal, $sdf, $times);
 		//loop_addroll(cal, /*sdf,*/ times, UCAL_YEAR_WOY, UCAL_YEAR,  status);
 		$this->yearAddTest($cal); // aliu
-		$this->loop_addroll($cal, /*sdf,*/ $times, AgaviDateDefinitions::DOW_LOCAL, AgaviDateDefinitions::DAY_OF_WEEK);
+		$this->loop_addroll($cal, /*sdf,*/ $times, DateDefinitions::DOW_LOCAL, DateDefinitions::DAY_OF_WEEK);
 
 		$cal->clear();
-		$cal->set(1998, AgaviDateDefinitions::DECEMBER, 25);
+		$cal->set(1998, DateDefinitions::DECEMBER, 25);
 		$this->doYEAR_WOYLoop($cal, $sdf, $times);
 		//loop_addroll(cal, /*sdf,*/ times, UCAL_YEAR_WOY, UCAL_YEAR,  status);
 		$this->yearAddTest($cal); // aliu
-		$this->loop_addroll($cal, /*sdf,*/ $times, AgaviDateDefinitions::DOW_LOCAL, AgaviDateDefinitions::DAY_OF_WEEK);
+		$this->loop_addroll($cal, /*sdf,*/ $times, DateDefinitions::DOW_LOCAL, DateDefinitions::DAY_OF_WEEK);
 
 		$cal->clear();
-		$cal->set(1582, AgaviDateDefinitions::OCTOBER, 1);
+		$cal->set(1582, DateDefinitions::OCTOBER, 1);
 		$this->doYEAR_WOYLoop($cal, $sdf, $times);
 		//loop_addroll(cal, /*sdf,*/ times, Calendar::YEAR_WOY, Calendar::YEAR,  status);
 		$this->yearAddTest($cal); // aliu
-		$this->loop_addroll($cal, /*sdf,*/ $times, AgaviDateDefinitions::DOW_LOCAL, AgaviDateDefinitions::DAY_OF_WEEK);
+		$this->loop_addroll($cal, /*sdf,*/ $times, DateDefinitions::DOW_LOCAL, DateDefinitions::DAY_OF_WEEK);
 	}
 
 	/**
 	 * Confirm that adding a YEAR and adding a YEAR_WOY work properly for
 	 * the given Calendar at its current setting.
+	 *
+	 * @param $cal Calendar
 	 */
 	protected function yearAddTest(&$cal)
 	{
@@ -769,27 +785,27 @@ class AgaviCalendarTest extends BaseCalendarTest
 		 *  Sun Oct 31 1582 / 1582-W42-07 Add(YEAR_WOY, 1) -> Sun Oct 23 1583 / 1583-W42-07
 		 *                                Add(YEAR, 1)     -> Mon Oct 31 1583 / 1583-W44-01
 		 */
-		$y   = $cal->get(AgaviDateDefinitions::YEAR);
-		$mon = $cal->get(AgaviDateDefinitions::MONTH);
-		$day = $cal->get(AgaviDateDefinitions::DATE);
-		$ywy = $cal->get(AgaviDateDefinitions::YEAR_WOY);
-		$woy = $cal->get(AgaviDateDefinitions::WEEK_OF_YEAR);
-		$dow = $cal->get(AgaviDateDefinitions::DOW_LOCAL);
-		$t = $cal.getTime();
+		$y   = $cal->get(DateDefinitions::YEAR);
+		$mon = $cal->get(DateDefinitions::MONTH);
+		$day = $cal->get(DateDefinitions::DATE);
+		$ywy = $cal->get(DateDefinitions::YEAR_WOY);
+		$woy = $cal->get(DateDefinitions::WEEK_OF_YEAR);
+		$dow = $cal->get(DateDefinitions::DOW_LOCAL);
+		$t = $cal->getTime();
 
-		$cal->add(AgaviDateDefinitions::YEAR, 1);
-		$y2   = $cal->get(AgaviDateDefinitions::YEAR);
-		$mon2 = $cal->get(AgaviDateDefinitions::MONTH);
-		$day2 = $cal->get(AgaviDateDefinitions::DATE);
+		$cal->add(DateDefinitions::YEAR, 1);
+		$y2   = $cal->get(DateDefinitions::YEAR);
+		$mon2 = $cal->get(DateDefinitions::MONTH);
+		$day2 = $cal->get(DateDefinitions::DATE);
 		$this->assertEquals($y + 1, $y2);
 		$this->assertEquals($mon, $mon2);
 		$this->assertEquals($day, $day2);
 
 		$cal->setTime($t);
-		$cal->add(AgaviDateDefinitions::YEAR_WOY, 1);
-		$ywy2 = $cal->get(AgaviDateDefinitions::YEAR_WOY);
-		$woy2 = $cal->get(AgaviDateDefinitions::WEEK_OF_YEAR);
-		$dow2 = $cal->get(AgaviDateDefinitions::DOW_LOCAL);
+		$cal->add(DateDefinitions::YEAR_WOY, 1);
+		$ywy2 = $cal->get(DateDefinitions::YEAR_WOY);
+		$woy2 = $cal->get(DateDefinitions::WEEK_OF_YEAR);
+		$dow2 = $cal->get(DateDefinitions::DOW_LOCAL);
 		$this->assertEquals($ywy + 1, $ywy2);
 		$this->assertEquals($woy, $woy2);
 		$this->assertEquals($dow, $dow2);
@@ -797,6 +813,12 @@ class AgaviCalendarTest extends BaseCalendarTest
 
 // -------------------------------------
 
+	/**
+	 * @param $cal Calendar
+	 * @param $times
+	 * @param $field
+	 * @param $field2
+	 */
 	protected function loop_addroll($cal, $times, $field, $field2)
 	{
 		for($i = 0; $i < $times; ++$i) {
@@ -817,34 +839,42 @@ class AgaviCalendarTest extends BaseCalendarTest
 
 // -------------------------------------
 
+	/**
+	 * @param $cal Calendar
+	 * @param $sdf
+	 * @param $times
+	 */
 	protected function doYEAR_WOYLoop($cal, $sdf, $times)
 	{
-		$tstres = new AgaviGregorianCalendar(AgaviLocale::getGermany());
 		for($i = 0; $i < $times; ++$i) {
 			$tstres = clone($cal);
 			$tstres->clear();
-			$tstres->set(AgaviDateDefinitions::YEAR_WOY, $cal->get(AgaviDateDefinitions::YEAR_WOY));
-			$tstres->set(AgaviDateDefinitions::WEEK_OF_YEAR, $cal->get(AgaviDateDefinitions::WEEK_OF_YEAR));
-			$tstres->set(AgaviDateDefinitions::DOW_LOCAL, $cal->get(AgaviDateDefinitions::DOW_LOCAL));
-			$this->assertEquals($cal->get(AgaviDateDefinitions::YEAR), $tstres->get(AgaviDateDefinitions::YEAR));
-			$this->assertEquals($cal->get(AgaviDateDefinitions::DAY_OF_YEAR), $tstres->get(AgaviDateDefinitions::DAY_OF_YEAR));
+			$tstres->set(DateDefinitions::YEAR_WOY, $cal->get(DateDefinitions::YEAR_WOY));
+			$tstres->set(DateDefinitions::WEEK_OF_YEAR, $cal->get(DateDefinitions::WEEK_OF_YEAR));
+			$tstres->set(DateDefinitions::DOW_LOCAL, $cal->get(DateDefinitions::DOW_LOCAL));
+			$this->assertEquals($cal->get(DateDefinitions::YEAR), $tstres->get(DateDefinitions::YEAR));
+			$this->assertEquals($cal->get(DateDefinitions::DAY_OF_YEAR), $tstres->get(DateDefinitions::DAY_OF_YEAR));
 
-			$cal->add(AgaviDateDefinitions::DATE, 1, errorCode);
+			$cal->add(DateDefinitions::DATE, 1, errorCode);
 		}
 	}
 
 // -------------------------------------
 
+	/**
+	 * @param $cal Calendar
+	 * @param $delta
+	 */
 	protected function marchByDelta($cal, $delta)
 	{
 		$cur = clone $cal;
-		$initialDOW = $cur->get(AgaviDateDefinitions::DAY_OF_WEEK);
+		$initialDOW = $cur->get(DateDefinitions::DAY_OF_WEEK);
 		$DOW = 0;
 		$newDOW = $initialDOW;
 		do {
 			$DOW = $newDOW;
-			$cur->add(AgaviDateDefinitions::DAY_OF_WEEK, $delta);
-			$newDOW = $cur->get(AgaviDateDefinitions::DAY_OF_WEEK);
+			$cur->add(DateDefinitions::DAY_OF_WEEK, $delta);
+			$newDOW = $cur->get(DateDefinitions::DAY_OF_WEEK);
 			$expectedDOW = 1 + ($DOW + $delta - 1) % 7;
 			$this->assertEquals($expectedDOW, (int)$newDOW);
 		} while ($newDOW != $initialDOW);
@@ -898,12 +928,12 @@ class AgaviCalendarTest extends BaseCalendarTest
 		for($pass = 1; $pass <= 2; ++$pass) {
 			switch($pass) {
 				case 1:
-					$fdw = AgaviDateDefinitions::MONDAY;
+					$fdw = DateDefinitions::MONDAY;
 					$cal->setFirstDayOfWeek($fdw);
 					$cal->setMinimalDaysInFirstWeek(4);
 					break;
 				case 2:
-					$fdw = AgaviDateDefinitions::MONDAY;
+					$fdw = DateDefinitions::MONDAY;
 					$cal->setFirstDayOfWeek($fdw);
 					$cal->setMinimalDaysInFirstWeek(2);
 					break;
@@ -912,19 +942,19 @@ class AgaviCalendarTest extends BaseCalendarTest
 			//for (i=2; i<=6; ++i) {
 			for($i = 0; $i < 16; ++$i) {
 				$cal->clear();
-				$cal->set(1999, AgaviDateDefinitions::DECEMBER, 26 + $i);
+				$cal->set(1999, DateDefinitions::DECEMBER, 26 + $i);
 				$t = $cal->getTime();
-				$dow = $cal->get(AgaviDateDefinitions::DAY_OF_WEEK);
-				$woy = $cal->get(AgaviDateDefinitions::WEEK_OF_YEAR);
-				$year = $cal->get(AgaviDateDefinitions::YEAR);
-				$mon = $cal->get(AgaviDateDefinitions::MONTH);
+				$dow = $cal->get(DateDefinitions::DAY_OF_WEEK);
+				$woy = $cal->get(DateDefinitions::WEEK_OF_YEAR);
+				$year = $cal->get(DateDefinitions::YEAR);
+				$mon = $cal->get(DateDefinitions::MONTH);
 				$dowLocal = $dow - $fdw;
 				if($dowLocal < 0) {
 					$dowLocal += 7;
 				}
 				++$dowLocal;
 				$yearWoy = $year;
-				if($mon == AgaviDateDefinitions::JANUARY) {
+				if($mon == DateDefinitions::JANUARY) {
 					if($woy >= 52) {
 						--$yearWoy;
 					}
@@ -938,12 +968,12 @@ class AgaviCalendarTest extends BaseCalendarTest
 				// Since Y/WOY is ambiguous, we do a check of the fields,
 				// not of the specific time.
 				$cal->clear();
-				$cal->set(AgaviDateDefinitions::YEAR, $year);
-				$cal->set(AgaviDateDefinitions::WEEK_OF_YEAR, $woy);
-				$cal->set(AgaviDateDefinitions::DAY_OF_WEEK, $dow);
-				$t_y = $cal->get(AgaviDateDefinitions::YEAR);
-				$t_woy = $cal->get(AgaviDateDefinitions::WEEK_OF_YEAR);
-				$t_dow = $cal->get(AgaviDateDefinitions::DAY_OF_WEEK);
+				$cal->set(DateDefinitions::YEAR, $year);
+				$cal->set(DateDefinitions::WEEK_OF_YEAR, $woy);
+				$cal->set(DateDefinitions::DAY_OF_WEEK, $dow);
+				$t_y = $cal->get(DateDefinitions::YEAR);
+				$t_woy = $cal->get(DateDefinitions::WEEK_OF_YEAR);
+				$t_dow = $cal->get(DateDefinitions::DAY_OF_WEEK);
 				$this->assertEquals($year, $t_y);
 				$this->assertEquals($woy, $t_woy);
 				$this->assertEquals($dow, $t_dow);
@@ -952,29 +982,29 @@ class AgaviCalendarTest extends BaseCalendarTest
 				// Since Y/WOY is ambiguous, we do a check of the fields,
 				// not of the specific time.
 				$cal->clear();
-				$cal->set(AgaviDateDefinitions::YEAR, $year);
-				$cal->set(AgaviDateDefinitions::WEEK_OF_YEAR, $woy);
-				$cal->set(AgaviDateDefinitions::DOW_LOCAL, $dowLocal);
-				$t_y = $cal->get(AgaviDateDefinitions::YEAR);
-				$t_woy = $cal->get(AgaviDateDefinitions::WEEK_OF_YEAR);
-				$t_dow = $cal->get(AgaviDateDefinitions::DOW_LOCAL);
+				$cal->set(DateDefinitions::YEAR, $year);
+				$cal->set(DateDefinitions::WEEK_OF_YEAR, $woy);
+				$cal->set(DateDefinitions::DOW_LOCAL, $dowLocal);
+				$t_y = $cal->get(DateDefinitions::YEAR);
+				$t_woy = $cal->get(DateDefinitions::WEEK_OF_YEAR);
+				$t_dow = $cal->get(DateDefinitions::DOW_LOCAL);
 				$this->assertEquals($year, $t_y);
 				$this->assertEquals($woy, $t_woy);
 				$this->assertEquals($dowLocal, $t_dow);
 
 				// Basic fields->time check y_woy/woy/dow
 				$cal->clear();
-				$cal->set(AgaviDateDefinitions::YEAR_WOY, $yearWoy);
-				$cal->set(AgaviDateDefinitions::WEEK_OF_YEAR, $woy);
-				$cal->set(AgaviDateDefinitions::DAY_OF_WEEK, $dow);
+				$cal->set(DateDefinitions::YEAR_WOY, $yearWoy);
+				$cal->set(DateDefinitions::WEEK_OF_YEAR, $woy);
+				$cal->set(DateDefinitions::DAY_OF_WEEK, $dow);
 				$t2 = $cal->getTime();
 				$this->assertEquals($t, $t2);
 
 				// Basic fields->time check y_woy/woy/dow_local
 				$cal->clear();
-				$cal->set(AgaviDateDefinitions::YEAR_WOY, $yearWoy);
-				$cal->set(AgaviDateDefinitions::WEEK_OF_YEAR, $woy);
-				$cal->set(AgaviDateDefinitions::DOW_LOCAL, $dowLocal);
+				$cal->set(DateDefinitions::YEAR_WOY, $yearWoy);
+				$cal->set(DateDefinitions::WEEK_OF_YEAR, $woy);
+				$cal->set(DateDefinitions::DOW_LOCAL, $dowLocal);
 				$t2 = $cal->getTime();
 				$this->assertEquals($t, $t2);
 
@@ -984,8 +1014,8 @@ class AgaviCalendarTest extends BaseCalendarTest
 					$wrongDow += 7;
 				}
 				$cal->setTime($t);
-				$cal->set(AgaviDateDefinitions::DAY_OF_WEEK, $wrongDow);
-				$cal->set(AgaviDateDefinitions::DOW_LOCAL, $dowLocal);
+				$cal->set(DateDefinitions::DAY_OF_WEEK, $wrongDow);
+				$cal->set(DateDefinitions::DOW_LOCAL, $dowLocal);
 				$t2 = $cal->getTime();
 				$this->assertEquals($t, $t2);
 
@@ -995,22 +1025,22 @@ class AgaviCalendarTest extends BaseCalendarTest
 					$wrongDowLocal += 7;
 				}
 				$cal->setTime($t);
-				$cal->set(AgaviDateDefinitions::DOW_LOCAL, $wrongDowLocal);
-				$cal->set(AgaviDateDefinitions::DAY_OF_WEEK, $dow);
+				$cal->set(DateDefinitions::DOW_LOCAL, $wrongDowLocal);
+				$cal->set(DateDefinitions::DAY_OF_WEEK, $dow);
 				$t2 = $cal->getTime();
 				$this->assertEquals($t, $t2);
 
 				// Make sure YEAR_WOY disambiguates over YEAR
 				$cal->setTime($t);
-				$cal->set(AgaviDateDefinitions::YEAR, $year - 2);
-				$cal->set(AgaviDateDefinitions::YEAR_WOY, $yearWoy);
+				$cal->set(DateDefinitions::YEAR, $year - 2);
+				$cal->set(DateDefinitions::YEAR_WOY, $yearWoy);
 				$t2 = $cal->getTime();
 				$this->assertEquals($t, $t2);
 
 				// Make sure YEAR disambiguates over YEAR_WOY
 				$cal->setTime($t);
-				$cal->set(AgaviDateDefinitions::YEAR_WOY, $yearWoy - 2);
-				$cal->set(AgaviDateDefinitions::YEAR, $year);
+				$cal->set(DateDefinitions::YEAR_WOY, $yearWoy - 2);
+				$cal->set(DateDefinitions::YEAR, $year);
 				$t2 = $cal->getTime();
 				$this->assertEquals($t, $t2);
 			}
@@ -1032,9 +1062,9 @@ class AgaviCalendarTest extends BaseCalendarTest
 		for($i = 27; $i <= 33; ++$i) {
 			for($amount = -7; $amount <= 7; ++$amount) {
 				$str = "roll(";
-				$cal->set(1999, AgaviDateDefinitions::DECEMBER, $i);
+				$cal->set(1999, DateDefinitions::DECEMBER, $i);
 
-				$cal->roll(AgaviDateDefinitions::DOW_LOCAL, $amount);
+				$cal->roll(DateDefinitions::DOW_LOCAL, $amount);
 
 				$t = $cal->getTime();
 				$newDom = $i + $amount;
@@ -1044,7 +1074,7 @@ class AgaviCalendarTest extends BaseCalendarTest
 				while($newDom > 33) {
 					$newDom -= 7;
 				}
-				$cal->set(1999, AgaviDateDefinitions::DECEMBER, $newDom);
+				$cal->set(1999, DateDefinitions::DECEMBER, $newDom);
 				$t2 = $cal->getTime();
 
 				$this->assertEquals($t, $t2);
@@ -1056,37 +1086,37 @@ class AgaviCalendarTest extends BaseCalendarTest
 	{
 		$cal = $this->tm->createCalendar();
 
-		$cal->setFirstDayOfWeek(AgaviDateDefinitions::SUNDAY);
+		$cal->setFirstDayOfWeek(DateDefinitions::SUNDAY);
 		$cal->setMinimalDaysInFirstWeek(1);
 
 		$cal->clear();
-		$cal->set(AgaviDateDefinitions::YEAR_WOY, 2004);
-		$cal->set(AgaviDateDefinitions::WEEK_OF_YEAR, 1);
-		$cal->set(AgaviDateDefinitions::DAY_OF_WEEK, AgaviDateDefinitions::MONDAY);
+		$cal->set(DateDefinitions::YEAR_WOY, 2004);
+		$cal->set(DateDefinitions::WEEK_OF_YEAR, 1);
+		$cal->set(DateDefinitions::DAY_OF_WEEK, DateDefinitions::MONDAY);
 
-		$this->assertEquals(2003, $cal->get(AgaviDateDefinitions::YEAR));
-
-		$cal->clear();
-		$cal->set(AgaviDateDefinitions::YEAR_WOY, 2004);
-		$cal->set(AgaviDateDefinitions::WEEK_OF_YEAR, 1);
-		$cal->set(AgaviDateDefinitions::DAY_OF_WEEK, AgaviDateDefinitions::THURSDAY);
-
-		$this->assertEquals(2004, $cal->get(AgaviDateDefinitions::YEAR));
+		$this->assertEquals(2003, $cal->get(DateDefinitions::YEAR));
 
 		$cal->clear();
-		$cal->set(AgaviDateDefinitions::YEAR_WOY, 2004);
-		$cal->set(AgaviDateDefinitions::WEEK_OF_YEAR, 1);
-		$cal->set(AgaviDateDefinitions::DAY_OF_WEEK, AgaviDateDefinitions::THURSDAY);
-		$cal->set(AgaviDateDefinitions::DOW_LOCAL, 1);
+		$cal->set(DateDefinitions::YEAR_WOY, 2004);
+		$cal->set(DateDefinitions::WEEK_OF_YEAR, 1);
+		$cal->set(DateDefinitions::DAY_OF_WEEK, DateDefinitions::THURSDAY);
 
-		$this->assertEquals(2003, $cal->get(AgaviDateDefinitions::YEAR));
+		$this->assertEquals(2004, $cal->get(DateDefinitions::YEAR));
 
-		$cal->setFirstDayOfWeek(AgaviDateDefinitions::MONDAY);
+		$cal->clear();
+		$cal->set(DateDefinitions::YEAR_WOY, 2004);
+		$cal->set(DateDefinitions::WEEK_OF_YEAR, 1);
+		$cal->set(DateDefinitions::DAY_OF_WEEK, DateDefinitions::THURSDAY);
+		$cal->set(DateDefinitions::DOW_LOCAL, 1);
+
+		$this->assertEquals(2003, $cal->get(DateDefinitions::YEAR));
+
+		$cal->setFirstDayOfWeek(DateDefinitions::MONDAY);
 		$cal->setMinimalDaysInFirstWeek(4);
 		$t = 946713600000.0;
 		$cal->setTime($t);
-		$cal->set(AgaviDateDefinitions::DAY_OF_WEEK, 4);
-		$cal->set(AgaviDateDefinitions::DOW_LOCAL, 6);
+		$cal->set(DateDefinitions::DAY_OF_WEEK, 4);
+		$cal->set(DateDefinitions::DOW_LOCAL, 6);
 		$this->assertEquals($t, $cal->getTime());
 	}
 
@@ -1094,14 +1124,14 @@ class AgaviCalendarTest extends BaseCalendarTest
 	{
 		$kEpochStartAsJulianDay = 2440588;
 		$cal = $this->tm->createCalendar();
-		$cal->setTimeZone(AgaviTimeZone::getGMT($this->tm));
+		$cal->setTimeZone(TimeZone::getGMT($this->tm));
 		$cal->clear();
-		$jd = $cal->get(AgaviDateDefinitions::JULIAN_DAY);
+		$jd = $cal->get(DateDefinitions::JULIAN_DAY);
 		$this->assertEquals($kEpochStartAsJulianDay, (int)$jd);
 		
-		$cal->setTime(AgaviCalendar::getNow());
+		$cal->setTime(Calendar::getNow());
 		$cal->clear();
-		$cal->set(AgaviDateDefinitions::JULIAN_DAY, $kEpochStartAsJulianDay);
+		$cal->set(DateDefinitions::JULIAN_DAY, $kEpochStartAsJulianDay);
 		$epochTime = $cal->getTime();
 		$this->assertEquals(0, (int)$epochTime);
 	}

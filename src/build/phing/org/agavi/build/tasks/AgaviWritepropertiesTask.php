@@ -71,7 +71,7 @@ class AgaviWritepropertiesTask extends AgaviTask
 	public function main()
 	{
 		if($this->file === null) {
-			throw new BuildException('The file attribute must be set');
+			throw new \Agavi\Build\Exception\BuildException('The file attribute must be set');
 		}
 		
 		$properties = new Properties();

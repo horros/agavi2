@@ -1,11 +1,15 @@
 <?php
+namespace Agavi\Tests\Unit\Validator;
+use Agavi\Request\RequestDataHolder;
+use Agavi\Testing\UnitTestCase;
+use Agavi\View\View;
 
-class SampleView extends AgaviView
+class SampleView extends View
 {
-	public function execute(AgaviRequestDataHolder $rd) {}
+	public function execute(RequestDataHolder $rd) {}
 }
 
-class ViewTest extends AgaviUnitTestCase
+class ViewTest extends UnitTestCase
 {
 	private 
 		$_v = null, 

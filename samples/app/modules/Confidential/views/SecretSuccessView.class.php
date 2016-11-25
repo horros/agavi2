@@ -1,9 +1,10 @@
 <?php
+use Agavi\Request\RequestDataHolder;
 
-class Confidential_SecretSuccessView extends AgaviSampleAppConfidentialBaseView
+class Confidential_SecretSuccessView extends SampleAppConfidentialBaseView
 {
 
-	public function executeHtml(AgaviRequestDataHolder $rd)
+	public function executeHtml(RequestDataHolder $rd)
 	{
 		$this->setupHtml($rd);
 

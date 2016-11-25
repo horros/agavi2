@@ -1,13 +1,18 @@
 <?php
-abstract class AgaviWebRequestDataHolderTest extends AgaviUnitTestCase
+namespace Agavi\Tests\Unit\Request;
+
+use Agavi\Request\WebRequestDataHolder;
+use Agavi\Testing\UnitTestCase;
+
+abstract class AgaviWebRequestDataHolderTest extends UnitTestCase
 {
 	protected function getDefaultDataHolder()
 	{
-		return new AgaviWebRequestDataHolder(
+		return new WebRequestDataHolder(
 			array(
-				AgaviWebRequestDataHolder::SOURCE_COOKIES => $this->getDefaultNestedInputData(),
-				AgaviWebRequestDataHolder::SOURCE_PARAMETERS => $this->getDefaultNestedInputData(),
-				AgaviWebRequestDataHolder::SOURCE_HEADERS => $this->getDefaultHeaders(),
+				WebRequestDataHolder::SOURCE_COOKIES => $this->getDefaultNestedInputData(),
+				WebRequestDataHolder::SOURCE_PARAMETERS => $this->getDefaultNestedInputData(),
+				WebRequestDataHolder::SOURCE_HEADERS => $this->getDefaultHeaders(),
 			)
 		);
 	}
@@ -28,7 +33,7 @@ abstract class AgaviWebRequestDataHolderTest extends AgaviUnitTestCase
 			'falsevalue'  => false,
 			'emptystring' => '',
 			'zerovalue'   => 0,
-			'objectvalue' => new stdClass(),
+			'objectvalue' => new \stdClass(),
 		);
 	}
 	

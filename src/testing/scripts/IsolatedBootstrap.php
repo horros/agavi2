@@ -1,4 +1,6 @@
 <?php
+use Agavi\Config\Config;
+use Agavi\Util\Toolkit;
 
 $agaviTestSettings = $GLOBALS['AGAVI_TESTING_ISOLATED_TEST_SETTINGS'];
 unset($GLOBALS['AGAVI_TESTING_ISOLATED_TEST_SETTINGS']);
@@ -10,12 +12,12 @@ if($agaviTestSettings['bootstrap'] || $agaviTestSettings['clearCache']) {
 if($agaviTestSettings['bootstrap']) {
 	// when agavi is not bootstrapped we don't want / need to load the agavi config
 	// values from outside the isolation
-	AgaviConfig::fromArray($GLOBALS['AGAVI_TESTING_CONFIG']);
+	Config::fromArray($GLOBALS['AGAVI_TESTING_CONFIG']);
 }
 unset($GLOBALS['AGAVI_TESTING_CONFIG']);
 
 if($agaviTestSettings['clearCache']) {
-	AgaviToolkit::clearCache();
+	Toolkit::clearCache();
 }
 
 $env = null;
@@ -25,11 +27,11 @@ if($agaviTestSettings['environment']) {
 }
 
 if($agaviTestSettings['bootstrap']) {
-	AgaviTesting::bootstrap($env);
+	\Agavi\Testing\AgaviTesting::bootstrap($env);
 }
 
 if($agaviTestSettings['defaultContext']) {
-	AgaviConfig::set('core.default_context', $agaviTestSettings['defaultContext']);
+	Config::set('core.default_context', $agaviTestSettings['defaultContext']);
 }
 
 if(!defined('AGAVI_TESTING_BOOTSTRAPPED')) {

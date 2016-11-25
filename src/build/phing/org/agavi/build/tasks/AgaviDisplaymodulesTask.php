@@ -52,7 +52,7 @@ class AgaviDisplaymodulesTask extends AgaviTask
 			throw new BuildException('The path attribute must be specified');
 		}
 		
-		$check = new AgaviProjectFilesystemCheck();
+		$check = new \Agavi\Build\Check\ProjectFilesystemCheck();
 		$check->setAppDirectory($this->project->getProperty('project.directory.app'));
 		$check->setPubDirectory($this->project->getProperty('project.directory.pub'));
 		
@@ -66,7 +66,7 @@ class AgaviDisplaymodulesTask extends AgaviTask
 				continue;
 			}
 			
-			$check = new AgaviModuleFilesystemCheck();
+			$check = new \Agavi\Build\Check\ModuleFilesystemCheck();
 			$check->setConfigDirectory($this->project->getProperty('module.config.directory'));
 			
 			$check->setPath($file->getPathname());

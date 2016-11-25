@@ -102,7 +102,7 @@ class AgaviIterateTask extends AgaviTask
 			throw new BuildException('The target attribute must be specified');
 		}
 		
-		$transform = new AgaviStringtoarrayTransform();
+		$transform = new \Agavi\Build\Transform\StringtoarrayTransform();
 		$transform->setInput($this->list);
 		$transform->setDelimiter($this->delimiter);
 		

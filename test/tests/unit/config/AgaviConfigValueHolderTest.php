@@ -1,10 +1,14 @@
 <?php
+namespace Agavi\Tests\Unit\Config;
 
-class AgaviConfigValueHolderTest extends AgaviUnitTestCase
+use Agavi\Config\ConfigValueHolder;
+use Agavi\Testing\UnitTestCase;
+
+class ConfigValueHolderTest extends UnitTestCase
 {
 	public function testInitialState()
 	{
-		$vh = new AgaviConfigValueHolder();
+		$vh = new ConfigValueHolder();
 		$this->assertSame('', $vh->getName());
 		$this->assertSame(array(), $vh->getAttributes());
 		$this->assertSame(array(), $vh->getChildren());
@@ -13,7 +17,7 @@ class AgaviConfigValueHolderTest extends AgaviUnitTestCase
 
 	public function testSetName()
 	{
-		$vh = new AgaviConfigValueHolder();
+		$vh = new ConfigValueHolder();
 		$vh->setName('test1');
 		$this->assertSame('test1', $vh->getName());
 		$vh->setName('test2');
@@ -22,9 +26,9 @@ class AgaviConfigValueHolderTest extends AgaviUnitTestCase
 
 	public function testAddChildren()
 	{
-		$vh = new AgaviConfigValueHolder();
-		$vhChild1 = new AgaviConfigValueHolder();
-		$vhChild2 = new AgaviConfigValueHolder();
+		$vh = new ConfigValueHolder();
+		$vhChild1 = new ConfigValueHolder();
+		$vhChild2 = new ConfigValueHolder();
 
 		$vh->addChildren('child1', $vhChild1);
 		$vh->addChildren('child2', $vhChild2);
@@ -36,9 +40,9 @@ class AgaviConfigValueHolderTest extends AgaviUnitTestCase
 
 	public function testAppendChildren()
 	{
-		$vh = new AgaviConfigValueHolder();
-		$vhChild1 = new AgaviConfigValueHolder();
-		$vhChild2 = new AgaviConfigValueHolder();
+		$vh = new ConfigValueHolder();
+		$vhChild1 = new ConfigValueHolder();
+		$vhChild2 = new ConfigValueHolder();
 
 		$vh->appendChildren($vhChild1);
 		$vh->appendChildren($vhChild2);
@@ -49,9 +53,9 @@ class AgaviConfigValueHolderTest extends AgaviUnitTestCase
 
 	public function testHasChildren()
 	{
-		$vh = new AgaviConfigValueHolder();
-		$vhChild1 = new AgaviConfigValueHolder();
-		$vhChild2 = new AgaviConfigValueHolder();
+		$vh = new ConfigValueHolder();
+		$vhChild1 = new ConfigValueHolder();
+		$vhChild2 = new ConfigValueHolder();
 
 		$this->assertFalse($vh->hasChildren());
 		$this->assertFalse($vh->hasChildren('child1'));
@@ -65,10 +69,10 @@ class AgaviConfigValueHolderTest extends AgaviUnitTestCase
 
 	public function testGetChildren()
 	{
-		$vh = new AgaviConfigValueHolder();
-		$vhChild1 = new AgaviConfigValueHolder();
-		$vhChild2 = new AgaviConfigValueHolder();
-		$vhChild3 = new AgaviConfigValueHolder();
+		$vh = new ConfigValueHolder();
+		$vhChild1 = new ConfigValueHolder();
+		$vhChild2 = new ConfigValueHolder();
+		$vhChild3 = new ConfigValueHolder();
 
 		$vh->addChildren('child1', $vhChild1);
 		$vh->addChildren('child2', $vhChild2);
@@ -84,7 +88,7 @@ class AgaviConfigValueHolderTest extends AgaviUnitTestCase
 
 	public function testSetAttribute()
 	{
-		$vh = new AgaviConfigValueHolder();
+		$vh = new ConfigValueHolder();
 
 		$vh->setAttribute('attr1', 'val1');
 		$vh->setAttribute('attr2', 'val2');
@@ -96,7 +100,7 @@ class AgaviConfigValueHolderTest extends AgaviUnitTestCase
 
 	public function testHasAttribute()
 	{
-		$vh = new AgaviConfigValueHolder();
+		$vh = new ConfigValueHolder();
 
 		$this->assertFalse($vh->hasAttribute('attr1'));
 		$this->assertFalse($vh->hasAttribute('attr2'));
@@ -111,7 +115,7 @@ class AgaviConfigValueHolderTest extends AgaviUnitTestCase
 
 	public function testGetAttribute()
 	{
-		$vh = new AgaviConfigValueHolder();
+		$vh = new ConfigValueHolder();
 
 		$this->assertNull($vh->getAttribute('attr1'));
 		$this->assertSame('default1', $vh->getAttribute('attr1', 'default1'));
@@ -124,7 +128,7 @@ class AgaviConfigValueHolderTest extends AgaviUnitTestCase
 
 	public function testGetAttributes()
 	{
-		$vh = new AgaviConfigValueHolder();
+		$vh = new ConfigValueHolder();
 		$vh->setAttribute('attr1', 'val1');
 		$vh->setAttribute('attr2', 'val2');
 		$vh->setAttribute('attr3', 'val3');
@@ -137,7 +141,7 @@ class AgaviConfigValueHolderTest extends AgaviUnitTestCase
 
 	public function testSetGetValue()
 	{
-		$vh = new AgaviConfigValueHolder();
+		$vh = new ConfigValueHolder();
 
 		$vh->setValue('value');
 		$this->assertSame('value', $vh->getValue());
@@ -147,9 +151,9 @@ class AgaviConfigValueHolderTest extends AgaviUnitTestCase
 
 	public function testArrayInterface()
 	{
-		$vh = new AgaviConfigValueHolder();
-		$vhChild1 = new AgaviConfigValueHolder();
-		$vhChild2 = new AgaviConfigValueHolder();
+		$vh = new ConfigValueHolder();
+		$vhChild1 = new ConfigValueHolder();
+		$vhChild2 = new ConfigValueHolder();
 
 		$this->assertFalse(isset($vh['child1']));
 		$this->assertNull($vh['child1']);
@@ -165,10 +169,10 @@ class AgaviConfigValueHolderTest extends AgaviUnitTestCase
 
 	public function testIteratorIterface()
 	{
-		$vh = new AgaviConfigValueHolder();
-		$vhChild1 = new AgaviConfigValueHolder();
-		$vhChild2 = new AgaviConfigValueHolder();
-		$vhChild3 = new AgaviConfigValueHolder();
+		$vh = new ConfigValueHolder();
+		$vhChild1 = new ConfigValueHolder();
+		$vhChild2 = new ConfigValueHolder();
+		$vhChild3 = new ConfigValueHolder();
 
 		$vh->addChildren('child1', $vhChild1);
 		$vh->addChildren('child2', $vhChild2);
@@ -181,7 +185,7 @@ class AgaviConfigValueHolderTest extends AgaviUnitTestCase
 			++$i;
 		}
 
-		$vh2 = new AgaviConfigValueHolder();
+		$vh2 = new ConfigValueHolder();
 
 		$vh2->appendChildren($vhChild1);
 		$vh2->appendChildren($vhChild2);

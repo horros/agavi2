@@ -49,15 +49,15 @@ class AgaviDisplayactionsTask extends AgaviTask
 	public function main()
 	{
 		if($this->path === null) {
-			throw new BuildException('The path attribute must be specified');
+			throw new \Agavi\Build\Exception\BuildException('The path attribute must be specified');
 		}
 		
-		$check = new AgaviModuleFilesystemCheck();
+		$check = new \Agavi\Build\Check\ModuleFilesystemCheck();
 		$check->setConfigDirectory($this->project->getProperty('module.config.directory'));
 		
 		$check->setPath($this->path->getAbsolutePath());
 		if(!$check->check()) {
-			throw new BuildException('The path attribute must be a valid module base directory');
+			throw new \Agavi\Build\Exception\BuildException('The path attribute must be a valid module base directory');
 		}
 		
 		/* We don't know whether the module is configured or not here, so load the
@@ -65,15 +65,15 @@ class AgaviDisplayactionsTask extends AgaviTask
 		$this->tryLoadAgavi();
 		$this->tryBootstrapAgavi();
 		
-		require_once(AgaviConfigCache::checkConfig(
+		require_once(\Agavi\Config\ConfigCache::checkConfig(
 			sprintf('%s/%s/module.xml',
 				$this->path->getAbsolutePath(),
 				(string)$this->project->getProperty('module.config.directory')
 			)
 		));
 		
-		$actionPath = AgaviToolkit::expandVariables(
-			AgaviToolkit::expandDirectives(AgaviConfig::get(
+		$actionPath = \Agavi\Util\Toolkit::expandVariables(
+			\Agavi\Util\Toolkit::expandDirectives(\Agavi\Config\Config::get(
 				sprintf('modules.%s.agavi.action.path', strtolower($this->path->getName())),
 				'%core.module_dir%/${moduleName}/actions/${actionName}Action.class.php'
 			)),
@@ -81,7 +81,7 @@ class AgaviDisplayactionsTask extends AgaviTask
 				'moduleName' => $this->path->getName()
 			)
 		);
-		$pattern = '#^' . AgaviToolkit::expandVariables(
+		$pattern = '#^' . \Agavi\Util\Toolkit::expandVariables(
 			/* Blaaaaaaaaauuuuuughhhhhhh... */
 			str_replace('\\$\\{actionName\\}', '${actionName}', preg_quote($actionPath, '#')),
 			array('actionName' => '(?P<action_name>.*?)')

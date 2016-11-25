@@ -1,6 +1,6 @@
 <?php
 
-class TestTicket695RoutingCallback extends AgaviRoutingCallback
+class TestTicket695RoutingCallback extends \Agavi\Routing\RoutingCallback
 {
 	/**
 	 * Gets executed when the route of this callback is about to be reverse 
@@ -17,7 +17,7 @@ class TestTicket695RoutingCallback extends AgaviRoutingCallback
 	 */
 	public function onGenerate(array $defaultParameters, array &$userParameters, array &$userOptions)
 	{
-		throw new AgaviException('called');
+		throw new Exception('called');
 	}
 }
 

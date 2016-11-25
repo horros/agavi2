@@ -89,7 +89,7 @@ class AgaviAvailableTask extends AgaviTask
 			$this->type = self::TYPE_DIRECTORY;
 			break;
 		default:
-			throw new BuildException('The type attribute must be one of {any, file, directory}');
+			throw new \Agavi\Build\Exception\BuildException('The type attribute must be one of {any, file, directory}');
 		}
 	}
 	
@@ -99,10 +99,10 @@ class AgaviAvailableTask extends AgaviTask
 	public function main()
 	{
 		if($this->property === null) {
-			throw new BuildException('The property attribute must be specified');
+			throw new \Agavi\Build\Exception\BuildException('The property attribute must be specified');
 		}
 		if($this->file === null) {
-			throw new BuildException('The file attribute must be specified');
+			throw new \Agavi\Build\Exception\BuildException('The file attribute must be specified');
 		}
 		
 		if($this->evaluate()) {

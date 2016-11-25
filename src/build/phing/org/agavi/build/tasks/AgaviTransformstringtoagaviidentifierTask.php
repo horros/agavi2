@@ -40,10 +40,10 @@ class AgaviTransformstringtoagaviidentifierTask extends AgaviTransformstringtoid
 	public function main()
 	{
 		if($this->property === null) {
-			throw new BuildException('The property attribute must be specified');
+			throw new \Agavi\Build\Exception\BuildException('The property attribute must be specified');
 		}
 		if($this->string === null || strlen($this->string) === 0) {
-			throw new BuildException('The string attribute must be specified and must be non-empty');
+			throw new \Agavi\Build\Exception\BuildException('The string attribute must be specified and must be non-empty');
 		}
 
 		$this->string = ucfirst(strtolower($this->string));

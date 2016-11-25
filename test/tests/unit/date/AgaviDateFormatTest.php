@@ -1,18 +1,24 @@
 <?php
+namespace Agavi\Testing\Unit\Date;
+use Agavi\Date\Calendar;
+use Agavi\Date\DateFormat;
+use Agavi\Date\SimpleTimeZone;
+use Agavi\Testing\UnitTestCase;
+use Agavi\Translation\Locale;
 
-class AgaviDateFormatTest extends AgaviUnitTestCase
+class AgaviDateFormatTest extends UnitTestCase
 {
 
 	public function testParse()
 	{
 		$locale = $this->getContext()->getTranslationManager()->getLocale('@timezone=GMT+0200');
-		$inputFormat = new AgaviDateFormat('yyyy-MM-dd HH:mm:ss');
+		$inputFormat = new DateFormat('yyyy-MM-dd HH:mm:ss');
 
 		$cal = $inputFormat->parse('2008-11-19 23:00:00', $locale, false);
 		
 		$tz = $cal->getTimeZone();
 		$this->assertEquals('GMT+0200', $tz->getId(), 'Failed asserting that the created timezone is a custom timezone.');
-		$this->assertTrue(($tz instanceof AgaviSimpleTimezone), 'Failed asserting that the created tz is an AgaviSimpleTimezone.');
+		$this->assertTrue(($tz instanceof SimpleTimeZone), 'Failed asserting that the created tz is an AgaviSimpleTimezone.');
 		$this->assertEquals(2 * 60 * 60 * 1000, $tz->getRawOffset(), 'Failed asserting that the timezone has the proper offset.');
 	}
 	
@@ -20,7 +26,7 @@ class AgaviDateFormatTest extends AgaviUnitTestCase
 	{
 		$systemZoneId = 'Europe/Moscow';
 		$tm = $this->getContext()->getTranslationManager();
-		$currentLocale = AgaviLocale::parseLocaleIdentifier($tm->getCurrentLocale()->getIdentifier());
+		$currentLocale = Locale::parseLocaleIdentifier($tm->getCurrentLocale()->getIdentifier());
 		$tm->setLocale($currentLocale['locale_str'] . '@timezone=');
 		$tm->setDefaultTimeZone($systemZoneId);
 		$inputFormat = $tm->createDateFormat('yyy-MM-dd HH:mm:ss');
@@ -34,7 +40,7 @@ class AgaviDateFormatTest extends AgaviUnitTestCase
 		$zoneId = 'Europe/Berlin';
 		$tm = $this->getContext()->getTranslationManager();
 		$tm->setDefaultTimeZone('Europe/Moscow');
-		$currentLocale = AgaviLocale::parseLocaleIdentifier($tm->getCurrentLocale()->getIdentifier());
+		$currentLocale = Locale::parseLocaleIdentifier($tm->getCurrentLocale()->getIdentifier());
 		$tm->setLocale($currentLocale['locale_str'] . '@timezone=' . $zoneId);
 		$inputFormat = $tm->createDateFormat('yyy-MM-dd HH:mm:ss');
 		
@@ -59,7 +65,7 @@ class AgaviDateFormatTest extends AgaviUnitTestCase
 	{
 		$systemZoneId = 'Europe/Moscow';
 		$tm = $this->getContext()->getTranslationManager();
-		$currentLocale = AgaviLocale::parseLocaleIdentifier($tm->getCurrentLocale()->getIdentifier());
+		$currentLocale = Locale::parseLocaleIdentifier($tm->getCurrentLocale()->getIdentifier());
 		$tm->setLocale($currentLocale['locale_str'] . '@timezone=');
 		$tm->setDefaultTimeZone($systemZoneId);
 		$inputFormat = $tm->createDateFormat('yyy-MM-dd HH:mm:ss v');
@@ -74,7 +80,7 @@ class AgaviDateFormatTest extends AgaviUnitTestCase
 		$zoneId = 'Europe/Berlin';
 		$tm = $this->getContext()->getTranslationManager();
 		$tm->setDefaultTimeZone('Europe/Moscow');
-		$currentLocale = AgaviLocale::parseLocaleIdentifier($tm->getCurrentLocale()->getIdentifier());
+		$currentLocale = Locale::parseLocaleIdentifier($tm->getCurrentLocale()->getIdentifier());
 		$tm->setLocale($currentLocale['locale_str'] . '@timezone=' . $zoneId);
 		$inputFormat = $tm->createDateFormat('yyy-MM-dd HH:mm:ss v');
 		
@@ -93,7 +99,7 @@ class AgaviDateFormatTest extends AgaviUnitTestCase
 		
 		$cal = $inputFormat->parse('2008-11-19 23:00:00 America/New_York');
 		
-		$this->assertEquals('2008-11-20 04:00:00 ' . $zoneId, $inputFormat->format($cal, AgaviCalendar::GREGORIAN, '@timezone=' . $zoneId));
+		$this->assertEquals('2008-11-20 04:00:00 ' . $zoneId, $inputFormat->format($cal, Calendar::GREGORIAN, '@timezone=' . $zoneId));
 	}
 
 }

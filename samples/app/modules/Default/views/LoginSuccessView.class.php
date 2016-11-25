@@ -12,11 +12,12 @@
 // |   indent-tabs-mode: t                                                     |
 // |   End:                                                                    |
 // +---------------------------------------------------------------------------+
+use Agavi\Request\RequestDataHolder;
 
-class Default_LoginSuccessView extends AgaviSampleAppDefaultBaseView
+class Default_LoginSuccessView extends SampleAppDefaultBaseView
 {
 
-	public function executeHtml(AgaviRequestDataHolder $rd)
+	public function executeHtml(RequestDataHolder $rd)
 	{
 		$res = $this->getResponse();
 

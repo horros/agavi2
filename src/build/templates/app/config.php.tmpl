@@ -11,7 +11,7 @@
 // | This constant will be auto-set by Agavi if you do not supply it.          |
 // | The default value is: <false>                                             |
 // +---------------------------------------------------------------------------+
-// AgaviConfig::set('core.debug', true);
+// Agavi\Config\Config::set('core.debug', true);
 
 // +---------------------------------------------------------------------------+
 // | An absolute filesystem path to the agavi package. This directory          |
@@ -20,7 +20,7 @@
 // | This constant will be auto-set by Agavi if you do not supply it.          |
 // | The default value is the name of the directory "agavi.php" resides in.    |
 // +---------------------------------------------------------------------------+
-// AgaviConfig::set('core.agavi_dir', '%%AGAVI_SOURCE_LOCATION%%');
+// Agavi\Config\Config::set('core.agavi_dir', '%%AGAVI_SOURCE_LOCATION%%');
 
 // +---------------------------------------------------------------------------+
 // | An absolute filesystem path to your web application directory. This       |
@@ -29,7 +29,7 @@
 // | You shouldn't have to change this usually since it's auto-determined.     |
 // | Agavi can't determine this automatically, so you always have to supply it.|
 // +---------------------------------------------------------------------------+
-AgaviConfig::set('core.app_dir', __DIR__);
+Agavi\Config\Config::set('core.app_dir', __DIR__);
 
 // +---------------------------------------------------------------------------+
 // | An absolute filesystem path to the directory where cache files will be    |
@@ -42,7 +42,7 @@ AgaviConfig::set('core.app_dir', __DIR__);
 // | This constant will be auto-set by Agavi if you do not supply it.          |
 // | The default value is: "<core.app_dir>/cache"                              |
 // +---------------------------------------------------------------------------+
-// AgaviConfig::set('core.cache_dir', AgaviConfig::get('core.app_dir') . '/cache');
+// Agavi\Config\Config::set('core.cache_dir', AgaviConfig::get('core.app_dir') . '/cache');
 
 // +---------------------------------------------------------------------------+
 // | You may also modify the following other directives in this file:          |

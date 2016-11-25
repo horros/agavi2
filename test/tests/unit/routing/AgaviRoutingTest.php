@@ -1,7 +1,22 @@
 <?php
+namespace Agavi\Tests\Unit\Routing;
+use Agavi\Config\Config;
+use Agavi\Core\Context;
+use Agavi\Exception\AgaviException;
+use Agavi\Testing\PhpUnitTestCase;
+use Agavi\Testing\Routing\TestingRouting;
 
-class AgaviRoutingTest extends AgaviPhpUnitTestCase
+/**
+ * Class RoutingTest
+ * @package Agavi\Tests\Unit\Routing
+ *
+ * @runInSeparateProcess true
+ */
+class RoutingTest extends PhpUnitTestCase
 {
+	/**
+	 * @var TestingRouting
+	 */
 	protected $routing;
 	protected $parameters = array('enabled' => true);
 	
@@ -19,8 +34,8 @@ class AgaviRoutingTest extends AgaviPhpUnitTestCase
 	
 	public function setUp()
 	{
-		$this->routing = new AgaviTestingRouting();
-		$this->routing->initialize(AgaviContext::getInstance(null), $this->parameters);
+		$this->routing = new TestingRouting();
+		$this->routing->initialize(Context::getInstance(null), $this->parameters);
 		$this->routing->startup();
 	}
 	
@@ -36,23 +51,23 @@ class AgaviRoutingTest extends AgaviPhpUnitTestCase
 	{
 		$this->routing->setInput('');
 		$container = $this->routing->execute();
-		$this->assertEquals(AgaviConfig::get('actions.error_404_action'), $container->getActionName());
-		$this->assertEquals(AgaviConfig::get('actions.error_404_module'), $container->getModuleName());
-		$this->assertEquals(array(), AgaviContext::getInstance(null)->getRequest()->getAttribute('matched_routes', 'org.agavi.routing'));
+		$this->assertEquals(Config::get('actions.error_404_action'), $container->getActionName());
+		$this->assertEquals(Config::get('actions.error_404_module'), $container->getModuleName());
+		$this->assertEquals(array(), Context::getInstance(null)->getRequest()->getAttribute('matched_routes', 'org.agavi.routing'));
 	}
 	
 	public function testExecuteSimpleInput()
 	{
 		$this->routing->setInput('/');
 		$container = $this->routing->execute();
-		$this->assertEquals(AgaviConfig::get('actions.default_action'), $container->getActionName());
-		$this->assertEquals(AgaviConfig::get('actions.default_module'), $container->getModuleName());
-		$this->assertEquals(array('index'), AgaviContext::getInstance(null)->getRequest()->getAttribute('matched_routes', 'org.agavi.routing'));
+		$this->assertEquals(Config::get('actions.default_action'), $container->getActionName());
+		$this->assertEquals(Config::get('actions.default_module'), $container->getModuleName());
+		$this->assertEquals(array('index'), Context::getInstance(null)->getRequest()->getAttribute('matched_routes', 'org.agavi.routing'));
 	}
 	
 	public function testExecuteUserAuthenticated()
 	{
-		$ctx = AgaviContext::getInstance(null);
+		$ctx = Context::getInstance(null);
 		$ctx->getUser()->setAuthenticated(true);
 		$this->routing->setInput('/');
 		$container = $this->routing->execute();
@@ -65,7 +80,7 @@ class AgaviRoutingTest extends AgaviPhpUnitTestCase
 	public function testExecuteServer()
 	{	
 		$_SERVER['routing_test'] = 'foo';
-		$ctx = AgaviContext::getInstance(null);
+		$ctx = Context::getInstance(null);
 		$this->routing->setInput('/');
 		$this->routing->setRoutingSource('_SERVER', $_SERVER);
 		$container = $this->routing->execute();
@@ -78,7 +93,7 @@ class AgaviRoutingTest extends AgaviPhpUnitTestCase
 	{	
 		$data = array();
 		$data['bar'] = 'foo';
-		$ctx = AgaviContext::getInstance(null);
+		$ctx = Context::getInstance(null);
 		$this->routing->setInput('/');
 		$this->routing->setRoutingSource('testingsource', $data);
 		$container = $this->routing->execute();
@@ -90,7 +105,7 @@ class AgaviRoutingTest extends AgaviPhpUnitTestCase
 	/*
 	public function testExecuteNonexistantSource()
 	{	
-		$ctx = AgaviContext::getInstance(null);
+		$ctx = Context::getInstance(null);
 		$this->routing->setInput('/');
 		$container = $this->routing->execute();
 		$this->assertEquals('Matched', $container->getActionName());
@@ -100,10 +115,10 @@ class AgaviRoutingTest extends AgaviPhpUnitTestCase
 
 	public function testMatchWithParam()
 	{
-		$ctx = AgaviContext::getInstance(null);
+		$ctx = Context::getInstance(null);
 		$this->routing->setInput('/withparam/5');
 		$container = $this->routing->execute();
-		$this->assertEquals(array('with_param'), AgaviContext::getInstance(null)->getRequest()->getAttribute('matched_routes', 'org.agavi.routing'));
+		$this->assertEquals(array('with_param'), Context::getInstance(null)->getRequest()->getAttribute('matched_routes', 'org.agavi.routing'));
 		$this->assertEquals(5, $ctx->getRequest()->getRequestData()->getParameter('number'));
 		$this->assertEquals('MatchedParam', $container->getActionName());
 		$this->assertEquals('TestWithParam', $container->getModuleName());
@@ -111,10 +126,10 @@ class AgaviRoutingTest extends AgaviPhpUnitTestCase
 	
 	public function testMatchWithMultipleParams()
 	{
-		$ctx = AgaviContext::getInstance(null);
+		$ctx = Context::getInstance(null);
 		$this->routing->setInput('/withmultipleparams/5/foo');
 		$container = $this->routing->execute();
-		$this->assertEquals(array('with_two_params'), AgaviContext::getInstance(null)->getRequest()->getAttribute('matched_routes', 'org.agavi.routing'));
+		$this->assertEquals(array('with_two_params'), Context::getInstance(null)->getRequest()->getAttribute('matched_routes', 'org.agavi.routing'));
 		$this->assertEquals(5, $ctx->getRequest()->getRequestData()->getParameter('number'));
 		$this->assertEquals('foo', $ctx->getRequest()->getRequestData()->getParameter('string'));
 		$this->assertEquals('MatchedMultipleParams', $container->getActionName());
@@ -135,14 +150,14 @@ class AgaviRoutingTest extends AgaviPhpUnitTestCase
 	{
 		$this->routing->setInput('/callbacks/nonmatching_callback');
 		$container = $this->routing->execute();
-		$this->assertEquals(array('callbacks'), AgaviContext::getInstance(null)->getRequest()->getAttribute('matched_routes', 'org.agavi.routing'));
-		$this->assertEquals(AgaviConfig::get('actions.error_404_module'), $container->getModuleName());
-		$this->assertEquals(AgaviConfig::get('actions.error_404_action'), $container->getActionName());
+		$this->assertEquals(array('callbacks'), Context::getInstance(null)->getRequest()->getAttribute('matched_routes', 'org.agavi.routing'));
+		$this->assertEquals(Config::get('actions.error_404_module'), $container->getModuleName());
+		$this->assertEquals(Config::get('actions.error_404_action'), $container->getActionName());
 	}
 	
 	public function testMatchingCallback()
 	{
-		$ctx = AgaviContext::getInstance(null);
+		$ctx = Context::getInstance(null);
 		$this->routing->setInput('/callbacks/matching_callback');
 		$container = $this->routing->execute();
 		$this->assertEquals(array('callbacks', 'callbacks.matching_callback'), $ctx->getRequest()->getAttribute('matched_routes', 'org.agavi.routing'));
@@ -222,7 +237,7 @@ class AgaviRoutingTest extends AgaviPhpUnitTestCase
 	public function testEmptyDefaultValue() {
 		$this->routing->setInput('/empty_default_value');
 		$container = $this->routing->execute();
-		$rd = AgaviContext::getInstance(null)->getRequest()->getRequestData();
+		$rd = Context::getInstance(null)->getRequest()->getRequestData();
 		$this->assertSame('0', $rd->getParameter('value'));
 	}
 }

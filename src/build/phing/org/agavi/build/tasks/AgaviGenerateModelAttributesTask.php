@@ -170,15 +170,15 @@ class AgaviGenerateModelAttributesTask extends AgaviTask
 	public function main()
 	{
 		if($this->attributeListProperty === null) {
-			throw new BuildException('The attributeListProperty attribute must be specified');
+			throw new \Agavi\Build\Exception\BuildException('The attributeListProperty attribute must be specified');
 		}
 		
 		if($this->attributeAccessorsProperty === null) {
-			throw new BuildException('The attributeAccessorsProperty attribute must be specified');
+			throw new \Agavi\Build\Exception\BuildException('The attributeAccessorsProperty attribute must be specified');
 		}
 		
 		if($this->attributeTemplate === null || !is_readable($this->attributeTemplate)) {
-			throw new BuildException(
+			throw new \Agavi\Build\Exception\BuildException(
 				sprintf(
 					'The attributeTemplate attribute must be specified and must point to a readable template file. Current value is "%1$s".',
 					$this->attributeTemplate
@@ -187,7 +187,7 @@ class AgaviGenerateModelAttributesTask extends AgaviTask
 		}
 		
 		if($this->attributeSetterTemplate === null || !is_readable($this->attributeSetterTemplate)) {
-			throw new BuildException(
+			throw new \Agavi\Build\Exception\BuildException(
 				sprintf(
 					'The attributeSetterTemplate attribute must be specified and must point to a readable template file. Current value is "%1$s".',
 					$this->attributeSetterTemplate
@@ -196,7 +196,7 @@ class AgaviGenerateModelAttributesTask extends AgaviTask
 		}
 		
 		if($this->attributeGetterTemplate === null || !is_readable($this->attributeGetterTemplate)) {
-			throw new BuildException(
+			throw new \Agavi\Build\Exception\BuildException(
 				sprintf(
 					'The attributeGetterTemplate attribute must be specified and must point to a readable template file. Current value is "%1$s".',
 					$this->attributeGetterTemplate

@@ -13,6 +13,11 @@
 // |   End:                                                                    |
 // +---------------------------------------------------------------------------+
 
+namespace Agavi\Exception\Templates;
+
+use Agavi\Config\Config;
+use Agavi\Exception\AgaviException;
+
 /**
  * Plain text exception template
  *
@@ -39,7 +44,7 @@ if(!headers_sent()) {
 }
 
 $cols = 80;
-if(!defined('STDOUT') || (function_exists('posix_isatty') && !posix_isatty(STDOUT))) {
+if(!defined('STDOUT') || (function_exists('posix_isatty') && !@posix_isatty(STDOUT))) {
 	// if output is redirected, do not wrap lines after just 80 characters
 	$cols = false;
 } elseif(file_exists('/bin/stty') && is_executable('/bin/stty') && $sttySize = exec('/bin/stty size 2>/dev/null')) {
@@ -95,7 +100,7 @@ endforeach;
   Version Information
 =======================
 
-  Agavi:     <?php echo $cols ? wordwrap(AgaviConfig::get('agavi.version'), $cols-13, "\n             ", true) : AgaviConfig::get('agavi.version'); ?>
+  Agavi:     <?php echo $cols ? wordwrap(Config::get('agavi.version'), $cols-13, "\n             ", true) : Config::get('agavi.version'); ?>
 
   PHP:       <?php echo $cols ? wordwrap(phpversion(), $cols-13, "\n             ", true) : phpversion(); ?>
 

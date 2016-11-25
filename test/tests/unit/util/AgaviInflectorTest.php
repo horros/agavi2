@@ -1,13 +1,16 @@
 <?php
+namespace Agavi\Tests\Unit\Util;
+use Agavi\Testing\PhpUnitTestCase;
+use Agavi\Util\Inflector;
 
-class AgaviInflectorTest extends AgaviPhpUnitTestCase
+class InflectorTest extends PhpUnitTestCase
 {
 	/**
 	 * @dataProvider singularPluralTestData
 	 */
 	public function testSingularize($singular, $plural)
 	{
-		$this->assertEquals($singular, AgaviInflector::singularize($plural));
+		$this->assertEquals($singular, Inflector::singularize($plural));
 	}
 	
 	/**
@@ -15,7 +18,7 @@ class AgaviInflectorTest extends AgaviPhpUnitTestCase
 	 */
 	public function testPluralize($singular, $plural)
 	{
-		$this->assertEquals($plural, AgaviInflector::pluralize($singular));
+		$this->assertEquals($plural, Inflector::pluralize($singular));
 	}
 	
 	public function singularPluralTestData()

@@ -1,23 +1,27 @@
 <?php
+namespace Agavi\Tests\Unit\Logging;
+use Agavi\Logging\LoggerInterface;
+use Agavi\Logging\LoggerMessage;
+use Agavi\Testing\UnitTestCase;
 
-class AgaviLoggerMessageTest extends AgaviUnitTestCase
+class AgaviLoggerMessageTest extends UnitTestCase
 {
 	public function testConstructor()
 	{
-		$message = new AgaviLoggerMessage();
+		$message = new LoggerMessage();
 		$this->assertNull($message->getMessage());
-		$this->assertEquals(AgaviLogger::INFO, $message->getLevel());
-		$message = new AgaviLoggerMessage('test');
+		$this->assertEquals(LoggerInterface::INFO, $message->getLevel());
+		$message = new LoggerMessage('test');
 		$this->assertEquals('test', $message->getMessage());
-		$this->assertEquals(AgaviLogger::INFO, $message->getLevel());
-		$message = new AgaviLoggerMessage('test', AgaviLogger::DEBUG);
+		$this->assertEquals(LoggerInterface::INFO, $message->getLevel());
+		$message = new LoggerMessage('test', LoggerInterface::DEBUG);
 		$this->assertEquals('test', $message->getMessage());
-		$this->assertEquals(AgaviLogger::DEBUG, $message->getLevel());
+		$this->assertEquals(LoggerInterface::DEBUG, $message->getLevel());
 	}
 
 	public function testGetsetappendMessage()
 	{
-		$message = new AgaviLoggerMessage();
+		$message = new LoggerMessage();
 		$message->setMessage('my message');
 		$this->assertEquals('my message', $message->getMessage());
 		$message->setMessage('my message 2');
@@ -28,7 +32,7 @@ class AgaviLoggerMessageTest extends AgaviUnitTestCase
 
 	public function test__toString()
 	{
-		$message = new AgaviLoggerMessage('test message', AgaviLogger::INFO);
+		$message = new LoggerMessage('test message', LoggerInterface::INFO);
 		$this->assertEquals('test message', $message->__toString());
 		$message->appendMessage('another line');
 		$this->assertEquals("test message\nanother line", $message->__toString());
@@ -36,11 +40,11 @@ class AgaviLoggerMessageTest extends AgaviUnitTestCase
 
 	public function testGetsetLevel()
 	{
-		$message = new AgaviLoggerMessage;
-		$message->setLevel(AgaviLogger::DEBUG);
-		$this->assertEquals(AgaviLogger::DEBUG, $message->getLevel());
-		$message->setLevel(AgaviLogger::INFO);
-		$this->assertEquals(AgaviLogger::INFO, $message->getLevel());
+		$message = new LoggerMessage;
+		$message->setLevel(LoggerInterface::DEBUG);
+		$this->assertEquals(LoggerInterface::DEBUG, $message->getLevel());
+		$message->setLevel(LoggerInterface::INFO);
+		$this->assertEquals(LoggerInterface::INFO, $message->getLevel());
 	}
 
 }

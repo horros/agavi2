@@ -1,6 +1,6 @@
 <?php
 
-class GenObjectRoutingCallback extends AgaviRoutingCallback
+class GenObjectRoutingCallback extends \Agavi\Routing\RoutingCallback
 {
 	/**
 	 * Gets executed when the route of this callback is about to be reverse 
@@ -17,7 +17,7 @@ class GenObjectRoutingCallback extends AgaviRoutingCallback
 	 */
 	public function onGenerate(array $defaultParameters, array &$userParameters, array &$userOptions)
 	{
-		if(isset($userParameters['value']) && $userParameters['value'] instanceof AgaviIRoutingValue) {
+		if(isset($userParameters['value']) && $userParameters['value'] instanceof \Agavi\Routing\RoutingValue) {
 			if($this->getParameter('set_as_string', false)) {
 				$userParameters['value'] = $userParameters['value']->getValue()->getPath();
 			} else {

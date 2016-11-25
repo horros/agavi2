@@ -1,13 +1,25 @@
 <?php
+namespace Agavi\Tests\Unit\Validator;
+use Agavi\Core\Context;
+use Agavi\Request\RequestDataHolder;
+use Agavi\Test\Validator\DummyValidator;
+use Agavi\Testing\UnitTestCase;
+use Agavi\Util\VirtualArrayPath;
+use Agavi\Validator\DependencyManager;
+use Agavi\Validator\ValidationManager;
+use Agavi\Validator\Validator;
 
-class MyValidationManager extends AgaviValidationManager
+class MyValidationManager extends ValidationManager
 {
 	public function getChildren() { return $this->children; }
 }
 
-class AgaviValidationManagerTest extends AgaviUnitTestCase 
+class AgaviValidationManagerTest extends UnitTestCase
 {
+	/** @var ValidationManager */
 	private $_vm = null;
+
+	/** @var Context */
 	private $_context = null;
 	
 	public function setUp()
@@ -31,7 +43,8 @@ class AgaviValidationManagerTest extends AgaviUnitTestCase
 	{
 		$vm = new MyValidationManager;
 		$vm->initialize($this->_context);
-		$val = $vm->createValidator('DummyValidator', array());
+		/** @var DummyValidator $val */
+		$val = $vm->createValidator('Agavi\\Test\\Validator\\DummyValidator', array());
 		
 		$this->assertFalse($val->shutdown);
 		$vm->clear();
@@ -53,28 +66,30 @@ class AgaviValidationManagerTest extends AgaviUnitTestCase
 	
 	public function testgetDependencyManager()
 	{
-		$this->assertTrue($this->_vm->getDependencyManager() instanceof AgaviDependencyManager);
+		$this->assertTrue($this->_vm->getDependencyManager() instanceof DependencyManager);
 	}
 	
 	public function testgetBase()
 	{
 		$this->_vm->removeParameter('base');
-		$this->assertEquals($this->_vm->getBase(), new AgaviVirtualArrayPath(''));
+		$this->assertEquals($this->_vm->getBase(), new VirtualArrayPath(''));
 		$this->_vm->setParameter('base', '');
-		$this->assertEquals($this->_vm->getBase(), new AgaviVirtualArrayPath(''));
+		$this->assertEquals($this->_vm->getBase(), new VirtualArrayPath(''));
 		$this->_vm->setParameter('base', 'foo[bar]');
-		$this->assertEquals($this->_vm->getBase(), new AgaviVirtualArrayPath('foo[bar]'));
+		$this->assertEquals($this->_vm->getBase(), new VirtualArrayPath('foo[bar]'));
 	}
 	
 	public function testExecute()
 	{
-		$val1 = $this->_vm->createValidator('DummyValidator', array());
-		$val2 = $this->_vm->createValidator('DummyValidator', array());
+		/** @var DummyValidator $val1 */
+		$val1 = $this->_vm->createValidator('Agavi\\Test\\Validator\\DummyValidator', array());
+		/** @var DummyValidator $val2 */
+		$val2 = $this->_vm->createValidator('Agavi\\Test\\Validator\\DummyValidator', array());
 		
 		$val1->val_result = true;
 		$val2->val_result = true;
 		
-		$this->assertTrue($this->_vm->execute(new AgaviRequestDataHolder()));
+		$this->assertTrue($this->_vm->execute(new RequestDataHolder()));
 		$this->assertTrue($val1->validated);
 		$this->assertTrue($val2->validated);
 		$this->_vm->clear();
@@ -84,7 +99,7 @@ class AgaviValidationManagerTest extends AgaviUnitTestCase
 		$val1->val_result = false;
 		$val1->setParameter('severity', 'none');
 		$this->_vm->registerValidators(array($val1, $val2));
-		$this->assertTrue($this->_vm->execute(new AgaviRequestDataHolder()));
+		$this->assertTrue($this->_vm->execute(new RequestDataHolder()));
 		$this->assertTrue($val1->validated);
 		$this->assertTrue($val2->validated);
 		$this->_vm->clear();
@@ -93,7 +108,7 @@ class AgaviValidationManagerTest extends AgaviUnitTestCase
 		
 		$val1->setParameter('severity', 'error');
 		$this->_vm->registerValidators(array($val1, $val2));
-		$this->assertFalse($this->_vm->execute(new AgaviRequestDataHolder()));
+		$this->assertFalse($this->_vm->execute(new RequestDataHolder()));
 		$this->assertTrue($val1->validated);
 		$this->assertTrue($val2->validated);
 		$this->_vm->clear();
@@ -102,7 +117,7 @@ class AgaviValidationManagerTest extends AgaviUnitTestCase
 		
 		$val1->setParameter('severity', 'critical');
 		$this->_vm->registerValidators(array($val1, $val2));
-		$this->assertFalse($this->_vm->execute(new AgaviRequestDataHolder()));
+		$this->assertFalse($this->_vm->execute(new RequestDataHolder()));
 		$this->assertTrue($val1->validated);
 		$this->assertFalse($val2->validated);
 		$this->_vm->clear();
@@ -112,7 +127,8 @@ class AgaviValidationManagerTest extends AgaviUnitTestCase
 	
 	public function testShutdown()
 	{
-		$val = $this->_vm->createValidator('DummyValidator', array());
+		/** @var DummyValidator $val */
+		$val = $this->_vm->createValidator('Agavi\\Test\\Validator\\DummyValidator', array());
 		
 		$this->assertFalse($val->shutdown);
 		$this->_vm->shutdown();
@@ -121,8 +137,10 @@ class AgaviValidationManagerTest extends AgaviUnitTestCase
 	
 	public function testRegisterValidators()
 	{
-		$val1 = $this->_vm->createValidator('DummyValidator', array(), array(), array('name' => 'val1'));
-		$val2 = $this->_vm->createValidator('DummyValidator', array(), array(), array('name' => 'val2'));
+		/** @var DummyValidator $val1 */
+		$val1 = $this->_vm->createValidator('Agavi\\Test\\Validator\\DummyValidator', array(), array(), array('name' => 'val1'));
+		/** @var DummyValidator $val2 */
+		$val2 = $this->_vm->createValidator('Agavi\\Test\\Validator\\DummyValidator', array(), array(), array('name' => 'val2'));
 		
 		$vm = new MyValidationManager;
 		$vm->initialize($this->_context);
@@ -133,16 +151,16 @@ class AgaviValidationManagerTest extends AgaviUnitTestCase
 	
 	public function testGetResult()
 	{
-		$this->assertEquals(AgaviValidator::NOT_PROCESSED, $this->_vm->getResult());
+		$this->assertEquals(Validator::NOT_PROCESSED, $this->_vm->getResult());
 	}
 	
 	public function testTransfersDependTokens()
 	{
 		$vm = new MyValidationManager;
 		$vm->initialize($this->_context);
-		$validator = $this->_vm->createValidator('DummyValidator', array(), array(), array('provides' => 'provide-token'));
+		$validator = $this->_vm->createValidator('Agavi\\Test\\Validator\\DummyValidator', array(), array(), array('provides' => 'provide-token'));
 		$vm->registerValidators(array($validator));
-		$vm->execute(new AgaviRequestDataHolder());
+		$vm->execute(new RequestDataHolder());
 		$this->assertEquals(array('provide-token' => true), $vm->getReport()->getDependTokens());
 	}
 }

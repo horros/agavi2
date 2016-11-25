@@ -2,13 +2,13 @@
 <ae:configurations xmlns:ae="http://agavi.org/agavi/config/global/envelope/1.1" xmlns="http://agavi.org/agavi/config/parts/filters/1.1">
 	<ae:configuration>
 		<filters>
-			<filter name="filter1" class="FCHTestFilter1">
+			<filter name="filter1" class="Agavi\Tests\Unit\Config\FCHTestFilter1">
 				<ae:parameters>
 					<ae:parameter name="comment">On</ae:parameter>
 				</ae:parameters>
 			</filter>
-			<filter name="filter2" class="FCHTestFilter2" enabled="false" />
-			<filter name="filter3" class="FCHTestFilter3" />
+			<filter name="filter2" class="Agavi\Tests\Unit\Config\FCHTestFilter2" enabled="false" />
+			<filter name="filter3" class="Agavi\Tests\Unit\Config\FCHTestFilter3" />
 		</filters>
 	</ae:configuration>
 	<ae:configuration>

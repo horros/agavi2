@@ -73,10 +73,10 @@ class AgaviTransformpathTask extends AgaviTask
 	public function main()
 	{
 		if($this->property === null) {
-			throw new BuildException('The property attribute must be specified');
+			throw new \Agavi\Build\Exception\BuildException('The property attribute must be specified');
 		}
 		if($this->path === null) {
-			throw new BuildException('The path attribute must be specified');
+			throw new \Agavi\Build\Exception\BuildException('The path attribute must be specified');
 		}
 		if(!$this->path->isAbsolute()) {
 			if($this->base === null) {

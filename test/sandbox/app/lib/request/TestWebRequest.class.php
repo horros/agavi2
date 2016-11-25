@@ -1,6 +1,6 @@
 <?php
 
-class TestWebRequest extends AgaviWebRequest
+class TestWebRequest extends \Agavi\Request\WebRequest
 {
 
 	/**

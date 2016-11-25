@@ -1,6 +1,14 @@
 <?php
+namespace Agavi\Tests\Unit\Config;
 
-class AgaviConfigCacheTest extends AgaviPhpUnitTestCase
+use Agavi\Config\Config;
+use Agavi\Config\ConfigCache;
+use Agavi\Exception\UnreadableException;
+use Agavi\Testing\Config\TestingConfigCache;
+use Agavi\Testing\PhpUnitTestCase;
+use Agavi\Util\Toolkit;
+
+class ConfigCacheTest extends PhpUnitTestCase
 {
 	/**
 	 * Constructs a test case with the given name.
@@ -20,8 +28,8 @@ class AgaviConfigCacheTest extends AgaviPhpUnitTestCase
 	 */
 	public function testGenerateCacheName($configname, $context, $expected)
 	{
-		$cachename = AgaviConfigCache::getCacheName($configname, $context);
-		$expected = AgaviConfig::get('core.cache_dir').DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.$expected; 
+		$cachename = ConfigCache::getCacheName($configname, $context);
+		$expected = Config::get('core.cache_dir').DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.$expected;
 		$this->assertEquals($expected, $cachename);
 	}
 	
@@ -31,67 +39,67 @@ class AgaviConfigCacheTest extends AgaviPhpUnitTestCase
 			'slashes_null' => array(
 				'foo/bar/hash#bang.xml',
 				null,
-				'hash_bang.xml_'.AgaviConfig::get('core.environment').'__'.sha1('foo/bar/hash#bang.xml_'.AgaviConfig::get('core.environment').'_').'.php',
+				'hash_bang.xml_'.Config::get('core.environment').'__'.sha1('foo/bar/hash#bang.xml_'.Config::get('core.environment').'_').'.php',
 			),
 			'<contextname>' => array(
 				'foo/bar/hash#bang.xml',
 				'<contextname>',
-				'hash_bang.xml_'.AgaviConfig::get('core.environment').'__contextname__'.sha1('foo/bar/hash#bang.xml_'.AgaviConfig::get('core.environment').'_<contextname>').'.php',
+				'hash_bang.xml_'.Config::get('core.environment').'__contextname__'.sha1('foo/bar/hash#bang.xml_'.Config::get('core.environment').'_<contextname>').'.php',
 			),
 		);
 	}
 	
 	public function testCheckConfig()
 	{
-		$config = AgaviConfig::get('core.config_dir').DIRECTORY_SEPARATOR.'autoload.xml';
-		$config = AgaviToolkit::normalizePath($config);
-		$expected = AgaviConfigCache::getCacheName($config);
+		$config = Config::get('core.config_dir').DIRECTORY_SEPARATOR.'autoload.xml';
+		$config = Toolkit::normalizePath($config);
+		$expected = ConfigCache::getCacheName($config);
 		if(file_exists($expected)) {
 			unlink($expected);
 		}
-		$cacheName = AgaviConfigCache::checkConfig($config);
+		$cacheName = ConfigCache::checkConfig($config);
 		$this->assertEquals($expected, $cacheName);
 		$this->assertFileExists($cacheName);
 	}
 	
 	public function testModified()
 	{
-		$config = AgaviConfig::get('core.config_dir').DIRECTORY_SEPARATOR.'autoload.xml';
-		$cacheName = AgaviConfigCache::getCacheName($config);
+		$config = Config::get('core.config_dir').DIRECTORY_SEPARATOR.'autoload.xml';
+		$cacheName = ConfigCache::getCacheName($config);
 		if(!file_exists($cacheName)) {
-			$cacheName = AgaviConfigCache::checkConfig($config);
+			$cacheName = ConfigCache::checkConfig($config);
 		}	
 		sleep(1);
 		touch($config);
 		clearstatcache(); // make shure we don't get fooled by the stat cache
-		$this->assertTrue(AgaviConfigCache::isModified($config, $cacheName), 'Failed asserting that the config file has been modified.');
+		$this->assertTrue(ConfigCache::isModified($config, $cacheName), 'Failed asserting that the config file has been modified.');
 	}
 
 	public function testModifiedNonexistantFile()
 	{
-		$config = AgaviConfig::get('core.config_dir').DIRECTORY_SEPARATOR.'autoload.xml';
-		$cacheName = AgaviConfigCache::getCacheName($config);
+		$config = Config::get('core.config_dir').DIRECTORY_SEPARATOR.'autoload.xml';
+		$cacheName = ConfigCache::getCacheName($config);
 		if(file_exists($cacheName)) {
 			unlink($cacheName);
 		}	
-		$this->assertTrue(AgaviConfigCache::isModified($config, $cacheName), 'Failed asserting that the config file has been modified.');
+		$this->assertTrue(ConfigCache::isModified($config, $cacheName), 'Failed asserting that the config file has been modified.');
 	}
 	
 	public function testWriteCacheFile()
 	{
 		$expected = 'This is a config cache test.';
-		$config = AgaviConfig::get('core.config_dir').DIRECTORY_SEPARATOR.'foo.xml';
-		$cacheName = AgaviConfigCache::getCacheName($config);
+		$config = Config::get('core.config_dir').DIRECTORY_SEPARATOR.'foo.xml';
+		$cacheName = ConfigCache::getCacheName($config);
 		if(file_exists($cacheName)) {
 			unlink($cacheName);
 		}
-		AgaviConfigCache::writeCacheFile($config, $cacheName, $expected);
+		ConfigCache::writeCacheFile($config, $cacheName, $expected);
 		$this->assertFileExists($cacheName);
 		$content = file_get_contents($cacheName);
 		$this->assertEquals($expected, $content);
 		
 		$append = "\nAnd a second line appended.";
-		AgaviConfigCache::writeCacheFile($config, $cacheName, $append, true);
+		ConfigCache::writeCacheFile($config, $cacheName, $append, true);
 		$content = file_get_contents($cacheName);
 		$this->assertEquals($expected.$append, $content);
 	}
@@ -99,24 +107,24 @@ class AgaviConfigCacheTest extends AgaviPhpUnitTestCase
 	public function testload()
 	{
 		$this->assertFalse( defined('ConfigCacheImportTest_included') );
-		AgaviConfigCache::load(AgaviConfig::get('core.config_dir') . '/tests/importtest.xml');
+		ConfigCache::load(Config::get('core.config_dir') . '/tests/importtest.xml');
 		$this->assertTrue( defined('ConfigCacheImportTest_included') );
 
 		$GLOBALS["ConfigCacheImportTestOnce_included"] = false;
-		AgaviConfigCache::load(AgaviConfig::get('core.config_dir') . '/tests/importtest_once.xml', true);
+		ConfigCache::load(Config::get('core.config_dir') . '/tests/importtest_once.xml', true);
 		$this->assertTrue( $GLOBALS["ConfigCacheImportTestOnce_included"] );
 
 		$GLOBALS["ConfigCacheImportTestOnce_included"] = false;
-		AgaviConfigCache::load(AgaviConfig::get('core.config_dir') . '/tests/importtest_once.xml', true);
+		ConfigCache::load(Config::get('core.config_dir') . '/tests/importtest_once.xml', true);
 		$this->assertFalse( $GLOBALS["ConfigCacheImportTestOnce_included"] );
 	}
 
 	
 	public function testClear()
 	{
-		$cacheDir = AgaviConfig::get('core.cache_dir').DIRECTORY_SEPARATOR.'config';
-		AgaviConfigCache::clear();
-		$directory = new DirectoryIterator($cacheDir);
+		$cacheDir = Config::get('core.cache_dir').DIRECTORY_SEPARATOR.'config';
+		ConfigCache::clear();
+		$directory = new \DirectoryIterator($cacheDir);
 		foreach($directory as $item) {
 			if($directory->current()->isDot()) {
 				continue;
@@ -126,21 +134,21 @@ class AgaviConfigCacheTest extends AgaviPhpUnitTestCase
 	}
 	
 	/**
-	 * @expectedException AgaviUnreadableException
+	 * @expectedException UnreadableException
 	 * this does not seem to work in isolation
 	 */
 	public function testAddNonexistantConfigHandlersFile()
 	{
-		$this->setExpectedException('AgaviUnreadableException');
-		AgaviConfigCache::addConfigHandlersFile('does/not/exist');
+		$this->setExpectedException('Agavi\\Exception\\UnreadableException');
+		ConfigCache::addConfigHandlersFile('does/not/exist');
 	}
 	
 	public function testAddConfigHandlersFile()
 	{
-		$config = AgaviConfig::get('core.module_dir').'/Default/config/config_handlers.xml';
-		AgaviTestingConfigCache::addConfigHandlersFile($config);
-		$this->assertTrue(AgaviTestingConfigCache::handlersDirty(), 'Failed asserting that the handlersDirty flag is set after adding a config handlers file.');
-		$handlerFiles = AgaviTestingConfigCache::getHandlerFiles();
+		$config = Config::get('core.module_dir').'/Default/config/config_handlers.xml';
+		TestingConfigCache::addConfigHandlersFile($config);
+		$this->assertTrue(TestingConfigCache::handlersDirty(), 'Failed asserting that the handlersDirty flag is set after adding a config handlers file.');
+		$handlerFiles = TestingConfigCache::getHandlerFiles();
 		$this->assertFalse($handlerFiles[$config], sprintf('Failed asserting that the config file "%1$s" has not been loaded.', $config));
 	}
 	
@@ -154,20 +162,20 @@ class AgaviConfigCacheTest extends AgaviPhpUnitTestCase
 		// this is not possible to test with the agavi unit tests as this needs
 		// a really clean env with no framework bootstrapped. Need to think about that.
 		//$this->markTestIncomplete();
-		AgaviTestingConfigCache::resetHandlers();
-		$this->assertEquals(null, AgaviTestingConfigCache::getHandlers());
-		AgaviTestingConfigCache::setUpHandlers();
-		$handlers = AgaviTestingConfigCache::getHandlers();
+		TestingConfigCache::resetHandlers();
+		$this->assertEquals(null, TestingConfigCache::getHandlers());
+		TestingConfigCache::setUpHandlers();
+		$handlers = TestingConfigCache::getHandlers();
 		$this->assertNotEquals(null, $handlers);
 	}
 	
 	public function testGetHandlerInfo()
 	{
-		$handlerInfo = AgaviTestingConfigCache::getHandlerInfo('notregistered');
+		$handlerInfo = TestingConfigCache::getHandlerInfo('notregistered');
 		$this->assertEquals(null, $handlerInfo);
 		
 		$expected = array(
-			'class' => 'AgaviReturnArrayConfigHandler',
+			'class' => 'Agavi\\Config\\ReturnArrayConfigHandler',
 			'parameters' => array(),
 			'transformations' => array(
 				'single' => array('confighandler-testing.xsl',),
@@ -200,7 +208,7 @@ class AgaviConfigCacheTest extends AgaviPhpUnitTestCase
 				),
 			),
 		);
-		$handlerInfo = AgaviTestingConfigCache::getHandlerInfo('confighandler-testing');
+		$handlerInfo = TestingConfigCache::getHandlerInfo('confighandler-testing');
 		$this->assertEquals($expected, $handlerInfo);
 	}
 	
@@ -208,13 +216,13 @@ class AgaviConfigCacheTest extends AgaviPhpUnitTestCase
 	{
 		$config = 'project/foo.xml';
 		$context = 'with/slash';
-		$cachename = AgaviConfigCache::getCacheName($config, $context);
+		$cachename = ConfigCache::getCacheName($config, $context);
 		
-		$expected = AgaviConfig::get('core.cache_dir').DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR;
+		$expected = Config::get('core.cache_dir').DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR;
 		$expected .= 'foo.xml';
-		$expected .= '_'.preg_replace('/[^\w-_]/i', '_', AgaviConfig::get('core.environment'));
+		$expected .= '_'.preg_replace('/[^\w-_]/i', '_', Config::get('core.environment'));
 		$expected .= '_'.preg_replace('/[^\w-_]/i', '_', $context).'_';
-		$expected .= sha1($config.'_'.AgaviConfig::get('core.environment').'_'.$context).'.php'; 
+		$expected .= sha1($config.'_'.Config::get('core.environment').'_'.$context).'.php';
 		
 		$this->assertEquals($expected, $cachename);
 	}
@@ -224,7 +232,7 @@ class AgaviConfigCacheTest extends AgaviPhpUnitTestCase
 		$config1 = 'project/foo.xml';
 		$config2 = 'project_foo.xml';
 		
-		$this->assertNotEquals(AgaviConfigCache::getCacheName($config1), AgaviConfigCache::getCacheName($config2));
+		$this->assertNotEquals(ConfigCache::getCacheName($config1), ConfigCache::getCacheName($config2));
 	}
 	
 	public function testTicket941()
@@ -233,8 +241,8 @@ class AgaviConfigCacheTest extends AgaviPhpUnitTestCase
 			$this->markTestSkipped('This test check for an infinite loop, you need xdebug as protection.');
 		}
 		
-		$config = AgaviConfig::get('core.module_dir').'/Default/config/config_handlers.xml';
-		AgaviTestingConfigCache::addConfigHandlersFile($config);
-		AgaviConfigCache::checkConfig(AgaviConfig::get('core.module_dir').'/Default/config/autoload.xml');
+		$config = Config::get('core.module_dir').'/Default/config/config_handlers.xml';
+		TestingConfigCache::addConfigHandlersFile($config);
+		ConfigCache::checkConfig(Config::get('core.module_dir').'/Default/config/autoload.xml');
 	}
 }

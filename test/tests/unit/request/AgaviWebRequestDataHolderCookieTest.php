@@ -1,4 +1,8 @@
 <?php
+namespace Agavi\Tests\Unit\Request;
+
+use Agavi\Request\RequestDataHolder;
+use Agavi\Request\WebRequestDataHolder;
 
 class AgaviWebRequestDataHolderCookieTest extends AgaviWebRequestDataHolderTest
 {
@@ -99,7 +103,7 @@ class AgaviWebRequestDataHolderCookieTest extends AgaviWebRequestDataHolderTest
 	
 	public function testSetGetCookie()
 	{
-		$dh = new AgaviWebRequestDataHolder(array());
+		$dh = new WebRequestDataHolder(array());
 		$dh->setCookie('foo', 'bar');
 		$this->assertEquals('bar', $dh->getCookie('foo'));
 		
@@ -209,9 +213,9 @@ class AgaviWebRequestDataHolderCookieTest extends AgaviWebRequestDataHolderTest
 	{
 		$dh = $this->getDefaultDataHolder();
 		
-		$dh2 = new AgaviWebRequestDataHolder(
+		$dh2 = new WebRequestDataHolder(
 			array(
-				AgaviWebRequestDataHolder::SOURCE_COOKIES => array(
+				WebRequestDataHolder::SOURCE_COOKIES => array(
 					'flat' => 'flatvalue merged',
 					'set'  => 'setCookies',
 				)
@@ -235,9 +239,9 @@ class AgaviWebRequestDataHolderCookieTest extends AgaviWebRequestDataHolderTest
 	{
 		$dh = $this->getDefaultDataHolder();
 		
-		$dh2 = new AgaviRequestDataHolder(
+		$dh2 = new RequestDataHolder(
 			array(
-				AgaviWebRequestDataHolder::SOURCE_COOKIES => array(
+				WebRequestDataHolder::SOURCE_COOKIES => array(
 					'flat' => 'flatvalue merged',
 					'set'  => 'setCookies',
 				)

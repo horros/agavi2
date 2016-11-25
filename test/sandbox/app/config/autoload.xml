@@ -8,8 +8,8 @@
 		
 		<autoload class="TestWebRequest">%core.lib_dir%/request/TestWebRequest.class.php</autoload>
 		
-		<autoload class="AgaviTestingRouting">%core.app_dir%/../../lib/routing/AgaviTestingRouting.class.php</autoload>
-		<autoload class="AgaviTestingWebRouting">%core.app_dir%/../../lib/routing/AgaviTestingWebRouting.class.php</autoload>
+		<autoload class="Agavi\Testing\Routing\TestingRouting">%core.app_dir%/../../lib/routing/TestingRouting.class.php</autoload>
+		<autoload class="Agavi\Testing\Routing\TestingWebRouting">%core.app_dir%/../../lib/routing/TestingWebRouting.class.php</autoload>
 		
 		<autoload class="MatchingRoutingCallback">%core.app_dir%/../../lib/routing/MatchingRoutingCallback.class.php</autoload>
 		<autoload class="NonMatchingRoutingCallback">%core.app_dir%/../../lib/routing/NonMatchingRoutingCallback.class.php</autoload>
@@ -41,14 +41,14 @@
 		<autoload class="SandboxTestingParentClass">%core.app_dir%/../../lib/testing/SandboxTestingParentClass.class.php</autoload>
 		<autoload class="SandboxTestingChildClass">%core.app_dir%/../../lib/testing/SandboxTestingChildClass.class.php</autoload>
 		
-		<autoload class="AgaviTestingConfigCache">%core.app_dir%/../../lib/config/AgaviTestingConfigCache.class.php</autoload>
+		<autoload class="Agavi\Testing\Config\TestingConfigCache">%core.app_dir%/../../lib/config/TestingConfigCache.class.php</autoload>
 		
-		<autoload class="AgaviWebRequestDataHolderTest">%core.app_dir%/../../tests/unit/request/AgaviWebRequestDataHolderTest.php</autoload>
+		<autoload class="Agavi\Tests\Unit\Request\AgaviWebRequestDataHolderTest">%core.app_dir%/../../tests/unit/request/AgaviWebRequestDataHolderTest.php</autoload>
 		
-		<autoload class="ImportTestHandler">%core.app_dir%/../../lib/config/ImportTestHandler.class.php</autoload>
-		<autoload class="ImportTestOnceHandler">%core.app_dir%/../../lib/config/ImportTestOnceHandler.class.php</autoload>
+		<autoload class="Agavi\Test\Config\ImportTestHandler">%core.app_dir%/../../lib/config/ImportTestHandler.class.php</autoload>
+		<autoload class="Agavi\Test\Config\ImportTestOnceHandler">%core.app_dir%/../../lib/config/ImportTestOnceHandler.class.php</autoload>
 		
-		<autoload class="DummyValidator">%core.app_dir%/../../lib/validator/DummyValidator.class.php</autoload>
+		<autoload class="Agavi\Test\Validator\DummyValidator">%core.app_dir%/../../lib/validator/DummyValidator.class.php</autoload>
 		
 	</ae:configuration>
 </ae:configurations>

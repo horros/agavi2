@@ -1,13 +1,17 @@
 <?php
+namespace Agavi\Tests\Unit\Logging;
+use Agavi\Logging\LoggerLayout;
+use Agavi\Logging\LoggerMessage;
+use Agavi\Testing\UnitTestCase;
 
-class SampleLayout extends AgaviLoggerLayout
+class SampleLayout extends LoggerLayout
 {
-	public function format(AgaviLoggerMessage $message)
+	public function format(LoggerMessage $message)
 	{
 	}
 }
 
-class AgaviLoggerLayoutTest extends AgaviUnitTestCase
+class AgaviLoggerLayoutTest extends UnitTestCase
 {
 	public function testGetSetLayout()
 	{

@@ -1,7 +1,14 @@
 <?php
-class SampleSecurityUser extends AgaviSecurityUser
+namespace Agavi\Tests\Unit\User;
+
+use Agavi\Core\Context;
+use Agavi\Testing\UnitTestCase;
+use Agavi\User\SecurityUser;
+
+
+class SampleSecurityUser extends SecurityUser
 {
-	public function initialize(AgaviContext $context, array $parameters = array())
+	public function initialize(Context $context, array $parameters = array())
 	{
 		parent::initialize($context, $parameters);
 		$this->context = $context;
@@ -13,8 +20,11 @@ class SampleSecurityUser extends AgaviSecurityUser
 	}
 }
 
-class SecurityUserTest extends AgaviUnitTestCase
+class SecurityUserTest extends UnitTestCase
 {
+	/**
+	 * @var SampleSecurityUser
+	 */
 	private $_u = null;
 
 	public function setUp()

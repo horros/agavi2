@@ -90,7 +90,7 @@ class AgaviLocateprojectTask extends AgaviTask
 		}
 		
 		/* Check if the current directory is a project directory. */
-		$check = new AgaviProjectFilesystemCheck();
+		$check = new \Agavi\Build\Check\ProjectFilesystemCheck();
 		$check->setAppDirectory($this->project->getProperty('project.directory.app'));
 		$check->setPubDirectory($this->project->getProperty('project.directory.pub'));
 		

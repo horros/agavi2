@@ -6,16 +6,16 @@
 		<loggers default="any">
 
 			<!-- logs only DEBUG messages -->
-			<logger name="any" class="AgaviLogger" level="AgaviLogger::DEBUG | AgaviLogger::INFO">
+			<logger name="any" class="Agavi\Logging\Logger" level="Agavi\Logging\Logger::DEBUG | Agavi\Logging\Logger::INFO">
 				<appenders>
-					<appender>DebugLogAppender</appender>
+					<appender>Agavi\Logging\DebugLogAppender</appender>
 				</appenders>
 			</logger>
 
-			<logger name="error" class="AgaviLogger" level="AgaviLogger::ALL ^ AgaviLogger::DEBUG ^ AgaviLogger::INFO">
+			<logger name="error" class="Agavi\Logging\Logger" level="Agavi\Logging\Logger::ALL ^ Agavi\Logging\Logger::DEBUG ^ Agavi\Logging\Logger::INFO">
 				<appenders>
-					<appender>ErrorLogAppender</appender>
-					<appender>StdErrorAppender</appender>
+					<appender>Agavi\Logging\ErrorLogAppender</appender>
+					<appender>Agavi\Logging\StdErrorAppender</appender>
 				</appenders>
 			</logger>
 			
@@ -23,28 +23,28 @@
 		<appenders>
 
 			<!--
-				Debug logs are rotated in a 7 day (AgaviRotatingFileLoggerAppender default) cycle
+				Debug logs are rotated in a 7 day (RotatingFileLoggerAppender default) cycle
 				Use 'cycle' parameter to alter the cycle.
 			-->
-			<appender name="DebugLogAppender" class="AgaviRotatingFileLoggerAppender" layout="DateTimeLayout">
+			<appender name="DebugLogAppender" class="Agavi\Logging\RotatingFileLoggerAppender" layout="DateTimeLayout">
 				<ae:parameters>
 					<ae:parameter name="dir">%core.app_dir%/log/</ae:parameter>
 					<ae:parameter name="prefix">debug-</ae:parameter>
 				</ae:parameters>
 			</appender>
 
-			<appender name="ErrorLogAppender" class="AgaviRotatingFileLoggerAppender" layout="DateTimeLayout">
+			<appender name="ErrorLogAppender" class="Agavi\Logging\RotatingFileLoggerAppender" layout="DateTimeLayout">
 				<ae:parameters>
 					<ae:parameter name="dir">%core.app_dir%/log/</ae:parameter>
 					<ae:parameter name="prefix">error-</ae:parameter>
 				</ae:parameters>
 			</appender>
 
-			<appender name="StdErrorAppender" class="AgaviStderrLoggerAppender" layout="DateTimeLayout" />
+			<appender name="StdErrorAppender" class="Agavi\Logging\StderrLoggerAppender" layout="DateTimeLayout" />
 		</appenders>
 
 		<layouts>
-			<layout name="DateTimeLayout" class="AgaviTimestampLoggerLayout" />
+			<layout name="DateTimeLayout" class="Agavi\Logging\TimestampLoggerLayout" />
 		</layouts>
 
 	</ae:configuration>

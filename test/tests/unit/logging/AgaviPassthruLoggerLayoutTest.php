@@ -1,11 +1,16 @@
 <?php
+namespace Agavi\Tests\Unit\Logging;
 
-class AgaviPassthruLoggerLayoutTest extends AgaviUnitTestCase
+use Agavi\Logging\LoggerMessage;
+use Agavi\Logging\PassthruLoggerLayout;
+use Agavi\Testing\UnitTestCase;
+
+class AgaviPassthruLoggerLayoutTest extends UnitTestCase
 {
 	public function testFormat()
 	{
-		$layout = new AgaviPassthruLoggerLayout;
-		$message = new AgaviLoggerMessage('something');
+		$layout = new PassthruLoggerLayout();
+		$message = new LoggerMessage('something');
 		$this->assertEquals('something', $layout->format($message));
 	}
 }

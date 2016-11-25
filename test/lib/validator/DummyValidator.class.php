@@ -1,5 +1,9 @@
 <?php
-class DummyValidator extends AgaviValidator
+namespace Agavi\Test\Validator;
+
+use Agavi\Validator\Validator;
+
+class DummyValidator extends Validator
 {
 	public $cleared = false;
 	public $val_result = true;

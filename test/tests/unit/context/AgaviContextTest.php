@@ -1,32 +1,37 @@
 <?php
+namespace Agavi\Testing\Unit\Context;
 
-class AgaviContextTest extends AgaviPhpUnitTestCase
+use Agavi\Config\Config;
+use Agavi\Core\Context;
+use Agavi\Testing\PhpUnitTestCase;
+
+class ContextTest extends PhpUnitTestCase
 {
 	public function testGetInstance()
 	{
-		$instance = AgaviContext::getInstance('foo');
+		$instance = Context::getInstance('foo');
 		$this->assertNotNull($instance);
-		$this->assertInstanceOf('AgaviContext', $instance);
+		$this->assertInstanceOf('Agavi\\Core\\Context', $instance);
 	}
 	
 	public function testSameInstanceForSameProfile()
 	{
-		$instance1 = AgaviContext::getInstance('foo');
-		$instance2 = AgaviContext::getInstance('foo');
+		$instance1 = Context::getInstance('foo');
+		$instance2 = Context::getInstance('foo');
 		$this->assertSame($instance1, $instance2);
 	}
 	
 	public function testDifferentInstanceForDifferentProfile()
 	{
-		$instance1 = AgaviContext::getInstance('foo');
-		$instance2 = AgaviContext::getInstance('bar');
+		$instance1 = Context::getInstance('foo');
+		$instance2 = Context::getInstance('bar');
 		$this->assertNotSame($instance1, $instance2);
 	}
 	
 	public function testGetName()
 	{
-		$this->assertSame(AgaviConfig::get('core.default_context'), AgaviContext::getInstance()->getName());
-		$this->assertSame('test1', AgaviContext::getInstance('test1')->getName());
+		$this->assertSame(Config::get('core.default_context'), Context::getInstance()->getName());
+		$this->assertSame('test1', Context::getInstance('test1')->getName());
 	}
 	
 	/**
@@ -34,7 +39,7 @@ class AgaviContextTest extends AgaviPhpUnitTestCase
 	 */
 	public function testGetModel($modelName, $className, $isSingleton, $module = null)
 	{
-		$ctx = AgaviContext::getInstance();
+		$ctx = Context::getInstance();
 		$model1 = $ctx->getModel($modelName, $module);
 		$model2 = $ctx->getModel($modelName, $module);
 		$this->assertInstanceOf($className, $model1);
@@ -61,14 +66,14 @@ class AgaviContextTest extends AgaviPhpUnitTestCase
 
 	public function testGetFactoryInfo()
 	{
-		$ctx = AgaviContext::getInstance('test');
-		$expected = array('class' => 'AgaviWebResponse', 'parameters' => array());
+		$ctx = Context::getInstance('test');
+		$expected = array('class' => 'Agavi\\Response\\WebResponse', 'parameters' => array());
 		$this->assertSame($expected, $ctx->getFactoryInfo('response'));
 	}
 
 	public function testGetController()
 	{
-		$this->assertInstanceOf('AgaviController', AgaviContext::getInstance()->getController());
+		$this->assertInstanceOf('Agavi\\Controller\\Controller', Context::getInstance()->getController());
 	}
 
 	/**
@@ -77,7 +82,7 @@ class AgaviContextTest extends AgaviPhpUnitTestCase
 	 */
 	public function testGetDatabaseManagerOff()
 	{
-		$this->assertNull(AgaviContext::getInstance()->getDatabaseManager());
+		$this->assertNull(Context::getInstance()->getDatabaseManager());
 	}
 
 	/**
@@ -86,7 +91,7 @@ class AgaviContextTest extends AgaviPhpUnitTestCase
 	 */
 	public function testGetDatabaseManagerOn()
 	{
-		$this->assertInstanceOf('AgaviDatabaseManager', AgaviContext::getInstance()->getDatabaseManager());
+		$this->assertInstanceOf('Agavi\\Database\\DatabaseManager', Context::getInstance()->getDatabaseManager());
 	}
 	
 	/**
@@ -95,8 +100,8 @@ class AgaviContextTest extends AgaviPhpUnitTestCase
 	 */
 	public function testGetUserSecurityOff()
 	{
-		$this->assertInstanceOf('AgaviUser', AgaviContext::getInstance()->getUser());
-		$this->assertNotInstanceOf('AgaviSecurityUser', AgaviContext::getInstance()->getUser());
+		$this->assertInstanceOf('Agavi\User\User', Context::getInstance()->getUser());
+		$this->assertNotInstanceOf('Agavi\User\SecurityUser', Context::getInstance()->getUser());
 	}
 
 	/**
@@ -105,7 +110,7 @@ class AgaviContextTest extends AgaviPhpUnitTestCase
 	 */
 	public function testGetUserSecurityOn()
 	{
-		$this->assertInstanceOf('AgaviSecurityUser', AgaviContext::getInstance()->getUser());
+		$this->assertInstanceOf('Agavi\\User\\SecurityUser', Context::getInstance()->getUser());
 	}
 
 	/**
@@ -114,7 +119,7 @@ class AgaviContextTest extends AgaviPhpUnitTestCase
 	 */
 	public function testGetTranslationManagerOff()
 	{
-		$this->assertNull(AgaviContext::getInstance()->getTranslationManager());
+		$this->assertNull(Context::getInstance()->getTranslationManager());
 	}
 
 	/**
@@ -123,30 +128,30 @@ class AgaviContextTest extends AgaviPhpUnitTestCase
 	 */
 	public function testGetTranslationManagerOn()
 	{
-		$this->assertInstanceOf('AgaviTranslationManager', AgaviContext::getInstance()->getTranslationManager());
+		$this->assertInstanceOf('Agavi\\Translation\\TranslationManager', Context::getInstance()->getTranslationManager());
 	}
 
 	public function testGetLoggerManager()
 	{
-		$this->assertInstanceOf('AgaviLoggerManager', AgaviContext::getInstance()->getLoggerManager());
+		$this->assertInstanceOf('Agavi\\Logging\\LoggerManager', Context::getInstance()->getLoggerManager());
 	}
 
 	public function testGetRequest()
 	{
-		$ctx = AgaviContext::getInstance();
-		$this->assertInstanceOf('AgaviRequest', $ctx->getRequest());
+		$ctx = Context::getInstance();
+		$this->assertInstanceOf('Agavi\\Request\\Request', $ctx->getRequest());
 	}
 
 	public function testGetRouting()
 	{
-		$ctx = AgaviContext::getInstance();
-		$this->assertInstanceOf('AgaviRouting', $ctx->getRouting());
+		$ctx = Context::getInstance();
+		$this->assertInstanceOf('Agavi\\Routing\\Routing', $ctx->getRouting());
 	}
 
 	public function testGetStorage()
 	{
-		$ctx = AgaviContext::getInstance();
-		$this->assertInstanceOf('AgaviStorage', $ctx->getStorage());
+		$ctx = Context::getInstance();
+		$this->assertInstanceOf('Agavi\\Storage\\Storage', $ctx->getStorage());
 	}
 }
 

@@ -13,7 +13,7 @@
 // |   End:                                                                    |
 // +---------------------------------------------------------------------------+
 
-class Default_Widgets_HeaderAction extends AgaviSampleAppDefaultBaseAction
+class Default_Widgets_HeaderAction extends SampleAppDefaultBaseAction
 {
 	/**
 	 * This Action does not yet serve any Request methods.

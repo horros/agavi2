@@ -1,5 +1,11 @@
 <?php
-class SimpleRbacSecurityUser extends AgaviRbacSecurityUser
+namespace Agavi\Tests\Unit\User;
+
+use Agavi\Testing\UnitTestCase;
+use Agavi\User\RbacSecurityUser;
+
+
+class SimpleRbacSecurityUser extends RbacSecurityUser
 {
 	protected function loadDefinitions()
 	{
@@ -34,8 +40,9 @@ class SimpleRbacSecurityUser extends AgaviRbacSecurityUser
 	}
 }
 
-class AgaviRbacSecurityUserTest extends AgaviUnitTestCase
+class AgaviRbacSecurityUserTest extends UnitTestCase
 {
+	/** @var SimpleRbacSecurityUser */
 	private $_u = null;
 
 	public function setUp()

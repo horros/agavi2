@@ -1,12 +1,15 @@
 <?php
+namespace Agavi\Tests\Unit\Util;
+use Agavi\Testing\PhpUnitTestCase;
+use Agavi\Util\DecimalFormatter;
 
-class AgaviDecimalFormatterTest extends AgaviPhpUnitTestCase
+class DecimalFormatterTest extends PhpUnitTestCase
 {
 	/**
 	 * @dataProvider dataFormatNumber
 	 */
 	public function testFormatNumber($format, $input, $expected) {
-		$df = new AgaviDecimalFormatter($format);
+		$df = new DecimalFormatter($format);
 
 		$this->assertEquals($expected, $df->formatNumber($input));
 	}
@@ -50,7 +53,7 @@ class AgaviDecimalFormatterTest extends AgaviPhpUnitTestCase
 	public function testParse($input, $output, $expectExtraChars = false, $maxIcuVersion = null)
 	{
 		$hasExtraChars = false;
-		$parsed = AgaviDecimalFormatter::parse($input, null, $hasExtraChars);
+		$parsed = DecimalFormatter::parse($input, null, $hasExtraChars);
 		
 		$this->assertEquals($output, $parsed);
 		$this->assertEquals($expectExtraChars, $hasExtraChars);
@@ -65,7 +68,7 @@ class AgaviDecimalFormatterTest extends AgaviPhpUnitTestCase
 		
 		if($icuVersion === null) {
 			$icuVersion = 0;
-			$ext = new ReflectionExtension('intl');
+			$ext = new \ReflectionExtension('intl');
 			ob_start();
 			$ext->info();
 			$info = ob_get_contents();
@@ -82,7 +85,7 @@ class AgaviDecimalFormatterTest extends AgaviPhpUnitTestCase
 	 */
 	public function testNumberFormatter($input, $output, $expectExtraChars = false, $maxIcuVersion = null)
 	{
-		if(!class_exists('NumberFormatter')) {
+		if(!class_exists('\NumberFormatter')) {
 			$this->markTestSkipped('ext/intl not loaded');
 			return;
 		}
@@ -97,9 +100,9 @@ class AgaviDecimalFormatterTest extends AgaviPhpUnitTestCase
 		$input = trim($input);
 		$yay = 0;
 		
-		$x = new NumberFormatter("en_US", NumberFormatter::DECIMAL);
-		$x->setAttribute(NumberFormatter::LENIENT_PARSE, true);
-		$parsed = $x->parse($input, NumberFormatter::TYPE_DOUBLE, $yay);
+		$x = new \NumberFormatter("en_US", \NumberFormatter::DECIMAL);
+		$x->setAttribute(\NumberFormatter::LENIENT_PARSE, true);
+		$parsed = $x->parse($input, \NumberFormatter::TYPE_DOUBLE, $yay);
 		
 		$this->assertEquals($output, $parsed);
 		$this->assertEquals($expectExtraChars, $yay < strlen($input));

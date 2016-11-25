@@ -12,8 +12,9 @@
 // |   indent-tabs-mode: t                                                     |
 // |   End:                                                                    |
 // +---------------------------------------------------------------------------+
+use Agavi\Request\RequestDataHolder;
 
-class Default_LogoutAction extends AgaviSampleAppDefaultBaseAction
+class Default_LogoutAction extends SampleAppDefaultBaseAction
 {
 	/**
 	 * This Action does not yet serve any Request methods.
@@ -48,7 +49,7 @@ class Default_LogoutAction extends AgaviSampleAppDefaultBaseAction
 	 * execute*() being present, e.g. for a "write" Request, validateWrite() will
 	 * be run even if there is no executeWrite() method.
 	 */
-	public function execute(AgaviRequestDataHolder $rd)
+	public function execute(RequestDataHolder $rd)
 	{
 		$this->getContext()->getUser()->logout();
 		return 'Success';

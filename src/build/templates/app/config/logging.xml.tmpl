@@ -5,7 +5,7 @@
 		
 		<loggers default="default">
 			<!-- logs only DEBUG messages -->
-			<logger name="debug" class="AgaviLogger" level="AgaviLogger::DEBUG">
+			<logger name="debug" class="Agavi\Logging\Logger" level="AgaviLogger::DEBUG">
 				<appenders>
 					<appender>DebugLogAppender</appender>
 				</appenders>
@@ -32,31 +32,31 @@
 				Debug logs are rotated in a 7 day (AgaviRotatingFileLoggerAppender default) cycle
 				Use 'cycle' parameter to alter the cycle.
 			-->
-			<appender name="DebugLogAppender" class="AgaviRotatingFileLoggerAppender" layout="DateTimeLayout">
+			<appender name="DebugLogAppender" class="Agavi\Logger\RotatingFileLoggerAppender" layout="DateTimeLayout">
 				<ae:parameters>
 					<ae:parameter name="dir">%core.app_dir%/log/</ae:parameter>
 					<ae:parameter name="prefix">debug-</ae:parameter>
 				</ae:parameters>
 			</appender>
 			
-			<appender name="ApplicationLogAppender" class="AgaviFileLoggerAppender" layout="DateTimeLayout">
+			<appender name="ApplicationLogAppender" class="Agavi\Logger\FileLoggerAppender" layout="DateTimeLayout">
 				<ae:parameters>
 					<ae:parameter name="file">%core.app_dir%/log/application.log</ae:parameter>
 				</ae:parameters>
 			</appender>
 			
-			<appender name="ErrorLogAppender" class="AgaviRotatingFileLoggerAppender" layout="DateTimeLayout">
+			<appender name="ErrorLogAppender" class="Agavi\Logger\RotatingFileLoggerAppender" layout="DateTimeLayout">
 				<ae:parameters>
 					<ae:parameter name="dir">%core.app_dir%/log/</ae:parameter>
 					<ae:parameter name="prefix">error-</ae:parameter>
 				</ae:parameters>
 			</appender>
 			
-			<appender name="StdErrorAppender" class="AgaviStderrLoggerAppender" layout="DateTimeLayout" />
+			<appender name="StdErrorAppender" class="Agavi\Logger\StderrLoggerAppender" layout="DateTimeLayout" />
 		</appenders>
 		
 		<layouts>
-			<layout name="DateTimeLayout" class="AgaviTimestampLoggerLayout" />
+			<layout name="DateTimeLayout" class="Agavi\Logger\TimestampLoggerLayout" />
 		</layouts>
 		
 	</ae:configuration>

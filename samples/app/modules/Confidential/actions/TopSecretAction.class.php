@@ -1,6 +1,6 @@
 <?php
 
-class Confidential_TopSecretAction extends AgaviSampleAppConfidentialBaseAction
+class Confidential_TopSecretAction extends SampleAppConfidentialBaseAction
 {
 	/**
 	 * This Action does not yet serve any Request methods.

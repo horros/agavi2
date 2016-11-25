@@ -1,4 +1,8 @@
 <?php
+namespace Agavi\Tests\Unit\Request;
+
+use Agavi\Request\RequestDataHolder;
+use Agavi\Request\WebRequestDataHolder;
 
 class AgaviWebRequestDataHolderHeaderTest extends AgaviWebRequestDataHolderTest
 {
@@ -102,9 +106,9 @@ class AgaviWebRequestDataHolderHeaderTest extends AgaviWebRequestDataHolderTest
 			'SET'  => 'setHeaders',
 		);
 		
-		$dh2 = new AgaviWebRequestDataHolder(
+		$dh2 = new WebRequestDataHolder(
 			array(
-				AgaviWebRequestDataHolder::SOURCE_HEADERS => $addHeaders,
+				WebRequestDataHolder::SOURCE_HEADERS => $addHeaders,
 			)
 		);
 		
@@ -127,9 +131,9 @@ class AgaviWebRequestDataHolderHeaderTest extends AgaviWebRequestDataHolderTest
 			'SET'  => 'setHeaders',
 		);
 		
-		$dh2 = new AgaviRequestDataHolder(
+		$dh2 = new RequestDataHolder(
 			array(
-				AgaviWebRequestDataHolder::SOURCE_HEADERS => $addHeaders,
+				WebRequestDataHolder::SOURCE_HEADERS => $addHeaders,
 			)
 		);
 		

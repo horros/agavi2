@@ -116,15 +116,15 @@ class AgaviGenerateActionMethodsTask extends AgaviTask
 	public function main()
 	{
 		if($this->property === null) {
-			throw new BuildException('The property attribute must be specified');
+			throw new \Agavi\Build\Exception\BuildException('The property attribute must be specified');
 		}
 		
 		if(count($this->methods) > 0 && $this->isSimple) {
-			throw new BuildException('An action cannot serve request methods and be simple at the same time.');
+			throw new \Agavi\Build\Exception\BuildException('An action cannot serve request methods and be simple at the same time.');
 		}
 		
 		if($this->requestMethodTemplate === null || !is_readable($this->requestMethodTemplate)) {
-			throw new BuildException(
+			throw new \Agavi\Build\Exception\BuildException(
 				sprintf(
 					'The requestMethodTemplate attribute must be specified and must point to a readable template file. Current value is "%1$s".',
 					$this->requestMethodTemplate
@@ -133,7 +133,7 @@ class AgaviGenerateActionMethodsTask extends AgaviTask
 		}
 		
 		if($this->simpleMethodTemplate === null || !is_readable($this->simpleMethodTemplate)) {
-			throw new BuildException(
+			throw new \Agavi\Build\Exception\BuildException(
 				sprintf(
 					'The simpleMethodTemplate attribute must be specified and must point to a readable template file. Current value is "%1$s".',
 					$this->simpleMethodTemplate

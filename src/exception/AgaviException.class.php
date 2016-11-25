@@ -14,6 +14,13 @@
 // |   End:                                                                    |
 // +---------------------------------------------------------------------------+
 
+
+namespace Agavi\Exception;
+
+use Agavi\Config\Config;
+use Agavi\Core\Context;
+use Agavi\Controller\ExecutionContainer;
+
 /**
  * AgaviException is the base class for all Agavi related exceptions and
  * provides an additional method for printing up a detailed view of an
@@ -32,21 +39,21 @@
  *
  * @version    $Id$
  */
-class AgaviException extends Exception
+class AgaviException extends \Exception
 {
 	/**
 	 * Print the stack trace for this exception.
 	 *
-	 * @param      Exception     The original exception.
-	 * @param      AgaviContext  The context instance.
-	 * @param      AgaviResponse The response instance.
+	 * @param      \Exception         $e         The original exception.
+	 * @param      Context            $context   The context instance.
+	 * @param      ExecutionContainer $container The execution container instance
 	 *
 	 * @author     David Zülke <dz@bitxtender.com>
 	 * @since      0.9.0
 	 *
 	 * @deprecated Superseded by AgaviException::render()
 	 */
-	public static function printStackTrace(Exception $e, AgaviContext $context = null, AgaviExecutionContainer $container = null)
+	public static function printStackTrace(\Exception $e, Context $context = null, ExecutionContainer $container = null)
 	{
 		return self::render($e, $context, $container);
 	}
@@ -56,18 +63,18 @@ class AgaviException extends Exception
 	 * does not contain the origin as the first entry in the trace array, which
 	 * appears to happen from time to time or with certain PHP/XDebug versions.
 	 *
-	 * @param      Exception The exception to pull the trace from.
-	 * @param      Exception Optionally, the next exception to display (pulled
-	 *                       from Exception::getPrevious() and displayed in
-	 *                       reverse order), which will then result in identical
-	 *                       parts of the stack trace not being returned.
+	 * @param      \Exception $e    The exception to pull the trace from.
+	 * @param      \Exception $next Optionally, the next exception to display (pulled
+	 *                             from Exception::getPrevious() and displayed in
+	 *                             reverse order), which will then result in identical
+	 *                             parts of the stack trace not being returned.
 	 *
 	 * @return     array The trace containing the exception origin as first item.
 	 *
 	 * @author     David Zülke <david.zuelke@bitextender.com>
 	 * @since      1.0.3
 	 */
-	public static function getFixedTrace(Exception $e, Exception $next = null)
+	public static function getFixedTrace(\Exception $e, \Exception $next = null)
 	{
 		// fix stack trace in case it doesn't contain the exception origin as the first entry
 		$fixedTrace = $e->getTrace();
@@ -93,8 +100,9 @@ class AgaviException extends Exception
 	 * Build a list of parameters passed to a method. Example:
 	 * array([object AgaviFilter], 'baz' => array(1, 2), 'log' => [resource stream])
 	 *
-	 * @param      array An (associative) array of variables.
-	 * @param      bool  Whether or not to style and encode for HTML output.
+	 * @param      array $params An (associative) array of variables.
+	 * @param      bool  $html   Whether or not to style and encode for HTML output.
+	 * @param      int   $level
 	 *
 	 * @return     string A string, possibly formatted using HTML "em" tags.
 	 *
@@ -160,7 +168,7 @@ class AgaviException extends Exception
 	/**
 	 * Perform PHP syntax highlighting on the given file.
 	 *
-	 * @param      string The path of the file to highlight.
+	 * @param      string $filepath The path of the file to highlight.
 	 *
 	 * @return     array An 0-indexed array of HTML-highlighted code lines.
 	 *
@@ -175,7 +183,7 @@ class AgaviException extends Exception
 	/**
 	 * Perform PHP syntax highlighting on the given code string.
 	 *
-	 * @param      string The PHP code to highlight.
+	 * @param      string $code The PHP code to highlight.
 	 *
 	 * @return     array An 0-indexed array of HTML-highlighted code lines.
 	 *
@@ -255,14 +263,14 @@ class AgaviException extends Exception
 	/**
 	 * Pretty-print this exception using a template.
 	 *
-	 * @param      Exception     The original exception.
-	 * @param      AgaviContext  The context instance.
-	 * @param      AgaviResponse The response instance.
+	 * @param      \Exception         $exception The original exception.
+	 * @param      Context            $context   The context instance.
+	 * @param      ExecutionContainer $container The response instance.
 	 *
 	 * @author     David Zülke <dz@bitxtender.com>
 	 * @since      1.0.0
 	 */
-	public static function render(Exception $e, AgaviContext $context = null, AgaviExecutionContainer $container = null)
+	public static function render(\Exception $e, Context $context = null, ExecutionContainer $container = null)
 	{
 		// exit code is 70, EX_SOFTWARE, according to /usr/include/sysexits.h: http://cvs.opensolaris.org/source/xref/on/usr/src/head/sysexits.h
 		// nice touch: an exception template can change this value :)
@@ -292,19 +300,19 @@ class AgaviException extends Exception
 					include($context->getController()->getOutputType()->getExceptionTemplate());
 					exit($exitCode);
 				}
-			} catch(Exception $e2) {
+			} catch(\Exception $e2) {
 				unset($e2);
 			}
 		}
 		
-		if($context !== null && AgaviConfig::get('exception.templates.' . $context->getName()) !== null) {
+		if($context !== null && Config::get('exception.templates.' . $context->getName()) !== null) {
 			// a template was set for this context
-			include(AgaviConfig::get('exception.templates.' . $context->getName()));
+			include(Config::get('exception.templates.' . $context->getName()));
 			exit($exitCode);
 		}
 		
 		// include default exception template
-		include(AgaviConfig::get('exception.default_template'));
+		include(Config::get('exception.default_template'));
 		
 		// bail out
 		exit($exitCode);

@@ -1,6 +1,6 @@
 <?php
 
-class Disabled_IndexAction extends AgaviSampleAppDisabledBaseAction
+class Disabled_IndexAction extends SampleAppDisabledBaseAction
 {
 	/**
 	 * This Action does not yet serve any Request methods.

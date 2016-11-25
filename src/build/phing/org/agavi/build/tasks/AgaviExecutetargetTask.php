@@ -60,7 +60,7 @@ class AgaviExecutetargetTask extends AgaviTask
 	public function main()
 	{
 		if($this->name === null) {
-			throw new BuildException('The name attribute must be specified');
+			throw new \Agavi\Build\Exception\BuildException('The name attribute must be specified');
 		}
 		
 		/* Words cannot describe how ridiculously fucking stupid this is. Phing

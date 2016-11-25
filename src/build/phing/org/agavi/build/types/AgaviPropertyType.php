@@ -63,10 +63,10 @@ class AgaviPropertyType extends AgaviPropertiesType
 	public function resolve()
 	{
 		if($this->name === null) {
-			throw new BuildException('The name attribute must be specified');
+			throw new \Agavi\Build\Exception\BuildException('The name attribute must be specified');
 		}
 		if($this->value === null) {
-			throw new BuildException('The value attribute must be specified');
+			throw new \Agavi\Build\Exception\BuildException('The value attribute must be specified');
 		}
 		
 		$properties = new Properties();

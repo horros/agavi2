@@ -28,6 +28,6 @@
  * @version    $Id$
  */
 
-require(__DIR__ . '/AgaviBuild.class.php');
+require(__DIR__ . '/Build.class.php');
 
 ?>

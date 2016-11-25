@@ -1,9 +1,10 @@
 <?php
 
+use Agavi\Request\RequestDataHolder;
 /**
  * The base view from which all project views inherit.
  */
-class %%PROJECT_PREFIX%%BaseView extends AgaviView
+class %%PROJECT_PREFIX%%BaseView extends Agavi\View\View
 {
 	const SLOT_LAYOUT_NAME = 'slot';
 	
@@ -11,14 +12,14 @@ class %%PROJECT_PREFIX%%BaseView extends AgaviView
 	 * Handles output types that are not handled elsewhere in the view. The
 	 * default behavior is to simply throw an exception.
 	 *
-	 * @param      AgaviRequestDataHolder The request data associated with
-	 *                                    this execution.
+	 * @param      RequestDataHolder $rd The request data associated with
+	 *                                   this execution.
 	 *
-	 * @throws     AgaviViewException if the output type is not handled.
+	 * @throws     Agavi\Exception\ViewException if the output type is not handled.
 	 */
-	public final function execute(AgaviRequestDataHolder $rd)
+	public final function execute(RequestDataHolder $rd)
 	{
-		throw new AgaviViewException(sprintf(
+		throw new Agavi\Exception\ViewException(sprintf(
 			'The view "%1$s" does not implement an "execute%3$s()" method to serve '.
 			'the output type "%2$s", and the base view "%4$s" does not implement an '.
 			'"execute%3$s()" method to handle this situation.',
@@ -32,11 +33,11 @@ class %%PROJECT_PREFIX%%BaseView extends AgaviView
 	/**
 	 * Prepares the HTML output type.
 	 *
-	 * @param      AgaviRequestDataHolder The request data associated with
-	 *                                    this execution.
+	 * @param      RequestDataHolder $rd The request data associated with
+	 *                                   this execution.
 	 * @param      string The layout to load.
 	 */
-	public function setupHtml(AgaviRequestDataHolder $rd, $layoutName = null)
+	public function setupHtml(RequestDataHolder $rd, $layoutName = null)
 	{
 		if($layoutName === null && $this->getContainer()->getParameter('is_slot', false)) {
 			// it is a slot, so we do not load the default layout, but a different one

@@ -1,13 +1,18 @@
 <?php
-	
-class BaseValidatorTest extends AgaviUnitTestCase
+namespace Agavi\Tests\Unit\Validator;
+
+use Agavi\Request\RequestDataHolder;
+use Agavi\Testing\UnitTestCase;
+
+class BaseValidatorTest extends UnitTestCase
 {
 	protected function executeValidator($class, $value, array $errors = array(), $parameters = array())
 	{
 		$vm = $this->getContext()->createInstanceFor('validation_manager');
+
 		$validator = $vm->createValidator($class, array('value'), $errors, $parameters);
-		$rd = new AgaviRequestDataHolder(array(
-			AgaviRequestDataHolder::SOURCE_PARAMETERS => array('value' => $value)
+		$rd = new RequestDataHolder(array(
+			RequestDataHolder::SOURCE_PARAMETERS => array('value' => $value)
 		));
 		$result = $validator->execute($rd);
 		

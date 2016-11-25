@@ -1,8 +1,9 @@
 <?php
+use Agavi\Request\RequestDataHolder;
 
-class Products_IndexSuccessView extends AgaviSampleAppProductsBaseView
+class Products_IndexSuccessView extends SampleAppProductsBaseView
 {
-	public function executeHtml(AgaviRequestDataHolder $rd)
+	public function executeHtml(RequestDataHolder $rd)
 	{
 		$this->setupHtml($rd);
 		
@@ -10,7 +11,7 @@ class Products_IndexSuccessView extends AgaviSampleAppProductsBaseView
 		$this->setAttribute('_title', $this->tm->_('Our Fine Products', 'default.SearchEngineSpam'));
 	}
 
-	public function executeText(AgaviRequestDataHolder $rd)
+	public function executeText(RequestDataHolder $rd)
 	{
 		$products = $this->getAttribute('products');
 		
@@ -27,10 +28,8 @@ class Products_IndexSuccessView extends AgaviSampleAppProductsBaseView
 		return implode(PHP_EOL, $ret);
 	}
 	
-	public function executeSoap(AgaviRequestDataHolder $rd)
+	public function executeSoap(RequestDataHolder $rd)
 	{
 		return $this->getAttribute('products');
 	}
 }
-
-?>

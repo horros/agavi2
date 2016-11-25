@@ -4,7 +4,7 @@
 	<ae:configuration>
 		<filters>
 
-			<filter name="FormPopulationFilter" class="AgaviFormPopulationFilter">
+			<filter name="FormPopulationFilter" class="Agavi\Filter\FormPopulationFilter">
 				<ae:parameter name="methods">
 					<ae:parameter>write</ae:parameter>
 				</ae:parameter>

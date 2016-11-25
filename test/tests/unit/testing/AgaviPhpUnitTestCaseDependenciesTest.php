@@ -1,11 +1,14 @@
 <?php
+namespace Agavi\Tests\Unit\Testing;
 
-class AgaviPhpUnitTestCaseDependenciesTestDummy extends SandboxTestingChildClass {} 
+use Agavi\Testing\PhpUnitTestCase;
+
+class AgaviPhpUnitTestCaseDependenciesTestDummy extends \SandboxTestingChildClass {}
 
 /**
  * @runTestsInSeparateProcesses
  */
-class AgaviPhpUnitTestCaseDependenciesTest extends AgaviPhpUnitTestCase
+class PhpUnitTestCaseDependenciesTest extends PhpUnitTestCase
 {
 	/**
 	 * @preserveGlobalState enabled

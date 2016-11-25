@@ -1,6 +1,6 @@
 <?php
 
-class GenWithUnescapedParamRoutingCallback extends AgaviRoutingCallback
+class GenWithUnescapedParamRoutingCallback extends \Agavi\Routing\RoutingCallback
 {
 	/**
 	 * Gets executed when the route of this callback is about to be reverse 

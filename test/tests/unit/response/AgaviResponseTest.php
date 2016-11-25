@@ -1,12 +1,17 @@
 <?php
+namespace Agavi\Tests\Unit\Response;
 
-class SampleResponse extends AgaviResponse
+use Agavi\Controller\OutputType;
+use Agavi\Response\Response;
+use Agavi\Testing\UnitTestCase;
+
+class SampleResponse extends Response
 {
 	public function clear()
 	{
 	}
 
-	public function send(AgaviOutputType $ot = null)
+	public function send(OutputType $ot = null)
 	{
 	}
 	
@@ -26,13 +31,16 @@ class SampleResponse extends AgaviResponse
 	{
 	}
 	
-	public function merge(AgaviResponse $other)
+	public function merge(Response $other)
 	{
 	}
 }
 
-class AgaviResponseTest extends AgaviUnitTestCase
+class AgaviResponseTest extends UnitTestCase
 {
+	/**
+	 * @var Response
+	 */
 	private $_r = null;
 
 	public function setUp()

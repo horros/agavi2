@@ -39,16 +39,16 @@
 
 	<ae:configuration environment="test-validator-definition-error-definition">
 		<validator_definitions>
-			<validator_definition name="standalone" class="DummyValidator">
+			<validator_definition name="standalone" class="Agavi\Test\Validator\DummyValidator">
 				<error>error-generic</error>
 				<error for="min">error-min</error>
 			</validator_definition>
-			<validator_definition name="overwritten" class="DummyValidator">
+			<validator_definition name="overwritten" class="Agavi\Test\Validator\DummyValidator">
 				<error>error-generic</error>
 				<error for="min">error-min</error>
 			</validator_definition>
 			
-			<validator_definition name="overwritten" class="DummyValidator">
+			<validator_definition name="overwritten" class="Agavi\Test\Validator\DummyValidator">
 				<error>error-generic-overwritten</error>
 				<error for="min">error-min-overwritten</error>
 			</validator_definition>

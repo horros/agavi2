@@ -1,19 +1,27 @@
 <?php
+namespace Agavi\Tests\Unit\Config;
+use Agavi\Config\Config;
+use Agavi\Config\FilterConfigHandler;
+use Agavi\Core\Context;
+use Agavi\Controller\ExecutionContainer;
+use Agavi\Filter\FilterChain;
+use Agavi\Filter\FilterInterface;
+
 require_once(__DIR__ . '/ConfigHandlerTestBase.php');
 
-class FCHTestFilter1 implements AgaviIFilter
+class FCHTestFilter1 implements FilterInterface
 {
 	public $context;
 	public $params;
 
-	public function initialize(AgaviContext $ctx, array $params = array())
+	public function initialize(Context $ctx, array $params = array())
 	{
 		$this->context = $ctx;
 		$this->params = $params;
 	}
 
-	public function executeOnce(AgaviFilterChain $filterChain, AgaviExecutionContainer $container) {}
-	public function execute(AgaviFilterChain $filterChain, AgaviExecutionContainer $container) {}
+	public function executeOnce(FilterChain $filterChain, ExecutionContainer $container) {}
+	public function execute(FilterChain $filterChain, ExecutionContainer $container) {}
 	public final function getContext() {}
 }
 
@@ -34,11 +42,11 @@ class AgaviFilterConfigHandlerTest extends ConfigHandlerTestBase
 	{
 		$ctx = $this->getContext();
 		
-		$FCH = new AgaviFilterConfigHandler();
+		$FCH = new FilterConfigHandler();
 		
 		$document = $this->parseConfiguration(
-			AgaviConfig::get('core.config_dir') . '/tests/filters.xml',
-			AgaviConfig::get('core.agavi_dir') . '/config/xsl/filters.xsl'
+			Config::get('core.config_dir') . '/tests/filters.xml',
+			Config::get('core.agavi_dir') . '/config/xsl/filters.xsl'
 		);
 
 		$filters = array();
@@ -49,11 +57,11 @@ class AgaviFilterConfigHandlerTest extends ConfigHandlerTestBase
 
 		$this->assertCount(2, $filters);
 
-		$this->assertInstanceOf('FCHTestFilter1', $filters['filter1']);
+		$this->assertInstanceOf('Agavi\\Tests\\Unit\\Config\\FCHTestFilter1', $filters['filter1']);
 		$this->assertSame(array('comment' => true), $filters['filter1']->params);
 		$this->assertSame($ctx, $filters['filter1']->context);
 
-		$this->assertInstanceOf('FCHTestFilter2', $filters['filter2']);
+		$this->assertInstanceOf('Agavi\\Tests\\Unit\\Config\\FCHTestFilter2', $filters['filter2']);
 		$this->assertSame(array(), $filters['filter2']->params);
 		$this->assertSame($ctx, $filters['filter2']->context);
 	}

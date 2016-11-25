@@ -1,7 +1,15 @@
 <?php
+namespace Agavi\Tests\Unit\Routing;
 
-class AgaviWebRoutingTest extends AgaviPhpUnitTestCase
+use Agavi\Core\Context;
+use Agavi\Testing\PhpUnitTestCase;
+use Agavi\Testing\Routing\TestingWebRouting;
+
+class WebRoutingTest extends PhpUnitTestCase
 {
+	/**
+	 * @var TestingWebRouting
+	 */
 	protected $routing;
 	protected $parameters = array('enabled' => true, 'gen_options_presets' => array('redirect' => array('separator' => '&', 'relative' => false)));
 	
@@ -20,8 +28,8 @@ class AgaviWebRoutingTest extends AgaviPhpUnitTestCase
 	public function setUp()
 	{
 		$_SERVER['SCRIPT_NAME'] = ''; // takes care of php setting the commandline scriptname in $_SERVER, throwing the routing off guard
-		$this->routing = new AgaviTestingWebRouting();
-		$this->routing->initialize(AgaviContext::getInstance(null), $this->parameters);
+		$this->routing = new TestingWebRouting();
+		$this->routing->initialize(Context::getInstance(null), $this->parameters);
 		$this->routing->startup();
 	}
 	
@@ -315,14 +323,14 @@ class AgaviWebRoutingTest extends AgaviPhpUnitTestCase
 	
 	public function testGenWithObject()
 	{
-		$fi = new SplFileInfo(__FILE__);
+		$fi = new \SplFileInfo(__FILE__);
 		$url = $this->routing->gen('with_param', array('number' => $fi));
 		$this->assertEquals('/withparam/' . rawurlencode(__FILE__), $url);
 	}
 	
 	public function testGenWithObjectRoutingValue()
 	{
-		$fi = new SplFileInfo(__FILE__);
+		$fi = new \SplFileInfo(__FILE__);
 		$url = $this->routing->gen('with_param', array('number' => $this->routing->createValue($fi)));
 		$this->assertEquals('/withparam/' . rawurlencode(__FILE__), $url);
 		$url = $this->routing->gen('with_param', array('number' => $this->routing->createValue($fi, false)));
@@ -331,7 +339,7 @@ class AgaviWebRoutingTest extends AgaviPhpUnitTestCase
 	
 	public function testGenWithObjectCallback()
 	{
-		$fi = new SplFileInfo(__FILE__);
+		$fi = new \SplFileInfo(__FILE__);
 		
 		$url = $this->routing->gen('callbacks.object', array('value' => $fi));
 		$this->assertEquals('/callbacks/foo/' . rawurlencode(__DIR__), $url);
@@ -502,7 +510,7 @@ class AgaviWebRoutingTest extends AgaviPhpUnitTestCase
 		try {
 			$this->routing->gen('callbacks.ticket_695');
 			$this->fail('Failed asserting that onGenerate() is called');
-		} catch(AgaviException $e) {
+		} catch(\Exception $e) {
 			// successfully called
 		}
 	}

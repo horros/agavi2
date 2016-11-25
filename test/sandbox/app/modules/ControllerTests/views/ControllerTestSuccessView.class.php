@@ -1,8 +1,8 @@
 <?php
 
-class ControllerTests_ControllerTestSuccessView extends AgaviView
+class ControllerTests_ControllerTestSuccessView extends \Agavi\View\View
 {
-	public function execute(AgaviRequestDataHolder $rd)
+	public function execute(\Agavi\Request\RequestDataHolder $rd)
 	{
 		$this->loadLayout();
 	}

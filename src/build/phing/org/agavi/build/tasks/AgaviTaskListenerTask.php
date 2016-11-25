@@ -34,21 +34,21 @@ class AgaviTaskListenerTask extends AgaviListenerTask
 	public function main()
 	{
 		if($this->object === null) {
-			throw new BuildException('The object attribute must be specified');
+			throw new \Agavi\Build\Exception\BuildException('The object attribute must be specified');
 		}
 		
 		$objectType = $this->object->getReferencedObject($this->project);
 		if(!$objectType instanceof AgaviObjectType) {
-			throw new BuildException('The object attribute must be a reference to an Agavi object type');
+			throw new \Agavi\Build\Exception\BuildException('The object attribute must be a reference to an Agavi object type');
 		}
 		
 		$object = $objectType->getInstance();
-		if(!$object instanceof AgaviIPhingTaskListener) {
+		if(!$object instanceof \Agavi\Build\Phing\PhingTaskListenerInterface) {
 			throw new BuildException(sprintf('Cannot add task listener: Object is of type %s which does not implement %s',
-				get_class($object), 'AgaviIPhingTaskListener'));
+				get_class($object), 'Agavi\\Build\\Phing\\PhingTaskListenerInterface'));
 		}
 		
-		$dispatcher = AgaviPhingEventDispatcherManager::get($this->project);
+		$dispatcher = \Agavi\Build\Phing\PhingEventDispatcherManager::get($this->project);
 		$dispatcher->addTaskListener($object);
 	}
 }
