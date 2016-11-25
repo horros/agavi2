@@ -1,6 +1,8 @@
 <?php
-namespace Agavi\Testing;
+namespace Agavi\Testing\PHPUnit\Constraint;
 use Agavi\Action\Action;
+use Agavi\Testing\BaseConstraintBecausePhpunitSucksAtBackwardsCompatibility;
+
 
 
 /**

@@ -1,6 +1,7 @@
 <?php
+use Agavi\Request\RequestDataHolder;
 
-class Disabled_IndexSuccessView extends AgaviSampleAppDisabledBaseView
+class Disabled_IndexSuccessView extends SampleAppDisabledBaseView
 {
 	public function executeHtml(RequestDataHolder $rd)
 	{

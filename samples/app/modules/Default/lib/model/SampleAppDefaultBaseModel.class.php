@@ -1,10 +1,10 @@
 <?php
 
-class AgaviSampleAppBaseModel extends AgaviModel
+class SampleAppDefaultBaseModel extends SampleAppBaseModel
 {
 	/*
-		This is the base model all your application's models should extend.
-		This way, you can easily inject new functionality into all of your models.
+		This is the base action all your module's models should extend. This way,
+		you can easily inject new functionality into all of this module's models.
 		
 		It is of course highly recommended that you change the names of any default
 		base classes to carry a prefix and have an overall meaningful naming scheme.

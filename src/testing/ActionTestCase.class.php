@@ -14,6 +14,7 @@ namespace Agavi\Testing;
 // +---------------------------------------------------------------------------+
 use Agavi\Controller\ExecutionContainer;
 use Agavi\Request\RequestDataHolder;
+use Agavi\Testing\PHPUnit\Constraint\ConstraintActionHandlesMethod;
 use Agavi\Validator\ValidationArgument;
 
 /**

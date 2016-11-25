@@ -1,6 +1,8 @@
 <?php
 
-class Products_Product_ViewErrorView extends AgaviSampleAppProductsBaseView
+use Agavi\Request\RequestDataHolder;
+
+class Products_Product_ViewErrorView extends SampleAppProductsBaseView
 {
 	/**
 	 * Execute any presentation logic and set template attributes.
@@ -48,5 +50,3 @@ class Products_Product_ViewErrorView extends AgaviSampleAppProductsBaseView
 		return array('faultCode' => 101, 'faultString' => 'Unknown Product ' . $rd->getParameter('id'));
 	}
 }
-
-?>

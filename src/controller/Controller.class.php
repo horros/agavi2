@@ -285,7 +285,7 @@ class Controller extends ParameterHolder
 				// set $container to null so Exception::render() won't think it is a container if an exception happens later!
 				$container = null;
 			} else {
-				throw new AgaviException('AgaviRouting::execute() returned neither ExecutionContainer nor AgaviResponse object.');
+				throw new AgaviException('AgaviRouting::execute() returned neither ExecutionContainer nor Response object.');
 			}
 			$response->merge($this->response);
 			

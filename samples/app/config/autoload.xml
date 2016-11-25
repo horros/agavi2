@@ -2,15 +2,15 @@
 <ae:configurations xmlns="http://agavi.org/agavi/config/parts/autoload/1.1" xmlns:ae="http://agavi.org/agavi/config/global/envelope/1.1" parent="%core.system_config_dir%/autoload.xml">
 	<ae:configuration>
 		<autoloads>
-			<autoload class="AgaviSampleAppBaseAction">lib/action/AgaviSampleAppBaseAction.class.php</autoload>
-			<autoload class="AgaviSampleAppBaseModel">%core.lib_dir%/model/AgaviSampleAppBaseModel.class.php</autoload>
-			<autoload class="AgaviSampleAppBaseView">%core.lib_dir%/view/AgaviSampleAppBaseView.class.php</autoload>
+			<autoload class="SampleAppBaseAction">lib/action/SampleAppBaseAction.class.php</autoload>
+			<autoload class="SampleAppBaseModel">%core.lib_dir%/model/SampleAppBaseModel.class.php</autoload>
+			<autoload class="SampleAppBaseView">%core.lib_dir%/view/SampleAppBaseView.class.php</autoload>
 			
-			<autoload class="AgaviSampleAppLanguageRoutingCallback">%core.lib_dir%/routing/AgaviSampleAppLanguageRoutingCallback.class.php</autoload>
+			<autoload class="SampleAppLanguageRoutingCallback">%core.lib_dir%/routing/SampleAppLanguageRoutingCallback.class.php</autoload>
 			
-			<autoload class="AgaviSampleAppUser">%core.lib_dir%/user/AgaviSampleAppUser.class.php</autoload>
+			<autoload class="SampleAppUser">%core.lib_dir%/user/SampleAppUser.class.php</autoload>
 			
-			<autoload class="AgaviSampleAppProductValidator">%core.lib_dir%/validator/AgaviSampleAppProductValidator.class.php</autoload>
+			<autoload class="SampleAppProductValidator">%core.lib_dir%/validator/SampleAppProductValidator.class.php</autoload>
 		</autoloads>
 	</ae:configuration>
 </ae:configurations>

@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
@@ -12,8 +12,8 @@
 // |   indent-tabs-mode: t                                                     |
 // |   End:                                                                    |
 // +---------------------------------------------------------------------------+
-
-class Default_Error404SuccessView extends AgaviSampleAppDefaultBaseView
+use Agavi\Request\RequestDataHolder;
+class Default_Error404SuccessView extends SampleAppDefaultBaseView
 {
 
 	public function executeHtml(RequestDataHolder $rd)

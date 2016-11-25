@@ -1,6 +1,7 @@
 <?php
+use Agavi\Validator\Validator;
 
-class AgaviSampleAppProductValidator extends Validator
+class SampleAppProductValidator extends Validator
 {
 	public function validate()
 	{

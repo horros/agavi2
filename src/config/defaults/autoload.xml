@@ -287,7 +287,7 @@
 
 			<!-- agavi/testing -->
 			<autoload class="Agavi\Testing\FlowTestCaseInterface">%core.agavi_dir%/testing/FlowTestCase.interface.php</autoload>
-			<autoload class="Agavi\Testing\FragmentTestCaseIterface">%core.agavi_dir%/testing/FragmentTestCase.interface.php</autoload>
+			<autoload class="Agavi\Testing\FragmentTestCaseInterface">%core.agavi_dir%/testing/FragmentTestCase.interface.php</autoload>
 			<autoload class="Agavi\Testing\RemoteTestCaseInterface">%core.agavi_dir%/testing/RemoteTestCase.interface.php</autoload>
 			<autoload class="Agavi\Testing\TestCaseInterface">%core.agavi_dir%/testing/TestCase.interface.php</autoload>
 			<autoload class="Agavi\Testing\UnitTestCaseInterface">%core.agavi_dir%/testing/UnitTestCase.interface.php</autoload>
@@ -304,8 +304,8 @@
 			<autoload class="Agavi\Testing\TestSuite">%core.agavi_dir%/testing/TestSuite.class.php</autoload>
 			
 			<autoload class="Agavi\Testing\BaseConstraintBecausePhpunitSucksAtBackwardsCompatibility">%core.agavi_dir%/testing/BaseConstraintBecausePhpunitSucksAtBackwardsCompatibility.class.php</autoload>
-			<autoload class="Agavi\Testing\Constraint\ConstraintActionHandlesMethod">%core.agavi_dir%/testing/PHPUnit/Constraint/ConstraintActionHandlesMethod.php</autoload>
-			<autoload class="Agavi\Testing\Constraint\ConstraintViewHandlesOutputType">%core.agavi_dir%/testing/PHPUnit/Constraint/ConstraintViewHandlesOutputType.php</autoload>
+			<autoload class="Agavi\Testing\PHPUnit\Constraint\ConstraintActionHandlesMethod">%core.agavi_dir%/testing/PHPUnit/Constraint/ConstraintActionHandlesMethod.php</autoload>
+			<autoload class="Agavi\Testing\PHPUnit\Constraint\ConstraintViewHandlesOutputType">%core.agavi_dir%/testing/PHPUnit/Constraint/ConstraintViewHandlesOutputType.php</autoload>
 		</autoloads>
 	</ae:configuration>
 </ae:configurations>

@@ -46,7 +46,7 @@ class Autoloader
 	/**
 	 * Add classes to the autoloader.
 	 *
-	 * @param      array An array containing class names as keys and paths to the
+	 * @param      array $map An array containing class names as keys and paths to the
 	 *                   corresponding PHP files as values.
 	 *
 	 * @author     David Zülke <david.zuelke@bitextender.com>
@@ -60,7 +60,7 @@ class Autoloader
 	/**
 	 * Add namespaces to the autoloader.
 	 *
-	 * @param      array An array containing namespace prefixes as keys and paths
+	 * @param      array $map An array containing namespace prefixes as keys and paths
 	 *                   to the corresponding directories containing files as
 	 *                   values. Namespace prefixes must not contain a trailing
 	 *                   backslash.
@@ -76,8 +76,9 @@ class Autoloader
 	/**
 	 * Handles autoloading of classes
 	 *
-	 * @param      string A class name.
+	 * @param      string $class A class name.
 	 *
+     * @return boolean true if the class was successfully loaded, false otherwise
 	 * @author     David Zülke <dz@bitxtender.com>
 	 * @since      0.11.0
 	 */
@@ -88,7 +89,7 @@ class Autoloader
 			require(self::$classes[$class]);
 			return true;
 		}
-		
+
 		// nothing yet; let's see if it's in one of our namespace map paths
 		$lastBackslash = strrpos($class, '\\');
 		if($lastBackslash === false) {

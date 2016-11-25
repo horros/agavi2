@@ -1,10 +1,14 @@
 <?php
 
-class AgaviSampleAppLanguageRoutingCallback extends RoutingCallback
+use Agavi\Core\Context;
+use Agavi\Controller\ExecutionContainer;
+
+class SampleAppLanguageRoutingCallback extends Agavi\Routing\RoutingCallback
 {
 	protected $availableLocales = array();
+    protected $translationManager = null;
 	
-	public function initialize(AgaviContext $context, array &$route)
+	public function initialize(Context $context, array &$route)
 	{
 		parent::initialize($context, $route);
 		

@@ -1,6 +1,6 @@
 <?php
 
-class AgaviSampleAppProductsBaseAction extends AgaviSampleAppBaseAction
+class SampleAppProductsBaseAction extends SampleAppBaseAction
 {
 	/*
 		This is the base action all your module's actions should extend. This way,
@@ -20,5 +20,3 @@ class AgaviSampleAppProductsBaseAction extends AgaviSampleAppBaseAction
 		for specific modules in case you require this.
 	*/
 }
-
-?>

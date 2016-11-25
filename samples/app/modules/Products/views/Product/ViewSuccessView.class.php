@@ -1,6 +1,8 @@
 <?php
+use Agavi\Request\RequestDataHolder;
 
-class Products_Product_ViewSuccessView extends AgaviSampleAppProductsBaseView
+
+class Products_Product_ViewSuccessView extends SampleAppProductsBaseView
 {
 
 	/**
@@ -47,5 +49,3 @@ class Products_Product_ViewSuccessView extends AgaviSampleAppProductsBaseView
 		);
 	}
 }
-
-?>

@@ -371,6 +371,7 @@ class Context
 	 * @return     Model A Model implementation instance.
 	 *
 	 * @throws     AutoloadException if class is ultimately not found.
+     *
 	 *
 	 * @author     David Zülke <dz@bitxtender.com>
 	 * @since      0.11.0

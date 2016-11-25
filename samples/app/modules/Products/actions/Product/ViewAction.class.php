@@ -1,6 +1,7 @@
 <?php
+use Agavi\Request\RequestDataHolder;
 
-class Products_Product_ViewAction extends AgaviSampleAppProductsBaseAction
+class Products_Product_ViewAction extends SampleAppProductsBaseAction
 {
 	public function executeRead(RequestDataHolder $rd)
 	{
@@ -11,5 +12,3 @@ class Products_Product_ViewAction extends AgaviSampleAppProductsBaseAction
 		return 'Success';
 	}
 }
-
-?>

@@ -1,6 +1,6 @@
 <?php
 
-class AgaviSampleAppDefaultBaseModel extends AgaviSampleAppBaseModel
+class SampleAppDisabledBaseModel extends SampleAppBaseModel
 {
 	/*
 		This is the base action all your module's models should extend. This way,

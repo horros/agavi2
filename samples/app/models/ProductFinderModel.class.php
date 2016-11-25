@@ -1,6 +1,7 @@
 <?php
+use Agavi\Model\SingletonModelInterface;
 
-class ProductFinderModel extends AgaviSampleAppBaseModel implements SingletonModel
+class ProductFinderModel extends SampleAppBaseModel implements SingletonModelInterface
 {
 	// imagine this stuff is in a database :)
 	protected static $products = array(
@@ -75,4 +76,3 @@ class ProductFinderModel extends AgaviSampleAppBaseModel implements SingletonMod
 	}
 }
 
-?>

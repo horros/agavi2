@@ -13,7 +13,9 @@
 // |   End:                                                                    |
 // +---------------------------------------------------------------------------+
 
-class Default_LoginAction extends AgaviSampleAppDefaultBaseAction
+use Agavi\Request\RequestDataHolder;
+
+class Default_LoginAction extends SampleAppDefaultBaseAction
 {
 	/**
 	 * This Action does not yet serve any Request methods.
@@ -53,7 +55,7 @@ class Default_LoginAction extends AgaviSampleAppDefaultBaseAction
 		try {
 			$this->getContext()->getUser()->login($rd->getParameter('username'), $rd->getParameter('password'));
 			return 'Success';
-		} catch(SecurityException $e) {
+		} catch(\Agavi\Exception\SecurityException $e) {
 			$this->setAttribute('error', $e->getMessage());
 			return 'Error';
 		}

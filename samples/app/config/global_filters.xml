@@ -4,7 +4,7 @@
 	<ae:configuration context="web">
 		<filters>
 			
-			<filter name="FormPopulationFilter" class="AgaviFormPopulationFilter">
+			<filter name="FormPopulationFilter" class="Agavi\Filter\FormPopulationFilter">
 				<ae:parameter name="methods">
 					<ae:parameter>write</ae:parameter>
 				</ae:parameter>
@@ -25,7 +25,7 @@
 				</ae:parameter>
 			</filter>
 			
-			<!-- <filter name="TidyFilter" class="AgaviTidyFilter">
+			<!-- <filter name="TidyFilter" class="Agavi\Filter\TidyFilter">
 				<ae:parameter name="tidy_options">
 					<ae:parameter name="output-xhtml">true</ae:parameter>
 					<ae:parameter name="numeric-entities">true</ae:parameter>

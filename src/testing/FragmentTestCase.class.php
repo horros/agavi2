@@ -166,14 +166,18 @@ abstract class FragmentTestCase extends PhpUnitTestCase implements FragmentTestC
 
 		$wrapper_class = $effi['class'].'UnitTesting';
 
-		//extend the original class to overwrite runAction, so that the containers request data is cloned
+        // Grab the actual class name
+        if (($pos = strrpos($wrapper_class, '\\')) !== false) {
+            $wrapper_class = substr($wrapper_class, $pos+1);
+        }
+
+        //extend the original class to overwrite runAction, so that the containers request data is cloned
 		if(!class_exists($wrapper_class)) {
-			$code = sprintf('
-class %1$s extends %2$s
+			$code = sprintf('class %1$s extends %2$s
 {
 	protected $validationResult = null;
 	
-	public function executeView(ExecutionContainer $container)
+	public function executeView(Agavi\Controller\ExecutionContainer $container)
 	{
 		$container->initRequestData();
 		return parent::executeView($container);
@@ -210,13 +214,17 @@ class %1$s extends %2$s
 		$ecfi = $context->getFactoryInfo('execution_container');
 		$wrapper_class = $ecfi['class'].'UnitTesting';
 
+        // Grab the actual class name
+        if (($pos = strrpos($wrapper_class, '\\')) !== false) {
+            $wrapper_class = substr($wrapper_class, $pos+1);
+        }
+
 		//extend the original class to add a setter for the action instance
 		if(!class_exists($wrapper_class)) {
-			$code = sprintf('
-class %1$s extends %2$s
+			$code = sprintf('class %1$s extends %2$s
 {
 
-	public function setActionInstance(AgaviAction $action)
+	public function setActionInstance(Agavi\Action\Action $action)
 	{
 		$this->actionInstance = $action;
 	}
@@ -304,13 +312,13 @@ class %1$s extends %2$s
 	 * @author     Felix Gilcher <felix.gilcher@bitextender.com>
 	 * @since      1.0.0
 	 */
-	protected function assertContainerAttributeEquals($expected, $attributeName, $namespace = null, $message = 'Failed asserting that the attribute <%1$s/%2$s> has the value <%3$s>', $delta = 0, $maxDepth = 10, $canonicalizeEol = false)
+	protected function assertContainerAttributeEquals($expected, $attributeName, $namespace = null, $message = 'Failed asserting that the attribute <%1$s/%2$s> has the value <%3$s>', $delta = 0.0, $maxDepth = 10, $canonicalizeEol = false)
 	{
 		$this->assertEquals($expected, $this->container->getAttribute($attributeName, $namespace), sprintf($message, $namespace, $attributeName, $expected), $delta, $maxDepth, $canonicalizeEol);
 	}
 	
 	/**
-	 * assert that the exectionContainer has a given attribute 
+	 * assert that the executionContainer has a given attribute
 	 * 
 	 * @param      string  $attributeName the attribute name
 	 * @param      string  $namespace the attribute namespace

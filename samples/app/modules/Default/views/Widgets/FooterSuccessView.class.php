@@ -13,7 +13,10 @@
 // |   End:                                                                    |
 // +---------------------------------------------------------------------------+
 
-class Default_Widgets_FooterSuccessView extends AgaviSampleAppDefaultBaseView
+use Agavi\Request\RequestDataHolder;
+use Agavi\Config\Config;
+
+class Default_Widgets_FooterSuccessView extends SampleAppDefaultBaseView
 {
 
 	public function executeHtml(RequestDataHolder $rd)

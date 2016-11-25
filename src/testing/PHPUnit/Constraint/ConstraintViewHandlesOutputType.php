@@ -1,7 +1,6 @@
 <?php
-
-namespace Agavi\Testing;
-
+namespace Agavi\Testing\PHPUnit\Constraint;
+use Agavi\Testing\BaseConstraintBecausePhpunitSucksAtBackwardsCompatibility;
 use Agavi\View\View;
 
 /**

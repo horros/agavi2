@@ -1,6 +1,6 @@
 <?php
 
-class SampleAppConfidentialBaseView extends SampleAppBaseView
+class SampleAppProductsBaseView extends SampleAppBaseView
 {
 	/*
 		This is the base view all your module's views should extend. This way,
@@ -20,5 +20,3 @@ class SampleAppConfidentialBaseView extends SampleAppBaseView
 		for specific modules in case you require this.
 	*/
 }
-
-?>

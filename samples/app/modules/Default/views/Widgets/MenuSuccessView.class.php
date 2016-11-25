@@ -13,7 +13,9 @@
 // |   End:                                                                    |
 // +---------------------------------------------------------------------------+
 
-class Default_Widgets_MenuSuccessView extends AgaviSampleAppDefaultBaseView
+use Agavi\Request\RequestDataHolder;
+
+class Default_Widgets_MenuSuccessView extends SampleAppDefaultBaseView
 {
 
 	public function executeHtml(RequestDataHolder $rd)

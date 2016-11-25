@@ -1,4 +1,5 @@
 <?php 
+use Agavi\Testing\UnitTestCase;
 
 class ProductFinderModelTest extends UnitTestCase
 {
@@ -29,6 +30,10 @@ class ProductFinderModelTest extends UnitTestCase
 			'price' => 14.69,
 		),
 	);
+
+    public function testLol() {
+        $this->assertTrue(true);
+    }
 	
 	/**
 	 * @dataProvider productNamePrices

@@ -1,6 +1,7 @@
 <?php
+use Agavi\Request\RequestDataHolder;
 
-class Default_SendWsdlAction extends AgaviSampleAppDefaultBaseAction
+class Default_SendWsdlAction extends SampleAppDefaultBaseAction
 {
 	public function execute(RequestDataHolder $rd)
 	{

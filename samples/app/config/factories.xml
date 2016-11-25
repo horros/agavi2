@@ -2,48 +2,46 @@
 <ae:configurations xmlns:ae="http://agavi.org/agavi/config/global/envelope/1.1" xmlns="http://agavi.org/agavi/config/parts/factories/1.1">
 	
 	<ae:configuration>
-		
-		<controller class="AgaviController" />
-		
-		<database_manager class="AgaviDatabaseManager" />
-		
-		<dispatch_filter class="AgaviDispatchFilter" />
-		
-		<execution_container class="ExecutionContainer" />
-		
-		<execution_filter class="AgaviExecutionFilter" />
-		
-		<filter_chain class="AgaviFilterChain" />
-		
-		<logger_manager class="AgaviLoggerManager" />
-		
-		<request class="AgaviWebRequest" />
-		
-		<response class="AgaviWebResponse">
-			<!-- Encode cookies with rawurlencode() instead of urlencode() to make them compliant with RFC 6265. -->
-			<!-- We sadly cannot change the default encoding of cookies as it would be a breaking change for -->
-			<!-- existing Agavi projects, but recommend to set this setting to "rawurlencode" for new projects. -->
-			<ae:parameter name="cookie_encode_callback">rawurlencode</ae:parameter>
-		</response>
-		
-		<routing class="AgaviWebRouting" />
-		
-		<security_filter class="AgaviSecurityFilter" />
-		
-		<storage class="AgaviSessionStorage" />
-		
-		<user class="AgaviSampleAppUser" />
-		
-		<translation_manager class="AgaviTranslationManager" />
-		
-		<validation_manager class="AgaviValidationManager" />
+
+        <controller class="Agavi\Controller\Controller" />
+
+        <database_manager class="Agavi\Database\DatabaseManager" />
+
+        <dispatch_filter class="Agavi\Filter\DispatchFilter" />
+
+        <execution_container class="Agavi\Controller\ExecutionContainer" />
+
+        <execution_filter class="Agavi\Filter\ExecutionFilter" />
+
+        <filter_chain class="Agavi\Filter\FilterChain" />
+
+        <logger_manager class="Agavi\Logging\LoggerManager" />
+
+        <request class="Agavi\Request\WebRequest" />
+
+        <response class="Agavi\Response\WebResponse">
+            <!-- Encode cookies with rawurlencode() instead of urlencode() to make them compliant with RFC 6265 -->
+            <ae:parameter name="cookie_encode_callback">rawurlencode</ae:parameter>
+        </response>
+
+        <routing class="Agavi\Routing\WebRouting" />
+
+        <security_filter class="Agavi\Filter\SecurityFilter" />
+
+        <storage class="Agavi\Storage\SessionStorage" />
+
+        <translation_manager class="Agavi\Translation\TranslationManager" />
+
+        <user class="SampleAppUser" />
+
+        <validation_manager class="Agavi\Validator\ValidationManager" />
 		
 	</ae:configuration>
 	
 	
 	<ae:configuration environment="development.*">
 		
-		<validation_manager class="AgaviValidationManager">
+		<validation_manager class="Agavi\Validator\ValidationManager">
 			<!-- "conditional" mode would allow your actions to work without validation as long as no validators are defined at all -->
 			<!-- this is disabled by default so you don't run into surprises when deploying to production envs (which have "strict" mode enabled) without testing on a staging machine first -->
 			<!-- also, it's not recommended to use any mode other than "strict" -->
@@ -55,7 +53,7 @@
 	
 	<ae:configuration context="web" environment="development.*">
 		
-		<response class="AgaviWebResponse">
+		<response class="Agavi\Response\WebResponse">
 			<ae:parameter name="send_content_length">false</ae:parameter>
 		</response>
 	
@@ -63,7 +61,7 @@
 	
 	<ae:configuration context="web" environment="testing.*">
 		
-		<request class="AgaviWebRequest">
+		<request class="Agavi\Request\WebRequest">
 			<!-- static values for unit tests -->
 			<ae:parameter name="sources">
 				<ae:parameter name="HTTPS" />
@@ -74,33 +72,33 @@
 			</ae:parameter>
 		</request>
 		
-		<storage class="AgaviNullStorage" />
+		<storage class="Agavi\Storage\NullStorage" />
 		
 	</ae:configuration>
 	
 	
 	<ae:configuration context="console">
 		
-		<request class="AgaviConsoleRequest" />
+		<request class="Agavi\Request\ConsoleRequest" />
 		
-		<response class="AgaviConsoleResponse" />
+		<response class="Agavi\Response\ConsoleResponse" />
 		
-		<routing class="AgaviConsoleRouting" />
+		<routing class="Agavi\Routing\ConsoleRouting" />
 		
-		<user class="AgaviSecurityUser" />
+		<user class="SampleAppUser" />
 	
 	</ae:configuration>
 	
 	
 	<ae:configuration context="soap">
 		
-		<controller class="AgaviSoapController" />
+		<controller class="Agavi\Controller\SoapController" />
 		
-		<request class="AgaviSoapRequest" />
+		<request class="Agavi\Request\SoapRequest" />
 		
-		<response class="AgaviSoapResponse" />
+		<response class="Agavi\Response\SoapResponse" />
 		
-		<routing class="AgaviSoapRouting">
+		<routing class="Agavi\Routing\SoapRouting">
 			<ae:parameter name="wsdl_generator">
 				<ae:parameter name="soap">
 					<ae:parameter name="address">
@@ -110,7 +108,7 @@
 			</ae:parameter>
 		</routing>
 		
-		<user class="AgaviSecurityUser" />
+		<user class="SampleAppUser" />
 		
 	</ae:configuration>
 	
@@ -118,7 +116,7 @@
 	<!-- example of Context- and Environment-specific configuration: this is the correct SOAP endpoint URL for David's computer -->
 	<ae:configuration context="soap" environment="development-david">
 		
-		<routing class="AgaviSoapRouting">
+		<routing class="Agavi\Routing\SoapRouting">
 			<ae:parameter name="wsdl_generator">
 				<ae:parameter name="soap">
 					<ae:parameter name="address">
@@ -133,13 +131,13 @@
 	
 	<ae:configuration context="xmlrpc">
 		
-		<request class="AgaviXmlrpcepiphpRequest" />
+		<request class="Agavi\Request\XmlrpcepiphpRequest" />
 		
-		<response class="AgaviXmlrpcepiphpResponse" />
+		<response class="Agavi\Response\XmlrpcepiphpResponse" />
 		
-		<routing class="AgaviXmlrpcepiphpRouting" />
+		<routing class="Agavi\Routing\XmlrpcepiphpRouting" />
 		
-		<user class="AgaviSecurityUser" />
+		<user class="SampleAppUser" />
 		
 	</ae:configuration>
 	

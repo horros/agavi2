@@ -12,8 +12,9 @@
 // |   indent-tabs-mode: t                                                     |
 // |   End:                                                                    |
 // +---------------------------------------------------------------------------+
+use Agavi\Request\RequestDataHolder;
 
-class Default_LogoutSuccessView extends AgaviSampleAppDefaultBaseView
+class Default_LogoutSuccessView extends SampleAppDefaultBaseView
 {
 
 	public function executeHtml(RequestDataHolder $rd)

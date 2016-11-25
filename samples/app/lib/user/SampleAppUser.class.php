@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
@@ -14,7 +14,10 @@
 // |   End:                                                                    |
 // +---------------------------------------------------------------------------+
 
-class AgaviSampleAppUser extends RbacSecurityUserInterface
+use Agavi\User\RbacSecurityUser;
+use Agavi\Exception\SecurityException;
+
+class SampleAppUser extends RbacSecurityUser
 {
 	/**
 	 * Let's pretend this is our database. For the sake of example ;)

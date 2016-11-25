@@ -1,6 +1,7 @@
 <?php
+use Agavi\Request\RequestDataHolder;
 
-class Default_SendWsdlSuccessView extends AgaviSampleAppDefaultBaseView
+class Default_SendWsdlSuccessView extends SampleAppDefaultBaseView
 {
 	public function executeWsdl(RequestDataHolder $rd)
 	{

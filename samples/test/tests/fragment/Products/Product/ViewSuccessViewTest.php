@@ -1,4 +1,7 @@
-<?php 
+<?php
+
+use Agavi\Testing\ViewTestCase;
+use Agavi\Request\WebRequestDataHolder;
 
 class Products_Product_ViewSuccessViewTest extends ViewTestCase
 {
@@ -66,5 +69,3 @@ class Products_Product_ViewSuccessViewTest extends ViewTestCase
 	// 	$this->assertResponseHasNoRedirect();
 	// }
 }
-
-?>

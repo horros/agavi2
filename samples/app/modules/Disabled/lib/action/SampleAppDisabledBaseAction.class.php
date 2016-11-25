@@ -1,6 +1,7 @@
 <?php
 
-class AgaviSampleAppDisabledBaseAction extends AgaviSampleAppBaseAction
+
+class SampleAppDisabledBaseAction extends SampleAppBaseAction
 {
 	/*
 		This is the base action all your module's actions should extend. This way,

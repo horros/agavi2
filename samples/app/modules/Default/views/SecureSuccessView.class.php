@@ -12,8 +12,9 @@
 // |   indent-tabs-mode: t                                                     |
 // |   End:                                                                    |
 // +---------------------------------------------------------------------------+
+use Agavi\Request\RequestDataHolder;
 
-class Default_SecureSuccessView extends AgaviSampleAppDefaultBaseView
+class Default_SecureSuccessView extends SampleAppDefaultBaseView
 {
 	public function executeHtml(RequestDataHolder $rd)
 	{

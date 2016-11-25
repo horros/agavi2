@@ -1,4 +1,5 @@
 <?php
+use Agavi\Config\Config;
 
 Config::set('core.testing_dir', realpath(__DIR__));
 Config::set('core.app_dir', realpath(__DIR__.'/../app/'));

@@ -14,6 +14,7 @@ namespace Agavi\Testing;
 // +---------------------------------------------------------------------------+
 use Agavi\Controller\ExecutionContainer;
 use Agavi\Response\WebResponse;
+use Agavi\Testing\PHPUnit\Constraint\ConstraintViewHandlesOutputType;
 use Agavi\Util\Toolkit;
 use Agavi\View\View;
 

@@ -1,4 +1,8 @@
 <?php
+use Agavi\View\View;
+use Agavi\Controller\ExecutionContainer;
+use Agavi\Request\RequestDataHolder;
+use Agavi\Exception\ViewException;
 
 class SampleAppBaseView extends View
 {

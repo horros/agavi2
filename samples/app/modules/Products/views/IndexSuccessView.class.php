@@ -1,6 +1,7 @@
 <?php
+use Agavi\Request\RequestDataHolder;
 
-class Products_IndexSuccessView extends AgaviSampleAppProductsBaseView
+class Products_IndexSuccessView extends SampleAppProductsBaseView
 {
 	public function executeHtml(RequestDataHolder $rd)
 	{
@@ -32,5 +33,3 @@ class Products_IndexSuccessView extends AgaviSampleAppProductsBaseView
 		return $this->getAttribute('products');
 	}
 }
-
-?>

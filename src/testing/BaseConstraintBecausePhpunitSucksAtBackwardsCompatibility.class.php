@@ -27,7 +27,7 @@ namespace Agavi\Testing;
  *
  * @version    $Id$
  */
-abstract class BaseConstraintBecausePhpunitSucksAtBackwardsCompatibility extends PHPUnit_Framework_Constraint
+abstract class BaseConstraintBecausePhpunitSucksAtBackwardsCompatibility extends \PHPUnit_Framework_Constraint
 {
 	/**
 	 * Overridden function to cover differences between PHPUnit 3.5 and 3.6.
@@ -43,7 +43,7 @@ abstract class BaseConstraintBecausePhpunitSucksAtBackwardsCompatibility extends
 	 */
 	public function evaluate($other, $description = '', $returnResult = false)
 	{
-		if(version_compare(PHPUnit_Runner_Version::id(), '3.6', '<')) {
+		if(version_compare(\PHPUnit_Runner_Version::id(), '3.6', '<')) {
 			return $this->matches($other);
 		} else {
 			return parent::evaluate($other, $description, $returnResult);

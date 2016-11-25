@@ -13,7 +13,7 @@
 // |   End:                                                                    |
 // +---------------------------------------------------------------------------+
 
-class Default_IndexAction extends AgaviSampleAppDefaultBaseAction
+class Default_IndexAction extends SampleAppDefaultBaseAction
 {
 	/**
 	 * This Action does not yet serve any Request methods.
@@ -71,5 +71,3 @@ class Default_IndexAction extends AgaviSampleAppDefaultBaseAction
 		return 'Success';
 	}
 }
-
-?>

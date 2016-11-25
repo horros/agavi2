@@ -1,4 +1,7 @@
-<?php 
+<?php
+
+use Agavi\Testing\ViewTestCase;
+use Agavi\Request\WebRequestDataHolder;
 
 class LoginSuccessViewTest extends ViewTestCase
 {
@@ -47,10 +50,8 @@ class LoginSuccessViewTest extends ViewTestCase
 		$this->assertHasLayer('decorator');
 		$this->assertViewRedirectsNot();
 		$this->assertContainerAttributeExists('_title');
-		$this->assertViewSetsCookie('autologon[username]', array('value' => 'Chuck Norris', 'lifetime' => '+14 days', 'path' => null, 'domain' => null, 'secure' => null, 'httponly' => null));
-		$this->assertViewSetsCookie('autologon[password]', array('value' => '$2a$10$2/Gmc4XpwAytFgy3wfrW9OUnkzd6ahgcMqrm4cEc4zD3IFD1GB6IG', 'lifetime' => '+14 days', 'path' => null, 'domain' => null, 'secure' => null, 'httponly' => null));
+		$this->assertViewSetsCookie('autologon[username]', array('value' => 'Chuck Norris', 'lifetime' => '+14 days', 'path' => '', 'domain' => '', 'secure' => false, 'httponly' => false, 'encode_callback' => 'rawurlencode'));
+		$this->assertViewSetsCookie('autologon[password]', array('value' => '$2a$10$2/Gmc4XpwAytFgy3wfrW9OUnkzd6ahgcMqrm4cEc4zD3IFD1GB6IG', 'lifetime' => '+14 days', 'path' => '', 'domain' => '', 'secure' => false, 'httponly' => false, 'encode_callback' => 'rawurlencode'));
 	}
 	
 }
-
-?>

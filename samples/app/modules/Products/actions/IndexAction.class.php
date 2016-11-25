@@ -1,6 +1,7 @@
 <?php
+use Agavi\Request\RequestDataHolder;
 
-class Products_IndexAction extends AgaviSampleAppProductsBaseAction
+class Products_IndexAction extends SampleAppProductsBaseAction
 {
 	public function execute(RequestDataHolder $rd)
 	{
@@ -11,5 +12,3 @@ class Products_IndexAction extends AgaviSampleAppProductsBaseAction
 		return 'Success';
 	}
 }
-
-?>

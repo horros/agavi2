@@ -1,6 +1,6 @@
 <?php
 
-class Confidential_SecretAction extends AgaviSampleAppConfidentialBaseAction
+class Confidential_SecretAction extends SampleAppConfidentialBaseAction
 {
 	/**
 	 * This Action does not yet serve any Request methods.
@@ -10,7 +10,7 @@ class Confidential_SecretAction extends AgaviSampleAppConfidentialBaseAction
 	 * If an Action has an execute() method, this means it serves all methods.
 	 * Alternatively, you can implement executeRead() and executeWrite() methods,
 	 * because "read" and "write" are the default names for Web Request methods.
-	 * Other request methods may be explicitely served via execcuteReqmethname().
+	 * Other request methods may be explicitly served via executeReqmethname().
 	 *
 	 * Keep in mind that if an Action serves a Request method, validation will be
 	 * performed prior to execution.
@@ -35,7 +35,7 @@ class Confidential_SecretAction extends AgaviSampleAppConfidentialBaseAction
 	 * execute*() being present, e.g. for a "write" Request, validateWrite() will
 	 * be run even if there is no executeWrite() method.
 	 */
-//	public function execute(AgaviRequestDataHolder $rd)
+//	public function execute(RequestDataHolder $rd)
 //	{
 //		return 'Success';
 //	}

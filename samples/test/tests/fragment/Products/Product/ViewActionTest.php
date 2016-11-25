@@ -1,4 +1,6 @@
-<?php 
+<?php
+use Agavi\Testing\ActionTestCase;
+use Agavi\Request\WebRequestDataHolder;
 /**
  * @AgaviActionName Products.View
  * @AgaviModuleName Products
@@ -123,5 +125,3 @@ class Products_Product_ViewActionTest extends ActionTestCase
 		$this->assertNotHandlesMethod('write');
 	}
 }
-
-?>
