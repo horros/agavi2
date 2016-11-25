@@ -1,8 +1,8 @@
 # Agavi
 
-- License: LGPL
-- Latest Version: [![Latest Stable Version](https://poser.pugx.org/agavi/agavi/version.png)](https://packagist.org/packages/agavi/agavi)
-- Build: [![Build Status](https://secure.travis-ci.org/agavi/agavi.png)](http://travis-ci.org/agavi/agavi)
+- License: [![License](https://poser.pugx.org/horros/agavi2/license)](https://packagist.org/packages/horros/agavi2)
+- Latest Version: [![Latest Stable Version](https://poser.pugx.org/horros/agavi2/v/stable)](https://packagist.org/packages/horros/agavi2)
+- Build: [![Build Status](https://travis-ci.org/horros/agavi2.svg?branch=master)](https://travis-ci.org/horros/agavi2)
 - Homepage: [http://www.agavi.org/](http://www.agavi.org/)
 - Releases: see [downloads page] or [github releases]
 
@@ -31,20 +31,20 @@ like HTTP, SOAP or even XML-RPC is a perfectly valid use case.
 
 ## Requirements and installation
 
-- PHP v5.2.0+ (recommended is 5.2.8 or higher)
+- PHP v5.5.0+ 
 - required: `libxml`, `dom`, `SPL`, `Reflection` and `PCRE`
 - optional: `xsl`, `tokenizer`, `session`, `xmlrpc`, `soap`, `PDO`, `iconv`, `gettext`, `phing`
 
-See the [installation guide](http://www.agavi.org/documentation/tutorial/agavi-installation.html)
-in the tutorial for some details. Installation via [Composer](http://getcomposer.org/)/[Packagist](http://packagist.com/)
-and git clone is not mentioned there, but available by typing ```composer
-require agavi/agavi [optional version]```. Adding Agavi manually as a vendor
+Installation via [Composer](http://getcomposer.org/)/[Packagist](http://packagist.com/) 
+available by typing ```composer require horros/agavi2 [optional version]```. 
+
+Adding Agavi manually as a vendor
 library requirement to the `composer.json` file of your project works as well:
 
 ```json
 {
     "require": {
-        "agavi/agavi": "~1.0.0"
+        "horros/agavi2": "dev-master"
     }
 }
 ```
@@ -78,7 +78,7 @@ information can be found in the [CONTRIBUTING.md](CONTRIBUTING.md) file.
 
 ## Changelog
 
-See the latest changes in the [repository CHANGELOG](CHANGELOG) or on the [homepage](http://www.agavi.org/download/1.0.7/changelog).
+See the latest changes in the [repository CHANGELOG.md](CHANGELOG.md).
 The [1.0 release notes](RELEASE_NOTES-1.0) or [upcoming release notes](RELEASE_NOTES)
 may be helpful as well.
 
@@ -89,7 +89,3 @@ See the [Open Source Initiative](http://opensource.org/licenses/LGPL-2.1)
 and [this FAQ entry](https://github.com/agavi/agavi/wiki/FAQ#wiki-can-i-use-agavi-in-a-proprietary-commercial-application)
 for details. All relevant licenses and details can be found in the [LICENSE](LICENSE) file.
 
-- Total Composer downloads: [![Composer Downloads](https://poser.pugx.org/agavi/agavi/d/total.png)](https://packagist.org/packages/agavi/agavi)
-
-[downloads page]: http://www.agavi.org/download
-[github releases]: https://github.com/agavi/agavi/releases
