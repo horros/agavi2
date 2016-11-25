@@ -31,6 +31,4 @@ before_script:
 script: php test/run-tests.php $(if [ $PROCESS_ISOLATION -eq 1 ]; then echo "--process-isolation"; fi)
 
 after_success:
-  - travis_retry php vendor/bin/coveralls
-  # or enable logging
-  - travis_retry php vendor/bin/coveralls -v
+  - travis_retry php vendor/bin/coveralls --coverage_clover=build/logs/coverage.xml
