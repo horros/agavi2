@@ -1,6 +1,6 @@
 {
-	"name": "agavi/agavi",
-	"description": "Agavi is a full-featured MVC-style framework for PHP5 with a strong focus on structure, code reusability and flexibility.",
+	"name": "horros/agavi2",
+	"description": "Agavi2 is the resurrection of Agavi, a full-featured MVC-style framework for PHP5 with a strong focus on structure, code reusability and flexibility.",
 	"keywords": ["framework", "mvc"],
 	"homepage": "http://agavi.org",
 	"type": "library",
@@ -12,8 +12,8 @@
 		}
 	],
 	"support": {
-		"issues": "https://github.com/agavi/agavi/issues",
-		"wiki": "https://github.com/agavi/agavi/wiki",
+		"issues": "https://github.com/horros/agavi2/issues",
+		"wiki": "https://github.com/horros/agavi2/wiki",
 		"irc": "irc://irc.freenode.org/agavi"
 	},
 	"require": {
