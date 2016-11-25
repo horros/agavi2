@@ -33,7 +33,7 @@
 require(__DIR__ . '/config/Config.class.php');
 
 // check minimum PHP version
-\Agavi\Config\Config::set('core.minimum_php_version', '5.3.2');
+\Agavi\Config\Config::set('core.minimum_php_version', '5.4.0');
 if(version_compare(PHP_VERSION, \Agavi\Config\Config::get('core.minimum_php_version'), '<') ) {
 	trigger_error('Agavi requires PHP version ' . \Agavi\Config\Config::get('core.minimum_php_version') . ' or greater', E_USER_ERROR);
 }
