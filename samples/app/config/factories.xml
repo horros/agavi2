@@ -3,13 +3,13 @@
 	
 	<ae:configuration>
 
-        <controller class="Agavi\Controller\Controller" />
+        <dispatcher class="Agavi\Dispatcher\Dispatcher" />
 
         <database_manager class="Agavi\Database\DatabaseManager" />
 
         <dispatch_filter class="Agavi\Filter\DispatchFilter" />
 
-        <execution_container class="Agavi\Controller\ExecutionContainer" />
+        <execution_container class="Agavi\Dispatcher\ExecutionContainer" />
 
         <execution_filter class="Agavi\Filter\ExecutionFilter" />
 
@@ -42,7 +42,7 @@
 	<ae:configuration environment="development.*">
 		
 		<validation_manager class="Agavi\Validator\ValidationManager">
-			<!-- "conditional" mode would allow your actions to work without validation as long as no validators are defined at all -->
+			<!-- "conditional" mode would allow your controllers to work without validation as long as no validators are defined at all -->
 			<!-- this is disabled by default so you don't run into surprises when deploying to production envs (which have "strict" mode enabled) without testing on a staging machine first -->
 			<!-- also, it's not recommended to use any mode other than "strict" -->
 			<!-- <ae:parameter name="mode">conditional</ae:parameter> -->
@@ -92,7 +92,7 @@
 	
 	<ae:configuration context="soap">
 		
-		<controller class="Agavi\Controller\SoapController" />
+		<dispatcher class="Agavi\Dispatcher\SoapDispatcher" />
 		
 		<request class="Agavi\Request\SoapRequest" />
 		

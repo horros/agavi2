@@ -14,7 +14,7 @@ namespace Agavi\View;
 // |   End:                                                                    |
 // +---------------------------------------------------------------------------+
 use Agavi\Core\Context;
-use Agavi\Controller\ExecutionContainer;
+use Agavi\Dispatcher\ExecutionContainer;
 use Agavi\Exception\AgaviException;
 use Agavi\Exception\ViewException;
 use Agavi\Renderer\Renderer;
@@ -22,7 +22,7 @@ use Agavi\Request\RequestDataHolder;
 use Agavi\Response\Response;
 
 /**
- * A view represents the presentation layer of an action. Output can be
+ * A view represents the presentation layer of an controller. Output can be
  * customized by supplying attributes, which a template can manipulate and
  * display.
  *
@@ -63,7 +63,7 @@ abstract class View
 	/**
 	 * Execute any presentation logic and set template attributes.
 	 *
-	 * @param      RequestDataHolder $rd The action's request data holder.
+	 * @param      RequestDataHolder $rd The controller's request data holder.
 	 *
 	 * @return     ExecutionContainer An array of forwarding information in
 	 *                                     case a forward should occur, or null.
@@ -88,9 +88,9 @@ abstract class View
 	}
 
 	/**
-	 * Retrieve the execution container for this action.
+	 * Retrieve the execution container for this controller.
 	 *
-	 * @return     ExecutionContainer This action's execution container.
+	 * @return     ExecutionContainer This controller's execution container.
 	 *
 	 * @author     David Zülke <dz@bitxtender.com>
 	 * @since      0.11.0
@@ -317,7 +317,7 @@ abstract class View
 			$l = $this->createLayer($layer['class'], $name, $layer['renderer']);
 			$l->setParameters($layer['parameters']);
 			foreach($layer['slots'] as $slotName => $slot) {
-				$l->setSlot($slotName, $this->createSlotContainer($slot['module'], $slot['action'], $slot['parameters'], $slot['output_type'], $slot['request_method']));
+				$l->setSlot($slotName, $this->createSlotContainer($slot['module'], $slot['controller'], $slot['parameters'], $slot['output_type'], $slot['request_method']));
 			}
 			$this->appendLayer($l);
 		}
@@ -332,7 +332,7 @@ abstract class View
 	 * This container will have a parameter called 'is_slot' set to true.
 	 *
 	 * @param      string $moduleName The name of the module.
-	 * @param      string $actionName The name of the action.
+	 * @param      string $controllerName The name of the controller.
 	 * @param      mixed  $arguments A RequestDataHolder instance with additional
 	 *                    request arguments or an array of request parameters.
 	 * @param      string $outputType Optional name of an initial output type to set.
@@ -347,13 +347,13 @@ abstract class View
 	 * @author     David Zülke <dz@bitxtender.com>
 	 * @since      0.11.0
 	 */
-	public function createSlotContainer($moduleName, $actionName, $arguments = null, $outputType = null, $requestMethod = null)
+	public function createSlotContainer($moduleName, $controllerName, $arguments = null, $outputType = null, $requestMethod = null)
 	{
 		if($arguments !== null && !($arguments instanceof RequestDataHolder)) {
 			$rdhc = $this->context->getRequest()->getParameter('request_data_holder_class');
 			$arguments = new $rdhc(array(RequestDataHolder::SOURCE_PARAMETERS => $arguments));
 		}
-		$container = $this->container->createExecutionContainer($moduleName, $actionName, $arguments, $outputType, $requestMethod);
+		$container = $this->container->createExecutionContainer($moduleName, $controllerName, $arguments, $outputType, $requestMethod);
 		$container->setParameter('is_slot', true);
 		// just in case it was carried over by AgaviContainer::createExecutionContainer()
 		$container->removeParameter('is_forward');
@@ -367,7 +367,7 @@ abstract class View
 	 * This container will have a parameter called 'is_forward' set to true.
 	 *
 	 * @param      string $moduleName The name of the module.
-	 * @param      string $actionName The name of the action.
+	 * @param      string $controllerName The name of the controller.
 	 * @param      mixed  $arguments A RequestDataHolder instance with additional
 	 *                    request arguments or an array of request parameters.
 	 * @param      string $outputType Optional name of an initial output type to set.
@@ -382,7 +382,7 @@ abstract class View
 	 * @author     David Zülke <dz@bitxtender.com>
 	 * @since      0.11.0
 	 */
-	public function createForwardContainer($moduleName, $actionName, $arguments = null, $outputType = null, $requestMethod = null)
+	public function createForwardContainer($moduleName, $controllerName, $arguments = null, $outputType = null, $requestMethod = null)
 	{
 		if($arguments !== null) {
 			if(!($arguments instanceof RequestDataHolder)) {
@@ -393,7 +393,7 @@ abstract class View
 			// we carry over our container's arguments
 			$arguments = $this->container->getArguments();
 		}
-		$container = $this->container->createExecutionContainer($moduleName, $actionName, $arguments, $outputType, $requestMethod);
+		$container = $this->container->createExecutionContainer($moduleName, $controllerName, $arguments, $outputType, $requestMethod);
 		$container->setParameter('is_forward', true);
 		return $container;
 	}

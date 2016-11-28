@@ -3,8 +3,8 @@
 	<ae:configuration>
 		<autoloads>
 
-			<!-- agavi/action -->
-			<autoload class="Agavi\Action\Action">%core.agavi_dir%/action/Action.class.php</autoload>
+			<!-- agavi/controller -->
+			<autoload class="Agavi\Controller\Controller">%core.agavi_dir%/controller/Controller.class.php</autoload>
 
 			<!-- agavi/config -->
 			<autoload class="Agavi\Config\AutoloadConfigHandler">%core.agavi_dir%/config/AutoloadConfigHandler.class.php</autoload>
@@ -51,12 +51,12 @@
 			<autoload class="Agavi\Config\Util\Dom\XmlConfigHandler">%core.agavi_dir%/config/XmlConfigHandler.class.php</autoload>
 			<autoload class="Agavi\Config\Util\Dom\XmlConfigParser">%core.agavi_dir%/config/XmlConfigParser.class.php</autoload>
 
-			<!-- agavi/controller -->
-			<autoload class="Agavi\Controller\Controller">%core.agavi_dir%/controller/Controller.class.php</autoload>
-			<autoload class="Agavi\Controller\ExecutionContainer">%core.agavi_dir%/controller/ExecutionContainer.class.php</autoload>
-			<autoload class="Agavi\Controller\OutputType">%core.agavi_dir%/controller/OutputType.class.php</autoload>
-			<autoload class="Agavi\Controller\SoapController">%core.agavi_dir%/controller/SoapController.class.php</autoload>
-			<autoload class="Agavi\Controller\SoapControllerCallHandler">%core.agavi_dir%/controller/SoapControllerCallHandler.class.php</autoload>
+			<!-- agavi/Dispatcher -->
+			<autoload class="Agavi\Dispatcher\Dispatcher">%core.agavi_dir%/Dispatcher/dispatcher.class.php</autoload>
+			<autoload class="Agavi\Dispatcher\ExecutionContainer">%core.agavi_dir%/dispatcher/ExecutionContainer.class.php</autoload>
+			<autoload class="Agavi\Dispatcher\OutputType">%core.agavi_dir%/dispatcher/OutputType.class.php</autoload>
+			<autoload class="Agavi\Dispatcher\SoapDispatcher">%core.agavi_dir%/dispatcher/SoapDispatcher.class.php</autoload>
+			<autoload class="Agavi\Dispatcher\SoapDispatcherCallHandler">%core.agavi_dir%/dispatcher/SoapDispatcherCallHandler.class.php</autoload>
 
 			<!-- agavi/core -->
 			<autoload class="Agavi\Core\Agavi">%core.agavi_dir%/core/Agavi.class.php</autoload>
@@ -94,7 +94,7 @@
 			<autoload class="Agavi\Exception\CacheException">%core.agavi_dir%/exception/CacheException.class.php</autoload>
 			<autoload class="Agavi\Exception\ClassNotFoundException">%core.agavi_dir%/exception/ClassNotFoundException.class.php</autoload>
 			<autoload class="Agavi\Exception\ConfigurationException">%core.agavi_dir%/exception/ConfigurationException.class.php</autoload>
-			<autoload class="Agavi\Exception\ControllerException">%core.agavi_dir%/exception/ControllerException.class.php</autoload>
+			<autoload class="Agavi\Exception\DispatcherException">%core.agavi_dir%/exception/DispatcherException.class.php</autoload>
 			<autoload class="Agavi\Exception\DatabaseException">%core.agavi_dir%/exception/DatabaseException.class.php</autoload>
 			<autoload class="Agavi\Exception\AgaviException">%core.agavi_dir%/exception/AgaviException.class.php</autoload>
 			<autoload class="Agavi\Exception\FactoryException">%core.agavi_dir%/exception/FactoryException.class.php</autoload>
@@ -119,7 +119,7 @@
 			<autoload class="Agavi\Filter\Filter">%core.agavi_dir%/filter/Filter.class.php</autoload>
 			<autoload class="Agavi\Filter\FilterChain">%core.agavi_dir%/filter/FilterChain.class.php</autoload>
 			<autoload class="Agavi\Filter\FormPopulationFilter">%core.agavi_dir%/filter/FormPopulationFilter.class.php</autoload>
-			<autoload class="Agavi\Filter\ActionFilterInterface">%core.agavi_dir%/filter/ActionFilter.interface.php</autoload>
+			<autoload class="Agavi\Filter\ControllerFilterInterface">%core.agavi_dir%/filter/ControllerFilter.interface.php</autoload>
 			<autoload class="Agavi\Filter\FilterInterface">%core.agavi_dir%/filter/Filter.interface.php</autoload>
 			<autoload class="Agavi\Filter\GlobalFilterInterface">%core.agavi_dir%/filter/GlobalFilter.interface.php</autoload>
 			<autoload class="Agavi\Filter\SecurityFilterInterface">%core.agavi_dir%/filter/SecurityFilter.interface.php</autoload>
@@ -292,7 +292,7 @@
 			<autoload class="Agavi\Testing\TestCaseInterface">%core.agavi_dir%/testing/TestCase.interface.php</autoload>
 			<autoload class="Agavi\Testing\UnitTestCaseInterface">%core.agavi_dir%/testing/UnitTestCase.interface.php</autoload>
 	
-			<autoload class="Agavi\Testing\ActionTestCase">%core.agavi_dir%/testing/ActionTestCase.class.php</autoload>
+			<autoload class="Agavi\Testing\ControllerTestCase">%core.agavi_dir%/testing/ControllerTestCase.class.php</autoload>
 			<autoload class="Agavi\Testing\FlowTestCase">%core.agavi_dir%/testing/FlowTestCase.class.php</autoload>
 			<autoload class="Agavi\Testing\FragmentTestCase">%core.agavi_dir%/testing/FragmentTestCase.class.php</autoload>
 			<autoload class="Agavi\Testing\ModelTestCase">%core.agavi_dir%/testing/ModelTestCase.class.php</autoload>
@@ -304,7 +304,7 @@
 			<autoload class="Agavi\Testing\TestSuite">%core.agavi_dir%/testing/TestSuite.class.php</autoload>
 			
 			<autoload class="Agavi\Testing\BaseConstraintBecausePhpunitSucksAtBackwardsCompatibility">%core.agavi_dir%/testing/BaseConstraintBecausePhpunitSucksAtBackwardsCompatibility.class.php</autoload>
-			<autoload class="Agavi\Testing\PHPUnit\Constraint\ConstraintActionHandlesMethod">%core.agavi_dir%/testing/PHPUnit/Constraint/ConstraintActionHandlesMethod.php</autoload>
+			<autoload class="Agavi\Testing\PHPUnit\Constraint\ConstraintControllerHandlesMethod">%core.agavi_dir%/testing/PHPUnit/Constraint/ConstraintControllerHandlesMethod.php</autoload>
 			<autoload class="Agavi\Testing\PHPUnit\Constraint\ConstraintViewHandlesOutputType">%core.agavi_dir%/testing/PHPUnit/Constraint/ConstraintViewHandlesOutputType.php</autoload>
 		</autoloads>
 	</ae:configuration>

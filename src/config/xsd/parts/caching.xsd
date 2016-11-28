@@ -182,24 +182,24 @@
 		</xs:choice>
 	</xs:group>
 
-	<!-- Action attributes -->
+	<!-- Controller attributes -->
 
-	<xs:simpleType name="action_attribute">
+	<xs:simpleType name="controller_attribute">
 		<xs:restriction base="xs:string" />
 	</xs:simpleType>
 
-	<xs:complexType name="action_attributes">
+	<xs:complexType name="controller_attributes">
 		<xs:sequence>
-			<xs:element name="action_attribute" type="action_attribute"
+			<xs:element name="controller_attribute" type="controller_attribute"
 			            minOccurs="0" maxOccurs="unbounded" />
 		</xs:sequence>
 	</xs:complexType>
 
-	<xs:group name="action_attributes">
+	<xs:group name="controller_attributes">
 		<xs:choice>
-			<xs:element name="action_attributes" type="action_attributes"
+			<xs:element name="controller_attributes" type="controller_attributes"
 			            minOccurs="0" maxOccurs="1" />
-			<xs:element name="action_attribute" type="action_attribute"
+			<xs:element name="controller_attribute" type="controller_attribute"
 			            minOccurs="0" maxOccurs="unbounded" />
 		</xs:choice>
 	</xs:group>
@@ -237,7 +237,7 @@
 		<xs:sequence maxOccurs="unbounded">
 			<xs:group ref="groups" />
 			<xs:group ref="views" />
-			<xs:group ref="action_attributes" />
+			<xs:group ref="controller_attributes" />
 			<xs:group ref="output_types" />
 		</xs:sequence>
 		<xs:attribute name="method" type="types_1_0:php_label_list" />

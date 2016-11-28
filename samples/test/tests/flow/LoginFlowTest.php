@@ -3,13 +3,13 @@
 use Agavi\Testing\FlowTestCase;
 
 /**
- * @agaviRoutingInput /en/auth/login
+ * @routingInput /en/auth/login
  */
 class LoginFlowTest extends FlowTestCase
 {
 	
 	/**
-	 * @agaviRequestMethod write
+	 * @requestMethod write
 	 */
 	public function testValidWriteRequest()
 	{
@@ -19,7 +19,7 @@ class LoginFlowTest extends FlowTestCase
 	}
 	
 	/**
-	 * @agaviRequestMethod write
+	 * @requestMethod write
 	 */
 	public function testInvalidWriteRequest()
 	{

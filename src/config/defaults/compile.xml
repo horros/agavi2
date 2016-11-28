@@ -3,14 +3,14 @@
 	<ae:configuration>
 		<compiles>
 			<compile>%core.agavi_dir%/util/AttributeHolder.class.php</compile>
-			<compile>%core.agavi_dir%/action/Action.class.php</compile>
-			<compile>%core.agavi_dir%/core/Context.class.php</compile>
 			<compile>%core.agavi_dir%/controller/Controller.class.php</compile>
-			<compile>%core.agavi_dir%/controller/ExecutionContainer.class.php</compile>
-			<compile>%core.agavi_dir%/controller/OutputType.class.php</compile>
+			<compile>%core.agavi_dir%/core/Context.class.php</compile>
+			<compile>%core.agavi_dir%/dispatcher/Dispatcher.class.php</compile>
+			<compile>%core.agavi_dir%/dispatcher/ExecutionContainer.class.php</compile>
+			<compile>%core.agavi_dir%/dispatcher/OutputType.class.php</compile>
 			<compile>%core.agavi_dir%/filter/Filter.interface.php</compile>
 			<compile>%core.agavi_dir%/filter/GlobalFilter.interface.php</compile>
-			<compile>%core.agavi_dir%/filter/ActionFilter.interface.php</compile>
+			<compile>%core.agavi_dir%/filter/ControllerFilter.interface.php</compile>
 			<compile>%core.agavi_dir%/filter/Filter.class.php</compile>
 			<compile>%core.agavi_dir%/filter/DispatchFilter.class.php</compile>
 			<compile>%core.agavi_dir%/filter/ExecutionFilter.class.php</compile>

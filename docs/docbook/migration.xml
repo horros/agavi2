@@ -19,8 +19,8 @@
 
       <para>The easiest way to get started is to create a completely new
       project with the <filename>agavi</filename> script and start moving
-      modules and actions one by one, copying the execute method from the old
-      action to the new one, testing if it works and fix whatever
+      modules and controllers one by one, copying the execute method from the old
+      controller to the new one, testing if it works and fix whatever
       breaks.</para>
 
       <para>A few pointers to help on the way:</para>
@@ -28,7 +28,7 @@
       <itemizedlist>
         <listitem>
           <para>Parameters set with <literal>$this-&gt;setAttribute('foo',
-          'bar')</literal> in the action's execute-method are now directly
+          'bar')</literal> in the controller's execute-method are now directly
           available in the template. You no longer need to manually set the
           template attributes in the view.</para>
         </listitem>
@@ -49,8 +49,8 @@
         </listitem>
 
         <listitem>
-          <para><literal>Action::getRequestMethod()</literal> is deprecated.
-          Actions now have <literal>executeRead()</literal> and
+          <para><literal>Controller::getRequestMethod()</literal> is deprecated.
+          Controllers now have <literal>executeRead()</literal> and
           <literal>executeWrite()</literal> that handle HTTP GET and HTTP POST
           respectively. If you really need, you can also use a plain
           <literal>execute()</literal> which would handle both GET and
@@ -59,24 +59,24 @@
 
         <listitem>
           <para><literal>$this-&gt;getContext()-&gt;getRequest()-&gt;getParameter()</literal>
-          is no longer needed. The action's execute -method takes an
+          is no longer needed. The controller's execute -method takes an
           <literal>AgaviRequestDataHolder</literal> -object as it's parameter
           and the request parameters are available via that object's
           <literal>getParameter</literal>-method.</para>
         </listitem>
 
         <listitem>
-          <para>Actions no longer return attributes of the View-class
+          <para>Controllers no longer return attributes of the View-class
           (<literal>r<literal>eturn View::SUCCESS</literal></literal>), but
-          strings. For an action that wants to indicate it was successful, you
+          strings. For a controller that wants to indicate it was successful, you
           would return the string "Success".</para>
         </listitem>
 
         <listitem>
           <para>Views do not need to set the template file manually anymore.
           The view makes an educated guess as to the filename
-          (<literal>&lt;Name&gt;&lt;ReturnValueFromAction&gt;.php</literal>).
-          For example, if <literal>IndexAction</literal> returns 'Success',
+          (<literal>&lt;Name&gt;&lt;ReturnValueFromController&gt;.php</literal>).
+          For example, if <literal>IndexController</literal> returns 'Success',
           <literal>IndexSuccessView</literal> would use the template
           <filename>IndexSuccess.php</filename>.</para>
         </listitem>
@@ -111,7 +111,7 @@
         </listitem>
 
         <listitem>
-          <para>Use the agavi build script to generate your actions, modules
+          <para>Use the agavi build script to generate your controllers, modules
           and so on. This can take advantage of code templates. Simply put a
           <filename>build.properties</filename> -file where your agavi-script
           resides and add the line<literal></literal></para>

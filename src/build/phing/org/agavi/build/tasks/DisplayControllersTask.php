@@ -1,0 +1,105 @@
+<?php
+
+// +---------------------------------------------------------------------------+
+// | This file is part of the Agavi package.                                   |
+// | Copyright (c) 2005-2011 the Agavi Project.                                |
+// |                                                                           |
+// | For the full copyright and license information, please view the LICENSE   |
+// | file that was distributed with this source code. You can also view the    |
+// | LICENSE file online at http://www.agavi.org/LICENSE.txt                   |
+// |   vi: set noexpandtab:                                                    |
+// |   Local Variables:                                                        |
+// |   indent-tabs-mode: t                                                     |
+// |   End:                                                                    |
+// +---------------------------------------------------------------------------+
+
+require_once(__DIR__ . '/AgaviTask.php');
+
+/**
+ * Displays all controllers in an Agavi module.
+ *
+ * @package    agavi
+ * @subpackage build
+ *
+ * @author     Noah Fontes <noah.fontes@bitextender.com>
+ * @copyright  Authors
+ * @copyright  The Agavi Project
+ *
+ * @since      1.0.0
+ *
+ * @version    $Id$
+ */
+class AgaviDisplayControllersTask extends AgaviTask
+{
+	protected $path = null;
+	
+	/**
+	 * Sets the path to the project directory from which this task will read.
+	 *
+	 * @param      PhingFile Path to the project directory.
+	 */
+	public function setPath(PhingFile $path)
+	{
+		$this->path = $path;
+	}
+	
+	/**
+	 * Executes this task.
+	 */
+	public function main()
+	{
+		if($this->path === null) {
+			throw new \Agavi\Build\Exception\BuildException('The path attribute must be specified');
+		}
+		
+		$check = new \Agavi\Build\Check\ModuleFilesystemCheck();
+		$check->setConfigDirectory($this->project->getProperty('module.config.directory'));
+		
+		$check->setPath($this->path->getAbsolutePath());
+		if(!$check->check()) {
+			throw new \Agavi\Build\Exception\BuildException('The path attribute must be a valid module base directory');
+		}
+		
+		/* We don't know whether the module is configured or not here, so load the
+		 * values we want properly. */
+		$this->tryLoadAgavi();
+		$this->tryBootstrapAgavi();
+		
+		require_once(\Agavi\Config\ConfigCache::checkConfig(
+			sprintf('%s/%s/module.xml',
+				$this->path->getAbsolutePath(),
+				(string)$this->project->getProperty('module.config.directory')
+			)
+		));
+		
+		$controllerPath = \Agavi\Util\Toolkit::expandVariables(
+			\Agavi\Util\Toolkit::expandDirectives(\Agavi\Config\Config::get(
+				sprintf('modules.%s.agavi.controller.path', strtolower($this->path->getName())),
+				'%core.module_dir%/${moduleName}/controllers/${controllerName}Controller.class.php'
+			)),
+			array(
+				'moduleName' => $this->path->getName()
+			)
+		);
+		$pattern = '#^' . \Agavi\Util\Toolkit::expandVariables(
+			/* Blaaaaaaaaauuuuuughhhhhhh... */
+			str_replace('\\$\\{controllerName\\}', '${controllerName}', preg_quote($controllerPath, '#')),
+			array('controllerName' => '(?P<controller_name>.*?)')
+		) . '$#';
+		
+		$iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($this->path->getAbsolutePath()));
+		for(; $iterator->valid(); $iterator->next()) {
+			$rdi = $iterator->getInnerIterator();
+			if($rdi->isDot() || !$rdi->isFile()) {
+				continue;
+			}
+			
+			$file = $rdi->getPathname();
+			if(preg_match($pattern, $file, $matches)) {
+				$this->log(str_replace(DIRECTORY_SEPARATOR, '.', $matches['controller_name']));
+			}
+		}
+	}
+}
+
+?>

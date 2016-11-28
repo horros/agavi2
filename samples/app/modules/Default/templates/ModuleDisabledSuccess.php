@@ -1,1 +1,1 @@
-<p><?php echo $tm->_('I\'m sorry, this module has been disabled.', 'default.ErrorActions'); ?></p>
+<p><?php echo $tm->_('I\'m sorry, this module has been disabled.', 'default.ErrorControllers'); ?></p>

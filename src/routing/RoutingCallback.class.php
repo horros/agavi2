@@ -13,7 +13,7 @@ namespace Agavi\Routing;
 // |   End:                                                                    |
 // +---------------------------------------------------------------------------+
 use Agavi\Core\Context;
-use Agavi\Controller\ExecutionContainer;
+use Agavi\Dispatcher\ExecutionContainer;
 use Agavi\Util\ParameterHolder;
 
 /**

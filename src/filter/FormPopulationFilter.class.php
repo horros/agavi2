@@ -14,7 +14,7 @@ namespace Agavi\Filter;
 // +---------------------------------------------------------------------------+
 use Agavi\Config\Config;
 use Agavi\Core\Context;
-use Agavi\Controller\ExecutionContainer;
+use Agavi\Dispatcher\ExecutionContainer;
 use Agavi\Exception\AgaviException;
 use Agavi\Exception\FilterException;
 use Agavi\Exception\ParseException;
@@ -77,17 +77,17 @@ class FormPopulationFilter extends Filter implements GlobalFilterInterface
 	 */
 	protected $xmlnsPrefix = '';
 
-	/**
-	 * Execute this filter.
-	 *
-	 * @param      FilterChain        $filterChain The filter chain.
-	 * @param      ExecutionContainer $container The current execution container.
-	 *
-	 * @throws     FilterException If an error occurs during execution.
-	 *
-	 * @author     David Zülke <dz@bitxtender.com>
-	 * @since      0.11.0
-	 */
+    /**
+     * Execute this filter.
+     *
+     * @param      FilterChain $filterChain The filter chain.
+     * @param      ExecutionContainer $container The current execution container.
+     *
+     * @throws AgaviException
+     * @throws ParseException If an error occurs during execution.
+     * @author     David Zülke <dz@bitxtender.com>
+     * @since      0.11.0
+     */
 	public function execute(FilterChain $filterChain, ExecutionContainer $container)
 	{
 		$filterChain->execute($container);

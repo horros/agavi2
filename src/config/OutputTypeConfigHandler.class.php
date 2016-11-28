@@ -113,7 +113,7 @@ class OutputTypeConfigHandler extends XmlConfigHandler
 									/** @var XmlConfigDomElement $slot */
 									foreach($layer->get('slots') as $slot) {
 										$slots[$slot->getAttribute('name')] = array(
-											'action' => $slot->getAttribute('action'),
+											'controller' => $slot->getAttribute('controller'),
 											'module' => $slot->getAttribute('module'),
 											'output_type' => $slot->getAttribute('output_type'),
 											'request_method' => $slot->getAttribute('method'),
@@ -157,7 +157,7 @@ class OutputTypeConfigHandler extends XmlConfigHandler
 		
 		$code = array();
 		foreach($data as $outputTypeName => $outputType) {
-			$code[] = '$ot = new Agavi\\Controller\\OutputType();';
+			$code[] = '$ot = new Agavi\\Dispatcher\\OutputType();';
 			$code[] = sprintf(
 				'$ot->initialize($this->context, %s, %s, %s, %s, %s, %s, %s);',
 				var_export($outputType['parameters'], true),

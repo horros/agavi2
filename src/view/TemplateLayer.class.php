@@ -13,7 +13,7 @@ namespace Agavi\View;
 // |   End:                                                                    |
 // +---------------------------------------------------------------------------+
 use Agavi\Core\Context;
-use Agavi\Controller\ExecutionContainer;
+use Agavi\Dispatcher\ExecutionContainer;
 use Agavi\Exception\AgaviException;
 use Agavi\Renderer\Renderer;
 use Agavi\Util\ParameterHolder;

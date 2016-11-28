@@ -10,7 +10,7 @@ class Products_Product_ViewErrorView extends SampleAppProductsBaseView
 	 */
 	public function executeHtml(RequestDataHolder $rd)
 	{
-		return $this->createForwardContainer(Config::get('actions.error_404_module'), Config::get('actions.error_404_action'));
+		return $this->createForwardContainer(Config::get('Controllers.error_404_module'), Config::get('Controllers.error_404_Controller'));
 	}
 
 	/**

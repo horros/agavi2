@@ -14,11 +14,11 @@ namespace Agavi\Filter;
 // |   End:                                                                    |
 // +---------------------------------------------------------------------------+
 use Agavi\Core\Context;
-use Agavi\Controller\ExecutionContainer;
+use Agavi\Dispatcher\ExecutionContainer;
 use Agavi\Util\ParameterHolder;
 
 /**
- * AgaviFilter provides a way for you to intercept incoming requests or outgoing
+ * Filter provides a way for you to intercept incoming requests or outgoing
  * responses.
  *
  * @package    agavi

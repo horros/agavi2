@@ -14,7 +14,7 @@ namespace Agavi\Filter;
 // |   End:                                                                    |
 // +---------------------------------------------------------------------------+
 use Agavi\Core\Context;
-use Agavi\Controller\ExecutionContainer;
+use Agavi\Dispatcher\ExecutionContainer;
 use Agavi\Exception\InitializationException;
 
 /**

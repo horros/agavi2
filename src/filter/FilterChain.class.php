@@ -16,7 +16,7 @@ namespace Agavi\Filter;
 // |   End:                                                                    |
 // +---------------------------------------------------------------------------+
 use Agavi\Core\Context;
-use Agavi\Controller\ExecutionContainer;
+use Agavi\Dispatcher\ExecutionContainer;
 /**
  * AgaviFilterChain manages registered filters for a specific context.
  *
@@ -35,9 +35,9 @@ use Agavi\Controller\ExecutionContainer;
 class FilterChain
 {
 	/**
-	 * @constant   string Filter chain type identifier "action".
+	 * @constant   string Filter chain type identifier "controller".
 	 */
-	const TYPE_ACTION = 'action';
+	const TYPE_CONTROLLER = 'controller';
 	
 	/**
 	 * @constant   string Filter chain type identifier "global".
@@ -67,10 +67,10 @@ class FilterChain
 
 	/**
 	 * @var        string The type of filter chain.
-	 * @see        AgaviFilterChain::TYPE_ACTION
+	 * @see        AgaviFilterChain::TYPE_CONTROLLER
 	 * @see        AgaviFilterChain::TYPE_GLOBAL
 	 */
-	protected $type = self::TYPE_ACTION;
+	protected $type = self::TYPE_CONTROLLER;
 	
 	/**
 	 * Initialize this Filter Chain.
@@ -90,7 +90,7 @@ class FilterChain
 	/**
 	 * Set the type of this filter chain.
 	 *
-	 * @see        AgaviFilterChain::TYPE_ACTION
+	 * @see        AgaviFilterChain::TYPE_CONTROLLER
 	 * @see        AgaviFilterChain::TYPE_GLOBAL
 	 *
 	 * @param      string $type The type identifier.
@@ -106,7 +106,7 @@ class FilterChain
 	/**
 	 * Get the type of this filter chain.
 	 *
-	 * @see        AgaviFilterChain::TYPE_ACTION
+	 * @see        AgaviFilterChain::TYPE_CONTROLLER
 	 * @see        AgaviFilterChain::TYPE_GLOBAL
 	 *
 	 * @return     string The type identifier.

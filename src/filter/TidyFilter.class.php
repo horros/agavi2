@@ -14,7 +14,7 @@ namespace Agavi\Filter;
 // +---------------------------------------------------------------------------+
 use Agavi\Config\Config;
 use Agavi\Core\Context;
-use Agavi\Controller\ExecutionContainer;
+use Agavi\Dispatcher\ExecutionContainer;
 use Agavi\Exception\FilterException;
 use Agavi\Exception\ParseException;
 use Agavi\Logging\LoggerInterface;

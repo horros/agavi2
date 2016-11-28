@@ -14,7 +14,7 @@ API Changes:
 !    getCredential: renamed to getCredentials()
 !    getDefaultView: renamed to getDefaultViewName()
     ADD:
-     isSimple: return true to put an action into simple mode
+     isSimple: return true to put a controller into simple mode
     REM:
 !    getRequestMethods: gone, this is now handled by the existance of (execute|validate)(Read|Write|...) methods
 

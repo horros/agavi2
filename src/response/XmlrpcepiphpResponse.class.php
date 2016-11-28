@@ -12,7 +12,7 @@ namespace Agavi\Response;
 // |   indent-tabs-mode: t                                                     |
 // |   End:                                                                    |
 // +---------------------------------------------------------------------------+
-use Agavi\Controller\OutputType;
+use Agavi\Dispatcher\OutputType;
 
 /**
  * XmlrpcepiphpResponse handles XMLRPC Web Service responses using the

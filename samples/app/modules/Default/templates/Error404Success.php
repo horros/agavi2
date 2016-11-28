@@ -1,1 +1,1 @@
-<p><?php echo $tm->_('File not found.', 'default.ErrorActions'); ?></p>
+<p><?php echo $tm->_('File not found.', 'default.ErrorControllers'); ?></p>

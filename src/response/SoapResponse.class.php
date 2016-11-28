@@ -12,7 +12,7 @@ namespace Agavi\Response;
 // |   indent-tabs-mode: t                                                     |
 // |   End:                                                                    |
 // +---------------------------------------------------------------------------+
-use Agavi\Controller\OutputType;
+use Agavi\Dispatcher\OutputType;
 
 /**
  * SoapResponse handles SOAP Web Service responses using the PHP SOAP ext.
@@ -153,7 +153,7 @@ class SoapResponse extends Response
 	public function send(OutputType $outputType = null)
 	{
 		$this->sendSoapHeaders();
-		// don't send content, that's done by returning it from Controller::dispatch(), so SoapServer::handle() deals with the rest
+		// don't send content, that's done by returning it from Dispatcher::dispatch(), so SoapServer::handle() deals with the rest
 		// $this->sendContent();
 	}
 	
@@ -188,7 +188,7 @@ class SoapResponse extends Response
 	 */
 	public function sendSoapHeaders()
 	{
-		$server = $this->context->getController()->getSoapServer();
+		$server = $this->context->getDispatcher()->getSoapServer();
 		
 		foreach($this->soapHeaders as $soapHeader) {
 			$server->addSoapHeader($soapHeader);

@@ -92,18 +92,18 @@ class AgaviConfiguremoduleTask extends AgaviTask
 		$values = array();
 		$lowerModuleName = strtolower($moduleName);
 		
-		$values['action.path'] = \Agavi\Config\Config::get(
-			sprintf('modules.%s.agavi.action.path', $lowerModuleName),
-			'%core.module_dir%/${moduleName}/actions/${actionName}Action.class.php'
+		$values['controller.path'] = \Agavi\Config\Config::get(
+			sprintf('modules.%s.agavi.controller.path', $lowerModuleName),
+			'%core.module_dir%/${moduleName}/controllers/${controllerName}Controller.class.php'
 		);
-		$values['action.path'] = \Agavi\Util\Toolkit::expandVariables(
-			$values['action.path'],
+		$values['controller.path'] = \Agavi\Util\Toolkit::expandVariables(
+			$values['controller.path'],
 			array('moduleName' => $moduleName)
 		);
 		
 		$values['cache.path'] = \Agavi\Config\Config::get(
 			sprintf('modules.%s.agavi.cache.path', $lowerModuleName),
-			'%core.module_dir%/${moduleName}/cache/${actionName}.xml'
+			'%core.module_dir%/${moduleName}/cache/${controllerName}.xml'
 		);
 		$values['cache.path'] = \Agavi\Util\Toolkit::expandVariables(
 			$values['cache.path'],
@@ -121,7 +121,7 @@ class AgaviConfiguremoduleTask extends AgaviTask
 		
 		$values['validate.path'] = \Agavi\Config\Config::get(
 			sprintf('modules.%s.agavi.validate.path', $lowerModuleName),
-			'%core.module_dir%/${moduleName}/validate/${actionName}.xml'
+			'%core.module_dir%/${moduleName}/validate/${controllerName}.xml'
 		);
 		$values['validate.path'] = \Agavi\Util\Toolkit::expandVariables(
 			$values['validate.path'],
@@ -139,7 +139,7 @@ class AgaviConfiguremoduleTask extends AgaviTask
 		
 		$values['view.name'] = \Agavi\Config\Config::get(
 			sprintf('modules.%s.agavi.view.name', $lowerModuleName),
-			'${actionName}${viewName}'
+			'${controllerName}${viewName}'
 		);
 		
 		/* Main screen turn on. */

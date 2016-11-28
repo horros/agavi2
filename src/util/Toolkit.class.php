@@ -446,10 +446,10 @@ final class Toolkit
 	}
 	
 	/**
-	 * Returns the canonical name for a dot-separated view/action/model name.
+	 * Returns the canonical name for a dot-separated view/controller/model name.
 	 * This method is idempotent.
 	 *
-	 * @param      string $name The view/action/model name.
+	 * @param      string $name The view/controller/model name.
 	 *
 	 * @return     string The canonical name.
 	 * 

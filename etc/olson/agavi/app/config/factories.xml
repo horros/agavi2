@@ -3,9 +3,9 @@
 	
 	<configuration>
 		
-		<controller class="AgaviController">
+		<dispatcher class="AgaviController">
 			<parameter name="send_response">false</parameter>
-		</controller>
+		</dispatcher>
 		
 		<dispatch_filter class="AgaviDispatchFilter" />
 		

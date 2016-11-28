@@ -1,14 +1,14 @@
 <?php
 
 
-class SampleAppDisabledBaseAction extends SampleAppBaseAction
+class SampleAppDisabledBaseController extends SampleAppBaseController
 {
 	/*
-		This is the base action all your module's actions should extend. This way,
-		you can easily inject new functionality into all of this module's actions.
+		This is the base Controller all your module's Controllers should extend. This way,
+		you can easily inject new functionality into all of this module's Controllers.
 		
 		One example would be to extend the getCredentials() method and return a list
-		of credentials that all actions in this module require.
+		of credentials that all Controllers in this module require.
 		
 		Even if you don't need any of the above and this class remains empty, it is
 		strongly recommended you keep it. There shall come the day where you are

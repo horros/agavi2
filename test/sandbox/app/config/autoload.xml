@@ -2,7 +2,7 @@
 <ae:configurations xmlns:ae="http://agavi.org/agavi/config/global/envelope/1.1" xmlns="http://agavi.org/agavi/config/parts/autoload/1.1" parent="%core.system_config_dir%/autoload.xml">
 	<ae:configuration>
 		
-		<autoload class="SandboxBaseAction">%core.lib_dir%/action/SandboxBaseAction.class.php</autoload>
+		<autoload class="SandboxBaseController">%core.lib_dir%/controller/SandboxBaseController.class.php</autoload>
 		<autoload class="SandboxBaseModel">%core.lib_dir%/model/SandboxBaseModel.class.php</autoload>
 		<autoload class="SandboxBaseView">%core.lib_dir%/view/SandboxBaseView.class.php</autoload>
 		
@@ -43,8 +43,8 @@
 		
 		<autoload class="Agavi\Testing\Config\TestingConfigCache">%core.app_dir%/../../lib/config/TestingConfigCache.class.php</autoload>
 		
-		<autoload class="Agavi\Tests\Unit\Request\AgaviWebRequestDataHolderTest">%core.app_dir%/../../tests/unit/request/AgaviWebRequestDataHolderTest.php</autoload>
-		
+		<autoload class="Agavi\Tests\Unit\Request\WebRequestDataHolderTest">%core.app_dir%/../../tests/unit/request/WebRequestDataHolderTest.php</autoload>
+
 		<autoload class="Agavi\Test\Config\ImportTestHandler">%core.app_dir%/../../lib/config/ImportTestHandler.class.php</autoload>
 		<autoload class="Agavi\Test\Config\ImportTestOnceHandler">%core.app_dir%/../../lib/config/ImportTestOnceHandler.class.php</autoload>
 		

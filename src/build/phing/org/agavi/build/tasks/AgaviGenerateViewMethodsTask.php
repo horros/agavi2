@@ -42,9 +42,9 @@ class AgaviGenerateViewMethodsTask extends AgaviTask
 	protected $outputType = array();
 	
 	/**
-	 * @var          string the action name this view belongs to
+	 * @var          string the controller name this view belongs to
 	 */
-	protected $actionName = '';
+	protected $controllerName = '';
 	
 	/**
 	 * @var          string the absolute filesytem path to method template
@@ -72,13 +72,13 @@ class AgaviGenerateViewMethodsTask extends AgaviTask
 	}
 	
 	/**
-	 * Sets the action's name.
+	 * Sets the controller's name.
 	 *
-	 * @param      string the actions name.
+	 * @param      string the controllers name.
 	 */
-	public function setActionName($name)
+	public function setControllerName($name)
 	{
-		$this->actionName = $name;
+		$this->controllerName = $name;
 	}
 	
 	/**
@@ -113,7 +113,7 @@ class AgaviGenerateViewMethodsTask extends AgaviTask
 		
 		$methodDeclarations = $this->project->getUserProperty($this->property);
 		
-		$methodDeclarations .= str_replace(array('%%OUTPUT_TYPE_NAME%%', '%%ACTION_NAME%%'), array(ucfirst($this->outputType), $this->actionName), $template);
+		$methodDeclarations .= str_replace(array('%%OUTPUT_TYPE_NAME%%', '%%ACTION_NAME%%'), array(ucfirst($this->outputType), $this->controllerName), $template);
 		
 		$this->project->setUserProperty($this->property, $methodDeclarations);
 	}

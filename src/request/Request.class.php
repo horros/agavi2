@@ -102,9 +102,9 @@ abstract class Request extends AttributeHolder
 	public function __construct()
 	{
 		$this->setParameters(array(
-			'use_module_action_parameters' => false,
+			'use_module_controller_parameters' => false,
 			'module_accessor' => 'module',
-			'action_accessor' => 'action',
+			'controller_accessor' => 'controller',
 			'request_data_holder_class' => 'AgaviRequestDataHolder',
 		));
 	}
@@ -175,7 +175,7 @@ abstract class Request extends AttributeHolder
 	final public function getRequestData()
 	{
 		if($this->isLocked()) {
-			throw new AgaviException("Access to request data is locked during Action and View execution and while templates are rendered. Please use the local request data holder passed to your Action's or View's execute*() method to access request data.");
+			throw new AgaviException("Access to request data is locked during Controller and View execution and while templates are rendered. Please use the local request data holder passed to your Controller's or View's execute*() method to access request data.");
 		}
 		return $this->requestData;
 	}

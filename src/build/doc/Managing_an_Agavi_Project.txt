@@ -42,8 +42,8 @@ The process of setting up a new Agavi project consists of the following:
 
  * Creating the initial directory structure and configuration for the project,
  * creating a set of base modules,
- * creating a set of base actions to handle core Agavi functionality (such as an action not existing when called),
- * and mapping the set of base actions to their respective configuration directives.
+ * creating a set of base controllers to handle core Agavi functionality (such as an controller not existing when called),
+ * and mapping the set of base controllers to their respective configuration directives.
 
 === Creating the Directory Structure ===
 
@@ -53,22 +53,22 @@ The first step in creating a new Agavi project is to set up its directory struct
 agavi project-create
 }}}
 
-Executing this target prompts for the path to the new project directory and the project class prefix. The class prefix is used when library classes are generated (for example, the base action will have the form `<Prefix>BaseAction`). The process then creates a very basic directory structure for Agavi-based applications as well as the core set of configuration files.
+Executing this target prompts for the path to the new project directory and the project class prefix. The class prefix is used when library classes are generated (for example, the base controller will have the form `<Prefix>BaseController`). The process then creates a very basic directory structure for Agavi-based applications as well as the core set of configuration files.
 
 Enter the new project directory (for example, by using the `cd` command).
 
 === Creating the Base Modules ===
 
-The next step is to create a few base modules for the project. These modules will need to encapsulate the six core Agavi actions:
+The next step is to create a few base modules for the project. These modules will need to encapsulate the six core Agavi controllers:
 
- * `default` (the default action to load when no route is given),
- * `error_404` (an action could not be found),
+ * `default` (the default controller to load when no route is given),
+ * `error_404` (an controller could not be found),
  * `unavailable` (the project is disabled, for example for maintenance),
  * `module_disabled` (a particular module of a project is disabled),
- * `secure` (the base action to be loaded when a user has been authenticated),
- * and `login` (the action to load when an action requiring authentication is called and the user has not been authenticated).
+ * `secure` (the base controller to be loaded when a user has been authenticated),
+ * and `login` (the controller to load when an controller requiring authentication is called and the user has not been authenticated).
 
-There are no requirements for organizing these actions. Some users prefer to separate them into several different modules (for example, `Default`, `Error`, and `Secure`); others prefer to use just one module. This guide assumes the first approach.
+There are no requirements for organizing these controllers. Some users prefer to separate them into several different modules (for example, `Default`, `Error`, and `Secure`); others prefer to use just one module. This guide assumes the first approach.
 
 To create a new module, call the `module-create` target.
 
@@ -78,20 +78,20 @@ agavi module-create
 
 The target will automatically detect the project directory (assuming it is called from within it), and will then prompt for the module name and create the module structure. Repeat this process as many times as necessary to create the base modules.
 
-=== Creating the Base Actions ===
+=== Creating the Base Controllers ===
 
-Now create the actions using the `action-create`, `view-create`, and `template-create` targets:
+Now create the controllers using the `controller-create`, `view-create`, and `template-create` targets:
 
 {{{
-agavi action-create
+agavi controller-create
 agavi view-create
 agavi template-create
 }}}
 
-=== Final Action Configuration ===
+=== Final Controller Configuration ===
 
-The final step in preparing the new project is to add each base action to the configuration. This can be done by hand (by editing `app/config/settings.xml`) or by using the Agavi script, for example:
+The final step in preparing the new project is to add each base controller to the configuration. This can be done by hand (by editing `app/config/settings.xml`) or by using the Agavi script, for example:
 
 {{{
-agavi -Dmodule.name=Secure -Daction.name=Login -Dconfiguration.system_action=login configuration-set-system-action
+agavi -Dmodule.name=Secure -Dcontroller.name=Login -Dconfiguration.system_controller=login configuration-set-system-controller
 }}}
