@@ -13,48 +13,35 @@
 // |   End:                                                                    |
 // +---------------------------------------------------------------------------+
 
-use Agavi\Config\Config;
+require_once(__DIR__ . '/AgaviTask.php');
+
 /**
- * Version initialization script.
+ * Defines a new listener for this build environment.
  *
  * @package    agavi
+ * @subpackage build
  *
- * @author     David Zülke <dz@bitxtender.com>
+ * @author     Noah Fontes <noah.fontes@bitextender.com>
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
- * @since      0.9.0
+ * @since      1.0.0
  *
  * @version    $Id$
  */
-
-Config::set('agavi.name', 'Agavi');
-
-Config::set('agavi.major_version', '2');
-Config::set('agavi.minor_version', '0');
-Config::set('agavi.micro_version', '0');
-Config::set('agavi.status', 'dev');
-Config::set('agavi.branch', 'master');
-
-Config::set('agavi.version',
-	Config::get('agavi.major_version') . '.' .
-	Config::get('agavi.minor_version') . '.' .
-	Config::get('agavi.micro_version') .
-	(Config::has('agavi.status')
-		? '-' . Config::get('agavi.status')
-		: '')
-);
-
-Config::set('agavi.release',
-	Config::get('agavi.name') . '/' .
-	Config::get('agavi.version')
-);
-
-Config::set('agavi.url', 'http://www.agavi.org');
-
-Config::set('agavi_info',
-	Config::get('agavi.release') . ' (' .
-	Config::get('agavi.url') . ')'
-);
+abstract class ListenerTask extends AgaviTask
+{
+	protected $object = null;
+	
+	/**
+	 * Sets the object reference that should listen for target events.
+	 *
+	 * @param      Reference A reference to an object.
+	 */
+	public function setObject(Reference $object)
+	{
+		$this->object = $object;
+	}
+}
 
 ?>

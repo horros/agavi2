@@ -26,43 +26,43 @@
 
 	<taskdef name="agavi.import" classname="org.agavi.build.tasks.AgaviImportTask" classpath="phing" />
 
-	<taskdef name="agavi.transform-path" classname="org.agavi.build.tasks.AgaviTransformpathTask" classpath="phing" />
-	<taskdef name="agavi.transform-string-to-identifier" classname="org.agavi.build.tasks.AgaviTransformstringtoidentifierTask" classpath="phing" />
-	<taskdef name="agavi.transform-namespace-string-to-identifier" classname="org.agavi.build.tasks.AgaviTransformnamespacestringtoidentifierTask" classpath="phing" />
-	<taskdef name="agavi.transform-namespace-string-to-path" classname="org.agavi.build.tasks.AgaviTransformnamespacestringtopathTask" classpath="phing" />
-	<taskdef name="agavi.transform-string-to-agavi-identifier" classname="org.agavi.build.tasks.AgaviTransformstringtoagaviidentifierTask" classpath="phing" />
-	<taskdef name="agavi.transform-view-class-base" classname="org.agavi.build.tasks.AgaviTransformviewclassbaseTask" classpath="phing" />
+	<taskdef name="agavi.transform-path" classname="org.agavi.build.tasks.TransformpathTask" classpath="phing" />
+	<taskdef name="agavi.transform-string-to-identifier" classname="org.agavi.build.tasks.TransformstringtoidentifierTask" classpath="phing" />
+	<taskdef name="agavi.transform-namespace-string-to-identifier" classname="org.agavi.build.tasks.TransformnamespacestringtoidentifierTask" classpath="phing" />
+	<taskdef name="agavi.transform-namespace-string-to-path" classname="org.agavi.build.tasks.TransformnamespacestringtopathTask" classpath="phing" />
+	<taskdef name="agavi.transform-string-to-agavi-identifier" classname="org.agavi.build.tasks.TransformstringtoagaviidentifierTask" classpath="phing" />
+	<taskdef name="agavi.transform-view-class-base" classname="org.agavi.build.tasks.TransformviewclassbaseTask" classpath="phing" />
 
-	<taskdef name="agavi.base-name" classname="org.agavi.build.tasks.AgaviBasenameTask" classpath="phing" />
-	<taskdef name="agavi.directory-name" classname="org.agavi.build.tasks.AgaviDirectorynameTask" classpath="phing" />
+	<taskdef name="agavi.base-name" classname="org.agavi.build.tasks.BasenameTask" classpath="phing" />
+	<taskdef name="agavi.directory-name" classname="org.agavi.build.tasks.DirectorynameTask" classpath="phing" />
 
-	<taskdef name="agavi.available" classname="org.agavi.build.tasks.AgaviAvailableTask" classpath="phing" />
+	<taskdef name="agavi.available" classname="org.agavi.build.tasks.AvailableTask" classpath="phing" />
 
-	<taskdef name="agavi.write-properties" classname="org.agavi.build.tasks.AgaviWritepropertiesTask" classpath="phing" />
+	<taskdef name="agavi.write-properties" classname="org.agavi.build.tasks.WritepropertiesTask" classpath="phing" />
 
-	<taskdef name="agavi.target-listener" classname="org.agavi.build.tasks.AgaviTargetListenerTask" classpath="phing" />
-	<taskdef name="agavi.task-listener" classname="org.agavi.build.tasks.AgaviTaskListenerTask" classpath="phing" />
-	<taskdef name="agavi.message-listener" classname="org.agavi.build.tasks.AgaviMessageListenerTask" classpath="phing" />
+	<taskdef name="agavi.target-listener" classname="org.agavi.build.tasks.TargetListenerTask" classpath="phing" />
+	<taskdef name="agavi.task-listener" classname="org.agavi.build.tasks.TaskListenerTask" classpath="phing" />
+	<taskdef name="agavi.message-listener" classname="org.agavi.build.tasks.MessageListenerTask" classpath="phing" />
 
-	<taskdef name="agavi.execute-target" classname="org.agavi.build.tasks.AgaviExecutetargetTask" classpath="phing" />
+	<taskdef name="agavi.execute-target" classname="org.agavi.build.tasks.ExecutetargetTask" classpath="phing" />
 
-	<taskdef name="agavi.iterate" classname="org.agavi.build.tasks.AgaviIterateTask" classpath="phing" />
+	<taskdef name="agavi.iterate" classname="org.agavi.build.tasks.IterateTask" classpath="phing" />
 
-	<taskdef name="agavi.car" classname="org.agavi.build.tasks.AgaviCarTask" classpath="phing" />
+	<taskdef name="agavi.car" classname="org.agavi.build.tasks.CarTask" classpath="phing" />
 
-	<taskdef name="agavi.select-path" classname="org.agavi.build.tasks.AgaviSelectpathTask" classpath="phing" />
+	<taskdef name="agavi.select-path" classname="org.agavi.build.tasks.SelectpathTask" classpath="phing" />
 
-	<taskdef name="agavi.generate-controller-methods" classname="org.agavi.build.tasks.AgaviGenerateControllerMethodsTask" classpath="phing" />
-	<taskdef name="agavi.generate-view-methods" classname="org.agavi.build.tasks.AgaviGenerateViewMethodsTask" classpath="phing" />
-	<taskdef name="agavi.generate-model-attributes" classname="org.agavi.build.tasks.AgaviGenerateModelAttributesTask" classpath="phing" />
+	<taskdef name="agavi.generate-controller-methods" classname="org.agavi.build.tasks.GenerateControllerMethodsTask" classpath="phing" />
+	<taskdef name="agavi.generate-view-methods" classname="org.agavi.build.tasks.GenerateViewMethodsTask" classpath="phing" />
+	<taskdef name="agavi.generate-model-attributes" classname="org.agavi.build.tasks.GenerateModelAttributesTask" classpath="phing" />
 	
 	<!-- Load types relative to the build system. -->
-	<typedef name="agavi.object" classname="org.agavi.build.types.AgaviObjectType" classpath="phing" />
+	<typedef name="agavi.object" classname="org.agavi.build.types.ObjectType" classpath="phing" />
 
-	<typedef name="agavi.property" classname="org.agavi.build.types.AgaviPropertyType" classpath="phing" />
-	<typedef name="agavi.variable" classname="org.agavi.build.types.AgaviVariableType" classpath="phing" />
+	<typedef name="agavi.property" classname="org.agavi.build.types.PropertyType" classpath="phing" />
+	<typedef name="agavi.variable" classname="org.agavi.build.types.VariableType" classpath="phing" />
 
-	<typedef name="agavi.from" classname="org.agavi.build.types.AgaviFromType" classpath="phing" />
+	<typedef name="agavi.from" classname="org.agavi.build.types.FromType" classpath="phing" />
 
 	<tstamp />
 
@@ -125,23 +125,23 @@
 	<fail unless="agavi.available" message="Agavi installation not found in ${agavi.directory.src}" />
 
 	<!-- Load the remaining Agavi-specific tasks. -->
-	<taskdef name="agavi.locate-project" classname="org.agavi.build.tasks.AgaviLocateprojectTask" classpath="phing" />
-	<taskdef name="agavi.check-project" classname="org.agavi.build.tasks.AgaviCheckprojectTask" classpath="phing" />
+	<taskdef name="agavi.locate-project" classname="org.agavi.build.tasks.LocateprojectTask" classpath="phing" />
+	<taskdef name="agavi.check-project" classname="org.agavi.build.tasks.CheckprojectTask" classpath="phing" />
 
-	<taskdef name="agavi.locate-module" classname="org.agavi.build.tasks.AgaviLocatemoduleTask" classpath="phing" />
-	<taskdef name="agavi.check-module" classname="org.agavi.build.tasks.AgaviCheckmoduleTask" classpath="phing" />
-	<taskdef name="agavi.configure-module" classname="org.agavi.build.tasks.AgaviConfiguremoduleTask" classpath="phing" />
+	<taskdef name="agavi.locate-module" classname="org.agavi.build.tasks.LocatemoduleTask" classpath="phing" />
+	<taskdef name="agavi.check-module" classname="org.agavi.build.tasks.CheckmoduleTask" classpath="phing" />
+	<taskdef name="agavi.configure-module" classname="org.agavi.build.tasks.ConfiguremoduleTask" classpath="phing" />
 
-	<taskdef name="agavi.list-modules" classname="org.agavi.build.tasks.AgaviListmodulesTask" classpath="phing" />
-	<taskdef name="agavi.display-modules" classname="org.agavi.build.tasks.AgaviDisplaymodulesTask" classpath="phing" />
+	<taskdef name="agavi.list-modules" classname="org.agavi.build.tasks.ListmodulesTask" classpath="phing" />
+	<taskdef name="agavi.display-modules" classname="org.agavi.build.tasks.DisplaymodulesTask" classpath="phing" />
 
-	<taskdef name="agavi.list-controllers" classname="org.agavi.build.tasks.AgaviListControllersTask" classpath="phing" />
-	<taskdef name="agavi.display-controllers" classname="org.agavi.build.tasks.AgaviDisplayControllersTask" classpath="phing" />
+	<taskdef name="agavi.list-controllers" classname="org.agavi.build.tasks.ListControllersTask" classpath="phing" />
+	<taskdef name="agavi.display-controllers" classname="org.agavi.build.tasks.DisplayControllersTask" classpath="phing" />
 
-	<taskdef name="agavi.read-configuration" classname="org.agavi.build.tasks.AgaviReadconfigurationTask" classpath="phing" />
-	<taskdef name="agavi.write-configuration" classname="org.agavi.build.tasks.AgaviWriteconfigurationTask" classpath="phing" />
+	<taskdef name="agavi.read-configuration" classname="org.agavi.build.tasks.ReadconfigurationTask" classpath="phing" />
+	<taskdef name="agavi.write-configuration" classname="org.agavi.build.tasks.WriteconfigurationTask" classpath="phing" />
 
-	<taskdef name="agavi.resolve-configuration" classname="org.agavi.build.tasks.AgaviResolveconfigurationTask" classpath="phing" />
+	<taskdef name="agavi.resolve-configuration" classname="org.agavi.build.tasks.ResolveconfigurationTask" classpath="phing" />
 
 	<!-- Load some basic configuration values. -->
 	<agavi.read-configuration property="agavi.version" configurationValue="agavi.version" />

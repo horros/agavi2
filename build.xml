@@ -8,9 +8,9 @@
 	<property name="package"  value="${phing.project.name}" override="true" />
 	<property name="srcdir"   value="${project.basedir}" override="true" />
 	
-	<taskdef classname="etc.phing.AgaviVersionTask" name="agaviversion" />
-	<taskdef classname="etc.phing.AgaviPackageTask" name="agavipackage" />
-	<taskdef classname="etc.phing.AgaviOlsonCompileTask" name="agaviolsoncompile" />
+	<taskdef classname="etc.phing.VersionTask" name="agaviversion" />
+	<taskdef classname="etc.phing.PackageTask" name="agavipackage" />
+	<taskdef classname="etc.phing.OlsonCompileTask" name="agaviolsoncompile" />
 
 	<!-- fileset for -dist files -->
 	<fileset dir="." id="distfiles">

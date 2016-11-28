@@ -13,48 +13,61 @@
 // |   End:                                                                    |
 // +---------------------------------------------------------------------------+
 
-use Agavi\Config\Config;
+require_once(__DIR__ . '/AgaviTask.php');
+
 /**
- * Version initialization script.
+ * Converts a namespaced string in dotted form to a path.
  *
  * @package    agavi
+ * @subpackage build
  *
- * @author     David Zülke <dz@bitxtender.com>
+ * @author     Noah Fontes <noah.fontes@bitextender.com>
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
- * @since      0.9.0
+ * @since      1.0.0
  *
  * @version    $Id$
  */
+class TransformnamespacestringtopathTask extends AgaviTask
+{
+	protected $property = null;
+	protected $string = null;
 
-Config::set('agavi.name', 'Agavi');
+	/**
+	 * Sets the property that this task will modify.
+	 *
+	 * @param      string The property to modify.
+	 */
+	public function setProperty($property)
+	{
+		$this->property = $property;
+	}
 
-Config::set('agavi.major_version', '2');
-Config::set('agavi.minor_version', '0');
-Config::set('agavi.micro_version', '0');
-Config::set('agavi.status', 'dev');
-Config::set('agavi.branch', 'master');
+	/**
+	 * Sets the string to access for the transformation.
+	 *
+	 * @param      string The string to use.
+	 */
+	public function setString($string)
+	{
+		$this->string = $string;
+	}
 
-Config::set('agavi.version',
-	Config::get('agavi.major_version') . '.' .
-	Config::get('agavi.minor_version') . '.' .
-	Config::get('agavi.micro_version') .
-	(Config::has('agavi.status')
-		? '-' . Config::get('agavi.status')
-		: '')
-);
+	/**
+	 * Executes this target.
+	 */
+	public function main()
+	{
+		if($this->property === null) {
+			throw new \Agavi\Build\Exception\BuildException('The property attribute must be specified');
+		}
+		if($this->string === null) {
+			throw new \Agavi\Build\Exception\BuildException('The string attribute must be specified');
+		}
 
-Config::set('agavi.release',
-	Config::get('agavi.name') . '/' .
-	Config::get('agavi.version')
-);
-
-Config::set('agavi.url', 'http://www.agavi.org');
-
-Config::set('agavi_info',
-	Config::get('agavi.release') . ' (' .
-	Config::get('agavi.url') . ')'
-);
+		$this->project->setUserProperty($this->property, str_replace('.', '/', $this->string));
+	}
+}
 
 ?>

@@ -32,13 +32,13 @@ define('BUILD_DIRECTORY', realpath(__DIR__ . '/../..'));
 define('START_DIRECTORY', getcwd());
 define('MIN_PHING_VERSION', '2.4.0');
 
-/** Probably a composer install  *//*
+/** Probably a composer install  */
 if (file_exists(__DIR__ . '/../../../../vendor/autoload.php')) {
 	require_once(__DIR__ . '/../../../../vendor/autoload.php');
 } else {
-	// Let's hope Phing is on the include path*/
+	// Let's hope Phing is on the include path
 	require('phing/Phing.php');
-//}
+}
 
 require(__DIR__ . '/../build.php');
 \Agavi\Build\Build::bootstrap();
@@ -53,7 +53,7 @@ $GLOBALS['INPUT'] = new InputStream(fopen('php://stdin', 'r'));
 try {
 	Phing::startup();
 
-//	$GLOBALS['OUTPUT']->write('Phing version ' . Phing::getPhingVersion() . "\n");
+	$GLOBALS['OUTPUT']->write('Phing version ' . Phing::getPhingVersion() . "\n");
 	
 	Phing::setProperty('phing.home', getenv('PHING_HOME'));
 	
@@ -194,9 +194,9 @@ try {
 	$project->init();
 	ProjectConfigurator::configureProject($project, $GLOBALS['BUILD']);
 	
-	$project->addTaskDefinition('agavi.import', 'org.agavi.build.tasks.AgaviImportTask', 'phing');
-	$project->addTaskDefinition('agavi.locate-project', 'org.agavi.build.tasks.AgaviLocateprojectTask', 'phing');
-	$project->addTaskDefinition('agavi.check-project', 'org.agavi.build.tasks.AgaviCheckprojectTask', 'phing');
+	$project->addTaskDefinition('agavi.import', 'org.agavi.build.tasks.ImportTask', 'phing');
+	$project->addTaskDefinition('agavi.locate-project', 'org.agavi.build.tasks.LocateprojectTask', 'phing');
+	$project->addTaskDefinition('agavi.check-project', 'org.agavi.build.tasks.CheckprojectTask', 'phing');
 	
 	Phing::setCurrentProject($project);
 	

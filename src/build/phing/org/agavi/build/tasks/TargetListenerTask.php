@@ -13,48 +13,44 @@
 // |   End:                                                                    |
 // +---------------------------------------------------------------------------+
 
-use Agavi\Config\Config;
+require_once(__DIR__ . '/ListenerTask.php');
+
 /**
- * Version initialization script.
+ * Defines a new listener on targets for this build environment.
  *
  * @package    agavi
+ * @subpackage build
  *
- * @author     David Zülke <dz@bitxtender.com>
+ * @author     Noah Fontes <noah.fontes@bitextender.com>
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
- * @since      0.9.0
+ * @since      1.0.0
  *
  * @version    $Id$
  */
-
-Config::set('agavi.name', 'Agavi');
-
-Config::set('agavi.major_version', '2');
-Config::set('agavi.minor_version', '0');
-Config::set('agavi.micro_version', '0');
-Config::set('agavi.status', 'dev');
-Config::set('agavi.branch', 'master');
-
-Config::set('agavi.version',
-	Config::get('agavi.major_version') . '.' .
-	Config::get('agavi.minor_version') . '.' .
-	Config::get('agavi.micro_version') .
-	(Config::has('agavi.status')
-		? '-' . Config::get('agavi.status')
-		: '')
-);
-
-Config::set('agavi.release',
-	Config::get('agavi.name') . '/' .
-	Config::get('agavi.version')
-);
-
-Config::set('agavi.url', 'http://www.agavi.org');
-
-Config::set('agavi_info',
-	Config::get('agavi.release') . ' (' .
-	Config::get('agavi.url') . ')'
-);
+class TargetListenerTask extends ListenerTask
+{
+	public function main()
+	{
+		if($this->object === null) {
+			throw new \Agavi\Build\Exception\BuildException('The object attribute must be specified');
+		}
+		
+		$objectType = $this->object->getReferencedObject($this->project);
+		if(!$objectType instanceof ObjectType) {
+			throw new BuildException('The object attribute must be a reference to an Agavi object type');
+		}
+		
+		$object = $objectType->getInstance();
+		if(!$object instanceof \Agavi\Build\Phing\PhingTargetListenerInterface) {
+			throw new BuildException(sprintf('Cannot add target listener: Object is of type %s which does not implement %s',
+				get_class($object), 'Agavi\\Build\\Phing\\PhingTargetListenerInterface'));
+		}
+		
+		$dispatcher = \Agavi\Build\Phing\PhingEventDispatcherManager::get($this->project);
+		$dispatcher->addTargetListener($object);
+	}
+}
 
 ?>

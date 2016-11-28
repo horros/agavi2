@@ -13,48 +13,23 @@
 // |   End:                                                                    |
 // +---------------------------------------------------------------------------+
 
-use Agavi\Config\Config;
 /**
- * Version initialization script.
+ * Represents any Agavi phing datatype.
  *
  * @package    agavi
+ * @subpackage build
  *
- * @author     David Zülke <dz@bitxtender.com>
+ * @author     Noah Fontes <noah.fontes@bitextender.com>
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
- * @since      0.9.0
+ * @since      1.0.0
  *
  * @version    $Id$
  */
+abstract class Type extends DataType
+{
 
-Config::set('agavi.name', 'Agavi');
-
-Config::set('agavi.major_version', '2');
-Config::set('agavi.minor_version', '0');
-Config::set('agavi.micro_version', '0');
-Config::set('agavi.status', 'dev');
-Config::set('agavi.branch', 'master');
-
-Config::set('agavi.version',
-	Config::get('agavi.major_version') . '.' .
-	Config::get('agavi.minor_version') . '.' .
-	Config::get('agavi.micro_version') .
-	(Config::has('agavi.status')
-		? '-' . Config::get('agavi.status')
-		: '')
-);
-
-Config::set('agavi.release',
-	Config::get('agavi.name') . '/' .
-	Config::get('agavi.version')
-);
-
-Config::set('agavi.url', 'http://www.agavi.org');
-
-Config::set('agavi_info',
-	Config::get('agavi.release') . ' (' .
-	Config::get('agavi.url') . ')'
-);
+}
 
 ?>

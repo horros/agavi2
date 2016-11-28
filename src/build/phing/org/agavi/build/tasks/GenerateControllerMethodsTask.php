@@ -120,7 +120,7 @@ class GenerateControllerMethodsTask extends AgaviTask
 		}
 		
 		if(count($this->methods) > 0 && $this->isSimple) {
-			throw new \Agavi\Build\Exception\BuildException('An controller cannot serve request methods and be simple at the same time.');
+			throw new \Agavi\Build\Exception\BuildException('A controller cannot serve request methods and be simple at the same time.');
 		}
 		
 		if($this->requestMethodTemplate === null || !is_readable($this->requestMethodTemplate)) {

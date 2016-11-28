@@ -29,7 +29,7 @@ require_once(__DIR__ . '/AgaviTask.php');
  *
  * @version    $Id$
  */
-class AgaviDisplayControllersTask extends AgaviTask
+class DisplayControllersTask extends AgaviTask
 {
 	protected $path = null;
 	
