@@ -324,7 +324,7 @@ class Dispatcher extends ParameterHolder
 	 * @param      string $moduleName A module name.
 	 * @param      string $controllerName An controller name.
 	 *
-	 * @return     mixed  the path to the controller file if the controller file
+	 * @return     string|false  the path to the controller file if the controller file
 	 *                    exists and is readable, false in any other case
 	 *
 	 * @author     Felix Gilcher <felix.gilcher@bitextender.com>
@@ -414,7 +414,7 @@ class Dispatcher extends ParameterHolder
 	 * @param      string $moduleName A module name.
 	 * @param      string $viewName A view name.
 	 *
-	 * @return     mixed  the path to the view file if the view file 
+	 * @return     string|false  the path to the view file if the view file 
 	 *                    exists and is readable, false in any other case
 	 * 
 	 * @author     Felix Gilcher <felix.gilcher@bitextender.com>
