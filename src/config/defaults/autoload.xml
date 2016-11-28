@@ -52,7 +52,7 @@
 			<autoload class="Agavi\Config\Util\Dom\XmlConfigParser">%core.agavi_dir%/config/XmlConfigParser.class.php</autoload>
 
 			<!-- agavi/Dispatcher -->
-			<autoload class="Agavi\Dispatcher\Dispatcher">%core.agavi_dir%/Dispatcher/dispatcher.class.php</autoload>
+			<autoload class="Agavi\Dispatcher\Dispatcher">%core.agavi_dir%/dispatcher/Dispatcher.class.php</autoload>
 			<autoload class="Agavi\Dispatcher\ExecutionContainer">%core.agavi_dir%/dispatcher/ExecutionContainer.class.php</autoload>
 			<autoload class="Agavi\Dispatcher\OutputType">%core.agavi_dir%/dispatcher/OutputType.class.php</autoload>
 			<autoload class="Agavi\Dispatcher\SoapDispatcher">%core.agavi_dir%/dispatcher/SoapDispatcher.class.php</autoload>
