@@ -17,11 +17,11 @@ require('../app/config.php');
 // | By default the 'development' environment sets Agavi into a debug mode.    |
 // | In debug mode among other things the cache is cleaned on every request.   |
 // +---------------------------------------------------------------------------+
-Agavi::bootstrap('development');
+\Agavi\Core\Agavi::bootstrap('development');
 
 // +---------------------------------------------------------------------------+
 // | Call the controller's dispatch method on the default context              |
 // +---------------------------------------------------------------------------+
-\Agavi\Core\Context::getInstance('web')->getDispatcher()->dispatch();
+\Agavi\Core\Context::getInstance('web')->getController()->dispatch();
 
 ?>
