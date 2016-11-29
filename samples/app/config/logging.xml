@@ -8,14 +8,14 @@
 			<!-- logs only DEBUG messages -->
 			<logger name="any" class="Agavi\Logging\Logger" level="Agavi\Logging\Logger::DEBUG | Agavi\Logging\Logger::INFO">
 				<appenders>
-					<appender>Agavi\Logging\DebugLogAppender</appender>
+					<appender>DebugLogAppender</appender>
 				</appenders>
 			</logger>
 
 			<logger name="error" class="Agavi\Logging\Logger" level="Agavi\Logging\Logger::ALL ^ Agavi\Logging\Logger::DEBUG ^ Agavi\Logging\Logger::INFO">
 				<appenders>
-					<appender>Agavi\Logging\ErrorLogAppender</appender>
-					<appender>Agavi\Logging\StdErrorAppender</appender>
+					<appender>ErrorLogAppender</appender>
+					<appender>StdErrorAppender</appender>
 				</appenders>
 			</logger>
 			
