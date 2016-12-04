@@ -1,6 +1,6 @@
 <?php
 
-class AgaviSampleAppConfidentialBaseModel extends AgaviSampleAppBaseModel
+class SampleAppConfidentialBaseModel extends AgaviSampleAppBaseModel
 {
 	/*
 		This is the base Controller all your module's models should extend. This way,

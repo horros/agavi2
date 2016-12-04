@@ -196,7 +196,7 @@ class CachingConfigHandler extends XmlConfigHandler
 			'				} else {',
 			'					$view = array(',
 			'						"module" => $moduleName,',
-			'						"name" => Toolkit::evaluateModuleDirective(',
+			'						"name" => \Agavi\Util\Toolkit::evaluateModuleDirective(',
 			'							$moduleName,',
 			'							"agavi.view.name",',
 			'							array(',

@@ -100,7 +100,7 @@ class FormPopulationFilterTest extends UnitTestCase
 			'foo' => 'bar',
 		);
 		
-		$vm = $this->_context->createInstanceFor('validation_manager'); /** @var $vm \ValidationManager */
+		$vm = $this->_context->createInstanceFor('validation_manager');
 		$val1 = $vm->createValidator('Agavi\\Test\\Validator\\DummyValidator', array('foo'), array('' => 'My error message'));
 		$val1->val_result = false;
 		
