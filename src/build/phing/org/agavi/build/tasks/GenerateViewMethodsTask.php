@@ -113,7 +113,7 @@ class GenerateViewMethodsTask extends AgaviTask
 		
 		$methodDeclarations = $this->project->getUserProperty($this->property);
 		
-		$methodDeclarations .= str_replace(array('%%OUTPUT_TYPE_NAME%%', '%%ACTION_NAME%%'), array(ucfirst($this->outputType), $this->controllerName), $template);
+		$methodDeclarations .= str_replace(array('%%OUTPUT_TYPE_NAME%%', '%%CONTROLLER_NAME%%'), array(ucfirst($this->outputType), $this->controllerName), $template);
 		
 		$this->project->setUserProperty($this->property, $methodDeclarations);
 	}

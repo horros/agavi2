@@ -206,7 +206,7 @@ EOT;
 				}
 			}
 		}
-		
+
 		$this->arguments['test'] = $masterSuite;
 	}
 	
@@ -243,8 +243,9 @@ EOT;
 			usort($files, function($a, $b) {
 				return strcmp($a->getPathName(), $b->getPathName());
 			});
-			
-			foreach($files as $finfo) {
+
+			/** @var \SplFileInfo $finfo */
+            foreach($files as $finfo) {
 				if($finfo->isFile()) {
 					$s->addTestFile($finfo->getPathName());
 				}
