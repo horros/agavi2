@@ -1,5 +1,7 @@
 # Agavi2
 
+[![Join the chat at https://gitter.im/agavi2/Lobby](https://badges.gitter.im/agavi2/Lobby.svg)](https://gitter.im/agavi2/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 - License: [![License](https://poser.pugx.org/horros/agavi2/license)](https://packagist.org/packages/horros/agavi2)
 - Latest Version: [![Latest Stable Version](https://poser.pugx.org/horros/agavi2/v/stable)](https://packagist.org/packages/horros/agavi2)
 - Build: [![Build Status](https://travis-ci.org/horros/agavi2.svg?branch=master)](https://travis-ci.org/horros/agavi2)
