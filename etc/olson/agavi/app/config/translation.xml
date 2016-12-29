@@ -9,7 +9,7 @@
 		<translators default_domain="default">
 			<translator domain="default">
 
-				<message_translator class="AgaviGettextTranslator" />
+				<message_translator class="Agavi\Translation\GettextTranslator" />
 			</translator>
 		</translators>
 		
