@@ -105,7 +105,6 @@ class ControllerCreate extends AgaviCommand
 		}
 
 
-
 		if (file_exists($projectLocation . '/app/modules/' . $module . '/controllers/' . str_replace('.', '/', $controllerName))) {
 			throw new InvalidArgumentException(sprintf('Controller "%s" seems to already exist in "%s"', $controllerName, $projectLocation .
 				implode(DIRECTORY_SEPARATOR, ['app', 'modules', $module, 'controllers', explode('.', $controllerName)])));
@@ -166,7 +165,7 @@ class ControllerCreate extends AgaviCommand
 		$output->writeln("Copying files for controller", Output::VERBOSITY_VERY_VERBOSE);
 
 		// Copy controller
-		$controllerFile = $projectLocation . '/app/modules/' . $module . '/controllers/' . str_replace('.','/', $controllerName) . 'Controller.class.php';
+		$controllerFile = $projectLocation . '/app/modules/' . $module . '/controllers/' . str_replace('.', '/', $controllerName) . 'Controller.class.php';
 
 		$output->writeln(sprintf("[%s -> %s]",
 			$this->getSourceDir() . '/build/templates/app/modules/controllers/Controller.class.php.tmpl',
@@ -175,7 +174,7 @@ class ControllerCreate extends AgaviCommand
 
 		$fc->copy($this->getSourceDir() . '/build/templates/app/modules/controllers/Controller.class.php.tmpl',
 			$controllerFile,
-			function($data, $params) {
+			function ($data, $params) {
 				return str_replace([
 					'%%PROJECT_PREFIX%%',
 					'%%MODULE_NAME%%',
@@ -196,7 +195,7 @@ class ControllerCreate extends AgaviCommand
 		);
 
 		// Copy validator
-		$validatorFile = $projectLocation . '/app/modules/' . $module . '/validate/' . str_replace('.','/', $controllerName) . '.xml';
+		$validatorFile = $projectLocation . '/app/modules/' . $module . '/validate/' . str_replace('.', '/', $controllerName) . '.xml';
 
 		$output->writeln(sprintf("[%s -> %s]",
 			$this->getSourceDir() . '/build/templates/app/modules/validate/controller.xml.tmpl',
@@ -206,7 +205,7 @@ class ControllerCreate extends AgaviCommand
 
 		$fc->copy($this->getSourceDir() . '/build/templates/app/modules/validate/controller.xml.tmpl',
 			$validatorFile,
-			function($data, $params) {
+			function ($data, $params) {
 				return str_replace([
 					'%%MODULE_NAME%%',
 				], [
@@ -218,7 +217,7 @@ class ControllerCreate extends AgaviCommand
 		);
 
 		// Copy cache file
-		$cacheFile = $projectLocation . '/app/modules/' . $module . '/cache/' . str_replace('.','/', $controllerName) . '.xml';
+		$cacheFile = $projectLocation . '/app/modules/' . $module . '/cache/' . str_replace('.', '/', $controllerName) . '.xml';
 		$output->writeln(sprintf("[%s -> %s]",
 			$this->getSourceDir() . '/build/templates/app/modules/cache/controller.xml.tmpl',
 			$cacheFile
@@ -226,7 +225,7 @@ class ControllerCreate extends AgaviCommand
 
 		$fc->copy($this->getSourceDir() . '/build/templates/app/modules/cache/controller.xml.tmpl',
 			$cacheFile,
-			function($data, $params) {
+			function ($data, $params) {
 				return str_replace([
 					'%%MODULE_NAME%%',
 				], [
@@ -279,16 +278,35 @@ class ControllerCreate extends AgaviCommand
 		// Copy views
 		foreach ($viewdefs as $viewname => $output_types) {
 
-			$viewFile = $projectLocation . '/app/modules/' . $module . '/views/' . str_replace('.','/', $controllerName) . ucfirst($viewname) . 'View.class.php';
+			$viewFile = $projectLocation . '/app/modules/' . $module . '/views/' . str_replace('.', '/', $controllerName) . ucfirst($viewname) . 'View.class.php';
 
 			$output->writeln(sprintf("[%s -> %s]",
 				$this->getSourceDir() . '/build/templates/app/modules/views/View.class.php.tmpl',
 				$viewFile
 			), Output::VERBOSITY_DEBUG);
 
-			$fc->copy($this->getSourceDir() . '/build/templates/app/modules/views/View.class.php.tmpl',
-				$viewFile,
-				function($data, $params) {
+			$srcview = $this->getSourceDir() . '/build/templates/app/modules/views/View.class.php.tmpl';
+
+			// If this is a system controller, copy a specific default view
+			if ($input->hasOption('system') && $input->getOption('system') != null) {
+				switch ($input->getOption('system')) {
+					case 'error_404':
+						$srcview = $this->getSourceDir() . '/build/templates/defaults/app/modules/views/Error404SuccessView.class.php.tmpl';
+						break;
+					case 'module_disabled':
+						$srcview = $this->getSourceDir() . '/build/templates/defaults/app/modules/views/ModuleDisabledSuccessView.class.php.tmpl';
+						break;
+					case 'secure':
+						$srcview = $this->getSourceDir() . '/build/templates/defaults/app/modules/views/SecureSuccessView.class.php.tmpl';
+						break;
+					case 'unavailable':
+						$srcview = $this->getSourceDir() . '/build/templates/defaults/app/modules/views/UnavailableSuccessView.class.php.tmpl';
+						break;
+				}
+			}
+
+			$fc->copy($srcview, $viewFile,
+				function ($data, $params) {
 					return str_replace([
 						'%%PROJECT_PREFIX%%',
 						'%%MODULE_NAME%%',
@@ -308,12 +326,15 @@ class ControllerCreate extends AgaviCommand
 				]
 			);
 
-			$templateFile = $projectLocation . '/app/modules/' . $module . '/templates/' . str_replace('.','/', $controllerName) . ucfirst($viewname) . '.php';
+			$templateFile = $projectLocation . '/app/modules/' . $module . '/templates/' . str_replace('.', '/', $controllerName) . ucfirst($viewname) . '.php';
 
 			$output->writeln(sprintf('Creating empty template file "%s"', $templateFile), Output::VERBOSITY_DEBUG);
 			@touch($templateFile, 0755);
 		}
 
+		/*
+		 * For system controllers we need to modify the settings.xml -file too
+		 */
 		$system_controllers = ['default', 'error_404', 'login', 'module_disabled', 'secure', 'unavailable'];
 		if ($input->hasOption('system') && $input->getOption('system') != null) {
 			$system = $input->getOption('system');
@@ -334,11 +355,29 @@ class ControllerCreate extends AgaviCommand
 			$controllerXPath = "//*[local-name() = 'configuration' and (namespace-uri() = 'http://agavi.org/agavi/config/global/envelope/1.0' or namespace-uri() = 'http://agavi.org/agavi/config/global/envelope/1.1')]//*[local-name() = 'system_controller' and (namespace-uri() = 'http://agavi.org/agavi/config/parts/settings/1.0' or namespace-uri() = 'http://agavi.org/agavi/config/parts/settings/1.1') and @name='" . $system . "']/*[local-name() = 'controller']";
 			$this->writeSettings($settings, $controllerXPath, $controllerName, $output);
 
+			// Copy the default templates
+			switch ($system) {
+				case "error_404":
+					@copy($this->getSourceDir() . '/build/templates/defaults/app/modules/templates/Error404Success.php.tmpl', $projectLocation . '/app/modules/' . $module . '/templates/Error404Success.php');
+					break;
+				case 'module_disabled':
+					@copy($this->getSourceDir() . '/build/templates/defaults/app/modules/templates/ModuleDisabledSuccess.php.tmpl', $projectLocation . '/app/modules/' . $module . '/templates/ModuleDisabledSuccess.php');
+					break;
+				case 'success':
+					@copy($this->getSourceDir() . '/build/templates/defaults/app/modules/templates/SecureSuccess.php.tmpl', $projectLocation . '/app/modules/' . $module . '/templates/SecureSuccess.php');
+					break;
+				case 'unavailable':
+					@copy($this->getSourceDir() . '/build/templates/defaults/app/modules/templates/UnavailableSuccess.php.tmpl', $projectLocation . '/app/modules/' . $module . '/templates/UnavailableSuccess.php');
+					break;
+
+			}
+
 		}
 
 	}
 
-	private function generateExecuteMethods(array $requestMethods) {
+	private function generateExecuteMethods(array $requestMethods)
+	{
 
 		$tmpl = file_get_contents($this->getSourceDir() . '/build/templates/code/controllers/HandleRequestMethod.tmpl');
 
@@ -350,18 +389,20 @@ class ControllerCreate extends AgaviCommand
 
 	}
 
-	private function generateHandleOutputTypeMethods(array $output_types, string $controllerName) {
+	private function generateHandleOutputTypeMethods(array $output_types, string $controllerName)
+	{
 		$tmpl = file_get_contents($this->getSourceDir() . '/build/templates/code/views/HandleOutputType.tmpl');
 
 		$code = '';
 		foreach ($output_types as $requestMethod) {
-			$code .= str_replace(['%%OUTPUT_TYPE_NAME%%', '%%CONTROLLER_NAME%%'],  [ucfirst($requestMethod), $controllerName], $tmpl);
+			$code .= str_replace(['%%OUTPUT_TYPE_NAME%%', '%%CONTROLLER_NAME%%'], [ucfirst($requestMethod), $controllerName], $tmpl);
 
 		}
 		return $code;
 	}
 
-	private function writeSettings($file, $xpath, $value, OutputInterface $output) {
+	private function writeSettings($file, $xpath, $value, OutputInterface $output)
+	{
 		$document = new \DOMDocument();
 		$document->preserveWhiteSpace = true;
 		$document->load($file);
@@ -373,7 +414,7 @@ class ControllerCreate extends AgaviCommand
 		$path->registerNamespace('document', 'http://agavi.org/agavi/config/parts/settings/1.1');
 
 		$entries = $path->query($xpath);
-		foreach($entries as $entry) {
+		foreach ($entries as $entry) {
 			$entry->nodeValue = (string)$value;
 		}
 

@@ -25,12 +25,14 @@
  **/
 namespace Agavi\Build\Console\Command;
 
+use Symfony\Component\Console\Exception\InvalidArgumentException;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\Output;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
+use Symfony\Component\Yaml\Yaml;
 
 class ProjectWizard extends AgaviCommand
 {
@@ -70,6 +72,7 @@ class ProjectWizard extends AgaviCommand
 		]);
 		$returnCode = $projectCommand->run($projectCommandInput, $output);
 
+
 		// Add the pub dir
 		$pubCommand = $this->getApplication()->find('agavi:pub');
 		$pubCommandInput = new ArrayInput([
@@ -77,6 +80,22 @@ class ProjectWizard extends AgaviCommand
 			'--settings' => $projectLocation . '/.settings.yml'
 		]);
 		$returnCode = $pubCommand->run($pubCommandInput, $output);
+
+		$settingsFile = $projectLocation . '/.settings.yml';
+
+		if (!file_exists($settingsFile)) {
+			throw new InvalidArgumentException(sprintf('Cannot find settings file "%s"', $settingsFile));
+		}
+
+		$settings = Yaml::parse(file_get_contents($settingsFile));
+
+		if (!is_array($settings)) {
+			throw new InvalidArgumentException(sprintf('Error parsing settings file "%s". Return value unexpected. Expected array, got %s', $settings, gettype($settings)));
+		}
+
+		if (!isset($settings['project']['prefix'])) {
+			throw new InvalidArgumentException(sprintf('No project prefix found in settings file "%s"', $settings));
+		}
 
 		// Add the Welcome-module
 		$mcCommand = $this->getApplication()->find('agavi:module');
@@ -100,6 +119,37 @@ class ProjectWizard extends AgaviCommand
 		]);
 		$returnCode = $ccCommand->run($ccCommandInput, $output);
 
+
+		// Copy the welcome templates
+
+		$fc = new FileCopyHelper();
+		$fc->copy($this->getSourceDir() . '/build/templates/defaults/app/modules/views/WelcomeSuccessView.class.php.tmpl',
+			$projectLocation . '/app/modules/Welcome/views/IndexSuccessView.class.php',
+			function ($data, $params) {
+				return str_replace([
+					'%%PROJECT_PREFIX%%',
+					'%%MODULE_NAME%%',
+					'%%VIEW_CLASS%%'
+				], [
+					$params['projectPrefix'],
+					$params['moduleName'],
+					$params['viewClass'],
+				], $data);
+			}, [
+				'projectPrefix' => $settings['project']['prefix'],
+				'moduleName' => 'Welcome',
+				'viewClass' => 'Welcome_IndexSuccessView'
+			]
+		);
+
+
+		copy($this->getSourceDir() . '/build/templates/defaults/app/modules/templates/WelcomeSuccess.php.tmpl',
+			$projectLocation . '/app/modules/Welcome/templates/IndexSuccess.php');
+
+		mkdir($settings['project']['pub']. '/welcome', 0755, true);
+		copy($this->getSourceDir() . '/build/templates/defaults/pub/welcome/bg.png', $settings['project']['pub']. '/welcome/bg.png');
+		copy($this->getSourceDir() . '/build/templates/defaults/pub/welcome/plant.png', $settings['project']['pub']. '/welcome/plant.png');
+
 		// Add the Default-module
 		$dcCommand = $this->getApplication()->find('agavi:module');
 		$dcCommandInput = new ArrayInput([
@@ -108,6 +158,33 @@ class ProjectWizard extends AgaviCommand
 			'module' => 'Default'
 		]);
 		$dcCommand->run($dcCommandInput, $output);
+
+		// Copy the default settings
+		foreach (glob($this->getSourceDir() . '/build/templates/defaults/app/config/*.xml.tmpl') as $file) {
+			$fc->copy($file, $projectLocation . '/app/config/' . basename($file, '.tmpl'), function($data, $params) {
+				return str_replace([
+					'%%AGAVI_SOURCE_LOCATION%%',
+					'%%PROJECT_LOCATION%%',
+					'%%PROJECT_NAME%%',
+					'%%PROJECT_PREFIX%%',
+					'%%PUBLIC_ENVIRONMENT%%',
+					'%%TEMPLATE_EXTENSION%%',
+					'%controllers.default_module%',
+					'%controllers.default_controller%'
+				], [
+					$this->getSourceDir(),
+					$params['project']['location'],
+					$params['project']['name'],
+					$params['project']['prefix'],
+					'development',
+					'php',
+					'Default',
+					'Index'
+				], $data);
+			}, $settings);
+
+		}
+
 
 		// Create the system controllers
 

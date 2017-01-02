@@ -55,20 +55,25 @@ class PubCreate extends AgaviCommand
 	{
 
 		if ($input->hasOption('environment') && $input->getOption('environment') != null) {
-			$this->environment = $input->getOption('environment');
+			$environment = $input->getOption('environment');
 		} else {
-			$this->environment = "development";
+			$environment = "development";
 		}
 
-		$projectLocation = '.';
 		$helper = $this->getHelper('question');
 
-		if ($input->hasOption('settings') && ($settings = $input->getOption('settings')) != null) {
-			if (!file_exists($settings))
-				throw new InvalidArgumentException('PubCreate: Cannot find the settings file "' . $settings . '""');
-			$data = Yaml::parse(file_get_contents($settings));
-			$projectLocation = (is_array($data) && isset($data['project']['location']) ? $data['project']['location'] : '.');
+		if ($input->hasOption('settings') && $input->getOption('settings') != null) {
+			$settingsFile = $input->getOption('settings');
+		} else {
+			$settingsFile = '.' . DIRECTORY_SEPARATOR . '.settings.yml';
 		}
+
+		if (!file_exists($settingsFile)) {
+			throw new InvalidArgumentException(sprintf('Cannot find settings file "%s"', $settingsFile));
+		}
+		$settings = Yaml::parse(file_get_contents($settingsFile));
+		$projectLocation = $settings['project']['location'];
+
 		if ($input->hasOption('dir') && $input->getOption('dir') != null) {
 			$dir = $input->getOption('dir');
 		} else {
@@ -80,21 +85,48 @@ class PubCreate extends AgaviCommand
 			}
 		}
 
+
 		@mkdir($dir, 0755, true);
+		$settings['project']['pub'] = $dir;
 
 		$fc = new FileCopyHelper();
 
 		/**
 		 * Copy the files and replace the tokens in the template files
 		 */
-		$fc->copy($this->getSourceDir() . '/build/templates/pub/dot.htaccess.tmpl', $dir . '/.htaccess', function ($data) {
-			$this->pubTokenReplacer($data);
-		});
+		$fc->copy($this->getSourceDir() . '/build/templates/pub/index.php.tmpl', $dir . '/index.php', function ($data, $params) {
+			return str_replace([
+				'%%AGAVI_SOURCE_LOCATION%%',
+				'%%PUBLIC_ENVIRONMENT%%',
+				'%%PUBLIC_BASE%%'
+			], [
+				$this->getSourceDir(),
+				$params[0],
+				'/'
+			],
+				$data);
+		},
+			[$environment]
+		);
 
-		$fc->copy($this->getSourceDir() . '/build/templates/pub/index.php.tmpl', $dir . '/index.php', function ($data) {
-			$this->pubTokenReplacer($data);
-		});
+		$fc->copy($this->getSourceDir() . '/build/templates/pub/dot.htaccess.tmpl', $dir . '/.htaccess', function ($data, $params) {
+			return str_replace([
+				'%%AGAVI_SOURCE_LOCATION%%',
+				'%%PUBLIC_ENVIRONMENT%%',
+				'%%PUBLIC_BASE%%'
+			], [
+				$this->getSourceDir(),
+				$params[0],
+				'/'
+			],
+				$data);
+		},
+			[$environment]
+		);
 
+
+		$data = Yaml::dump($settings);
+		file_put_contents(realpath($projectLocation) . DIRECTORY_SEPARATOR . '.settings.yml', $data);
 		return 0;
 
 	}
@@ -103,10 +135,12 @@ class PubCreate extends AgaviCommand
 	{
 		return str_replace([
 			'%%AGAVI_SOURCE_LOCATION%%',
-			'%%PUBLIC_ENVIRONMENT%%'
+			'%%PUBLIC_ENVIRONMENT%%',
+			'%%PUBLIC_BASE%%'
 		], [
 			$this->getSourceDir(),
-			$this->environment
+			$this->environment,
+			'/'
 		],
 			$data);
 

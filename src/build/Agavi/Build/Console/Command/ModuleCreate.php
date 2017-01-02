@@ -1,11 +1,25 @@
 <?php
+// +---------------------------------------------------------------------------+
+// | This file is part of the Agavi package.                                   |
+// | Copyright (c) 2005-2016 the Agavi Project.                                |
+// |                                                                           |
+// | For the full copyright and license information, please view the LICENSE   |
+// | file that was distributed with this source code. You can also view the    |
+// | LICENSE file online at http://www.agavi.org/LICENSE.txt                   |
+// |   vi: set noexpandtab:                                                    |
+// |   Local Variables:                                                        |
+// |   indent-tabs-mode: t                                                     |
+// |   End:                                                                    |
+// +---------------------------------------------------------------------------+
 /**
- * Created by PhpStorm.
- * User: markus
- * Date: 21/12/2016
- * Time: 17:16
- */
-
+ * Create an empty module
+ *
+ * @author     Markus Lervik <markuslervik1234@gmail.com>
+ * @copyright  Authors
+ * @copyright  The Agavi Project
+ *
+ * @since      2.0.0
+ **/
 namespace Agavi\Build\Console\Command;
 
 use Symfony\Component\Console\Exception\InvalidArgumentException;
