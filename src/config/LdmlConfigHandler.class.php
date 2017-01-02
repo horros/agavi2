@@ -32,7 +32,7 @@ use Agavi\Translation\Locale;
  *
  * @version    $Id$
  */
-class LdmlConfigHandler extends XmlConfigHandler
+class LdmlConfigHandler extends ConfigHandler
 {
 	protected $nodeRefs = array();
 
