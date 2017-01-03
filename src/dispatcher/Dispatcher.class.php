@@ -333,8 +333,9 @@ class Dispatcher extends ParameterHolder
 	public function checkControllerFile($moduleName, $controllerName)
 	{
 		$this->initializeModule($moduleName);
-		
-		$controllerName = Toolkit::canonicalName($controllerName);
+
+
+		$controllerName = Toolkit::canonicalName(Toolkit::stripNamespace($controllerName));
 		$file = Toolkit::evaluateModuleDirective(
 			$moduleName,
 			'agavi.controller.path',
@@ -347,7 +348,6 @@ class Dispatcher extends ParameterHolder
 		if(is_readable($file) && substr($controllerName, 0, 1) !== '/') {
 			return $file;
 		}
-		
 		return false;
 	}
 	
@@ -370,11 +370,14 @@ class Dispatcher extends ParameterHolder
 	{
 		$this->initializeModule($moduleName);
 		
-		$controllerName = Toolkit::canonicalName($controllerName);
+		$controllerName = Toolkit::canonicalName(Toolkit::stripNamespace($controllerName));
 		$longControllerName = str_replace('/', '_', $controllerName);
-		
-		$class = $moduleName . '_' . $longControllerName . 'Controller';
-		
+		$ns = Config::get('app.namespace');
+
+		if (strlen($ns) > 0 && strrpos($ns, '\\') !== strlen($ns)) {
+			$ns .= '\\Modules\\' . $moduleName . '\\Controllers\\';
+		}
+		$class = $ns . $longControllerName . 'Controller';
 		if(!class_exists($class)) {
 			if(false !== ($file = $this->checkControllerFile($moduleName, $controllerName))) {
 				require($file);
@@ -424,7 +427,7 @@ class Dispatcher extends ParameterHolder
 	{
 		$this->initializeModule($moduleName);
 		
-		$viewName = Toolkit::canonicalName($viewName);
+		$viewName = Toolkit::canonicalName(Toolkit::stripNamespace($viewName));
 		$file = Toolkit::evaluateModuleDirective(
 			$moduleName,
 			'agavi.view.path',
@@ -464,12 +467,16 @@ class Dispatcher extends ParameterHolder
 			// views from disabled modules should be usable by definition
 			// swallow
 		}
-		
-		$viewName = Toolkit::canonicalName($viewName);
-		$longViewName = str_replace('/', '_', $viewName);
-		
-		$class = $moduleName . '_' . $longViewName . 'View';
-		
+
+		$controllerName = Toolkit::canonicalName(Toolkit::stripNamespace($viewName));
+		$longControllerName = str_replace('/', '_', $controllerName);
+		$ns = Config::get('app.namespace');
+
+		if (strlen($ns) > 0 && strrpos($ns, '\\') !== strlen($ns)) {
+			$ns .= '\\Modules\\' . $moduleName . '\\Views\\';
+		}
+		$class = $ns . $longControllerName . 'View';
+
 		if(!class_exists($class)) {
 			
 			if(false !== ($file = $this->checkViewFile($moduleName, $viewName))) {

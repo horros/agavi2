@@ -43,27 +43,27 @@ class ModuleCreate extends AgaviCommand
 	public function execute(InputInterface $input, OutputInterface $output) {
 
 		if ($input->hasOption('settings') && $input->getOption('settings') != null) {
-			$settings = $input->getOption('settings');
+			$settingsFile = $input->getOption('settings');
 		} else {
-			$settings = '.' . DIRECTORY_SEPARATOR . '.settings.yml';
+			$settingsFile = '.' . DIRECTORY_SEPARATOR . '.settings.yml';
 		}
 
-		if (!file_exists($settings)) {
-			throw new InvalidArgumentException(sprintf('Cannot find settings file "%s"', $settings));
+		if (!file_exists($settingsFile)) {
+			throw new InvalidArgumentException(sprintf('Cannot find settings file "%s"', $settingsFile));
 		}
 
 		$helper = $this->getHelper('question');
 
-		$data = Yaml::parse(file_get_contents($settings));
+		$settings = Yaml::parse(file_get_contents($settingsFile));
 
-		if (!is_array($data)) {
-			throw new InvalidArgumentException(sprintf('Error parsing settings file "%s". Return value unexpected. Expected array, got %s', $settings, gettype($data)));
+		if (!is_array($settings)) {
+			throw new InvalidArgumentException(sprintf('Error parsing settings file "%s". Return value unexpected. Expected array, got %s', $settingsFile, gettype($settings)));
 		}
 
-		if (!isset($data['project']['prefix'])) {
-			throw new InvalidArgumentException(sprintf('No project prefix found in settings file "%s"', $settings));
+		if (!isset($settings['project']['prefix'])) {
+			throw new InvalidArgumentException(sprintf('No project prefix found in settings file "%s"', $settingsFile));
 		}
-		$projectLocation = (is_array($data) && isset($data['project']['location']) ? $data['project']['location'] : '.');
+		$projectLocation = (is_array($settings) && isset($settings['project']['location']) ? $settings['project']['location'] : '.');
 
 		if ($input->hasArgument('module') && $input->getArgument('module') != null) {
 			$module = $input->getArgument('module');
@@ -80,9 +80,11 @@ class ModuleCreate extends AgaviCommand
 
 		$defaultParams = [
 			'projectLocation' => $projectLocation,
-			'projectName' => $data['project']['name'],
-			'projectPrefix' => $data['project']['prefix'],
-			'moduleName' => $module
+			'projectName' => $settings['project']['name'],
+			'projectPrefix' => $settings['project']['prefix'],
+			'moduleName' => $module,
+			'FQNS' => $settings['project']['namespace'],
+			'NS' => substr($settings['project']['namespace'], 1, strlen($settings['project']['namespace']))
 		];
 
 		@mkdir($projectLocation . '/app/modules/' . $module, 0755, true);
@@ -109,7 +111,7 @@ class ModuleCreate extends AgaviCommand
 		// Lib
 		@mkdir($projectLocation . '/app/modules/' . $module . '/lib/controller', 0755, true);
 		foreach (glob($this->getSourceDir() . '/build/templates/app/modules/lib/controller/*.tmpl') as $file) {
-			$fc->copy($file, $projectLocation . '/app/modules/' . $module . '/lib/controller/' . $data['project']['prefix'] . $module . basename($file, '.tmpl'),
+			$fc->copy($file, $projectLocation . '/app/modules/' . $module . '/lib/controller/' . $settings['project']['prefix'] . $module . basename($file, '.tmpl'),
 				function ($data, $params) {
 					return $this->moduleTokenReplacer($data, $params);
 				}, $defaultParams);
@@ -117,7 +119,7 @@ class ModuleCreate extends AgaviCommand
 		}
 		@mkdir($projectLocation . '/app/modules/' . $module . '/lib/model', 0755, true);
 		foreach (glob($this->getSourceDir() . '/build/templates/app/modules/lib/model/*.tmpl') as $file) {
-			$fc->copy($file, $projectLocation . '/app/modules/' . $module . '/lib/model/' . $data['project']['prefix'] . $module . basename($file, '.tmpl'),
+			$fc->copy($file, $projectLocation . '/app/modules/' . $module . '/lib/model/' . $settings['project']['prefix'] . $module . basename($file, '.tmpl'),
 				function ($data, $params) {
 					return $this->moduleTokenReplacer($data, $params);
 				}, $defaultParams);
@@ -125,7 +127,7 @@ class ModuleCreate extends AgaviCommand
 		}
 		@mkdir($projectLocation . '/app/modules/' . $module . '/lib/view', 0755, true);
 		foreach (glob($this->getSourceDir() . '/build/templates/app/modules/lib/view/*.tmpl') as $file) {
-			$fc->copy($file, $projectLocation . '/app/modules/' . $module . '/lib/view/' . $data['project']['prefix'] . $module . basename($file, '.tmpl'),
+			$fc->copy($file, $projectLocation . '/app/modules/' . $module . '/lib/view/' . $settings['project']['prefix'] . $module . basename($file, '.tmpl'),
 				function ($data, $params) {
 					return $this->moduleTokenReplacer($data, $params);
 				}, $defaultParams);
@@ -148,7 +150,9 @@ class ModuleCreate extends AgaviCommand
 			'%%MODULE_VIEW_NAME%%',
 			'%%MODULE_CACHE_PATH%%',
 			'%%MODULE_VALIDATE_PATH%%',
-			'%%MODULE_TEMPLATES_DIRECTORY%%'
+			'%%MODULE_TEMPLATES_DIRECTORY%%',
+			'%%PROJECT_NAMESPACE%%',
+			'%%FQNS%%'
 		], [
 			$this->getSourceDir(),
 			$params['projectLocation'],
@@ -160,7 +164,9 @@ class ModuleCreate extends AgaviCommand
 			'${controllerName}${viewName}',
 			'%core.module_dir%/${moduleName}/cache/${controllerName}.xml',
 			'%core.module_dir%/${moduleName}/validate/${controllerName}.xml',
-			'%core.module_dir%/${module}/templates'
+			'%core.module_dir%/${module}/templates',
+			$params['NS'],
+			$params['FQNS']
 		], $data);
 	}
 }

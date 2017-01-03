@@ -101,6 +101,14 @@ class ProjectCreate extends AgaviCommand
 		$output->writeln("Setting \$projectPrefix to $projectPrefix", Output::VERBOSITY_VERY_VERBOSE);
 		$settings['project']['prefix'] = $projectPrefix;
 
+		$question = new Question(sprintf('Project namespace (defaults to "%s"): ', $projectPrefix), $projectPrefix);
+		$projectNamespace = $helper->ask($input, $output, $question);
+
+		if (substr($projectNamespace, 0, 1) != '\\')
+			$projectNamespace = '\\' . $projectNamespace;
+		$output->writeln("Setting \$projectNamespace to $projectNamespace", Output::VERBOSITY_VERY_VERBOSE);
+		$settings['project']['namespace'] = $projectNamespace;
+
 		$output->writeln("Agavi supports different module layouts.\n");
 		$output->writeln("agavi2: (TBD)");
 		$output->writeln("legacy: (Agavi 1.0 - default)");
@@ -130,14 +138,17 @@ class ProjectCreate extends AgaviCommand
 			$defaultParams = [
 				'projectLocation' => $projectLocation,
 				'projectName' => $projectName,
-				'projectPrefix' => $projectPrefix
+				'projectPrefix' => $projectPrefix,
+				'FQNS' => $projectNamespace,
+				'NS' => substr($projectNamespace, 1, strlen($projectNamespace))
 			];
 
 			// Copy config.php
-			$fc->copy($templates . '/app/config.php.tmpl', $projectLocation . '/app/config/config.php',
+			$fc->copy($templates . '/app/config.php.tmpl', $projectLocation . '/app/config.php',
 				function ($data, $params) {
 					return $this->projectTokenReplacer($data, $params);
 				}, $defaultParams);
+
 
 			// Copy lib
 			@mkdir($projectLocation . '/app/lib/controller', 0755, true);
@@ -171,15 +182,6 @@ class ProjectCreate extends AgaviCommand
 					}, $defaultParams);
 			}
 
-			// Base controller
-			$fc->copy($templates . '/app/config.php.tmpl', $projectLocation . '/app/config.php',
-				function ($data, $params) {
-					return $this->projectTokenReplacer($data, $params);
-				}, $defaultParams);
-
-
-
-
 			// Copy the Master and exception templates
 			@mkdir($projectLocation . '/app/templates', 0755, true);
 			@copy($this->getSourceDir() . '/build/templates/defaults/app/templates/Master.php.tmpl',
@@ -188,8 +190,6 @@ class ProjectCreate extends AgaviCommand
 			foreach (glob($this->getSourceDir() . '/build/templates/defaults/app/templates/exceptions/*.tmpl') as $file) {
 				@copy($file, $projectLocation . '/app/templates/exceptions/' . basename($file, '.tmpl'));
 			}
-
-
 
 			$data = Yaml::dump($settings);
 			file_put_contents(realpath($projectLocation) . DIRECTORY_SEPARATOR . '.settings.yml', $data);
@@ -203,6 +203,8 @@ class ProjectCreate extends AgaviCommand
 			'%%PROJECT_LOCATION%%',
 			'%%PROJECT_NAME%%',
 			'%%PROJECT_PREFIX%%',
+			'%%PROJECT_NAMESPACE%%',
+			'%%FQNS%%',
 			'%%PUBLIC_ENVIRONMENT%%',
 			'%%TEMPLATE_EXTENSION%%',
 			'%controllers.default_module%',
@@ -212,9 +214,11 @@ class ProjectCreate extends AgaviCommand
 			$params['projectLocation'],
 			$params['projectName'],
 			$params['projectPrefix'],
+			$params['NS'],
+			$params['FQNS'],
 			'development',
 			'php',
-			'Default',
+			'_Default',
 			'Index'
 		], $data);
 

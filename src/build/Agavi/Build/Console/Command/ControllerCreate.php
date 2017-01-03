@@ -53,27 +53,27 @@ class ControllerCreate extends AgaviCommand
 	{
 
 		if ($input->hasOption('settings') && $input->getOption('settings') != null) {
-			$settings = $input->getOption('settings');
+			$settingsFile = $input->getOption('settings');
 		} else {
-			$settings = '.' . DIRECTORY_SEPARATOR . '.settings.yml';
+			$settingsFile = '.' . DIRECTORY_SEPARATOR . '.settings.yml';
 		}
 
-		if (!file_exists($settings)) {
-			throw new InvalidArgumentException(sprintf('Cannot find settings file "%s"', $settings));
+		if (!file_exists($settingsFile)) {
+			throw new InvalidArgumentException(sprintf('Cannot find settings file "%s"', $settingsFile));
 		}
 
 		$helper = $this->getHelper('question');
 
-		$data = Yaml::parse(file_get_contents($settings));
+		$settings = Yaml::parse(file_get_contents($settingsFile));
 
-		if (!is_array($data)) {
-			throw new InvalidArgumentException(sprintf('Error parsing settings file "%s". Return value unexpected. Expected array, got %s', $settings, gettype($data)));
+		if (!is_array($settings)) {
+			throw new InvalidArgumentException(sprintf('Error parsing settings file "%s". Return value unexpected. Expected array, got %s', $settingsFile, gettype($settings)));
 		}
 
-		if (!isset($data['project']['prefix'])) {
-			throw new InvalidArgumentException(sprintf('No project prefix found in settings file "%s"', $settings));
+		if (!isset($settings['project']['prefix'])) {
+			throw new InvalidArgumentException(sprintf('No project prefix found in settings file "%s"', $settingsFile));
 		}
-		$projectLocation = (is_array($data) && isset($data['project']['location']) ? $data['project']['location'] : '.');
+		$projectLocation = (is_array($settings) && isset($settings['project']['location']) ? $settings['project']['location'] : '.');
 
 		$output->writeln(sprintf("Project location set to \"%s\"", $projectLocation), Output::VERBOSITY_VERY_VERBOSE);
 
@@ -179,18 +179,24 @@ class ControllerCreate extends AgaviCommand
 					'%%PROJECT_PREFIX%%',
 					'%%MODULE_NAME%%',
 					'%%CONTROLLER_CLASS%%',
-					'%%METHOD_DECLARATIONS%%'
+					'%%METHOD_DECLARATIONS%%',
+					'%%PROJECT_NAMESPACE%%',
+					'%%FQNS%%'
 				], [
 					$params['projectPrefix'],
 					$params['moduleName'],
 					$params['controllerClass'],
-					$params['methodDeclarations']
+					$params['methodDeclarations'],
+					$params['NS'],
+					$params['FQNS']
 				], $data);
 			}, [
-				'projectPrefix' => $data['project']['prefix'],
+				'projectPrefix' => $settings['project']['prefix'],
 				'moduleName' => $module,
-				'controllerClass' => $module . '_' . $controllerName . 'Controller',
-				'methodDeclarations' => $methodDeclarations
+				'controllerClass' => $controllerName . 'Controller',
+				'methodDeclarations' => $methodDeclarations,
+				'FQNS' => $settings['project']['namespace'],
+				'NS' => substr($settings['project']['namespace'], 1, strlen($settings['project']['namespace']))
 			]
 		);
 
@@ -247,7 +253,6 @@ class ControllerCreate extends AgaviCommand
 
 
 		$views = explode(' ', $views);
-		$viewoutputtypes = [];
 		$viewdefs = [];
 		if ($input->hasOption('output-types') && $input->getOption('output-types') != null) {
 			// Remove quotes and turn input into an array
@@ -311,18 +316,24 @@ class ControllerCreate extends AgaviCommand
 						'%%PROJECT_PREFIX%%',
 						'%%MODULE_NAME%%',
 						'%%VIEW_CLASS%%',
-						'%%METHOD_DECLARATIONS%%'
+						'%%METHOD_DECLARATIONS%%',
+						'%%PROJECT_NAMESPACE%%',
+						'%%FQNS%%'
 					], [
 						$params['projectPrefix'],
 						$params['moduleName'],
 						$params['viewClass'],
-						$params['methodDeclarations']
+						$params['methodDeclarations'],
+						$params['NS'],
+						$params['FQNS']
 					], $data);
 				}, [
-					'projectPrefix' => $data['project']['prefix'],
+					'projectPrefix' => $settings['project']['prefix'],
 					'moduleName' => $module,
-					'viewClass' => $module . '_' . $controllerName . ucfirst($viewname) . 'View',
-					'methodDeclarations' => $this->generateHandleOutputTypeMethods($output_types, $controllerName)
+					'viewClass' => $controllerName . ucfirst($viewname) . 'View',
+					'methodDeclarations' => $this->generateHandleOutputTypeMethods($output_types, $controllerName),
+					'FQNS' => $settings['project']['namespace'],
+					'NS' => substr($settings['project']['namespace'], 1, strlen($settings['project']['namespace']))
 				]
 			);
 
@@ -343,17 +354,17 @@ class ControllerCreate extends AgaviCommand
 				throw new InvalidArgumentException(sprintf('"%s" is not an allowed system controller (one of %s)', $system, implode(', ', $system_controllers)));
 			}
 
-			$settings = $projectLocation . '/app/config/settings.xml';
+			$settingsFile = $projectLocation . '/app/config/settings.xml';
 
 			// Set the module
 
 			$moduleXPath = "//*[local-name() = 'configuration' and (namespace-uri() = 'http://agavi.org/agavi/config/global/envelope/1.0' or namespace-uri() = 'http://agavi.org/agavi/config/global/envelope/1.1')]//*[local-name() = 'system_controller' and (namespace-uri() = 'http://agavi.org/agavi/config/parts/settings/1.0' or namespace-uri() = 'http://agavi.org/agavi/config/parts/settings/1.1') and @name='" . $system . "']/*[local-name() = 'module']";
 
-			$this->writeSettings($settings, $moduleXPath, $module, $output);
+			$this->writeSettings($settingsFile, $moduleXPath, $module, $output);
 
 			// Set the controller
 			$controllerXPath = "//*[local-name() = 'configuration' and (namespace-uri() = 'http://agavi.org/agavi/config/global/envelope/1.0' or namespace-uri() = 'http://agavi.org/agavi/config/global/envelope/1.1')]//*[local-name() = 'system_controller' and (namespace-uri() = 'http://agavi.org/agavi/config/parts/settings/1.0' or namespace-uri() = 'http://agavi.org/agavi/config/parts/settings/1.1') and @name='" . $system . "']/*[local-name() = 'controller']";
-			$this->writeSettings($settings, $controllerXPath, $controllerName, $output);
+			$this->writeSettings($settingsFile, $controllerXPath, $controllerName, $output);
 
 			// Copy the default templates
 			switch ($system) {
@@ -389,13 +400,20 @@ class ControllerCreate extends AgaviCommand
 
 	}
 
+	/**
+	 * Generate the execute<OutputType> -methods
+	 *
+	 * @param array $output_types an array of OutputTypes
+	 * @param string $controllerName the controller name
+	 * @return string the generated execute-methods
+	 */
 	private function generateHandleOutputTypeMethods(array $output_types, string $controllerName)
 	{
 		$tmpl = file_get_contents($this->getSourceDir() . '/build/templates/code/views/HandleOutputType.tmpl');
 
 		$code = '';
-		foreach ($output_types as $requestMethod) {
-			$code .= str_replace(['%%OUTPUT_TYPE_NAME%%', '%%CONTROLLER_NAME%%'], [ucfirst($requestMethod), $controllerName], $tmpl);
+		foreach ($output_types as $output_type) {
+			$code .= str_replace(['%%OUTPUT_TYPE_NAME%%', '%%CONTROLLER_NAME%%'], [ucfirst($output_type), $controllerName], $tmpl);
 
 		}
 		return $code;

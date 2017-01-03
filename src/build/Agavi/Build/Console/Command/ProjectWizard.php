@@ -129,16 +129,22 @@ class ProjectWizard extends AgaviCommand
 				return str_replace([
 					'%%PROJECT_PREFIX%%',
 					'%%MODULE_NAME%%',
-					'%%VIEW_CLASS%%'
+					'%%VIEW_CLASS%%',
+					'%%PROJECT_NAMESPACE%%',
+					'%%FQNS%%'
 				], [
 					$params['projectPrefix'],
 					$params['moduleName'],
 					$params['viewClass'],
+					$params['NS'],
+					$params['FQNS'],
 				], $data);
 			}, [
 				'projectPrefix' => $settings['project']['prefix'],
 				'moduleName' => 'Welcome',
-				'viewClass' => 'Welcome_IndexSuccessView'
+				'viewClass' => 'IndexSuccessView',
+				'FQNS' => $settings['project']['namespace'],
+				'NS' => substr($settings['project']['namespace'], 1, strlen($settings['project']['namespace']))
 			]
 		);
 
@@ -155,9 +161,12 @@ class ProjectWizard extends AgaviCommand
 		$dcCommandInput = new ArrayInput([
 			'command' => 'agavi:module',
 			'--settings' => $projectLocation . '/.settings.yml',
-			'module' => 'Default'
+			'module' => '_Default'
 		]);
 		$dcCommand->run($dcCommandInput, $output);
+
+		$settings['FQNS'] = $settings['project']['namespace'];
+		$settings['NS'] = substr($settings['project']['namespace'], 1, strlen($settings['project']['namespace']));
 
 		// Copy the default settings
 		foreach (glob($this->getSourceDir() . '/build/templates/defaults/app/config/*.xml.tmpl') as $file) {
@@ -167,6 +176,8 @@ class ProjectWizard extends AgaviCommand
 					'%%PROJECT_LOCATION%%',
 					'%%PROJECT_NAME%%',
 					'%%PROJECT_PREFIX%%',
+					'%%PROJECT_NAMESPACE%%',
+					'%%FQNS%%',
 					'%%PUBLIC_ENVIRONMENT%%',
 					'%%TEMPLATE_EXTENSION%%',
 					'%controllers.default_module%',
@@ -176,9 +187,11 @@ class ProjectWizard extends AgaviCommand
 					$params['project']['location'],
 					$params['project']['name'],
 					$params['project']['prefix'],
+					$params['NS'],
+					$params['FQNS'],
 					'development',
 					'php',
-					'Default',
+					'_Default',
 					'Index'
 				], $data);
 			}, $settings);
@@ -193,7 +206,7 @@ class ProjectWizard extends AgaviCommand
 		$scCommandInput = new ArrayInput([
 			'command' => 'agavi:controller',
 			'--settings' => $projectLocation . '/.settings.yml',
-			'--module' => 'Default',
+			'--module' => '_Default',
 			'--methods' => 'read',
 			'--views' => 'success',
 			'--output-types' =>  'success:html',
@@ -207,7 +220,7 @@ class ProjectWizard extends AgaviCommand
 		$scCommandInput = new ArrayInput([
 			'command' => 'agavi:controller',
 			'--settings' => $projectLocation . '/.settings.yml',
-			'--module' => 'Default',
+			'--module' => '_Default',
 			'--methods' => 'read',
 			'--views' => 'success',
 			'--output-types' =>  'success:html',
@@ -221,7 +234,7 @@ class ProjectWizard extends AgaviCommand
 		$scCommandInput = new ArrayInput([
 			'command' => 'agavi:controller',
 			'--settings' => $projectLocation . '/.settings.yml',
-			'--module' => 'Default',
+			'--module' => '_Default',
 			'--methods' => 'read',
 			'--views' => 'success',
 			'--output-types' =>  'success:html',
@@ -235,7 +248,7 @@ class ProjectWizard extends AgaviCommand
 		$scCommandInput = new ArrayInput([
 			'command' => 'agavi:controller',
 			'--settings' => $projectLocation . '/.settings.yml',
-			'--module' => 'Default',
+			'--module' => '_Default',
 			'--methods' => 'read',
 			'--views' => 'success',
 			'--output-types' =>  'success:html',
@@ -249,7 +262,7 @@ class ProjectWizard extends AgaviCommand
 		$scCommandInput = new ArrayInput([
 			'command' => 'agavi:controller',
 			'--settings' => $projectLocation . '/.settings.yml',
-			'--module' => 'Default',
+			'--module' => '_Default',
 			'--methods' => 'read',
 			'--views' => 'success',
 			'--output-types' =>  'success:html',
@@ -263,7 +276,7 @@ class ProjectWizard extends AgaviCommand
 		$scCommandInput = new ArrayInput([
 			'command' => 'agavi:controller',
 			'--settings' => $projectLocation . '/.settings.yml',
-			'--module' => 'Default',
+			'--module' => '_Default',
 			'--methods' => 'read',
 			'--views' => 'success',
 			'--output-types' =>  'success:html',
