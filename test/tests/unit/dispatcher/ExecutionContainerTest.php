@@ -7,7 +7,7 @@ class ExecutionContainerTest extends UnitTestCase
 	
 	public function testSimpleActionWithoutArguments()
 	{
-		$container = $this->getContext()->getDispatcher()->createExecutionContainer('ControllerTests', 'SimpleController');
+		$container = $this->getContext()->getDispatcher()->createExecutionContainer('ControllerTests', 'Sandbox\Modules\ControllerTests\Controllers\SimpleController');
 		$response = $container->execute();
 		
 	}

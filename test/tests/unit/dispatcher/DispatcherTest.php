@@ -51,7 +51,7 @@ class DispatcherTest extends UnitTestCase
 		$this->assertFalse(file_exists(Config::get('core.app_dir') . '/modules/ControllerTests/controllers/BunkController.class.php'));
 		$this->assertFalse(file_exists(Config::get('core.app_dir') . '/modules/Bunk/controllers/BunkController.class.php'));
 		$dispatcher = $this->_dispatcher;
-		$this->assertEquals(Config::get('core.app_dir') . '/modules/ControllerTests/controllers/ControllerTestController.class.php', $dispatcher->checkControllerFile('ControllerTests', 'ControllerTest'));
+		$this->assertEquals(Config::get('core.app_dir') . '/modules/ControllerTests/controllers/ControllerTestController.class.php',$dispatcher->checkControllerFile('ControllerTests', 'ControllerTest'));
 		$this->assertFalse($dispatcher->checkControllerFile('ControllerTests', 'Bunk'), 'controllerFileExists did not return false for non-existing controller in existing module');
 		$this->assertFalse($dispatcher->checkControllerFile('Bunk', 'Bunk'), 'controllerFileExists did not return false for non-existing controller in non-existing module');
 	}
@@ -61,7 +61,7 @@ class DispatcherTest extends UnitTestCase
 		// TODO: check all other existing naming schemes for controllers
 
 		$controller = $this->_dispatcher->createControllerInstance('ControllerTests', 'ControllerTest');
-		$this->assertInstanceOf('ControllerTests_ControllerTestController', $controller);
+		$this->assertInstanceOf('Sandbox\Modules\ControllerTests\Controllers\ControllerTestController', $controller);
 		$this->assertInstanceOf('Agavi\Controller\Controller', $controller);
 
 	}
@@ -82,11 +82,11 @@ class DispatcherTest extends UnitTestCase
 	{
 		$controller = $this->_dispatcher;
 		$this->assertInstanceOf(
-			'ControllerTests_ControllerTestSuccessView',
+			'Sandbox\Modules\ControllerTests\Views\ControllerTestSuccessView',
 			$controller->createViewInstance('ControllerTests', 'ControllerTestSuccess')
 		);
 		$this->assertInstanceOf(
-			'ControllerTests_ControllerTestErrorView',
+			'Sandbox\Modules\ControllerTests\Views\ControllerTestErrorView',
 			$controller->createViewInstance('ControllerTests', 'ControllerTestError')
 		);
 	}

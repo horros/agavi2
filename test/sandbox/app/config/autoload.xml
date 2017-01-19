@@ -2,9 +2,9 @@
 <ae:configurations xmlns:ae="http://agavi.org/agavi/config/global/envelope/1.1" xmlns="http://agavi.org/agavi/config/parts/autoload/1.1" parent="%core.system_config_dir%/autoload.xml">
 	<ae:configuration>
 		
-		<autoload class="SandboxBaseController">%core.lib_dir%/controller/SandboxBaseController.class.php</autoload>
-		<autoload class="SandboxBaseModel">%core.lib_dir%/model/SandboxBaseModel.class.php</autoload>
-		<autoload class="SandboxBaseView">%core.lib_dir%/view/SandboxBaseView.class.php</autoload>
+		<autoload class="Sandbox\Lib\Controller\SandboxBaseController">%core.lib_dir%/controller/SandboxBaseController.class.php</autoload>
+		<autoload class="Sandbox\Lib\Model\SandboxBaseModel">%core.lib_dir%/model/SandboxBaseModel.class.php</autoload>
+		<autoload class="Sandbox\Lib\View\SandboxBaseView">%core.lib_dir%/view/SandboxBaseView.class.php</autoload>
 		
 		<autoload class="TestWebRequest">%core.lib_dir%/request/TestWebRequest.class.php</autoload>
 		

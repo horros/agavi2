@@ -1,6 +1,10 @@
 <?php
 
-class ControllerTests_SimpleControllerController extends SandboxControllerTestsBaseController
+namespace Sandbox\Modules\ControllerTests\Controllers;
+
+use Sandbox\Modules\ControllerTests\Lib\Controller\SandboxControllerTestsBaseController;
+
+class SimpleControllerController extends SandboxControllerTestsBaseController
 {
 	
 	public function isSimple()

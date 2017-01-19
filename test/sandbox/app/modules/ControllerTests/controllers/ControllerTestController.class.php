@@ -1,6 +1,9 @@
 <?php
+namespace Sandbox\Modules\ControllerTests\Controllers;
 
-class ControllerTests_ControllerTestController extends SandboxControllerTestsBaseController
+use Sandbox\Modules\ControllerTests\Lib\Controller\SandboxControllerTestsBaseController;
+
+class ControllerTestController extends SandboxControllerTestsBaseController
 {
 	
 }

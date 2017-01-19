@@ -188,7 +188,7 @@ EOT;
 		}
 		
 		$suites = require(ConfigCache::checkConfig(Config::get('core.testing_dir') . '/config/suites.xml'));
-		
+
 		$masterSuite = new TestSuite('Master');
 		
 		if($this->arguments['agaviIncludeSuites']) {
