@@ -1,4 +1,5 @@
 <?php
+use Agavi\Request\RequestDataHolder;
 
 class Default_UnavailableSuccessView extends SandboxDefaultBaseView
 {

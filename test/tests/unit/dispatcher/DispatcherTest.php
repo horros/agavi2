@@ -44,7 +44,7 @@ class DispatcherTest extends UnitTestCase
 		$this->assertSame($ctx1, $ctx2);
 	}
 
-	public function testcontrollerFileExists()
+	public function testControllerFileExists()
 	{
 		// controllerExists actually checks the filesystem, 
 		$this->assertTrue(file_exists(Config::get('core.app_dir') . '/modules/ControllerTests/controllers/ControllerTestController.class.php'));
@@ -67,7 +67,7 @@ class DispatcherTest extends UnitTestCase
 	}
 
 	/**
-	 * @expectedException Agavi\Exception\FileNotFoundException
+	 * @expectedException \Agavi\Exception\FileNotFoundException
 	 */
 	public function testGetInvalidControllerFromModule() {
 		$this->_dispatcher->createControllerInstance('ControllerTests', 'NonExistent');

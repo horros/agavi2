@@ -1,6 +1,9 @@
 <?php
+namespace Sandbox\Modules\ControllerTests\Views;
 
-class ControllerTests_SimpleControllerSuccessView extends SandboxControllerTestsBaseView
+use Sandbox\Modules\ControllerTests\Lib\View\SandboxControllerTestsBaseView;
+
+class SimpleControllerSuccessView extends SandboxControllerTestsBaseView
 {
 	public function executeHtml(\Agavi\Request\RequestDataHolder $rd)
 	{
@@ -9,5 +12,3 @@ class ControllerTests_SimpleControllerSuccessView extends SandboxControllerTests
 		$this->setAttribute('_title', 'SimpleAction');
 	}
 }
-
-?>

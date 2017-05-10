@@ -7,5 +7,3 @@ class ControllerTestController extends SandboxControllerTestsBaseController
 {
 	
 }
-
-?>

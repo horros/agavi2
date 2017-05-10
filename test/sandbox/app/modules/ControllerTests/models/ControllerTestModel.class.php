@@ -1,6 +1,7 @@
 <?php
+namespace Sandbox\Modules\ControllerTests\Models;
 
-class ControllerTests_ControllerTestModel extends \Agavi\Model\Model
+class ControllerTestModel extends \Agavi\Model\Model
 {
 }
 
