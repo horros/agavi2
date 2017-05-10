@@ -21,10 +21,10 @@
 					<route name="child_nonstop" pattern="(title:(?&lt;=/)[a-z_-]+)$" cut="true" stop="false">
 						<callback class="Agavi\Tests\Unit\Routing\TestCallbackCN" />
 					</route>
-					<route name="child_complex" pattern="^/(opt,{optional1:35}/)?p1/(part1:[a-z0-9]+)/p2/(part2:[a-z0-9]+)?$" action="action_child_complex">
+					<route name="child_complex" pattern="^/(opt,{optional1:35}/)?p1/(part1:[a-z0-9]+)/p2/(part2:[a-z0-9]+)?$" controller="controller_child_complex">
 						<callback class="Agavi\Tests\Unit\Routing\TestCallbackCC" />
 					</route>
-					<route name="child_simple" pattern="^/({part1:\w*}/)?({part2:\w+}/)?({part3:\w*}/)?$" action="action_child_simple">
+					<route name="child_simple" pattern="^/({part1:\w*}/)?({part2:\w+}/)?({part3:\w*}/)?$" controller="controller_child_simple">
 						<callback class="Agavi\Tests\Unit\Routing\TestCallbackCS" />
 						<default for="part1">{part1_default}/</default>
 						<default for="part2">{part2_default}/</default>

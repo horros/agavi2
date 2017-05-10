@@ -118,7 +118,7 @@ class RoutingConfigHandler extends XmlConfigHandler
 			if($route->hasAttribute('source'))				$opts['source']				= Toolkit::expandDirectives($route->getAttribute('source'));
 			if($route->hasAttribute('constraint'))		$opts['constraint']		= array_map('trim', explode(' ', trim(Toolkit::expandDirectives($route->getAttribute('constraint')))));
 			// values which will be set when the route matched
-			if($route->hasAttribute('action'))				$opts['action']				= Toolkit::expandDirectives($route->getAttribute('action'));
+			if($route->hasAttribute('controller'))				$opts['controller']				= Toolkit::expandDirectives($route->getAttribute('controller'));
 			if($route->hasAttribute('locale'))				$opts['locale']				= Toolkit::expandDirectives($route->getAttribute('locale'));
 			if($route->hasAttribute('method'))				$opts['method']				= Toolkit::expandDirectives($route->getAttribute('method'));
 			if($route->hasAttribute('module'))				$opts['module']				= Toolkit::expandDirectives($route->getAttribute('module'));
@@ -163,15 +163,15 @@ class RoutingConfigHandler extends XmlConfigHandler
 				}
 			}
 
-			if(isset($opts['action']) && $parent) {
-				if($opts['action'][0] == '.') {
+			if(isset($opts['controller']) && $parent) {
+				if($opts['controller'][0] == '.') {
 					$parentRoute = $routing->getRoute($parent);
-					// unwind all empty 'action' attributes of the parent(s)
-					while($parentRoute && empty($parentRoute['opt']['action'])) {
+					// unwind all empty 'controller' attributes of the parent(s)
+					while($parentRoute && empty($parentRoute['opt']['controller'])) {
 						$parentRoute = $routing->getRoute($parentRoute['opt']['parent']);
 					}
-					if(!empty($parentRoute['opt']['action'])) {
-						$opts['action'] = $parentRoute['opt']['action'] . $opts['action'];
+					if(!empty($parentRoute['opt']['controller'])) {
+						$opts['controller'] = $parentRoute['opt']['controller'] . $opts['controller'];
 					}
 				}
 			}

@@ -17,7 +17,7 @@
 namespace Agavi\Exception;
 
 /**
- * DisabledModuleException is thrown when Controller::initializeModule
+ * DisabledModuleException is thrown when Dispatcher::initializeModule
  * gets called on a disabled module
  *
  * @package    agavi

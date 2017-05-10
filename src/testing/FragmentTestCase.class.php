@@ -12,10 +12,10 @@ namespace Agavi\Testing;
 // |   indent-tabs-mode: t                                                     |
 // |   End:                                                                    |
 // +---------------------------------------------------------------------------+
-use Agavi\Action\Action;
+use Agavi\Controller\Controller;
 use Agavi\Core\Context;
-use Agavi\Controller\ExecutionContainer;
-use Agavi\Controller\OutputType;
+use Agavi\Dispatcher\ExecutionContainer;
+use Agavi\Dispatcher\OutputType;
 use Agavi\Filter\ExecutionFilter;
 use Agavi\Request\RequestDataHolder;
 use Agavi\Util\Toolkit;
@@ -44,9 +44,9 @@ abstract class FragmentTestCase extends PhpUnitTestCase implements FragmentTestC
 	protected $contextName = null;
 	
 	/**
-	 * @var        string the name of the action to test
+	 * @var        string the name of the controller to test
 	 */
-	protected $actionName;
+	protected $controllerName;
 	
 	/**
 	 * @var        string the name of the module 
@@ -59,7 +59,7 @@ abstract class FragmentTestCase extends PhpUnitTestCase implements FragmentTestC
 	protected $validationSuccess;
 	
 	/**
-	 * @var        ExecutionContainer the container to run the action in
+	 * @var        ExecutionContainer the container to run the controller in
 	 */
 	protected $container;
 
@@ -138,7 +138,7 @@ abstract class FragmentTestCase extends PhpUnitTestCase implements FragmentTestC
 				$this->moduleName,
 				'agavi.view.name',
 				array(
-					'actionName' => $this->actionName,
+					'controllerName' => $this->controllerName,
 					'viewName' => $shortName,
 				)
 			);
@@ -171,13 +171,13 @@ abstract class FragmentTestCase extends PhpUnitTestCase implements FragmentTestC
             $wrapper_class = substr($wrapper_class, $pos+1);
         }
 
-        //extend the original class to overwrite runAction, so that the containers request data is cloned
+        //extend the original class to overwrite runController, so that the containers request data is cloned
 		if(!class_exists($wrapper_class)) {
 			$code = sprintf('class %1$s extends %2$s
 {
 	protected $validationResult = null;
 	
-	public function executeView(Agavi\Controller\ExecutionContainer $container)
+	public function executeView(Agavi\Dispatcher\ExecutionContainer $container)
 	{
 		$container->initRequestData();
 		return parent::executeView($container);
@@ -219,14 +219,14 @@ abstract class FragmentTestCase extends PhpUnitTestCase implements FragmentTestC
             $wrapper_class = substr($wrapper_class, $pos+1);
         }
 
-		//extend the original class to add a setter for the action instance
+		//extend the original class to add a setter for the controller instance
 		if(!class_exists($wrapper_class)) {
 			$code = sprintf('class %1$s extends %2$s
 {
 
-	public function setActionInstance(Agavi\Action\Action $action)
+	public function setControllerInstance(Agavi\Controller\Controller $controller)
 	{
-		$this->actionInstance = $action;
+		$this->controllerInstance = $controller;
 	}
 	
 	public function initRequestData()
@@ -247,25 +247,25 @@ abstract class FragmentTestCase extends PhpUnitTestCase implements FragmentTestC
 			$arguments = $this->createRequestDataHolder(array(RequestDataHolder::SOURCE_PARAMETERS => $arguments));
 		}
 		// create a new execution container with the wrapped class
-		$container = $context->getController()->createExecutionContainer($this->moduleName, $this->actionName, $arguments, $outputType, $requestMethod);
+		$container = $context->getDispatcher()->createExecutionContainer($this->moduleName, $this->controllerName, $arguments, $outputType, $requestMethod);
 		
 		return $container;
 	}
 
 	/**
-	 * creates an Action instance and initializes it with this testcases
+	 * creates an Controller instance and initializes it with this testcases
 	 * container
 	 * 
-	 * @return     Action
+	 * @return     Controller
 	 * 
 	 * @author     Felix Gilcher <felix.gilcher@bitextender.com>
 	 * @since      1.0.0
 	 */
-	protected function createActionInstance()
+	protected function createControllerInstance()
 	{
-		$actionInstance = $this->getContext()->getController()->createActionInstance($this->moduleName, $this->actionName);
-		$actionInstance->initialize($this->container);
-		return $actionInstance;
+		$controllerInstance = $this->getContext()->getDispatcher()->createControllerInstance($this->moduleName, $this->controllerName);
+		$controllerInstance->initialize($this->container);
+		return $controllerInstance;
 	}
 	
 	/**

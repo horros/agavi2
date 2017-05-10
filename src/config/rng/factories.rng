@@ -55,7 +55,7 @@
 				</element>
 			</optional>
 			<optional>
-				<element name="controller">
+				<element name="Dispatcher">
 					<ref name="content-factory" />
 				</element>
 			</optional>

@@ -34,7 +34,7 @@
 			
 			<output_type name="controllerTest">
 				<renderers default="php">
-					<renderer name="php" class="AgaviPhpRenderer" />
+					<renderer name="php" class="Agavi\Renderer\PhpRenderer" />
 				</renderers>
 			</output_type>
 			

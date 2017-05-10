@@ -10,7 +10,7 @@ class OnNotMatchedRoutingCallback extends \Agavi\Routing\RoutingCallback
 	 * @author     Dominik del Bondio <ddb@bitxtender.com>
 	 * @since      0.11.0
 	 */
-	public function onNotMatched(\Agavi\Controller\ExecutionContainer $container)
+	public function onNotMatched(\Agavi\Dispatcher\ExecutionContainer $container)
 	{
 		throw new \Agavi\Exception\AgaviException('Not Matched');
 		return;

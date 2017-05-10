@@ -1,6 +1,7 @@
 <?php
+namespace Sandbox\Modules\ControllerTests\Views;
 
-class ControllerTests_ControllerTestErrorView extends \Agavi\View\View
+class ControllerTestErrorView extends \Agavi\View\View
 {
 	public function execute(\Agavi\Request\RequestDataHolder $rd)
 	{

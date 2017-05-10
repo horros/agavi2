@@ -3,13 +3,13 @@
 	
 	<ae:configuration>
 		
-		<controller class="Agavi\Controller\Controller" />
+		<dispatcher class="Agavi\Dispatcher\Dispatcher" />
 		
 		<database_manager class="Agavi\Database\DatabaseManager" />
 		
 		<dispatch_filter class="Agavi\Filter\DispatchFilter" />
 		
-		<execution_container class="Agavi\Controller\ExecutionContainer" />
+		<execution_container class="Agavi\Dispatcher\ExecutionContainer" />
 		
 		<execution_filter class="Agavi\Filter\ExecutionFilter" />
 		

@@ -14,13 +14,13 @@ namespace Agavi\Filter;
 // |   End:                                                                    |
 // +---------------------------------------------------------------------------+
 use Agavi\Core\Context;
-use Agavi\Controller\ExecutionContainer;
+use Agavi\Dispatcher\ExecutionContainer;
 use Agavi\Exception\FilterException;
 
 /**
  * ExecutionTimeFilter tracks the length of time it takes for an entire
  * request to be served starting with the dispatch and ending when the last 
- * action request has been served.
+ * controller request has been served.
  *
  * <b>Optional parameters:</b>
  *
@@ -42,7 +42,7 @@ use Agavi\Exception\FilterException;
  *
  * @version    $Id$
  */
-class ExecutionTimeFilter extends Filter implements GlobalFilterInterface, ActionFilterInterface
+class ExecutionTimeFilter extends Filter implements GlobalFilterInterface, ControllerFilterInterface
 {
 	/**
 	 * Execute this filter.

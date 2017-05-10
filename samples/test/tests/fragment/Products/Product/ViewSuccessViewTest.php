@@ -10,7 +10,7 @@ class Products_Product_ViewSuccessViewTest extends ViewTestCase
 	{
 		parent::__construct($name, $data, $dataName);
 		// FIXME: the underlying issue must be solved
-		$this->actionName = 'Product.View';
+		$this->controllerName = 'Product.View';
 		$this->moduleName = 'Products';
 		$this->viewName   = 'Success';
 	}

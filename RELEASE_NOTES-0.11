@@ -55,7 +55,7 @@ A couple of changes are worth mentioning:
 - The timezone database was updated to version 2008i.
 - Access to global request data is now locked during AgaviAction::getDefaultViewName() execution.
 - Handling of array keys has been unified across AgaviWebRequestDataHolder sources.
-- Unvalidated request data is not available anymore in the View if the Action didn't serve the current request method.
+- Unvalidated request data is not available anymore in the View if the Controller didn't serve the current request method.
 - New projects now generate separate exception templates for production environments, and the built-in exception templates now simply re-throw the exception instead of displaying any information if the display_errors php.ini setting is disabled.
 - 'secure' flags can optionally be set automatically on session and response cookies, and the session save path can be defined for AgaviSessionStorage through factories.xml. These measures are useful for mitigating potential attack vectors on applications.
 
@@ -151,7 +151,7 @@ Typical Contexts (which basically represent a certain way of accessing an applic
 In configuration files, regular expressions can be used to restrict the environment or context names. For example, each developer could boostrap a "development-<username>" environment, and debug mode would be enabled for environments "development(-\w+)?".
 
 Rendering has been decoupled from the Views, because of the introduction of Output Types. This means it is now possible to serve different output variants using different renderers (i.e. PHP for HTML and XSL for RSS).
-Examples of Output Types would be "html", "rss" or "pdf". With the new structure, an Action doesn't contain any more presentational information at all, and Views may use separate execution methods for each Output Type. As a result, it is possible to write code once, and then expose it to the web as HTML, as PDF or whatever, and at the same time even make it available as an XMLRPC service or write a console interface to the application.
+Examples of Output Types would be "html", "rss" or "pdf". With the new structure, an Controller doesn't contain any more presentational information at all, and Views may use separate execution methods for each Output Type. As a result, it is possible to write code once, and then expose it to the web as HTML, as PDF or whatever, and at the same time even make it available as an XMLRPC service or write a console interface to the application.
 This is especially important for AJAX applications that are supposed to degrade gracefully. The same action could return data as a full HTML page, and as an HTML fragment or JSON response, without the need to write the code twice.
 Output Types will typically be set via the routing, based on certain information in the URL (like "/rss" at the end of the URL), request headers (like "Accept: text/javascript") or something else (e.g. a part of the host name).
 
@@ -169,7 +169,7 @@ The ActionStack is gone. Instead, each action is run in it's own, isolated conta
 
 Request methods such as GET or POST are now mapped to verbs, by default "read" (GET), "write" (POST), "create" (PUT) and "remove" (DELETE). This is necessary because RPC web services always use POST, and on the command line, there is no such thing as GET or POST etc. As you may have guessed, this also enables full support for RESTful services.
 
-An Action does not use getRequestMethods() to indicate which request methods it serves anymore. Instead, it implements execute() to indicate that it serves all request methods, or it implements executeRead() etc to serve that specific request method.
+An Controller does not use getRequestMethods() to indicate which request methods it serves anymore. Instead, it implements execute() to indicate that it serves all request methods, or it implements executeRead() etc to serve that specific request method.
 
 Inside Actions and Views, it is not possible to access request parameters directly. Instead, a RequestDataHolder passed to the execute() method will contain the request parameters, cookies, files, HTTP headers and so on. The idea behind this decision is that these parameters are safe for use if they have been filtered and normalized by validation or by some generic preprocessing filter (which, for instance, could remove any XSS related stuff). Also, with any strict validation mode enabled, only those variables that have been validated will be available for use. Also, files are objects with various methods such as getSize() and move(), which allows for much nicer file handling code: $rd->getFile('foo')->move('/path/to/dest');
 
@@ -177,7 +177,7 @@ As an additional incentive to use validation, number, and date/time validators w
 
 Inside a controller's dispatch() method, global filters now run first. This finally allows to implement features such as cookie based auto-logins etc, and also guarantees that these filters modify the actual final output of a request. The now-called "action filters" are identical to filters in 0.10 and earlier.
 
-Forwarding or redirecting is also not possible anymore from within Actions, because these operations are presentational. Imagine you have an Action that adds a product to the database. Displaying the product is what you want to do in the web interface, but not in case of XMLRPC, where you have to return a response that indicates success. Instead, you may return an execution container with information about the action to forward to, conveniently done using $this->createForwardContainer() inside the view. This forwarding will occur once the control of the current action execution has passed back to the controller. If a forward occurs, no rendering will occur in the current view.
+Forwarding or redirecting is also not possible anymore from within Actions, because these operations are presentational. Imagine you have an Controller that adds a product to the database. Displaying the product is what you want to do in the web interface, but not in case of XMLRPC, where you have to return a response that indicates success. Instead, you may return an execution container with information about the action to forward to, conveniently done using $this->createForwardContainer() inside the view. This forwarding will occur once the control of the current action execution has passed back to the controller. If a forward occurs, no rendering will occur in the current view.
 A Redirect can be done by calling setRedirect() on the container's response (available via $this->getResponse() in a view).
 
 Request attributes now support namespaces, and attributes that should be available to a view must now be set on the action itself, not on the request. It is not necessary to retrieve or assign them again in the view - they are also automatically assigned to templates.
@@ -204,7 +204,7 @@ It's a tad more complicated than the old system, and it needs getting used to, b
 
 Also, you don't specify the template extension anymore when setting template names. The extension automatically appended by the system will be the default one for the specific renderer (.php, .tpl etc) unless you explicitly specify an extension you want to use instead. One of the reasons why this is done is that if you have i18n enabled, Agavi will automatically look for localized versions of your templates.
 
-For templates, it is now possible to have Agavi's objects (Response, Request, Controller and so on) auto-assigned to variables. Also, the name of the variable that contains the template attributes can be configured to be different from 'template', just like the variable that stores the output of slots (which now defaults to 'slots'). Optionally, the template variable array can be extracted, so the attributes become available as variables by their names.
+For templates, it is now possible to have Agavi's objects (Response, Request, Dispatcher and so on) auto-assigned to variables. Also, the name of the variable that contains the template attributes can be configured to be different from 'template', just like the variable that stores the output of slots (which now defaults to 'slots'). Optionally, the template variable array can be extracted, so the attributes become available as variables by their names.
 
 The current response instance is available by calling getResponse() on the current view. This way, you could insert content into the response and then not set a template to skip rendering and return content in a different form. Typical situations would be when you set PHP data into the response which gets encoded to XMLRPC, or where you encode PHP data to JSON that is then set in the response.
 

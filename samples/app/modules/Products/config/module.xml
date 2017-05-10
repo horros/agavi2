@@ -11,7 +11,7 @@
 				</setting>
 				<setting name="homepage">http://www.agavi.org</setting>
 				<setting name="update_url" />
-				<setting name="description">An example module with product-related Actions.</setting>
+				<setting name="description">An example module with product-related controllers.</setting>
 			</settings>
 		</module>
 		

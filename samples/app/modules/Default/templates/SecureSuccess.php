@@ -1,1 +1,1 @@
-<p><?php echo $tm->_('You do not have sufficient credentials to execute this Action.', 'default.ErrorActions'); ?></p>
+<p><?php echo $tm->_('You do not have sufficient credentials to execute this Controller.', 'default.ErrorControllers'); ?></p>

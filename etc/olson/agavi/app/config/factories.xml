@@ -3,35 +3,35 @@
 	
 	<configuration>
 		
-		<controller class="AgaviController">
+		<dispatcher class="Agavi\Dispatcher\Dispatcher">
 			<parameter name="send_response">false</parameter>
-		</controller>
+		</dispatcher>
 		
-		<dispatch_filter class="AgaviDispatchFilter" />
+		<dispatch_filter class="Agavi\Filter\DispatchFilter" />
 		
-		<execution_container class="ExecutionContainer" />
+		<execution_container class="Agavi\Dispatcher\ExecutionContainer" />
 		
-		<execution_filter class="AgaviExecutionFilter" />
+		<execution_filter class="Agavi\Filter\ExecutionFilter" />
 		
-		<filter_chain class="AgaviFilterChain" />
+		<filter_chain class="Agavi\Filter\FilterChain" />
 		
-		<request class="AgaviWebRequest" />
+		<request class="Agavi\Request\WebRequest" />
 		
-		<response class="AgaviWebResponse" />
+		<response class="Agavi\Response\WebResponse" />
 		
-		<routing class="AgaviWebserviceRouting">
+		<routing class="Agavi\Routing\WebserviceRouting">
 			<parameter name="enabled">false</parameter>
 		</routing>
 		
-		<security_filter class="AgaviSecurityFilter" />
+		<security_filter class="Agavi\Filter\SecurityFilter" />
 		
-		<storage class="AgaviNullStorage" />
+		<storage class="Agavi\Storage\NullStorage" />
 		
-		<translation_manager class="AgaviTranslationManager" />
+		<translation_manager class="Agavi\Translation\TranslationManager" />
 		
-		<user class="AgaviUser" />
+		<user class="Agavi\User\User" />
 		
-		<validation_manager class="AgaviValidationManager" />
+		<validation_manager class="Agavi\Validator\ValidationManager" />
 		
 	</configuration>
 	

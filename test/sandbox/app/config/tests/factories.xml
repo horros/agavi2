@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ae:configurations xmlns:ae="http://agavi.org/agavi/config/global/envelope/1.1" xmlns="http://agavi.org/agavi/config/parts/factories/1.1">
 	<ae:configuration>
-		<controller class="Agavi\Tests\Unit\Config\FCHTestController">
+		<dispatcher class="Agavi\Tests\Unit\Config\FCHTestDispatcher">
 			<ae:parameters>
 				<ae:parameter name="p1">v1</ae:parameter>
 				<ae:parameter name="p2">v2</ae:parameter>
 			</ae:parameters>
-		</controller>
+		</dispatcher>
 
 		<dispatch_filter class="Agavi\Tests\Unit\Config\FCHTestDispatchFilter">
 			<ae:parameters>

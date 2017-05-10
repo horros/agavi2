@@ -76,11 +76,11 @@ msgid "Home"
 msgstr "Etusivu"
 
 #: ../app/modules/Default/templates/Master.php:147
-msgid "A Secure Action"
+msgid "A Secure Controller"
 msgstr "Suojattu toiminto"
 
 #: ../app/modules/Default/templates/Master.php:148
-msgid "Another Secure Action"
+msgid "Another Secure Controller"
 msgstr "Toinen suojattu toiminto"
 
 #: ../app/modules/Default/templates/Master.php:149
@@ -121,7 +121,7 @@ msgid "You'll never see this."
 msgstr "Tätä et näe koskaan."
 
 #: ../app/modules/Default/templates/SecureSuccess.php:1
-msgid "You do not have sufficient credentials to execute this Action."
+msgid "You do not have sufficient credentials to execute this Controller."
 msgstr "Käyttöoikeutesi eivät riitä tämän toiminno suorittamiseen."
 
 #: ../app/modules/Default/templates/UnavailableSuccess.php:1
@@ -154,7 +154,7 @@ msgstr "Onneksi olkoon!"
 
 #: ../app/modules/Default/views/Secure1SuccessView.class.php:17
 #: ../app/modules/Default/views/Secure2SuccessView.class.php:17
-msgid "Secure Action"
+msgid "Secure Controller"
 msgstr "Suojattu toiminto"
 
 #: ../app/modules/Default/views/SecureSuccessView.class.php:33

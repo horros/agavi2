@@ -10,9 +10,9 @@ Core
 ----
 Several changes to the system core and its structure have been made since 0.9.0. Most noticeably, the core configuration has been shifted away from configuring Controllers to configuring Contexts. Thus, factories.ini has been dropped in favor of a contexts.ini, and the way initial requests are dispatched has been altered to support the new functionality. See the samples directory to learn how to use the new structure. This very powerful new structure allows for much more flexibility than before, especially because you can define contexts and quickly change between them (for example, you could have a "development" and a "production" context with different storage settings or execution filters).
 
-Controllers may now notify registered listener classes on system shutdown. Use Controller::addShutdownListener() to add a listener that implements the ShutdownListener interface to the list of callbacks.
+Controllers may now notify registered listener classes on system shutdown. Use Dispatcher::addShutdownListener() to add a listener that implements the ShutdownListener interface to the list of callbacks.
 
-Action and View class names now support more naming schemes for maximum efficency when using Sub-Actions. The class name for webapp/modules/Default/Yellow/Sub/MarineAction.class.php can now be any of the following: MarineAction, Default_MarineAction, Yellow_Sub_MarineAction, Default_YellowSubMarineAction. The code templates used by the "agavi" helper script now use the last naming scheme. The Agavi team recommends to use this scheme for maximum flexibility and avoiding class name collisions when using Slots or forwarding to other actions. View classes can be named accordingly (MarineInputView, Default_YellowSubMarineSuccessView etc).
+Controller and View class names now support more naming schemes for maximum efficency when using Sub-Actions. The class name for webapp/modules/Default/Yellow/Sub/MarineAction.class.php can now be any of the following: MarineAction, Default_MarineAction, Yellow_Sub_MarineAction, Default_YellowSubMarineAction. The code templates used by the "agavi" helper script now use the last naming scheme. The Agavi team recommends to use this scheme for maximum flexibility and avoiding class name collisions when using Slots or forwarding to other actions. View classes can be named accordingly (MarineInputView, Default_YellowSubMarineSuccessView etc).
 
 ExecutionFilters are now user-definable in contexts.ini. This allows developers to build and use their own execution filters and integrate caching mechanisms and other features into the system core.
 
@@ -20,7 +20,7 @@ Models can now be implemented as singletons. The framework will auto-detect a si
 
 Security
 --------
-Actions may now return more than one credential the User needs to have, as well as lists of credentials out of which the User needs to have at least one. To make use of this capability, return an array of strings in your Action's getCredential() method. If you wish to specify a list of credentials and require the User to have at least one of them, use an array instead of a string. Some examples:
+Actions may now return more than one credential the User needs to have, as well as lists of credentials out of which the User needs to have at least one. To make use of this capability, return an array of strings in your Controller's getCredential() method. If you wish to specify a list of credentials and require the User to have at least one of them, use an array instead of a string. Some examples:
 return array('editor', 'tech'); // User must have "editor" and "tech" credential
 return array(array('male', 'female')); // User must have either "male" or "female" credential (or both... consider this sample a joke toolkit)
 return array('editor', array('tech', 'sports')); // only for Tech or Sports Editors. Or... you guessed it! Both.

@@ -11,7 +11,7 @@
 				</setting>
 				<setting name="homepage">http://www.agavi.org</setting>
 				<setting name="update_url" />
-				<setting name="description">An example module that requires authentication and/or special credentials for most Actions</setting>
+				<setting name="description">An example module that requires authentication and/or special credentials for most Controllers</setting>
 			</settings>
 		</module>
 		

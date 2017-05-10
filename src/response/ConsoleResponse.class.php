@@ -12,7 +12,7 @@ namespace Agavi\Response;
 // |   indent-tabs-mode: t                                                     |
 // |   End:                                                                    |
 // +---------------------------------------------------------------------------+
-use Agavi\Controller\OutputType;
+use Agavi\Dispatcher\OutputType;
 
 /**
  * ConsoleResponse handles command line responses.

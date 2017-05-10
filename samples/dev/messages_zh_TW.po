@@ -80,11 +80,11 @@ msgid "Home"
 msgstr "首頁"
 
 #: ../app/modules/Default/templates/Master.php:147
-msgid "A Secure Action"
+msgid "A Secure Controller"
 msgstr "一個安全動作"
 
 #: ../app/modules/Default/templates/Master.php:148
-msgid "Another Secure Action"
+msgid "Another Secure Controller"
 msgstr "另一個安全動作"
 
 #: ../app/modules/Default/templates/Master.php:149
@@ -125,7 +125,7 @@ msgid "You'll never see this."
 msgstr "您永遠不會看到這個。"
 
 #: ../app/modules/Default/templates/SecureSuccess.php:1
-msgid "You do not have sufficient credentials to execute this Action."
+msgid "You do not have sufficient credentials to execute this Controller."
 msgstr "您沒有足夠的權限執行此動作。"
 
 #: ../app/modules/Default/templates/UnavailableSuccess.php:1
@@ -158,7 +158,7 @@ msgstr "恭喜！"
 
 #: ../app/modules/Default/views/Secure1SuccessView.class.php:17
 #: ../app/modules/Default/views/Secure2SuccessView.class.php:17
-msgid "Secure Action"
+msgid "Secure Controller"
 msgstr "安全動作"
 
 #: ../app/modules/Default/views/SecureSuccessView.class.php:33

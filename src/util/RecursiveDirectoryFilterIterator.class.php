@@ -109,7 +109,7 @@ class RecursiveDirectoryFilterIterator extends RecursiveFilterIterator
 			return true;
 		}
 		foreach($this->includes as $pattern) {
-			if(preg_match($pattern, $this->current()->getPathName())) {
+			if(preg_match($pattern, str_replace('\\', '/', $this->current()->getPathName()))) {
 				return true;
 			}
 		}
@@ -133,6 +133,7 @@ class RecursiveDirectoryFilterIterator extends RecursiveFilterIterator
 	 */
 	public function getChildren()
 	{
+		/** @var RecursiveDirectoryFilterIterator $it */
 		$it = parent::getChildren();
 		if(null !== $it) {
 			$it->excludes = $this->excludes;

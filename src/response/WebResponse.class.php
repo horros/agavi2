@@ -14,7 +14,7 @@ namespace Agavi\Response;
 // +---------------------------------------------------------------------------+
 use Agavi\Config\Config;
 use Agavi\Core\Context;
-use Agavi\Controller\OutputType;
+use Agavi\Dispatcher\OutputType;
 use Agavi\Exception\AgaviException;
 use Agavi\Request\WebRequest;
 use Agavi\Routing\WebRouting;

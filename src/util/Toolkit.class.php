@@ -446,10 +446,10 @@ final class Toolkit
 	}
 	
 	/**
-	 * Returns the canonical name for a dot-separated view/action/model name.
+	 * Returns the canonical name for a dot-separated view/controller/model name.
 	 * This method is idempotent.
 	 *
-	 * @param      string $name The view/action/model name.
+	 * @param      string $name The view/controller/model name.
 	 *
 	 * @return     string The canonical name.
 	 * 
@@ -529,6 +529,20 @@ final class Toolkit
 			$url .= '#' . $parts['fragment'];
 		}
 		return $url;
+	}
+
+	/**
+	 * Strip the namespace-part of a class
+	 *
+	 * @param string $className string the class name to strip the namespace from
+	 * @return string the class name without the namespace
+	 *
+	 * @author Markus Lervik <markuslervik1234@gmail.com>
+	 */
+	public static function stripNamespace($className) {
+		if (false !== ($slashpos = strrpos($className, '\\')))
+			$className = substr($className, (strrpos($className, '\\')+1));
+		return $className;
 	}
 }
 

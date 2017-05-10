@@ -7,7 +7,7 @@ class Confidential_TopSecretSuccessView extends SampleAppConfidentialBaseView
 		$this->setupHtml($rd);
 
 		// set the title
-		$this->setAttribute('_title', $this->tm->_('Secure Action', 'default.Login'));
+		$this->setAttribute('_title', $this->tm->_('Secure Controller', 'default.Login'));
 
 	}
 

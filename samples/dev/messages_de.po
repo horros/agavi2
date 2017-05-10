@@ -76,12 +76,12 @@ msgid "Home"
 msgstr "Startseite"
 
 #: ../app/modules/Default/templates/Master.php:147
-msgid "A Secure Action"
-msgstr "Gesicherte Action"
+msgid "A Secure Controller"
+msgstr "Gesicherte Controller"
 
 #: ../app/modules/Default/templates/Master.php:148
-msgid "Another Secure Action"
-msgstr "Zweite gesicherte Action"
+msgid "Another Secure Controller"
+msgstr "Zweite gesicherte Controller"
 
 #: ../app/modules/Default/templates/Master.php:149
 msgid "Call invalid URL"
@@ -121,7 +121,7 @@ msgid "You'll never see this."
 msgstr "Sie werden diesen Text niemals zu Gesicht bekommen."
 
 #: ../app/modules/Default/templates/SecureSuccess.php:1
-msgid "You do not have sufficient credentials to execute this Action."
+msgid "You do not have sufficient credentials to execute this Controller."
 msgstr "Sie haben keine ausreichenden Berechtigungen, um diesen Vorgang auszuführen."
 
 #: ../app/modules/Default/templates/UnavailableSuccess.php:1
@@ -154,8 +154,8 @@ msgstr "Gratulation!"
 
 #: ../app/modules/Default/views/Secure1SuccessView.class.php:17
 #: ../app/modules/Default/views/Secure2SuccessView.class.php:17
-msgid "Secure Action"
-msgstr "Gesicherte Action"
+msgid "Secure Controller"
+msgstr "Gesicherte Controller"
 
 #: ../app/modules/Default/views/SecureSuccessView.class.php:33
 msgid "Permission Denied"

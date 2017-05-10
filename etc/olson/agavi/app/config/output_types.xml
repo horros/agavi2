@@ -6,7 +6,7 @@
 			
 			<output_type name="html">
 				<renderers default="php">
-					<renderer name="php" class="AgaviPhpRenderer" />
+					<renderer name="php" class="Agavi\Renderer\PhpRenderer" />
 				</renderers>
 				<parameters>
 					<parameter name="http_headers">

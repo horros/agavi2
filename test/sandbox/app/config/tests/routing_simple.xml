@@ -4,10 +4,10 @@
 		<routes>
 			<route name="testWithChild" pattern="^/anchor" module="test1">
 				<routes>
-					<route name="t1child1" pattern="^/child1" action="action1" />
-					<route name="t1child2" pattern="^/(foo:child2)" action="action2" />
-					<route name="t1child3" pattern="^/(child3)/(bar:(child2)?)" module="module3" action="action3" />
-					<route name="t1child4" pattern="^/(foo:child4)/(bar:(nextChild))?" module="module4" action="action4">
+					<route name="t1child1" pattern="^/child1" controller="controller1" />
+					<route name="t1child2" pattern="^/(foo:child2)" controller="controller2" />
+					<route name="t1child3" pattern="^/(child3)/(bar:(child2)?)" module="module3" controller="controller3" />
+					<route name="t1child4" pattern="^/(foo:child4)/(bar:(nextChild))?" module="module4" controller="controller4">
 						<defaults>
 							<!--<default for="foo">child4</default>-->
 							<default for="bar">baz</default>
@@ -25,7 +25,7 @@
 		<routes>
 			<route name="test2parent" pattern="^/parent">
 				<routes>
-					<route name="test2child1" pattern="^(/{category:[a-z0-9]+})?/({machine:[A-Z]+}/?)" module="t1Module1" action="t2Action1">
+					<route name="test2child1" pattern="^(/{category:[a-z0-9]+})?/({machine:[A-Z]+}/?)" module="t1Module1" controller="t2Controller1">
 <!--						<defaults>
 							<default for="category">/{}</default>
 						</defaults>

@@ -3,7 +3,7 @@
 	<ae:configuration>
 		<cachings>
 			<caching name="Browse" enabled="true">
-				<action>%core.app_dir%</action>
+				<controller>%core.app_dir%</controller>
 				<groups foo="bar">
 					<group name="categories" />
 					<group name="id" source="request.parameter" />

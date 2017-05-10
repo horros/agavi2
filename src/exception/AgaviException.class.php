@@ -19,7 +19,7 @@ namespace Agavi\Exception;
 
 use Agavi\Config\Config;
 use Agavi\Core\Context;
-use Agavi\Controller\ExecutionContainer;
+use Agavi\Dispatcher\ExecutionContainer;
 
 /**
  * AgaviException is the base class for all Agavi related exceptions and
@@ -293,11 +293,11 @@ class AgaviException extends \Exception
 			exit($exitCode);
 		}
 		
-		if($context !== null && $context->getController() !== null) {
+		if($context !== null && $context->getDispatcher() !== null) {
 			try {
 				// check if an exception template was defined for the default output type
-				if($context->getController()->getOutputType()->getExceptionTemplate() !== null) {
-					include($context->getController()->getOutputType()->getExceptionTemplate());
+				if($context->getDispatcher()->getOutputType()->getExceptionTemplate() !== null) {
+					include($context->getDispatcher()->getOutputType()->getExceptionTemplate());
 					exit($exitCode);
 				}
 			} catch(\Exception $e2) {

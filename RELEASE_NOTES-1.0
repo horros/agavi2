@@ -14,7 +14,7 @@ The timezone database was updated to version 2015e.
 Version 1.0.7 - December 22, 2011
 =================================
 
-The getCredentials() method on an Action is no longer called unconditionally (i.e. whether or not the isSecure() method returned false) but only if the Action is "secure".
+The getCredentials() method on an Controller is no longer called unconditionally (i.e. whether or not the isSecure() method returned false) but only if the Controller is "secure".
 
 It is now possible to manually call shutdown() on any database adapter to close the underlying connection; another call to getConnection() will cause a reconnect.
 
@@ -214,7 +214,7 @@ The following are worth mentioning:
 - Support for document/literal wrapped style SOAP services has been improved.
 - Two regressions related to AgaviRoutingCallback::onGenerate() have been fixed.
 - A memory leak in AgaviTranslationManager::getLocaleIdentifier() was fixed.
-- Handling of slashes and dots in Action, View and Model names has been unified - slashes are now always used internally.
+- Handling of slashes and dots in Controller, View and Model names has been unified - slashes are now always used internally.
 - The bundled Timezone database was updated to version 2009g.
 - Several other minor fixes and enhancements.
 
@@ -241,7 +241,7 @@ Two built-in configuration handlers have not been ported to the new infrastructu
 
 Names of compiled configuration files are now different from before; they now consist of the file base name, environment, context, and then a sha1 hash of these three components to make the filename unique. This prevents theoretical situations where configuration file names are ambiguous, and at the same time makes it easier to find a specific file in the cache directory. The files now contain the path to the source file in a header comment so configs with the same base name can be told apart.
 
-Module/Action/View/Model
+Module/Controller/View/Model
 ------------------------
 The module.xml configuration file has been redesigned. It now needs a <module enabled="true"> element, and inside, there can be any number of <settings> blocks, which like in settings.xml, can have a "prefix" attribute to change the prefix. In the prefix and in setting names, ${moduleName} is expanded to the current module's name. Specifying the module name inside this configuration file is not necessary anymore.
 
@@ -288,7 +288,7 @@ Inside a callback's onMatched() and onNotMatched() methods it is now possible to
 The execution container instance passed to the callback now reflects the actual current state of the routing execution, so checks can be performed against values on the container, and containers can be mutated (as mentioned above). As before, developers are advised not to perform any changes on containers or request data in onMatched() methods if the method will return false.
 Agavi will now explicitly call onNotMatched() on a routing callback that returned false from onMatched().
 
-You can now return an AgaviResponse object (use AgaviContext::createInstanceFor('response') for convenience) directly from a routing callback's onMatched() or onNotMatched() method. This response will then be handled right away by the Controller, and any kind of execution will be skipped (there isn't even an Execution Container in this case).
+You can now return an AgaviResponse object (use AgaviContext::createInstanceFor('response') for convenience) directly from a routing callback's onMatched() or onNotMatched() method. This response will then be handled right away by the Dispatcher, and any kind of execution will be skipped (there isn't even an Execution Container in this case).
 
 Request
 -------
@@ -320,13 +320,13 @@ Execution
 ---------
 Execution containers now have their own request method. By default, it is equal to the global request's request method. It can, however, be changed using the last (and new) argument of AgaviController::createExecutionContainer() and the related methods in AgaviExecutionContainer and AgaviView. Like the output type, the request method is carried over from the "parent" container if AgaviExecutionContainer::createExecutionContainer() is used (or the methods in AgaviView, which use this method). You can define a slot's request method using the new "method" attribute of the <slot> element in your output_types.xml layout declarations.
 
-When Agavi does an internal forward, for example to the login "system action" when an action requires authentication, the corresponding information in the "org.agavi.controller.forwards.*" namespaces will now be set on as attributes on the respective containers, in addition to the existing request attributes, which remain for BC.
+When Agavi does an internal forward, for example to the login "system action" when a controller requires authentication, the corresponding information in the "org.agavi.controller.forwards.*" namespaces will now be set on as attributes on the respective containers, in addition to the existing request attributes, which remain for BC.
 
 AgaviController::dispatch() now accepts an Execution Container as an optional second argument. If this argument is used, then the Routing will not execute, and the given container is executed right away. This is most useful for testing purposes, "page controllers" or utility scripts.
 
 Caching
 -------
-A new cache group source called "callback" has been added. You can use it to specify the name of a method implemented in the respective Action class. The value this callback returns is used as the group key. You can also throw an AgaviUncacheableException from the callback to prevent caching altogether. These two different abilities offer very nice caching capabilities, such as:
+A new cache group source called "callback" has been added. You can use it to specify the name of a method implemented in the respective Controller class. The value this callback returns is used as the group key. You can also throw an AgaviUncacheableException from the callback to prevent caching altogether. These two different abilities offer very nice caching capabilities, such as:
 - Having a cache variant for the owner of an element, and one for everyone else
 - Enabling a cache only for users that are not logged in
 
@@ -353,7 +353,7 @@ AgaviDateTimeValidator now accepts strotime() syntax format strings in "min" and
 
 SOAP
 ----
-Agavi can now automatically pack and unpack document/literal wrapped style web service requests and responses if the Controller config parameter "force_document_literal_wrapped_marshalling" is set to true. Future releases of Agavi will enhance this functionality further and add automatic detection for services using this convention.
+Agavi can now automatically pack and unpack document/literal wrapped style web service requests and responses if the Dispatcher config parameter "force_document_literal_wrapped_marshalling" is set to true. Future releases of Agavi will enhance this functionality further and add automatic detection for services using this convention.
 
 Multiple SOAP services can now be implemented in the same application. To do this, simply use multiple SOAP contexts of different names. XSD schemas for the generated WSDL documents can remain inside <configurations>, or be put into the relevant <configuration> blocks for each service. The same is valid for the "targetNamespace" attribute or WSDL message definitions.
 

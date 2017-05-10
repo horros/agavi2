@@ -3,7 +3,7 @@
 class SampleAppDefaultBaseModel extends SampleAppBaseModel
 {
 	/*
-		This is the base action all your module's models should extend. This way,
+		This is the base Controller all your module's models should extend. This way,
 		you can easily inject new functionality into all of this module's models.
 		
 		It is of course highly recommended that you change the names of any default

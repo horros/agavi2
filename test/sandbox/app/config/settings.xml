@@ -2,39 +2,39 @@
 <ae:configurations xmlns:ae="http://agavi.org/agavi/config/global/envelope/1.1" xmlns="http://agavi.org/agavi/config/parts/settings/1.1">
 	<ae:configuration>
 
-		<system_actions>
+		<system_controllers>
 
-			<system_action name="default">
+			<system_controller name="default">
 				<module>Default</module>
-				<action>Index</action>
-			</system_action>
+				<controller>Index</controller>
+			</system_controller>
 
-			<system_action name="error_404">
+			<system_controller name="error_404">
 				<module>Default</module>
-				<action>Error404</action>
-			</system_action>
+				<controller>Error404</controller>
+			</system_controller>
 
-			<system_action name="unavailable">
+			<system_controller name="unavailable">
 				<module>Default</module>
-				<action>Unavailable</action>
-			</system_action>
+				<controller>Unavailable</controller>
+			</system_controller>
 
-			<system_action name="module_disabled">
+			<system_controller name="module_disabled">
 				<module>Default</module>
-				<action>ModuleDisabled</action>
-			</system_action>
+				<controller>ModuleDisabled</controller>
+			</system_controller>
 
-			<system_action name="secure">
+			<system_controller name="secure">
 				<module>Default</module>
-				<action>Secure</action>
-			</system_action>
+				<controller>Secure</controller>
+			</system_controller>
 
-			<system_action name="login">
+			<system_controller name="login">
 				<module>Default</module>
-				<action>Login</action>
-			</system_action>
+				<controller>Login</controller>
+			</system_controller>
 
-		</system_actions>
+		</system_controllers>
 
 		<settings>
 			<setting name="app_name">sandbox</setting>
