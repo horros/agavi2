@@ -61,13 +61,13 @@ class XmlrpcepiphpRequest extends WebserviceRequest
 			constant("$rdhc::SOURCE_PARAMETERS") => (array)$decoded,
 		));
 		
-		if($this->getParameter('use_module_action_parameters')) {
+		if($this->getParameter('use_module_controller_parameters')) {
 			$split = explode(':', $this->invokedMethod);
 			if(count($split) == 2) {
 				$rd->setParameter($this->getParameter('module_accessor'), $split[0]);
-				$rd->setParameter($this->getParameter('action_accessor'), $split[1]);
+				$rd->setParameter($this->getParameter('controller_accessor'), $split[1]);
 			} else {
-				$rd->setParameter($this->getParameter('action_accessor'), $this->invokedMethod);
+				$rd->setParameter($this->getParameter('controller_accessor'), $this->invokedMethod);
 			}
 		}
 		

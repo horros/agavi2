@@ -34,12 +34,12 @@ use Agavi\Response\Response;
 abstract class ContainerTestCase extends FragmentTestCase
 {
 	/**
-	 * @var        string the name of the action to use
+	 * @var        string the name of the controller to use
 	 */
-	protected $acionName;
+	protected $controllerName;
 	
 	/**
-	 * @var        string the name of the module the action resides in
+	 * @var        string the name of the module the controller resides in
 	 */
 	protected $moduleName;
 	
@@ -58,14 +58,14 @@ abstract class ContainerTestCase extends FragmentTestCase
 	{
 		$context = Context::getInstance();
 		
-		$controller = $context->getController();
-		$controller->setParameter('send_response', false);
+		$dispatcher = $context->getDispatcher();
+		$dispatcher->setParameter('send_response', false);
 		
 		if(!($arguments instanceof RequestDataHolder)) {
 			$arguments = $this->createRequestDataHolder(array(RequestDataHolder::SOURCE_PARAMETERS => $arguments));
 		}
 		
-		$this->response = $controller->dispatch(null, $controller->createExecutionContainer($this->moduleName, $this->actionName, $arguments, $outputType, $requestMethod));
+		$this->response = $dispatcher->dispatch(null, $dispatcher->createExecutionContainer($this->moduleName, $this->controllerName, $arguments, $outputType, $requestMethod));
 	}
 	
 	/**

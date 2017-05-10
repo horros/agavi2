@@ -1,5 +1,5 @@
 <?php
-
+namespace Sandbox\Lib\View;
 /**
  * The base view from which all project views inherit.
  */

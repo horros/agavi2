@@ -12,7 +12,7 @@ namespace Agavi\Testing;
 // |   indent-tabs-mode: t                                                     |
 // |   End:                                                                    |
 // +---------------------------------------------------------------------------+
-use Agavi\Controller\ExecutionContainer;
+use Agavi\Dispatcher\ExecutionContainer;
 use Agavi\Response\WebResponse;
 use Agavi\Testing\PHPUnit\Constraint\ConstraintViewHandlesOutputType;
 use Agavi\Util\Toolkit;
@@ -55,9 +55,9 @@ abstract class ViewTestCase extends FragmentTestCase
 	 */
 	protected function createViewInstance()
 	{
-		$this->getContext()->getController()->initializeModule($this->moduleName);
+		$this->getContext()->getDispatcher()->initializeModule($this->moduleName);
 		$viewName = $this->normalizeViewName($this->viewName);
-		$viewInstance = $this->getContext()->getController()->createViewInstance($this->moduleName, $viewName);
+		$viewInstance = $this->getContext()->getDispatcher()->createViewInstance($this->moduleName, $viewName);
 		$viewInstance->initialize($this->container);
 		return $viewInstance;
 	}
@@ -73,8 +73,8 @@ abstract class ViewTestCase extends FragmentTestCase
 	 */
 	protected function runView($otName = null)
 	{
-		$this->container->setActionInstance($this->createActionInstance());
-		$this->container->setOutputType($this->getContext()->getController()->getOutputType($otName));
+		$this->container->setControllerInstance($this->createControllerInstance());
+		$this->container->setOutputType($this->getContext()->getDispatcher()->getOutputType($otName));
 		$this->container->setViewInstance($this->createViewInstance());
 		$executionFilter = $this->createExecutionFilter();
 		$this->viewResult = $executionFilter->executeView($this->container);
@@ -287,22 +287,22 @@ abstract class ViewTestCase extends FragmentTestCase
 	}
 	
 	/**
-	 * assert that the view forwards to the given module/action
+	 * assert that the view forwards to the given module/controller
 	 * 
 	 * @param      string $expectedModule the expected module name
-	 * @param      string $expectedAction the expected action name
+	 * @param      string $expectedController the expected controller name
 	 * @param      string $message the message to emit on failure
 	 *
 	 * @author     Felix Gilcher <felix.gilcher@bitextender.com>
 	 * @since      1.0.0
 	 */
-	protected function assertViewForwards($expectedModule, $expectedAction, $message = 'Failed asserting that the view forwards to "%1$s" "%2$s".')
+	protected function assertViewForwards($expectedModule, $expectedController, $message = 'Failed asserting that the view forwards to "%1$s" "%2$s".')
 	{
 		if(!($this->viewResult instanceof ExecutionContainer)) {
-			$this->fail(sprintf($message, $expectedModule, $expectedAction));
+			$this->fail(sprintf($message, $expectedModule, $expectedController));
 		}
 		$this->assertEquals($expectedModule, $this->viewResult->getModuleName());
-		$this->assertEquals(Toolkit::canonicalName($expectedAction), $this->viewResult->getActionName());
+		$this->assertEquals(Toolkit::canonicalName($expectedController), $this->viewResult->getControllerName());
 	}
 	
 	/**

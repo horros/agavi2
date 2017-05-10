@@ -15,28 +15,28 @@
 	<xs:import namespace="http://www.w3.org/XML/1998/namespace"
 	           schemaLocation="../vendor/http/www.w3.org/XML/1998/namespace/2009-01.xsd" />
 
-	<!-- System actions -->
+	<!-- System controllers -->
 
-	<xs:complexType name="system_action">
+	<xs:complexType name="system_controller">
 		<xs:all>
 			<xs:element name="module" type="types_1_0:php_label" />
-			<xs:element name="action" type="xs:string" />
+			<xs:element name="controller" type="xs:string" />
 		</xs:all>
 		<xs:attribute name="name" type="xs:string" />
 	</xs:complexType>
 
-	<xs:group name="system_actions">
+	<xs:group name="system_controllers">
 		<xs:choice>
-			<xs:element name="system_actions" type="system_actions"
+			<xs:element name="system_controllers" type="system_controllers"
 			            minOccurs="0" />
-			<xs:element name="system_action" type="system_action"
+			<xs:element name="system_controller" type="system_controller"
 			            minOccurs="0" maxOccurs="unbounded" />
 		</xs:choice>
 	</xs:group>
 
-	<xs:complexType name="system_actions">
+	<xs:complexType name="system_controllers">
 		<xs:sequence>
-			<xs:element name="system_action" type="system_action"
+			<xs:element name="system_controller" type="system_controller"
 			            maxOccurs="unbounded" />
 		</xs:sequence>
 	</xs:complexType>
@@ -96,7 +96,7 @@
 	<xs:group name="configuration">
 		<xs:sequence>
 			<xs:sequence minOccurs="0" maxOccurs="unbounded" >
-				<xs:group ref="system_actions"
+				<xs:group ref="system_controllers"
 				          minOccurs="0" />
 				<xs:group ref="settings"
 				          minOccurs="0" maxOccurs="unbounded" />

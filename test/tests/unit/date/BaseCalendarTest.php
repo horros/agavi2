@@ -6,7 +6,7 @@ use Agavi\Testing\PhpUnitTestCase;
 use Agavi\Translation\DateFormatter;
 use Agavi\Translation\TranslationManager;
 
-class BaseCalendarTest extends PhpUnitTestCase
+abstract class BaseCalendarTest extends PhpUnitTestCase
 {
 	/** @var TranslationManager */
 	protected $tm;

@@ -321,7 +321,7 @@ class WebRouting extends Routing
 				$defaults = array();
 
 				$ma = $req->getParameter('module_accessor');
-				$aa = $req->getParameter('action_accessor');
+				$aa = $req->getParameter('controller_accessor');
 
 				foreach($routes as $route) {
 					if(isset($this->routes[$route])) {
@@ -334,8 +334,8 @@ class WebRouting extends Routing
 						if($r['opt']['module']) {
 							$myDefaults[$ma] = $r['opt']['module'];
 						}
-						if($r['opt']['action']) {
-							$myDefaults[$aa] = $r['opt']['action'];
+						if($r['opt']['controller']) {
+							$myDefaults[$aa] = $r['opt']['controller'];
 						}
 
 						$defaults = array_merge($myDefaults, $defaults);

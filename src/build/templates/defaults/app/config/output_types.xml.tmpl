@@ -12,7 +12,7 @@
 						<ae:parameter name="assigns">
 							<ae:parameter name="routing">ro</ae:parameter>
 							<ae:parameter name="request">rq</ae:parameter>
-							<ae:parameter name="controller">ct</ae:parameter>
+							<ae:parameter name="Dispatcher">ct</ae:parameter>
 							<ae:parameter name="user">us</ae:parameter>
 							<ae:parameter name="translation_manager">tm</ae:parameter>
 							<ae:parameter name="request_data">rd</ae:parameter>
@@ -49,7 +49,7 @@
 							<ae:parameter name="directory">%core.template_dir%</ae:parameter>
 							<ae:parameter name="template">Master</ae:parameter>
 							<!-- an example for a slot -->
-							<slot name="nav" module="Default" action="Widgets.Navigation" />
+							<slot name="nav" module="Default" controller="Widgets.Navigation" />
 						</layer>
 					</layout>
 					

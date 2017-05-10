@@ -23,7 +23,7 @@ use Agavi\Exception\AutoloadException;
 use Agavi\Exception\DatabaseException;
 use Agavi\Exception\DisabledModuleException;
 use Agavi\Config\Config;
-use Agavi\Controller\Controller;
+use Agavi\Dispatcher\Dispatcher;
 use Agavi\Logging\LoggerManager;
 use Agavi\Model\Model;
 use Agavi\Request\Request;
@@ -35,10 +35,10 @@ use Agavi\Util\Toolkit;
 
 /**
  * Context provides information about the current application context,
- * such as the module and action names and the module directory. 
+ * such as the module and controller names and the module directory.
  * It also serves as a gateway to the core pieces of the framework, allowing
  * objects with access to the context, to access other useful objects such as
- * the current controller, request, user, database manager etc.
+ * the current Dispatcher, request, user, database manager etc.
  *
  * @package    agavi
  * @subpackage core
@@ -62,9 +62,9 @@ class Context
 	protected $name = '';
 	
 	/**
-	 * @var        Controller A Controller instance.
+	 * @var        Dispatcher A Dispatcher instance.
 	 */
-	protected $controller = null;
+	protected $dispatcher = null;
 	
 	/**
 	 * @var        array An array of class names for frequently used factories.
@@ -226,16 +226,16 @@ class Context
 	}
 
 	/**
-	 * Retrieve the controller.
+	 * Retrieve the Dispatcher.
 	 *
-	 * @return     Controller The current Controller implementation instance.
+	 * @return     Dispatcher The current Dispatcher implementation instance.
 	 *
 	 * @author     Sean Kerr <skerr@mojavi.org>
 	 * @since      0.9.0
 	 */
-	public function getController()
+	public function getDispatcher()
 	{
-		return $this->controller;
+		return $this->dispatcher;
 	}
 
 	/**
@@ -393,7 +393,7 @@ class Context
 			}
 		} else {
 			try {
-				$this->controller->initializeModule($moduleName);
+				$this->dispatcher->initializeModule($moduleName);
 			} catch(DisabledModuleException $e) {
 				// swallow, this will load the modules autoload but throw an exception 
 				// if the module is disabled.

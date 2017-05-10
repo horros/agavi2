@@ -89,10 +89,10 @@ abstract class FlowTestCase extends PhpUnitTestCase implements FlowTestCaseInter
 		$this->setRequestData($parameters);
 		$context->getRequest()->setMethod($this->getRequestMethod());
 		
-		$controller = $context->getController();
-		$controller->setParameter('send_response', false);
+		$dispatcher = $context->getDispatcher();
+		$dispatcher->setParameter('send_response', false);
 		
-		$this->response = $controller->dispatch();
+		$this->response = $dispatcher->dispatch();
 	}
 	
 	protected function setRequestData($data)
@@ -119,10 +119,10 @@ abstract class FlowTestCase extends PhpUnitTestCase implements FlowTestCaseInter
 		
 		$annotations = $this->getAnnotations();
 		
-		if(!empty($annotations['method']['agaviDispatchScriptName'])) {
-			$scriptName = $annotations['method']['agaviDispatchScriptName'][0];
-		} elseif(!empty($annotations['class']['agaviDispatchScriptName'])) {
-			$scriptName = $annotations['class']['agaviDispatchScriptName'][0];
+		if(!empty($annotations['method']['dispatchScriptName'])) {
+			$scriptName = $annotations['method']['dispatchScriptName'][0];
+		} elseif(!empty($annotations['class']['dispatchScriptName'])) {
+			$scriptName = $annotations['class']['dispatchScriptName'][0];
 		} else {
 			$scriptName = '/index.php';
 		}
@@ -144,10 +144,10 @@ abstract class FlowTestCase extends PhpUnitTestCase implements FlowTestCaseInter
 		
 		$annotations = $this->getAnnotations();
 		
-		if(!empty($annotations['method']['agaviRequestMethod'])) {
-			$method = $annotations['method']['agaviRequestMethod'][0];
-		} elseif(!empty($annotations['class']['agaviRequestMethod'])) {
-			$method = $annotations['class']['agaviRequestMethod'][0];
+		if(!empty($annotations['method']['requestMethod'])) {
+			$method = $annotations['method']['requestMethod'][0];
+		} elseif(!empty($annotations['class']['requestMethod'])) {
+			$method = $annotations['class']['requestMethod'][0];
 		} else {
 			$method = 'Read';
 		}
@@ -169,10 +169,10 @@ abstract class FlowTestCase extends PhpUnitTestCase implements FlowTestCaseInter
 		
 		$annotations = $this->getAnnotations();
 		
-		if(!empty($annotations['method']['agaviRoutingInput'])) {
-			$input = $annotations['method']['agaviRoutingInput'][0];
-		} elseif(!empty($annotations['class']['agaviRoutingInput'])) {
-			$input = $annotations['class']['agaviRoutingInput'][0];
+		if(!empty($annotations['method']['routingInput'])) {
+			$input = $annotations['method']['routingInput'][0];
+		} elseif(!empty($annotations['class']['routingInput'])) {
+			$input = $annotations['class']['routingInput'][0];
 		} elseif(!empty($this->input)) {
 			$input = $this->input;
 		} else {

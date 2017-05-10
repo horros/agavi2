@@ -2,7 +2,7 @@
 
 class Default_LoginInputView extends SandboxDefaultBaseView
 {
-	public function executeHtml(RequestDataHolder $rd)
+	public function executeHtml(\Agavi\Request\RequestDataHolder $rd)
 	{
 		$this->setupHtml($rd);
 

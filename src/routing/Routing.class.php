@@ -253,7 +253,7 @@ abstract class Routing extends ParameterHolder
 	 *                    <li>stop</li>
 	 *                    <li>output_type</li>
 	 *                    <li>module</li>
-	 *                    <li>action</li>
+	 *                    <li>controller</li>
 	 *                    <li>parameters</li>
 	 *                    <li>ignores</li>
 	 *                    <li>defaults</li>
@@ -287,7 +287,7 @@ abstract class Routing extends ParameterHolder
 				$defaultOpts['parent'] = $parent;
 			}
 		} else {
-			$defaultOpts = array('name' => Toolkit::uniqid(), 'stop' => true, 'output_type' => null, 'module' => null, 'action' => null, 'parameters' => array(), 'ignores' => array(), 'defaults' => array(), 'childs' => array(), 'callbacks' => array(), 'imply' => false, 'cut' => null, 'source' => null, 'method' => null, 'constraint' => array(), 'locale' => null, 'pattern_parameters' => array(), 'optional_parameters' => array(), 'parent' => $parent, 'reverseStr' => '', 'nostops' => array(), 'anchor' => self::ANCHOR_NONE);
+			$defaultOpts = array('name' => Toolkit::uniqid(), 'stop' => true, 'output_type' => null, 'module' => null, 'controller' => null, 'parameters' => array(), 'ignores' => array(), 'defaults' => array(), 'childs' => array(), 'callbacks' => array(), 'imply' => false, 'cut' => null, 'source' => null, 'method' => null, 'constraint' => array(), 'locale' => null, 'pattern_parameters' => array(), 'optional_parameters' => array(), 'parent' => $parent, 'reverseStr' => '', 'nostops' => array(), 'anchor' => self::ANCHOR_NONE);
 		}
 		// retain backwards compatibility to 0.11
 		if(isset($options['callback'])) {
@@ -1140,7 +1140,7 @@ abstract class Routing extends ParameterHolder
 
 		$tm = $this->context->getTranslationManager();
 		
-		$container = $this->context->getController()->createExecutionContainer();
+		$container = $this->context->getDispatcher()->createExecutionContainer();
 
 		if(!$this->isEnabled()) {
 			// routing disabled, just bail out here
@@ -1156,9 +1156,9 @@ abstract class Routing extends ParameterHolder
 		$locale = null;
 		$method = null;
 		
-		$umap = $rq->getParameter('use_module_action_parameters');
+		$umap = $rq->getParameter('use_module_controller_parameters');
 		$ma = $rq->getParameter('module_accessor');
-		$aa = $rq->getParameter('action_accessor');
+		$aa = $rq->getParameter('controller_accessor');
 		
 		$requestMethod = $rq->getMethod();
 
@@ -1247,11 +1247,11 @@ abstract class Routing extends ParameterHolder
 							}
 						}
 
-						if($opts['action']) {
-							$action = Toolkit::expandVariables($opts['action'], $matchvals);
-							$container->setActionName($action);
+						if($opts['controller']) {
+							$controller = Toolkit::expandVariables($opts['controller'], $matchvals);
+							$container->setControllerName($controller);
 							if($umap) {
-								$vars[$aa] = $action;
+								$vars[$aa] = $controller;
 							}
 						}
 
@@ -1264,7 +1264,7 @@ abstract class Routing extends ParameterHolder
 							// we need to wrap in try/catch here (but not further down after the callbacks have run) for BC
 							// and because it makes sense - maybe a callback checks or changes the output type name
 							try {
-								$container->setOutputType($this->context->getController()->getOutputType($ot));
+								$container->setOutputType($this->context->getDispatcher()->getOutputType($ot));
 							} catch(AgaviException $e) {
 							}
 						}
@@ -1324,7 +1324,7 @@ abstract class Routing extends ParameterHolder
 									// backup stuff which could be changed in the callback so we are 
 									// able to determine which values were changed in the callback
 									$oldModule = $container->getModuleName();
-									$oldAction = $container->getActionName();
+									$oldController = $container->getControllerName();
 									$oldOutputTypeName = $container->getOutputType() ? $container->getOutputType()->getName() : null;
 									if(null === $tm) {
 										$oldLocale = null;
@@ -1392,16 +1392,16 @@ abstract class Routing extends ParameterHolder
 										$vars[$ma] = $module;
 									}
 								}
-								if($opts['action'] && $oldAction == $container->getActionName() && (!$umap || !array_key_exists($aa, $vars) || $oldAction == $vars[$aa])) {
-									$action = Toolkit::expandVariables($opts['action'], $expandVars);
-									$container->setActionName($action);
+								if($opts['controller'] && $oldController == $container->getControllerName() && (!$umap || !array_key_exists($aa, $vars) || $oldController == $vars[$aa])) {
+									$controller = Toolkit::expandVariables($opts['controller'], $expandVars);
+									$container->setControllerName($controller);
 									if($umap) {
-										$vars[$aa] = $action;
+										$vars[$aa] = $controller;
 									}
 								}
 								if($opts['output_type'] && $oldOutputTypeName == ($container->getOutputType() ? $container->getOutputType()->getName() : null)) {
 									$ot = Toolkit::expandVariables($opts['output_type'], $expandVars);
-									$container->setOutputType($this->context->getController()->getOutputType($ot));
+									$container->setOutputType($this->context->getDispatcher()->getOutputType($ot));
 								}
 								if($opts['locale'] && $oldLocale == $tm->getCurrentLocaleIdentifier()) {
 									if($locale = Toolkit::expandVariables($opts['locale'], $expandVars)) {
@@ -1426,13 +1426,13 @@ abstract class Routing extends ParameterHolder
 									}
 								}
 								
-								// one last thing we need to do: see if one of the callbacks modified the 'action' or 'module' vars inside $vars if $umap is on
+								// one last thing we need to do: see if one of the callbacks modified the 'controller' or 'module' vars inside $vars if $umap is on
 								// we then need to write those back to the container, unless they changed THERE, too, in which case the container values take precedence
 								if($umap && $oldModule == $container->getModuleName() && array_key_exists($ma, $vars) && $vars[$ma] != $oldModule) {
 									$container->setModuleName($vars[$ma]);
 								}
-								if($umap && $oldAction == $container->getActionName() && array_key_exists($aa, $vars) && $vars[$aa] != $oldAction) {
-									$container->setActionName($vars[$aa]);
+								if($umap && $oldController == $container->getControllerName() && array_key_exists($aa, $vars) && $vars[$aa] != $oldController) {
+									$container->setControllerName($vars[$aa]);
 								}
 							}
 							if(!$callbackSuccess) {
@@ -1499,15 +1499,15 @@ abstract class Routing extends ParameterHolder
 		// put the vars into the request
 		$rd->setParameters($vars);
 
-		if($container->getModuleName() === null || $container->getActionName() === null) {
-			// no route which supplied the required parameters matched, use 404 action
-			$container->setModuleName(Config::get('actions.error_404_module'));
-			$container->setActionName(Config::get('actions.error_404_action'));
+		if($container->getModuleName() === null || $container->getControllerName() === null) {
+			// no route which supplied the required parameters matched, use 404 controller
+			$container->setModuleName(Config::get('controllers.error_404_module'));
+			$container->setControllerName(Config::get('controllers.error_404_controller'));
 			
 			if($umap) {
 				$rd->setParameters(array(
 					$ma => $container->getModuleName(),
-					$aa => $container->getActionName(),
+					$aa => $container->getControllerName(),
 				));
 			}
 		}

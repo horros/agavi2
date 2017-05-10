@@ -1,7 +1,7 @@
 <?php
 
 use Agavi\Core\Context;
-use Agavi\Controller\ExecutionContainer;
+use Agavi\Dispatcher\ExecutionContainer;
 
 class SampleAppLanguageRoutingCallback extends Agavi\Routing\RoutingCallback
 {
@@ -25,7 +25,7 @@ class SampleAppLanguageRoutingCallback extends Agavi\Routing\RoutingCallback
 		try {
 			$set = $this->context->getTranslationManager()->getLocaleIdentifier($parameters['locale']);
 			// yup, worked. now lets set that as a cookie
-			$this->context->getController()->getGlobalResponse()->setCookie('locale', $parameters['locale'], '+1 month');
+			$this->context->getDispatcher()->getGlobalResponse()->setCookie('locale', $parameters['locale'], '+1 month');
 			return true;
 		} catch(Exception $e) {
 			// uregistered or ambigious locale... uncool!
@@ -47,7 +47,7 @@ class SampleAppLanguageRoutingCallback extends Agavi\Routing\RoutingCallback
 				return;
 			} catch(Exception $e) {
 				// bad cookie :<
-				$this->context->getController()->getGlobalResponse()->unsetCookie('locale');
+				$this->context->getDispatcher()->getGlobalResponse()->unsetCookie('locale');
 			}
 		}
 		

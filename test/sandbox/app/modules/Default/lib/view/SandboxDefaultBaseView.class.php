@@ -3,7 +3,7 @@
 /**
  * The base view from which all Default module views inherit.
  */
-class SandboxDefaultBaseView extends SandboxBaseView
+class SandboxDefaultBaseView extends \Sandbox\Lib\View\SandboxBaseView
 {
 
 }

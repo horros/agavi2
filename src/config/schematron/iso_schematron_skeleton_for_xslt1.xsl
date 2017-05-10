@@ -207,8 +207,8 @@
    		
    Version: 2008-07-24
    		* RJ clean out commented out namespace handling code
-   		* RJ add support for experimental non-standard attribute report/@action
-   		and assert/@action, and add parameter not in the published API (should
+   		* RJ add support for experimental non-standard attribute report/@controller
+   		and assert/@controller, and add parameter not in the published API (should
    		not break anything, it is XSLT1)
    		* RJ Remove remaining XSLT2 code for ease of reading
    		
@@ -1619,7 +1619,7 @@
 
 <!-- ============================================================== -->
 <!-- DEFAULT NAMED TEMPLATES -->
-<!-- These are the actions that are performed unless overridden -->
+<!-- These are the controllers that are performed unless overridden -->
 <!-- ============================================================== -->
  
 	<xsl:template name="process-prolog"/>
@@ -1827,7 +1827,7 @@
 		<axsl:text> </axsl:text>
 	</xsl:template>
 
-	<!-- default output action: the simplest customization is to just override this -->
+	<!-- default output controller: the simplest customization is to just override this -->
 	<xsl:template name="process-message">
 		<xsl:param name="pattern" />
             <xsl:param name="role" />

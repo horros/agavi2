@@ -23,7 +23,7 @@ use Agavi\Config\Util\Dom\XmlConfigDomDocument;
 use Agavi\Config\Util\Dom\XmlConfigDomElement;
 
 /**
- * CachingConfigHandler compiles the per-action configuration files placed
+ * CachingConfigHandler compiles the per-controller configuration files placed
  * in the "cache" subfolder of a module directory.
  *
  * @package    agavi
@@ -80,11 +80,11 @@ class CachingConfigHandler extends XmlConfigHandler
 					}
 				}
 				
-				$actionAttributes = array();
-				if($caching->has('action_attributes')) {
-					/** @var XmlConfigDomAttr $actionAttribute */
-					foreach($caching->get('action_attributes') as $actionAttribute) {
-						$actionAttributes[] = $actionAttribute->getValue();
+				$controllerAttributes = array();
+				if($caching->has('controller_attributes')) {
+					/** @var XmlConfigDomAttr $controllerAttribute */
+					foreach($caching->get('controller_attributes') as $controllerAttribute) {
+						$controllerAttributes[] = $controllerAttribute->getValue();
 					}
 				}
 				
@@ -171,7 +171,7 @@ class CachingConfigHandler extends XmlConfigHandler
 							'lifetime' => $caching->getAttribute('lifetime'),
 							'groups' => $groups,
 							'views' => $views,
-							'action_attributes' => $actionAttributes,
+							'controller_attributes' => $controllerAttributes,
 							'output_types' => $outputTypes,
 						);
 						$cachings[$method] = $values;
@@ -196,11 +196,11 @@ class CachingConfigHandler extends XmlConfigHandler
 			'				} else {',
 			'					$view = array(',
 			'						"module" => $moduleName,',
-			'						"name" => Toolkit::evaluateModuleDirective(',
+			'						"name" => \Agavi\Util\Toolkit::evaluateModuleDirective(',
 			'							$moduleName,',
 			'							"agavi.view.name",',
 			'							array(',
-			'								"actionName" => $actionName,',
+			'								"controllerName" => $controllerName,',
 			'								"viewName" => $view,',
 			'							)',
 			'						)',

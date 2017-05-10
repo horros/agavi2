@@ -9,7 +9,7 @@ class LoginSuccessViewTest extends ViewTestCase
 	public function __construct($name = NULL, array $data = array(), $dataName = '')
 	{
 		parent::__construct($name, $data, $dataName);
-		$this->actionName = 'Login';
+		$this->controllerName = 'Login';
 		$this->moduleName = 'Default';
 		$this->viewName   = 'Success';
 	}

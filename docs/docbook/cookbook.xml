@@ -312,26 +312,26 @@ RewriteRule ([^?]*)(?:\?(.*))? index.php?/$1&amp;$2 [L]</programlisting></para>
       <title>Redirecting Back to the Originally Requested Page After
       Login</title>
 
-      <para>If a unautheticated user tries to fire an action he is not allowed
-      to execute he is forwarded to the login action (configured in
+      <para>If a unautheticated user tries to fire a controller he is not allowed
+      to execute he is forwarded to the login controller (configured in
       <filename>settings.xml</filename>). To make a good user experience it's
-      nice to redirect the user back to the action he tried to execute after a
+      nice to redirect the user back to the controller he tried to execute after a
       successful login. This is especially important if the user's session had
       timed out and he was in the middle of something when he was logged
       out.</para>
 
-      <para>Because Agavi forwards to the login action the URL is still the
-      one pointing to the original action. Agavi also stores the information
+      <para>Because Agavi forwards to the login controller the URL is still the
+      one pointing to the original controller. Agavi also stores the information
       about the forward into the request object under
       <code>org.agavi.controller.forwards.login</code> namespace. So if the
-      login action was actually triggered because of a denied access the first
+      login controller was actually triggered because of a denied access the first
       thing we want to do is save the current URL for later use. The place to
       do this is usually <classname>LoginInputView</classname> (remember, this
-      is all presentational application logic so the action itself shouldn't
+      is all presentational application logic so the controller itself shouldn't
       do it).</para>
 
       <programlisting>if($this-&gt;getContext()-&gt;getRequest()-&gt;hasAttributeNamespace('org.agavi.controller.forwards.login')) {
-  // we were redirected to the login form by the controller because the requested action required security
+  // we were redirected to the login form by the controller because the requested controller required security
   // so store the input URL in the session for a redirect after login
   $this-&gt;getContext()-&gt;getUser()-&gt;setAttribute('redirect', $this-&gt;getContext()-&gt;getRequest()-&gt;getUrl(), 'org.agavi.SampleApp.login');
 }
@@ -341,7 +341,7 @@ else {
 }</programlisting>
 
       <para>Now after a successful login we want to redirect the user back to
-      the action he requested. To do so we need this in the
+      the controller he requested. To do so we need this in the
       <classname>LoginSuccessView</classname>:</para>
 
       <programlisting>if($usr-&gt;hasAttribute('redirect', 'org.agavi.SampleApp.login')) {
@@ -356,7 +356,7 @@ else {
     <section>
       <title>Serving Output Variants of the Same Content</title>
 
-      <para>a quick example using a LatestProductsAction or whatever</para>
+      <para>a quick example using a LatestProductsController or whatever</para>
     </section>
 
     <section>
@@ -440,13 +440,13 @@ else {
       handling in general assume that the user has been authenticated. By
       default if the user is not authenticated no credentials are checked.
       This can become an issue if you want to build an application where the
-      same action can be public in one set-up but requires a certain
+      same controller can be public in one set-up but requires a certain
       credential in another. For example a project management software's
       calendar could be public in one firm but protected in another.</para>
 
       <para>To enable role-based access control for unauthenticated users you
       need to do two things - grant a role for unauthenticated users and put
-      some logic into your base action's <methodname>isSecure()</methodname>
+      some logic into your base controller's <methodname>isSecure()</methodname>
       method.</para>
 
       <programlisting>class MyProjectUser extends AgaviRbacSecurityUser
@@ -461,7 +461,7 @@ else {
     }
   }</programlisting>
 
-      <programlisting>class MyProjectBaseAction extends AgaviAction
+      <programlisting>class MyProjectBaseController extends AgaviController
 {
   public function isSecure()
   {
@@ -475,12 +475,12 @@ else {
       users to have no roles but we want to override this and grant them a
       special role called <code><varname>unauthenticated</varname></code>. The
       code for <methodname>isSecure()</methodname> then again might require
-      some reasoning. The action is marked as secure only if the user doesn't
+      some reasoning. The controller is marked as secure only if the user doesn't
       have the required credential. What this means is that if the user is
       authenticated but doesn't have the required credential
-      <code>%actions.secure_action%</code> is triggered. If the user is not
+      <code>%controllers.secure_controller%</code> is triggered. If the user is not
       authenticated and <code>unauthenticated</code> role doesn't allow this
-      action <code>%actions.login_action%</code> is triggered.</para>
+      controller <code>%controllers.login_controller%</code> is triggered.</para>
     </section>
   </chapter>
 

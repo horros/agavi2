@@ -39,7 +39,7 @@
 		</xs:sequence>
 		<xs:attribute name="name" type="xs:string" use="required" />
 		<xs:attribute name="module" type="types_1_0:php_label" use="required" />
-		<xs:attribute name="action" type="xs:string" use="required" />
+		<xs:attribute name="controller" type="xs:string" use="required" />
 		<xs:attribute name="output_type" type="types_1_0:php_label" />
 		<xs:attribute name="method" type="types_1_0:php_label" />
 	</xs:complexType>

@@ -77,11 +77,11 @@ msgid "Home"
 msgstr "Strona domowa"
 
 #: ../app/modules/Default/templates/Master.php:147
-msgid "A Secure Action"
+msgid "A Secure Controller"
 msgstr "Chroniona akcja"
 
 #: ../app/modules/Default/templates/Master.php:148
-msgid "Another Secure Action"
+msgid "Another Secure Controller"
 msgstr "Kolejna zabezpieczona akcja"
 
 #: ../app/modules/Default/templates/Master.php:149
@@ -122,7 +122,7 @@ msgid "You'll never see this."
 msgstr "Nigdy tego nie zobaczysz."
 
 #: ../app/modules/Default/templates/SecureSuccess.php:1
-msgid "You do not have sufficient credentials to execute this Action."
+msgid "You do not have sufficient credentials to execute this Controller."
 msgstr "Nie masz wystarczających praw by wykonać tą akcję."
 
 #: ../app/modules/Default/templates/UnavailableSuccess.php:1
@@ -155,7 +155,7 @@ msgstr "Gratulujemy!"
 
 #: ../app/modules/Default/views/Secure1SuccessView.class.php:17
 #: ../app/modules/Default/views/Secure2SuccessView.class.php:17
-msgid "Secure Action"
+msgid "Secure Controller"
 msgstr "Bezpieczna akcja"
 
 #: ../app/modules/Default/views/SecureSuccessView.class.php:33

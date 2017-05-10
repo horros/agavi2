@@ -8,7 +8,7 @@ class Disabled_IndexSuccessView extends SampleAppDisabledBaseView
 		$this->setupHtml($rd);
 
 		// set the title
-		$this->setAttribute('_title', 'Index Action');
+		$this->setAttribute('_title', 'Index Controller');
 	}
 }
 

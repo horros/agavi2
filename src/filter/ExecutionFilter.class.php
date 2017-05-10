@@ -15,7 +15,7 @@ namespace Agavi\Filter;
 // +---------------------------------------------------------------------------+
 use Agavi\Config\Config;
 use Agavi\Config\ConfigCache;
-use Agavi\Controller\ExecutionContainer;
+use Agavi\Dispatcher\ExecutionContainer;
 use Agavi\Exception\AgaviException;
 use Agavi\Exception\InitializationException;
 use Agavi\Exception\UncacheableException;
@@ -29,7 +29,7 @@ use Agavi\View\View;
 
 /**
  * The ExecutionFilter is the last filter registered for each filter chain.
- * This filter does all action and view execution.
+ * This filter does all controller and view execution.
  *
  * @package    agavi
  * @subpackage filter
@@ -43,7 +43,7 @@ use Agavi\View\View;
  *
  * @version    $Id$
  */
-class ExecutionFilter extends Filter implements ActionFilterInterface
+class ExecutionFilter extends Filter implements ControllerFilterInterface
 {
 	/*
 	 * The directory inside %core.cache_dir% where cached stuff is stored.
@@ -51,31 +51,31 @@ class ExecutionFilter extends Filter implements ActionFilterInterface
 	const CACHE_SUBDIR = 'content';
 
 	/*
-	 * The name of the file that holds the cached action data.
+	 * The name of the file that holds the cached controller data.
 	 * Minuses because these are not allowed in an output type name.
 	 */
-	const ACTION_CACHE_ID = '4-8-15-16-23-42';
+	const CONTROLLER_CACHE_ID = '4-8-15-16-23-42';
 
 	/*
 	 * Constants for the cache callback event types.
 	 */
-	const CACHE_CALLBACK_ACTION_NOT_CACHED = 0;
-	const CACHE_CALLBACK_ACTION_CACHE_GONE = 1;
+	const CACHE_CALLBACK_CONTROLLER_NOT_CACHED = 0;
+	const CACHE_CALLBACK_CONTROLLER_CACHE_GONE = 1;
 	const CACHE_CALLBACK_VIEW_NOT_CACHEABLE = 2;
 	const CACHE_CALLBACK_VIEW_NOT_CACHED = 3;
 	const CACHE_CALLBACK_OUTPUT_TYPE_NOT_CACHEABLE = 4;
 	const CACHE_CALLBACK_VIEW_CACHE_GONE = 5;
-	const CACHE_CALLBACK_ACTION_CACHE_USELESS = 6;
+	const CACHE_CALLBACK_CONTROLLER_CACHE_USELESS = 6;
 	const CACHE_CALLBACK_VIEW_CACHE_WRITTEN = 7;
-	const CACHE_CALLBACK_ACTION_CACHE_WRITTEN = 8;
+	const CACHE_CALLBACK_CONTROLLER_CACHE_WRITTEN = 8;
 	
 	/**
-	 * Method that's called when a cacheable Action/View with a stale cache is
+	 * Method that's called when a cacheable Controller/View with a stale cache is
 	 * about to be run.
-	 * Can be used to prevent stampede situations where many requests to an action
+	 * Can be used to prevent stampede situations where many requests to an controller
 	 * with an out-of-date cache are run in parallel, slowing down everything.
 	 * For instance, you could set a flag into memcached with the groups of the
-	 * action that's currently run, and in checkCache check for those and return
+	 * controller that's currently run, and in checkCache check for those and return
 	 * an old, stale cache until the flag is gone.
 	 *
 	 * @param      int                     $eventType The type of the event that occurred.
@@ -92,7 +92,7 @@ class ExecutionFilter extends Filter implements ActionFilterInterface
 	}
 	
 	/**
-	 * Method that's called when an Action/View that was assumed to be cacheable
+	 * Method that's called when an Controller/View that was assumed to be cacheable
 	 * turned out not to be (because the View or Output Type isn't).
 	 *
 	 * @see        ExecutionFilter::startedCacheCreationCallback()
@@ -111,7 +111,7 @@ class ExecutionFilter extends Filter implements ActionFilterInterface
 	}
 	
 	/**
-	 * Method that's called when a cacheable Action/View with a stale cache has
+	 * Method that's called when a cacheable Controller/View with a stale cache has
 	 * finished execution and all caches are written.
 	 *
 	 * @see        ExecutionFilter::startedCacheCreationCallback()
@@ -265,7 +265,7 @@ class ExecutionFilter extends Filter implements ActionFilterInterface
 			$retval[] = $val;
 		}
 
-		$retval[] = $container->getModuleName() . '_' . $container->getActionName();
+		$retval[] = $container->getModuleName() . '_' . $container->getControllerName();
 
 		return $retval;
 	}
@@ -289,7 +289,7 @@ class ExecutionFilter extends Filter implements ActionFilterInterface
 		
 		switch($source) {
 			case 'callback':
-				$val = $container->getActionInstance()->$name();
+				$val = $container->getControllerInstance()->$name();
 				break;
 			case 'configuration_directive':
 				$val = Config::get($name);
@@ -356,15 +356,15 @@ class ExecutionFilter extends Filter implements ActionFilterInterface
 	{
 		// $lm = $this->context->getLoggerManager();
 
-		// get the context, controller and validator manager
-		$controller = $this->context->getController();
+		// get the context, Dispatcher and validator manager
+		$dispatcher = $this->context->getDispatcher();
 
-		// get the current action information
-		$actionName = $container->getActionName();
+		// get the current controller information
+		$controllerName = $container->getControllerName();
 		$moduleName = $container->getModuleName();
 		
-		// the action instance
-		$actionInstance = $container->getActionInstance();
+		// the controller instance
+		$controllerInstance = $container->getControllerInstance();
 
 		$request = $this->context->getRequest();
 
@@ -374,49 +374,52 @@ class ExecutionFilter extends Filter implements ActionFilterInterface
 			'agavi.cache.path',
 			array(
 				'moduleName' => $moduleName,
-				'actionName' => $actionName,
+				'controllerName' => $controllerName,
 			)
 		);
+
+        $config = array();
+
 		if($this->getParameter('enable_caching', true) && is_readable($cachingDotXml)) {
 			// $lm->log('Caching enabled, configuration file found, loading...');
 			// no _once please!
 			include(ConfigCache::checkConfig($cachingDotXml, $this->context->getName()));
 		}
 
-		$isActionCached = false;
+		$isControllerCached = false;
 
 		if($isCacheable) {
 			try {
 				$groups = $this->determineGroups($config['groups'], $container);
-				$actionGroups = array_merge($groups, array(self::ACTION_CACHE_ID));
+				$controllerGroups = array_merge($groups, array(self::CONTROLLER_CACHE_ID));
 			} catch(UncacheableException $e) {
 				// a group callback threw an exception. that means we're not allowed t cache
 				$isCacheable = false;
 			}
 			if($isCacheable) {
 				// this is not wrapped in the try/catch block above as it might throw an exception itself
-				$isActionCached = $this->checkCache(array_merge($groups, array(self::ACTION_CACHE_ID)), $config['lifetime']);
+				$isControllerCached = $this->checkCache(array_merge($groups, array(self::CONTROLLER_CACHE_ID)), $config['lifetime']);
 			
-				if(!$isActionCached) {
-					// cacheable, but action is not cached. notify our callback so it can prevent the stampede that follows
-					$this->startedCacheCreationCallback(self::CACHE_CALLBACK_ACTION_NOT_CACHED, $actionGroups, $config, $container);
+				if(!$isControllerCached) {
+					// cacheable, but controller is not cached. notify our callback so it can prevent the stampede that follows
+					$this->startedCacheCreationCallback(self::CACHE_CALLBACK_CONTROLLER_NOT_CACHED, $controllerGroups, $config, $container);
 				}
 			}
 		} else {
-			// $lm->log('Action is not cacheable!');
+			// $lm->log('Controller is not cacheable!');
 		}
 
-		if($isActionCached) {
-			// $lm->log('Action is cached, loading...');
-			// cache/dir/4-8-15-16-23-42 contains the action cache
+		if($isControllerCached) {
+			// $lm->log('Controller is cached, loading...');
+			// cache/dir/4-8-15-16-23-42 contains the controller cache
 			try {
-				$actionCache = $this->readCache($actionGroups);
-				// and restore action attributes
-				$actionInstance->setAttributes($actionCache['action_attributes']);
+				$controllerCache = $this->readCache($controllerGroups);
+				// and restore controller attributes
+				$controllerInstance->setAttributes($controllerCache['controller_attributes']);
 			} catch(\Exception $e) {
-				// cacheable, but action is not cached. notify our callback so it can prevent the stampede that follows
-				$this->startedCacheCreationCallback(self::CACHE_CALLBACK_ACTION_CACHE_GONE, $actionGroups, $config, $container);
-				$isActionCached = false;
+				// cacheable, but controller is not cached. notify our callback so it can prevent the stampede that follows
+				$this->startedCacheCreationCallback(self::CACHE_CALLBACK_CONTROLLER_CACHE_GONE, $controllerGroups, $config, $container);
+				$isControllerCached = false;
 			}
 		}
 		
@@ -424,28 +427,28 @@ class ExecutionFilter extends Filter implements ActionFilterInterface
 		$rememberTheView = null;
 		
 		while(true) {
-			if(!$isActionCached) {
-				$actionCache = array();
+			if(!$isControllerCached) {
+				$controllerCache = array();
 			
-				// $lm->log('Action not cached, executing...');
-				// execute the Action and get the View to execute
-				list($actionCache['view_module'], $actionCache['view_name']) = $container->runAction();
+				// $lm->log('Controller not cached, executing...');
+				// execute the Controller and get the View to execute
+				list($controllerCache['view_module'], $controllerCache['view_name']) = $container->runController();
 				
-				// check if we've just run the action again after a previous cache read revealed that the view is not cached for this output type and we need to go back to square one due to the lack of action attribute caching configuration...
+				// check if we've just run the controller again after a previous cache read revealed that the view is not cached for this output type and we need to go back to square one due to the lack of controller attribute caching configuration...
 				// if yes: is the view module/name that we got just now different from what was in the cache?
-				if(isset($rememberTheView) && $actionCache != $rememberTheView) {
+				if(isset($rememberTheView) && $controllerCache != $rememberTheView) {
 					// yup. clear it!
 					$ourClass = get_class($this);
 					$ourClass::clearCache($groups);
 				}
 				
 				// check if the returned view is cacheable
-				if($isCacheable && is_array($config['views']) && !in_array(array('module' => $actionCache['view_module'], 'name' => $actionCache['view_name']), $config['views'], true)) {
+				if($isCacheable && is_array($config['views']) && !in_array(array('module' => $controllerCache['view_module'], 'name' => $controllerCache['view_name']), $config['views'], true)) {
 					$isCacheable = false;
-					$this->abortedCacheCreationCallback(self::CACHE_CALLBACK_VIEW_NOT_CACHEABLE, $actionGroups, $config, $container);
+					$this->abortedCacheCreationCallback(self::CACHE_CALLBACK_VIEW_NOT_CACHEABLE, $controllerGroups, $config, $container);
 					
 					// so that view is not cacheable? okay then:
-					// check if we've just run the action again after a previous cache read revealed that the view is not cached for this output type and we need to go back to square one due to the lack of action attribute caching configuration...
+					// check if we've just run the controller again after a previous cache read revealed that the view is not cached for this output type and we need to go back to square one due to the lack of controller attribute caching configuration...
 					// 'cause then we need to flush all those existing caches - obviously, that data is stale now, as we learned, since we are not allowed to cache anymore for the view that was returned now
 					if(isset($rememberTheView)) {
 						// yup. clear it!
@@ -457,7 +460,7 @@ class ExecutionFilter extends Filter implements ActionFilterInterface
 					// $lm->log('Returned View is cleared for caching, proceeding...');
 				}
 
-				$actionAttributes = $actionInstance->getAttributes();
+				$controllerAttributes = $controllerInstance->getAttributes();
 			}
 
 			// clear the response
@@ -467,10 +470,10 @@ class ExecutionFilter extends Filter implements ActionFilterInterface
 			// clear any forward set, it's ze view's job
 			$container->clearNext();
 
-			if($actionCache['view_name'] !== View::NONE) {
+			if($controllerCache['view_name'] !== View::NONE) {
 
-				$container->setViewModuleName($actionCache['view_module']);
-				$container->setViewName($actionCache['view_name']);
+				$container->setViewModuleName($controllerCache['view_module']);
+				$container->setViewName($controllerCache['view_name']);
 
 				$key = $request->toggleLock();
 				try {
@@ -490,7 +493,7 @@ class ExecutionFilter extends Filter implements ActionFilterInterface
 						
 						$viewGroups = array_merge($groups, array($outputType));
 
-						if($isActionCached) {
+						if($isControllerCached) {
 							$isViewCached = $this->checkCache($viewGroups, $config['lifetime']);
 							if(!$isViewCached) {
 								// cacheable, but view is not cached. notify our callback so it can prevent the stampede that follows
@@ -498,7 +501,7 @@ class ExecutionFilter extends Filter implements ActionFilterInterface
 							}
 						}
 					} else {
-						$this->abortedCacheCreationCallback(self::CACHE_CALLBACK_OUTPUT_TYPE_NOT_CACHEABLE, $actionGroups, $config, $container);
+						$this->abortedCacheCreationCallback(self::CACHE_CALLBACK_OUTPUT_TYPE_NOT_CACHEABLE, $controllerGroups, $config, $container);
 						$isCacheable = false;
 					}
 				}
@@ -514,23 +517,23 @@ class ExecutionFilter extends Filter implements ActionFilterInterface
 				}
 				if(!$isViewCached) {
 					// view not cached
-					// has the cache config a list of action attributes?
-					if($isActionCached && !$config['action_attributes']) {
-						// no. that means we must run the action again!
-						$isActionCached = false;
+					// has the cache config a list of controller attributes?
+					if($isControllerCached && !$config['controller_attributes']) {
+						// no. that means we must run the controller again!
+						$isControllerCached = false;
 						
 						if($isCacheable) {
 							// notify our callback so it can remove the lock that's on the view
 							// but only if we're still marked as cacheable (if not, then that means the OT is not cacheable, so there wouldn't be a $viewGroups)
-							$this->abortedCacheCreationCallback(self::CACHE_CALLBACK_ACTION_CACHE_USELESS, $viewGroups, $config, $container);
+							$this->abortedCacheCreationCallback(self::CACHE_CALLBACK_CONTROLLER_CACHE_USELESS, $viewGroups, $config, $container);
 						}
 						// notify our callback so it can prevent the stampede that follows
-						$this->startedCacheCreationCallback(self::CACHE_CALLBACK_ACTION_CACHE_USELESS, $actionGroups, $config, $container);
+						$this->startedCacheCreationCallback(self::CACHE_CALLBACK_CONTROLLER_CACHE_USELESS, $controllerGroups, $config, $container);
 						
-						// but remember the view info, just in case it differs if we run the action again now
+						// but remember the view info, just in case it differs if we run the controller again now
 						$rememberTheView = array(
-							'view_module' => $actionCache['view_module'],
-							'view_name' => $actionCache['view_name'],
+							'view_module' => $controllerCache['view_module'],
+							'view_name' => $controllerCache['view_name'],
 						);
 						continue;
 					}
@@ -692,19 +695,19 @@ class ExecutionFilter extends Filter implements ActionFilterInterface
 				}
 			}
 		
-			// action cache writing must occur here, so actions that return View::NONE also get their cache written
-			if($isCacheable && !$isActionCached) {
-				$actionCache['action_attributes'] = array();
-				foreach($config['action_attributes'] as $attributeName) {
-					$actionCache['action_attributes'][$attributeName] = $actionAttributes[$attributeName];
+			// controller cache writing must occur here, so controllers that return View::NONE also get their cache written
+			if($isCacheable && !$isControllerCached) {
+				$controllerCache['controller_attributes'] = array();
+				foreach($config['controller_attributes'] as $attributeName) {
+					$controllerCache['controller_attributes'][$attributeName] = $controllerAttributes[$attributeName];
 				}
 
-				// $lm->log('Writing Action cache...');
+				// $lm->log('Writing Controller cache...');
 
-				$this->writeCache($actionGroups, $actionCache, $config['lifetime']);
+				$this->writeCache($controllerGroups, $controllerCache, $config['lifetime']);
 			
 				// notify callback that the execution has finished and caches have been written
-				$this->finishedCacheCreationCallback(self::CACHE_CALLBACK_ACTION_CACHE_WRITTEN, $actionGroups, $config, $container);
+				$this->finishedCacheCreationCallback(self::CACHE_CALLBACK_CONTROLLER_CACHE_WRITTEN, $controllerGroups, $config, $container);
 			}
 			
 			// we're done here. bai.
@@ -713,21 +716,21 @@ class ExecutionFilter extends Filter implements ActionFilterInterface
 	}
 
 	/**
-	 * Execute the Action
+	 * Execute the Controller
 	 *
 	 * @param      ExecutionContainer $container The current execution container.
 	 *
-	 * @return     mixed The processed View information returned by the Action.
+	 * @return     mixed The processed View information returned by the Controller.
 	 *
 	 * @author     David Zülke <dz@bitxtender.com>
 	 * @author     Felix Gilcher <felix.gilcher@bitextender.com>
 	 * @since      0.11.0
 	 * 
-	 * @deprecated since 1.0.0, use ExecutionContainer::runAction()
+	 * @deprecated since 1.0.0, use ExecutionContainer::runController()
 	 */
-	protected function runAction(ExecutionContainer $container)
+	protected function runController(ExecutionContainer $container)
 	{
-		return $container->runAction();
+		return $container->runController();
 	}
 	
 	/**

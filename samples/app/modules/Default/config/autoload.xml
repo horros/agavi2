@@ -2,7 +2,7 @@
 <ae:configurations xmlns="http://agavi.org/agavi/config/parts/autoload/1.1" xmlns:ae="http://agavi.org/agavi/config/global/envelope/1.1">
 	<ae:configuration>
 		<autoloads>
-			<autoload class="SampleAppDefaultBaseAction">%core.module_dir%/Default/lib/action/SampleAppDefaultBaseAction.class.php</autoload>
+			<autoload class="SampleAppDefaultBaseController">%core.module_dir%/Default/lib/controller/SampleAppDefaultBaseController.class.php</autoload>
 			<autoload class="SampleAppDefaultBaseModel">%core.module_dir%/Default/lib/model/SampleAppDefaultBaseModel.class.php</autoload>
 			<autoload class="SampleAppDefaultBaseView">%core.module_dir%/Default/lib/view/SampleAppDefaultBaseView.class.php</autoload>
 		</autoloads>

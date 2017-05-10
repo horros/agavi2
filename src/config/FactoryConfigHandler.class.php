@@ -92,7 +92,7 @@ class FactoryConfigHandler extends XmlConfigHandler
 				'required' => true,
 				'var' => null,
 				'must_implement' => array(
-					'Agavi\\Filter\\ActionFilterInterface',
+					'Agavi\\Filter\\ControllerFilterInterface',
 				),
 			),
 			
@@ -100,7 +100,7 @@ class FactoryConfigHandler extends XmlConfigHandler
 				'required' => Config::get('core.use_security', false),
 				'var' => null,
 				'must_implement' => array(
-					'Agavi\\Filter\\ActionFilterInterface',
+					'Agavi\\Filter\\ControllerFilterInterface',
 					'Agavi\\Filter\\SecurityFilterInterface',
 				),
 			),
@@ -158,9 +158,9 @@ class FactoryConfigHandler extends XmlConfigHandler
 				),
 			),
 			
-			'controller' => array(
+			'dispatcher' => array(
 				'required' => true,
-				'var' => 'controller',
+				'var' => 'dispatcher',
 				'must_implement' => array(
 				),
 			),
@@ -195,7 +195,7 @@ class FactoryConfigHandler extends XmlConfigHandler
 			
 			'request', // startup()
 			
-			'controller', // startup()
+			'dispatcher', // startup()
 		);
 		
 		foreach($document->getConfigurationElements() as $configuration) {

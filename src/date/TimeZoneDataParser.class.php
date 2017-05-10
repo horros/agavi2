@@ -103,15 +103,26 @@ class TimeZoneDataParser
 	protected function parseFile($file)
 	{
 		$data = file_get_contents($file);
-		
-		// find version info
-		if(!preg_match('/^#\s*@\(#\)\s*(?P<filename>\S+)\s+(?P<version>\S+)\s*$/m', $data, $meta)) {
-			$meta = array(
-				'filename' => '(unknown)',
-				'version' => '(unknown)',
-			);
-		}
-		
+
+
+        // find version info
+        // Try to detect it in the data file. If that fails,
+        // try to find the version -file, and use
+        // the current file as filename. If that fails, bail out.
+        if(!preg_match('/^#\s*@\(#\)\s*(?P<filename>\S+)\s+(?P<version>\S+)\s*$/m', $data, $meta)) {
+            if (file_exists(dirname($file) . '/version')) {
+                $meta = [
+                    'filename' => realpath($file),
+                    'version' => file_get_contents(dirname($file) . '/version')
+                ];
+            } else {
+                $meta = array(
+                    'filename' => '(unknown)',
+                    'version' => '(unknown)',
+                );
+            }
+        }
+
 		$zoneLines = explode("\n", $data);
 		// filter comments
 		$zoneLines = array_filter($zoneLines, function($line) { return !(strlen(trim($line)) == 0 || preg_match('!^\s*#!', $line)); });
@@ -121,7 +132,6 @@ class TimeZoneDataParser
 		$links = array();
 		while(list($i, $line) = each($zoneLines)) { // for($i = 0, $c = count($zoneLines); $i < $c; ++$i) {
 			$line = $zoneLines[$i];
-
 			if(preg_match('!^\s*Rule\s*(.*)!', $line, $match)) {
 				$cols = $this->splitLine($match[1], 9);
 				$rule = $this->parseRule($cols);
@@ -154,7 +164,6 @@ class TimeZoneDataParser
 
 		$this->prepareRules($rules);
 		$zones = $this->generateDatatables($zones);
-
 		return array('zones' => $zones, 'links' => $links, 'meta' => $meta);
 	}
 
@@ -275,6 +284,7 @@ class TimeZoneDataParser
 	protected function getRules($name, $from, $until, $gmtOff, $format)
 	{
 		if(!isset($this->rules[$name])) {
+		    var_dump(array_keys($this->rules));
 			throw new \InvalidArgumentException('No rule with the name ' . $name . ' exists');
 		}
 
@@ -416,7 +426,7 @@ class TimeZoneDataParser
 						$cal = $this->getContext()->getTranslationManager()->createCalendar();
 						$lastRuleStartYear = self::MIN_YEAR_VALUE;
 						for($i = count($myRules) - 1; $i > 0; --$i) {
-							if(!$myRules[$i]['fromEndless']) {
+							if(!isset($myRules[$i]['fromEndless']) || !$myRules[$i]['fromEndless']) {
 								break;
 							}
 						}
@@ -505,7 +515,8 @@ class TimeZoneDataParser
 
 			// compact the same (raw|dst)offset & name fields
 			foreach($myRules as $id => $rule) {
-				$key = sprintf('raw=%d&dst=%d&name=%s', $rule['rawOffset'], $rule['dstOffset'], $rule['name']);
+			    if (is_array($rule['name'])) continue;
+                $key = sprintf('raw=%d&dst=%d&name=%s', $rule['rawOffset'], $rule['dstOffset'], $rule['name']);
 				$myTypes[$key][] = $id;
 			}
 

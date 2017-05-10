@@ -2,8 +2,8 @@
 <ae:configurations xmlns:ae="http://agavi.org/agavi/config/global/envelope/1.1" xmlns="http://agavi.org/agavi/config/parts/testing/suites/1.0">
 	<ae:configuration>
 		<suites>
-			<suite name="Action">
-				<include>unit/action/.*Test.php</include>
+			<suite name="Controller">
+				<include>unit/controller/.*Test.php</include>
 			</suite>
 			<suite name="Config">
 				<include>unit/config/.*Test.php</include>
@@ -11,8 +11,8 @@
 			<suite name="Context">
 				<include>unit/context/.*Test.php</include>
 			</suite>
-			<suite name="Controller">
-				<include>unit/controller/.*Test.php</include>
+			<suite name="Dispatcher">
+				<include>unit/dispatcher/.*Test.php</include>
 			</suite>
 			<suite name="Database">
 				<include>unit/database/.*Test.php</include>
@@ -57,7 +57,7 @@
 			</suite>
 			<suite name="Session">
 				<testfiles>
-					<testfile>unit/session/AgaviSessionStorageTest.php</testfile>
+					<testfile>unit/session/SessionStorageTest.php</testfile>
 				</testfiles>
 			</suite>
 			<suite name="Testing">

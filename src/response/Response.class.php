@@ -15,7 +15,7 @@ namespace Agavi\Response;
 // |   End:                                                                    |
 // +---------------------------------------------------------------------------+
 use Agavi\Core\Context;
-use Agavi\Controller\OutputType;
+use Agavi\Dispatcher\OutputType;
 use Agavi\Util\AttributeHolder;
 
 /**
@@ -95,7 +95,7 @@ abstract class Response extends AttributeHolder
 		unset($this->contextName);
 		
 		if(isset($this->outputTypeName)) {
-			$this->outputType = $this->context->getController()->getOutputType($this->outputTypeName);
+			$this->outputType = $this->context->getDispatcher()->getOutputType($this->outputTypeName);
 			unset($this->outputTypeName);
 		}
 		

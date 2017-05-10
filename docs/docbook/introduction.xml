@@ -36,30 +36,30 @@
       configuration and control abilities, such as per-module autoloading,
       dedicated filters, bundled models and more.</para>
 
-      <para>Each Module contains one or more Actions. Actions contain logic
+      <para>Each Module contains one or more Controllers. Controllers contain logic
       code and are totally independent of the way you're using them, be it
       through a normal web application, or via a SOAP interface - the code
       remains exactly the same, you usually never touch them again once they
-      are finished. If you're wondering what role Actions play in the MVC
+      are finished. If you're wondering what role Controllers play in the MVC
       pattern, the most accurate explanation would likely be that they are a
-      bridge between Controller and Model, but a lot closer to the Controller
-      than to the Model - think of Actions as parts of the Controller which
+      bridge between Dispatcher and Model, but a lot closer to the Dispatcher
+      than to the Model - think of Controllers as parts of the Dispatcher which
       are loaded on demand.</para>
 
-      <para>Once an Action finished execution, control is passed to the View,
-      which handles all presentational aspects of the Action that was
-      executed, like redirection, forwarding to other Actions, HTTP headers,
+      <para>Once an Controller finished execution, control is passed to the View,
+      which handles all presentational aspects of the Controller that was
+      executed, like redirection, forwarding to other Controllers, HTTP headers,
       the layout and Templates to use, Cookies and so on. This separation
       reduces a lot of redundant code and guarantees maximum flexibility of
       your business logic - as aforementioned, it's simply a matter of
-      throwing in a new Template if you want an existing Action to output,
+      throwing in a new Template if you want an existing Controller to output,
       say, JSON in addition to plain HTML.</para>
 
-      <para>Models encapsulate business logic transactions and offer a fully
-      transparent API to the Actions that use it, thereby allowing you to
+      <para>Models encapsulate business logic transcontrollers and offer a fully
+      transparent API to the Controllers that use it, thereby allowing you to
       change the underlying implementation without having to adjust any other
       code. The more logic you put into Models, the fewer lines you have to
-      write in your Actions, and you get the benefit of universal code
+      write in your Controllers, and you get the benefit of universal code
       reusability - not only within your application! While Models may be
       bundled with a Module, they can also be "global" to your application,
       and you may, of course, share Models across applications. You don't even
@@ -151,7 +151,7 @@
             </listitem>
 
             <listitem>
-              <para>Controller</para>
+              <para>Dispatcher</para>
             </listitem>
 
             <listitem>
@@ -177,37 +177,37 @@
       bootstrap the specified (or default) Environment and then create an
       instance of the specified (or default) Context (this instantiation sets
       up all of the core components of the framework). Finally, the request is
-      dispatched from the Context's Controller instance.</para>
+      dispatched from the Context's Dispatcher instance.</para>
 
       <para>The dispatch method first executes the routing (if enabled) to
-      determine the Module/Action that are to be executed. Then, a filter
+      determine the Module/Controller that are to be executed. Then, a filter
       chain containing all Global Filters is created, and the DispatchFilter
       is added to that chain as the last element. Each filter will be called
       in nested sequence, with the last filter being the DispatchFilter, which
-      calls the first forward to the requested Module and Action. After that,
+      calls the first forward to the requested Module and Controller. After that,
       the control passes back through the filters to the dispatch method,
       which sends the Response contents and exits. Filters are given the
       global Response as a parameter to work with, so they can modify content,
       send Cookies and so on.</para>
 
       <para>When a forward happens, Agavi does some checks to determine if the
-      requested Module/Action exists, if the Module the Action belongs to is
+      requested Module/Controller exists, if the Module the Controller belongs to is
       enabled and so on. Then, a filter chain is created, with the first
       filter being the Security Filter if security is enabled. This filter
-      will forward unauthenticated users to the default "Login Action" if a
-      requested Action requires authentication, and also prevent access of
-      Actions an user doesn't have sufficient credentials for by forwarding to
-      the default "Secure Action". After that, the Action Filters are added to
-      the chain, followed by the Action Filters defined by the Action's
+      will forward unauthenticated users to the default "Login Controller" if a
+      requested Controller requires authentication, and also prevent access of
+      Controllers an user doesn't have sufficient credentials for by forwarding to
+      the default "Secure Controller". After that, the Controller Filters are added to
+      the chain, followed by the Controller Filters defined by the Controller's
       Module. The last filter in the chain is the Execution Filter, usually
       either AgaviExecutionFilter or AgaviCachingExecutionFilter. Again, each
       filter in the chain is called and may do modifications to the Response
-      instance, which is a new one for each Action that is processed and will
-      be merged to the global Response by the Controller once control returns
+      instance, which is a new one for each Controller that is processed and will
+      be merged to the global Response by the Dispatcher once control returns
       to the forward method.</para>
 
       <para>The Execution Filter, once reached, will handle Validation, run
-      the Action (or skip execution if the Action doesn't serve the Request
+      the Controller (or skip execution if the Controller doesn't serve the Request
       method), determine the View to execute and then execute the View and,
       after that, start the rendering of the output.</para>
     </section>

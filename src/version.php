@@ -30,11 +30,11 @@ use Agavi\Config\Config;
 
 Config::set('agavi.name', 'Agavi');
 
-Config::set('agavi.major_version', '1');
-Config::set('agavi.minor_version', '1');
+Config::set('agavi.major_version', '2');
+Config::set('agavi.minor_version', '0');
 Config::set('agavi.micro_version', '0');
 Config::set('agavi.status', 'dev');
-Config::set('agavi.branch', 'trunk');
+Config::set('agavi.branch', 'master');
 
 Config::set('agavi.version',
 	Config::get('agavi.major_version') . '.' .

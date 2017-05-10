@@ -1,6 +1,6 @@
 <?php
 use Agavi\View\View;
-use Agavi\Controller\ExecutionContainer;
+use Agavi\Dispatcher\ExecutionContainer;
 use Agavi\Request\RequestDataHolder;
 use Agavi\Exception\ViewException;
 
@@ -80,7 +80,7 @@ class SampleAppBaseView extends View
 			'the Output Type "%2$s". It is recommended that you change the code of '.
 			'the method "execute%3$s()" in the base View "%4$s" that is throwing '.
 			'this exception to deal with this situation in a more appropriate '.
-			'way, for example by forwarding to the default 404 error action, or by '.
+			'way, for example by forwarding to the default 404 error Controller, or by '.
 			'showing some other meaningful error message to the user which explains '.
 			'that the operation was unsuccessful beacuse the desired Output Type is '.
 			'not implemented.',
@@ -98,7 +98,7 @@ class SampleAppBaseView extends View
 			'the Output Type "%2$s". It is recommended that you change the code of '.
 			'the method "execute%3$s()" in the base View "%4$s" that is throwing '.
 			'this exception to deal with this situation in a more appropriate '.
-			'way, for example by forwarding to the default 404 error action, or by '.
+			'way, for example by forwarding to the default 404 error Controller, or by '.
 			'showing some other meaningful error message to the user which explains '.
 			'that the operation was unsuccessful beacuse the desired Output Type is '.
 			'not implemented.',

@@ -71,11 +71,11 @@ class SettingConfigHandler extends XmlConfigHandler
 		
 		foreach($document->getConfigurationElements() as $cfg) {
 			// let's do our fancy work
-			if($cfg->has('system_actions')) {
-				foreach($cfg->get('system_actions') as $action) {
-					$name = $action->getAttribute('name');
-					$data[sprintf('actions.%s_module', $name)] = $action->getChild('module')->getValue();
-					$data[sprintf('actions.%s_action', $name)] = $action->getChild('action')->getValue();
+			if($cfg->has('system_controllers')) {
+				foreach($cfg->get('system_controllers') as $controller) {
+					$name = $controller->getAttribute('name');
+					$data[sprintf('controllers.%s_module', $name)] = $controller->getChild('module')->getValue();
+					$data[sprintf('controllers.%s_controller', $name)] = $controller->getChild('controller')->getValue();
 				}
 			}
 			

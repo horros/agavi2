@@ -298,8 +298,8 @@ class ValidationManager extends ParameterHolder implements ValidatorContainerInt
 		$this->report->setDependTokens($this->getDependencyManager()->getDependTokens());
 
 		$ma = $req->getParameter('module_accessor');
-		$aa = $req->getParameter('action_accessor');
-		$umap = $req->getParameter('use_module_action_parameters');
+		$aa = $req->getParameter('controller_accessor');
+		$umap = $req->getParameter('use_module_controller_parameters');
 
 		$mode = $this->getParameter('mode');
 

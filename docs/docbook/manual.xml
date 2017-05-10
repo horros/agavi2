@@ -42,7 +42,7 @@
         application, its main focus lies in Web-based applications and Web
         services rather than standalone rich-client applications or daemons.
         That's because the internal execution flow is modeled around a typical
-        HTTP request/response scenario, where an action is invoked upon a
+        HTTP request/response scenario, where a controller is invoked upon a
         request, and the resulting response is built and returned before
         execution ends, just like any other PHP application.</para>
 
@@ -85,7 +85,7 @@
           <para><simplelist>
               <member><emphasis role="bold">It helps you build and maintain
               clean URLs.</emphasis> Agavi's routing implementation can not
-              only map request URLs to actions, but also handles your web
+              only map request URLs to controllers, but also handles your web
               service requests, generates URLs for you, and much more. Read
               the chapter on routing for more information on advanced features
               such as route callbacks or how to read an HTTP Accept header and
@@ -155,7 +155,7 @@
           fully benefit from all the features that made you choose Agavi in
           the first place.</para>
 
-          <para>And because Agavi follows the Model-View-Controller (MVC)
+          <para>And because Agavi follows the Model-View-Dispatcher (MVC)
           architecture, your code automatically becomes highly efficient as
           the various parts are cleanly separated, making your application
           easily maintainable:</para>
@@ -181,11 +181,11 @@
             </simplelist></para>
 
           <para><simplelist>
-              <member>The <emphasis role="bold">Controller</emphasis> contains
+              <member>The <emphasis role="bold">Dispatcher</emphasis> contains
               the business logic: the code that talks to the model, transforms
               the data, performs necessary tasks and then prepares data for
               the View. In Agavi, we call this the
-              <firstterm>Action</firstterm>. After it has finished its task,
+              <firstterm>Controller</firstterm>. After it has finished its task,
               it tells the system which View to use to generate the
               output.</member>
             </simplelist></para>
@@ -392,7 +392,7 @@
       PEAR installed. If you'd like to grab it straight from the SVN
       repository, you'll need a Subversion client installed, of course. Either
       way, we recommend you have Phing installed, because creating a project,
-      actions, view and all these things by hand becomes utterly annoying over
+      controllers, view and all these things by hand becomes utterly annoying over
       time, and the command line utility uses Phing to relieve you of that
       burden.</para>
     </section>
@@ -459,7 +459,7 @@
         or <filename>etc/agavi.bat-dist</filename> script to an
         <filename>agavi</filename> or <filename>agavi.bat</filename>
         executable into a convenient location so you can use the shell
-        commands for creating projects, modules, actions etc. Keep in mind
+        commands for creating projects, modules, controllers etc. Keep in mind
         that you must edit the script and enter the path to your Agavi
         installation (that's the <filename>src</filename> folder you copied
         earlier) so everything works as intended.</para>
@@ -631,7 +631,7 @@
 
       <para>The sample app also supports XMLRPC. It exposes a method called
       "getItemPrice" that can be used to retrieve the price for the products
-      the SearchEngineSpam action knows. Use the following script to test this
+      the SearchEngineSpam controller knows. Use the following script to test this
       (needs curl and xmlrpc extensions):</para>
 
       <para><programlisting>&lt;?php
@@ -705,26 +705,26 @@ if(curl_errno($ch)) {
       <filename>app/config/routing.xml</filename>. While you're at it, you can
       also throw away the two <filename>.png</filename> files in pub/ that
       belong to the welcome page, and, of course, the
-      <filename>WelcomeToAgaviAction.class.php</filename>,
+      <filename>WelcomeToAgaviController.class.php</filename>,
       <filename>WelcomeToAgaviSuccessView.class.php</filename> and
       <filename>WelcomeToAgaviSuccess.php</filename> template. You're now good
-      to go and may add your own Actions. But before that, reload your browser
+      to go and may add your own Controllers. But before that, reload your browser
       - a blank page appears! Time for the infamous "Hello, World" example -
-      open up the default action's template (remember, you entered the default
-      action's name during agavi project, but it usually is
+      open up the default controller's template (remember, you entered the default
+      controller's name during agavi project, but it usually is
       <filename>IndexSuccess.php</filename> in the default module's templates
       directory) and type some text. Back to the browser (you did remember to
       save, right?), reload, and there it is, the text you entered! Well done,
       that was the first step with Agavi, and the next ones will be just as
       exciting.</para>
 
-      <para>If you want to add more Modules, Actions or Models to your
+      <para>If you want to add more Modules, Controllers or Models to your
       application, you can use the <command>agavi</command> script
       again:</para>
 
       <para><command>agavi module</command></para>
 
-      <para><command>agavi action</command></para>
+      <para><command>agavi controller</command></para>
 
       <para><command>agavi model</command></para>
 
@@ -762,7 +762,7 @@ if(curl_errno($ch)) {
       Example:</para>
 
       <para><programlisting>template.extension = .tpl</programlisting>If you
-      create an action called "Index" and a view called "Success", the command
+      create a controller called "Index" and a view called "Success", the command
       line script will copy <filename>Template.tpl.tmpl</filename> to
       <filename>IndexSuccess.tpl</filename> for you.</para>
 
@@ -789,7 +789,7 @@ if(curl_errno($ch)) {
 
       <para>modules</para>
 
-      <para>actions</para>
+      <para>controllers</para>
 
       <para>views and templates</para>
 
@@ -862,7 +862,7 @@ if(curl_errno($ch)) {
             </listitem>
 
             <listitem>
-              <para>Controller</para>
+              <para>Dispatcher</para>
             </listitem>
 
             <listitem>
@@ -890,37 +890,37 @@ if(curl_errno($ch)) {
       bootstrap the specified (or default) Environment and then create an
       instance of the specified (or default) Context (this instantiation sets
       up all of the core components of the framework). Finally, the request is
-      dispatched from the Context's Controller instance.</para>
+      dispatched from the Context's Dispatcher instance.</para>
 
       <para>The dispatch method first executes the routing (if enabled) to
-      determine the Module/Action that are to be executed. The routing returns
-      an Execution Container for the first action. Then, a filter chain
+      determine the Module/Controller that are to be executed. The routing returns
+      an Execution Container for the first controller. Then, a filter chain
       containing all Global Filters is created, and the DispatchFilter is
       added to that chain as the last element. Each filter will be called in
       nested sequence, with the last filter being the DispatchFilter, which
-      executes the first Execution Container with the requested Action. After
+      executes the first Execution Container with the requested Controller. After
       that, the control passes back through the filters to the dispatch
       method, which sends the Response contents and exits. Filters are given
       the global Response as a parameter to work with, so they can modify
       content, send Cookies and so on.</para>
 
       <para>When an Execution Container is run, Agavi does some checks to
-      determine if the requested Module/Action exists, if the Module the
-      Action belongs to is enabled and so on. Then, a filter chain is created,
+      determine if the requested Module/Controller exists, if the Module the
+      Controller belongs to is enabled and so on. Then, a filter chain is created,
       with the first filter being the Security Filter if security is enabled.
       This filter will forward unauthenticated users to the default "Login
-      Action" if a requested Action requires authentication, and also prevent
-      access of Actions an user doesn't have sufficient credentials for by
-      forwarding to the default "Secure Action". After that, the Action
-      Filters are added to the chain, followed by the Action Filters defined
-      by the Action's Module. The last filter in the chain is the Execution
+      Controller" if a requested Controller requires authentication, and also prevent
+      access of Controllers an user doesn't have sufficient credentials for by
+      forwarding to the default "Secure Controller". After that, the Controller
+      Filters are added to the chain, followed by the Controller Filters defined
+      by the Controller's Module. The last filter in the chain is the Execution
       Filter. Again, each filter in the chain is called and may do
       modifications to the Response instance, which is a new one for each
-      Action that is processed and will be merged to the global Response by
-      the Controller once control returns to the forward method.</para>
+      Controller that is processed and will be merged to the global Response by
+      the Dispatcher once control returns to the forward method.</para>
 
       <para>The Execution Filter, once reached, will handle Validation, run
-      the Action (or skip execution if the Action doesn't serve the Request
+      the Controller (or skip execution if the Controller doesn't serve the Request
       method), determine the View to execute and then execute the View and,
       after that, start the rendering of the output.</para>
     </section>
@@ -1082,10 +1082,10 @@ if(curl_errno($ch)) {
         <section id="user-input">
           <title>User Input</title>
 
-          <para>This chapter focuses on how to use user input in Agavi actions
+          <para>This chapter focuses on how to use user input in Agavi controllers
           and views. We don't go into input validation as the validation in
           Agavi works in such a way that you can turn it on later without
-          touching the code in actions or views. Just remember that in real
+          touching the code in controllers or views. Just remember that in real
           life you should never use any un-validated user input.</para>
 
           <para>All the input from the user like <code>$_GET</code> and
@@ -1093,7 +1093,7 @@ if(curl_errno($ch)) {
           <classname>AgaviRequestDataholder</classname> (in the web context
           <classname>AgaviWebRequestDataHolder</classname> but you don't have
           to worry about the actual implementation) object that's given to the
-          action's execute method as an argument. Depending on your validation
+          controller's execute method as an argument. Depending on your validation
           settings this object has either all input or just the input that has
           passed validation (see chapter Validation to learn more about
           different validation set-ups). For added security PHP's superglobals
@@ -1102,7 +1102,7 @@ if(curl_errno($ch)) {
           insecure data. Agavi also removes so-called magic quotes from the
           input should that feature be enabled in your PHP set-up.</para>
 
-          <programlisting>class Products_EditAction extends WebShopBaseAction
+          <programlisting>class Products_EditController extends WebShopBaseController
 {
   // route pattern /product/(id:\d+)/edit
   // eg. www.example.com/product/123/edit to edit prd no 123
@@ -1135,20 +1135,20 @@ if(curl_errno($ch)) {
         <section id="passing-data-inside-the-system">
           <title>Passing Data Inside the System</title>
 
-          <section id="passing-data-from-action-to-view">
-            <title>From Action to View/Template</title>
+          <section id="passing-data-from-controller-to-view">
+            <title>From Controller to View/Template</title>
 
-            <para>{Action::setAttribute, View::getAttribute, $template array /
+            <para>{Controller::setAttribute, View::getAttribute, $template array /
             extracted vars}</para>
 
-            <para>To pass data from the action to the view or template, you
-            would use the action's <methodname>setAttribute</methodname>
+            <para>To pass data from the controller to the view or template, you
+            would use the controller's <methodname>setAttribute</methodname>
             -method, which takes two parameters: a name-parameter identifying
             the data, and a mixed parameter of actual data. The data can be
             anything you can use as a variable in PHP itself, for instance
             strings, arrays or objects.</para>
 
-            <para><programlisting>class Products_ViewAction extends WebShopBaseAction
+            <para><programlisting>class Products_ViewController extends WebShopBaseController
 {
   // route pattern /prouct/(id:\d+)
   // eg. www.example.com/product/123 to view the product with id 123
@@ -1169,7 +1169,7 @@ if(curl_errno($ch)) {
             namespaces, for more information see @@attribute
             namespaces@@.</para>
 
-            <para>All the request parameter that the action recieved are also
+            <para>All the request parameter that the controller recieved are also
             available via the AgaviRequestDataHolder -object in the view. This
             is also true for the template, if the request data auto-assignment
             is enabled in <filename>output_types.xml</filename>.</para>
@@ -1202,16 +1202,16 @@ if(curl_errno($ch)) {
         using a format like index.php?param1=val1&amp;param2=val2. Routing can
         help you get rid of this ugly format that search engines do not
         particularly like and make the URI prettier for the users. Routing is
-        basically a method to map URIs to module/action -pairs and provide
+        basically a method to map URIs to module/controller -pairs and provide
         information for them, such as the parameters. Think of it as replacing
         mod_rewrite for Apache or ISAPI_Rewrite for Microsoft IIS but with a
         lot more power and features. Routes are defined in the file
         <filename>%core.app_dir%/config/routing.xml</filename></para>
 
-        <para>Let's look at an example route:<programlisting>&lt;route name="viewproduct" pattern="^/products/(id:\d+)$" module="Shop" action="ViewProduct" /&gt;</programlisting></para>
+        <para>Let's look at an example route:<programlisting>&lt;route name="viewproduct" pattern="^/products/(id:\d+)$" module="Shop" controller="ViewProduct" /&gt;</programlisting></para>
 
         <para>A request to the URL <uri>http://host.com/products/157</uri>
-        would run the "ViewProduct" action in module "Shop", with a request
+        would run the "ViewProduct" controller in module "Shop", with a request
         parameter <varname>id</varname> set to "157".</para>
 
         <para>Most of the "magic" is achieved using regular expressions
@@ -1239,11 +1239,11 @@ if(curl_errno($ch)) {
         methods by default, and are always matched in the order they are
         configured.</para>
 
-        <para>It is worth to note that if the route has the module and action
+        <para>It is worth to note that if the route has the module and controller
         attributes set, they will overwrite route parameters named "module"
-        and "action". If the attributes aren't set, you can use module and
-        action parameters, and they would do what you expect -- set the module
-        and the action of the request.</para>
+        and "controller". If the attributes aren't set, you can use module and
+        controller parameters, and they would do what you expect -- set the module
+        and the controller of the request.</para>
 
         <section id="routing-optional-parts">
           <title>Optional Parts</title>
@@ -1257,12 +1257,12 @@ if(curl_errno($ch)) {
           done the same way optional parts are done in regular expressions:
           with the ?-quantifier.</para>
 
-          <para><programlisting>&lt;route name="viewproduct" pattern="^/products(/{id:\d+})?$" module="Shop" action="ViewProduct" /&gt;</programlisting>The
+          <para><programlisting>&lt;route name="viewproduct" pattern="^/products(/{id:\d+})?$" module="Shop" controller="ViewProduct" /&gt;</programlisting>The
           difference between this route and the previous one is that now the
           slash and the id -parameters are optional. That is, the request
           <uri>http://host.com/products</uri> would also run the
-          <methodname>Shop.ViewProduct</methodname> action, but the
-          id-parameter would be undefined. Your action can then check if the
+          <methodname>Shop.ViewProduct</methodname> controller, but the
+          id-parameter would be undefined. Your controller can then check if the
           id request parameter is null, and if so show a listing of, say, all
           products.</para>
         </section>
@@ -1275,7 +1275,7 @@ if(curl_errno($ch)) {
           route even if the parameter is not optional. For instance, we have a
           route like this:</para>
 
-          <programlisting>&lt;route name="viewproduct" pattern="^/products(/{id:\d+})(/{lang:[a-z]{2})?$" module="Shop" action="ViewProduct"&gt;
+          <programlisting>&lt;route name="viewproduct" pattern="^/products(/{id:\d+})(/{lang:[a-z]{2})?$" module="Shop" controller="ViewProduct"&gt;
   &lt;defaults&gt;
     &lt;default for="lang"&gt;en&lt;/default&gt;
   &lt;/defaults&gt;
@@ -1305,7 +1305,7 @@ if(curl_errno($ch)) {
           <para>Let's look at a more complicated example from the Sample
           Application:</para>
 
-          <para><programlisting>&lt;route name="search_engine_spam" pattern="^/products(/buy-cheap-{name:[\S\s]+}-at-agavi-dot-org)?/(id:\d+)" module="Default" action="SearchEngineSpam"&gt;
+          <para><programlisting>&lt;route name="search_engine_spam" pattern="^/products(/buy-cheap-{name:[\S\s]+}-at-agavi-dot-org)?/(id:\d+)" module="Default" controller="SearchEngineSpam"&gt;
   &lt;defaults&gt;
     &lt;default for="name"&gt;/buy-cheap-{chainsaws}-at-agavi-dot-org&lt;/default&gt;
   &lt;/defaults&gt;
@@ -1381,7 +1381,7 @@ if(curl_errno($ch)) {
           <title>Subroutes</title>
 
           <para>Imagine you have a big application with tens or hundreds of
-          actions. Imagine adding all those into
+          controllers. Imagine adding all those into
           <filename>routing.xml</filename> one by one in the
           <code>&lt;routes&gt;</code> -section. It would be very ineffective
           to parse through all those routes in order to find the correct
@@ -1390,23 +1390,23 @@ if(curl_errno($ch)) {
           <para>Subroutes are routes that are defined under other routes. Let
           us explain through an example:</para>
 
-          <programlisting>&lt;route name="blog" pattern="^/blog" module="Default" action="Blog"&gt;
-  &lt;route name=".index" pattern="^/$" action=".Index" /&gt;
-  &lt;route name=".article" pattern="^/(id:\d+)(-{title:\S+})?$" action=".ShowArticle" /&gt;
+          <programlisting>&lt;route name="blog" pattern="^/blog" module="Default" controller="Blog"&gt;
+  &lt;route name=".index" pattern="^/$" controller=".Index" /&gt;
+  &lt;route name=".article" pattern="^/(id:\d+)(-{title:\S+})?$" controller=".ShowArticle" /&gt;
 &lt;/route&gt; </programlisting>
 
-          <para>This would <emphasis role="bold">not</emphasis> run the action
+          <para>This would <emphasis role="bold">not</emphasis> run the controller
           Blog in the module Default for the request
           <uri>http://host.com/blog</uri>. Why not? Because the request cannot
           be anchored at the end of the pattern, as the pattern has children.
-          That is, to run the Blog.Index -action, you would have to use the
+          That is, to run the Blog.Index -controller, you would have to use the
           request <uri>http://host.com/blog/</uri> (note the slash), and to
           run the Blog.ShowArticle with the id and title -parameters set, you
           would have to use the request
           <uri>http://host.com/blog/151-Agavi_rocks</uri>. This way you only
-          have to define "top level" routes for your main actions, and you can
-          use subroutes to define routes to actions that are conceptually
-          below the "top level" actions, making parsing of the route much
+          have to define "top level" routes for your main controllers, and you can
+          use subroutes to define routes to controllers that are conceptually
+          below the "top level" controllers, making parsing of the route much
           faster.</para>
         </section>
 
@@ -1414,7 +1414,7 @@ if(curl_errno($ch)) {
           <title>Other Things to Match</title>
 
           <para>Routing can do more -- like match against other sources, or do
-          things other than setting module and action. An example:</para>
+          things other than setting module and controller. An example:</para>
 
           <para>Because this is a <abbrev>MVC</abbrev>-framework, the data
           produced in the model should be view-independent. That is, the same
@@ -1455,7 +1455,7 @@ if(curl_errno($ch)) {
         <section id="routing-generating">
           <title>Generating routes</title>
 
-          <para>To generate routes in templates or actions, you use the
+          <para>To generate routes in templates or controllers, you use the
           <classname>AgaviRouting</classname>-class which returns the URI or
           route as a string. You must use the <code>name</code> -attribute for
           the routes in order for the
@@ -1491,14 +1491,14 @@ if(curl_errno($ch)) {
       </section>
     </section>
 
-    <section id="actions-and-models">
-      <title>Actions and Models</title>
+    <section id="controllers-and-models">
+      <title>Controllers and Models</title>
 
       <para>(what they do and contain (business logic at different
       levels))</para>
 
-      <para>Before we talk about Actions and Models in Agavi let's take a
-      brief look at the MVC (Model-View-Controller) paradigm. The idea behind
+      <para>Before we talk about Controllers and Models in Agavi let's take a
+      brief look at the MVC (Model-View-Dispatcher) paradigm. The idea behind
       MVC is that the view (a presentation layer, user interface) and the
       model (an object, or alike, that represents some information about your
       application domain) should be de-coupled in such a way that the model is
@@ -1508,14 +1508,14 @@ if(curl_errno($ch)) {
 
       <para>When looking at Agavi's classes it's easy to see what's the view
       part and where's the controller. Models are of course your own classes
-      although they can derive from an AgaviModel class. But where do Actions
+      although they can derive from an AgaviModel class. But where do Controllers
       stand in this scheme? Orthodoxly they are a piece of the controller (or,
-      some could argue, the controller itself) but Agavi's Actions can be seen
-      as the glue between the model and the controller. The Controller decides
-      what Action to trigger and after that it's up to the Action to execute
+      some could argue, the controller itself) but Agavi's Controllers can be seen
+      as the glue between the model and the controller. The Dispatcher decides
+      what Controller to trigger and after that it's up to the Controller to execute
       the proper domain logic. Some trivial domain logic can reside in the
-      action but to keep your application in accordance with MVC the actual
-      model part of your design should be separated from the action.</para>
+      controller but to keep your application in accordance with MVC the actual
+      model part of your design should be separated from the controller.</para>
 
       <note>
         <para>Understanding the idea and the value of MVC is essential in all
@@ -1565,37 +1565,37 @@ $bar1 = $this-&gt;getContext()-&gt;getModel('SinglesBar'); //loads and initializ
 $bar2 = $this-&gt;getContext()-&gt;getModel('SinglesBar'); //returns the same instance of SinglesBar as the line above.</programlisting>
       </section>
 
-      <section id="actions">
-        <title>Actions</title>
+      <section id="controllers">
+        <title>Controllers</title>
 
-        <para>(actions: execution, execution methods, serving request methods,
+        <para>(controllers: execution, execution methods, serving request methods,
         default view name, validation, security)</para>
 
-        <para>Like we noticed before, actions can be seen as a part of the
+        <para>Like we noticed before, controllers can be seen as a part of the
         controller, or as glue between the controller and the model. The
-        controller can execute actions in two ways depending on the request
+        controller can execute controllers in two ways depending on the request
         method. In a web-context this could mean the controller would call the
         <methodname>executeRead</methodname> -method for a HTTP GET-request or
         <methodname>executeWrite</methodname> for a HTTP POST-request. Both
         methods take an <classname>AgaviRequestDataHolder</classname> -object
-        as parameter. If the action contains an
+        as parameter. If the controller contains an
         <methodname>execute()</methodname>-method and neither
         <methodname>executeRead()</methodname> or
         <methodname>executeWrite()</methodname>, the controller will call the
         <methodname>execute()</methodname> method regardless of the request
         method. If the request method is POST but it does not implement the
-        write method or similarly the request method is GET but the action
+        write method or similarly the request method is GET but the controller
         does not implement the read method, it can run a default view by
         implementing the <methodname>getDefaultViewName</methodname>
         -method.</para>
 
         <para>Before the controller executes the execute-method, it will check
-        two things: does the action require security (ie a user that has
+        two things: does the controller require security (ie a user that has
         logged in) and what credentials, if any, the user must have to be
-        allowed to execute the action.</para>
+        allowed to execute the controller.</para>
 
         <para>The former is simply done by adding an
-        <methodname>isSecure()</methodname> -method to the action which
+        <methodname>isSecure()</methodname> -method to the controller which
         returns true if security is required. Credential requirements are
         defined by implementing a <methodname>getCredentials()</methodname>
         -method which can return either a string indicating a simple
@@ -1610,25 +1610,25 @@ $bar2 = $this-&gt;getContext()-&gt;getModel('SinglesBar'); //returns the same in
         <code>array("Edit", array("Write", "Foo"))</code>.</para>
 
         <para>After the controller has decided if the user is allowed to
-        execute the action, validation occurs. If the validation fails, the
-        action's <methodname>handleError()</methodname> will be run, which
+        execute the controller, validation occurs. If the validation fails, the
+        controller's <methodname>handleError()</methodname> will be run, which
         would, like the execute() return a string or an array indicating which
-        view or action/view -pair should be handed the control. The validation
+        view or controller/view -pair should be handed the control. The validation
         error messages are available for the templates using
         <methodname>$container-&gt;getValidationManager()-&gt;getErrorMessages()</methodname>
-        which returns an array of messages. For more information on action
+        which returns an array of messages. For more information on controller
         validation, see section 11 in this manual.</para>
 
-        <para>When the action has finished, it must tell the controller which
-        view to execute. This of course depends on the outcome of the action:
+        <para>When the controller has finished, it must tell the controller which
+        view to execute. This of course depends on the outcome of the controller:
         if we are successful, we would want to pass the control over to a
         <classname>SuccessView</classname>, if we had some form of error, we
         would use <classname>ErrorView</classname> and if we need input from
-        the user, we'd use <classname>InputView</classname>. The action can
-        return a string like "Success" to indicate the action finished
+        the user, we'd use <classname>InputView</classname>. The controller can
+        return a string like "Success" to indicate the controller finished
         successfully, and the controller would use the
         <classname>ClassnameSuccessView</classname>, or it can return an array
-        with two indices specifying the action/view pair to hand the execution
+        with two indices specifying the controller/view pair to hand the execution
         to.</para>
       </section>
     </section>
@@ -1791,18 +1791,18 @@ $bar2 = $this-&gt;getContext()-&gt;getModel('SinglesBar'); //returns the same in
           <classname>AgaviSecurityUser</classname> and
           <classname>AgaviRbacSecurityUser</classname> only extends it with
           role-to-credential mapping. This is the beauty of the
-          object-oriented design in action.</para>
+          object-oriented design in controller.</para>
         </section>
 
-        <section id="security-rbac-protect-actions">
-          <title>Protecting Your Actions</title>
+        <section id="security-rbac-protect-controllers">
+          <title>Protecting Your Controllers</title>
 
-          <para>Protecting your action is simply a matter of defining the
-          credential needed to be able use the action. This is done by
-          overriding <classname>AgaviAction</classname>'s
+          <para>Protecting your controller is simply a matter of defining the
+          credential needed to be able use the controller. This is done by
+          overriding <classname>AgaviController</classname>'s
           <methodname>getCredentials()</methodname> method.</para>
 
-          <programlisting>class Photos_AddAction extends PhotoSystemBaseAction
+          <programlisting>class Photos_AddController extends PhotoSystemBaseController
 {
   public function getCredentials()
   {
@@ -1851,12 +1851,12 @@ $bar2 = $this-&gt;getContext()-&gt;getModel('SinglesBar'); //returns the same in
       <section id="validation-when">
         <title>When does Validation happen</title>
 
-        <para>Validation happens if the action serves the incoming request
-        method, that is if the action declares an execute method that matches
+        <para>Validation happens if the controller serves the incoming request
+        method, that is if the controller declares an execute method that matches
         the request type (<methodname>executeRead()</methodname> for get
         request, <methodname>executeWrite()</methodname> for post request or a
         generic <methodname>execute()</methodname> method), immediatly before
-        the action is executed.</para>
+        the controller is executed.</para>
       </section>
 
       <section id="validation-how">
@@ -1875,10 +1875,10 @@ $bar2 = $this-&gt;getContext()-&gt;getModel('SinglesBar'); //returns the same in
           <para>There are several ways of validating input data. The simplest
           way is placing an XML configuration file with the proper
           configuration in the "validate" directory of the module. The XML
-          file must be named &lt;ActionName&gt;.xml, that is if your action is
-          named "LoginAction", the XML file must be "Login.xml". In this file,
+          file must be named &lt;ControllerName&gt;.xml, that is if your controller is
+          named "LoginController", the XML file must be "Login.xml". In this file,
           you can define which validators will be registered for any request
-          handled by the action. It is important to note that even though you
+          handled by the controller. It is important to note that even though you
           can set some validators not to execute on a read or write request,
           those validators will be registered anyways and as you can't
           register a validator twice, you can only have one input parameter
@@ -1889,7 +1889,7 @@ $bar2 = $this-&gt;getContext()-&gt;getModel('SinglesBar'); //returns the same in
 
           <section id="validation-xml-config-example">
             <title>Example XML Configuration (from the sample app,
-            LoginAction)</title>
+            LoginController)</title>
 
             <programlisting>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
 &lt;configurations&gt;
@@ -1938,11 +1938,11 @@ $bar2 = $this-&gt;getContext()-&gt;getModel('SinglesBar'); //returns the same in
           than on a write request or the validation might depend on data no
           known when you write the application. Think of a form that gets
           generated depending on some config parameters pulled from a
-          database. When you write the action, you don't know yet what form
+          database. When you write the controller, you don't know yet what form
           fields will be available and which type they have - however when the
           form gets displayed you will know. You just need to tell agavi about
           it - this is where the <methodname>registerValidators()</methodname>
-          methods come into play. If your action defines a method
+          methods come into play. If your controller defines a method
           <methodname>registerReadValidators()</methodname>, it will be
           executed before <methodname>executeRead()</methodname> and all
           validators that you registered in this method will be executed as
@@ -1986,7 +1986,7 @@ $bar2 = $this-&gt;getContext()-&gt;getModel('SinglesBar'); //returns the same in
         <section id="validation-validate">
           <title>validate(), validateRead(), validateWrite()</title>
 
-          <para>If an action declares a method with the name
+          <para>If a controller declares a method with the name
           <function>validate()</function>, it will get called after the
           registered validators have run but before the execute Method gets
           called. It recieves a single parameter, <code>$rd</code> with the
@@ -2030,7 +2030,7 @@ $bar2 = $this-&gt;getContext()-&gt;getModel('SinglesBar'); //returns the same in
         <para>Once validation failed, the error must be handled. The default
         way is to render an error view, but sometimes you might wish to slip
         in some logic such as logging the error. You can do this by declaring
-        a method named <function>handleError()</function> in your action. You
+        a method named <function>handleError()</function> in your controller. You
         can also define different handlers for the request methods using
         handle*Error() (handleReadError, handleWriteError and so on). It will
         be called if a validation error occured and recieves a single
@@ -2050,7 +2050,7 @@ $bar2 = $this-&gt;getContext()-&gt;getModel('SinglesBar'); //returns the same in
         value. There is a more convenient way though: The
         FormPopulationFilter. It is a regular filter that gets executed
         everytime you post a form by default. It parses the resulting document
-        and extracts the form element whose action attribute matches the
+        and extracts the form element whose controller attribute matches the
         current page's URL. It then matches the input fields in this form
         against the request parameters and fills in the request values in the
         proper input fields. It even marks the input field and the
@@ -2421,17 +2421,17 @@ $conn2 = $this-&gt;context-&gt;getDatabaseConnection();</programlisting>
     <title>Agavi Reference</title>
 
     <section id="ref-agavi">
-      <title>Action</title>
+      <title>Controller</title>
 
       <para><variablelist>
           <varlistentry>
             <term>Naming</term>
 
             <listitem>
-              <para><classname>[ModuleName_][SubSection_]NameAction</classname></para>
+              <para><classname>[ModuleName_][SubSection_]NameController</classname></para>
 
               <para>Example:
-              <classname>MyModule_Sub_EditAction</classname></para>
+              <classname>MyModule_Sub_EditController</classname></para>
             </listitem>
           </varlistentry>
 
@@ -2446,7 +2446,7 @@ $conn2 = $this-&gt;context-&gt;getDatabaseConnection();</programlisting>
               current request method (e.g.
               <methodname>executeRead</methodname> or
               <methodname>executeWrite</methodname>). If such a method is not
-              defined by the current action a generic execute is used. If that
+              defined by the current controller a generic execute is used. If that
               doesn't exist either execution and validation is skiped and the
               default view (returned by
               <methodname>getDefaultViewName()</methodname>) is used.</para>
@@ -2502,7 +2502,7 @@ $conn2 = $this-&gt;context-&gt;getDatabaseConnection();</programlisting>
     </section>
 
     <section id="ref-controller">
-      <title>Controller</title>
+      <title>Dispatcher</title>
 
       <para></para>
     </section>
@@ -2825,7 +2825,7 @@ $conn2 = $this-&gt;context-&gt;getDatabaseConnection();</programlisting>
                 <term>settings.xml</term>
 
                 <listitem>
-                  <para>exception_templates, settings, system_actions</para>
+                  <para>exception_templates, settings, system_controllers</para>
                 </listitem>
               </varlistentry>
 
@@ -2997,7 +2997,7 @@ $conn2 = $this-&gt;context-&gt;getDatabaseConnection();</programlisting>
  &lt;configuration&gt;
 
   &lt;handlers&gt;
-   &lt;handler pattern="%core.module_dir%/*/config/action_filters.xml" validate="%core.agavi_dir%/config/xsd/filters.xsd" class="AgaviFilterConfigHandler" /&gt;
+   &lt;handler pattern="%core.module_dir%/*/config/controller_filters.xml" validate="%core.agavi_dir%/config/xsd/filters.xsd" class="AgaviFilterConfigHandler" /&gt;
    &lt;handler pattern="%core.module_dir%/*/config/module.xml" validate="%core.agavi_dir%/config/xsd/module.xsd" class="AgaviModuleConfigHandler" /&gt;
    &lt;handler pattern="%core.module_dir%/*/validate/*.xml" class="AgaviValidatorConfigHandler" /&gt;
   &lt;/handlers&gt;
@@ -3264,9 +3264,9 @@ $conn2 = $this-&gt;context-&gt;getDatabaseConnection();</programlisting>
     <section id="reference-configuration_tags-filterhandler">
       <title>FilterConfigHandler Tags (*_filters.xml)</title>
 
-      <para>You may use <filename>action_filters.xml</filename> and
+      <para>You may use <filename>controller_filters.xml</filename> and
       <filename>global_filters.xml</filename> to configure filters that wrap
-      either the global execution flow or individual actions. Action filters
+      either the global execution flow or individual controllers. Controller filters
       may also be specified on a per-module basis by putting them into the
       <filename>app/modules/ModuleName/config/</filename> folder.</para>
 
@@ -3796,7 +3796,7 @@ $conn2 = $this-&gt;context-&gt;getDatabaseConnection();</programlisting>
       <section id="reference-configuration_tags-routinghandler_routes_route">
         <title>&lt;route&gt;</title>
 
-        <para>Defines a route to an module/action pair.</para>
+        <para>Defines a route to an module/controller pair.</para>
 
         <simplesect>
           <title>Attributes</title>
@@ -3828,10 +3828,10 @@ $conn2 = $this-&gt;context-&gt;getDatabaseConnection();</programlisting>
               </varlistentry>
 
               <varlistentry>
-                <term><optional>action</optional></term>
+                <term><optional>controller</optional></term>
 
                 <listitem>
-                  <para>The action which should be used when this route
+                  <para>The controller which should be used when this route
                   matches.</para>
                 </listitem>
               </varlistentry>
@@ -4115,8 +4115,8 @@ $conn2 = $this-&gt;context-&gt;getDatabaseConnection();</programlisting>
         </simplesect>
       </section>
 
-      <section id="reference-configuration_tags-settinghandler_system_actions">
-        <title>&lt;system_actions&gt;</title>
+      <section id="reference-configuration_tags-settinghandler_system_controllers">
+        <title>&lt;system_controllers&gt;</title>
 
         <para></para>
 
@@ -4133,8 +4133,8 @@ $conn2 = $this-&gt;context-&gt;getDatabaseConnection();</programlisting>
         </simplesect>
       </section>
 
-      <section id="reference-configuration_tags-settinghandler_system_actions_system_action">
-        <title>&lt;system_action&gt;</title>
+      <section id="reference-configuration_tags-settinghandler_system_controllers_system_controller">
+        <title>&lt;system_controller&gt;</title>
 
         <para></para>
 
@@ -4473,7 +4473,7 @@ $conn2 = $this-&gt;context-&gt;getDatabaseConnection();</programlisting>
 
       <para>Validation files sit inside
       <filename>app/modules/ModuleName/validate/</filename>, with the file
-      name consisting of the Action name and the <filename>.xml</filename>
+      name consisting of the Controller name and the <filename>.xml</filename>
       extension.</para>
 
       <section id="reference-configuration_tags-validatorhandler_validator_definitions">

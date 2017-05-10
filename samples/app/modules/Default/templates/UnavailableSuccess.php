@@ -1,1 +1,1 @@
-<p><?php echo $tm->_('This application is currently unavailable.', 'default.ErrorActions'); ?></p>
+<p><?php echo $tm->_('This application is currently unavailable.', 'default.ErrorControllers'); ?></p>

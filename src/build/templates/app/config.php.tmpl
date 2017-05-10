@@ -44,6 +44,14 @@ Agavi\Config\Config::set('core.app_dir', __DIR__);
 // +---------------------------------------------------------------------------+
 // Agavi\Config\Config::set('core.cache_dir', AgaviConfig::get('core.app_dir') . '/cache');
 
+
+// +---------------------------------------------------------------------------+
+// | The application base namespace                                            |
+// | This is used to locate application classes, so do not change this unless  |
+// | you plan to change the namespace of all your classes.                     |
+// +---------------------------------------------------------------------------+
+Agavi\Config\Config::set('app.namespace', '%%FQNS%%');
+
 // +---------------------------------------------------------------------------+
 // | You may also modify the following other directives in this file:          |
 // |  - core.config_dir   (defaults to "<core.app_dir>/config")                |
@@ -52,5 +60,3 @@ Agavi\Config\Config::set('core.app_dir', __DIR__);
 // |  - core.module_dir   (defaults to "<core.app_dir>/modules")               |
 // |  - core.template_dir (defaults to "<core.app_dir>/templates")             |
 // +---------------------------------------------------------------------------+
-
-?>
