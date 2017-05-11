@@ -16,87 +16,87 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => -14309,
       'dstOffset' => 0,
       'name' => 'BMT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => -14400,
       'dstOffset' => 0,
       'name' => 'AT',
     ),
-    2 => 
+    2 =>
     array (
       'rawOffset' => -14400,
       'dstOffset' => 3600,
       'name' => 'ADT',
     ),
-    3 => 
+    3 =>
     array (
       'rawOffset' => -14400,
       'dstOffset' => 0,
       'name' => 'AST',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -1451678491,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -1199217691,
       'type' => 1,
     ),
-    2 => 
+    2 =>
     array (
       'time' => 234943200,
       'type' => 2,
     ),
-    3 => 
+    3 =>
     array (
       'time' => 244616400,
       'type' => 3,
     ),
-    4 => 
+    4 =>
     array (
       'time' => 261554400,
       'type' => 2,
     ),
-    5 => 
+    5 =>
     array (
       'time' => 276066000,
       'type' => 3,
     ),
-    6 => 
+    6 =>
     array (
       'time' => 293004000,
       'type' => 2,
     ),
-    7 => 
+    7 =>
     array (
       'time' => 307515600,
       'type' => 3,
     ),
-    8 => 
+    8 =>
     array (
       'time' => 325058400,
       'type' => 2,
     ),
-    9 => 
+    9 =>
     array (
       'time' => 338706000,
       'type' => 3,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'none',
     'offset' => -14400,
@@ -106,5 +106,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'America/Barbados',
 );
-
-?>

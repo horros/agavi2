@@ -22,7 +22,6 @@
  **/
 namespace Agavi\Build\Console\Command;
 
-
 use Symfony\Component\Console\Exception\InvalidArgumentException;
 use Symfony\Component\Console\Helper\Helper;
 use Symfony\Component\Console\Input\ArrayInput;
@@ -35,114 +34,112 @@ use Symfony\Component\Yaml\Yaml;
 class PubCreate extends AgaviCommand
 {
 
-	/**
-	 * The environment to bootstrap in index.php
-	 *
-	 * @var string The environment name
-	 */
-	protected $environment;
+    /**
+     * The environment to bootstrap in index.php
+     *
+     * @var string The environment name
+     */
+    protected $environment;
 
-	protected function configure()
-	{
-		$this->setName('agavi:pub')
-			->setDescription('Create pub-dir')
-			->addOption('dir', null, InputOption::VALUE_REQUIRED, 'The pub directory location')
-			->addOption('settings', null, InputOption::VALUE_REQUIRED, 'settings.yml file to read project settings from')
-			->addOption('environment', null, InputOption::VALUE_REQUIRED, 'The environment to bootstrap');
-	}
+    protected function configure()
+    {
+        $this->setName('agavi:pub')
+            ->setDescription('Create pub-dir')
+            ->addOption('dir', null, InputOption::VALUE_REQUIRED, 'The pub directory location')
+            ->addOption('settings', null, InputOption::VALUE_REQUIRED, 'settings.yml file to read project settings from')
+            ->addOption('environment', null, InputOption::VALUE_REQUIRED, 'The environment to bootstrap');
+    }
 
-	protected function execute(InputInterface $input, OutputInterface $output)
-	{
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
 
-		if ($input->hasOption('environment') && $input->getOption('environment') != null) {
-			$environment = $input->getOption('environment');
-		} else {
-			$environment = "development";
-		}
+        if ($input->hasOption('environment') && $input->getOption('environment') != null) {
+            $environment = $input->getOption('environment');
+        } else {
+            $environment = "development";
+        }
 
-		$helper = $this->getHelper('question');
+        $helper = $this->getHelper('question');
 
-		if ($input->hasOption('settings') && $input->getOption('settings') != null) {
-			$settingsFile = $input->getOption('settings');
-		} else {
-			$settingsFile = '.' . DIRECTORY_SEPARATOR . '.settings.yml';
-		}
+        if ($input->hasOption('settings') && $input->getOption('settings') != null) {
+            $settingsFile = $input->getOption('settings');
+        } else {
+            $settingsFile = '.' . DIRECTORY_SEPARATOR . '.settings.yml';
+        }
 
-		if (!file_exists($settingsFile)) {
-			throw new InvalidArgumentException(sprintf('Cannot find settings file "%s"', $settingsFile));
-		}
-		$settings = Yaml::parse(file_get_contents($settingsFile));
-		$projectLocation = $settings['project']['location'];
+        if (!file_exists($settingsFile)) {
+            throw new InvalidArgumentException(sprintf('Cannot find settings file "%s"', $settingsFile));
+        }
+        $settings = Yaml::parse(file_get_contents($settingsFile));
+        $projectLocation = $settings['project']['location'];
 
-		if ($input->hasOption('dir') && $input->getOption('dir') != null) {
-			$dir = $input->getOption('dir');
-		} else {
-			$question = new Question('Please enter the location of the pub directory (defaults to ' . $projectLocation . DIRECTORY_SEPARATOR . 'pub): ', $projectLocation . '/pub');
-			$dir = $helper->ask($input, $output, $question);
+        if ($input->hasOption('dir') && $input->getOption('dir') != null) {
+            $dir = $input->getOption('dir');
+        } else {
+            $question = new Question('Please enter the location of the pub directory (defaults to ' . $projectLocation . DIRECTORY_SEPARATOR . 'pub): ', $projectLocation . '/pub');
+            $dir = $helper->ask($input, $output, $question);
 
-			if (is_dir($dir)) {
-				throw new \InvalidArgumentException("The location \"$dir\" already exists.");
-			}
-		}
-
-
-		@mkdir($dir, 0755, true);
-		$settings['project']['pub'] = $dir;
-
-		$fc = new FileCopyHelper();
-
-		/**
-		 * Copy the files and replace the tokens in the template files
-		 */
-		$fc->copy($this->getSourceDir() . '/build/templates/pub/index.php.tmpl', $dir . '/index.php', function ($data, $params) {
-			return str_replace([
-				'%%AGAVI_SOURCE_LOCATION%%',
-				'%%PUBLIC_ENVIRONMENT%%',
-				'%%PUBLIC_BASE%%'
-			], [
-				$this->getSourceDir(),
-				$params[0],
-				'/'
-			],
-				$data);
-		},
-			[$environment]
-		);
-
-		$fc->copy($this->getSourceDir() . '/build/templates/pub/dot.htaccess.tmpl', $dir . '/.htaccess', function ($data, $params) {
-			return str_replace([
-				'%%AGAVI_SOURCE_LOCATION%%',
-				'%%PUBLIC_ENVIRONMENT%%',
-				'%%PUBLIC_BASE%%'
-			], [
-				$this->getSourceDir(),
-				$params[0],
-				'/'
-			],
-				$data);
-		},
-			[$environment]
-		);
+            if (is_dir($dir)) {
+                throw new \InvalidArgumentException("The location \"$dir\" already exists.");
+            }
+        }
 
 
-		$data = Yaml::dump($settings);
-		file_put_contents(realpath($projectLocation) . DIRECTORY_SEPARATOR . '.settings.yml', $data);
-		return 0;
+        @mkdir($dir, 0755, true);
+        $settings['project']['pub'] = $dir;
 
-	}
+        $fc = new FileCopyHelper();
 
-	public function pubTokenReplacer($data)
-	{
-		return str_replace([
-			'%%AGAVI_SOURCE_LOCATION%%',
-			'%%PUBLIC_ENVIRONMENT%%',
-			'%%PUBLIC_BASE%%'
-		], [
-			$this->getSourceDir(),
-			$this->environment,
-			'/'
-		],
-			$data);
+        /**
+         * Copy the files and replace the tokens in the template files
+         */
+        $fc->copy($this->getSourceDir() . '/build/templates/pub/index.php.tmpl', $dir . '/index.php', function ($data, $params) {
+            return str_replace([
+                '%%AGAVI_SOURCE_LOCATION%%',
+                '%%PUBLIC_ENVIRONMENT%%',
+                '%%PUBLIC_BASE%%'
+            ], [
+                $this->getSourceDir(),
+                $params[0],
+                '/'
+            ],
+                $data);
+        },
+            [$environment]
+        );
 
-	}
+        $fc->copy($this->getSourceDir() . '/build/templates/pub/dot.htaccess.tmpl', $dir . '/.htaccess', function ($data, $params) {
+            return str_replace([
+                '%%AGAVI_SOURCE_LOCATION%%',
+                '%%PUBLIC_ENVIRONMENT%%',
+                '%%PUBLIC_BASE%%'
+            ], [
+                $this->getSourceDir(),
+                $params[0],
+                '/'
+            ],
+                $data);
+        },
+            [$environment]
+        );
+
+
+        $data = Yaml::dump($settings);
+        file_put_contents(realpath($projectLocation) . DIRECTORY_SEPARATOR . '.settings.yml', $data);
+        return 0;
+    }
+
+    public function pubTokenReplacer($data)
+    {
+        return str_replace([
+            '%%AGAVI_SOURCE_LOCATION%%',
+            '%%PUBLIC_ENVIRONMENT%%',
+            '%%PUBLIC_BASE%%'
+        ], [
+            $this->getSourceDir(),
+            $this->environment,
+            '/'
+        ],
+            $data);
+    }
 }

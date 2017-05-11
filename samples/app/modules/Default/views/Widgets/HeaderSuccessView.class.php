@@ -18,12 +18,9 @@ use Agavi\Request\RequestDataHolder;
 class Default_Widgets_HeaderSuccessView extends SampleAppDefaultBaseView
 {
 
-	public function executeHtml(RequestDataHolder $rd)
-	{
-		// will automatically load "slot" layout for us
-		$this->setupHtml($rd);
-	}
-
+    public function executeHtml(RequestDataHolder $rd)
+    {
+        // will automatically load "slot" layout for us
+        $this->setupHtml($rd);
+    }
 }
-
-?>

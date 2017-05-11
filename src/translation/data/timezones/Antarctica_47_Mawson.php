@@ -16,35 +16,35 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 21600,
       'dstOffset' => 0,
       'name' => 'MAWT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => 18000,
       'dstOffset' => 0,
       'name' => 'MAWT',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -501206400,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => 1255809600,
       'type' => 1,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'MAWT',
@@ -55,5 +55,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Antarctica/Mawson',
 );
-
-?>

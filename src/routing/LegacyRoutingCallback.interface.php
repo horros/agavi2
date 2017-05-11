@@ -16,7 +16,7 @@
 namespace Agavi\Routing;
 
 /**
- * AgaviILegacyRoutingCallback 
+ * AgaviILegacyRoutingCallback
  *
  * @package    agavi
  * @subpackage routing
@@ -32,5 +32,3 @@ namespace Agavi\Routing;
 interface LegacyRoutingCallbackInterface
 {
 }
-
-?>

@@ -16,89 +16,89 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 26240,
       'dstOffset' => 0,
       'name' => 'PMT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => 27000,
       'dstOffset' => 0,
       'name' => 'WIB',
     ),
-    2 => 
+    2 =>
     array (
       'rawOffset' => 32400,
       'dstOffset' => 0,
       'name' => 'JST',
     ),
-    3 => 
+    3 =>
     array (
       'rawOffset' => 28800,
       'dstOffset' => 0,
       'name' => 'WIB',
     ),
-    4 => 
+    4 =>
     array (
       'rawOffset' => 28800,
       'dstOffset' => 0,
       'name' => 'WITA',
     ),
-    5 => 
+    5 =>
     array (
       'rawOffset' => 25200,
       'dstOffset' => 0,
       'name' => 'WIB',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -1946186240,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -1172906240,
       'type' => 1,
     ),
-    2 => 
+    2 =>
     array (
       'time' => -881220600,
       'type' => 2,
     ),
-    3 => 
+    3 =>
     array (
       'time' => -766054800,
       'type' => 1,
     ),
-    4 => 
+    4 =>
     array (
       'time' => -683883000,
       'type' => 3,
     ),
-    5 => 
+    5 =>
     array (
       'time' => -620812800,
       'type' => 1,
     ),
-    6 => 
+    6 =>
     array (
       'time' => -189415800,
       'type' => 4,
     ),
-    7 => 
+    7 =>
     array (
       'time' => 567964800,
       'type' => 5,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'WIB',
@@ -109,5 +109,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Asia/Pontianak',
 );
-
-?>

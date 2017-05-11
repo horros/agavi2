@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Model;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -15,7 +16,7 @@ namespace Agavi\Model;
 
 /**
  * An extension to Model, but for implementation as a Singleton
- * 
+ *
  * @package    agavi
  * @subpackage model
  *
@@ -30,5 +31,3 @@ namespace Agavi\Model;
 interface SingletonModelInterface extends ModelInterface
 {
 }
-
-?>

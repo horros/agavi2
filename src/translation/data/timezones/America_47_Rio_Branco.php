@@ -16,191 +16,191 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => -18000,
       'dstOffset' => 0,
       'name' => 'ACT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => -18000,
       'dstOffset' => 3600,
       'name' => 'ACST',
     ),
-    2 => 
+    2 =>
     array (
       'rawOffset' => -14400,
       'dstOffset' => 0,
       'name' => 'AMT',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -1767209328,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -1206950400,
       'type' => 1,
     ),
-    2 => 
+    2 =>
     array (
       'time' => -1191355200,
       'type' => 0,
     ),
-    3 => 
+    3 =>
     array (
       'time' => -1175367600,
       'type' => 1,
     ),
-    4 => 
+    4 =>
     array (
       'time' => -1159819200,
       'type' => 0,
     ),
-    5 => 
+    5 =>
     array (
       'time' => -633812400,
       'type' => 1,
     ),
-    6 => 
+    6 =>
     array (
       'time' => -622062000,
       'type' => 0,
     ),
-    7 => 
+    7 =>
     array (
       'time' => -602272800,
       'type' => 1,
     ),
-    8 => 
+    8 =>
     array (
       'time' => -591825600,
       'type' => 0,
     ),
-    9 => 
+    9 =>
     array (
       'time' => -570740400,
       'type' => 1,
     ),
-    10 => 
+    10 =>
     array (
       'time' => -560203200,
       'type' => 0,
     ),
-    11 => 
+    11 =>
     array (
       'time' => -539118000,
       'type' => 1,
     ),
-    12 => 
+    12 =>
     array (
       'time' => -531345600,
       'type' => 0,
     ),
-    13 => 
+    13 =>
     array (
       'time' => -191358000,
       'type' => 1,
     ),
-    14 => 
+    14 =>
     array (
       'time' => -184190400,
       'type' => 0,
     ),
-    15 => 
+    15 =>
     array (
       'time' => -155156400,
       'type' => 1,
     ),
-    16 => 
+    16 =>
     array (
       'time' => -150062400,
       'type' => 0,
     ),
-    17 => 
+    17 =>
     array (
       'time' => -128890800,
       'type' => 1,
     ),
-    18 => 
+    18 =>
     array (
       'time' => -121118400,
       'type' => 0,
     ),
-    19 => 
+    19 =>
     array (
       'time' => -99946800,
       'type' => 1,
     ),
-    20 => 
+    20 =>
     array (
       'time' => -89582400,
       'type' => 0,
     ),
-    21 => 
+    21 =>
     array (
       'time' => -68410800,
       'type' => 1,
     ),
-    22 => 
+    22 =>
     array (
       'time' => -57960000,
       'type' => 0,
     ),
-    23 => 
+    23 =>
     array (
       'time' => 499755600,
       'type' => 1,
     ),
-    24 => 
+    24 =>
     array (
       'time' => 511243200,
       'type' => 0,
     ),
-    25 => 
+    25 =>
     array (
       'time' => 530600400,
       'type' => 1,
     ),
-    26 => 
+    26 =>
     array (
       'time' => 540273600,
       'type' => 0,
     ),
-    27 => 
+    27 =>
     array (
       'time' => 562136400,
       'type' => 1,
     ),
-    28 => 
+    28 =>
     array (
       'time' => 571204800,
       'type' => 0,
     ),
-    29 => 
+    29 =>
     array (
       'time' => 590043600,
       'type' => 0,
     ),
-    30 => 
+    30 =>
     array (
       'time' => 1214283600,
       'type' => 2,
     ),
-    31 => 
+    31 =>
     array (
       'time' => 1384056000,
       'type' => 0,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'ACT',
@@ -211,5 +211,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'America/Rio_Branco',
 );
-
-?>

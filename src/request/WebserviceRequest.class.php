@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Request;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -30,107 +31,105 @@ use Agavi\Core\Context;
  */
 abstract class WebserviceRequest extends Request
 {
-	/**
-	 * @var        string The Input Data.
-	 */
-	protected $input = '';
-	
-	/**
-	 * @var        string The method called by the web service request.
-	 */
-	protected $invokedMethod = '';
-	
-	/**
-	 * Constructor.
-	 *
-	 * @author     David Zülke <dz@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function __construct()
-	{
-		parent::__construct();
-		$this->setParameters(array(
-			'request_data_holder_class' => 'AgaviWebserviceRequestDataHolder',
-		));
-	}
-	
-	/**
-	 * Initialize this Request.
-	 *
-	 * @param      Context $context    A Context instance.
-	 * @param      array   $parameters An associative array of initialization parameters.
-	 *
-	 * @throws     <b>AgaviInitializationException</b> If an error occurs while
-	 *                                                 initializing this Request.
-	 *
-	 * @author     David Zülke <dz@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function initialize(Context $context, array $parameters = array())
-	{
-		// empty $_POST just to be sure
-		$_POST = array();
-		
-		// grab the POST body
-		$this->input = file_get_contents('php://input');
-		
-		parent::initialize($context, $parameters);
-	}
-	
-	/**
-	 * Get the input data, usually the request from the POST body.
-	 *
-	 * @return     string The input data.
-	 *
-	 * @author     David Zülke <dz@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function getInput()
-	{
-		return $this->input;
-	}
-	
-	/**
-	 * Set the input data. Useful for debugging purposes.
-	 *
-	 * @param      string $input The input data.
-	 *
-	 * @author     David Zülke <dz@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function setInput($input)
-	{
-		$this->input = $input;
-	}
-	
-	/**
-	 * Set the name of the method called by the web service request.
-	 *
-	 * @return     string $method A method name.
-	 *
-	 * @author     David Zülke <dz@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function setInvokedMethod($method)
-	{
-		$this->invokedMethod = $method;
-		
-		// let the routing update its input
-		$this->context->getRouting()->updateInput();
-	}
-	
-	/**
-	 * Get the name of the method called by the web service request.
-	 *
-	 * @return     string A method name.
-	 *
-	 * @author     David Zülke <dz@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function getInvokedMethod()
-	{
-		return $this->invokedMethod;
-	}
+    /**
+     * @var        string The Input Data.
+     */
+    protected $input = '';
+    
+    /**
+     * @var        string The method called by the web service request.
+     */
+    protected $invokedMethod = '';
+    
+    /**
+     * Constructor.
+     *
+     * @author     David Zülke <dz@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->setParameters(array(
+            'request_data_holder_class' => 'AgaviWebserviceRequestDataHolder',
+        ));
+    }
+    
+    /**
+     * Initialize this Request.
+     *
+     * @param      Context $context    A Context instance.
+     * @param      array   $parameters An associative array of initialization parameters.
+     *
+     * @throws     <b>AgaviInitializationException</b> If an error occurs while
+     *                                                 initializing this Request.
+     *
+     * @author     David Zülke <dz@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function initialize(Context $context, array $parameters = array())
+    {
+        // empty $_POST just to be sure
+        $_POST = array();
+        
+        // grab the POST body
+        $this->input = file_get_contents('php://input');
+        
+        parent::initialize($context, $parameters);
+    }
+    
+    /**
+     * Get the input data, usually the request from the POST body.
+     *
+     * @return     string The input data.
+     *
+     * @author     David Zülke <dz@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function getInput()
+    {
+        return $this->input;
+    }
+    
+    /**
+     * Set the input data. Useful for debugging purposes.
+     *
+     * @param      string $input The input data.
+     *
+     * @author     David Zülke <dz@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function setInput($input)
+    {
+        $this->input = $input;
+    }
+    
+    /**
+     * Set the name of the method called by the web service request.
+     *
+     * @return     string $method A method name.
+     *
+     * @author     David Zülke <dz@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function setInvokedMethod($method)
+    {
+        $this->invokedMethod = $method;
+        
+        // let the routing update its input
+        $this->context->getRouting()->updateInput();
+    }
+    
+    /**
+     * Get the name of the method called by the web service request.
+     *
+     * @return     string A method name.
+     *
+     * @author     David Zülke <dz@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function getInvokedMethod()
+    {
+        return $this->invokedMethod;
+    }
 }
-
-?>

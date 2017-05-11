@@ -16,199 +16,199 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => -25200,
       'dstOffset' => 0,
       'name' => 'MST',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => -21600,
       'dstOffset' => 0,
       'name' => 'CST',
     ),
-    2 => 
+    2 =>
     array (
       'rawOffset' => -21600,
       'dstOffset' => 0,
       'name' => 'CT',
     ),
-    3 => 
+    3 =>
     array (
       'rawOffset' => -21600,
       'dstOffset' => 3600,
       'name' => 'CDT',
     ),
-    4 => 
+    4 =>
     array (
       'rawOffset' => -21600,
       'dstOffset' => 3600,
       'name' => 'CWT',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -1514739600,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -1343066400,
       'type' => 1,
     ),
-    2 => 
+    2 =>
     array (
       'time' => -1234807200,
       'type' => 0,
     ),
-    3 => 
+    3 =>
     array (
       'time' => -1220292000,
       'type' => 1,
     ),
-    4 => 
+    4 =>
     array (
       'time' => -1207159200,
       'type' => 0,
     ),
-    5 => 
+    5 =>
     array (
       'time' => -1191344400,
       'type' => 2,
     ),
-    6 => 
+    6 =>
     array (
       'time' => -975261600,
       'type' => 3,
     ),
-    7 => 
+    7 =>
     array (
       'time' => -963169200,
       'type' => 1,
     ),
-    8 => 
+    8 =>
     array (
       'time' => -917114400,
       'type' => 3,
     ),
-    9 => 
+    9 =>
     array (
       'time' => -907354800,
       'type' => 1,
     ),
-    10 => 
+    10 =>
     array (
       'time' => -821901600,
       'type' => 4,
     ),
-    11 => 
+    11 =>
     array (
       'time' => -810068400,
       'type' => 1,
     ),
-    12 => 
+    12 =>
     array (
       'time' => -627501600,
       'type' => 3,
     ),
-    13 => 
+    13 =>
     array (
       'time' => -612990000,
       'type' => 1,
     ),
-    14 => 
+    14 =>
     array (
       'time' => 828864000,
       'type' => 3,
     ),
-    15 => 
+    15 =>
     array (
       'time' => 846399600,
       'type' => 1,
     ),
-    16 => 
+    16 =>
     array (
       'time' => 860313600,
       'type' => 3,
     ),
-    17 => 
+    17 =>
     array (
       'time' => 877849200,
       'type' => 1,
     ),
-    18 => 
+    18 =>
     array (
       'time' => 891763200,
       'type' => 3,
     ),
-    19 => 
+    19 =>
     array (
       'time' => 909298800,
       'type' => 1,
     ),
-    20 => 
+    20 =>
     array (
       'time' => 923212800,
       'type' => 3,
     ),
-    21 => 
+    21 =>
     array (
       'time' => 941353200,
       'type' => 1,
     ),
-    22 => 
+    22 =>
     array (
       'time' => 954662400,
       'type' => 3,
     ),
-    23 => 
+    23 =>
     array (
       'time' => 972802800,
       'type' => 1,
     ),
-    24 => 
+    24 =>
     array (
       'time' => 989136000,
       'type' => 3,
     ),
-    25 => 
+    25 =>
     array (
       'time' => 1001833200,
       'type' => 1,
     ),
-    26 => 
+    26 =>
     array (
       'time' => 1001836800,
       'type' => 1,
     ),
-    27 => 
+    27 =>
     array (
       'time' => 1014184800,
       'type' => 1,
     ),
-    28 => 
+    28 =>
     array (
       'time' => 1018166400,
       'type' => 3,
     ),
-    29 => 
+    29 =>
     array (
       'time' => 1035702000,
       'type' => 1,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'dynamic',
     'offset' => -21600,
     'name' => 'C%sT',
     'save' => 3600,
-    'start' => 
+    'start' =>
     array (
       'month' => 3,
       'date' => '1',
@@ -216,7 +216,7 @@ return array (
       'time' => 7200000,
       'type' => 0,
     ),
-    'end' => 
+    'end' =>
     array (
       'month' => 9,
       'date' => -1,
@@ -230,5 +230,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'America/Mexico_City',
 );
-
-?>

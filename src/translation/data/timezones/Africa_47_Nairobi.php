@@ -16,51 +16,51 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 10800,
       'dstOffset' => 0,
       'name' => 'EAT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => 9000,
       'dstOffset' => 0,
       'name' => 'BEAT',
     ),
-    2 => 
+    2 =>
     array (
       'rawOffset' => 9900,
       'dstOffset' => 0,
       'name' => 'BEAUT',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -1309746436,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -1262314800,
       'type' => 1,
     ),
-    2 => 
+    2 =>
     array (
       'time' => -946780200,
       'type' => 2,
     ),
-    3 => 
+    3 =>
     array (
       'time' => -315629100,
       'type' => 0,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'EAT',
@@ -71,5 +71,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Africa/Nairobi',
 );
-
-?>

@@ -16,24 +16,24 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 3600,
       'dstOffset' => 0,
       'name' => 'WAT',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -1588464816,
       'type' => 0,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'WAT',
@@ -44,5 +44,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Africa/Lagos',
 );
-
-?>

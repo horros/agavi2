@@ -16,51 +16,51 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => -7200,
       'dstOffset' => 0,
       'name' => 'CVT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => -7200,
       'dstOffset' => 3600,
       'name' => 'CVST',
     ),
-    2 => 
+    2 =>
     array (
       'rawOffset' => -3600,
       'dstOffset' => 0,
       'name' => 'CVT',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -1988144756,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -862610400,
       'type' => 1,
     ),
-    2 => 
+    2 =>
     array (
       'time' => -764118000,
       'type' => 0,
     ),
-    3 => 
+    3 =>
     array (
       'time' => 186120000,
       'type' => 2,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'CVT',
@@ -71,5 +71,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Atlantic/Cape_Verde',
 );
-
-?>

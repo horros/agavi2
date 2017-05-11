@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Testing;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -24,8 +25,8 @@ use Agavi\View\View;
 /**
  * FragmentTestCase is the base class for all fragment tests and provides
  * the necessary assertions
- * 
- * 
+ *
+ *
  * @package    agavi
  * @subpackage testing
  *
@@ -38,133 +39,133 @@ use Agavi\View\View;
  */
 abstract class FragmentTestCase extends PhpUnitTestCase implements FragmentTestCaseInterface
 {
-	/**
-	 * @var        string the name of the context to use, null for default context
-	 */
-	protected $contextName = null;
-	
-	/**
-	 * @var        string the name of the controller to test
-	 */
-	protected $controllerName;
-	
-	/**
-	 * @var        string the name of the module 
-	 */
-	protected $moduleName;
-	
-	/**
-	 * @var        bool   the result of the validation process
-	 */
-	protected $validationSuccess;
-	
-	/**
-	 * @var        ExecutionContainer the container to run the controller in
-	 */
-	protected $container;
+    /**
+     * @var        string the name of the context to use, null for default context
+     */
+    protected $contextName = null;
+    
+    /**
+     * @var        string the name of the controller to test
+     */
+    protected $controllerName;
+    
+    /**
+     * @var        string the name of the module
+     */
+    protected $moduleName;
+    
+    /**
+     * @var        bool   the result of the validation process
+     */
+    protected $validationSuccess;
+    
+    /**
+     * @var        ExecutionContainer the container to run the controller in
+     */
+    protected $container;
 
 
-	/**
-	 * Constructs a test case with the given name.
-	 *
-	 * @param  string $name
-	 * @param  array  $data
-	 * @param  string $dataName
-	 */
-	public function __construct($name = NULL, array $data = array(), $dataName = '')
-	{
-		parent::__construct($name, $data, $dataName);
-		$this->setRunTestInSeparateProcess(true);
-	}
-	
-	
-	/**
-	 * creates a new ExecutionContainer for each test
-	 * 
-	 * @return void
-	 * 
-	 * @author     Felix Gilcher <felix.gilcher@bitextender.com>
-	 * @since      1.0.0
-	 */
-	public function setUp()
-	{
-		$this->container = $this->createExecutionContainer();
-	}
-	
-	
-	/**
-	 * unsets the ExecutionContainer after each test
-	 * 
-	 * @return void
-	 * 
-	 * @author     Felix Gilcher <felix.gilcher@bitextender.com>
-	 * @since      1.0.0
-	 */
-	public function tearDown()
-	{
-		$this->container = null;
-	}
-	
-	/**
-	 * Return the context defined for this test (or the default one).
-	 *
-	 * @return     Context The context instance defined for this test.
-	 * 
-	 * @author     Felix Gilcher <felix.gilcher@bitextender.com>
-	 * @since      1.0.0
-	 */
-	public function getContext()
-	{
-		return Context::getInstance($this->contextName);
-	}
-	
-	/**
-	 * normalizes a viewname according to the configured rules
-	 * 
-	 * Please do not use this method, it exists only for internal 
-	 * purposes and will be removed ASAP. You have been warned
-	 * 
-	 * @param      string $shortName the short view name
-	 * 
-	 * @return     string the full view name
-	 * 
-	 * @author     Felix Gilcher <felix.gilcher@bitextender.com>
-	 * @since      1.0.0
-	 */
-	protected function normalizeViewName($shortName)
-	{
-		if($shortName !== View::NONE) {
-			$shortName = Toolkit::evaluateModuleDirective(
-				$this->moduleName,
-				'agavi.view.name',
-				array(
-					'controllerName' => $this->controllerName,
-					'viewName' => $shortName,
-				)
-			);
-			$shortName = Toolkit::canonicalName($shortName);
-		}
-		
-		return $shortName;
-	}
+    /**
+     * Constructs a test case with the given name.
+     *
+     * @param  string $name
+     * @param  array  $data
+     * @param  string $dataName
+     */
+    public function __construct($name = null, array $data = array(), $dataName = '')
+    {
+        parent::__construct($name, $data, $dataName);
+        $this->setRunTestInSeparateProcess(true);
+    }
+    
+    
+    /**
+     * creates a new ExecutionContainer for each test
+     *
+     * @return void
+     *
+     * @author     Felix Gilcher <felix.gilcher@bitextender.com>
+     * @since      1.0.0
+     */
+    public function setUp()
+    {
+        $this->container = $this->createExecutionContainer();
+    }
+    
+    
+    /**
+     * unsets the ExecutionContainer after each test
+     *
+     * @return void
+     *
+     * @author     Felix Gilcher <felix.gilcher@bitextender.com>
+     * @since      1.0.0
+     */
+    public function tearDown()
+    {
+        $this->container = null;
+    }
+    
+    /**
+     * Return the context defined for this test (or the default one).
+     *
+     * @return     Context The context instance defined for this test.
+     *
+     * @author     Felix Gilcher <felix.gilcher@bitextender.com>
+     * @since      1.0.0
+     */
+    public function getContext()
+    {
+        return Context::getInstance($this->contextName);
+    }
+    
+    /**
+     * normalizes a viewname according to the configured rules
+     *
+     * Please do not use this method, it exists only for internal
+     * purposes and will be removed ASAP. You have been warned
+     *
+     * @param      string $shortName the short view name
+     *
+     * @return     string the full view name
+     *
+     * @author     Felix Gilcher <felix.gilcher@bitextender.com>
+     * @since      1.0.0
+     */
+    protected function normalizeViewName($shortName)
+    {
+        if ($shortName !== View::NONE) {
+            $shortName = Toolkit::evaluateModuleDirective(
+                $this->moduleName,
+                'agavi.view.name',
+                array(
+                    'controllerName' => $this->controllerName,
+                    'viewName' => $shortName,
+                )
+            );
+            $shortName = Toolkit::canonicalName($shortName);
+        }
+        
+        return $shortName;
+    }
 
-	/**
-	 * create an executionfilter for the test
-	 * 
-	 * the configured executionfilter class will be wrapped in a testing
-	 * extension to provide advanced capabilities required for testing 
-	 * only
-	 * 
-	 * @return     ExecutionFilter
-	 * 
-	 * @author     Felix Gilcher <felix.gilcher@bitextender.com>
-	 * @since      1.0.0
-	 */
-	protected function createExecutionFilter()
-	{
-		$effi = $this->getContext()->getFactoryInfo('execution_filter');
+    /**
+     * create an executionfilter for the test
+     *
+     * the configured executionfilter class will be wrapped in a testing
+     * extension to provide advanced capabilities required for testing
+     * only
+     *
+     * @return     ExecutionFilter
+     *
+     * @author     Felix Gilcher <felix.gilcher@bitextender.com>
+     * @since      1.0.0
+     */
+    protected function createExecutionFilter()
+    {
+        $effi = $this->getContext()->getFactoryInfo('execution_filter');
 
-		$wrapper_class = $effi['class'].'UnitTesting';
+        $wrapper_class = $effi['class'].'UnitTesting';
 
         // Grab the actual class name
         if (($pos = strrpos($wrapper_class, '\\')) !== false) {
@@ -172,8 +173,8 @@ abstract class FragmentTestCase extends PhpUnitTestCase implements FragmentTestC
         }
 
         //extend the original class to overwrite runController, so that the containers request data is cloned
-		if(!class_exists($wrapper_class)) {
-			$code = sprintf('class %1$s extends %2$s
+        if (!class_exists($wrapper_class)) {
+            $code = sprintf('class %1$s extends %2$s
 {
 	protected $validationResult = null;
 	
@@ -183,45 +184,45 @@ abstract class FragmentTestCase extends PhpUnitTestCase implements FragmentTestC
 		return parent::executeView($container);
 	}
 }',
-			$wrapper_class,
-			$effi['class']);
+            $wrapper_class,
+            $effi['class']);
 
-			eval($code);
-		}
+            eval($code);
+        }
 
-		// create a new execution container with the wrapped class
-		$filter = new $wrapper_class();
-		$filter->initialize($this->getContext(), $effi['parameters']);
-		return $filter;
-	}
+        // create a new execution container with the wrapped class
+        $filter = new $wrapper_class();
+        $filter->initialize($this->getContext(), $effi['parameters']);
+        return $filter;
+    }
 
-	/**
-	 * create an ExecutionContainer for the test
-	 * 
-	 * the configured ExecutionContainer class will be wrapped in a testing
-	 * extension to provide advanced capabilities required for testing 
-	 * only
-	 * 
-	 * @return     ExecutionContainer
-	 * 
-	 * @author     Felix Gilcher <felix.gilcher@bitextender.com>
-	 * @since      1.0.0
-	 */
-	protected function createExecutionContainer($arguments = null, $outputType = null, $requestMethod = null)
-	{
-		$context = $this->getContext();
+    /**
+     * create an ExecutionContainer for the test
+     *
+     * the configured ExecutionContainer class will be wrapped in a testing
+     * extension to provide advanced capabilities required for testing
+     * only
+     *
+     * @return     ExecutionContainer
+     *
+     * @author     Felix Gilcher <felix.gilcher@bitextender.com>
+     * @since      1.0.0
+     */
+    protected function createExecutionContainer($arguments = null, $outputType = null, $requestMethod = null)
+    {
+        $context = $this->getContext();
 
-		$ecfi = $context->getFactoryInfo('execution_container');
-		$wrapper_class = $ecfi['class'].'UnitTesting';
+        $ecfi = $context->getFactoryInfo('execution_container');
+        $wrapper_class = $ecfi['class'].'UnitTesting';
 
         // Grab the actual class name
         if (($pos = strrpos($wrapper_class, '\\')) !== false) {
             $wrapper_class = substr($wrapper_class, $pos+1);
         }
 
-		//extend the original class to add a setter for the controller instance
-		if(!class_exists($wrapper_class)) {
-			$code = sprintf('class %1$s extends %2$s
+        //extend the original class to add a setter for the controller instance
+        if (!class_exists($wrapper_class)) {
+            $code = sprintf('class %1$s extends %2$s
 {
 
 	public function setControllerInstance(Agavi\Controller\Controller $controller)
@@ -234,281 +235,279 @@ abstract class FragmentTestCase extends PhpUnitTestCase implements FragmentTestC
 		parent::initRequestData();
 	}
 }',
-			$wrapper_class,
-			$ecfi['class']);
+            $wrapper_class,
+            $ecfi['class']);
 
-			eval($code);
-		}
-		
-		$ecfi['class'] = $wrapper_class;
-		$context->setFactoryInfo('execution_container', $ecfi);
-		
-		if(!($arguments instanceof RequestDataHolder)) {
-			$arguments = $this->createRequestDataHolder(array(RequestDataHolder::SOURCE_PARAMETERS => $arguments));
-		}
-		// create a new execution container with the wrapped class
-		$container = $context->getDispatcher()->createExecutionContainer($this->moduleName, $this->controllerName, $arguments, $outputType, $requestMethod);
-		
-		return $container;
-	}
+            eval($code);
+        }
+        
+        $ecfi['class'] = $wrapper_class;
+        $context->setFactoryInfo('execution_container', $ecfi);
+        
+        if (!($arguments instanceof RequestDataHolder)) {
+            $arguments = $this->createRequestDataHolder(array(RequestDataHolder::SOURCE_PARAMETERS => $arguments));
+        }
+        // create a new execution container with the wrapped class
+        $container = $context->getDispatcher()->createExecutionContainer($this->moduleName, $this->controllerName, $arguments, $outputType, $requestMethod);
+        
+        return $container;
+    }
 
-	/**
-	 * creates an Controller instance and initializes it with this testcases
-	 * container
-	 * 
-	 * @return     Controller
-	 * 
-	 * @author     Felix Gilcher <felix.gilcher@bitextender.com>
-	 * @since      1.0.0
-	 */
-	protected function createControllerInstance()
-	{
-		$controllerInstance = $this->getContext()->getDispatcher()->createControllerInstance($this->moduleName, $this->controllerName);
-		$controllerInstance->initialize($this->container);
-		return $controllerInstance;
-	}
-	
-	/**
-	 * create a requestDataHolder with the given arguments and type
-	 * 
-	 * arguments need to be passed in the way {@see AgaviRequestDataHolder} accepts them
-	 * 
-	 * array(AgaviRequestDataHolder::SOURCE_PARAMETERS => array('foo' => 'bar'))
-	 * 
-	 * if no type is passed, the default for the configured request class will be used
-	 * 
-	 * @param      array   a two-dimensional array with the arguments
-	 * @param      string  the subclass of AgaviRequestDataHolder to create
-	 * 
-	 * @return     RequestDataHolder
-	 * 
-	 * @author     Felix Gilcher <felix.gilcher@bitextender.com>
-	 * @since      1.0.0
-	 */
-	protected function createRequestDataHolder(array $arguments = array(), $type = null)
-	{
-		if(null === $type) {
-			$type = $this->getContext()->getRequest()->getParameter('request_data_holder_class', 'AgaviRequestDataHolder');
-		}
-		
-		$class = new $type($arguments);
-		return $class;
-	}
-	
-	
-	/**
-	 * assert that the exectionContainer has a given attribute with the expected value
-	 * 
-	 * @param      mixed   $expected the expected attribute value
-	 * @param      string  $attributeName the attribute name
-	 * @param      string  $namespace the attribute namespace
-	 * @param      string  $message an optional message to display if the test fails
-	 * @param      float   $delta
-	 * @param      integer $maxDepth
-	 * @param      boolean $canonicalizeEol
-	 * 
-	 * @see        PHPUnit_Framework_Assert::assertEquals()
-	 * 
-	 * @author     Felix Gilcher <felix.gilcher@bitextender.com>
-	 * @since      1.0.0
-	 */
-	protected function assertContainerAttributeEquals($expected, $attributeName, $namespace = null, $message = 'Failed asserting that the attribute <%1$s/%2$s> has the value <%3$s>', $delta = 0.0, $maxDepth = 10, $canonicalizeEol = false)
-	{
-		$this->assertEquals($expected, $this->container->getAttribute($attributeName, $namespace), sprintf($message, $namespace, $attributeName, $expected), $delta, $maxDepth, $canonicalizeEol);
-	}
-	
-	/**
-	 * assert that the executionContainer has a given attribute
-	 * 
-	 * @param      string  $attributeName the attribute name
-	 * @param      string  $namespace the attribute namespace
-	 * @param      string  $message an optional message to display if the test fails
-	 * 
-	 * @author     Felix Gilcher <felix.gilcher@bitextender.com>
-	 * @since      1.0.0
-	 */
-	protected function assertContainerAttributeExists($attributeName, $namespace = null, $message = 'Failed asserting that the container has an attribute named <%1$s/%2$s>.')
-	{
-		$this->assertTrue($this->container->hasAttribute($attributeName, $namespace), sprintf($message, $namespace, $attributeName));
-	}
-	
-	/* --- container delegates --- */
+    /**
+     * creates an Controller instance and initializes it with this testcases
+     * container
+     *
+     * @return     Controller
+     *
+     * @author     Felix Gilcher <felix.gilcher@bitextender.com>
+     * @since      1.0.0
+     */
+    protected function createControllerInstance()
+    {
+        $controllerInstance = $this->getContext()->getDispatcher()->createControllerInstance($this->moduleName, $this->controllerName);
+        $controllerInstance->initialize($this->container);
+        return $controllerInstance;
+    }
+    
+    /**
+     * create a requestDataHolder with the given arguments and type
+     *
+     * arguments need to be passed in the way {@see AgaviRequestDataHolder} accepts them
+     *
+     * array(AgaviRequestDataHolder::SOURCE_PARAMETERS => array('foo' => 'bar'))
+     *
+     * if no type is passed, the default for the configured request class will be used
+     *
+     * @param      array   a two-dimensional array with the arguments
+     * @param      string  the subclass of AgaviRequestDataHolder to create
+     *
+     * @return     RequestDataHolder
+     *
+     * @author     Felix Gilcher <felix.gilcher@bitextender.com>
+     * @since      1.0.0
+     */
+    protected function createRequestDataHolder(array $arguments = array(), $type = null)
+    {
+        if (null === $type) {
+            $type = $this->getContext()->getRequest()->getParameter('request_data_holder_class', 'AgaviRequestDataHolder');
+        }
+        
+        $class = new $type($arguments);
+        return $class;
+    }
+    
+    
+    /**
+     * assert that the exectionContainer has a given attribute with the expected value
+     *
+     * @param      mixed   $expected the expected attribute value
+     * @param      string  $attributeName the attribute name
+     * @param      string  $namespace the attribute namespace
+     * @param      string  $message an optional message to display if the test fails
+     * @param      float   $delta
+     * @param      integer $maxDepth
+     * @param      boolean $canonicalizeEol
+     *
+     * @see        PHPUnit_Framework_Assert::assertEquals()
+     *
+     * @author     Felix Gilcher <felix.gilcher@bitextender.com>
+     * @since      1.0.0
+     */
+    protected function assertContainerAttributeEquals($expected, $attributeName, $namespace = null, $message = 'Failed asserting that the attribute <%1$s/%2$s> has the value <%3$s>', $delta = 0.0, $maxDepth = 10, $canonicalizeEol = false)
+    {
+        $this->assertEquals($expected, $this->container->getAttribute($attributeName, $namespace), sprintf($message, $namespace, $attributeName, $expected), $delta, $maxDepth, $canonicalizeEol);
+    }
+    
+    /**
+     * assert that the executionContainer has a given attribute
+     *
+     * @param      string  $attributeName the attribute name
+     * @param      string  $namespace the attribute namespace
+     * @param      string  $message an optional message to display if the test fails
+     *
+     * @author     Felix Gilcher <felix.gilcher@bitextender.com>
+     * @since      1.0.0
+     */
+    protected function assertContainerAttributeExists($attributeName, $namespace = null, $message = 'Failed asserting that the container has an attribute named <%1$s/%2$s>.')
+    {
+        $this->assertTrue($this->container->hasAttribute($attributeName, $namespace), sprintf($message, $namespace, $attributeName));
+    }
+    
+    /* --- container delegates --- */
 
-	/**
-	 * @see        AgaviExcutionContainer::setOutputType()
-	 *
-	 * @author     Felix Gilcher <felix.gilcher@bitextender.com>
-	 * @since      1.0.0
-	 */
-	protected function setOutputType(OutputType $outputType)
-	{
-		$this->container->setOutputType($outputType);
-	}
+    /**
+     * @see        AgaviExcutionContainer::setOutputType()
+     *
+     * @author     Felix Gilcher <felix.gilcher@bitextender.com>
+     * @since      1.0.0
+     */
+    protected function setOutputType(OutputType $outputType)
+    {
+        $this->container->setOutputType($outputType);
+    }
 
-	/**
-	 * @see        AgaviRequest::setRequestData()
-	 *
-	 * @author     Felix Gilcher <felix.gilcher@bitextender.com>
-	 * @since      1.0.0
-	 */
-	protected function setRequestData(RequestDataHolder $rd)
-	{
-		$this->container->setRequestData($rd);
-	}
-	
-	/**
-	 * @see        AgaviExcutionContainer::setArguments()
-	 *
-	 * @author     Felix Gilcher <felix.gilcher@bitextender.com>
-	 * @since      1.0.0
-	 */
-	protected function setArguments(RequestDataHolder $rd)
-	{
-		$this->container->setArguments($rd);
-	}
+    /**
+     * @see        AgaviRequest::setRequestData()
+     *
+     * @author     Felix Gilcher <felix.gilcher@bitextender.com>
+     * @since      1.0.0
+     */
+    protected function setRequestData(RequestDataHolder $rd)
+    {
+        $this->container->setRequestData($rd);
+    }
+    
+    /**
+     * @see        AgaviExcutionContainer::setArguments()
+     *
+     * @author     Felix Gilcher <felix.gilcher@bitextender.com>
+     * @since      1.0.0
+     */
+    protected function setArguments(RequestDataHolder $rd)
+    {
+        $this->container->setArguments($rd);
+    }
 
-	/**
-	 * @see        AgaviExcutionContainer::setRequestMethod()
-	 *
-	 * @author     Felix Gilcher <felix.gilcher@bitextender.com>
-	 * @since      1.0.0
-	 */
-	protected function setRequestMethod($method)
-	{
-		$this->container->setRequestMethod($method);
-	}
+    /**
+     * @see        AgaviExcutionContainer::setRequestMethod()
+     *
+     * @author     Felix Gilcher <felix.gilcher@bitextender.com>
+     * @since      1.0.0
+     */
+    protected function setRequestMethod($method)
+    {
+        $this->container->setRequestMethod($method);
+    }
 
-	/**
-	 * @see        AgaviAttributeHolder::clearAttributes()
-	 *
-	 * @author     Felix Gilcher <felix.gilcher@bitextender.com>
-	 * @since      1.0.0
-	 */
-	protected function clearAttributes()
-	{
-		$this->container->clearAttributes();
-	}
+    /**
+     * @see        AgaviAttributeHolder::clearAttributes()
+     *
+     * @author     Felix Gilcher <felix.gilcher@bitextender.com>
+     * @since      1.0.0
+     */
+    protected function clearAttributes()
+    {
+        $this->container->clearAttributes();
+    }
 
-	/**
-	 * @see        AgaviAttributeHolder::getAttribute()
-	 *
-	 * @author     Felix Gilcher <felix.gilcher@bitextender.com>
-	 * @since      1.0.0
-	 */
-	protected function &getAttribute($name, $default = null)
-	{
-		return $this->container->getAttribute($name, null, $default);
-	}
+    /**
+     * @see        AgaviAttributeHolder::getAttribute()
+     *
+     * @author     Felix Gilcher <felix.gilcher@bitextender.com>
+     * @since      1.0.0
+     */
+    protected function &getAttribute($name, $default = null)
+    {
+        return $this->container->getAttribute($name, null, $default);
+    }
 
-	/**
-	 * @see        AgaviAttributeHolder::getAttributeNames()
-	 *
-	 * @author     Felix Gilcher <felix.gilcher@bitextender.com>
-	 * @since      1.0.0
-	 */
-	protected function getAttributeNames()
-	{
-		return $this->container->getAttributeNames();
-	}
+    /**
+     * @see        AgaviAttributeHolder::getAttributeNames()
+     *
+     * @author     Felix Gilcher <felix.gilcher@bitextender.com>
+     * @since      1.0.0
+     */
+    protected function getAttributeNames()
+    {
+        return $this->container->getAttributeNames();
+    }
 
-	/**
-	 * @see        AgaviAttributeHolder::getAttributes()
-	 *
-	 * @author     Felix Gilcher <felix.gilcher@bitextender.com>
-	 * @since      1.0.0
-	 */
-	protected function &getAttributes()
-	{
-		return $this->container->getAttributes();
-	}
+    /**
+     * @see        AgaviAttributeHolder::getAttributes()
+     *
+     * @author     Felix Gilcher <felix.gilcher@bitextender.com>
+     * @since      1.0.0
+     */
+    protected function &getAttributes()
+    {
+        return $this->container->getAttributes();
+    }
 
-	/**
-	 * @see        AgaviAttributeHolder::hasAttribute()
-	 *
-	 * @author     Felix Gilcher <felix.gilcher@bitextender.com>
-	 * @since      1.0.0
-	 */
-	protected function hasAttribute($name)
-	{
-		return $this->container->hasAttribute($name);
-	}
+    /**
+     * @see        AgaviAttributeHolder::hasAttribute()
+     *
+     * @author     Felix Gilcher <felix.gilcher@bitextender.com>
+     * @since      1.0.0
+     */
+    protected function hasAttribute($name)
+    {
+        return $this->container->hasAttribute($name);
+    }
 
-	/**
-	 * @see        AgaviAttributeHolder::removeAttribute()
-	 *
-	 * @author     Felix Gilcher <felix.gilcher@bitextender.com>
-	 * @since      1.0.0
-	 */
-	protected function &removeAttribute($name)
-	{
-		return $this->container->removeAttribute($name);
-	}
+    /**
+     * @see        AgaviAttributeHolder::removeAttribute()
+     *
+     * @author     Felix Gilcher <felix.gilcher@bitextender.com>
+     * @since      1.0.0
+     */
+    protected function &removeAttribute($name)
+    {
+        return $this->container->removeAttribute($name);
+    }
 
-	/**
-	 * @see        AgaviAttributeHolder::setAttribute()
-	 *
-	 * @author     Felix Gilcher <felix.gilcher@bitextender.com>
-	 * @since      1.0.0
-	 */
-	protected function setAttribute($name, $value)
-	{
-		$this->container->setAttribute($name, $value);
-	}
+    /**
+     * @see        AgaviAttributeHolder::setAttribute()
+     *
+     * @author     Felix Gilcher <felix.gilcher@bitextender.com>
+     * @since      1.0.0
+     */
+    protected function setAttribute($name, $value)
+    {
+        $this->container->setAttribute($name, $value);
+    }
 
-	/**
-	 * @see        AgaviAttributeHolder::appendAttribute()
-	 *
-	 * @author     Felix Gilcher <felix.gilcher@bitextender.com>
-	 * @since      1.0.0
-	 */
-	protected function appendAttribute($name, $value)
-	{
-		$this->container->appendAttribute($name, $value);
-	}
+    /**
+     * @see        AgaviAttributeHolder::appendAttribute()
+     *
+     * @author     Felix Gilcher <felix.gilcher@bitextender.com>
+     * @since      1.0.0
+     */
+    protected function appendAttribute($name, $value)
+    {
+        $this->container->appendAttribute($name, $value);
+    }
 
-	/**
-	 * @see        AgaviAttributeHolder::setAttributesByRef()
-	 *
-	 * @author     Felix Gilcher <felix.gilcher@bitextender.com>
-	 * @since      1.0.0
-	 */
-	protected function setAttributeByRef($name, &$value)
-	{
-		$this->container->setAttributeByRef($name, $value);
-	}
+    /**
+     * @see        AgaviAttributeHolder::setAttributesByRef()
+     *
+     * @author     Felix Gilcher <felix.gilcher@bitextender.com>
+     * @since      1.0.0
+     */
+    protected function setAttributeByRef($name, &$value)
+    {
+        $this->container->setAttributeByRef($name, $value);
+    }
 
-	/**
-	 * @see        AgaviAttributeHolder::appendAttributeByRef()
-	 *
-	 * @author     Felix Gilcher <felix.gilcher@bitextender.com>
-	 * @since      1.0.0
-	 */
-	protected function appendAttributeByRef($name, &$value)
-	{
-		$this->container->appendAttributeByRef($name, $value);
-	}
+    /**
+     * @see        AgaviAttributeHolder::appendAttributeByRef()
+     *
+     * @author     Felix Gilcher <felix.gilcher@bitextender.com>
+     * @since      1.0.0
+     */
+    protected function appendAttributeByRef($name, &$value)
+    {
+        $this->container->appendAttributeByRef($name, $value);
+    }
 
-	/**
-	 * @see        AgaviAttributeHolder::setAttributes()
-	 *
-	 * @author     Felix Gilcher <felix.gilcher@bitextender.com>
-	 * @since      1.0.0
-	 */
-	protected function setAttributes(array $attributes)
-	{
-		$this->container->setAttributes($attributes);
-	}
+    /**
+     * @see        AgaviAttributeHolder::setAttributes()
+     *
+     * @author     Felix Gilcher <felix.gilcher@bitextender.com>
+     * @since      1.0.0
+     */
+    protected function setAttributes(array $attributes)
+    {
+        $this->container->setAttributes($attributes);
+    }
 
-	/**
-	 * @see        AgaviAttributeHolder::setAttributesByRef()
-	 *
-	 * @author     Felix Gilcher <felix.gilcher@bitextender.com>
-	 * @since      1.0.0
-	 */
-	protected function setAttributesByRef(array &$attributes)
-	{
-		$this->container->setAttributesByRef($attributes);
-	}
+    /**
+     * @see        AgaviAttributeHolder::setAttributesByRef()
+     *
+     * @author     Felix Gilcher <felix.gilcher@bitextender.com>
+     * @since      1.0.0
+     */
+    protected function setAttributesByRef(array &$attributes)
+    {
+        $this->container->setAttributesByRef($attributes);
+    }
 }
-
-?>

@@ -32,57 +32,55 @@ use Agavi\Database\DoctrineDatabase;
  */
 class DoctrineDatabaseEventListener extends Doctrine_EventListener
 {
-	/**
-	 * @var        DoctrineDatabase The database adapter instance.
-	 */
-	protected $database;
-	
-	/**
-	 * Constructor, accepts the AgaviDoctrineDatabase instance to operate on.
-	 *
-	 * @param      DoctrineDatabase $database The corresponding database adapter.
-	 *
-	 * @author     David Zülke <david.zuelke@bitextender.com>
-	 * @since      1.0.4
-	 */
-	public function __construct(DoctrineDatabase $database)
-	{
-		$this->database = $database;
-	}
-	
-	/**
-	 * Return the DoctrineDatabase instance associated with this listener.
-	 *
-	 * @return     DoctrineDatabase
-	 *
-	 * @author     David Zülke <david.zuelke@bitextender.com>
-	 * @since      1.0.6
-	 */
-	public function getDatabase()
-	{
-		return $this->database;
-	}
-	
-	/**
-	 * Post-connect listener. Will set charset and run init queries if configured.
-	 *
-	 * @param      Doctrine_Event $event The Doctrine event object.
-	 *
-	 * @author     David Zülke <david.zuelke@bitextender.com>
-	 * @since      1.0.4
-	 */
-	public function postConnect(Doctrine_Event $event)
-	{
-		$database = $this->getDatabase();
-		
-		if($database->hasParameter('charset')) {
-			$event->getInvoker()->setCharset($database->getParameter('charset'));
-		}
-		
-		foreach((array)$database->getParameter('init_queries') as $query) {
-			$event->getInvoker()->exec($query);
-		}
-	}
+    /**
+     * @var        DoctrineDatabase The database adapter instance.
+     */
+    protected $database;
+    
+    /**
+     * Constructor, accepts the AgaviDoctrineDatabase instance to operate on.
+     *
+     * @param      DoctrineDatabase $database The corresponding database adapter.
+     *
+     * @author     David Zülke <david.zuelke@bitextender.com>
+     * @since      1.0.4
+     */
+    public function __construct(DoctrineDatabase $database)
+    {
+        $this->database = $database;
+    }
+    
+    /**
+     * Return the DoctrineDatabase instance associated with this listener.
+     *
+     * @return     DoctrineDatabase
+     *
+     * @author     David Zülke <david.zuelke@bitextender.com>
+     * @since      1.0.6
+     */
+    public function getDatabase()
+    {
+        return $this->database;
+    }
+    
+    /**
+     * Post-connect listener. Will set charset and run init queries if configured.
+     *
+     * @param      Doctrine_Event $event The Doctrine event object.
+     *
+     * @author     David Zülke <david.zuelke@bitextender.com>
+     * @since      1.0.4
+     */
+    public function postConnect(Doctrine_Event $event)
+    {
+        $database = $this->getDatabase();
+        
+        if ($database->hasParameter('charset')) {
+            $event->getInvoker()->setCharset($database->getParameter('charset'));
+        }
+        
+        foreach ((array)$database->getParameter('init_queries') as $query) {
+            $event->getInvoker()->exec($query);
+        }
+    }
 }
-
-?>

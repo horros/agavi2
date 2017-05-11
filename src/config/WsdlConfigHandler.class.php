@@ -34,178 +34,174 @@ use Agavi\Config\Util\Dom\XmlConfigDomDocument;
  */
 class WsdlConfigHandler extends XmlConfigHandler
 {
-	/**
-	 * Execute this configuration handler.
-	 *
-	 * @param      XmlConfigDomDocument $doc The document to parse.
-	 *
-	 * @return     string Data to be written to a cache file.
-	 *
-	 * @throws     <b>AgaviParseException</b> If a requested configuration file is
-	 *                                        improperly formatted.
-	 *
-	 * @author     David Zülke <dz@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function execute(XmlConfigDomDocument $doc)
-	{
-		$ro = $this->context->getRouting();
-		
-		$cleanAppName = preg_replace('/\W/', '', Config::get('core.app_name'));
-		
-		$xpath = new \DOMXPath($doc);
-		$xpath->registerNamespace('soap', 'http://schemas.xmlsoap.org/wsdl/soap/');
-		$xpath->registerNamespace('wsdl', 'http://schemas.xmlsoap.org/wsdl/');
-		
-		$paramWsdlDefinitionsName     = $ro->getParameter('wsdl_generator[wsdl][definitions][name]', $cleanAppName);
-		
-		$paramSoapAddressLocation     = $ro->getParameter('wsdl_generator[soap][address][location]');
-		                              
-		$paramSoapBindingStyle        = $ro->getParameter('wsdl_generator[soap][binding][style]',         'rpc');
-		$paramSoapBindingTransport    = $ro->getParameter('wsdl_generator[soap][binding][transport]',     'http://schemas.xmlsoap.org/soap/http');
-		
-		$paramSoapBodyUse             = $ro->getParameter('wsdl_generator[soap][body][use]',              'literal');
-		$paramSoapBodyNamespace       = $ro->getParameter('wsdl_generator[soap][body][namespace]',        /*'urn:' . $paramWsdlDefinitionsName*/ null);
-		$paramSoapBodyEncodingStyle   = $ro->getParameter('wsdl_generator[soap][body][encoding_style]',   'http://schemas.xmlsoap.org/soap/encoding/');
-		
-		$paramSoapHeaderUse           = $ro->getParameter('wsdl_generator[soap][header][use]',            'literal');
-		$paramSoapHeaderNamespace     = $ro->getParameter('wsdl_generator[soap][header][namespace]',      /*'urn:' . $paramWsdlDefinitionsName*/ null);
-		$paramSoapHeaderEncodingStyle = $ro->getParameter('wsdl_generator[soap][header][encoding_style]', 'http://schemas.xmlsoap.org/soap/encoding/');
-		
-		$paramSoapFaultUse            = $ro->getParameter('wsdl_generator[soap][fault][use]',             'encoded');
-		$paramSoapFaultNamespace      = $ro->getParameter('wsdl_generator[soap][fault][namespace]',       /*'urn:' . $paramWsdlDefinitionsName*/ null);
-		$paramSoapFaultEncodingStyle  = $ro->getParameter('wsdl_generator[soap][fault][encoding_style]',  'http://schemas.xmlsoap.org/soap/encoding/');
-		
-		$paramGlobalRequestHeaders    = $ro->getParameter('wsdl_generator[global_headers][request]',      array());
-		$paramGlobalResponseHeaders   = $ro->getParameter('wsdl_generator[global_headers][response]',     array());
-		
-		$wsdlDefinitions = $xpath->query('/wsdl:definitions');
-		/** @var XmlConfigDomElement $wsdlDefinition */
-		foreach($wsdlDefinitions as $wsdlDefinition) {
-			$targetNamespaceUri = $wsdlDefinition->getAttribute('targetNamespace');
-			$targetNamespacePrefix = $wsdlDefinition->lookupPrefix($targetNamespaceUri);
-			
-			$wsdlDefinition->setAttribute('name', $paramWsdlDefinitionsName);
-			
-			$wsdlBindings = $xpath->query('wsdl:binding', $wsdlDefinition);
-			/** @var XmlConfigDomElement $wsdlBinding */
-			foreach($wsdlBindings as $wsdlBinding) {
-				$wsdlBinding->setAttribute('name', $paramWsdlDefinitionsName . 'Binding');
-				$wsdlBinding->setAttribute('type', $targetNamespacePrefix . ':' . $paramWsdlDefinitionsName . 'PortType');
-				
-				$soapBindings = $xpath->query('soap:binding', $wsdlBinding);
-				/** @var XmlConfigDomElement $soapBinding */
-				foreach($soapBindings as $soapBinding) {
-					$soapBinding->setAttribute('style', $paramSoapBindingStyle);
-					$soapBinding->setAttribute('transport', $paramSoapBindingTransport);
-					
-				}
-				
-				$wsdlOperations = $xpath->query('wsdl:operation', $wsdlBinding);
-				/** @var XmlConfigDomElement $wsdlOperation */
-				foreach($wsdlOperations as $wsdlOperation) {
-					
-					foreach(array('input' => $paramGlobalRequestHeaders, 'output' => $paramGlobalResponseHeaders) as $target => $headers) {
-						foreach($headers as $header) {
-							if(!isset($header['namespace'])) {
-								$header['namespace'] = $targetNamespaceUri;
-							}
-							$element = $doc->createElementNS('http://schemas.xmlsoap.org/wsdl/soap/', 'soap:header');
-							foreach(array('encodingStyle', 'message', 'namespace', 'part', 'use') as $key) {
-								if(isset($header[$key])) {
-									$element->setAttribute($key, $header[$key]);
-								}
-							}
-							$wsdlOperation->getElementsByTagNameNS('http://schemas.xmlsoap.org/wsdl/', $target)->item(0)->appendChild($element);
-						}
-					}
-					
-					if($paramSoapBodyNamespace !== null) {
-						$soapOperations = $xpath->query('soap:operation', $wsdlOperation);
-						/** @var XmlConfigDomElement $soapOperation */
-						foreach($soapOperations as $soapOperation) {
-							$soapOperation->setAttribute('soapAction', $paramSoapBodyNamespace . '#' . $wsdlOperation->getAttribute('name'));
-						}
-					}
-					
-					$soapBodies = $xpath->query('.//soap:body', $wsdlOperation);
-					/** @var XmlConfigDomElement $soapBody */
-					foreach($soapBodies as $soapBody) {
-						if(!$soapBody->hasAttribute('use')) {
-							$soapBody->setAttribute('use', $paramSoapBodyUse);
-						}
-						if($paramSoapBodyNamespace !== null) {
-							$soapBody->setAttribute('namespace', $paramSoapBodyNamespace);
-						} elseif($soapBody->getAttribute('use') == 'literal' && $paramSoapBindingStyle == 'document') {
-							$soapBody->removeAttribute('namespace');
-						}
-						if($soapBody->getAttribute('use') == 'encoded') {
-							$soapBody->setAttribute('encodingStyle', $paramSoapBodyEncodingStyle);
-						}
-					}
-					
-					$soapHeaders = $xpath->query('.//soap:header', $wsdlOperation);
-					/** @var XmlConfigDomElement $soapHeader */
-					foreach($soapHeaders as $soapHeader) {
-						if(!$soapHeader->hasAttribute('use')) {
-							$soapHeader->setAttribute('use', $paramSoapHeaderUse);
-						}
-						if($paramSoapHeaderNamespace !== null) {
-							$soapHeader->setAttribute('namespace', $paramSoapHeaderNamespace);
-						} elseif($soapHeader->getAttribute('use') == 'literal' && $paramSoapBindingStyle == 'document') {
-							$soapHeader->removeAttribute('namespace');
-						}
-						if($soapHeader->getAttribute('use') == 'encoded') {
-							$soapHeader->setAttribute('encodingStyle', $paramSoapHeaderEncodingStyle);
-						}
-					}
-					
-					$soapFaults = $xpath->query('.//soap:fault', $wsdlOperation);
-					/** @var XmlConfigDomElement $soapFault */
-					foreach($soapFaults as $soapFault) {
-						if(!$soapFault->hasAttribute('use')) {
-							$soapFault->setAttribute('use', $paramSoapFaultUse);
-						}
-						if($paramSoapFaultNamespace !== null) {
-							$soapFault->setAttribute('namespace', $paramSoapFaultNamespace);
-						} elseif($soapFault->getAttribute('use') == 'literal' && $paramSoapBindingStyle == 'document') {
-							$soapFault->removeAttribute('namespace');
-						}
-						if($soapFault->getAttribute('use') == 'encoded') {
-							$soapFault->setAttribute('encodingStyle', $paramSoapFaultEncodingStyle);
-						}
-					}
-				}
-			}
-			
-			$wsdlPortTypes = $xpath->query('wsdl:portType', $wsdlDefinition);
-			/** @var XmlConfigDomElement $wsdlPortType */
-			foreach($wsdlPortTypes as $wsdlPortType) {
-				$wsdlPortType->setAttribute('name', $paramWsdlDefinitionsName . 'PortType');
-			}
-			
-			$wsdlServices = $xpath->query('wsdl:service', $wsdlDefinition);
-			/** @var XmlConfigDomElement $wsdlService */
-			foreach($wsdlServices as $wsdlService) {
-				$wsdlService->setAttribute('name', $paramWsdlDefinitionsName . 'Service');
-				
-				$wsdlPorts = $xpath->query('wsdl:port', $wsdlService);
-				/** @var XmlConfigDomElement $wsdlPort */
-				foreach($wsdlPorts as $wsdlPort) {
-					$wsdlPort->setAttribute('name', $paramWsdlDefinitionsName . 'Port');
-					$wsdlPort->setAttribute('binding', $targetNamespacePrefix . ':' . $paramWsdlDefinitionsName . 'Binding');
-					
-					$soapAddresses = $xpath->query('soap:address', $wsdlPort);
-					/** @var XmlConfigDomElement $soapAddress */
-					foreach($soapAddresses as $soapAddress) {
-						$soapAddress->setAttribute('location', $paramSoapAddressLocation);
-					}
-				}
-			}
-		}
-		
-		return $doc->saveXML();
-	}
+    /**
+     * Execute this configuration handler.
+     *
+     * @param      XmlConfigDomDocument $doc The document to parse.
+     *
+     * @return     string Data to be written to a cache file.
+     *
+     * @throws     <b>AgaviParseException</b> If a requested configuration file is
+     *                                        improperly formatted.
+     *
+     * @author     David Zülke <dz@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function execute(XmlConfigDomDocument $doc)
+    {
+        $ro = $this->context->getRouting();
+        
+        $cleanAppName = preg_replace('/\W/', '', Config::get('core.app_name'));
+        
+        $xpath = new \DOMXPath($doc);
+        $xpath->registerNamespace('soap', 'http://schemas.xmlsoap.org/wsdl/soap/');
+        $xpath->registerNamespace('wsdl', 'http://schemas.xmlsoap.org/wsdl/');
+        
+        $paramWsdlDefinitionsName     = $ro->getParameter('wsdl_generator[wsdl][definitions][name]', $cleanAppName);
+        
+        $paramSoapAddressLocation     = $ro->getParameter('wsdl_generator[soap][address][location]');
+                                      
+        $paramSoapBindingStyle        = $ro->getParameter('wsdl_generator[soap][binding][style]', 'rpc');
+        $paramSoapBindingTransport    = $ro->getParameter('wsdl_generator[soap][binding][transport]', 'http://schemas.xmlsoap.org/soap/http');
+        
+        $paramSoapBodyUse             = $ro->getParameter('wsdl_generator[soap][body][use]', 'literal');
+        $paramSoapBodyNamespace       = $ro->getParameter('wsdl_generator[soap][body][namespace]', /*'urn:' . $paramWsdlDefinitionsName*/ null);
+        $paramSoapBodyEncodingStyle   = $ro->getParameter('wsdl_generator[soap][body][encoding_style]', 'http://schemas.xmlsoap.org/soap/encoding/');
+        
+        $paramSoapHeaderUse           = $ro->getParameter('wsdl_generator[soap][header][use]', 'literal');
+        $paramSoapHeaderNamespace     = $ro->getParameter('wsdl_generator[soap][header][namespace]', /*'urn:' . $paramWsdlDefinitionsName*/ null);
+        $paramSoapHeaderEncodingStyle = $ro->getParameter('wsdl_generator[soap][header][encoding_style]', 'http://schemas.xmlsoap.org/soap/encoding/');
+        
+        $paramSoapFaultUse            = $ro->getParameter('wsdl_generator[soap][fault][use]', 'encoded');
+        $paramSoapFaultNamespace      = $ro->getParameter('wsdl_generator[soap][fault][namespace]', /*'urn:' . $paramWsdlDefinitionsName*/ null);
+        $paramSoapFaultEncodingStyle  = $ro->getParameter('wsdl_generator[soap][fault][encoding_style]', 'http://schemas.xmlsoap.org/soap/encoding/');
+        
+        $paramGlobalRequestHeaders    = $ro->getParameter('wsdl_generator[global_headers][request]', array());
+        $paramGlobalResponseHeaders   = $ro->getParameter('wsdl_generator[global_headers][response]', array());
+        
+        $wsdlDefinitions = $xpath->query('/wsdl:definitions');
+        /** @var XmlConfigDomElement $wsdlDefinition */
+        foreach ($wsdlDefinitions as $wsdlDefinition) {
+            $targetNamespaceUri = $wsdlDefinition->getAttribute('targetNamespace');
+            $targetNamespacePrefix = $wsdlDefinition->lookupPrefix($targetNamespaceUri);
+            
+            $wsdlDefinition->setAttribute('name', $paramWsdlDefinitionsName);
+            
+            $wsdlBindings = $xpath->query('wsdl:binding', $wsdlDefinition);
+            /** @var XmlConfigDomElement $wsdlBinding */
+            foreach ($wsdlBindings as $wsdlBinding) {
+                $wsdlBinding->setAttribute('name', $paramWsdlDefinitionsName . 'Binding');
+                $wsdlBinding->setAttribute('type', $targetNamespacePrefix . ':' . $paramWsdlDefinitionsName . 'PortType');
+                
+                $soapBindings = $xpath->query('soap:binding', $wsdlBinding);
+                /** @var XmlConfigDomElement $soapBinding */
+                foreach ($soapBindings as $soapBinding) {
+                    $soapBinding->setAttribute('style', $paramSoapBindingStyle);
+                    $soapBinding->setAttribute('transport', $paramSoapBindingTransport);
+                }
+                
+                $wsdlOperations = $xpath->query('wsdl:operation', $wsdlBinding);
+                /** @var XmlConfigDomElement $wsdlOperation */
+                foreach ($wsdlOperations as $wsdlOperation) {
+                    foreach (array('input' => $paramGlobalRequestHeaders, 'output' => $paramGlobalResponseHeaders) as $target => $headers) {
+                        foreach ($headers as $header) {
+                            if (!isset($header['namespace'])) {
+                                $header['namespace'] = $targetNamespaceUri;
+                            }
+                            $element = $doc->createElementNS('http://schemas.xmlsoap.org/wsdl/soap/', 'soap:header');
+                            foreach (array('encodingStyle', 'message', 'namespace', 'part', 'use') as $key) {
+                                if (isset($header[$key])) {
+                                    $element->setAttribute($key, $header[$key]);
+                                }
+                            }
+                            $wsdlOperation->getElementsByTagNameNS('http://schemas.xmlsoap.org/wsdl/', $target)->item(0)->appendChild($element);
+                        }
+                    }
+                    
+                    if ($paramSoapBodyNamespace !== null) {
+                        $soapOperations = $xpath->query('soap:operation', $wsdlOperation);
+                        /** @var XmlConfigDomElement $soapOperation */
+                        foreach ($soapOperations as $soapOperation) {
+                            $soapOperation->setAttribute('soapAction', $paramSoapBodyNamespace . '#' . $wsdlOperation->getAttribute('name'));
+                        }
+                    }
+                    
+                    $soapBodies = $xpath->query('.//soap:body', $wsdlOperation);
+                    /** @var XmlConfigDomElement $soapBody */
+                    foreach ($soapBodies as $soapBody) {
+                        if (!$soapBody->hasAttribute('use')) {
+                            $soapBody->setAttribute('use', $paramSoapBodyUse);
+                        }
+                        if ($paramSoapBodyNamespace !== null) {
+                            $soapBody->setAttribute('namespace', $paramSoapBodyNamespace);
+                        } elseif ($soapBody->getAttribute('use') == 'literal' && $paramSoapBindingStyle == 'document') {
+                            $soapBody->removeAttribute('namespace');
+                        }
+                        if ($soapBody->getAttribute('use') == 'encoded') {
+                            $soapBody->setAttribute('encodingStyle', $paramSoapBodyEncodingStyle);
+                        }
+                    }
+                    
+                    $soapHeaders = $xpath->query('.//soap:header', $wsdlOperation);
+                    /** @var XmlConfigDomElement $soapHeader */
+                    foreach ($soapHeaders as $soapHeader) {
+                        if (!$soapHeader->hasAttribute('use')) {
+                            $soapHeader->setAttribute('use', $paramSoapHeaderUse);
+                        }
+                        if ($paramSoapHeaderNamespace !== null) {
+                            $soapHeader->setAttribute('namespace', $paramSoapHeaderNamespace);
+                        } elseif ($soapHeader->getAttribute('use') == 'literal' && $paramSoapBindingStyle == 'document') {
+                            $soapHeader->removeAttribute('namespace');
+                        }
+                        if ($soapHeader->getAttribute('use') == 'encoded') {
+                            $soapHeader->setAttribute('encodingStyle', $paramSoapHeaderEncodingStyle);
+                        }
+                    }
+                    
+                    $soapFaults = $xpath->query('.//soap:fault', $wsdlOperation);
+                    /** @var XmlConfigDomElement $soapFault */
+                    foreach ($soapFaults as $soapFault) {
+                        if (!$soapFault->hasAttribute('use')) {
+                            $soapFault->setAttribute('use', $paramSoapFaultUse);
+                        }
+                        if ($paramSoapFaultNamespace !== null) {
+                            $soapFault->setAttribute('namespace', $paramSoapFaultNamespace);
+                        } elseif ($soapFault->getAttribute('use') == 'literal' && $paramSoapBindingStyle == 'document') {
+                            $soapFault->removeAttribute('namespace');
+                        }
+                        if ($soapFault->getAttribute('use') == 'encoded') {
+                            $soapFault->setAttribute('encodingStyle', $paramSoapFaultEncodingStyle);
+                        }
+                    }
+                }
+            }
+            
+            $wsdlPortTypes = $xpath->query('wsdl:portType', $wsdlDefinition);
+            /** @var XmlConfigDomElement $wsdlPortType */
+            foreach ($wsdlPortTypes as $wsdlPortType) {
+                $wsdlPortType->setAttribute('name', $paramWsdlDefinitionsName . 'PortType');
+            }
+            
+            $wsdlServices = $xpath->query('wsdl:service', $wsdlDefinition);
+            /** @var XmlConfigDomElement $wsdlService */
+            foreach ($wsdlServices as $wsdlService) {
+                $wsdlService->setAttribute('name', $paramWsdlDefinitionsName . 'Service');
+                
+                $wsdlPorts = $xpath->query('wsdl:port', $wsdlService);
+                /** @var XmlConfigDomElement $wsdlPort */
+                foreach ($wsdlPorts as $wsdlPort) {
+                    $wsdlPort->setAttribute('name', $paramWsdlDefinitionsName . 'Port');
+                    $wsdlPort->setAttribute('binding', $targetNamespacePrefix . ':' . $paramWsdlDefinitionsName . 'Binding');
+                    
+                    $soapAddresses = $xpath->query('soap:address', $wsdlPort);
+                    /** @var XmlConfigDomElement $soapAddress */
+                    foreach ($soapAddresses as $soapAddress) {
+                        $soapAddress->setAttribute('location', $paramSoapAddressLocation);
+                    }
+                }
+            }
+        }
+        
+        return $doc->saveXML();
+    }
 }
-
-?>

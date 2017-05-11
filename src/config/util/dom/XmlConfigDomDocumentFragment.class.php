@@ -15,7 +15,6 @@
 
 namespace Agavi\Config\Util\Dom;
 
-
 /**
  * Extended DOMDocumentFragment class.
  *
@@ -33,5 +32,3 @@ namespace Agavi\Config\Util\Dom;
 class XmlConfigDomDocumentFragment extends \DOMDocumentFragment
 {
 }
-
-?>

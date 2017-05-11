@@ -4,5 +4,3 @@ class FilterTests_FormPopulationFilterController extends SandboxFilterTestsBaseC
 {
 
 }
-
-?>

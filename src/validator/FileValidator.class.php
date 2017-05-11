@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Validator;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -15,7 +16,7 @@ namespace Agavi\Validator;
 
 /**
  * FileValidator verifies the size and extension of a file
- * 
+ *
  * @see        AgaviBaseFileValidator
  *
  * @package    agavi
@@ -31,18 +32,16 @@ namespace Agavi\Validator;
  */
 class FileValidator extends BaseFileValidator
 {
-	/**
-	 * Validates the input
-	 * 
-	 * @return     bool The file is valid according to given parameters.
-	 * 
-	 * @author     Dominik del Bondio <ddb@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	protected function validate()
-	{
-		return parent::validate();
-	}
+    /**
+     * Validates the input
+     *
+     * @return     bool The file is valid according to given parameters.
+     *
+     * @author     Dominik del Bondio <ddb@bitxtender.com>
+     * @since      0.11.0
+     */
+    protected function validate()
+    {
+        return parent::validate();
+    }
 }
-
-?>

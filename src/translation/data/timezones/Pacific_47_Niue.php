@@ -16,46 +16,46 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => -40800,
       'dstOffset' => 0,
       'name' => 'NUT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => -41400,
       'dstOffset' => 0,
       'name' => 'NUT',
     ),
-    2 => 
+    2 =>
     array (
       'rawOffset' => -39600,
       'dstOffset' => 0,
       'name' => 'NUT',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -2177412020,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -599575200,
       'type' => 1,
     ),
-    2 => 
+    2 =>
     array (
       'time' => 276089400,
       'type' => 2,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'NUT',
@@ -66,5 +66,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Pacific/Niue',
 );
-
-?>

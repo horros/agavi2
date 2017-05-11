@@ -16,24 +16,24 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 39600,
       'dstOffset' => 0,
       'name' => 'PONT',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -2177490772,
       'type' => 0,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'PONT',
@@ -44,5 +44,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Pacific/Pohnpei',
 );
-
-?>

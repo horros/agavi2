@@ -23,5 +23,3 @@ require('../app/config.php');
 // | Call the controller's dispatch method on the default context              |
 // +---------------------------------------------------------------------------+
 \Agavi\Core\Context::getInstance('web')->getDispatcher()->dispatch();
-
-?>

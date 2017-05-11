@@ -16,138 +16,138 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 27000,
       'dstOffset' => 0,
       'name' => 'BORT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => 28800,
       'dstOffset' => 0,
       'name' => 'BORT',
     ),
-    2 => 
+    2 =>
     array (
       'rawOffset' => 28800,
       'dstOffset' => 1200,
       'name' => 'BORTST',
     ),
-    3 => 
+    3 =>
     array (
       'rawOffset' => 32400,
       'dstOffset' => 0,
       'name' => 'JST',
     ),
-    4 => 
+    4 =>
     array (
       'rawOffset' => 28800,
       'dstOffset' => 0,
       'name' => 'MYT',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -1383463280,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -1167636600,
       'type' => 1,
     ),
-    2 => 
+    2 =>
     array (
       'time' => -1082448000,
       'type' => 2,
     ),
-    3 => 
+    3 =>
     array (
       'time' => -1074586800,
       'type' => 1,
     ),
-    4 => 
+    4 =>
     array (
       'time' => -1050825600,
       'type' => 2,
     ),
-    5 => 
+    5 =>
     array (
       'time' => -1042964400,
       'type' => 1,
     ),
-    6 => 
+    6 =>
     array (
       'time' => -1019289600,
       'type' => 2,
     ),
-    7 => 
+    7 =>
     array (
       'time' => -1011428400,
       'type' => 1,
     ),
-    8 => 
+    8 =>
     array (
       'time' => -987753600,
       'type' => 2,
     ),
-    9 => 
+    9 =>
     array (
       'time' => -979892400,
       'type' => 1,
     ),
-    10 => 
+    10 =>
     array (
       'time' => -956217600,
       'type' => 2,
     ),
-    11 => 
+    11 =>
     array (
       'time' => -948356400,
       'type' => 1,
     ),
-    12 => 
+    12 =>
     array (
       'time' => -924595200,
       'type' => 2,
     ),
-    13 => 
+    13 =>
     array (
       'time' => -916734000,
       'type' => 1,
     ),
-    14 => 
+    14 =>
     array (
       'time' => -893059200,
       'type' => 2,
     ),
-    15 => 
+    15 =>
     array (
       'time' => -885198000,
       'type' => 1,
     ),
-    16 => 
+    16 =>
     array (
       'time' => -879667200,
       'type' => 3,
     ),
-    17 => 
+    17 =>
     array (
       'time' => -767005200,
       'type' => 1,
     ),
-    18 => 
+    18 =>
     array (
       'time' => 378662400,
       'type' => 4,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'MYT',
@@ -158,5 +158,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Asia/Kuching',
 );
-
-?>

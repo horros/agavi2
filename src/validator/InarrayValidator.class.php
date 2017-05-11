@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Validator;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -15,7 +16,7 @@ namespace Agavi\Validator;
 
 /**
  * AgaviInArrayValidator verifies whether an input is one of a set of values
- * 
+ *
  * Parameters:
  *   'values'  list of values that form the array
  *   'sep'     separator of values in the list
@@ -36,40 +37,38 @@ namespace Agavi\Validator;
  */
 class InarrayValidator extends Validator
 {
-	/**
-	 * Validates the input.
-	 * 
-	 * @return     bool The value is in the array.
-	 * 
-	 * @author     Dominik del Bondio <ddb@bitxtender.com>
-	 * @author     Uwe Mesecke <uwe@mesecke.net>
-	 * @since      0.11.0
-	 */
-	protected function validate()
-	{
-		$list = $this->getParameter('values');
-		if(!is_array($list)) {
-			$list = explode($this->getParameter('sep'), $list);
-		}
-		$value = $this->getData($this->getArgument());
-		
-		if(!is_scalar($value)) {
-			$this->throwError();
-			return false;
-		}
-		
-		if(!$this->getParameter('case')) {
-			$value = strtolower($value);
-			$list = array_map('strtolower', $list);
-		}
-		
-		if(!in_array($value, $list, $this->getParameter('strict', false))) {
-			$this->throwError();
-			return false;
-		}
-		
-		return true;
-	}
+    /**
+     * Validates the input.
+     *
+     * @return     bool The value is in the array.
+     *
+     * @author     Dominik del Bondio <ddb@bitxtender.com>
+     * @author     Uwe Mesecke <uwe@mesecke.net>
+     * @since      0.11.0
+     */
+    protected function validate()
+    {
+        $list = $this->getParameter('values');
+        if (!is_array($list)) {
+            $list = explode($this->getParameter('sep'), $list);
+        }
+        $value = $this->getData($this->getArgument());
+        
+        if (!is_scalar($value)) {
+            $this->throwError();
+            return false;
+        }
+        
+        if (!$this->getParameter('case')) {
+            $value = strtolower($value);
+            $list = array_map('strtolower', $list);
+        }
+        
+        if (!in_array($value, $list, $this->getParameter('strict', false))) {
+            $this->throwError();
+            return false;
+        }
+        
+        return true;
+    }
 }
-
-?>

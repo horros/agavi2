@@ -16,24 +16,24 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 39600,
       'dstOffset' => 0,
       'name' => 'SBT',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -1806748788,
       'type' => 0,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'SBT',
@@ -44,5 +44,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Pacific/Guadalcanal',
 );
-
-?>

@@ -32,5 +32,3 @@ namespace Agavi\Exception;
 class FileNotFoundException extends AgaviException
 {
 }
-
-?>

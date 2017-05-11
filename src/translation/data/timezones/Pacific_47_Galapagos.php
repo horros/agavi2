@@ -16,35 +16,35 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => -18000,
       'dstOffset' => 0,
       'name' => 'ECT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => -21600,
       'dstOffset' => 0,
       'name' => 'GALT',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -1230746496,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => 504939600,
       'type' => 1,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'GALT',
@@ -55,5 +55,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Pacific/Galapagos',
 );
-
-?>

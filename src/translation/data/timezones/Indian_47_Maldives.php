@@ -16,35 +16,35 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 17640,
       'dstOffset' => 0,
       'name' => 'MMT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => 18000,
       'dstOffset' => 0,
       'name' => 'MVT',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -2840158440,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -315636840,
       'type' => 1,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'MVT',
@@ -55,5 +55,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Indian/Maldives',
 );
-
-?>

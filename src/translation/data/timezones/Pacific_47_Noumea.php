@@ -16,60 +16,60 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 39600,
       'dstOffset' => 0,
       'name' => 'NCT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => 39600,
       'dstOffset' => 3600,
       'name' => 'NCST',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -1829387148,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => 250002000,
       'type' => 1,
     ),
-    2 => 
+    2 =>
     array (
       'time' => 257342400,
       'type' => 0,
     ),
-    3 => 
+    3 =>
     array (
       'time' => 281451600,
       'type' => 1,
     ),
-    4 => 
+    4 =>
     array (
       'time' => 288878400,
       'type' => 0,
     ),
-    5 => 
+    5 =>
     array (
       'time' => 849366000,
       'type' => 1,
     ),
-    6 => 
+    6 =>
     array (
       'time' => 857228400,
       'type' => 0,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'none',
     'offset' => 39600,
@@ -79,5 +79,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Pacific/Noumea',
 );
-
-?>

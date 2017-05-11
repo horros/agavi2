@@ -2,7 +2,7 @@
 
 class SampleAppConfidentialBaseModel extends AgaviSampleAppBaseModel
 {
-	/*
+    /*
 		This is the base Controller all your module's models should extend. This way,
 		you can easily inject new functionality into all of this module's models.
 		
@@ -13,5 +13,3 @@ class SampleAppConfidentialBaseModel extends AgaviSampleAppBaseModel
 		for specific modules in case you require this.
 	*/
 }
-
-?>

@@ -16,24 +16,24 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => -34200,
       'dstOffset' => 0,
       'name' => 'MART',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -1806676920,
       'type' => 0,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'MART',
@@ -44,5 +44,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Pacific/Marquesas',
 );
-
-?>

@@ -841,7 +841,6 @@ class SimpleTimeZone extends TimeZone
         // this method because it's public API. - liu 8/10/98
         if ($month < DateDefinitions::JANUARY || $month > DateDefinitions::DECEMBER) {
             throw new \InvalidArgumentException('Month out of range');
-
         }
 
         // We ignore monthLength because it can be derived from year and month.
@@ -892,8 +891,9 @@ class SimpleTimeZone extends TimeZone
         $result = $this->rawOffset;
 
         // Bail out if we are before the onset of daylight savings time
-        if (!$this->useDaylight || $year < $this->startYear || $era != GregorianCalendar::AD)
+        if (!$this->useDaylight || $year < $this->startYear || $era != GregorianCalendar::AD) {
             return $result;
+        }
 
         // Check for southern hemisphere.  We assume that the start and end
         // month are different.
@@ -922,8 +922,9 @@ class SimpleTimeZone extends TimeZone
         // assume that in the northern hemisphere, the start rule is before the
         // end rule within the calendar year, and vice versa for the southern
         // hemisphere.
-        if ((!$southern && ($startCompare >= 0 && $endCompare < 0)) || ($southern && ($startCompare >= 0 || $endCompare < 0)))
+        if ((!$southern && ($startCompare >= 0 && $endCompare < 0)) || ($southern && ($startCompare >= 0 || $endCompare < 0))) {
             $result += $this->dstSavings;
+        }
 
         return $result;
     }
@@ -1438,5 +1439,3 @@ class SimpleTimeZone extends TimeZone
      */
     private $dstSavings;
 }
-
-?>

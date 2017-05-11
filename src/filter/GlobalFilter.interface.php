@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Filter;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -15,7 +16,7 @@ namespace Agavi\Filter;
 
 /**
  * Global Filter interface.
- * 
+ *
  * @package    agavi
  * @subpackage filter
  *
@@ -30,5 +31,3 @@ namespace Agavi\Filter;
 interface GlobalFilterInterface extends FilterInterface
 {
 }
-
-?>

@@ -16,24 +16,24 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 21600,
       'dstOffset' => 0,
       'name' => 'VOST',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -380073600,
       'type' => 0,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'VOST',
@@ -44,5 +44,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Antarctica/Vostok',
 );
-
-?>

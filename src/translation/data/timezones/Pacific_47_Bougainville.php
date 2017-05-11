@@ -16,62 +16,62 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 35312,
       'dstOffset' => 0,
       'name' => 'PMMT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => 36000,
       'dstOffset' => 0,
       'name' => 'PGT',
     ),
-    2 => 
+    2 =>
     array (
       'rawOffset' => 32400,
       'dstOffset' => 0,
       'name' => 'JST',
     ),
-    3 => 
+    3 =>
     array (
       'rawOffset' => 39600,
       'dstOffset' => 0,
       'name' => 'BST',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -2840178136,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -2366790512,
       'type' => 1,
     ),
-    2 => 
+    2 =>
     array (
       'time' => -868010400,
       'type' => 2,
     ),
-    3 => 
+    3 =>
     array (
       'time' => -768906000,
       'type' => 1,
     ),
-    4 => 
+    4 =>
     array (
       'time' => 1419696000,
       'type' => 3,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'BST',
@@ -82,5 +82,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Pacific/Bougainville',
 );
-
-?>

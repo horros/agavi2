@@ -16,35 +16,35 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 14400,
       'dstOffset' => 0,
       'name' => 'AFT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => 16200,
       'dstOffset' => 0,
       'name' => 'AFT',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -2524538208,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -788932800,
       'type' => 1,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'AFT',
@@ -55,5 +55,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Asia/Kabul',
 );
-
-?>

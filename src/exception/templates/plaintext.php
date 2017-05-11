@@ -35,21 +35,21 @@ use Agavi\Exception\AgaviException;
 
 // we're not supposed to display errors
 // let's throw the exception so it shows up in error logs
-if(!ini_get('display_errors')) {
-	throw $e;
+if (!ini_get('display_errors')) {
+    throw $e;
 }
 
-if(!headers_sent()) {
-	header('Content-Type: text/plain');	
+if (!headers_sent()) {
+    header('Content-Type: text/plain');
 }
 
 $cols = 80;
-if(!defined('STDOUT') || (function_exists('posix_isatty') && !@posix_isatty(STDOUT))) {
-	// if output is redirected, do not wrap lines after just 80 characters
-	$cols = false;
-} elseif(file_exists('/bin/stty') && is_executable('/bin/stty') && $sttySize = exec('/bin/stty size 2>/dev/null')) {
-	// grab the terminal width for line wrapping if possible
-	list(, $cols) = explode(' ', $sttySize);
+if (!defined('STDOUT') || (function_exists('posix_isatty') && !@posix_isatty(STDOUT))) {
+    // if output is redirected, do not wrap lines after just 80 characters
+    $cols = false;
+} elseif (file_exists('/bin/stty') && is_executable('/bin/stty') && $sttySize = exec('/bin/stty size 2>/dev/null')) {
+    // grab the terminal width for line wrapping if possible
+    list(, $cols) = explode(' ', $sttySize);
 }
 
 ?>
@@ -58,21 +58,22 @@ if(!defined('STDOUT') || (function_exists('posix_isatty') && !@posix_isatty(STDO
 # Application Error #
 #####################
 
-<?php if(count($exceptions) > 1): ?>
-<?php $msg = sprintf('The %s was caused by %s. A full chain of exceptions is listed below.', get_class($e), ((count($exceptions) == 2) ? 'another exception' : 'other exceptions')); echo $cols ? wordwrap($msg, $cols, "\n") : $msg; ?>
+<?php if (count($exceptions) > 1) : ?>
+<?php $msg = sprintf('The %s was caused by %s. A full chain of exceptions is listed below.', get_class($e), ((count($exceptions) == 2) ? 'another exception' : 'other exceptions'));
+echo $cols ? wordwrap($msg, $cols, "\n") : $msg; ?>
 
 
 <?php endif; ?>
-<?php foreach($exceptions as $ei => $e): ?>
+<?php foreach ($exceptions as $ei => $e) : ?>
 
-  <?php echo get_class($e); ?> 
+    <?php echo get_class($e); ?> 
 ==<?php echo str_repeat("=", strlen(get_class($e))); ?>==
 
 <?php
 $lines = explode("\n", trim($e->getMessage()));
-foreach($lines as $line):
+foreach ($lines as $line) :
 ?>
-  <?php echo $cols ? wordwrap($line, $cols-2, "\n  ", true) : $line; ?>
+    <?php echo $cols ? wordwrap($line, $cols-2, "\n  ", true) : $line; ?>
 
 <?php endforeach; ?>
 
@@ -82,17 +83,17 @@ foreach($lines as $line):
 $i = 0;
 $traceLines = AgaviException::getFixedTrace($e, isset($exceptions[$ei+1]) ? $exceptions[$ei+1] : null);
 $traceCount = count($traceLines);
-foreach($traceLines as $trace) {
-	$i++;
-	echo sprintf("  %" . strlen($traceCount) . "s: ", $i);
-	if(isset($trace['file'])) {
-		$msg = $trace['file'] . (isset($trace['line']) ? ':' . $trace['line'] : ''); echo $cols ? wordwrap($msg, $cols - 4 - strlen($traceCount), "\n" . str_repeat(' ', 4 + strlen($traceCount)), true) : $msg;
-	} else {
-		echo "Unknown file";
-	}
-	echo "\n";
+foreach ($traceLines as $trace) {
+    $i++;
+    echo sprintf("  %" . strlen($traceCount) . "s: ", $i);
+    if (isset($trace['file'])) {
+        $msg = $trace['file'] . (isset($trace['line']) ? ':' . $trace['line'] : '');
+        echo $cols ? wordwrap($msg, $cols - 4 - strlen($traceCount), "\n" . str_repeat(' ', 4 + strlen($traceCount)), true) : $msg;
+    } else {
+        echo "Unknown file";
+    }
+    echo "\n";
 }
-
 endforeach;
 ?>
 

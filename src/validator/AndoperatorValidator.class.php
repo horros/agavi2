@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Validator;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -15,7 +16,7 @@ namespace Agavi\Validator;
 
 /**
  * AgaviANDOperatorValidator only succeeds if all sub-validators succeeded
- * 
+ *
  * Parameters:
  *   'skip_errors' do not submit errors of child validators to validator manager
  *   'break'       break the execution of child validators after first failure
@@ -34,35 +35,33 @@ namespace Agavi\Validator;
  */
 class AndoperatorValidator extends OperatorValidator
 {
-	/**
-	 * Validates the operator by executing the child validators.
-	 * 
-	 * @return     bool True if all child validators resulted successful.
-	 * 
-	 * @author     Dominik del Bondio <ddb@bitxtender.com>
-	 * @author     Uwe Mesecke <uwe@mesecke.net>
-	 * @since      0.11.0
-	 */
-	protected function validate()
-	{
-		$return = true;
+    /**
+     * Validates the operator by executing the child validators.
+     *
+     * @return     bool True if all child validators resulted successful.
+     *
+     * @author     Dominik del Bondio <ddb@bitxtender.com>
+     * @author     Uwe Mesecke <uwe@mesecke.net>
+     * @since      0.11.0
+     */
+    protected function validate()
+    {
+        $return = true;
 
-		/** @var Validator $child */
-		foreach($this->children as $child) {
-			$result = $child->execute($this->validationParameters);
-			$this->result = max($result, $this->result);
-			if($result > Validator::SUCCESS) {
-				// if one validator fails, the whole operator fails
-				$return = false;
-				$this->throwError();
-				if($this->getParameter('break') || $result == Validator::CRITICAL) {
-					break;
-				}
-			}
-		}
-		
-		return $return;
-	}	
+        /** @var Validator $child */
+        foreach ($this->children as $child) {
+            $result = $child->execute($this->validationParameters);
+            $this->result = max($result, $this->result);
+            if ($result > Validator::SUCCESS) {
+                // if one validator fails, the whole operator fails
+                $return = false;
+                $this->throwError();
+                if ($this->getParameter('break') || $result == Validator::CRITICAL) {
+                    break;
+                }
+            }
+        }
+        
+        return $return;
+    }
 }
-
-?>

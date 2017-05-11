@@ -31,15 +31,13 @@ namespace Agavi\Config\Util\Dom;
  */
 class XmlConfigDomAttr extends \DOMAttr
 {
-	public function __toString()
-	{
-		return $this->getValue();
-	}
-	
-	public function getValue()
-	{
-		return $this->nodeValue;
-	}
+    public function __toString()
+    {
+        return $this->getValue();
+    }
+    
+    public function getValue()
+    {
+        return $this->nodeValue;
+    }
 }
-
-?>

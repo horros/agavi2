@@ -1,63 +1,62 @@
 <?php
 namespace Agavi\Tests\Unit\Request;
+
 use Agavi\Request\WebRequest;
 use Agavi\Testing\UnitTestCase;
 
 class WebRequestTest extends UnitTestCase
 {
-	/**
-	 * @var WebRequest
-	 */
-	private $_r = null;
-	private $_SERVER = array();
+    /**
+     * @var WebRequest
+     */
+    private $_r = null;
+    private $_SERVER = array();
 
-	public function setUp()
-	{
-		$this->_SERVER = $_SERVER;
-		
-		$_SERVER['HTTPS'] = 'on';
-		$_SERVER['SERVER_PORT'] = '123';
-		$_SERVER['SERVER_NAME'] = 'example.agavi.org';
-		$_SERVER['REQUEST_URI'] = '/foo/bar/baz?id=4815162342';
-		
-		$this->_r = new WebRequest();
-		$this->_r->initialize($this->getContext());
-	}
-	
-	public function testGetUrlScheme()
-	{
-		$this->assertEquals('https', $this->_r->getUrlScheme());
-	}
+    public function setUp()
+    {
+        $this->_SERVER = $_SERVER;
+        
+        $_SERVER['HTTPS'] = 'on';
+        $_SERVER['SERVER_PORT'] = '123';
+        $_SERVER['SERVER_NAME'] = 'example.agavi.org';
+        $_SERVER['REQUEST_URI'] = '/foo/bar/baz?id=4815162342';
+        
+        $this->_r = new WebRequest();
+        $this->_r->initialize($this->getContext());
+    }
+    
+    public function testGetUrlScheme()
+    {
+        $this->assertEquals('https', $this->_r->getUrlScheme());
+    }
 
-	public function testGetUrlAuthority()
-	{
-		$this->assertEquals('example.agavi.org:123', $this->_r->getUrlAuthority());
-	}
+    public function testGetUrlAuthority()
+    {
+        $this->assertEquals('example.agavi.org:123', $this->_r->getUrlAuthority());
+    }
 
-	public function testGetUrlPath()
-	{
-		$this->assertEquals('/foo/bar/baz', $this->_r->getUrlPath());
-	}
+    public function testGetUrlPath()
+    {
+        $this->assertEquals('/foo/bar/baz', $this->_r->getUrlPath());
+    }
 
-	public function testGetUrlQuery()
-	{
-		$this->assertEquals('id=4815162342', $this->_r->getUrlQuery());
-	}
+    public function testGetUrlQuery()
+    {
+        $this->assertEquals('id=4815162342', $this->_r->getUrlQuery());
+    }
 
-	public function testGetRequestUri()
-	{
-		$this->assertEquals('/foo/bar/baz?id=4815162342', $this->_r->getRequestUri());
-	}
+    public function testGetRequestUri()
+    {
+        $this->assertEquals('/foo/bar/baz?id=4815162342', $this->_r->getRequestUri());
+    }
 
-	public function testGetUrl()
-	{
-		$this->assertEquals('https://example.agavi.org:123/foo/bar/baz?id=4815162342', $this->_r->getUrl());
-	}
+    public function testGetUrl()
+    {
+        $this->assertEquals('https://example.agavi.org:123/foo/bar/baz?id=4815162342', $this->_r->getUrl());
+    }
 
-	public function tearDown()
-	{
-		$_SERVER = $this->_SERVER;
-	}
-
+    public function tearDown()
+    {
+        $_SERVER = $this->_SERVER;
+    }
 }
-?>

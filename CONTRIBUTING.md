@@ -11,9 +11,7 @@ add documentation or fix spelling mistakes try this:
 1. Make changes and additions in specific branches and add tests where appropriate.
 1. Verify changes and make sure that the tests succeed.
 1. Add, commit, squash and push the changes to the forked repository.
-1. Send a [pull request](https://help.github.com/pull-requests/) to Agavi.
-    1. Pull requests for bugfixes should go to the `1.0` branch.
-    1. Pull requests for features should go to the `master` branch.
+1. Send a [pull request](https://help.github.com/pull-requests/) to Agavi2.
 
 Please provide a well written issue describing the change and why it is
 necessary. This is helpful for maintainers that want to integrate your changes
@@ -22,8 +20,7 @@ request ticket.
 
 ## Coding styles
 
-Please see the [coding style hints](https://github.com/agavi/agavi/wiki/CodingStyle) before making changes
-and try to adhere to them as otherwise incorporating the changes into Agavi is
+Use PSR-2 and try to adhere to it as otherwise incorporating the changes into Agavi is
 not easily possible and may prevent the pull request from being accepted at all.
 
 ## Commit messages

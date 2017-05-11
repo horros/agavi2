@@ -16,24 +16,24 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 21600,
       'dstOffset' => 0,
       'name' => 'XJT',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -1325483420,
       'type' => 0,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'XJT',
@@ -44,5 +44,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Asia/Urumqi',
 );
-
-?>

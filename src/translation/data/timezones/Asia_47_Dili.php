@@ -16,62 +16,62 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 28800,
       'dstOffset' => 0,
       'name' => 'TLT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => 32400,
       'dstOffset' => 0,
       'name' => 'JST',
     ),
-    2 => 
+    2 =>
     array (
       'rawOffset' => 32400,
       'dstOffset' => 0,
       'name' => 'TLT',
     ),
-    3 => 
+    3 =>
     array (
       'rawOffset' => 28800,
       'dstOffset' => 0,
       'name' => 'WITA',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -1830414140,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -879152400,
       'type' => 1,
     ),
-    2 => 
+    2 =>
     array (
       'time' => -766054800,
       'type' => 2,
     ),
-    3 => 
+    3 =>
     array (
       'time' => 199897200,
       'type' => 3,
     ),
-    4 => 
+    4 =>
     array (
       'time' => 969120000,
       'type' => 2,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'TLT',
@@ -82,5 +82,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Asia/Dili',
 );
-
-?>

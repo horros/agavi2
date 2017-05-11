@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Testing;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2010 the Agavi Project.                                |
@@ -19,8 +20,8 @@ use Agavi\Response\Response;
 /**
  * ContainerTestCase is the base class for all tests that target a specific
  * container execution and provides the necessary assertions
- * 
- * 
+ *
+ *
  * @package    agavi
  * @subpackage testing
  *
@@ -33,71 +34,69 @@ use Agavi\Response\Response;
  */
 abstract class ContainerTestCase extends FragmentTestCase
 {
-	/**
-	 * @var        string the name of the controller to use
-	 */
-	protected $controllerName;
-	
-	/**
-	 * @var        string the name of the module the controller resides in
-	 */
-	protected $moduleName;
-	
-	/**
-	 * @var        Response the response after the dispatch call
-	 */
-	protected $response;
-	
-	/**
-	 * dispatch the request
-	 *
-	 * @author     Felix Gilcher <felix.gilcher@bitextender.com>
-	 * @since      1.0.0 
-	 */
-	public function execute($arguments = null, $outputType = null, $requestMethod = null)
-	{
-		$context = Context::getInstance();
-		
-		$dispatcher = $context->getDispatcher();
-		$dispatcher->setParameter('send_response', false);
-		
-		if(!($arguments instanceof RequestDataHolder)) {
-			$arguments = $this->createRequestDataHolder(array(RequestDataHolder::SOURCE_PARAMETERS => $arguments));
-		}
-		
-		$this->response = $dispatcher->dispatch(null, $dispatcher->createExecutionContainer($this->moduleName, $this->controllerName, $arguments, $outputType, $requestMethod));
-	}
-	
-	/**
-	 * assert that the response has a given tag
-	 * 
-	 * @see the documentation of PHPUnit's assertTag()
-	 * 
-	 * @param      array $matcher the matcher describing the tag
-	 * @param      string $message an optional message
-	 * @param      bool $isHtml
-	 * 
-	 * @author     Felix Gilcher <felix.gilcher@bitextender.com>
-	 * @since      1.0.0
-	 */
-	public function assertResponseHasTag($matcher, $message = '', $isHtml = true)
-	{
-		$this->assertTag($matcher, $this->response->getContent(), $message, $isHtml);
-	}
-	
-	
-	/**
-	 * assert that the response does not have a given tag
-	 * 
-	 * @see the documentation of PHPUnit's assertTag()
-	 * 
-	 * @author     Felix Gilcher <felix.gilcher@bitextender.com>
-	 * @since      1.0.0
-	 */
-	public function assertResponseHasNotTag($matcher, $message = '', $isHtml = true)
-	{
-		$this->assertNotTag($matcher, $this->response->getContent(), $message, $isHtml);
-	}
+    /**
+     * @var        string the name of the controller to use
+     */
+    protected $controllerName;
+    
+    /**
+     * @var        string the name of the module the controller resides in
+     */
+    protected $moduleName;
+    
+    /**
+     * @var        Response the response after the dispatch call
+     */
+    protected $response;
+    
+    /**
+     * dispatch the request
+     *
+     * @author     Felix Gilcher <felix.gilcher@bitextender.com>
+     * @since      1.0.0
+     */
+    public function execute($arguments = null, $outputType = null, $requestMethod = null)
+    {
+        $context = Context::getInstance();
+        
+        $dispatcher = $context->getDispatcher();
+        $dispatcher->setParameter('send_response', false);
+        
+        if (!($arguments instanceof RequestDataHolder)) {
+            $arguments = $this->createRequestDataHolder(array(RequestDataHolder::SOURCE_PARAMETERS => $arguments));
+        }
+        
+        $this->response = $dispatcher->dispatch(null, $dispatcher->createExecutionContainer($this->moduleName, $this->controllerName, $arguments, $outputType, $requestMethod));
+    }
+    
+    /**
+     * assert that the response has a given tag
+     *
+     * @see the documentation of PHPUnit's assertTag()
+     *
+     * @param      array $matcher the matcher describing the tag
+     * @param      string $message an optional message
+     * @param      bool $isHtml
+     *
+     * @author     Felix Gilcher <felix.gilcher@bitextender.com>
+     * @since      1.0.0
+     */
+    public function assertResponseHasTag($matcher, $message = '', $isHtml = true)
+    {
+        $this->assertTag($matcher, $this->response->getContent(), $message, $isHtml);
+    }
+    
+    
+    /**
+     * assert that the response does not have a given tag
+     *
+     * @see the documentation of PHPUnit's assertTag()
+     *
+     * @author     Felix Gilcher <felix.gilcher@bitextender.com>
+     * @since      1.0.0
+     */
+    public function assertResponseHasNotTag($matcher, $message = '', $isHtml = true)
+    {
+        $this->assertNotTag($matcher, $this->response->getContent(), $message, $isHtml);
+    }
 }
-
-?>

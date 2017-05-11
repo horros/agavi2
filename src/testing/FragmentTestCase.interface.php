@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Testing;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -15,8 +16,8 @@ namespace Agavi\Testing;
 
 /**
  * FragmentTestCaseInterface is the interface that all fragment tests must implement
- * 
- * 
+ *
+ *
  * @package    agavi
  * @subpackage testing
  *
@@ -29,7 +30,5 @@ namespace Agavi\Testing;
  */
 interface FragmentTestCaseInterface extends TestCaseInterface
 {
-	public function getContext();
+    public function getContext();
 }
-
-?>

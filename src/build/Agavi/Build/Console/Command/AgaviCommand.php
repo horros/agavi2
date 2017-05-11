@@ -42,8 +42,9 @@ abstract class AgaviCommand extends Command
      */
     public function &getSettings(): Settings
     {
-        if (!is_object($this->settings))
+        if (!is_object($this->settings)) {
             $this->settings = new Settings();
+        }
         return $this->settings;
     }
 
@@ -67,7 +68,4 @@ abstract class AgaviCommand extends Command
     {
         $this->src_dir = $src_dir;
     }
-
-
-
 }

@@ -16,24 +16,24 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 14400,
       'dstOffset' => 0,
       'name' => 'RET',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -1848886912,
       'type' => 0,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'RET',
@@ -44,5 +44,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Indian/Reunion',
 );
-
-?>

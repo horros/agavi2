@@ -16,46 +16,46 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => -38400,
       'dstOffset' => 0,
       'name' => 'LINT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => -36000,
       'dstOffset' => 0,
       'name' => 'LINT',
     ),
-    2 => 
+    2 =>
     array (
       'rawOffset' => 50400,
       'dstOffset' => 0,
       'name' => 'LINT',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -2177415040,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => 307622400,
       'type' => 1,
     ),
-    2 => 
+    2 =>
     array (
       'time' => 788954400,
       'type' => 2,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'LINT',
@@ -66,5 +66,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Pacific/Kiritimati',
 );
-
-?>

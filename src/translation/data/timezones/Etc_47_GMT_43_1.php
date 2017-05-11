@@ -16,13 +16,13 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
   ),
-  'rules' => 
+  'rules' =>
   array (
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'GMT+1',
@@ -33,5 +33,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Etc/GMT+1',
 );
-
-?>

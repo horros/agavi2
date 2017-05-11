@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Testing;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -15,7 +16,7 @@ namespace Agavi\Testing;
 
 /**
  * Basic agavi testsuite
- * 
+ *
  * @package    agavi
  * @subpackage testing
  *
@@ -29,5 +30,3 @@ namespace Agavi\Testing;
 class TestSuite extends \PHPUnit_Framework_TestSuite
 {
 }
-
-?>

@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Routing;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -30,36 +31,34 @@ use Agavi\Core\Context;
  */
 class WebserviceRouting extends Routing
 {
-	/**
-	 * Initialize the routing instance.
-	 *
-	 * @param      Context $context A Context instance.
-	 * @param      array   $parameters An array of initialization parameters.
-	 *
-	 * @author     David Zülke <dz@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function initialize(Context $context, array $parameters = array())
-	{
-		parent::initialize($context, $parameters);
-		
-		if(!$this->isEnabled()) {
-			return;
-		}
-		
-		$this->updateInput();
-	}
-	
-	/**
-	 * Set the name of the called web service method as the routing input.
-	 *
-	 * @author     David Zülke <dz@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function updateInput()
-	{
-		$this->input = $this->context->getRequest()->getInvokedMethod();
-	}
+    /**
+     * Initialize the routing instance.
+     *
+     * @param      Context $context A Context instance.
+     * @param      array   $parameters An array of initialization parameters.
+     *
+     * @author     David Zülke <dz@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function initialize(Context $context, array $parameters = array())
+    {
+        parent::initialize($context, $parameters);
+        
+        if (!$this->isEnabled()) {
+            return;
+        }
+        
+        $this->updateInput();
+    }
+    
+    /**
+     * Set the name of the called web service method as the routing input.
+     *
+     * @author     David Zülke <dz@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function updateInput()
+    {
+        $this->input = $this->context->getRequest()->getInvokedMethod();
+    }
 }
-
-?>

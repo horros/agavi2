@@ -16,57 +16,57 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => -40968,
       'dstOffset' => 0,
       'name' => 'LMT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => -39600,
       'dstOffset' => 0,
       'name' => 'NST',
     ),
-    2 => 
+    2 =>
     array (
       'rawOffset' => -39600,
       'dstOffset' => 0,
       'name' => 'BST',
     ),
-    3 => 
+    3 =>
     array (
       'rawOffset' => -39600,
       'dstOffset' => 0,
       'name' => 'SST',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -2855738232,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -1861879032,
       'type' => 1,
     ),
-    2 => 
+    2 =>
     array (
       'time' => -86878800,
       'type' => 2,
     ),
-    3 => 
+    3 =>
     array (
       'time' => 439038000,
       'type' => 3,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'SST',
@@ -77,5 +77,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Pacific/Pago_Pago',
 );
-
-?>

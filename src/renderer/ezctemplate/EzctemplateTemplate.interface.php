@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Renderer\EzcTemplate;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -31,25 +32,23 @@ use Agavi\Core\Context;
  */
 interface EzctemplateTemplateInterface
 {
-	/**
-	 * Retrieve the current application context.
-	 *
-	 * @return     Context The current Context instance.
-	 *
-	 * @author     David Zülke <dz@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function getContext();
-	
-	/**
-	 * Retrieve the current application context.
-	 *
-	 * @param      Context $context The current Context instance.
-	 *
-	 * @author     David Zülke <dz@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function setContext(Context $context);
+    /**
+     * Retrieve the current application context.
+     *
+     * @return     Context The current Context instance.
+     *
+     * @author     David Zülke <dz@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function getContext();
+    
+    /**
+     * Retrieve the current application context.
+     *
+     * @param      Context $context The current Context instance.
+     *
+     * @author     David Zülke <dz@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function setContext(Context $context);
 }
-
-?>

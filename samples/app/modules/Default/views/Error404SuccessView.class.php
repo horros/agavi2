@@ -12,39 +12,38 @@
 // |   indent-tabs-mode: t                                                     |
 // |   End:                                                                    |
 // +---------------------------------------------------------------------------+
-use Agavi\Request\RequestDataHolder;
-class Default_Error404SuccessView extends SampleAppDefaultBaseView
-{
+    use Agavi\Request\RequestDataHolder;
 
-	public function executeHtml(RequestDataHolder $rd)
-	{
-		$this->setupHtml($rd);
+    class Default_Error404SuccessView extends SampleAppDefaultBaseView
+    {
 
-		// set the title
-		$this->setAttribute('_title', $this->tm->_('404 Not Found', 'default.ErrorControllers'));
+        public function executeHtml(RequestDataHolder $rd)
+        {
+            $this->setupHtml($rd);
 
-		$this->container->getResponse()->setHttpStatusCode('404');
-	}
+            // set the title
+            $this->setAttribute('_title', $this->tm->_('404 Not Found', 'default.ErrorControllers'));
 
-	public function executeXmlrpc(RequestDataHolder $rd)
-	{
-		return array(
-			'faultCode' => -32601, // as per http://xmlrpc-epi.sourceforge.net/specs/rfc.fault_codes.php
-			'faultString' => 'requested method not found',
-		);
-	}
-	
-	public function executeText(RequestDataHolder $rd)
-	{
-		return
-			'Usage: console.php <command> [OPTION]...' . PHP_EOL .
-			PHP_EOL .
-			'Commands:' . PHP_EOL .
-			'  viewproduct <id>' . PHP_EOL .
-			'    Retrieves product details given a product ID.' . PHP_EOL .
-			'  listproducts' . PHP_EOL .
-			'    Lists all products in the application.' . PHP_EOL;
-	}
-}
+            $this->container->getResponse()->setHttpStatusCode('404');
+        }
 
-?>
+        public function executeXmlrpc(RequestDataHolder $rd)
+        {
+            return array(
+            'faultCode' => -32601, // as per http://xmlrpc-epi.sourceforge.net/specs/rfc.fault_codes.php
+            'faultString' => 'requested method not found',
+            );
+        }
+    
+        public function executeText(RequestDataHolder $rd)
+        {
+            return
+            'Usage: console.php <command> [OPTION]...' . PHP_EOL .
+            PHP_EOL .
+            'Commands:' . PHP_EOL .
+            '  viewproduct <id>' . PHP_EOL .
+            '    Retrieves product details given a product ID.' . PHP_EOL .
+            '  listproducts' . PHP_EOL .
+            '    Lists all products in the application.' . PHP_EOL;
+        }
+    }

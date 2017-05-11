@@ -3,5 +3,3 @@
 class ContextTestModel extends \Agavi\Model\Model
 {
 }
-
-?>

@@ -16,24 +16,24 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 10800,
       'dstOffset' => 0,
       'name' => 'AST',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -719636812,
       'type' => 0,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'AST',
@@ -44,5 +44,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Asia/Riyadh',
 );
-
-?>

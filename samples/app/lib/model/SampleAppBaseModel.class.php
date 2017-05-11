@@ -2,7 +2,7 @@
 
 class SampleAppBaseModel extends Agavi\Model\Model
 {
-	/*
+    /*
 		This is the base model all your application's models should extend.
 		This way, you can easily inject new functionality into all of your models.
 		
@@ -13,5 +13,3 @@ class SampleAppBaseModel extends Agavi\Model\Model
 		for specific modules in case you require this.
 	*/
 }
-
-?>

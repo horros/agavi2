@@ -4,5 +4,3 @@ class FilterTests_FormPopulationFilter_SimpleTestSuccessView extends SandboxFilt
 {
 
 }
-
-?>

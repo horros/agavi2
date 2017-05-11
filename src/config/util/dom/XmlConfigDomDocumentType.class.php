@@ -32,5 +32,3 @@ namespace Agavi\Config\Util\Dom;
 class XmlConfigDomDocumentType extends \DOMDocumentType
 {
 }
-
-?>

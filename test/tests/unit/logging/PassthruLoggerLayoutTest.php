@@ -7,12 +7,10 @@ use Agavi\Testing\UnitTestCase;
 
 class PassthruLoggerLayoutTest extends UnitTestCase
 {
-	public function testFormat()
-	{
-		$layout = new PassthruLoggerLayout();
-		$message = new LoggerMessage('something');
-		$this->assertEquals('something', $layout->format($message));
-	}
+    public function testFormat()
+    {
+        $layout = new PassthruLoggerLayout();
+        $message = new LoggerMessage('something');
+        $this->assertEquals('something', $layout->format($message));
+    }
 }
-
-?>

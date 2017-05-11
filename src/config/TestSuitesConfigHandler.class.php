@@ -35,61 +35,59 @@ use Agavi\Config\Util\Dom\XmlConfigDomDocument;
  */
 class TestSuitesConfigHandler extends XmlConfigHandler
 {
-	const XML_NAMESPACE = 'http://agavi.org/agavi/config/parts/testing/suites/1.1';
-	
-	/**
-	 * Execute this configuration handler.
-	 *
-	 * @param      XmlConfigDomDocument $document The document to parse.
-	 *
-	 * @return     string Data to be written to a cache file.
-	 *
-	 * @throws     <b>ParseException</b> If a requested configuration file is
-	 *                                        improperly formatted.
-	 *
-	 * @author     David Zülke <david.zuelke@bitextender.com>
-	 * @since      0.9.0
-	 */
-	public function execute(XmlConfigDomDocument $document)
-	{
-		// set up our default namespace
-		$document->setDefaultNamespace(self::XML_NAMESPACE, 'suite');
-		
-		// remember the config file path
-		$config = $document->documentURI;
-		
-		$data = array();
-		// loop over <configuration> elements
-		foreach($document->getConfigurationElements() as $configuration) {
-			foreach($configuration->get('suites') as $current) {
-				$includes = array();
-				foreach($current->get('includes') as $include) {
-					$includes[] = $include->textContent;
-				}
-				
-				$excludes = array();
-				foreach($current->get('excludes') as $exclude) {
-					$excludes[] = $exclude->textContent;
-				}
-				
-				$suite =  array(
-					'class' => $current->getAttribute('class', 'Agavi\\Testing\\TestSuite'),
-					'base' => $current->getAttribute('base', 'tests/'),
-					'includes' => $includes,
-					'excludes' => $excludes
-				);
-				
-				$suite['testfiles'] = array();
-				foreach($current->get('testfiles') as $file) {
-					$suite['testfiles'][] = $file->textContent;
-				}
-				
-				$data[$current->getAttribute('name')] = $suite;
-			}
-		}
-		$code = 'return '.var_export($data, true);
-		return $this->generate($code, $config);
-	}
+    const XML_NAMESPACE = 'http://agavi.org/agavi/config/parts/testing/suites/1.1';
+    
+    /**
+     * Execute this configuration handler.
+     *
+     * @param      XmlConfigDomDocument $document The document to parse.
+     *
+     * @return     string Data to be written to a cache file.
+     *
+     * @throws     <b>ParseException</b> If a requested configuration file is
+     *                                        improperly formatted.
+     *
+     * @author     David Zülke <david.zuelke@bitextender.com>
+     * @since      0.9.0
+     */
+    public function execute(XmlConfigDomDocument $document)
+    {
+        // set up our default namespace
+        $document->setDefaultNamespace(self::XML_NAMESPACE, 'suite');
+        
+        // remember the config file path
+        $config = $document->documentURI;
+        
+        $data = array();
+        // loop over <configuration> elements
+        foreach ($document->getConfigurationElements() as $configuration) {
+            foreach ($configuration->get('suites') as $current) {
+                $includes = array();
+                foreach ($current->get('includes') as $include) {
+                    $includes[] = $include->textContent;
+                }
+                
+                $excludes = array();
+                foreach ($current->get('excludes') as $exclude) {
+                    $excludes[] = $exclude->textContent;
+                }
+                
+                $suite =  array(
+                    'class' => $current->getAttribute('class', 'Agavi\\Testing\\TestSuite'),
+                    'base' => $current->getAttribute('base', 'tests/'),
+                    'includes' => $includes,
+                    'excludes' => $excludes
+                );
+                
+                $suite['testfiles'] = array();
+                foreach ($current->get('testfiles') as $file) {
+                    $suite['testfiles'][] = $file->textContent;
+                }
+                
+                $data[$current->getAttribute('name')] = $suite;
+            }
+        }
+        $code = 'return '.var_export($data, true);
+        return $this->generate($code, $config);
+    }
 }
-
-?>

@@ -16,35 +16,35 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 35312,
       'dstOffset' => 0,
       'name' => 'PMMT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => 36000,
       'dstOffset' => 0,
       'name' => 'PGT',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -2840176120,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -2366790512,
       'type' => 1,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'PGT',
@@ -55,5 +55,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Pacific/Port_Moresby',
 );
-
-?>

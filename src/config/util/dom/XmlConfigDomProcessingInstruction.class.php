@@ -32,5 +32,3 @@ namespace Agavi\Config\Util\Dom;
 class XmlConfigDomProcessingInstruction extends \DOMProcessingInstruction
 {
 }
-
-?>

@@ -16,66 +16,66 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 25200,
       'dstOffset' => 0,
       'name' => 'DAVT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => 0,
       'dstOffset' => 0,
       'name' => 'zzz',
     ),
-    2 => 
+    2 =>
     array (
       'rawOffset' => 18000,
       'dstOffset' => 0,
       'name' => 'DAVT',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -409190400,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -163062000,
       'type' => 1,
     ),
-    2 => 
+    2 =>
     array (
       'time' => -28857600,
       'type' => 0,
     ),
-    3 => 
+    3 =>
     array (
       'time' => 1255806000,
       'type' => 2,
     ),
-    4 => 
+    4 =>
     array (
       'time' => 1268251200,
       'type' => 0,
     ),
-    5 => 
+    5 =>
     array (
       'time' => 1319742000,
       'type' => 2,
     ),
-    6 => 
+    6 =>
     array (
       'time' => 1329854400,
       'type' => 0,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'DAVT',
@@ -86,5 +86,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Antarctica/Davis',
 );
-
-?>

@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Filter;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -35,23 +36,21 @@ use Agavi\Exception\FilterException;
  */
 class DispatchFilter extends Filter implements GlobalFilterInterface
 {
-	/**
-	 * Execute this filter.
-	 *
-	 * The DispatchFilter executes the execution container.
-	 *
-	 * @param      FilterChain        $filterChain The filter chain.
-	 * @param      ExecutionContainer $container The current execution container.
-	 *
-	 * @throws     FilterException If an error occurs during execution.
-	 *
-	 * @author     David Zülke <dz@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function execute(FilterChain $filterChain, ExecutionContainer $container)
-	{
-		$container->setResponse($container->execute());
-	}
+    /**
+     * Execute this filter.
+     *
+     * The DispatchFilter executes the execution container.
+     *
+     * @param      FilterChain        $filterChain The filter chain.
+     * @param      ExecutionContainer $container The current execution container.
+     *
+     * @throws     FilterException If an error occurs during execution.
+     *
+     * @author     David Zülke <dz@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function execute(FilterChain $filterChain, ExecutionContainer $container)
+    {
+        $container->setResponse($container->execute());
+    }
 }
-
-?>

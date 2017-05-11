@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Request;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -29,27 +30,25 @@ namespace Agavi\Request;
  */
 interface FilesRequestDataHolderInterface
 {
-	public function hasFile($name);
-	
-	public function isFileValueEmpty($name);
-	
-	public function &getFile($name, $default = null);
-	
-	public function &getFiles();
-	
-	public function getFileNames();
-	
-	public function getFlatFileNames();
-	
-	public function setFile($name, UploadedFile $file);
-	
-	public function setFiles(array $files);
-	
-	public function &removeFile($name);
-	
-	public function clearFiles();
-	
-	public function mergeFiles(RequestDataHolder $other);
+    public function hasFile($name);
+    
+    public function isFileValueEmpty($name);
+    
+    public function &getFile($name, $default = null);
+    
+    public function &getFiles();
+    
+    public function getFileNames();
+    
+    public function getFlatFileNames();
+    
+    public function setFile($name, UploadedFile $file);
+    
+    public function setFiles(array $files);
+    
+    public function &removeFile($name);
+    
+    public function clearFiles();
+    
+    public function mergeFiles(RequestDataHolder $other);
 }
-
-?>

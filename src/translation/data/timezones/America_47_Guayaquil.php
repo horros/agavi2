@@ -16,35 +16,35 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => -18840,
       'dstOffset' => 0,
       'name' => 'QMT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => -18000,
       'dstOffset' => 0,
       'name' => 'ECT',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -2524502440,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -1230749160,
       'type' => 1,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'ECT',
@@ -55,5 +55,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'America/Guayaquil',
 );
-
-?>

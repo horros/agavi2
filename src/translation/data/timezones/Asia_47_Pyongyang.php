@@ -16,57 +16,57 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 30600,
       'dstOffset' => 0,
       'name' => 'KST',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => 32400,
       'dstOffset' => 0,
       'name' => 'JCST',
     ),
-    2 => 
+    2 =>
     array (
       'rawOffset' => 32400,
       'dstOffset' => 0,
       'name' => 'JST',
     ),
-    3 => 
+    3 =>
     array (
       'rawOffset' => 32400,
       'dstOffset' => 0,
       'name' => 'KST',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -1948782180,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -1830414600,
       'type' => 1,
     ),
-    2 => 
+    2 =>
     array (
       'time' => -1017824400,
       'type' => 2,
     ),
-    3 => 
+    3 =>
     array (
       'time' => -768646800,
       'type' => 3,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'KST',
@@ -77,5 +77,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Asia/Pyongyang',
 );
-
-?>

@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Validator;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -15,7 +16,7 @@ namespace Agavi\Validator;
 
 /**
  * IssetValidator verifies a parameter is set
- * 
+ *
  * The content of the input value is not verified in any manner, it is only
  * checked if the input value exists. (see isset() in PHP)
  *
@@ -32,45 +33,43 @@ namespace Agavi\Validator;
  */
 class IssetValidator extends Validator
 {
-	/**
-	 * We need to return true here when this validator is required, because 
-	 * otherwise the is*ValueEmpty check would make empty but set fields not 
-	 * reach the validate method.
-	 *
-	 * @see        AgaviValidator::checkAllArgumentsSet
-	 * @author     Dominik del Bondio <ddb@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	protected function checkAllArgumentsSet($throwError = true)
-	{
-		if($this->getParameter('required', true)) {
-			return true;
-		} else {
-			return parent::checkAllArgumentsSet($throwError);
-		}
-	}
+    /**
+     * We need to return true here when this validator is required, because
+     * otherwise the is*ValueEmpty check would make empty but set fields not
+     * reach the validate method.
+     *
+     * @see        AgaviValidator::checkAllArgumentsSet
+     * @author     Dominik del Bondio <ddb@bitxtender.com>
+     * @since      0.11.0
+     */
+    protected function checkAllArgumentsSet($throwError = true)
+    {
+        if ($this->getParameter('required', true)) {
+            return true;
+        } else {
+            return parent::checkAllArgumentsSet($throwError);
+        }
+    }
 
-	/**
-	 * Validates the input.
-	 * 
-	 * @return     bool The value is set.
-	 * 
-	 * @author     Dominik del Bondio <ddb@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	protected function validate()
-	{
-		$params = $this->validationParameters->getAll($this->getParameter('source'));
+    /**
+     * Validates the input.
+     *
+     * @return     bool The value is set.
+     *
+     * @author     Dominik del Bondio <ddb@bitxtender.com>
+     * @since      0.11.0
+     */
+    protected function validate()
+    {
+        $params = $this->validationParameters->getAll($this->getParameter('source'));
 
-		foreach($this->getArguments() as $argument) {
-			if(!$this->curBase->hasValueByChildPath($argument, $params)) {
-				$this->throwError();
-				return false;
-			}
-		}
+        foreach ($this->getArguments() as $argument) {
+            if (!$this->curBase->hasValueByChildPath($argument, $params)) {
+                $this->throwError();
+                return false;
+            }
+        }
 
-		return true;
-	}
+        return true;
+    }
 }
-
-?>

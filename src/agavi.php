@@ -34,8 +34,8 @@ require(__DIR__ . '/config/Config.class.php');
 
 // check minimum PHP version
 \Agavi\Config\Config::set('core.minimum_php_version', '5.5.0');
-if(version_compare(PHP_VERSION, \Agavi\Config\Config::get('core.minimum_php_version'), '<') ) {
-	trigger_error('Agavi requires PHP version ' . \Agavi\Config\Config::get('core.minimum_php_version') . ' or greater', E_USER_ERROR);
+if (version_compare(PHP_VERSION, \Agavi\Config\Config::get('core.minimum_php_version'), '<')) {
+    trigger_error('Agavi requires PHP version ' . \Agavi\Config\Config::get('core.minimum_php_version') . ' or greater', E_USER_ERROR);
 }
 
 // define a few filesystem paths
@@ -65,5 +65,3 @@ require($agavi_config_directive_core_agavi_dir . '/util/Toolkit.class.php');
 
 // clean up (we don't want collisions with whatever file included us, in case you were wondering about the ugly name of that var)
 unset($agavi_config_directive_core_agavi_dir);
-
-?>

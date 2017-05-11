@@ -36,74 +36,72 @@ use Agavi\Config\Util\Dom\XmlConfigDomDocument;
  */
 class RbacDefinitionConfigHandler extends XmlConfigHandler
 {
-	const XML_NAMESPACE = 'http://agavi.org/agavi/config/parts/rbac_definitions/1.1';
-	
-	/**
-	 * Execute this configuration handler.
-	 *
-	 * @param      XmlConfigDomDocument $document The document to parse.
-	 *
-	 * @return     string Data to be written to a cache file.
-	 *
-	 * @throws     <b>UnreadableException</b> If a requested configuration
-	 *                                        file does not exist or is not
-	 *                                        readable.
-	 * @throws     <b>ParseException</b> If a requested configuration file is
-	 *                                   improperly formatted.
-	 *
-	 * @author     David Zülke <dz@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function execute(XmlConfigDomDocument $document)
-	{
-		// set up our default namespace
-		$document->setDefaultNamespace(self::XML_NAMESPACE, 'rbac_definitions');
-		
-		$data = array();
+    const XML_NAMESPACE = 'http://agavi.org/agavi/config/parts/rbac_definitions/1.1';
+    
+    /**
+     * Execute this configuration handler.
+     *
+     * @param      XmlConfigDomDocument $document The document to parse.
+     *
+     * @return     string Data to be written to a cache file.
+     *
+     * @throws     <b>UnreadableException</b> If a requested configuration
+     *                                        file does not exist or is not
+     *                                        readable.
+     * @throws     <b>ParseException</b> If a requested configuration file is
+     *                                   improperly formatted.
+     *
+     * @author     David Zülke <dz@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function execute(XmlConfigDomDocument $document)
+    {
+        // set up our default namespace
+        $document->setDefaultNamespace(self::XML_NAMESPACE, 'rbac_definitions');
+        
+        $data = array();
 
-		foreach($document->getConfigurationElements() as $cfg) {
-			if(!$cfg->has('roles')) {
-				continue;
-			}
-			
-			$this->parseRoles($cfg->get('roles'), null, $data);
-		}
+        foreach ($document->getConfigurationElements() as $cfg) {
+            if (!$cfg->has('roles')) {
+                continue;
+            }
+            
+            $this->parseRoles($cfg->get('roles'), null, $data);
+        }
 
-		$code = "return " . var_export($data, true) . ";";
-		
-		return $this->generate($code, $document->documentURI);
-	}
-	
-	/**
-	 * Parse a 'roles' node.
-	 *
-	 * @param      mixed  $roles  The "roles" node (element or node list)
-	 * @param      string $parent The name of the parent role, or null.
-	 * @param      array  $data   A reference to the output data array.
-	 *
-	 * @author     David Zülke <dz@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	protected function parseRoles($roles, $parent, &$data)
-	{
-		/** @var XmlConfigDomElement $role */
-		foreach($roles as $role) {
-			$name = $role->getAttribute('name');
-			$entry = array();
-			$entry['parent'] = $parent;
-			$entry['permissions'] = array();
-			if($role->has('permissions')) {
-				/** @var XmlConfigDomElement $permission */
-				foreach($role->get('permissions') as $permission) {
-					$entry['permissions'][] = $permission->getValue();
-				}
-			}
-			if($role->has('roles')) {
-				$this->parseRoles($role->get('roles'), $name, $data);
-			}
-			$data[$name] = $entry;
-		}
-	}
+        $code = "return " . var_export($data, true) . ";";
+        
+        return $this->generate($code, $document->documentURI);
+    }
+    
+    /**
+     * Parse a 'roles' node.
+     *
+     * @param      mixed  $roles  The "roles" node (element or node list)
+     * @param      string $parent The name of the parent role, or null.
+     * @param      array  $data   A reference to the output data array.
+     *
+     * @author     David Zülke <dz@bitxtender.com>
+     * @since      0.11.0
+     */
+    protected function parseRoles($roles, $parent, &$data)
+    {
+        /** @var XmlConfigDomElement $role */
+        foreach ($roles as $role) {
+            $name = $role->getAttribute('name');
+            $entry = array();
+            $entry['parent'] = $parent;
+            $entry['permissions'] = array();
+            if ($role->has('permissions')) {
+                /** @var XmlConfigDomElement $permission */
+                foreach ($role->get('permissions') as $permission) {
+                    $entry['permissions'][] = $permission->getValue();
+                }
+            }
+            if ($role->has('roles')) {
+                $this->parseRoles($role->get('roles'), $name, $data);
+            }
+            $data[$name] = $entry;
+        }
+    }
 }
-
-?>

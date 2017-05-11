@@ -16,35 +16,35 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 24124,
       'dstOffset' => 0,
       'name' => 'BMT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => 25200,
       'dstOffset' => 0,
       'name' => 'ICT',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -2840164924,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -1570084924,
       'type' => 1,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'ICT',
@@ -55,5 +55,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Asia/Bangkok',
 );
-
-?>

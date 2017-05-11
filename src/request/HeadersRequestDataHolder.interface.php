@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Request;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -29,25 +30,23 @@ namespace Agavi\Request;
  */
 interface HeadersRequestDataHolderInterface
 {
-	public function hasHeader($name);
-	
-	public function isHeaderValueEmpty($name);
-	
-	public function &getHeader($name, $default = null);
-	
-	public function &getHeaders();
-	
-	public function getHeaderNames();
-	
-	public function setHeader($name, $value);
-	
-	public function setHeaders(array $headers);
-	
-	public function &removeHeader($name);
-	
-	public function clearHeaders();
-	
-	public function mergeHeaders(RequestDataHolder $other);
+    public function hasHeader($name);
+    
+    public function isHeaderValueEmpty($name);
+    
+    public function &getHeader($name, $default = null);
+    
+    public function &getHeaders();
+    
+    public function getHeaderNames();
+    
+    public function setHeader($name, $value);
+    
+    public function setHeaders(array $headers);
+    
+    public function &removeHeader($name);
+    
+    public function clearHeaders();
+    
+    public function mergeHeaders(RequestDataHolder $other);
 }
-
-?>

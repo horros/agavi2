@@ -2,7 +2,7 @@
 
 class SampleAppBaseController extends Agavi\Controller\Controller
 {
-	/*
+    /*
 		This is the base Controller all your application's Controllers should extend.
 		This way, you can easily inject new functionality into all of your Controllers.
 		
@@ -24,5 +24,3 @@ class SampleAppBaseController extends Agavi\Controller\Controller
 		for specific modules in case you require this.
 	*/
 }
-
-?>

@@ -16,24 +16,24 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 43200,
       'dstOffset' => 0,
       'name' => 'GILT',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -2177494324,
       'type' => 0,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'GILT',
@@ -44,5 +44,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Pacific/Tarawa',
 );
-
-?>

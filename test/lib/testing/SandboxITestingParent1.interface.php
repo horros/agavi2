@@ -1,5 +1,6 @@
 <?php
 
-interface SandboxITestingParent1 {
-	
+interface SandboxITestingParent1
+{
+    
 }

@@ -16,24 +16,24 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 18000,
       'dstOffset' => 0,
       'name' => 'TFT',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -631152000,
       'type' => 0,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'TFT',
@@ -44,5 +44,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Indian/Kerguelen',
 );
-
-?>

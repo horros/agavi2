@@ -1,15 +1,16 @@
 <?php
 namespace Agavi\Tests\Unit\Exception;
+
 use Agavi\Exception\AgaviException;
 use Agavi\Testing\UnitTestCase;
 
 class AgaviExceptionTest extends UnitTestCase
 {
-	public function highlightSnippets()
-	{
-		return array(
-			'ticket1240' => array(
-				'<?php
+    public function highlightSnippets()
+    {
+        return array(
+            'ticket1240' => array(
+                '<?php
 class Default_Admin_Widgets_MenuSuccessView extends AdsDefaultBaseView
 {
 	public function executeHtml(AgaviRequestDataHolder $rd)
@@ -23,47 +24,45 @@ ob_end_clean();
 	}
 }
 ?>'
-			),
-			'empty' => array(
-				'',
-			),
-			'empty with newline' => array(
-				'
+            ),
+            'empty' => array(
+                '',
+            ),
+            'empty with newline' => array(
+                '
 ',
-			),
-			'template starting with PHP code' => array(
-				'
+            ),
+            'template starting with PHP code' => array(
+                '
 				<?php echo $tm->_("Ohai", "default"); ?>
 				<div />
 				<?php echo $tm->_("Ohai", "default"); ?>
 				'
-			),
-			'template starting with HTML code' => array(
-				'
+            ),
+            'template starting with HTML code' => array(
+                '
 				<div />
 				<?php echo $tm->_("Ohai", "default"); ?>
 				'
-			),
-		);
-	}
-	
-	/**
-	 * @dataProvider highlightSnippets
-	 */
-	public function testFoo($code)
-	{
-		$highlighted = AgaviException::highlightString($code);
-		$highlighted = "<ol>\n<li><code>" . implode("</code></li>\n<li><code>", $highlighted) . "</code></li>\n</ol>";
+            ),
+        );
+    }
+    
+    /**
+     * @dataProvider highlightSnippets
+     */
+    public function testFoo($code)
+    {
+        $highlighted = AgaviException::highlightString($code);
+        $highlighted = "<ol>\n<li><code>" . implode("</code></li>\n<li><code>", $highlighted) . "</code></li>\n</ol>";
 
-		$doc = new \DOMDocument();
+        $doc = new \DOMDocument();
 
-		$luie = libxml_use_internal_errors(true);
-		$doc->loadXML($highlighted);
-		$errors = libxml_get_errors();
-		libxml_use_internal_errors($luie);
-		
-		$this->assertEquals(0, count($errors));
-	}
+        $luie = libxml_use_internal_errors(true);
+        $doc->loadXML($highlighted);
+        $errors = libxml_get_errors();
+        libxml_use_internal_errors($luie);
+        
+        $this->assertEquals(0, count($errors));
+    }
 }
-
-?>

@@ -16,41 +16,41 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => -18431,
       'dstOffset' => 0,
       'name' => 'KMT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => -18000,
       'dstOffset' => 0,
       'name' => 'EST',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -2524502068,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -1827687169,
       'type' => 1,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'dynamic',
     'offset' => -18000,
     'name' => 'E%sT',
     'save' => 3600,
-    'start' => 
+    'start' =>
     array (
       'month' => 2,
       'date' => '8',
@@ -58,7 +58,7 @@ return array (
       'time' => 7200000,
       'type' => 0,
     ),
-    'end' => 
+    'end' =>
     array (
       'month' => 10,
       'date' => '1',
@@ -72,5 +72,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'America/Cayman',
 );
-
-?>

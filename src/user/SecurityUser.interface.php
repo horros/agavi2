@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\User;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -31,66 +32,63 @@ namespace Agavi\User;
  */
 interface SecurityUserInterface
 {
-	/**
-	 * Add a credential to this user.
-	 *
-	 * @param      mixed $credential Credential data.
-	 *
-	 * @author     Sean Kerr <skerr@mojavi.org>
-	 * @since      0.11.0
-	 */
-	public function addCredential($credential);
+    /**
+     * Add a credential to this user.
+     *
+     * @param      mixed $credential Credential data.
+     *
+     * @author     Sean Kerr <skerr@mojavi.org>
+     * @since      0.11.0
+     */
+    public function addCredential($credential);
 
-	/**
-	 * Clear all credentials associated with this user.
-	 *
-	 * @author     Sean Kerr <skerr@mojavi.org>
-	 * @since      0.11.0
-	 */
-	public function clearCredentials();
+    /**
+     * Clear all credentials associated with this user.
+     *
+     * @author     Sean Kerr <skerr@mojavi.org>
+     * @since      0.11.0
+     */
+    public function clearCredentials();
 
-	/**
-	 * Indicates whether or not this user has a credential.
-	 *
-	 * @param      mixed $credential Credential data.
-	 *
-	 * @return     bool true, if this user has the credential, otherwise false.
-	 *
-	 * @author     Sean Kerr <skerr@mojavi.org>
-	 * @since      0.11.0
-	 */
-	public function hasCredentials($credential);
+    /**
+     * Indicates whether or not this user has a credential.
+     *
+     * @param      mixed $credential Credential data.
+     *
+     * @return     bool true, if this user has the credential, otherwise false.
+     *
+     * @author     Sean Kerr <skerr@mojavi.org>
+     * @since      0.11.0
+     */
+    public function hasCredentials($credential);
 
-	/**
-	 * Indicates whether or not this user is authenticated.
-	 *
-	 * @return     bool true, if this user is authenticated, otherwise false.
-	 *
-	 * @author     Sean Kerr <skerr@mojavi.org>
-	 * @since      0.11.0
-	 */
-	public function isAuthenticated();
+    /**
+     * Indicates whether or not this user is authenticated.
+     *
+     * @return     bool true, if this user is authenticated, otherwise false.
+     *
+     * @author     Sean Kerr <skerr@mojavi.org>
+     * @since      0.11.0
+     */
+    public function isAuthenticated();
 
-	/**
-	 * Remove a credential from this user.
-	 *
-	 * @param      mixed $credential Credential data.
-	 *
-	 * @author     Sean Kerr <skerr@mojavi.org>
-	 * @since      0.11.0
-	 */
-	public function removeCredential($credential);
+    /**
+     * Remove a credential from this user.
+     *
+     * @param      mixed $credential Credential data.
+     *
+     * @author     Sean Kerr <skerr@mojavi.org>
+     * @since      0.11.0
+     */
+    public function removeCredential($credential);
 
-	/**
-	 * Set the authenticated status of this user.
-	 *
-	 * @param      bool $authenticated A flag indicating the authenticated status of this user.
-	 *
-	 * @author     Sean Kerr <skerr@mojavi.org>
-	 * @since      0.11.0
-	 */
-	public function setAuthenticated($authenticated);
-
+    /**
+     * Set the authenticated status of this user.
+     *
+     * @param      bool $authenticated A flag indicating the authenticated status of this user.
+     *
+     * @author     Sean Kerr <skerr@mojavi.org>
+     * @since      0.11.0
+     */
+    public function setAuthenticated($authenticated);
 }
-
-?>

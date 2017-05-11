@@ -16,24 +16,24 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 43200,
       'dstOffset' => 0,
       'name' => 'WFT',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -2177496920,
       'type' => 0,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'WFT',
@@ -44,5 +44,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Pacific/Wallis',
 );
-
-?>

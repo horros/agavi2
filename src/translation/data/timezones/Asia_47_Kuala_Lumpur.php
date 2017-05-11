@@ -16,95 +16,95 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 24925,
       'dstOffset' => 0,
       'name' => 'SMT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => 25200,
       'dstOffset' => 0,
       'name' => 'MALT',
     ),
-    2 => 
+    2 =>
     array (
       'rawOffset' => 25200,
       'dstOffset' => 1200,
       'name' => 'MALST',
     ),
-    3 => 
+    3 =>
     array (
       'rawOffset' => 26400,
       'dstOffset' => 0,
       'name' => 'MALT',
     ),
-    4 => 
+    4 =>
     array (
       'rawOffset' => 27000,
       'dstOffset' => 0,
       'name' => 'MALT',
     ),
-    5 => 
+    5 =>
     array (
       'rawOffset' => 32400,
       'dstOffset' => 0,
       'name' => 'JST',
     ),
-    6 => 
+    6 =>
     array (
       'rawOffset' => 28800,
       'dstOffset' => 0,
       'name' => 'MYT',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -2177477206,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -2038200925,
       'type' => 1,
     ),
-    2 => 
+    2 =>
     array (
       'time' => -1167634800,
       'type' => 2,
     ),
-    3 => 
+    3 =>
     array (
       'time' => -1073028000,
       'type' => 3,
     ),
-    4 => 
+    4 =>
     array (
       'time' => -894180000,
       'type' => 4,
     ),
-    5 => 
+    5 =>
     array (
       'time' => -879665400,
       'type' => 5,
     ),
-    6 => 
+    6 =>
     array (
       'time' => -767005200,
       'type' => 4,
     ),
-    7 => 
+    7 =>
     array (
       'time' => 378664200,
       'type' => 6,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'MYT',
@@ -115,5 +115,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Asia/Kuala_Lumpur',
 );
-
-?>

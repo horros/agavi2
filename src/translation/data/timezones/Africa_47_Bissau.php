@@ -16,35 +16,35 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => -3600,
       'dstOffset' => 0,
       'name' => 'WAT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => 0,
       'dstOffset' => 0,
       'name' => 'GMT',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -1830380260,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => 157770000,
       'type' => 1,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'GMT',
@@ -55,5 +55,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Africa/Bissau',
 );
-
-?>

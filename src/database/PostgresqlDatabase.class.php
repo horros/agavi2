@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Database;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -51,125 +52,123 @@ use Agavi\Exception\DatabaseException;
  */
 class PostgresqlDatabase extends Database
 {
-	/**
-	 * Connect to the database.
-	 *
-	 * @throws     <b>AgaviDatabaseException</b> If a connection could not be 
-	 *                                           created.
-	 *
-	 * @author     Sean Kerr <skerr@mojavi.org>
-	 * @since      0.9.0
-	 */
-	protected function connect()
-	{
-		// determine how to get our parameters
-		$method = $this->getParameter('method', 'normal');
+    /**
+     * Connect to the database.
+     *
+     * @throws     <b>AgaviDatabaseException</b> If a connection could not be
+     *                                           created.
+     *
+     * @author     Sean Kerr <skerr@mojavi.org>
+     * @since      0.9.0
+     */
+    protected function connect()
+    {
+        // determine how to get our parameters
+        $method = $this->getParameter('method', 'normal');
 
-		// get parameters
-		switch($method) {
-			case 'normal':
-				// get parameters normally
-				$database = $this->getParameter('database');
-				$host     = $this->getParameter('host');
-				$password = $this->getParameter('password');
-				$port     = $this->getParameter('port');
-				$user     = $this->getParameter('username');
-				// construct connection string
-				$string = (($database != null) ? (' dbname='   . $database) : '') .
-									(($host != null)     ? (' host='     . $host)     : '') .
-									(($password != null) ? (' password=' . $password) : '') .
-									(($port != null)     ? (' port='     . $port)     : '') .
-									(($user != null)     ? (' user='     . $user)     : '');
-				break;
+        // get parameters
+        switch ($method) {
+            case 'normal':
+                // get parameters normally
+                $database = $this->getParameter('database');
+                $host     = $this->getParameter('host');
+                $password = $this->getParameter('password');
+                $port     = $this->getParameter('port');
+                $user     = $this->getParameter('username');
+                // construct connection string
+                $string = (($database != null) ? (' dbname='   . $database) : '') .
+                                    (($host != null)     ? (' host='     . $host)     : '') .
+                                    (($password != null) ? (' password=' . $password) : '') .
+                                    (($port != null)     ? (' port='     . $port)     : '') .
+                                    (($user != null)     ? (' user='     . $user)     : '');
+                break;
 
-			case 'server':
-				// construct a connection string from existing $_SERVER values
-				$string = $this->loadParameters($_SERVER);
-				break;
+            case 'server':
+                // construct a connection string from existing $_SERVER values
+                $string = $this->loadParameters($_SERVER);
+                break;
 
-			case 'env':
-				// construct a connection string from existing $_ENV values
-				$string = $this->loadParameters($_ENV);
-				break;
+            case 'env':
+                // construct a connection string from existing $_ENV values
+                $string = $this->loadParameters($_ENV);
+                break;
 
-			default:
-				// who knows what the user wants...
-				$error = 'Invalid AgaviPostgreSQLDatabase parameter retrieval method "%s"';
-				$error = sprintf($error, $method);
-				throw new DatabaseException($error);
-		}
+            default:
+                // who knows what the user wants...
+                $error = 'Invalid AgaviPostgreSQLDatabase parameter retrieval method "%s"';
+                $error = sprintf($error, $method);
+                throw new DatabaseException($error);
+        }
 
-		// let's see if we need a persistent connection
-		$persistent = $this->getParameter('persistent', false);
+        // let's see if we need a persistent connection
+        $persistent = $this->getParameter('persistent', false);
 
-		if($persistent) {
-			$this->connection = pg_pconnect($string);
-		} else {
-			$this->connection = pg_connect($string, PGSQL_CONNECT_FORCE_NEW);
-		}
+        if ($persistent) {
+            $this->connection = pg_pconnect($string);
+        } else {
+            $this->connection = pg_connect($string, PGSQL_CONNECT_FORCE_NEW);
+        }
 
-		// make sure the connection went through
-		if($this->connection === false) {
-			// the connection's foobar'd
-			$error = 'Failed to create a AgaviPostgreSQLDatabase connection';
+        // make sure the connection went through
+        if ($this->connection === false) {
+            // the connection's foobar'd
+            $error = 'Failed to create a AgaviPostgreSQLDatabase connection';
 
-			throw new DatabaseException($error);
-		}
+            throw new DatabaseException($error);
+        }
 
-		// since we're not an abstraction layer, we copy the connection
-		// to the resource
-		$this->resource =& $this->connection;
-		
-		
-		foreach((array)$this->getParameter('init_queries') as $query) {
-			pg_query($this->connection, $query);
-		}
-	}
+        // since we're not an abstraction layer, we copy the connection
+        // to the resource
+        $this->resource =& $this->connection;
+        
+        
+        foreach ((array)$this->getParameter('init_queries') as $query) {
+            pg_query($this->connection, $query);
+        }
+    }
 
-	/**
-	 * Load connection parameters from an existing array.
-	 *
-	 * @param      array  $array An array containing the connection information.
-	 *
-	 * @return     string A connection string.
-	 *
-	 * @author     Sean Kerr <skerr@mojavi.org>
-	 * @since      0.9.0
-	 */
-	protected function loadParameters(array $array)
-	{
-		$database = $this->getParameter('database');
-		$host     = $this->getParameter('host');
-		$password = $this->getParameter('password');
-		$port     = $this->getParameter('port');
-		$user     = $this->getParameter('username');
+    /**
+     * Load connection parameters from an existing array.
+     *
+     * @param      array  $array An array containing the connection information.
+     *
+     * @return     string A connection string.
+     *
+     * @author     Sean Kerr <skerr@mojavi.org>
+     * @since      0.9.0
+     */
+    protected function loadParameters(array $array)
+    {
+        $database = $this->getParameter('database');
+        $host     = $this->getParameter('host');
+        $password = $this->getParameter('password');
+        $port     = $this->getParameter('port');
+        $user     = $this->getParameter('username');
 
-		// construct connection string
-		$string = (($database != null) ? (' dbname='   . $array[$database]) : '') .
-							(($host != null)     ? (' host='     . $array[$host])     : '') .
-							(($password != null) ? (' password=' . $array[$password]) : '') .
-							(($port != null)     ? (' port='     . $array[$port])     : '') .
-							(($user != null)     ? (' user='     . $array[$user])     : '');
+        // construct connection string
+        $string = (($database != null) ? (' dbname='   . $array[$database]) : '') .
+                            (($host != null)     ? (' host='     . $array[$host])     : '') .
+                            (($password != null) ? (' password=' . $array[$password]) : '') .
+                            (($port != null)     ? (' port='     . $array[$port])     : '') .
+                            (($user != null)     ? (' user='     . $array[$user])     : '');
 
-		return $string;
-	}
+        return $string;
+    }
 
-	/**
-	 * Execute the shutdown procedure.
-	 *
-	 * @throws     <b>AgaviDatabaseException</b> If an error occurs while shutting
-	 *                                           down this database.
-	 *
-	 * @author     Sean Kerr <skerr@mojavi.org>
-	 * @since      0.9.0
-	 */
-	public function shutdown()
-	{
-		if($this->connection != null) {
-			@pg_close($this->connection);
-			$this->connection = $this->resource = null;
-		}
-	}
+    /**
+     * Execute the shutdown procedure.
+     *
+     * @throws     <b>AgaviDatabaseException</b> If an error occurs while shutting
+     *                                           down this database.
+     *
+     * @author     Sean Kerr <skerr@mojavi.org>
+     * @since      0.9.0
+     */
+    public function shutdown()
+    {
+        if ($this->connection != null) {
+            @pg_close($this->connection);
+            $this->connection = $this->resource = null;
+        }
+    }
 }
-
-?>

@@ -5,5 +5,5 @@ use Sandbox\Modules\ControllerTests\Lib\Controller\SandboxControllerTestsBaseCon
 
 class ControllerTestController extends SandboxControllerTestsBaseController
 {
-	
+    
 }

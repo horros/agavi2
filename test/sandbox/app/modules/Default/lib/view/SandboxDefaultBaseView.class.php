@@ -7,5 +7,3 @@ class SandboxDefaultBaseView extends \Sandbox\Lib\View\SandboxBaseView
 {
 
 }
-
-?>

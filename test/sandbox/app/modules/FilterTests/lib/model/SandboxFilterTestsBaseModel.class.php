@@ -7,5 +7,3 @@ class SandboxFilterTestsBaseModel extends SandboxBaseModel
 {
 
 }
-
-?>

@@ -1,5 +1,6 @@
 <?php
 namespace Sandbox\Modules\ControllerTests\Lib\Model;
+
 use Sandbox\Lib\Model\SandboxBaseModel;
 
 /**
@@ -9,5 +10,3 @@ class SandboxControllerTestsBaseModel extends SandboxBaseModel
 {
 
 }
-
-?>

@@ -7,5 +7,3 @@ class SandboxDefaultBaseModel extends \Sandbox\Lib\Model\SandboxBaseModel
 {
 
 }
-
-?>

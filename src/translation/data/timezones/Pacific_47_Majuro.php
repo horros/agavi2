@@ -16,35 +16,35 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 39600,
       'dstOffset' => 0,
       'name' => 'MHT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => 43200,
       'dstOffset' => 0,
       'name' => 'MHT',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -2177493888,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -7988400,
       'type' => 1,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'MHT',
@@ -55,5 +55,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Pacific/Majuro',
 );
-
-?>

@@ -16,24 +16,24 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 23400,
       'dstOffset' => 0,
       'name' => 'CCT',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -2209012060,
       'type' => 0,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'CCT',
@@ -44,5 +44,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Indian/Cocos',
 );
-
-?>

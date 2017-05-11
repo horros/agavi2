@@ -21,5 +21,3 @@ Agavi\Core\Agavi::bootstrap('%%PUBLIC_ENVIRONMENT%%');
 // | Call the Dispatcher's dispatch method on the default context              |
 // +---------------------------------------------------------------------------+
 Agavi\Core\Context::getInstance('web')->getDispatcher()->dispatch();
-
-?>

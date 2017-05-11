@@ -34,5 +34,3 @@ namespace Agavi\Exception;
 class FileException extends AgaviException
 {
 }
-
-?>

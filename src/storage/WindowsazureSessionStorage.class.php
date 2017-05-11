@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Storage;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -41,42 +42,40 @@ use Agavi\Core\Context;
  */
 class WindowsazureSessionStorage extends SessionStorage
 {
-	/**
-	 * @var        Microsoft_WindowsAzure_SessionHandler Session handler object.
-	 */
-	protected $sessionHandler;
+    /**
+     * @var        Microsoft_WindowsAzure_SessionHandler Session handler object.
+     */
+    protected $sessionHandler;
 
-	/**
-	 * Initialize this Storage.
-	 *
-	 * @param      Context $context An Context instance.
-	 * @param      array   $parameters An associative array of initialization parameters.
-	 *
-	 * @throws     InitializationException If an error occurs while
-	 *                                                 initializing this Storage.
-	 *
-	 * @author     David Zülke <david.zuelke@bitextender.com
-	 * @since      1.0.4
-	 */
-	public function initialize(Context $context, array $parameters = array())
-	{
-		// initialize the parent
-		parent::initialize($context, $parameters);
-		
-		if(!class_exists('Microsoft_WindowsAzure_SessionHandler')) {
-			require('Microsoft/WindowsAzure/SessionHandler.php');
-		}
-		
-		$table = new Microsoft_WindowsAzure_Storage_Table(
-			$this->getParameter('host', Microsoft_WindowsAzure_Storage::URL_DEV_TABLE),
-			$this->getParameter('account_name', Microsoft_WindowsAzure_Credentials::DEVSTORE_ACCOUNT),
-			$this->getParameter('account_key', Microsoft_WindowsAzure_Credentials::DEVSTORE_KEY)
-		);
-		
-		$sessionHandler = new Microsoft_WindowsAzure_SessionHandler($table, $this->getParameter('session_table', 'phpsessions'), $this->getParameter('session_table_partition', 'sessions'));
-		// this will do session_set_save_handler
-		$sessionHandler->register();
-	}
+    /**
+     * Initialize this Storage.
+     *
+     * @param      Context $context An Context instance.
+     * @param      array   $parameters An associative array of initialization parameters.
+     *
+     * @throws     InitializationException If an error occurs while
+     *                                                 initializing this Storage.
+     *
+     * @author     David Zülke <david.zuelke@bitextender.com
+     * @since      1.0.4
+     */
+    public function initialize(Context $context, array $parameters = array())
+    {
+        // initialize the parent
+        parent::initialize($context, $parameters);
+        
+        if (!class_exists('Microsoft_WindowsAzure_SessionHandler')) {
+            require('Microsoft/WindowsAzure/SessionHandler.php');
+        }
+        
+        $table = new Microsoft_WindowsAzure_Storage_Table(
+            $this->getParameter('host', Microsoft_WindowsAzure_Storage::URL_DEV_TABLE),
+            $this->getParameter('account_name', Microsoft_WindowsAzure_Credentials::DEVSTORE_ACCOUNT),
+            $this->getParameter('account_key', Microsoft_WindowsAzure_Credentials::DEVSTORE_KEY)
+        );
+        
+        $sessionHandler = new Microsoft_WindowsAzure_SessionHandler($table, $this->getParameter('session_table', 'phpsessions'), $this->getParameter('session_table_partition', 'sessions'));
+        // this will do session_set_save_handler
+        $sessionHandler->register();
+    }
 }
-
-?>

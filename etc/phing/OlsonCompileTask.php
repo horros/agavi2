@@ -15,65 +15,65 @@
 
 class OlsonCompileTask extends Task
 {
-	private $olsonDir = '';
-	private $outputDir = '';
+    private $olsonDir = '';
+    private $outputDir = '';
 
-	public function setOlsonDir($olsonDir)
-	{
-		$this->olsonDir = (string) $olsonDir;
-	}
+    public function setOlsonDir($olsonDir)
+    {
+        $this->olsonDir = (string) $olsonDir;
+    }
 
-	public function setOutputDir($outputDir)
-	{
-		$this->outputDir = (string) $outputDir;
-	}
+    public function setOutputDir($outputDir)
+    {
+        $this->outputDir = (string) $outputDir;
+    }
 
-	public function main()
-	{
-		set_time_limit(0);
+    public function main()
+    {
+        set_time_limit(0);
 
-		require_once('src/agavi.php');
+        require_once('src/agavi.php');
 
-		$this->olsonDir = realpath($this->olsonDir);
-		$this->outputDir = realpath($this->outputDir);
+        $this->olsonDir = realpath($this->olsonDir);
+        $this->outputDir = realpath($this->outputDir);
 
-		Config::set('olson.dir', $this->olsonDir);
+        Config::set('olson.dir', $this->olsonDir);
 
-		Config::set('core.app_dir', getcwd() . '/etc/olson/agavi/app');
-		Agavi::bootstrap('');
+        Config::set('core.app_dir', getcwd() . '/etc/olson/agavi/app');
+        Agavi::bootstrap('');
 
-		$context = AgaviContext::getInstance('');
+        $context = AgaviContext::getInstance('');
 
-		if(!$this->olsonDir || !file_exists($this->olsonDir)) {
-			throw new BuildException('Olson data directory is not defined or does not exist.');
-		}
+        if (!$this->olsonDir || !file_exists($this->olsonDir)) {
+            throw new BuildException('Olson data directory is not defined or does not exist.');
+        }
 
-		if(!$this->outputDir || !file_exists($this->outputDir)) {
-			throw new BuildException('Timezone data output directory is not defined or does not exist.');
-		}
+        if (!$this->outputDir || !file_exists($this->outputDir)) {
+            throw new BuildException('Timezone data output directory is not defined or does not exist.');
+        }
 
-		$this->log("Building compiling olson files in {$this->olsonDir} to {$this->outputDir}", PROJECT_MSG_INFO);
+        $this->log("Building compiling olson files in {$this->olsonDir} to {$this->outputDir}", PROJECT_MSG_INFO);
 
-		$links = array();
-		$zones = array();
+        $links = array();
+        $zones = array();
 
-		$di = new DirectoryIterator($this->olsonDir);
-		foreach($di as $file) {
-			if($file->isFile()) {
-				// the file doesn't contain an extension so we parse it
-				// and we don't want the factory time zone
-				if(strpos($file->getFilename(), '.') === false && $file->getFilename() != 'factory') {
-					$this->log(sprintf('compiling %s', $file->getPathname()), PROJECT_MSG_INFO);
-					$parser = new TimeZoneDataParser();
-					$parser->initialize(AgaviContext::getInstance($context));
-					$rules = $parser->parse($file->getPathname());
-					$zones = $rules['zones'] + $zones;
-					$links = $rules['links'] + $links;
-				}
-			}
-		}
+        $di = new DirectoryIterator($this->olsonDir);
+        foreach ($di as $file) {
+            if ($file->isFile()) {
+                // the file doesn't contain an extension so we parse it
+                // and we don't want the factory time zone
+                if (strpos($file->getFilename(), '.') === false && $file->getFilename() != 'factory') {
+                    $this->log(sprintf('compiling %s', $file->getPathname()), PROJECT_MSG_INFO);
+                    $parser = new TimeZoneDataParser();
+                    $parser->initialize(AgaviContext::getInstance($context));
+                    $rules = $parser->parse($file->getPathname());
+                    $zones = $rules['zones'] + $zones;
+                    $links = $rules['links'] + $links;
+                }
+            }
+        }
 
-		$baseCode = '<?php
+        $baseCode = '<?php
 
 /**
  * %s
@@ -94,48 +94,46 @@ return %s;
 
 ?>';
 
-		$zoneList = array();
+        $zoneList = array();
 
-		foreach($zones as $name => $zone) {
-			$fname = preg_replace('#([^a-z0-9_])#ie', "'_'.ord('\\1').'_'", $name) . '.php';
-			$pathname = $this->outputDir . '/' . $fname;
-			$zone['name'] = $name;
+        foreach ($zones as $name => $zone) {
+            $fname = preg_replace('#([^a-z0-9_])#ie', "'_'.ord('\\1').'_'", $name) . '.php';
+            $pathname = $this->outputDir . '/' . $fname;
+            $zone['name'] = $name;
 
-			$zoneList[$name] = array('type' => 'zone', 'filename' => $fname);
-			$this->log('Writing zone ' . $name . ' to: ' . $pathname);
-			file_put_contents(
-				$pathname,
-				sprintf(
-					$baseCode,
-					sprintf(
-						'Data file for timezone "%s".',
-						$name
-					),
-					sprintf(
-						'Compiled from olson file "%s", version %s.',
-						$zone['source'],
-						$zone['version']
-					),
-					var_export($zone, true)
-				)
-			);
-		}
+            $zoneList[$name] = array('type' => 'zone', 'filename' => $fname);
+            $this->log('Writing zone ' . $name . ' to: ' . $pathname);
+            file_put_contents(
+                $pathname,
+                sprintf(
+                    $baseCode,
+                    sprintf(
+                        'Data file for timezone "%s".',
+                        $name
+                    ),
+                    sprintf(
+                        'Compiled from olson file "%s", version %s.',
+                        $zone['source'],
+                        $zone['version']
+                    ),
+                    var_export($zone, true)
+                )
+            );
+        }
 
-		foreach($links as $from => $to) {
-			$zoneList[$from] = array('type' => 'link', 'to' => $to);
-		}
+        foreach ($links as $from => $to) {
+            $zoneList[$from] = array('type' => 'link', 'to' => $to);
+        }
 
-		$this->log('Writing zone listing to: ' . $this->outputDir . '/zonelist.php');
-		file_put_contents(
-			$this->outputDir . '/zonelist.php',
-			sprintf(
-				$baseCode,
-				'Zone list file.',
-				sprintf('Generated on %s.', gmdate('c')),
-				var_export($zoneList, true)
-			)
-		);
-	}
+        $this->log('Writing zone listing to: ' . $this->outputDir . '/zonelist.php');
+        file_put_contents(
+            $this->outputDir . '/zonelist.php',
+            sprintf(
+                $baseCode,
+                'Zone list file.',
+                sprintf('Generated on %s.', gmdate('c')),
+                var_export($zoneList, true)
+            )
+        );
+    }
 }
-
-?>

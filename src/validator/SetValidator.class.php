@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Validator;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -15,7 +16,7 @@ namespace Agavi\Validator;
 
 /**
  * SetValidator only exports a value and always succeeds
- * 
+ *
  * Parameters:
  *   'value'  value that should be exported
  *
@@ -33,20 +34,18 @@ namespace Agavi\Validator;
  */
 class SetValidator extends Validator
 {
-	/**
-	 * Exports the value and returns true.
-	 * 
-	 * @return     bool Always returns true.
-	 * 
-	 * @author     Uwe Mesecke <uwe@mesecke.net>
-	 * @since      0.11.0
-	 */
-	protected function validate()
-	{
-		$this->export($this->getParameter('value'));
-		
-		return true;
-	}
+    /**
+     * Exports the value and returns true.
+     *
+     * @return     bool Always returns true.
+     *
+     * @author     Uwe Mesecke <uwe@mesecke.net>
+     * @since      0.11.0
+     */
+    protected function validate()
+    {
+        $this->export($this->getParameter('value'));
+        
+        return true;
+    }
 }
-
-?>

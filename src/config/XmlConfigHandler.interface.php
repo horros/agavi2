@@ -35,35 +35,33 @@ use Agavi\Config\Util\Dom\XmlConfigDomDocument;
  */
 interface XmlConfigHandlerInterface
 {
-	/**
-	 * Initialize this ConfigHandler.
-	 *
-	 * @param      Context $context    The context to work with (if available).
-	 * @param      array   $parameters An associative array of initialization parameters.
-	 *
-	 * @throws     <b>InitializationException</b> If an error occurs while
-	 *                                                 initializing the
-	 *                                                 ConfigHandler
-	 *
-	 * @author     David Zülke <dz@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function initialize(Context $context = null, $parameters = array());
-	
-	/**
-	 * Execute this configuration handler.
-	 *
-	 * @param      XmlConfigDomDocument $document The document to parse.
-	 *
-	 * @return     string Data to be written to a cache file.
-	 *
-	 * @throws     <b>ParseException</b> If a requested configuration file is
-	 *                                        improperly formatted.
-	 *
-	 * @author     David Zülke <dz@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function execute(XmlConfigDomDocument $document);
+    /**
+     * Initialize this ConfigHandler.
+     *
+     * @param      Context $context    The context to work with (if available).
+     * @param      array   $parameters An associative array of initialization parameters.
+     *
+     * @throws     <b>InitializationException</b> If an error occurs while
+     *                                                 initializing the
+     *                                                 ConfigHandler
+     *
+     * @author     David Zülke <dz@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function initialize(Context $context = null, $parameters = array());
+    
+    /**
+     * Execute this configuration handler.
+     *
+     * @param      XmlConfigDomDocument $document The document to parse.
+     *
+     * @return     string Data to be written to a cache file.
+     *
+     * @throws     <b>ParseException</b> If a requested configuration file is
+     *                                        improperly formatted.
+     *
+     * @author     David Zülke <dz@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function execute(XmlConfigDomDocument $document);
 }
-
-?>

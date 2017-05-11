@@ -16,46 +16,46 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => -2588,
       'dstOffset' => 0,
       'name' => 'MMT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => -2670,
       'dstOffset' => 0,
       'name' => 'LRT',
     ),
-    2 => 
+    2 =>
     array (
       'rawOffset' => 0,
       'dstOffset' => 0,
       'name' => 'GMT',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -2776979812,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -1604359012,
       'type' => 1,
     ),
-    2 => 
+    2 =>
     array (
       'time' => 73529070,
       'type' => 2,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'GMT',
@@ -66,5 +66,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Africa/Monrovia',
 );
-
-?>

@@ -16,68 +16,68 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => -13252,
       'dstOffset' => 0,
       'name' => 'PMT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => -13236,
       'dstOffset' => 0,
       'name' => 'PMT',
     ),
-    2 => 
+    2 =>
     array (
       'rawOffset' => -12600,
       'dstOffset' => 0,
       'name' => 'NEGT',
     ),
-    3 => 
+    3 =>
     array (
       'rawOffset' => -12600,
       'dstOffset' => 0,
       'name' => 'SRT',
     ),
-    4 => 
+    4 =>
     array (
       'rawOffset' => -10800,
       'dstOffset' => 0,
       'name' => 'SRT',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -1861906760,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -1104524348,
       'type' => 1,
     ),
-    2 => 
+    2 =>
     array (
       'time' => -765317964,
       'type' => 2,
     ),
-    3 => 
+    3 =>
     array (
       'time' => 185686200,
       'type' => 3,
     ),
-    4 => 
+    4 =>
     array (
       'time' => 465449400,
       'type' => 4,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'SRT',
@@ -88,5 +88,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'America/Paramaribo',
 );
-
-?>

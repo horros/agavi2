@@ -16,35 +16,35 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 40320,
       'dstOffset' => 0,
       'name' => 'NMT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => 41400,
       'dstOffset' => 0,
       'name' => 'NFT',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -2177493112,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -599656320,
       'type' => 1,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'NFT',
@@ -55,5 +55,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Pacific/Norfolk',
 );
-
-?>

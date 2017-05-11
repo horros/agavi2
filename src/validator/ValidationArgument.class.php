@@ -16,7 +16,7 @@ namespace Agavi\Validator;
 use Agavi\Request\RequestDataHolder;
 
 /**
- * AgaviValidationArgument is a tuple of argument name and source that specifies 
+ * AgaviValidationArgument is a tuple of argument name and source that specifies
  * the argument to validate.
  *
  * @package    agavi
@@ -32,72 +32,70 @@ use Agavi\Request\RequestDataHolder;
  */
 class ValidationArgument
 {
-	/**
-	 * @var        string the name of the argument.
-	 */
-	protected $name;
-	
-	/**
-	 * @var        string the name of the source.
-	 */
-	protected $source;
-	
-	/**
-	 * Create a new ValidationArgument instance.
-	 * 
-	 * @param      string $name   the name of the argument.
-	 * @param      string $source the name of the source, if null, RequestDataHolder::SOURCE_PARAMETERS is used.
-	 * 
-	 * @author     Dominik del Bondio <dominik.del.bondio@bitextender.com>
-	 * @since      1.0.0
-	 */
-	public function __construct($name, $source = null)
-	{
-		if($source === null) {
-			$source = RequestDataHolder::SOURCE_PARAMETERS;
-		}
-		$this->name = $name;
-		$this->source = $source;
-	}
-	
-	/**
-	 * Retrieve the name of the argument for this instance.
-	 * 
-	 * @return     string the name of the argument
-	 *
-	 * @author     Dominik del Bondio <dominik.del.bondio@bitextender.com>
-	 * @since      1.0.0
-	 */
-	public function getName()
-	{
-		return $this->name;
-	}
-	
-	/**
-	 * Retrieve the name of the source for this instance.
-	 * 
-	 * @return     string the name of the source.
-	 *
-	 * @author     Dominik del Bondio <dominik.del.bondio@bitextender.com>
-	 * @since      1.0.0
-	 */
-	public function getSource()
-	{
-		return $this->source;
-	}
-	
-	/**
-	 * Get a unique hash value for this AgaviValidationArgument.
-	 * 
-	 * @return     string the hash value
-	 *
-	 * @author     Dominik del Bondio <dominik.del.bondio@bitextender.com>
-	 * @since      1.0.0
-	 */
-	public function getHash()
-	{
-		return sprintf('%s/%s', $this->source, $this->name);
-	}
+    /**
+     * @var        string the name of the argument.
+     */
+    protected $name;
+    
+    /**
+     * @var        string the name of the source.
+     */
+    protected $source;
+    
+    /**
+     * Create a new ValidationArgument instance.
+     *
+     * @param      string $name   the name of the argument.
+     * @param      string $source the name of the source, if null, RequestDataHolder::SOURCE_PARAMETERS is used.
+     *
+     * @author     Dominik del Bondio <dominik.del.bondio@bitextender.com>
+     * @since      1.0.0
+     */
+    public function __construct($name, $source = null)
+    {
+        if ($source === null) {
+            $source = RequestDataHolder::SOURCE_PARAMETERS;
+        }
+        $this->name = $name;
+        $this->source = $source;
+    }
+    
+    /**
+     * Retrieve the name of the argument for this instance.
+     *
+     * @return     string the name of the argument
+     *
+     * @author     Dominik del Bondio <dominik.del.bondio@bitextender.com>
+     * @since      1.0.0
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+    
+    /**
+     * Retrieve the name of the source for this instance.
+     *
+     * @return     string the name of the source.
+     *
+     * @author     Dominik del Bondio <dominik.del.bondio@bitextender.com>
+     * @since      1.0.0
+     */
+    public function getSource()
+    {
+        return $this->source;
+    }
+    
+    /**
+     * Get a unique hash value for this AgaviValidationArgument.
+     *
+     * @return     string the hash value
+     *
+     * @author     Dominik del Bondio <dominik.del.bondio@bitextender.com>
+     * @since      1.0.0
+     */
+    public function getHash()
+    {
+        return sprintf('%s/%s', $this->source, $this->name);
+    }
 }
-
-?>

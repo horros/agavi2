@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Testing;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -15,8 +16,8 @@ namespace Agavi\Testing;
 
 /**
  * FlowTestCaseInterface is the interface that all flow tests must implement
- * 
- * 
+ *
+ *
  * @package    agavi
  * @subpackage testing
  *
@@ -29,13 +30,11 @@ namespace Agavi\Testing;
  */
 interface FlowTestCaseInterface extends TestCaseInterface
 {
-	/**
-	 * dispatch the request
-	 *
-	 * @author     Felix Gilcher <felix.gilcher@bitextender.com>
-	 * @since      1.0.0 
-	 */
-	public function dispatch();
+    /**
+     * dispatch the request
+     *
+     * @author     Felix Gilcher <felix.gilcher@bitextender.com>
+     * @since      1.0.0
+     */
+    public function dispatch();
 }
-
-?>
