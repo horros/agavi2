@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Model;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -16,7 +17,7 @@ namespace Agavi\Model;
 /**
  * The Agavi Model provides a convention for separating business logic from
  * application logic. When using a model you're providing a globally accessible
- * API for other modules to access, which will boost interoperability among 
+ * API for other modules to access, which will boost interoperability among
  * modules in your web application.
  *
  * @package    agavi
@@ -32,7 +33,5 @@ namespace Agavi\Model;
  */
 interface ModelInterface
 {
-	public function getContext();
+    public function getContext();
 }
-
-?>

@@ -16,24 +16,24 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 14400,
       'dstOffset' => 0,
       'name' => 'GST',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -1577936472,
       'type' => 0,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'GST',
@@ -44,5 +44,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Asia/Dubai',
 );
-
-?>

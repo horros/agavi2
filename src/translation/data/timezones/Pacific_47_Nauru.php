@@ -16,51 +16,51 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 41400,
       'dstOffset' => 0,
       'name' => 'NRT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => 32400,
       'dstOffset' => 0,
       'name' => 'JST',
     ),
-    2 => 
+    2 =>
     array (
       'rawOffset' => 43200,
       'dstOffset' => 0,
       'name' => 'NRT',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -1545131260,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -877347000,
       'type' => 1,
     ),
-    2 => 
+    2 =>
     array (
       'time' => -800960400,
       'type' => 0,
     ),
-    3 => 
+    3 =>
     array (
       'time' => 294323400,
       'type' => 2,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'NRT',
@@ -71,5 +71,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Pacific/Nauru',
 );
-
-?>

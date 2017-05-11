@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Logging;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -15,8 +16,9 @@ namespace Agavi\Logging;
 
 use Agavi\Exception\LoggingException;
 use Agavi\Logging\LoggerInterface;
+
 /**
- * AgaviLogger provides an easy way to manage multiple log destinations and 
+ * AgaviLogger provides an easy way to manage multiple log destinations and
  * write to them all simultaneously.
  *
  * @package    agavi
@@ -32,110 +34,108 @@ use Agavi\Logging\LoggerInterface;
  */
 class Logger implements LoggerInterface
 {
-	/**
-	 * @var        array An array of AgaviLoggerAppenders.
-	 */
-	protected $appenders = array();
+    /**
+     * @var        array An array of AgaviLoggerAppenders.
+     */
+    protected $appenders = array();
 
-	/**
-	 * @var        int Logging level.
-	 */
-	protected $level = LoggerInterface::WARN;
+    /**
+     * @var        int Logging level.
+     */
+    protected $level = LoggerInterface::WARN;
 
-	/**
-	 * Log a message.
-	 *
-	 * @param      AgaviLoggerMessage A Message instance.
-	 *
-	 * @author     Sean Kerr <skerr@mojavi.org>
-	 * @since      0.9.0
-	 */
-	public function log(LoggerMessage $message)
-	{
-		// get message level
-		$msgLevel = $message->getLevel();
+    /**
+     * Log a message.
+     *
+     * @param      AgaviLoggerMessage A Message instance.
+     *
+     * @author     Sean Kerr <skerr@mojavi.org>
+     * @since      0.9.0
+     */
+    public function log(LoggerMessage $message)
+    {
+        // get message level
+        $msgLevel = $message->getLevel();
 
-		if($this->level & $msgLevel) {
-			/** @var LoggerAppender $appender */
-			foreach($this->appenders as $appender) {
-				$appender->write($message);
-			}
-		}
-	}
+        if ($this->level & $msgLevel) {
+            /** @var LoggerAppender $appender */
+            foreach ($this->appenders as $appender) {
+                $appender->write($message);
+            }
+        }
+    }
 
-	/**
-	 * Set an appender.
-	 *
-	 * If an appender with the name already exists, an exception will be thrown.
-	 *
-	 * @param      string         $name     An appender name.
-	 * @param      LoggerAppender $appender An Appender instance.
-	 *
-	 * @throws     <b>AgaviLoggingException</b> If an appender with the name 
-	 *                                          already exists.
-	 *
-	 * @author     Sean Kerr <skerr@mojavi.org>
-	 * @since      0.9.0
-	 */
-	public function setAppender($name, LoggerAppender $appender)
-	{
-		if(!isset($this->appenders[$name])) {
-			$this->appenders[$name] = $appender;
-			return;
-		}
+    /**
+     * Set an appender.
+     *
+     * If an appender with the name already exists, an exception will be thrown.
+     *
+     * @param      string         $name     An appender name.
+     * @param      LoggerAppender $appender An Appender instance.
+     *
+     * @throws     <b>AgaviLoggingException</b> If an appender with the name
+     *                                          already exists.
+     *
+     * @author     Sean Kerr <skerr@mojavi.org>
+     * @since      0.9.0
+     */
+    public function setAppender($name, LoggerAppender $appender)
+    {
+        if (!isset($this->appenders[$name])) {
+            $this->appenders[$name] = $appender;
+            return;
+        }
 
-		// appender already exists
-		$error = 'An appender with the name "%s" is already registered';
-		$error = sprintf($error, $name);
-		throw new LoggingException($error);
-	}
+        // appender already exists
+        $error = 'An appender with the name "%s" is already registered';
+        $error = sprintf($error, $name);
+        throw new LoggingException($error);
+    }
 
-	/**
-	 * Returns a list of appenders for this logger.
-	 *
-	 * @return     array An associative array of appender names and instances.
-	 *
-	 * @author     David Zülke <dz@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function getAppenders()
-	{
-		return $this->appenders;
-	}
+    /**
+     * Returns a list of appenders for this logger.
+     *
+     * @return     array An associative array of appender names and instances.
+     *
+     * @author     David Zülke <dz@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function getAppenders()
+    {
+        return $this->appenders;
+    }
 
-	/**
-	 * Set the level.
-	 *
-	 * @param      int A log level.
-	 *
-	 * @author     Sean Kerr <skerr@mojavi.org>
-	 * @since      0.9.0
-	 */
-	public function setLevel($level)
-	{
-		$this->level = $level;
-	}
+    /**
+     * Set the level.
+     *
+     * @param      int A log level.
+     *
+     * @author     Sean Kerr <skerr@mojavi.org>
+     * @since      0.9.0
+     */
+    public function setLevel($level)
+    {
+        $this->level = $level;
+    }
 
-	/**
-	 * Get the level.
-	 *
-	 * @author     Peter Limbach <peter.limbach@gmail.com>
-	 * @since      1.1.0
-	 */
-	public function getLevel()
-	{
-		return $this->level;
-	}
+    /**
+     * Get the level.
+     *
+     * @author     Peter Limbach <peter.limbach@gmail.com>
+     * @since      1.1.0
+     */
+    public function getLevel()
+    {
+        return $this->level;
+    }
 
-	/**
-	 * Execute the shutdown procedure.
-	 *
-	 * @author     Sean Kerr <skerr@mojavi.org>
-	 * @since      0.9.0
-	 */
-	public function shutdown()
-	{
-	}
+    /**
+     * Execute the shutdown procedure.
+     *
+     * @author     Sean Kerr <skerr@mojavi.org>
+     * @since      0.9.0
+     */
+    public function shutdown()
+    {
+    }
 }
-
-?>

@@ -16,2946 +16,2944 @@
  */
 
 return array (
-  'America/Argentina/Buenos_Aires' => 
+  'America/Argentina/Buenos_Aires' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Argentina_47_Buenos_Aires.php',
   ),
-  'America/Argentina/Cordoba' => 
+  'America/Argentina/Cordoba' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Argentina_47_Cordoba.php',
   ),
-  'America/Argentina/Salta' => 
+  'America/Argentina/Salta' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Argentina_47_Salta.php',
   ),
-  'America/Argentina/Tucuman' => 
+  'America/Argentina/Tucuman' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Argentina_47_Tucuman.php',
   ),
-  'America/Argentina/La_Rioja' => 
+  'America/Argentina/La_Rioja' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Argentina_47_La_Rioja.php',
   ),
-  'America/Argentina/San_Juan' => 
+  'America/Argentina/San_Juan' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Argentina_47_San_Juan.php',
   ),
-  'America/Argentina/Jujuy' => 
+  'America/Argentina/Jujuy' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Argentina_47_Jujuy.php',
   ),
-  'America/Argentina/Catamarca' => 
+  'America/Argentina/Catamarca' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Argentina_47_Catamarca.php',
   ),
-  'America/Argentina/Mendoza' => 
+  'America/Argentina/Mendoza' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Argentina_47_Mendoza.php',
   ),
-  'America/Argentina/San_Luis' => 
+  'America/Argentina/San_Luis' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Argentina_47_San_Luis.php',
   ),
-  'America/Argentina/Rio_Gallegos' => 
+  'America/Argentina/Rio_Gallegos' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Argentina_47_Rio_Gallegos.php',
   ),
-  'America/Argentina/Ushuaia' => 
+  'America/Argentina/Ushuaia' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Argentina_47_Ushuaia.php',
   ),
-  'America/La_Paz' => 
+  'America/La_Paz' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_La_Paz.php',
   ),
-  'America/Noronha' => 
+  'America/Noronha' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Noronha.php',
   ),
-  'America/Belem' => 
+  'America/Belem' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Belem.php',
   ),
-  'America/Santarem' => 
+  'America/Santarem' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Santarem.php',
   ),
-  'America/Fortaleza' => 
+  'America/Fortaleza' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Fortaleza.php',
   ),
-  'America/Recife' => 
+  'America/Recife' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Recife.php',
   ),
-  'America/Araguaina' => 
+  'America/Araguaina' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Araguaina.php',
   ),
-  'America/Maceio' => 
+  'America/Maceio' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Maceio.php',
   ),
-  'America/Bahia' => 
+  'America/Bahia' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Bahia.php',
   ),
-  'America/Sao_Paulo' => 
+  'America/Sao_Paulo' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Sao_Paulo.php',
   ),
-  'America/Campo_Grande' => 
+  'America/Campo_Grande' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Campo_Grande.php',
   ),
-  'America/Cuiaba' => 
+  'America/Cuiaba' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Cuiaba.php',
   ),
-  'America/Porto_Velho' => 
+  'America/Porto_Velho' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Porto_Velho.php',
   ),
-  'America/Boa_Vista' => 
+  'America/Boa_Vista' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Boa_Vista.php',
   ),
-  'America/Manaus' => 
+  'America/Manaus' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Manaus.php',
   ),
-  'America/Eirunepe' => 
+  'America/Eirunepe' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Eirunepe.php',
   ),
-  'America/Rio_Branco' => 
+  'America/Rio_Branco' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Rio_Branco.php',
   ),
-  'America/Santiago' => 
+  'America/Santiago' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Santiago.php',
   ),
-  'Pacific/Easter' => 
+  'Pacific/Easter' =>
   array (
     'type' => 'zone',
     'filename' => 'Pacific_47_Easter.php',
   ),
-  'Antarctica/Palmer' => 
+  'Antarctica/Palmer' =>
   array (
     'type' => 'zone',
     'filename' => 'Antarctica_47_Palmer.php',
   ),
-  'America/Bogota' => 
+  'America/Bogota' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Bogota.php',
   ),
-  'America/Curacao' => 
+  'America/Curacao' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Curacao.php',
   ),
-  'America/Guayaquil' => 
+  'America/Guayaquil' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Guayaquil.php',
   ),
-  'Pacific/Galapagos' => 
+  'Pacific/Galapagos' =>
   array (
     'type' => 'zone',
     'filename' => 'Pacific_47_Galapagos.php',
   ),
-  'Atlantic/Stanley' => 
+  'Atlantic/Stanley' =>
   array (
     'type' => 'zone',
     'filename' => 'Atlantic_47_Stanley.php',
   ),
-  'America/Cayenne' => 
+  'America/Cayenne' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Cayenne.php',
   ),
-  'America/Guyana' => 
+  'America/Guyana' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Guyana.php',
   ),
-  'America/Asuncion' => 
+  'America/Asuncion' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Asuncion.php',
   ),
-  'America/Lima' => 
+  'America/Lima' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Lima.php',
   ),
-  'Atlantic/South_Georgia' => 
+  'Atlantic/South_Georgia' =>
   array (
     'type' => 'zone',
     'filename' => 'Atlantic_47_South_Georgia.php',
   ),
-  'America/Paramaribo' => 
+  'America/Paramaribo' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Paramaribo.php',
   ),
-  'America/Port_of_Spain' => 
+  'America/Port_of_Spain' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Port_of_Spain.php',
   ),
-  'America/Montevideo' => 
+  'America/Montevideo' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Montevideo.php',
   ),
-  'America/Caracas' => 
+  'America/Caracas' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Caracas.php',
   ),
-  'Asia/Riyadh89' => 
+  'Asia/Riyadh89' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Riyadh89.php',
   ),
-  'Asia/Riyadh88' => 
+  'Asia/Riyadh88' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Riyadh88.php',
   ),
-  'Asia/Riyadh87' => 
+  'Asia/Riyadh87' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Riyadh87.php',
   ),
-  'EST' => 
+  'EST' =>
   array (
     'type' => 'zone',
     'filename' => 'EST.php',
   ),
-  'MST' => 
+  'MST' =>
   array (
     'type' => 'zone',
     'filename' => 'MST.php',
   ),
-  'HST' => 
+  'HST' =>
   array (
     'type' => 'zone',
     'filename' => 'HST.php',
   ),
-  'EST5EDT' => 
+  'EST5EDT' =>
   array (
     'type' => 'zone',
     'filename' => 'EST5EDT.php',
   ),
-  'CST6CDT' => 
+  'CST6CDT' =>
   array (
     'type' => 'zone',
     'filename' => 'CST6CDT.php',
   ),
-  'MST7MDT' => 
+  'MST7MDT' =>
   array (
     'type' => 'zone',
     'filename' => 'MST7MDT.php',
   ),
-  'PST8PDT' => 
+  'PST8PDT' =>
   array (
     'type' => 'zone',
     'filename' => 'PST8PDT.php',
   ),
-  'America/New_York' => 
+  'America/New_York' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_New_York.php',
   ),
-  'America/Chicago' => 
+  'America/Chicago' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Chicago.php',
   ),
-  'America/North_Dakota/Center' => 
+  'America/North_Dakota/Center' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_North_Dakota_47_Center.php',
   ),
-  'America/North_Dakota/New_Salem' => 
+  'America/North_Dakota/New_Salem' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_North_Dakota_47_New_Salem.php',
   ),
-  'America/North_Dakota/Beulah' => 
+  'America/North_Dakota/Beulah' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_North_Dakota_47_Beulah.php',
   ),
-  'America/Denver' => 
+  'America/Denver' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Denver.php',
   ),
-  'America/Los_Angeles' => 
+  'America/Los_Angeles' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Los_Angeles.php',
   ),
-  'America/Juneau' => 
+  'America/Juneau' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Juneau.php',
   ),
-  'America/Sitka' => 
+  'America/Sitka' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Sitka.php',
   ),
-  'America/Metlakatla' => 
+  'America/Metlakatla' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Metlakatla.php',
   ),
-  'America/Yakutat' => 
+  'America/Yakutat' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Yakutat.php',
   ),
-  'America/Anchorage' => 
+  'America/Anchorage' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Anchorage.php',
   ),
-  'America/Nome' => 
+  'America/Nome' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Nome.php',
   ),
-  'America/Adak' => 
+  'America/Adak' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Adak.php',
   ),
-  'Pacific/Honolulu' => 
+  'Pacific/Honolulu' =>
   array (
     'type' => 'zone',
     'filename' => 'Pacific_47_Honolulu.php',
   ),
-  'America/Phoenix' => 
+  'America/Phoenix' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Phoenix.php',
   ),
-  'America/Boise' => 
+  'America/Boise' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Boise.php',
   ),
-  'America/Indiana/Indianapolis' => 
+  'America/Indiana/Indianapolis' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Indiana_47_Indianapolis.php',
   ),
-  'America/Indiana/Marengo' => 
+  'America/Indiana/Marengo' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Indiana_47_Marengo.php',
   ),
-  'America/Indiana/Vincennes' => 
+  'America/Indiana/Vincennes' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Indiana_47_Vincennes.php',
   ),
-  'America/Indiana/Tell_City' => 
+  'America/Indiana/Tell_City' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Indiana_47_Tell_City.php',
   ),
-  'America/Indiana/Petersburg' => 
+  'America/Indiana/Petersburg' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Indiana_47_Petersburg.php',
   ),
-  'America/Indiana/Knox' => 
+  'America/Indiana/Knox' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Indiana_47_Knox.php',
   ),
-  'America/Indiana/Winamac' => 
+  'America/Indiana/Winamac' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Indiana_47_Winamac.php',
   ),
-  'America/Indiana/Vevay' => 
+  'America/Indiana/Vevay' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Indiana_47_Vevay.php',
   ),
-  'America/Kentucky/Louisville' => 
+  'America/Kentucky/Louisville' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Kentucky_47_Louisville.php',
   ),
-  'America/Kentucky/Monticello' => 
+  'America/Kentucky/Monticello' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Kentucky_47_Monticello.php',
   ),
-  'America/Detroit' => 
+  'America/Detroit' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Detroit.php',
   ),
-  'America/Menominee' => 
+  'America/Menominee' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Menominee.php',
   ),
-  'America/St_Johns' => 
+  'America/St_Johns' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_St_Johns.php',
   ),
-  'America/Goose_Bay' => 
+  'America/Goose_Bay' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Goose_Bay.php',
   ),
-  'America/Halifax' => 
+  'America/Halifax' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Halifax.php',
   ),
-  'America/Glace_Bay' => 
+  'America/Glace_Bay' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Glace_Bay.php',
   ),
-  'America/Moncton' => 
+  'America/Moncton' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Moncton.php',
   ),
-  'America/Blanc-Sablon' => 
+  'America/Blanc-Sablon' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Blanc_45_Sablon.php',
   ),
-  'America/Toronto' => 
+  'America/Toronto' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Toronto.php',
   ),
-  'America/Thunder_Bay' => 
+  'America/Thunder_Bay' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Thunder_Bay.php',
   ),
-  'America/Nipigon' => 
+  'America/Nipigon' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Nipigon.php',
   ),
-  'America/Rainy_River' => 
+  'America/Rainy_River' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Rainy_River.php',
   ),
-  'America/Atikokan' => 
+  'America/Atikokan' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Atikokan.php',
   ),
-  'America/Winnipeg' => 
+  'America/Winnipeg' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Winnipeg.php',
   ),
-  'America/Regina' => 
+  'America/Regina' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Regina.php',
   ),
-  'America/Swift_Current' => 
+  'America/Swift_Current' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Swift_Current.php',
   ),
-  'America/Edmonton' => 
+  'America/Edmonton' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Edmonton.php',
   ),
-  'America/Vancouver' => 
+  'America/Vancouver' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Vancouver.php',
   ),
-  'America/Dawson_Creek' => 
+  'America/Dawson_Creek' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Dawson_Creek.php',
   ),
-  'America/Creston' => 
+  'America/Creston' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Creston.php',
   ),
-  'America/Pangnirtung' => 
+  'America/Pangnirtung' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Pangnirtung.php',
   ),
-  'America/Iqaluit' => 
+  'America/Iqaluit' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Iqaluit.php',
   ),
-  'America/Resolute' => 
+  'America/Resolute' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Resolute.php',
   ),
-  'America/Rankin_Inlet' => 
+  'America/Rankin_Inlet' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Rankin_Inlet.php',
   ),
-  'America/Cambridge_Bay' => 
+  'America/Cambridge_Bay' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Cambridge_Bay.php',
   ),
-  'America/Yellowknife' => 
+  'America/Yellowknife' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Yellowknife.php',
   ),
-  'America/Inuvik' => 
+  'America/Inuvik' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Inuvik.php',
   ),
-  'America/Whitehorse' => 
+  'America/Whitehorse' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Whitehorse.php',
   ),
-  'America/Dawson' => 
+  'America/Dawson' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Dawson.php',
   ),
-  'America/Cancun' => 
+  'America/Cancun' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Cancun.php',
   ),
-  'America/Merida' => 
+  'America/Merida' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Merida.php',
   ),
-  'America/Matamoros' => 
+  'America/Matamoros' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Matamoros.php',
   ),
-  'America/Monterrey' => 
+  'America/Monterrey' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Monterrey.php',
   ),
-  'America/Mexico_City' => 
+  'America/Mexico_City' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Mexico_City.php',
   ),
-  'America/Ojinaga' => 
+  'America/Ojinaga' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Ojinaga.php',
   ),
-  'America/Chihuahua' => 
+  'America/Chihuahua' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Chihuahua.php',
   ),
-  'America/Hermosillo' => 
+  'America/Hermosillo' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Hermosillo.php',
   ),
-  'America/Mazatlan' => 
+  'America/Mazatlan' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Mazatlan.php',
   ),
-  'America/Bahia_Banderas' => 
+  'America/Bahia_Banderas' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Bahia_Banderas.php',
   ),
-  'America/Tijuana' => 
+  'America/Tijuana' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Tijuana.php',
   ),
-  'America/Santa_Isabel' => 
+  'America/Santa_Isabel' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Santa_Isabel.php',
   ),
-  'America/Nassau' => 
+  'America/Nassau' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Nassau.php',
   ),
-  'America/Barbados' => 
+  'America/Barbados' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Barbados.php',
   ),
-  'America/Belize' => 
+  'America/Belize' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Belize.php',
   ),
-  'Atlantic/Bermuda' => 
+  'Atlantic/Bermuda' =>
   array (
     'type' => 'zone',
     'filename' => 'Atlantic_47_Bermuda.php',
   ),
-  'America/Cayman' => 
+  'America/Cayman' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Cayman.php',
   ),
-  'America/Costa_Rica' => 
+  'America/Costa_Rica' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Costa_Rica.php',
   ),
-  'America/Havana' => 
+  'America/Havana' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Havana.php',
   ),
-  'America/Santo_Domingo' => 
+  'America/Santo_Domingo' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Santo_Domingo.php',
   ),
-  'America/El_Salvador' => 
+  'America/El_Salvador' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_El_Salvador.php',
   ),
-  'America/Guatemala' => 
+  'America/Guatemala' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Guatemala.php',
   ),
-  'America/Port-au-Prince' => 
+  'America/Port-au-Prince' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Port_45_au_45_Prince.php',
   ),
-  'America/Tegucigalpa' => 
+  'America/Tegucigalpa' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Tegucigalpa.php',
   ),
-  'America/Jamaica' => 
+  'America/Jamaica' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Jamaica.php',
   ),
-  'America/Martinique' => 
+  'America/Martinique' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Martinique.php',
   ),
-  'America/Managua' => 
+  'America/Managua' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Managua.php',
   ),
-  'America/Panama' => 
+  'America/Panama' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Panama.php',
   ),
-  'America/Puerto_Rico' => 
+  'America/Puerto_Rico' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Puerto_Rico.php',
   ),
-  'America/Miquelon' => 
+  'America/Miquelon' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Miquelon.php',
   ),
-  'America/Grand_Turk' => 
+  'America/Grand_Turk' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Grand_Turk.php',
   ),
-  'Europe/London' => 
+  'Europe/London' =>
   array (
     'type' => 'zone',
     'filename' => 'Europe_47_London.php',
   ),
-  'Europe/Dublin' => 
+  'Europe/Dublin' =>
   array (
     'type' => 'zone',
     'filename' => 'Europe_47_Dublin.php',
   ),
-  'WET' => 
+  'WET' =>
   array (
     'type' => 'zone',
     'filename' => 'WET.php',
   ),
-  'CET' => 
+  'CET' =>
   array (
     'type' => 'zone',
     'filename' => 'CET.php',
   ),
-  'MET' => 
+  'MET' =>
   array (
     'type' => 'zone',
     'filename' => 'MET.php',
   ),
-  'EET' => 
+  'EET' =>
   array (
     'type' => 'zone',
     'filename' => 'EET.php',
   ),
-  'Europe/Tirane' => 
+  'Europe/Tirane' =>
   array (
     'type' => 'zone',
     'filename' => 'Europe_47_Tirane.php',
   ),
-  'Europe/Andorra' => 
+  'Europe/Andorra' =>
   array (
     'type' => 'zone',
     'filename' => 'Europe_47_Andorra.php',
   ),
-  'Europe/Vienna' => 
+  'Europe/Vienna' =>
   array (
     'type' => 'zone',
     'filename' => 'Europe_47_Vienna.php',
   ),
-  'Europe/Minsk' => 
+  'Europe/Minsk' =>
   array (
     'type' => 'zone',
     'filename' => 'Europe_47_Minsk.php',
   ),
-  'Europe/Brussels' => 
+  'Europe/Brussels' =>
   array (
     'type' => 'zone',
     'filename' => 'Europe_47_Brussels.php',
   ),
-  'Europe/Sofia' => 
+  'Europe/Sofia' =>
   array (
     'type' => 'zone',
     'filename' => 'Europe_47_Sofia.php',
   ),
-  'Europe/Prague' => 
+  'Europe/Prague' =>
   array (
     'type' => 'zone',
     'filename' => 'Europe_47_Prague.php',
   ),
-  'Europe/Copenhagen' => 
+  'Europe/Copenhagen' =>
   array (
     'type' => 'zone',
     'filename' => 'Europe_47_Copenhagen.php',
   ),
-  'Atlantic/Faroe' => 
+  'Atlantic/Faroe' =>
   array (
     'type' => 'zone',
     'filename' => 'Atlantic_47_Faroe.php',
   ),
-  'America/Danmarkshavn' => 
+  'America/Danmarkshavn' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Danmarkshavn.php',
   ),
-  'America/Scoresbysund' => 
+  'America/Scoresbysund' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Scoresbysund.php',
   ),
-  'America/Godthab' => 
+  'America/Godthab' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Godthab.php',
   ),
-  'America/Thule' => 
+  'America/Thule' =>
   array (
     'type' => 'zone',
     'filename' => 'America_47_Thule.php',
   ),
-  'Europe/Tallinn' => 
+  'Europe/Tallinn' =>
   array (
     'type' => 'zone',
     'filename' => 'Europe_47_Tallinn.php',
   ),
-  'Europe/Helsinki' => 
+  'Europe/Helsinki' =>
   array (
     'type' => 'zone',
     'filename' => 'Europe_47_Helsinki.php',
   ),
-  'Europe/Paris' => 
+  'Europe/Paris' =>
   array (
     'type' => 'zone',
     'filename' => 'Europe_47_Paris.php',
   ),
-  'Europe/Berlin' => 
+  'Europe/Berlin' =>
   array (
     'type' => 'zone',
     'filename' => 'Europe_47_Berlin.php',
   ),
-  'Europe/Gibraltar' => 
+  'Europe/Gibraltar' =>
   array (
     'type' => 'zone',
     'filename' => 'Europe_47_Gibraltar.php',
   ),
-  'Europe/Athens' => 
+  'Europe/Athens' =>
   array (
     'type' => 'zone',
     'filename' => 'Europe_47_Athens.php',
   ),
-  'Europe/Budapest' => 
+  'Europe/Budapest' =>
   array (
     'type' => 'zone',
     'filename' => 'Europe_47_Budapest.php',
   ),
-  'Atlantic/Reykjavik' => 
+  'Atlantic/Reykjavik' =>
   array (
     'type' => 'zone',
     'filename' => 'Atlantic_47_Reykjavik.php',
   ),
-  'Europe/Rome' => 
+  'Europe/Rome' =>
   array (
     'type' => 'zone',
     'filename' => 'Europe_47_Rome.php',
   ),
-  'Europe/Riga' => 
+  'Europe/Riga' =>
   array (
     'type' => 'zone',
     'filename' => 'Europe_47_Riga.php',
   ),
-  'Europe/Vilnius' => 
+  'Europe/Vilnius' =>
   array (
     'type' => 'zone',
     'filename' => 'Europe_47_Vilnius.php',
   ),
-  'Europe/Luxembourg' => 
+  'Europe/Luxembourg' =>
   array (
     'type' => 'zone',
     'filename' => 'Europe_47_Luxembourg.php',
   ),
-  'Europe/Malta' => 
+  'Europe/Malta' =>
   array (
     'type' => 'zone',
     'filename' => 'Europe_47_Malta.php',
   ),
-  'Europe/Chisinau' => 
+  'Europe/Chisinau' =>
   array (
     'type' => 'zone',
     'filename' => 'Europe_47_Chisinau.php',
   ),
-  'Europe/Monaco' => 
+  'Europe/Monaco' =>
   array (
     'type' => 'zone',
     'filename' => 'Europe_47_Monaco.php',
   ),
-  'Europe/Amsterdam' => 
+  'Europe/Amsterdam' =>
   array (
     'type' => 'zone',
     'filename' => 'Europe_47_Amsterdam.php',
   ),
-  'Europe/Oslo' => 
+  'Europe/Oslo' =>
   array (
     'type' => 'zone',
     'filename' => 'Europe_47_Oslo.php',
   ),
-  'Europe/Warsaw' => 
+  'Europe/Warsaw' =>
   array (
     'type' => 'zone',
     'filename' => 'Europe_47_Warsaw.php',
   ),
-  'Europe/Lisbon' => 
+  'Europe/Lisbon' =>
   array (
     'type' => 'zone',
     'filename' => 'Europe_47_Lisbon.php',
   ),
-  'Atlantic/Azores' => 
+  'Atlantic/Azores' =>
   array (
     'type' => 'zone',
     'filename' => 'Atlantic_47_Azores.php',
   ),
-  'Atlantic/Madeira' => 
+  'Atlantic/Madeira' =>
   array (
     'type' => 'zone',
     'filename' => 'Atlantic_47_Madeira.php',
   ),
-  'Europe/Bucharest' => 
+  'Europe/Bucharest' =>
   array (
     'type' => 'zone',
     'filename' => 'Europe_47_Bucharest.php',
   ),
-  'Europe/Kaliningrad' => 
+  'Europe/Kaliningrad' =>
   array (
     'type' => 'zone',
     'filename' => 'Europe_47_Kaliningrad.php',
   ),
-  'Europe/Moscow' => 
+  'Europe/Moscow' =>
   array (
     'type' => 'zone',
     'filename' => 'Europe_47_Moscow.php',
   ),
-  'Europe/Simferopol' => 
+  'Europe/Simferopol' =>
   array (
     'type' => 'zone',
     'filename' => 'Europe_47_Simferopol.php',
   ),
-  'Europe/Volgograd' => 
+  'Europe/Volgograd' =>
   array (
     'type' => 'zone',
     'filename' => 'Europe_47_Volgograd.php',
   ),
-  'Europe/Samara' => 
+  'Europe/Samara' =>
   array (
     'type' => 'zone',
     'filename' => 'Europe_47_Samara.php',
   ),
-  'Asia/Yekaterinburg' => 
+  'Asia/Yekaterinburg' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Yekaterinburg.php',
   ),
-  'Asia/Omsk' => 
+  'Asia/Omsk' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Omsk.php',
   ),
-  'Asia/Novosibirsk' => 
+  'Asia/Novosibirsk' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Novosibirsk.php',
   ),
-  'Asia/Novokuznetsk' => 
+  'Asia/Novokuznetsk' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Novokuznetsk.php',
   ),
-  'Asia/Krasnoyarsk' => 
+  'Asia/Krasnoyarsk' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Krasnoyarsk.php',
   ),
-  'Asia/Irkutsk' => 
+  'Asia/Irkutsk' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Irkutsk.php',
   ),
-  'Asia/Chita' => 
+  'Asia/Chita' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Chita.php',
   ),
-  'Asia/Yakutsk' => 
+  'Asia/Yakutsk' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Yakutsk.php',
   ),
-  'Asia/Vladivostok' => 
+  'Asia/Vladivostok' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Vladivostok.php',
   ),
-  'Asia/Khandyga' => 
+  'Asia/Khandyga' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Khandyga.php',
   ),
-  'Asia/Sakhalin' => 
+  'Asia/Sakhalin' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Sakhalin.php',
   ),
-  'Asia/Magadan' => 
+  'Asia/Magadan' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Magadan.php',
   ),
-  'Asia/Srednekolymsk' => 
+  'Asia/Srednekolymsk' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Srednekolymsk.php',
   ),
-  'Asia/Ust-Nera' => 
+  'Asia/Ust-Nera' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Ust_45_Nera.php',
   ),
-  'Asia/Kamchatka' => 
+  'Asia/Kamchatka' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Kamchatka.php',
   ),
-  'Asia/Anadyr' => 
+  'Asia/Anadyr' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Anadyr.php',
   ),
-  'Europe/Belgrade' => 
+  'Europe/Belgrade' =>
   array (
     'type' => 'zone',
     'filename' => 'Europe_47_Belgrade.php',
   ),
-  'Europe/Madrid' => 
+  'Europe/Madrid' =>
   array (
     'type' => 'zone',
     'filename' => 'Europe_47_Madrid.php',
   ),
-  'Africa/Ceuta' => 
+  'Africa/Ceuta' =>
   array (
     'type' => 'zone',
     'filename' => 'Africa_47_Ceuta.php',
   ),
-  'Atlantic/Canary' => 
+  'Atlantic/Canary' =>
   array (
     'type' => 'zone',
     'filename' => 'Atlantic_47_Canary.php',
   ),
-  'Europe/Stockholm' => 
+  'Europe/Stockholm' =>
   array (
     'type' => 'zone',
     'filename' => 'Europe_47_Stockholm.php',
   ),
-  'Europe/Zurich' => 
+  'Europe/Zurich' =>
   array (
     'type' => 'zone',
     'filename' => 'Europe_47_Zurich.php',
   ),
-  'Europe/Istanbul' => 
+  'Europe/Istanbul' =>
   array (
     'type' => 'zone',
     'filename' => 'Europe_47_Istanbul.php',
   ),
-  'Europe/Kiev' => 
+  'Europe/Kiev' =>
   array (
     'type' => 'zone',
     'filename' => 'Europe_47_Kiev.php',
   ),
-  'Europe/Uzhgorod' => 
+  'Europe/Uzhgorod' =>
   array (
     'type' => 'zone',
     'filename' => 'Europe_47_Uzhgorod.php',
   ),
-  'Europe/Zaporozhye' => 
+  'Europe/Zaporozhye' =>
   array (
     'type' => 'zone',
     'filename' => 'Europe_47_Zaporozhye.php',
   ),
-  'Etc/GMT' => 
+  'Etc/GMT' =>
   array (
     'type' => 'zone',
     'filename' => 'Etc_47_GMT.php',
   ),
-  'Etc/UTC' => 
+  'Etc/UTC' =>
   array (
     'type' => 'zone',
     'filename' => 'Etc_47_UTC.php',
   ),
-  'Etc/UCT' => 
+  'Etc/UCT' =>
   array (
     'type' => 'zone',
     'filename' => 'Etc_47_UCT.php',
   ),
-  'Etc/GMT-14' => 
+  'Etc/GMT-14' =>
   array (
     'type' => 'zone',
     'filename' => 'Etc_47_GMT_45_14.php',
   ),
-  'Etc/GMT-13' => 
+  'Etc/GMT-13' =>
   array (
     'type' => 'zone',
     'filename' => 'Etc_47_GMT_45_13.php',
   ),
-  'Etc/GMT-12' => 
+  'Etc/GMT-12' =>
   array (
     'type' => 'zone',
     'filename' => 'Etc_47_GMT_45_12.php',
   ),
-  'Etc/GMT-11' => 
+  'Etc/GMT-11' =>
   array (
     'type' => 'zone',
     'filename' => 'Etc_47_GMT_45_11.php',
   ),
-  'Etc/GMT-10' => 
+  'Etc/GMT-10' =>
   array (
     'type' => 'zone',
     'filename' => 'Etc_47_GMT_45_10.php',
   ),
-  'Etc/GMT-9' => 
+  'Etc/GMT-9' =>
   array (
     'type' => 'zone',
     'filename' => 'Etc_47_GMT_45_9.php',
   ),
-  'Etc/GMT-8' => 
+  'Etc/GMT-8' =>
   array (
     'type' => 'zone',
     'filename' => 'Etc_47_GMT_45_8.php',
   ),
-  'Etc/GMT-7' => 
+  'Etc/GMT-7' =>
   array (
     'type' => 'zone',
     'filename' => 'Etc_47_GMT_45_7.php',
   ),
-  'Etc/GMT-6' => 
+  'Etc/GMT-6' =>
   array (
     'type' => 'zone',
     'filename' => 'Etc_47_GMT_45_6.php',
   ),
-  'Etc/GMT-5' => 
+  'Etc/GMT-5' =>
   array (
     'type' => 'zone',
     'filename' => 'Etc_47_GMT_45_5.php',
   ),
-  'Etc/GMT-4' => 
+  'Etc/GMT-4' =>
   array (
     'type' => 'zone',
     'filename' => 'Etc_47_GMT_45_4.php',
   ),
-  'Etc/GMT-3' => 
+  'Etc/GMT-3' =>
   array (
     'type' => 'zone',
     'filename' => 'Etc_47_GMT_45_3.php',
   ),
-  'Etc/GMT-2' => 
+  'Etc/GMT-2' =>
   array (
     'type' => 'zone',
     'filename' => 'Etc_47_GMT_45_2.php',
   ),
-  'Etc/GMT-1' => 
+  'Etc/GMT-1' =>
   array (
     'type' => 'zone',
     'filename' => 'Etc_47_GMT_45_1.php',
   ),
-  'Etc/GMT+1' => 
+  'Etc/GMT+1' =>
   array (
     'type' => 'zone',
     'filename' => 'Etc_47_GMT_43_1.php',
   ),
-  'Etc/GMT+2' => 
+  'Etc/GMT+2' =>
   array (
     'type' => 'zone',
     'filename' => 'Etc_47_GMT_43_2.php',
   ),
-  'Etc/GMT+3' => 
+  'Etc/GMT+3' =>
   array (
     'type' => 'zone',
     'filename' => 'Etc_47_GMT_43_3.php',
   ),
-  'Etc/GMT+4' => 
+  'Etc/GMT+4' =>
   array (
     'type' => 'zone',
     'filename' => 'Etc_47_GMT_43_4.php',
   ),
-  'Etc/GMT+5' => 
+  'Etc/GMT+5' =>
   array (
     'type' => 'zone',
     'filename' => 'Etc_47_GMT_43_5.php',
   ),
-  'Etc/GMT+6' => 
+  'Etc/GMT+6' =>
   array (
     'type' => 'zone',
     'filename' => 'Etc_47_GMT_43_6.php',
   ),
-  'Etc/GMT+7' => 
+  'Etc/GMT+7' =>
   array (
     'type' => 'zone',
     'filename' => 'Etc_47_GMT_43_7.php',
   ),
-  'Etc/GMT+8' => 
+  'Etc/GMT+8' =>
   array (
     'type' => 'zone',
     'filename' => 'Etc_47_GMT_43_8.php',
   ),
-  'Etc/GMT+9' => 
+  'Etc/GMT+9' =>
   array (
     'type' => 'zone',
     'filename' => 'Etc_47_GMT_43_9.php',
   ),
-  'Etc/GMT+10' => 
+  'Etc/GMT+10' =>
   array (
     'type' => 'zone',
     'filename' => 'Etc_47_GMT_43_10.php',
   ),
-  'Etc/GMT+11' => 
+  'Etc/GMT+11' =>
   array (
     'type' => 'zone',
     'filename' => 'Etc_47_GMT_43_11.php',
   ),
-  'Etc/GMT+12' => 
+  'Etc/GMT+12' =>
   array (
     'type' => 'zone',
     'filename' => 'Etc_47_GMT_43_12.php',
   ),
-  'Australia/Darwin' => 
+  'Australia/Darwin' =>
   array (
     'type' => 'zone',
     'filename' => 'Australia_47_Darwin.php',
   ),
-  'Australia/Perth' => 
+  'Australia/Perth' =>
   array (
     'type' => 'zone',
     'filename' => 'Australia_47_Perth.php',
   ),
-  'Australia/Eucla' => 
+  'Australia/Eucla' =>
   array (
     'type' => 'zone',
     'filename' => 'Australia_47_Eucla.php',
   ),
-  'Australia/Brisbane' => 
+  'Australia/Brisbane' =>
   array (
     'type' => 'zone',
     'filename' => 'Australia_47_Brisbane.php',
   ),
-  'Australia/Lindeman' => 
+  'Australia/Lindeman' =>
   array (
     'type' => 'zone',
     'filename' => 'Australia_47_Lindeman.php',
   ),
-  'Australia/Adelaide' => 
+  'Australia/Adelaide' =>
   array (
     'type' => 'zone',
     'filename' => 'Australia_47_Adelaide.php',
   ),
-  'Australia/Hobart' => 
+  'Australia/Hobart' =>
   array (
     'type' => 'zone',
     'filename' => 'Australia_47_Hobart.php',
   ),
-  'Australia/Currie' => 
+  'Australia/Currie' =>
   array (
     'type' => 'zone',
     'filename' => 'Australia_47_Currie.php',
   ),
-  'Australia/Melbourne' => 
+  'Australia/Melbourne' =>
   array (
     'type' => 'zone',
     'filename' => 'Australia_47_Melbourne.php',
   ),
-  'Australia/Sydney' => 
+  'Australia/Sydney' =>
   array (
     'type' => 'zone',
     'filename' => 'Australia_47_Sydney.php',
   ),
-  'Australia/Broken_Hill' => 
+  'Australia/Broken_Hill' =>
   array (
     'type' => 'zone',
     'filename' => 'Australia_47_Broken_Hill.php',
   ),
-  'Australia/Lord_Howe' => 
+  'Australia/Lord_Howe' =>
   array (
     'type' => 'zone',
     'filename' => 'Australia_47_Lord_Howe.php',
   ),
-  'Antarctica/Macquarie' => 
+  'Antarctica/Macquarie' =>
   array (
     'type' => 'zone',
     'filename' => 'Antarctica_47_Macquarie.php',
   ),
-  'Indian/Christmas' => 
+  'Indian/Christmas' =>
   array (
     'type' => 'zone',
     'filename' => 'Indian_47_Christmas.php',
   ),
-  'Indian/Cocos' => 
+  'Indian/Cocos' =>
   array (
     'type' => 'zone',
     'filename' => 'Indian_47_Cocos.php',
   ),
-  'Pacific/Fiji' => 
+  'Pacific/Fiji' =>
   array (
     'type' => 'zone',
     'filename' => 'Pacific_47_Fiji.php',
   ),
-  'Pacific/Gambier' => 
+  'Pacific/Gambier' =>
   array (
     'type' => 'zone',
     'filename' => 'Pacific_47_Gambier.php',
   ),
-  'Pacific/Marquesas' => 
+  'Pacific/Marquesas' =>
   array (
     'type' => 'zone',
     'filename' => 'Pacific_47_Marquesas.php',
   ),
-  'Pacific/Tahiti' => 
+  'Pacific/Tahiti' =>
   array (
     'type' => 'zone',
     'filename' => 'Pacific_47_Tahiti.php',
   ),
-  'Pacific/Guam' => 
+  'Pacific/Guam' =>
   array (
     'type' => 'zone',
     'filename' => 'Pacific_47_Guam.php',
   ),
-  'Pacific/Tarawa' => 
+  'Pacific/Tarawa' =>
   array (
     'type' => 'zone',
     'filename' => 'Pacific_47_Tarawa.php',
   ),
-  'Pacific/Enderbury' => 
+  'Pacific/Enderbury' =>
   array (
     'type' => 'zone',
     'filename' => 'Pacific_47_Enderbury.php',
   ),
-  'Pacific/Kiritimati' => 
+  'Pacific/Kiritimati' =>
   array (
     'type' => 'zone',
     'filename' => 'Pacific_47_Kiritimati.php',
   ),
-  'Pacific/Majuro' => 
+  'Pacific/Majuro' =>
   array (
     'type' => 'zone',
     'filename' => 'Pacific_47_Majuro.php',
   ),
-  'Pacific/Kwajalein' => 
+  'Pacific/Kwajalein' =>
   array (
     'type' => 'zone',
     'filename' => 'Pacific_47_Kwajalein.php',
   ),
-  'Pacific/Chuuk' => 
+  'Pacific/Chuuk' =>
   array (
     'type' => 'zone',
     'filename' => 'Pacific_47_Chuuk.php',
   ),
-  'Pacific/Pohnpei' => 
+  'Pacific/Pohnpei' =>
   array (
     'type' => 'zone',
     'filename' => 'Pacific_47_Pohnpei.php',
   ),
-  'Pacific/Kosrae' => 
+  'Pacific/Kosrae' =>
   array (
     'type' => 'zone',
     'filename' => 'Pacific_47_Kosrae.php',
   ),
-  'Pacific/Nauru' => 
+  'Pacific/Nauru' =>
   array (
     'type' => 'zone',
     'filename' => 'Pacific_47_Nauru.php',
   ),
-  'Pacific/Noumea' => 
+  'Pacific/Noumea' =>
   array (
     'type' => 'zone',
     'filename' => 'Pacific_47_Noumea.php',
   ),
-  'Pacific/Auckland' => 
+  'Pacific/Auckland' =>
   array (
     'type' => 'zone',
     'filename' => 'Pacific_47_Auckland.php',
   ),
-  'Pacific/Chatham' => 
+  'Pacific/Chatham' =>
   array (
     'type' => 'zone',
     'filename' => 'Pacific_47_Chatham.php',
   ),
-  'Pacific/Rarotonga' => 
+  'Pacific/Rarotonga' =>
   array (
     'type' => 'zone',
     'filename' => 'Pacific_47_Rarotonga.php',
   ),
-  'Pacific/Niue' => 
+  'Pacific/Niue' =>
   array (
     'type' => 'zone',
     'filename' => 'Pacific_47_Niue.php',
   ),
-  'Pacific/Norfolk' => 
+  'Pacific/Norfolk' =>
   array (
     'type' => 'zone',
     'filename' => 'Pacific_47_Norfolk.php',
   ),
-  'Pacific/Palau' => 
+  'Pacific/Palau' =>
   array (
     'type' => 'zone',
     'filename' => 'Pacific_47_Palau.php',
   ),
-  'Pacific/Port_Moresby' => 
+  'Pacific/Port_Moresby' =>
   array (
     'type' => 'zone',
     'filename' => 'Pacific_47_Port_Moresby.php',
   ),
-  'Pacific/Bougainville' => 
+  'Pacific/Bougainville' =>
   array (
     'type' => 'zone',
     'filename' => 'Pacific_47_Bougainville.php',
   ),
-  'Pacific/Pitcairn' => 
+  'Pacific/Pitcairn' =>
   array (
     'type' => 'zone',
     'filename' => 'Pacific_47_Pitcairn.php',
   ),
-  'Pacific/Pago_Pago' => 
+  'Pacific/Pago_Pago' =>
   array (
     'type' => 'zone',
     'filename' => 'Pacific_47_Pago_Pago.php',
   ),
-  'Pacific/Apia' => 
+  'Pacific/Apia' =>
   array (
     'type' => 'zone',
     'filename' => 'Pacific_47_Apia.php',
   ),
-  'Pacific/Guadalcanal' => 
+  'Pacific/Guadalcanal' =>
   array (
     'type' => 'zone',
     'filename' => 'Pacific_47_Guadalcanal.php',
   ),
-  'Pacific/Fakaofo' => 
+  'Pacific/Fakaofo' =>
   array (
     'type' => 'zone',
     'filename' => 'Pacific_47_Fakaofo.php',
   ),
-  'Pacific/Tongatapu' => 
+  'Pacific/Tongatapu' =>
   array (
     'type' => 'zone',
     'filename' => 'Pacific_47_Tongatapu.php',
   ),
-  'Pacific/Funafuti' => 
+  'Pacific/Funafuti' =>
   array (
     'type' => 'zone',
     'filename' => 'Pacific_47_Funafuti.php',
   ),
-  'Pacific/Wake' => 
+  'Pacific/Wake' =>
   array (
     'type' => 'zone',
     'filename' => 'Pacific_47_Wake.php',
   ),
-  'Pacific/Efate' => 
+  'Pacific/Efate' =>
   array (
     'type' => 'zone',
     'filename' => 'Pacific_47_Efate.php',
   ),
-  'Pacific/Wallis' => 
+  'Pacific/Wallis' =>
   array (
     'type' => 'zone',
     'filename' => 'Pacific_47_Wallis.php',
   ),
-  'Asia/Kabul' => 
+  'Asia/Kabul' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Kabul.php',
   ),
-  'Asia/Yerevan' => 
+  'Asia/Yerevan' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Yerevan.php',
   ),
-  'Asia/Baku' => 
+  'Asia/Baku' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Baku.php',
   ),
-  'Asia/Dhaka' => 
+  'Asia/Dhaka' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Dhaka.php',
   ),
-  'Asia/Thimphu' => 
+  'Asia/Thimphu' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Thimphu.php',
   ),
-  'Indian/Chagos' => 
+  'Indian/Chagos' =>
   array (
     'type' => 'zone',
     'filename' => 'Indian_47_Chagos.php',
   ),
-  'Asia/Brunei' => 
+  'Asia/Brunei' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Brunei.php',
   ),
-  'Asia/Rangoon' => 
+  'Asia/Rangoon' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Rangoon.php',
   ),
-  'Asia/Shanghai' => 
+  'Asia/Shanghai' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Shanghai.php',
   ),
-  'Asia/Urumqi' => 
+  'Asia/Urumqi' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Urumqi.php',
   ),
-  'Asia/Hong_Kong' => 
+  'Asia/Hong_Kong' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Hong_Kong.php',
   ),
-  'Asia/Taipei' => 
+  'Asia/Taipei' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Taipei.php',
   ),
-  'Asia/Macau' => 
+  'Asia/Macau' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Macau.php',
   ),
-  'Asia/Nicosia' => 
+  'Asia/Nicosia' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Nicosia.php',
   ),
-  'Asia/Tbilisi' => 
+  'Asia/Tbilisi' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Tbilisi.php',
   ),
-  'Asia/Dili' => 
+  'Asia/Dili' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Dili.php',
   ),
-  'Asia/Kolkata' => 
+  'Asia/Kolkata' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Kolkata.php',
   ),
-  'Asia/Jakarta' => 
+  'Asia/Jakarta' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Jakarta.php',
   ),
-  'Asia/Pontianak' => 
+  'Asia/Pontianak' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Pontianak.php',
   ),
-  'Asia/Makassar' => 
+  'Asia/Makassar' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Makassar.php',
   ),
-  'Asia/Jayapura' => 
+  'Asia/Jayapura' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Jayapura.php',
   ),
-  'Asia/Tehran' => 
+  'Asia/Tehran' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Tehran.php',
   ),
-  'Asia/Baghdad' => 
+  'Asia/Baghdad' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Baghdad.php',
   ),
-  'Asia/Jerusalem' => 
+  'Asia/Jerusalem' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Jerusalem.php',
   ),
-  'Asia/Tokyo' => 
+  'Asia/Tokyo' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Tokyo.php',
   ),
-  'Asia/Amman' => 
+  'Asia/Amman' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Amman.php',
   ),
-  'Asia/Almaty' => 
+  'Asia/Almaty' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Almaty.php',
   ),
-  'Asia/Qyzylorda' => 
+  'Asia/Qyzylorda' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Qyzylorda.php',
   ),
-  'Asia/Aqtobe' => 
+  'Asia/Aqtobe' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Aqtobe.php',
   ),
-  'Asia/Aqtau' => 
+  'Asia/Aqtau' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Aqtau.php',
   ),
-  'Asia/Oral' => 
+  'Asia/Oral' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Oral.php',
   ),
-  'Asia/Bishkek' => 
+  'Asia/Bishkek' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Bishkek.php',
   ),
-  'Asia/Seoul' => 
+  'Asia/Seoul' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Seoul.php',
   ),
-  'Asia/Pyongyang' => 
+  'Asia/Pyongyang' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Pyongyang.php',
   ),
-  'Asia/Beirut' => 
+  'Asia/Beirut' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Beirut.php',
   ),
-  'Asia/Kuala_Lumpur' => 
+  'Asia/Kuala_Lumpur' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Kuala_Lumpur.php',
   ),
-  'Asia/Kuching' => 
+  'Asia/Kuching' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Kuching.php',
   ),
-  'Indian/Maldives' => 
+  'Indian/Maldives' =>
   array (
     'type' => 'zone',
     'filename' => 'Indian_47_Maldives.php',
   ),
-  'Asia/Hovd' => 
+  'Asia/Hovd' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Hovd.php',
   ),
-  'Asia/Ulaanbaatar' => 
+  'Asia/Ulaanbaatar' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Ulaanbaatar.php',
   ),
-  'Asia/Choibalsan' => 
+  'Asia/Choibalsan' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Choibalsan.php',
   ),
-  'Asia/Kathmandu' => 
+  'Asia/Kathmandu' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Kathmandu.php',
   ),
-  'Asia/Karachi' => 
+  'Asia/Karachi' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Karachi.php',
   ),
-  'Asia/Gaza' => 
+  'Asia/Gaza' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Gaza.php',
   ),
-  'Asia/Hebron' => 
+  'Asia/Hebron' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Hebron.php',
   ),
-  'Asia/Manila' => 
+  'Asia/Manila' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Manila.php',
   ),
-  'Asia/Qatar' => 
+  'Asia/Qatar' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Qatar.php',
   ),
-  'Asia/Riyadh' => 
+  'Asia/Riyadh' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Riyadh.php',
   ),
-  'Asia/Singapore' => 
+  'Asia/Singapore' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Singapore.php',
   ),
-  'Asia/Colombo' => 
+  'Asia/Colombo' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Colombo.php',
   ),
-  'Asia/Damascus' => 
+  'Asia/Damascus' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Damascus.php',
   ),
-  'Asia/Dushanbe' => 
+  'Asia/Dushanbe' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Dushanbe.php',
   ),
-  'Asia/Bangkok' => 
+  'Asia/Bangkok' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Bangkok.php',
   ),
-  'Asia/Ashgabat' => 
+  'Asia/Ashgabat' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Ashgabat.php',
   ),
-  'Asia/Dubai' => 
+  'Asia/Dubai' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Dubai.php',
   ),
-  'Asia/Samarkand' => 
+  'Asia/Samarkand' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Samarkand.php',
   ),
-  'Asia/Tashkent' => 
+  'Asia/Tashkent' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Tashkent.php',
   ),
-  'Asia/Ho_Chi_Minh' => 
+  'Asia/Ho_Chi_Minh' =>
   array (
     'type' => 'zone',
     'filename' => 'Asia_47_Ho_Chi_Minh.php',
   ),
-  'Antarctica/Casey' => 
+  'Antarctica/Casey' =>
   array (
     'type' => 'zone',
     'filename' => 'Antarctica_47_Casey.php',
   ),
-  'Antarctica/Davis' => 
+  'Antarctica/Davis' =>
   array (
     'type' => 'zone',
     'filename' => 'Antarctica_47_Davis.php',
   ),
-  'Antarctica/Mawson' => 
+  'Antarctica/Mawson' =>
   array (
     'type' => 'zone',
     'filename' => 'Antarctica_47_Mawson.php',
   ),
-  'Indian/Kerguelen' => 
+  'Indian/Kerguelen' =>
   array (
     'type' => 'zone',
     'filename' => 'Indian_47_Kerguelen.php',
   ),
-  'Antarctica/DumontDUrville' => 
+  'Antarctica/DumontDUrville' =>
   array (
     'type' => 'zone',
     'filename' => 'Antarctica_47_DumontDUrville.php',
   ),
-  'Antarctica/Syowa' => 
+  'Antarctica/Syowa' =>
   array (
     'type' => 'zone',
     'filename' => 'Antarctica_47_Syowa.php',
   ),
-  'Antarctica/Troll' => 
+  'Antarctica/Troll' =>
   array (
     'type' => 'zone',
     'filename' => 'Antarctica_47_Troll.php',
   ),
-  'Antarctica/Vostok' => 
+  'Antarctica/Vostok' =>
   array (
     'type' => 'zone',
     'filename' => 'Antarctica_47_Vostok.php',
   ),
-  'Antarctica/Rothera' => 
+  'Antarctica/Rothera' =>
   array (
     'type' => 'zone',
     'filename' => 'Antarctica_47_Rothera.php',
   ),
-  'Africa/Algiers' => 
+  'Africa/Algiers' =>
   array (
     'type' => 'zone',
     'filename' => 'Africa_47_Algiers.php',
   ),
-  'Atlantic/Cape_Verde' => 
+  'Atlantic/Cape_Verde' =>
   array (
     'type' => 'zone',
     'filename' => 'Atlantic_47_Cape_Verde.php',
   ),
-  'Africa/Ndjamena' => 
+  'Africa/Ndjamena' =>
   array (
     'type' => 'zone',
     'filename' => 'Africa_47_Ndjamena.php',
   ),
-  'Africa/Abidjan' => 
+  'Africa/Abidjan' =>
   array (
     'type' => 'zone',
     'filename' => 'Africa_47_Abidjan.php',
   ),
-  'Africa/Cairo' => 
+  'Africa/Cairo' =>
   array (
     'type' => 'zone',
     'filename' => 'Africa_47_Cairo.php',
   ),
-  'Africa/Accra' => 
+  'Africa/Accra' =>
   array (
     'type' => 'zone',
     'filename' => 'Africa_47_Accra.php',
   ),
-  'Africa/Bissau' => 
+  'Africa/Bissau' =>
   array (
     'type' => 'zone',
     'filename' => 'Africa_47_Bissau.php',
   ),
-  'Africa/Nairobi' => 
+  'Africa/Nairobi' =>
   array (
     'type' => 'zone',
     'filename' => 'Africa_47_Nairobi.php',
   ),
-  'Africa/Monrovia' => 
+  'Africa/Monrovia' =>
   array (
     'type' => 'zone',
     'filename' => 'Africa_47_Monrovia.php',
   ),
-  'Africa/Tripoli' => 
+  'Africa/Tripoli' =>
   array (
     'type' => 'zone',
     'filename' => 'Africa_47_Tripoli.php',
   ),
-  'Indian/Mauritius' => 
+  'Indian/Mauritius' =>
   array (
     'type' => 'zone',
     'filename' => 'Indian_47_Mauritius.php',
   ),
-  'Africa/Casablanca' => 
+  'Africa/Casablanca' =>
   array (
     'type' => 'zone',
     'filename' => 'Africa_47_Casablanca.php',
   ),
-  'Africa/El_Aaiun' => 
+  'Africa/El_Aaiun' =>
   array (
     'type' => 'zone',
     'filename' => 'Africa_47_El_Aaiun.php',
   ),
-  'Africa/Maputo' => 
+  'Africa/Maputo' =>
   array (
     'type' => 'zone',
     'filename' => 'Africa_47_Maputo.php',
   ),
-  'Africa/Windhoek' => 
+  'Africa/Windhoek' =>
   array (
     'type' => 'zone',
     'filename' => 'Africa_47_Windhoek.php',
   ),
-  'Africa/Lagos' => 
+  'Africa/Lagos' =>
   array (
     'type' => 'zone',
     'filename' => 'Africa_47_Lagos.php',
   ),
-  'Indian/Reunion' => 
+  'Indian/Reunion' =>
   array (
     'type' => 'zone',
     'filename' => 'Indian_47_Reunion.php',
   ),
-  'Indian/Mahe' => 
+  'Indian/Mahe' =>
   array (
     'type' => 'zone',
     'filename' => 'Indian_47_Mahe.php',
   ),
-  'Africa/Johannesburg' => 
+  'Africa/Johannesburg' =>
   array (
     'type' => 'zone',
     'filename' => 'Africa_47_Johannesburg.php',
   ),
-  'Africa/Khartoum' => 
+  'Africa/Khartoum' =>
   array (
     'type' => 'zone',
     'filename' => 'Africa_47_Khartoum.php',
   ),
-  'Africa/Tunis' => 
+  'Africa/Tunis' =>
   array (
     'type' => 'zone',
     'filename' => 'Africa_47_Tunis.php',
   ),
-  'America/Aruba' => 
+  'America/Aruba' =>
   array (
     'type' => 'link',
     'to' => 'America/Curacao',
   ),
-  'America/Lower_Princes' => 
+  'America/Lower_Princes' =>
   array (
     'type' => 'link',
     'to' => 'America/Curacao',
   ),
-  'America/Kralendijk' => 
+  'America/Kralendijk' =>
   array (
     'type' => 'link',
     'to' => 'America/Curacao',
   ),
-  'America/Anguilla' => 
+  'America/Anguilla' =>
   array (
     'type' => 'link',
     'to' => 'America/Port_of_Spain',
   ),
-  'America/Antigua' => 
+  'America/Antigua' =>
   array (
     'type' => 'link',
     'to' => 'America/Port_of_Spain',
   ),
-  'America/Dominica' => 
+  'America/Dominica' =>
   array (
     'type' => 'link',
     'to' => 'America/Port_of_Spain',
   ),
-  'America/Grenada' => 
+  'America/Grenada' =>
   array (
     'type' => 'link',
     'to' => 'America/Port_of_Spain',
   ),
-  'America/Guadeloupe' => 
+  'America/Guadeloupe' =>
   array (
     'type' => 'link',
     'to' => 'America/Port_of_Spain',
   ),
-  'America/Marigot' => 
+  'America/Marigot' =>
   array (
     'type' => 'link',
     'to' => 'America/Port_of_Spain',
   ),
-  'America/Montserrat' => 
+  'America/Montserrat' =>
   array (
     'type' => 'link',
     'to' => 'America/Port_of_Spain',
   ),
-  'America/St_Barthelemy' => 
+  'America/St_Barthelemy' =>
   array (
     'type' => 'link',
     'to' => 'America/Port_of_Spain',
   ),
-  'America/St_Kitts' => 
+  'America/St_Kitts' =>
   array (
     'type' => 'link',
     'to' => 'America/Port_of_Spain',
   ),
-  'America/St_Lucia' => 
+  'America/St_Lucia' =>
   array (
     'type' => 'link',
     'to' => 'America/Port_of_Spain',
   ),
-  'America/St_Thomas' => 
+  'America/St_Thomas' =>
   array (
     'type' => 'link',
     'to' => 'America/Port_of_Spain',
   ),
-  'America/St_Vincent' => 
+  'America/St_Vincent' =>
   array (
     'type' => 'link',
     'to' => 'America/Port_of_Spain',
   ),
-  'America/Tortola' => 
+  'America/Tortola' =>
   array (
     'type' => 'link',
     'to' => 'America/Port_of_Spain',
   ),
-  'Mideast/Riyadh89' => 
+  'Mideast/Riyadh89' =>
   array (
     'type' => 'link',
     'to' => 'Asia/Riyadh89',
   ),
-  'Mideast/Riyadh88' => 
+  'Mideast/Riyadh88' =>
   array (
     'type' => 'link',
     'to' => 'Asia/Riyadh88',
   ),
-  'Mideast/Riyadh87' => 
+  'Mideast/Riyadh87' =>
   array (
     'type' => 'link',
     'to' => 'Asia/Riyadh87',
   ),
-  'US/Pacific-New' => 
+  'US/Pacific-New' =>
   array (
     'type' => 'link',
     'to' => 'America/Los_Angeles',
   ),
-  'Pacific/Johnston' => 
+  'Pacific/Johnston' =>
   array (
     'type' => 'link',
     'to' => 'Pacific/Honolulu',
   ),
-  'Europe/Jersey' => 
+  'Europe/Jersey' =>
   array (
     'type' => 'link',
     'to' => 'Europe/London',
   ),
-  'Europe/Guernsey' => 
+  'Europe/Guernsey' =>
   array (
     'type' => 'link',
     'to' => 'Europe/London',
   ),
-  'Europe/Isle_of_Man' => 
+  'Europe/Isle_of_Man' =>
   array (
     'type' => 'link',
     'to' => 'Europe/London',
   ),
-  'Europe/Mariehamn' => 
+  'Europe/Mariehamn' =>
   array (
     'type' => 'link',
     'to' => 'Europe/Helsinki',
   ),
-  'Europe/Busingen' => 
+  'Europe/Busingen' =>
   array (
     'type' => 'link',
     'to' => 'Europe/Zurich',
   ),
-  'Europe/Vatican' => 
+  'Europe/Vatican' =>
   array (
     'type' => 'link',
     'to' => 'Europe/Rome',
   ),
-  'Europe/San_Marino' => 
+  'Europe/San_Marino' =>
   array (
     'type' => 'link',
     'to' => 'Europe/Rome',
   ),
-  'Europe/Vaduz' => 
+  'Europe/Vaduz' =>
   array (
     'type' => 'link',
     'to' => 'Europe/Zurich',
   ),
-  'Arctic/Longyearbyen' => 
+  'Arctic/Longyearbyen' =>
   array (
     'type' => 'link',
     'to' => 'Europe/Oslo',
   ),
-  'Europe/Ljubljana' => 
+  'Europe/Ljubljana' =>
   array (
     'type' => 'link',
     'to' => 'Europe/Belgrade',
   ),
-  'Europe/Podgorica' => 
+  'Europe/Podgorica' =>
   array (
     'type' => 'link',
     'to' => 'Europe/Belgrade',
   ),
-  'Europe/Sarajevo' => 
+  'Europe/Sarajevo' =>
   array (
     'type' => 'link',
     'to' => 'Europe/Belgrade',
   ),
-  'Europe/Skopje' => 
+  'Europe/Skopje' =>
   array (
     'type' => 'link',
     'to' => 'Europe/Belgrade',
   ),
-  'Europe/Zagreb' => 
+  'Europe/Zagreb' =>
   array (
     'type' => 'link',
     'to' => 'Europe/Belgrade',
   ),
-  'Europe/Bratislava' => 
+  'Europe/Bratislava' =>
   array (
     'type' => 'link',
     'to' => 'Europe/Prague',
   ),
-  'Asia/Istanbul' => 
+  'Asia/Istanbul' =>
   array (
     'type' => 'link',
     'to' => 'Europe/Istanbul',
   ),
-  'GMT' => 
+  'GMT' =>
   array (
     'type' => 'link',
     'to' => 'Etc/GMT',
   ),
-  'Etc/Universal' => 
+  'Etc/Universal' =>
   array (
     'type' => 'link',
     'to' => 'Etc/UTC',
   ),
-  'Etc/Zulu' => 
+  'Etc/Zulu' =>
   array (
     'type' => 'link',
     'to' => 'Etc/UTC',
   ),
-  'Etc/Greenwich' => 
+  'Etc/Greenwich' =>
   array (
     'type' => 'link',
     'to' => 'Etc/GMT',
   ),
-  'Etc/GMT-0' => 
+  'Etc/GMT-0' =>
   array (
     'type' => 'link',
     'to' => 'Etc/GMT',
   ),
-  'Etc/GMT+0' => 
+  'Etc/GMT+0' =>
   array (
     'type' => 'link',
     'to' => 'Etc/GMT',
   ),
-  'Etc/GMT0' => 
+  'Etc/GMT0' =>
   array (
     'type' => 'link',
     'to' => 'Etc/GMT',
   ),
-  'Africa/Asmera' => 
+  'Africa/Asmera' =>
   array (
     'type' => 'link',
     'to' => 'Africa/Nairobi',
   ),
-  'Africa/Timbuktu' => 
+  'Africa/Timbuktu' =>
   array (
     'type' => 'link',
     'to' => 'Africa/Abidjan',
   ),
-  'America/Argentina/ComodRivadavia' => 
+  'America/Argentina/ComodRivadavia' =>
   array (
     'type' => 'link',
     'to' => 'America/Argentina/Catamarca',
   ),
-  'America/Atka' => 
+  'America/Atka' =>
   array (
     'type' => 'link',
     'to' => 'America/Adak',
   ),
-  'America/Buenos_Aires' => 
+  'America/Buenos_Aires' =>
   array (
     'type' => 'link',
     'to' => 'America/Argentina/Buenos_Aires',
   ),
-  'America/Catamarca' => 
+  'America/Catamarca' =>
   array (
     'type' => 'link',
     'to' => 'America/Argentina/Catamarca',
   ),
-  'America/Coral_Harbour' => 
+  'America/Coral_Harbour' =>
   array (
     'type' => 'link',
     'to' => 'America/Atikokan',
   ),
-  'America/Cordoba' => 
+  'America/Cordoba' =>
   array (
     'type' => 'link',
     'to' => 'America/Argentina/Cordoba',
   ),
-  'America/Ensenada' => 
+  'America/Ensenada' =>
   array (
     'type' => 'link',
     'to' => 'America/Tijuana',
   ),
-  'America/Fort_Wayne' => 
+  'America/Fort_Wayne' =>
   array (
     'type' => 'link',
     'to' => 'America/Indiana/Indianapolis',
   ),
-  'America/Indianapolis' => 
+  'America/Indianapolis' =>
   array (
     'type' => 'link',
     'to' => 'America/Indiana/Indianapolis',
   ),
-  'America/Jujuy' => 
+  'America/Jujuy' =>
   array (
     'type' => 'link',
     'to' => 'America/Argentina/Jujuy',
   ),
-  'America/Knox_IN' => 
+  'America/Knox_IN' =>
   array (
     'type' => 'link',
     'to' => 'America/Indiana/Knox',
   ),
-  'America/Louisville' => 
+  'America/Louisville' =>
   array (
     'type' => 'link',
     'to' => 'America/Kentucky/Louisville',
   ),
-  'America/Mendoza' => 
+  'America/Mendoza' =>
   array (
     'type' => 'link',
     'to' => 'America/Argentina/Mendoza',
   ),
-  'America/Montreal' => 
+  'America/Montreal' =>
   array (
     'type' => 'link',
     'to' => 'America/Toronto',
   ),
-  'America/Porto_Acre' => 
+  'America/Porto_Acre' =>
   array (
     'type' => 'link',
     'to' => 'America/Rio_Branco',
   ),
-  'America/Rosario' => 
+  'America/Rosario' =>
   array (
     'type' => 'link',
     'to' => 'America/Argentina/Cordoba',
   ),
-  'America/Shiprock' => 
+  'America/Shiprock' =>
   array (
     'type' => 'link',
     'to' => 'America/Denver',
   ),
-  'America/Virgin' => 
+  'America/Virgin' =>
   array (
     'type' => 'link',
     'to' => 'America/Port_of_Spain',
   ),
-  'Antarctica/South_Pole' => 
+  'Antarctica/South_Pole' =>
   array (
     'type' => 'link',
     'to' => 'Pacific/Auckland',
   ),
-  'Asia/Ashkhabad' => 
+  'Asia/Ashkhabad' =>
   array (
     'type' => 'link',
     'to' => 'Asia/Ashgabat',
   ),
-  'Asia/Calcutta' => 
+  'Asia/Calcutta' =>
   array (
     'type' => 'link',
     'to' => 'Asia/Kolkata',
   ),
-  'Asia/Chongqing' => 
+  'Asia/Chongqing' =>
   array (
     'type' => 'link',
     'to' => 'Asia/Shanghai',
   ),
-  'Asia/Chungking' => 
+  'Asia/Chungking' =>
   array (
     'type' => 'link',
     'to' => 'Asia/Shanghai',
   ),
-  'Asia/Dacca' => 
+  'Asia/Dacca' =>
   array (
     'type' => 'link',
     'to' => 'Asia/Dhaka',
   ),
-  'Asia/Harbin' => 
+  'Asia/Harbin' =>
   array (
     'type' => 'link',
     'to' => 'Asia/Shanghai',
   ),
-  'Asia/Kashgar' => 
+  'Asia/Kashgar' =>
   array (
     'type' => 'link',
     'to' => 'Asia/Urumqi',
   ),
-  'Asia/Katmandu' => 
+  'Asia/Katmandu' =>
   array (
     'type' => 'link',
     'to' => 'Asia/Kathmandu',
   ),
-  'Asia/Macao' => 
+  'Asia/Macao' =>
   array (
     'type' => 'link',
     'to' => 'Asia/Macau',
   ),
-  'Asia/Saigon' => 
+  'Asia/Saigon' =>
   array (
     'type' => 'link',
     'to' => 'Asia/Ho_Chi_Minh',
   ),
-  'Asia/Tel_Aviv' => 
+  'Asia/Tel_Aviv' =>
   array (
     'type' => 'link',
     'to' => 'Asia/Jerusalem',
   ),
-  'Asia/Thimbu' => 
+  'Asia/Thimbu' =>
   array (
     'type' => 'link',
     'to' => 'Asia/Thimphu',
   ),
-  'Asia/Ujung_Pandang' => 
+  'Asia/Ujung_Pandang' =>
   array (
     'type' => 'link',
     'to' => 'Asia/Makassar',
   ),
-  'Asia/Ulan_Bator' => 
+  'Asia/Ulan_Bator' =>
   array (
     'type' => 'link',
     'to' => 'Asia/Ulaanbaatar',
   ),
-  'Atlantic/Faeroe' => 
+  'Atlantic/Faeroe' =>
   array (
     'type' => 'link',
     'to' => 'Atlantic/Faroe',
   ),
-  'Atlantic/Jan_Mayen' => 
+  'Atlantic/Jan_Mayen' =>
   array (
     'type' => 'link',
     'to' => 'Europe/Oslo',
   ),
-  'Australia/ACT' => 
+  'Australia/ACT' =>
   array (
     'type' => 'link',
     'to' => 'Australia/Sydney',
   ),
-  'Australia/Canberra' => 
+  'Australia/Canberra' =>
   array (
     'type' => 'link',
     'to' => 'Australia/Sydney',
   ),
-  'Australia/LHI' => 
+  'Australia/LHI' =>
   array (
     'type' => 'link',
     'to' => 'Australia/Lord_Howe',
   ),
-  'Australia/NSW' => 
+  'Australia/NSW' =>
   array (
     'type' => 'link',
     'to' => 'Australia/Sydney',
   ),
-  'Australia/North' => 
+  'Australia/North' =>
   array (
     'type' => 'link',
     'to' => 'Australia/Darwin',
   ),
-  'Australia/Queensland' => 
+  'Australia/Queensland' =>
   array (
     'type' => 'link',
     'to' => 'Australia/Brisbane',
   ),
-  'Australia/South' => 
+  'Australia/South' =>
   array (
     'type' => 'link',
     'to' => 'Australia/Adelaide',
   ),
-  'Australia/Tasmania' => 
+  'Australia/Tasmania' =>
   array (
     'type' => 'link',
     'to' => 'Australia/Hobart',
   ),
-  'Australia/Victoria' => 
+  'Australia/Victoria' =>
   array (
     'type' => 'link',
     'to' => 'Australia/Melbourne',
   ),
-  'Australia/West' => 
+  'Australia/West' =>
   array (
     'type' => 'link',
     'to' => 'Australia/Perth',
   ),
-  'Australia/Yancowinna' => 
+  'Australia/Yancowinna' =>
   array (
     'type' => 'link',
     'to' => 'Australia/Broken_Hill',
   ),
-  'Brazil/Acre' => 
+  'Brazil/Acre' =>
   array (
     'type' => 'link',
     'to' => 'America/Rio_Branco',
   ),
-  'Brazil/DeNoronha' => 
+  'Brazil/DeNoronha' =>
   array (
     'type' => 'link',
     'to' => 'America/Noronha',
   ),
-  'Brazil/East' => 
+  'Brazil/East' =>
   array (
     'type' => 'link',
     'to' => 'America/Sao_Paulo',
   ),
-  'Brazil/West' => 
+  'Brazil/West' =>
   array (
     'type' => 'link',
     'to' => 'America/Manaus',
   ),
-  'Canada/Atlantic' => 
+  'Canada/Atlantic' =>
   array (
     'type' => 'link',
     'to' => 'America/Halifax',
   ),
-  'Canada/Central' => 
+  'Canada/Central' =>
   array (
     'type' => 'link',
     'to' => 'America/Winnipeg',
   ),
-  'Canada/East-Saskatchewan' => 
+  'Canada/East-Saskatchewan' =>
   array (
     'type' => 'link',
     'to' => 'America/Regina',
   ),
-  'Canada/Eastern' => 
+  'Canada/Eastern' =>
   array (
     'type' => 'link',
     'to' => 'America/Toronto',
   ),
-  'Canada/Mountain' => 
+  'Canada/Mountain' =>
   array (
     'type' => 'link',
     'to' => 'America/Edmonton',
   ),
-  'Canada/Newfoundland' => 
+  'Canada/Newfoundland' =>
   array (
     'type' => 'link',
     'to' => 'America/St_Johns',
   ),
-  'Canada/Pacific' => 
+  'Canada/Pacific' =>
   array (
     'type' => 'link',
     'to' => 'America/Vancouver',
   ),
-  'Canada/Saskatchewan' => 
+  'Canada/Saskatchewan' =>
   array (
     'type' => 'link',
     'to' => 'America/Regina',
   ),
-  'Canada/Yukon' => 
+  'Canada/Yukon' =>
   array (
     'type' => 'link',
     'to' => 'America/Whitehorse',
   ),
-  'Chile/Continental' => 
+  'Chile/Continental' =>
   array (
     'type' => 'link',
     'to' => 'America/Santiago',
   ),
-  'Chile/EasterIsland' => 
+  'Chile/EasterIsland' =>
   array (
     'type' => 'link',
     'to' => 'Pacific/Easter',
   ),
-  'Cuba' => 
+  'Cuba' =>
   array (
     'type' => 'link',
     'to' => 'America/Havana',
   ),
-  'Egypt' => 
+  'Egypt' =>
   array (
     'type' => 'link',
     'to' => 'Africa/Cairo',
   ),
-  'Eire' => 
+  'Eire' =>
   array (
     'type' => 'link',
     'to' => 'Europe/Dublin',
   ),
-  'Europe/Belfast' => 
+  'Europe/Belfast' =>
   array (
     'type' => 'link',
     'to' => 'Europe/London',
   ),
-  'Europe/Tiraspol' => 
+  'Europe/Tiraspol' =>
   array (
     'type' => 'link',
     'to' => 'Europe/Chisinau',
   ),
-  'GB' => 
+  'GB' =>
   array (
     'type' => 'link',
     'to' => 'Europe/London',
   ),
-  'GB-Eire' => 
+  'GB-Eire' =>
   array (
     'type' => 'link',
     'to' => 'Europe/London',
   ),
-  'GMT+0' => 
+  'GMT+0' =>
   array (
     'type' => 'link',
     'to' => 'Etc/GMT',
   ),
-  'GMT-0' => 
+  'GMT-0' =>
   array (
     'type' => 'link',
     'to' => 'Etc/GMT',
   ),
-  'GMT0' => 
+  'GMT0' =>
   array (
     'type' => 'link',
     'to' => 'Etc/GMT',
   ),
-  'Greenwich' => 
+  'Greenwich' =>
   array (
     'type' => 'link',
     'to' => 'Etc/GMT',
   ),
-  'Hongkong' => 
+  'Hongkong' =>
   array (
     'type' => 'link',
     'to' => 'Asia/Hong_Kong',
   ),
-  'Iceland' => 
+  'Iceland' =>
   array (
     'type' => 'link',
     'to' => 'Atlantic/Reykjavik',
   ),
-  'Iran' => 
+  'Iran' =>
   array (
     'type' => 'link',
     'to' => 'Asia/Tehran',
   ),
-  'Israel' => 
+  'Israel' =>
   array (
     'type' => 'link',
     'to' => 'Asia/Jerusalem',
   ),
-  'Jamaica' => 
+  'Jamaica' =>
   array (
     'type' => 'link',
     'to' => 'America/Jamaica',
   ),
-  'Japan' => 
+  'Japan' =>
   array (
     'type' => 'link',
     'to' => 'Asia/Tokyo',
   ),
-  'Kwajalein' => 
+  'Kwajalein' =>
   array (
     'type' => 'link',
     'to' => 'Pacific/Kwajalein',
   ),
-  'Libya' => 
+  'Libya' =>
   array (
     'type' => 'link',
     'to' => 'Africa/Tripoli',
   ),
-  'Mexico/BajaNorte' => 
+  'Mexico/BajaNorte' =>
   array (
     'type' => 'link',
     'to' => 'America/Tijuana',
   ),
-  'Mexico/BajaSur' => 
+  'Mexico/BajaSur' =>
   array (
     'type' => 'link',
     'to' => 'America/Mazatlan',
   ),
-  'Mexico/General' => 
+  'Mexico/General' =>
   array (
     'type' => 'link',
     'to' => 'America/Mexico_City',
   ),
-  'NZ' => 
+  'NZ' =>
   array (
     'type' => 'link',
     'to' => 'Pacific/Auckland',
   ),
-  'NZ-CHAT' => 
+  'NZ-CHAT' =>
   array (
     'type' => 'link',
     'to' => 'Pacific/Chatham',
   ),
-  'Navajo' => 
+  'Navajo' =>
   array (
     'type' => 'link',
     'to' => 'America/Denver',
   ),
-  'PRC' => 
+  'PRC' =>
   array (
     'type' => 'link',
     'to' => 'Asia/Shanghai',
   ),
-  'Pacific/Ponape' => 
+  'Pacific/Ponape' =>
   array (
     'type' => 'link',
     'to' => 'Pacific/Pohnpei',
   ),
-  'Pacific/Samoa' => 
+  'Pacific/Samoa' =>
   array (
     'type' => 'link',
     'to' => 'Pacific/Pago_Pago',
   ),
-  'Pacific/Truk' => 
+  'Pacific/Truk' =>
   array (
     'type' => 'link',
     'to' => 'Pacific/Chuuk',
   ),
-  'Pacific/Yap' => 
+  'Pacific/Yap' =>
   array (
     'type' => 'link',
     'to' => 'Pacific/Chuuk',
   ),
-  'Poland' => 
+  'Poland' =>
   array (
     'type' => 'link',
     'to' => 'Europe/Warsaw',
   ),
-  'Portugal' => 
+  'Portugal' =>
   array (
     'type' => 'link',
     'to' => 'Europe/Lisbon',
   ),
-  'ROC' => 
+  'ROC' =>
   array (
     'type' => 'link',
     'to' => 'Asia/Taipei',
   ),
-  'ROK' => 
+  'ROK' =>
   array (
     'type' => 'link',
     'to' => 'Asia/Seoul',
   ),
-  'Singapore' => 
+  'Singapore' =>
   array (
     'type' => 'link',
     'to' => 'Asia/Singapore',
   ),
-  'Turkey' => 
+  'Turkey' =>
   array (
     'type' => 'link',
     'to' => 'Europe/Istanbul',
   ),
-  'UCT' => 
+  'UCT' =>
   array (
     'type' => 'link',
     'to' => 'Etc/UCT',
   ),
-  'US/Alaska' => 
+  'US/Alaska' =>
   array (
     'type' => 'link',
     'to' => 'America/Anchorage',
   ),
-  'US/Aleutian' => 
+  'US/Aleutian' =>
   array (
     'type' => 'link',
     'to' => 'America/Adak',
   ),
-  'US/Arizona' => 
+  'US/Arizona' =>
   array (
     'type' => 'link',
     'to' => 'America/Phoenix',
   ),
-  'US/Central' => 
+  'US/Central' =>
   array (
     'type' => 'link',
     'to' => 'America/Chicago',
   ),
-  'US/East-Indiana' => 
+  'US/East-Indiana' =>
   array (
     'type' => 'link',
     'to' => 'America/Indiana/Indianapolis',
   ),
-  'US/Eastern' => 
+  'US/Eastern' =>
   array (
     'type' => 'link',
     'to' => 'America/New_York',
   ),
-  'US/Hawaii' => 
+  'US/Hawaii' =>
   array (
     'type' => 'link',
     'to' => 'Pacific/Honolulu',
   ),
-  'US/Indiana-Starke' => 
+  'US/Indiana-Starke' =>
   array (
     'type' => 'link',
     'to' => 'America/Indiana/Knox',
   ),
-  'US/Michigan' => 
+  'US/Michigan' =>
   array (
     'type' => 'link',
     'to' => 'America/Detroit',
   ),
-  'US/Mountain' => 
+  'US/Mountain' =>
   array (
     'type' => 'link',
     'to' => 'America/Denver',
   ),
-  'US/Pacific' => 
+  'US/Pacific' =>
   array (
     'type' => 'link',
     'to' => 'America/Los_Angeles',
   ),
-  'US/Samoa' => 
+  'US/Samoa' =>
   array (
     'type' => 'link',
     'to' => 'Pacific/Pago_Pago',
   ),
-  'UTC' => 
+  'UTC' =>
   array (
     'type' => 'link',
     'to' => 'Etc/UTC',
   ),
-  'Universal' => 
+  'Universal' =>
   array (
     'type' => 'link',
     'to' => 'Etc/UTC',
   ),
-  'W-SU' => 
+  'W-SU' =>
   array (
     'type' => 'link',
     'to' => 'Europe/Moscow',
   ),
-  'Zulu' => 
+  'Zulu' =>
   array (
     'type' => 'link',
     'to' => 'Etc/UTC',
   ),
-  'Pacific/Saipan' => 
+  'Pacific/Saipan' =>
   array (
     'type' => 'link',
     'to' => 'Pacific/Guam',
   ),
-  'Antarctica/McMurdo' => 
+  'Antarctica/McMurdo' =>
   array (
     'type' => 'link',
     'to' => 'Pacific/Auckland',
   ),
-  'Pacific/Midway' => 
+  'Pacific/Midway' =>
   array (
     'type' => 'link',
     'to' => 'Pacific/Pago_Pago',
   ),
-  'Europe/Nicosia' => 
+  'Europe/Nicosia' =>
   array (
     'type' => 'link',
     'to' => 'Asia/Nicosia',
   ),
-  'Asia/Bahrain' => 
+  'Asia/Bahrain' =>
   array (
     'type' => 'link',
     'to' => 'Asia/Qatar',
   ),
-  'Asia/Aden' => 
+  'Asia/Aden' =>
   array (
     'type' => 'link',
     'to' => 'Asia/Riyadh',
   ),
-  'Asia/Kuwait' => 
+  'Asia/Kuwait' =>
   array (
     'type' => 'link',
     'to' => 'Asia/Riyadh',
   ),
-  'Asia/Phnom_Penh' => 
+  'Asia/Phnom_Penh' =>
   array (
     'type' => 'link',
     'to' => 'Asia/Bangkok',
   ),
-  'Asia/Vientiane' => 
+  'Asia/Vientiane' =>
   array (
     'type' => 'link',
     'to' => 'Asia/Bangkok',
   ),
-  'Asia/Muscat' => 
+  'Asia/Muscat' =>
   array (
     'type' => 'link',
     'to' => 'Asia/Dubai',
   ),
-  'Africa/Bamako' => 
+  'Africa/Bamako' =>
   array (
     'type' => 'link',
     'to' => 'Africa/Abidjan',
   ),
-  'Africa/Banjul' => 
+  'Africa/Banjul' =>
   array (
     'type' => 'link',
     'to' => 'Africa/Abidjan',
   ),
-  'Africa/Conakry' => 
+  'Africa/Conakry' =>
   array (
     'type' => 'link',
     'to' => 'Africa/Abidjan',
   ),
-  'Africa/Dakar' => 
+  'Africa/Dakar' =>
   array (
     'type' => 'link',
     'to' => 'Africa/Abidjan',
   ),
-  'Africa/Freetown' => 
+  'Africa/Freetown' =>
   array (
     'type' => 'link',
     'to' => 'Africa/Abidjan',
   ),
-  'Africa/Lome' => 
+  'Africa/Lome' =>
   array (
     'type' => 'link',
     'to' => 'Africa/Abidjan',
   ),
-  'Africa/Nouakchott' => 
+  'Africa/Nouakchott' =>
   array (
     'type' => 'link',
     'to' => 'Africa/Abidjan',
   ),
-  'Africa/Ouagadougou' => 
+  'Africa/Ouagadougou' =>
   array (
     'type' => 'link',
     'to' => 'Africa/Abidjan',
   ),
-  'Africa/Sao_Tome' => 
+  'Africa/Sao_Tome' =>
   array (
     'type' => 'link',
     'to' => 'Africa/Abidjan',
   ),
-  'Atlantic/St_Helena' => 
+  'Atlantic/St_Helena' =>
   array (
     'type' => 'link',
     'to' => 'Africa/Abidjan',
   ),
-  'Africa/Addis_Ababa' => 
+  'Africa/Addis_Ababa' =>
   array (
     'type' => 'link',
     'to' => 'Africa/Nairobi',
   ),
-  'Africa/Asmara' => 
+  'Africa/Asmara' =>
   array (
     'type' => 'link',
     'to' => 'Africa/Nairobi',
   ),
-  'Africa/Dar_es_Salaam' => 
+  'Africa/Dar_es_Salaam' =>
   array (
     'type' => 'link',
     'to' => 'Africa/Nairobi',
   ),
-  'Africa/Djibouti' => 
+  'Africa/Djibouti' =>
   array (
     'type' => 'link',
     'to' => 'Africa/Nairobi',
   ),
-  'Africa/Kampala' => 
+  'Africa/Kampala' =>
   array (
     'type' => 'link',
     'to' => 'Africa/Nairobi',
   ),
-  'Africa/Mogadishu' => 
+  'Africa/Mogadishu' =>
   array (
     'type' => 'link',
     'to' => 'Africa/Nairobi',
   ),
-  'Indian/Antananarivo' => 
+  'Indian/Antananarivo' =>
   array (
     'type' => 'link',
     'to' => 'Africa/Nairobi',
   ),
-  'Indian/Comoro' => 
+  'Indian/Comoro' =>
   array (
     'type' => 'link',
     'to' => 'Africa/Nairobi',
   ),
-  'Indian/Mayotte' => 
+  'Indian/Mayotte' =>
   array (
     'type' => 'link',
     'to' => 'Africa/Nairobi',
   ),
-  'Africa/Blantyre' => 
+  'Africa/Blantyre' =>
   array (
     'type' => 'link',
     'to' => 'Africa/Maputo',
   ),
-  'Africa/Bujumbura' => 
+  'Africa/Bujumbura' =>
   array (
     'type' => 'link',
     'to' => 'Africa/Maputo',
   ),
-  'Africa/Gaborone' => 
+  'Africa/Gaborone' =>
   array (
     'type' => 'link',
     'to' => 'Africa/Maputo',
   ),
-  'Africa/Harare' => 
+  'Africa/Harare' =>
   array (
     'type' => 'link',
     'to' => 'Africa/Maputo',
   ),
-  'Africa/Kigali' => 
+  'Africa/Kigali' =>
   array (
     'type' => 'link',
     'to' => 'Africa/Maputo',
   ),
-  'Africa/Lubumbashi' => 
+  'Africa/Lubumbashi' =>
   array (
     'type' => 'link',
     'to' => 'Africa/Maputo',
   ),
-  'Africa/Lusaka' => 
+  'Africa/Lusaka' =>
   array (
     'type' => 'link',
     'to' => 'Africa/Maputo',
   ),
-  'Africa/Bangui' => 
+  'Africa/Bangui' =>
   array (
     'type' => 'link',
     'to' => 'Africa/Lagos',
   ),
-  'Africa/Brazzaville' => 
+  'Africa/Brazzaville' =>
   array (
     'type' => 'link',
     'to' => 'Africa/Lagos',
   ),
-  'Africa/Douala' => 
+  'Africa/Douala' =>
   array (
     'type' => 'link',
     'to' => 'Africa/Lagos',
   ),
-  'Africa/Kinshasa' => 
+  'Africa/Kinshasa' =>
   array (
     'type' => 'link',
     'to' => 'Africa/Lagos',
   ),
-  'Africa/Libreville' => 
+  'Africa/Libreville' =>
   array (
     'type' => 'link',
     'to' => 'Africa/Lagos',
   ),
-  'Africa/Luanda' => 
+  'Africa/Luanda' =>
   array (
     'type' => 'link',
     'to' => 'Africa/Lagos',
   ),
-  'Africa/Malabo' => 
+  'Africa/Malabo' =>
   array (
     'type' => 'link',
     'to' => 'Africa/Lagos',
   ),
-  'Africa/Niamey' => 
+  'Africa/Niamey' =>
   array (
     'type' => 'link',
     'to' => 'Africa/Lagos',
   ),
-  'Africa/Porto-Novo' => 
+  'Africa/Porto-Novo' =>
   array (
     'type' => 'link',
     'to' => 'Africa/Lagos',
   ),
-  'Africa/Maseru' => 
+  'Africa/Maseru' =>
   array (
     'type' => 'link',
     'to' => 'Africa/Johannesburg',
   ),
-  'Africa/Mbabane' => 
+  'Africa/Mbabane' =>
   array (
     'type' => 'link',
     'to' => 'Africa/Johannesburg',
   ),
-  'Africa/Juba' => 
+  'Africa/Juba' =>
   array (
     'type' => 'link',
     'to' => 'Africa/Khartoum',
   ),
 );
-
-?>

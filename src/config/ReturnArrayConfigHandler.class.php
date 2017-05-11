@@ -41,134 +41,132 @@ use Agavi\Util\Toolkit;
  */
 class ReturnArrayConfigHandler extends XmlConfigHandler
 {
-	/**
-	 * Execute this configuration handler.
-	 *
-	 * @param      XmlConfigDomDocument $document The document to parse.
-	 *
-	 * @return     string Data to be written to a cache file.
-	 *
-	 * @author     David Zülke <david.zuelke@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function execute(XmlConfigDomDocument $document)
-	{
-		$document->setDefaultNamespace($this->getParameter('namespace_uri', ''));
-		
-		$data = array();
-		foreach($document->getConfigurationElements() as $cfg) {
-			$data = array_merge($data, $this->convertToArray($cfg, true));
-		}
-		
-		// compile data
-		$code = 'return ' . var_export($data, true) . ';';
-		
-		return $this->generate($code, $document->documentURI);
-	}
+    /**
+     * Execute this configuration handler.
+     *
+     * @param      XmlConfigDomDocument $document The document to parse.
+     *
+     * @return     string Data to be written to a cache file.
+     *
+     * @author     David Zülke <david.zuelke@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function execute(XmlConfigDomDocument $document)
+    {
+        $document->setDefaultNamespace($this->getParameter('namespace_uri', ''));
+        
+        $data = array();
+        foreach ($document->getConfigurationElements() as $cfg) {
+            $data = array_merge($data, $this->convertToArray($cfg, true));
+        }
+        
+        // compile data
+        $code = 'return ' . var_export($data, true) . ';';
+        
+        return $this->generate($code, $document->documentURI);
+    }
 
-	/**
-	 * Converts an XmlConfigDomElement into an array.
-	 *
-	 * @param      XmlConfigDomElement $item     The configuration element to convert.
-	 * @param      bool                $topLevel Whether this is a top level element.
-	 *
-	 * @return     array The configuration values as an array.
-	 *
-	 * @author     Dominik del Bondio <dominik.del.bondio@bitextender.com>
-	 * @author     David Zülke <david.zuelke@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	protected function convertToArray(XmlConfigDomElement $item, $topLevel = false)
-	{
-		$idAttribute = $this->getParameter('id_attribute', 'name');
-		$valueKey = $this->getParameter('value_key', 'value');
-		$forceArrayValues = $this->getParameter('force_array_values', false);
-		$attributePrefix = $this->getParameter('attribute_prefix', '');
-		$literalize = $this->getParameter('literalize', true);
-		
-		$singularParentName = Inflector::singularize($item->getName());
+    /**
+     * Converts an XmlConfigDomElement into an array.
+     *
+     * @param      XmlConfigDomElement $item     The configuration element to convert.
+     * @param      bool                $topLevel Whether this is a top level element.
+     *
+     * @return     array The configuration values as an array.
+     *
+     * @author     Dominik del Bondio <dominik.del.bondio@bitextender.com>
+     * @author     David Zülke <david.zuelke@bitxtender.com>
+     * @since      0.11.0
+     */
+    protected function convertToArray(XmlConfigDomElement $item, $topLevel = false)
+    {
+        $idAttribute = $this->getParameter('id_attribute', 'name');
+        $valueKey = $this->getParameter('value_key', 'value');
+        $forceArrayValues = $this->getParameter('force_array_values', false);
+        $attributePrefix = $this->getParameter('attribute_prefix', '');
+        $literalize = $this->getParameter('literalize', true);
+        
+        $singularParentName = Inflector::singularize($item->getName());
 
-		$data = array();
+        $data = array();
 
-		$attribs = $item->getAttributes();
-		$numAttribs = count($attribs);
-		if($idAttribute && $item->hasAttribute($idAttribute)) {
-			$numAttribs--;
-		}
-		
-		foreach($item->getAttributes() as $name => $value) {
-			if(($topLevel && in_array($name, array('context', 'environment'))) || $name == $idAttribute) {
-				continue;
-			}
+        $attribs = $item->getAttributes();
+        $numAttribs = count($attribs);
+        if ($idAttribute && $item->hasAttribute($idAttribute)) {
+            $numAttribs--;
+        }
+        
+        foreach ($item->getAttributes() as $name => $value) {
+            if (($topLevel && in_array($name, array('context', 'environment'))) || $name == $idAttribute) {
+                continue;
+            }
 
-			if($literalize) {
-				$value = Toolkit::literalize($value);
-			}
+            if ($literalize) {
+                $value = Toolkit::literalize($value);
+            }
 
-			if(!isset($data[$name])) {
-				$data[$attributePrefix . $name] = $value;
-			}
-		}
-		
-		if(!(int)$item->ownerDocument->getXpath()->evaluate(sprintf('count(*[namespace-uri() = "%s"])', $item->ownerDocument->getDefaultNamespaceUri()), $item)) {
-			if($literalize) {
-				$val = $item->getLiteralValue();
-			} else {
-				$val = $item->getValue();
-			}
-			
-			if($val === null) {
-				$val = '';
-			}
-			
-			if(!$topLevel && ($numAttribs || $forceArrayValues)) {
-				$data[$valueKey] = $val;
-			} elseif(!$topLevel) {
-				$data = $val;
-			}
-			
-		} else {
-			$names = array();
-			$children = $item->ownerDocument->getXpath()->query(sprintf('*[namespace-uri() = "%s"]', $item->ownerDocument->getDefaultNamespaceUri()), $item);
-			/** @var XmlConfigDomElement $child */
-			foreach($children as $child) {
-				$names[] = $child->getName();
-			}
-			$dupes = array();
-			foreach(array_unique(array_diff_assoc($names, array_unique($names))) as $name) {
-				$dupes[] = $name;
-			}
-			foreach($children as $key => $child) {
-				$hasId = ($idAttribute && $child->hasAttribute($idAttribute));
-				$isDupe = in_array($child->getName(), $dupes);
-				$hasParent = $child->getName() == $singularParentName && $item->getName() != $singularParentName;
-				if(($hasId || $isDupe) && !$hasParent) {
-					// it's one of multiple tags in this level without the respective plural form as the parent node
-					if(!isset($data[$idx = Inflector::pluralize($child->getName())])) {
-						$data[$idx] = array();
-					}
-					$hasParent = true;
-					$to =& $data[$idx];
-				} else {
-					$to =& $data;
-				}
-				
-				if($hasId) {
-					$key = $child->getAttribute($idAttribute);
-					if($literalize) {
-						// no literalize, just constants!
-						$key = Toolkit::expandDirectives($key);
-					}
-					$to[$key] = $this->convertToArray($child);
-				} elseif($hasParent) {
-					$to[] = $this->convertToArray($child);
-				} else {
-					$to[$child->getName()] = $this->convertToArray($child);
-				}
-			}
-		}
-		
-		return $data;
-	}
+            if (!isset($data[$name])) {
+                $data[$attributePrefix . $name] = $value;
+            }
+        }
+        
+        if (!(int)$item->ownerDocument->getXpath()->evaluate(sprintf('count(*[namespace-uri() = "%s"])', $item->ownerDocument->getDefaultNamespaceUri()), $item)) {
+            if ($literalize) {
+                $val = $item->getLiteralValue();
+            } else {
+                $val = $item->getValue();
+            }
+            
+            if ($val === null) {
+                $val = '';
+            }
+            
+            if (!$topLevel && ($numAttribs || $forceArrayValues)) {
+                $data[$valueKey] = $val;
+            } elseif (!$topLevel) {
+                $data = $val;
+            }
+        } else {
+            $names = array();
+            $children = $item->ownerDocument->getXpath()->query(sprintf('*[namespace-uri() = "%s"]', $item->ownerDocument->getDefaultNamespaceUri()), $item);
+            /** @var XmlConfigDomElement $child */
+            foreach ($children as $child) {
+                $names[] = $child->getName();
+            }
+            $dupes = array();
+            foreach (array_unique(array_diff_assoc($names, array_unique($names))) as $name) {
+                $dupes[] = $name;
+            }
+            foreach ($children as $key => $child) {
+                $hasId = ($idAttribute && $child->hasAttribute($idAttribute));
+                $isDupe = in_array($child->getName(), $dupes);
+                $hasParent = $child->getName() == $singularParentName && $item->getName() != $singularParentName;
+                if (($hasId || $isDupe) && !$hasParent) {
+                    // it's one of multiple tags in this level without the respective plural form as the parent node
+                    if (!isset($data[$idx = Inflector::pluralize($child->getName())])) {
+                        $data[$idx] = array();
+                    }
+                    $hasParent = true;
+                    $to =& $data[$idx];
+                } else {
+                    $to =& $data;
+                }
+                
+                if ($hasId) {
+                    $key = $child->getAttribute($idAttribute);
+                    if ($literalize) {
+                        // no literalize, just constants!
+                        $key = Toolkit::expandDirectives($key);
+                    }
+                    $to[$key] = $this->convertToArray($child);
+                } elseif ($hasParent) {
+                    $to[] = $this->convertToArray($child);
+                } else {
+                    $to[$child->getName()] = $this->convertToArray($child);
+                }
+            }
+        }
+        
+        return $data;
+    }
 }
-?>

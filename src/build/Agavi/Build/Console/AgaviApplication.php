@@ -22,10 +22,8 @@
  **/
 namespace Agavi\Build\Console;
 
-
 use Symfony\Component\Console\Application;
 use Symfony\Component\Finder\Finder;
-
 
 class AgaviApplication extends Application
 {
@@ -34,7 +32,8 @@ class AgaviApplication extends Application
 
     public $SRC_DIR;
 
-    public function __construct($name = 'UNKNOWN', $version = 'UNKNOWN', $SRC_DIR= "../..") {
+    public function __construct($name = 'UNKNOWN', $version = 'UNKNOWN', $SRC_DIR = "../..")
+    {
 
         parent::__construct($name, $version);
 
@@ -57,5 +56,4 @@ class AgaviApplication extends Application
             }
         }
     }
-
 }

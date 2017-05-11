@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Logging;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -43,65 +44,62 @@ use Agavi\Exception\LoggingException;
  */
 class RotatingFileLoggerAppender extends FileLoggerAppender
 {
-	/**
-	 * Initialize the object.
-	 *
-	 * @param      Context $context A Context instance.
-	 * @param      array   $parameters An associative array of initialization parameters.
-	 *
-	 * @author     Veikko Mäkinen <mail@veikkomakinen.com>
-	 * @since      0.11.0
-	 */
-	public function initialize(Context $context, array $parameters = array())
-	{
-		$cycle = 7;
-		$prefix = str_replace(' ', '_', Config::get('core.app_name')) . '-';
-		$suffix = '.log';
+    /**
+     * Initialize the object.
+     *
+     * @param      Context $context A Context instance.
+     * @param      array   $parameters An associative array of initialization parameters.
+     *
+     * @author     Veikko Mäkinen <mail@veikkomakinen.com>
+     * @since      0.11.0
+     */
+    public function initialize(Context $context, array $parameters = array())
+    {
+        $cycle = 7;
+        $prefix = str_replace(' ', '_', Config::get('core.app_name')) . '-';
+        $suffix = '.log';
 
-		if(!isset($parameters['dir'])) {
-			throw new LoggingException('No directory defined for rotating logging.');
-		}
+        if (!isset($parameters['dir'])) {
+            throw new LoggingException('No directory defined for rotating logging.');
+        }
 
-		$dir = $parameters['dir'];
+        $dir = $parameters['dir'];
 
-		if(isset($parameters['cycle'])) {
-			$cycle = (int)$parameters['cycle'];
-		}
-		
-		if($cycle < 1) {
-			throw new LoggingException('Logging rotation cycle cannot be smaller than 1');
-		}
+        if (isset($parameters['cycle'])) {
+            $cycle = (int)$parameters['cycle'];
+        }
+        
+        if ($cycle < 1) {
+            throw new LoggingException('Logging rotation cycle cannot be smaller than 1');
+        }
 
-		if(isset($parameters['prefix'])) {
-			$prefix = $parameters['prefix'];
-		}
+        if (isset($parameters['prefix'])) {
+            $prefix = $parameters['prefix'];
+        }
 
-		if(isset($parameters['suffix'])) {
-			$suffix = $parameters['suffix'];
-		}
+        if (isset($parameters['suffix'])) {
+            $suffix = $parameters['suffix'];
+        }
 
-		$logfile = $dir . $prefix . date('Y-m-d') . $suffix;
+        $logfile = $dir . $prefix . date('Y-m-d') . $suffix;
 
-		if(!file_exists($logfile)) {
+        if (!file_exists($logfile)) {
+            // todays log file didn't exist so we need to create it
+            // and at the same time we'll remove all unwanted history files
 
-			// todays log file didn't exist so we need to create it
-			// and at the same time we'll remove all unwanted history files
+            $remove = glob($dir . $prefix . '*-*-*' . $suffix);
+            if ($remove === false) {
+                // who cares, it's just log files
+                $remove = array();
+            }
+            
+            foreach (array_slice($remove, 0, -$cycle + 1) as $filename) {
+                unlink($filename);
+            }
+        }
 
-			$remove = glob($dir . $prefix . '*-*-*' . $suffix);
-			if($remove === false) {
-				// who cares, it's just log files
-				$remove = array();
-			}
-			
-			foreach(array_slice($remove, 0, -$cycle + 1) as $filename) {
-				unlink($filename);
-			}
-		}
-
-		//it's all up to the parent after this
-		$parameters['file'] = $logfile;
-		parent::initialize($context, $parameters);
-	}
+        //it's all up to the parent after this
+        $parameters['file'] = $logfile;
+        parent::initialize($context, $parameters);
+    }
 }
-
-?>

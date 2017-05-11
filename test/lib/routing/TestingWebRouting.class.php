@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Testing\Routing;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -31,23 +32,21 @@ use Agavi\Routing\WebRouting;
  */
 class TestingWebRouting extends WebRouting
 {
-	public function setInput($input)
-	{
-		$this->input = $input;
-	}
-	
-	public function setRoutingSource($name, $data, $type = null)
-	{
-		if(null === $type) {
-			$type = 'RoutingArraySource';
-		}
-		$this->sources[$name] = new $type($data);
-	}
-	
-	public function setInputParameters(array $parameters)
-	{
-		$this->inputParameters = $parameters;
-	}
+    public function setInput($input)
+    {
+        $this->input = $input;
+    }
+    
+    public function setRoutingSource($name, $data, $type = null)
+    {
+        if (null === $type) {
+            $type = 'RoutingArraySource';
+        }
+        $this->sources[$name] = new $type($data);
+    }
+    
+    public function setInputParameters(array $parameters)
+    {
+        $this->inputParameters = $parameters;
+    }
 }
-
-?>

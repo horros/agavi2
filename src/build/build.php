@@ -30,14 +30,15 @@ require_once($composerVendorDir . '/autoload.php');
 
 // Autoloader for our console application. We don't want
 // to pollute Composer's autoloader
-spl_autoload_register(function($class) {
-    if (file_exists(__DIR__  . DIRECTORY_SEPARATOR . str_replace('\\', DIRECTORY_SEPARATOR,  $class) . '.php')) {
-        include (__DIR__ . DIRECTORY_SEPARATOR .  str_replace('\\', DIRECTORY_SEPARATOR,  $class) . '.php');
+spl_autoload_register(function ($class) {
+    if (file_exists(__DIR__  . DIRECTORY_SEPARATOR . str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php')) {
+        include (__DIR__ . DIRECTORY_SEPARATOR .  str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php');
     }
 });
 
-if (!(defined("AGAVI2_SRC_DIR")))
+if (!(defined("AGAVI2_SRC_DIR"))) {
     define('AGAVI2_SRC_DIR', __DIR__ . '/..');
+}
 
 $app = new Agavi\Build\Console\AgaviApplication("Agavi", Agavi\Build\Console\AgaviApplication::$VERSION, AGAVI2_SRC_DIR);
 $app->run();

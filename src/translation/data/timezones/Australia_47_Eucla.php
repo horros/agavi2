@@ -16,131 +16,131 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 31500,
       'dstOffset' => 0,
       'name' => 'ACWT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => 31500,
       'dstOffset' => 3600,
       'name' => 'ACWDT',
     ),
-    2 => 
+    2 =>
     array (
       'rawOffset' => 31500,
       'dstOffset' => 0,
       'name' => 'ACWST',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -2337928528,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -1672562640,
       'type' => 1,
     ),
-    2 => 
+    2 =>
     array (
       'time' => -1665387900,
       'type' => 2,
     ),
-    3 => 
+    3 =>
     array (
       'time' => -883637100,
       'type' => 1,
     ),
-    4 => 
+    4 =>
     array (
       'time' => -876123900,
       'type' => 2,
     ),
-    5 => 
+    5 =>
     array (
       'time' => -860395500,
       'type' => 1,
     ),
-    6 => 
+    6 =>
     array (
       'time' => -844674300,
       'type' => 2,
     ),
-    7 => 
+    7 =>
     array (
       'time' => -836469900,
       'type' => 0,
     ),
-    8 => 
+    8 =>
     array (
       'time' => 152039700,
       'type' => 1,
     ),
-    9 => 
+    9 =>
     array (
       'time' => 162926100,
       'type' => 2,
     ),
-    10 => 
+    10 =>
     array (
       'time' => 436295700,
       'type' => 1,
     ),
-    11 => 
+    11 =>
     array (
       'time' => 447182100,
       'type' => 2,
     ),
-    12 => 
+    12 =>
     array (
       'time' => 690311700,
       'type' => 1,
     ),
-    13 => 
+    13 =>
     array (
       'time' => 699383700,
       'type' => 2,
     ),
-    14 => 
+    14 =>
     array (
       'time' => 1165079700,
       'type' => 1,
     ),
-    15 => 
+    15 =>
     array (
       'time' => 1174756500,
       'type' => 2,
     ),
-    16 => 
+    16 =>
     array (
       'time' => 1193505300,
       'type' => 1,
     ),
-    17 => 
+    17 =>
     array (
       'time' => 1206810900,
       'type' => 2,
     ),
-    18 => 
+    18 =>
     array (
       'time' => 1224954900,
       'type' => 1,
     ),
-    19 => 
+    19 =>
     array (
       'time' => 1238260500,
       'type' => 2,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'none',
     'offset' => 31500,
@@ -150,5 +150,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Australia/Eucla',
 );
-
-?>

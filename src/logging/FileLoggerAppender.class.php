@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Logging;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -32,47 +33,44 @@ use Agavi\Exception\LoggingException;
  */
 class FileLoggerAppender extends StreamLoggerAppender
 {
-	/**
-	 * Initialize the object.
-	 *
-	 * @param      Context $context A Context instance.
-	 * @param      array   $parameters An associative array of initialization parameters.
-	 *
-	 * @author     Bob Zoller <bob@agavi.org>
-	 * @since      0.10.0
-	 */
-	public function initialize(Context $context, array $parameters = array())
-	{
-		// for < 0.11.2 BC
-		if(isset($parameters['file'])) {
-			$parameters['destination'] = $parameters['file'];
-			unset($parameters['file']);
-		}
-		
-		parent::initialize($context, $parameters);
+    /**
+     * Initialize the object.
+     *
+     * @param      Context $context A Context instance.
+     * @param      array   $parameters An associative array of initialization parameters.
+     *
+     * @author     Bob Zoller <bob@agavi.org>
+     * @since      0.10.0
+     */
+    public function initialize(Context $context, array $parameters = array())
+    {
+        // for < 0.11.2 BC
+        if (isset($parameters['file'])) {
+            $parameters['destination'] = $parameters['file'];
+            unset($parameters['file']);
+        }
+        
+        parent::initialize($context, $parameters);
+    }
 
-	}
-
-	/**
-	 * Retrieve the file handle for this FileAppender.
-	 *
-	 * @throws     <b>AgaviLoggingException</b> if file cannot be opened for
-	 *                                          appending.
-	 *
-	 * @return     resource The open file handle.
-	 *
-	 * @author     Bob Zoller <bob@agavi.org>
-	 * @since      0.10.0
-	 */
-	protected function getHandle()
-	{
-		$destination = $this->getParameter('destination');
-		if(is_null($this->handle) && (!is_writable(dirname($destination)) || (file_exists($destination) && !is_writable($destination)))) {
-			throw new LoggingException('Cannot open file "' . $destination . '", please check permissions on file or directory.');
-		}
-		
-		return parent::getHandle();
-	}
+    /**
+     * Retrieve the file handle for this FileAppender.
+     *
+     * @throws     <b>AgaviLoggingException</b> if file cannot be opened for
+     *                                          appending.
+     *
+     * @return     resource The open file handle.
+     *
+     * @author     Bob Zoller <bob@agavi.org>
+     * @since      0.10.0
+     */
+    protected function getHandle()
+    {
+        $destination = $this->getParameter('destination');
+        if (is_null($this->handle) && (!is_writable(dirname($destination)) || (file_exists($destination) && !is_writable($destination)))) {
+            throw new LoggingException('Cannot open file "' . $destination . '", please check permissions on file or directory.');
+        }
+        
+        return parent::getHandle();
+    }
 }
-
-?>

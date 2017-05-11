@@ -16,78 +16,78 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => -14400,
       'dstOffset' => 0,
       'name' => 'AT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => -14400,
       'dstOffset' => 3600,
       'name' => 'ADT',
     ),
-    2 => 
+    2 =>
     array (
       'rawOffset' => -14400,
       'dstOffset' => 0,
       'name' => 'AST',
     ),
-    3 => 
+    3 =>
     array (
       'rawOffset' => -14400,
       'dstOffset' => 3600,
       'name' => 'AWT',
     ),
-    4 => 
+    4 =>
     array (
       'rawOffset' => -14400,
       'dstOffset' => 3600,
       'name' => 'APT',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -2713896692,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -1632074400,
       'type' => 1,
     ),
-    2 => 
+    2 =>
     array (
       'time' => -1615143600,
       'type' => 2,
     ),
-    3 => 
+    3 =>
     array (
       'time' => -880221600,
       'type' => 3,
     ),
-    4 => 
+    4 =>
     array (
       'time' => -769395600,
       'type' => 4,
     ),
-    5 => 
+    5 =>
     array (
       'time' => -765399600,
       'type' => 2,
     ),
-    6 => 
+    6 =>
     array (
       'time' => 14400,
       'type' => 2,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'AST',
@@ -98,5 +98,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'America/Blanc-Sablon',
 );
-
-?>

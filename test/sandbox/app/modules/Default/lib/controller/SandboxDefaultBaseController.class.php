@@ -7,5 +7,3 @@ class SandboxDefaultBaseController extends \Sandbox\Lib\Controller\SandboxBaseCo
 {
 
 }
-
-?>

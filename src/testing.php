@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Testing;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -30,38 +31,36 @@ namespace Agavi\Testing;
 $here = realpath(__DIR__);
 
 $isComposerInstall = false;
-foreach(array($here . '/../vendor/autoload.php', $here . '/../../../autoload.php') as $composerAutoload) {
-	if(file_exists($composerAutoload)) {
-		require($composerAutoload);
-		$isComposerInstall = true;
-		break;
-	}
+foreach (array($here . '/../vendor/autoload.php', $here . '/../../../autoload.php') as $composerAutoload) {
+    if (file_exists($composerAutoload)) {
+        require($composerAutoload);
+        $isComposerInstall = true;
+        break;
+    }
 }
 
-if(!$isComposerInstall) {
-	// when the composer autoload was found Agavi will already be loaded
-	// load Agavi basics
-	require_once($here . '/agavi.php');
-	
-	// changing the init procedure in a minor release... good job, PHPUnit...
-	require_once('PHPUnit/Runner/Version.php');
-	if(version_compare(\PHPUnit_Runner_Version::id(), '3.7.0', '<')) {
-		trigger_error('Agavi requires PHPUnit version 3.7.0 or higher', E_USER_ERROR);
-	}
-	
-	// load PHPUnit basics
-	require_once('PHPUnit/Autoload.php');
+if (!$isComposerInstall) {
+    // when the composer autoload was found Agavi will already be loaded
+    // load Agavi basics
+    require_once($here . '/agavi.php');
+    
+    // changing the init procedure in a minor release... good job, PHPUnit...
+    require_once('PHPUnit/Runner/Version.php');
+    if (version_compare(\PHPUnit_Runner_Version::id(), '3.7.0', '<')) {
+        trigger_error('Agavi requires PHPUnit version 3.7.0 or higher', E_USER_ERROR);
+    }
+    
+    // load PHPUnit basics
+    require_once('PHPUnit/Autoload.php');
 } else {
-	// starting with phpunit 4.0 PHPUNIT_COMPOSER_INSTALL doesn't get set in the autoloader anymore, but
-	// in the phpunit cli script. we need to make sure it is defined for the process isolation autoloading
-	// to work
-	if(!defined('PHPUNIT_COMPOSER_INSTALL')) {
-		define('PHPUNIT_COMPOSER_INSTALL', $composerAutoload);
-	}
+    // starting with phpunit 4.0 PHPUNIT_COMPOSER_INSTALL doesn't get set in the autoloader anymore, but
+    // in the phpunit cli script. we need to make sure it is defined for the process isolation autoloading
+    // to work
+    if (!defined('PHPUNIT_COMPOSER_INSTALL')) {
+        define('PHPUNIT_COMPOSER_INSTALL', $composerAutoload);
+    }
 }
 
 // testing base classes
 require_once($here . '/testing/AgaviTesting.class.php');
 require_once($here . '/testing/PhpUnitCli.class.php');
-
-?>

@@ -16,40 +16,40 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 39600,
       'dstOffset' => 0,
       'name' => 'KOST',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => 43200,
       'dstOffset' => 0,
       'name' => 'KOST',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -2177491916,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -7988400,
       'type' => 1,
     ),
-    2 => 
+    2 =>
     array (
       'time' => 915105600,
       'type' => 0,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'KOST',
@@ -60,5 +60,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Pacific/Kosrae',
 );
-
-?>

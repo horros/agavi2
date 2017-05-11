@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Translation;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -16,7 +17,7 @@ use Agavi\Core\Context;
 
 /**
  * BasicTranslator defines some base functions for all translators.
- * 
+ *
  * @package    agavi
  * @subpackage translation
  *
@@ -30,50 +31,48 @@ use Agavi\Core\Context;
  */
 abstract class BasicTranslator implements TranslatorInterface
 {
-	/**
-	 * @var        Context A Context instance.
-	 */
-	protected $context = null;
+    /**
+     * @var        Context A Context instance.
+     */
+    protected $context = null;
 
-	/**
-	 * Retrieve the current application context.
-	 *
-	 * @return     Context The current Context instance.
-	 *
-	 * @author     Dominik del Bondio <ddb@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public final function getContext()
-	{
-		return $this->context;
-	}
+    /**
+     * Retrieve the current application context.
+     *
+     * @return     Context The current Context instance.
+     *
+     * @author     Dominik del Bondio <ddb@bitxtender.com>
+     * @since      0.11.0
+     */
+    final public function getContext()
+    {
+        return $this->context;
+    }
 
-	/**
-	 * Initialize this Translator.
-	 *
-	 * @param      Context $context The current application context.
-	 * @param      array   $parameters An associative array of initialization parameters
-	 *
-	 * @author     Dominik del Bondio <ddb@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function initialize(Context $context, array $parameters = array())
-	{
-		$this->context = $context;
-	}
+    /**
+     * Initialize this Translator.
+     *
+     * @param      Context $context The current application context.
+     * @param      array   $parameters An associative array of initialization parameters
+     *
+     * @author     Dominik del Bondio <ddb@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function initialize(Context $context, array $parameters = array())
+    {
+        $this->context = $context;
+    }
 
-	/**
-	 * This method gets called by the translation manager when the default locale
-	 * has been changed.
-	 *
-	 * @param      Locale $newLocale The new default locale.
-	 *
-	 * @author     Dominik del Bondio <ddb@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function localeChanged($newLocale)
-	{
-	}
+    /**
+     * This method gets called by the translation manager when the default locale
+     * has been changed.
+     *
+     * @param      Locale $newLocale The new default locale.
+     *
+     * @author     Dominik del Bondio <ddb@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function localeChanged($newLocale)
+    {
+    }
 }
-
-?>

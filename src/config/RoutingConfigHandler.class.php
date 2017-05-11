@@ -23,7 +23,6 @@ use Agavi\Config\Util\Dom\XmlConfigDomDocument;
 use Agavi\Routing\Routing;
 use Agavi\Util\Toolkit;
 
-
 /**
  * RoutingConfigHandler allows you to specify a list of routes that will
  * be matched against any given string.
@@ -42,149 +41,169 @@ use Agavi\Util\Toolkit;
  */
 class RoutingConfigHandler extends XmlConfigHandler
 {
-	const XML_NAMESPACE = 'http://agavi.org/agavi/config/parts/routing/1.1';
-	
-	/**
-	 * @var        array Stores the generated names of unnamed routes.
-	 */
-	protected $unnamedRoutes = array();
-	
-	/**
-	 * Execute this configuration handler.
-	 *
-	 * @param      XmlConfigDomDocument $document The document to parse.
-	 *
-	 * @return     string Data to be written to a cache file.
-	 *
-	 * @throws     <b>UnreadableException</b> If a requested configuration
-	 *                                             file does not exist or is not
-	 *                                             readable.
-	 * @throws     <b>ParseException</b> If a requested configuration file is
-	 *                                        improperly formatted.
-	 *
-	 * @author     Dominik del Bondio <ddb@bitxtender.com>
-	 * @author     David Zülke <david.zuelke@bitextender.com>
-	 * @since      0.11.0
-	 */
-	public function execute(XmlConfigDomDocument $document)
-	{
-		// set up our default namespace
-		$document->setDefaultNamespace(self::XML_NAMESPACE, 'routing');
-		
-		$routing = Context::getInstance($this->context)->getRouting();
+    const XML_NAMESPACE = 'http://agavi.org/agavi/config/parts/routing/1.1';
+    
+    /**
+     * @var        array Stores the generated names of unnamed routes.
+     */
+    protected $unnamedRoutes = array();
+    
+    /**
+     * Execute this configuration handler.
+     *
+     * @param      XmlConfigDomDocument $document The document to parse.
+     *
+     * @return     string Data to be written to a cache file.
+     *
+     * @throws     <b>UnreadableException</b> If a requested configuration
+     *                                             file does not exist or is not
+     *                                             readable.
+     * @throws     <b>ParseException</b> If a requested configuration file is
+     *                                        improperly formatted.
+     *
+     * @author     Dominik del Bondio <ddb@bitxtender.com>
+     * @author     David Zülke <david.zuelke@bitextender.com>
+     * @since      0.11.0
+     */
+    public function execute(XmlConfigDomDocument $document)
+    {
+        // set up our default namespace
+        $document->setDefaultNamespace(self::XML_NAMESPACE, 'routing');
+        
+        $routing = Context::getInstance($this->context)->getRouting();
 
-		// reset the stored route names
-		$this->unnamedRoutes = array();
+        // reset the stored route names
+        $this->unnamedRoutes = array();
 
-		// clear the routing
-		$routing->importRoutes(array());
-		
-		foreach($document->getConfigurationElements() as $cfg) {
-			if($cfg->has('routes')) {
-				$this->parseRoutes($routing, $cfg->get('routes'));
-			}
-		}
+        // clear the routing
+        $routing->importRoutes(array());
+        
+        foreach ($document->getConfigurationElements() as $cfg) {
+            if ($cfg->has('routes')) {
+                $this->parseRoutes($routing, $cfg->get('routes'));
+            }
+        }
 
-		// we cannot do this:
-		// $code = '$this->importRoutes(unserialize(' . var_export(serialize($routing->exportRoutes()), true) . '));';
-		// return $this->generate($code, $document->documentURI);
-		// because var_export() incorrectly escapes null-byte sequences as \000, which results in a corrupted string, and unserialize() doesn't like corrupted strings
-		// this was fixed in PHP 5.2.6, but we're compatible with 5.2.0+
-		// see http://bugs.php.net/bug.php?id=37262 and http://bugs.php.net/bug.php?id=42272
-		
-		return serialize($routing->exportRoutes());
-	}
+        // we cannot do this:
+        // $code = '$this->importRoutes(unserialize(' . var_export(serialize($routing->exportRoutes()), true) . '));';
+        // return $this->generate($code, $document->documentURI);
+        // because var_export() incorrectly escapes null-byte sequences as \000, which results in a corrupted string, and unserialize() doesn't like corrupted strings
+        // this was fixed in PHP 5.2.6, but we're compatible with 5.2.0+
+        // see http://bugs.php.net/bug.php?id=37262 and http://bugs.php.net/bug.php?id=42272
+        
+        return serialize($routing->exportRoutes());
+    }
 
-	/**
-	 * Takes a nested array of AgaviConfigValueHolder containing the routing
-	 * information and creates the routes in the given routing.
-	 *
-	 * @param      Routing               $routing The routing instance to create the routes in.
-	 * @param      XmlConfigDomElement[] $routes  The "routes" node (element or node list)
-	 * @param      string                $parent  The name of the parent route (if any).
-	 *
-	 * @author     Dominik del Bondio <ddb@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	protected function parseRoutes(Routing $routing, $routes, $parent = null)
-	{
-		foreach($routes as $route) {
-			$pattern = Toolkit::expandDirectives($route->getAttribute('pattern'));
-			$opts = array();
-			if($route->hasAttribute('imply'))					$opts['imply']				= Toolkit::literalize($route->getAttribute('imply'));
-			if($route->hasAttribute('cut'))						$opts['cut']					= Toolkit::literalize($route->getAttribute('cut'));
-			if($route->hasAttribute('stop'))					$opts['stop']					= Toolkit::literalize($route->getAttribute('stop'));
-			if($route->hasAttribute('name'))					$opts['name']					= Toolkit::expandDirectives($route->getAttribute('name'));
-			if($route->hasAttribute('source'))				$opts['source']				= Toolkit::expandDirectives($route->getAttribute('source'));
-			if($route->hasAttribute('constraint'))		$opts['constraint']		= array_map('trim', explode(' ', trim(Toolkit::expandDirectives($route->getAttribute('constraint')))));
-			// values which will be set when the route matched
-			if($route->hasAttribute('controller'))				$opts['controller']				= Toolkit::expandDirectives($route->getAttribute('controller'));
-			if($route->hasAttribute('locale'))				$opts['locale']				= Toolkit::expandDirectives($route->getAttribute('locale'));
-			if($route->hasAttribute('method'))				$opts['method']				= Toolkit::expandDirectives($route->getAttribute('method'));
-			if($route->hasAttribute('module'))				$opts['module']				= Toolkit::expandDirectives($route->getAttribute('module'));
-			if($route->hasAttribute('output_type'))		$opts['output_type']	= Toolkit::expandDirectives($route->getAttribute('output_type'));
+    /**
+     * Takes a nested array of AgaviConfigValueHolder containing the routing
+     * information and creates the routes in the given routing.
+     *
+     * @param      Routing               $routing The routing instance to create the routes in.
+     * @param      XmlConfigDomElement[] $routes  The "routes" node (element or node list)
+     * @param      string                $parent  The name of the parent route (if any).
+     *
+     * @author     Dominik del Bondio <ddb@bitxtender.com>
+     * @since      0.11.0
+     */
+    protected function parseRoutes(Routing $routing, $routes, $parent = null)
+    {
+        foreach ($routes as $route) {
+            $pattern = Toolkit::expandDirectives($route->getAttribute('pattern'));
+            $opts = array();
+            if ($route->hasAttribute('imply')) {
+                $opts['imply']              = Toolkit::literalize($route->getAttribute('imply'));
+            }
+            if ($route->hasAttribute('cut')) {
+                $opts['cut']                    = Toolkit::literalize($route->getAttribute('cut'));
+            }
+            if ($route->hasAttribute('stop')) {
+                $opts['stop']                   = Toolkit::literalize($route->getAttribute('stop'));
+            }
+            if ($route->hasAttribute('name')) {
+                $opts['name']                   = Toolkit::expandDirectives($route->getAttribute('name'));
+            }
+            if ($route->hasAttribute('source')) {
+                $opts['source']             = Toolkit::expandDirectives($route->getAttribute('source'));
+            }
+            if ($route->hasAttribute('constraint')) {
+                $opts['constraint']     = array_map('trim', explode(' ', trim(Toolkit::expandDirectives($route->getAttribute('constraint')))));
+            }
+            // values which will be set when the route matched
+            if ($route->hasAttribute('controller')) {
+                $opts['controller']             = Toolkit::expandDirectives($route->getAttribute('controller'));
+            }
+            if ($route->hasAttribute('locale')) {
+                $opts['locale']             = Toolkit::expandDirectives($route->getAttribute('locale'));
+            }
+            if ($route->hasAttribute('method')) {
+                $opts['method']             = Toolkit::expandDirectives($route->getAttribute('method'));
+            }
+            if ($route->hasAttribute('module')) {
+                $opts['module']             = Toolkit::expandDirectives($route->getAttribute('module'));
+            }
+            if ($route->hasAttribute('output_type')) {
+                $opts['output_type']    = Toolkit::expandDirectives($route->getAttribute('output_type'));
+            }
 
-			if($route->has('ignores')) {
-				/** @var XmlConfigDomElement $ignore */
-				foreach($route->get('ignores') as $ignore) {
-					$opts['ignores'][] = $ignore->getValue();
-				}
-			}
+            if ($route->has('ignores')) {
+                /** @var XmlConfigDomElement $ignore */
+                foreach ($route->get('ignores') as $ignore) {
+                    $opts['ignores'][] = $ignore->getValue();
+                }
+            }
 
-			if($route->has('defaults')) {
-				/** @var XmlConfigDomElement $default */
-				foreach($route->get('defaults') as $default) {
-					$opts['defaults'][$default->getAttribute('for')] = $default->getValue();
-				}
-			}
+            if ($route->has('defaults')) {
+                /** @var XmlConfigDomElement $default */
+                foreach ($route->get('defaults') as $default) {
+                    $opts['defaults'][$default->getAttribute('for')] = $default->getValue();
+                }
+            }
 
-			if($route->has('callbacks')) {
-				$opts['callbacks'] = array();
-				/** @var XmlConfigDomElement $callback */
-				foreach($route->get('callbacks') as $callback) {
-					$opts['callbacks'][] = array(
-						'class' => $callback->getAttribute('class'),
-						'parameters' => $callback->getAgaviParameters(),
-					);
-				}
-			}
+            if ($route->has('callbacks')) {
+                $opts['callbacks'] = array();
+                /** @var XmlConfigDomElement $callback */
+                foreach ($route->get('callbacks') as $callback) {
+                    $opts['callbacks'][] = array(
+                        'class' => $callback->getAttribute('class'),
+                        'parameters' => $callback->getAgaviParameters(),
+                    );
+                }
+            }
 
-			$opts['parameters'] = $route->getAgaviParameters();
+            $opts['parameters'] = $route->getAgaviParameters();
 
-			if(isset($opts['name']) && $parent) {
-				// don't overwrite $parent since it's used later
-				$parentName = $parent;
-				if($opts['name'][0] == '.') {
-					while($parentName && isset($this->unnamedRoutes[$parentName])) {
-						$parentRoute = $routing->getRoute($parentName);
-						$parentName = $parentRoute['opt']['parent'];
-					}
-					$opts['name'] = $parentName . $opts['name'];
-				}
-			}
+            if (isset($opts['name']) && $parent) {
+                // don't overwrite $parent since it's used later
+                $parentName = $parent;
+                if ($opts['name'][0] == '.') {
+                    while ($parentName && isset($this->unnamedRoutes[$parentName])) {
+                        $parentRoute = $routing->getRoute($parentName);
+                        $parentName = $parentRoute['opt']['parent'];
+                    }
+                    $opts['name'] = $parentName . $opts['name'];
+                }
+            }
 
-			if(isset($opts['controller']) && $parent) {
-				if($opts['controller'][0] == '.') {
-					$parentRoute = $routing->getRoute($parent);
-					// unwind all empty 'controller' attributes of the parent(s)
-					while($parentRoute && empty($parentRoute['opt']['controller'])) {
-						$parentRoute = $routing->getRoute($parentRoute['opt']['parent']);
-					}
-					if(!empty($parentRoute['opt']['controller'])) {
-						$opts['controller'] = $parentRoute['opt']['controller'] . $opts['controller'];
-					}
-				}
-			}
+            if (isset($opts['controller']) && $parent) {
+                if ($opts['controller'][0] == '.') {
+                    $parentRoute = $routing->getRoute($parent);
+                    // unwind all empty 'controller' attributes of the parent(s)
+                    while ($parentRoute && empty($parentRoute['opt']['controller'])) {
+                        $parentRoute = $routing->getRoute($parentRoute['opt']['parent']);
+                    }
+                    if (!empty($parentRoute['opt']['controller'])) {
+                        $opts['controller'] = $parentRoute['opt']['controller'] . $opts['controller'];
+                    }
+                }
+            }
 
-			$name = $routing->addRoute($pattern, $opts, $parent);
-			if(!isset($opts['name']) || $opts['name'] !== $name) {
-				$this->unnamedRoutes[$name] = true;
-			}
-			if($route->has('routes')) {
-				$this->parseRoutes($routing, $route->get('routes'), $name);
-			}
-		}
-	}
+            $name = $routing->addRoute($pattern, $opts, $parent);
+            if (!isset($opts['name']) || $opts['name'] !== $name) {
+                $this->unnamedRoutes[$name] = true;
+            }
+            if ($route->has('routes')) {
+                $this->parseRoutes($routing, $route->get('routes'), $name);
+            }
+        }
+    }
 }
-
-?>

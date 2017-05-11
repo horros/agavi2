@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Logging;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -29,20 +30,18 @@ namespace Agavi\Logging;
  */
 class TimestampLoggerLayout extends LoggerLayout
 {
-	/**
-	 * Format a message.
-	 *
-	 * @param      AgaviLoggerMessage An AgaviLoggerMessage instance.
-	 *
-	 * @return     string A formatted message.
-	 *
-	 * @author     David Zülke <dz@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function format(LoggerMessage $message)
-	{
-		return sprintf($this->getParameter('message_format', '[%1$s] %2$s'), strftime($this->getParameter('timestamp_format', '%c')), $message->__toString());
-	}
+    /**
+     * Format a message.
+     *
+     * @param      AgaviLoggerMessage An AgaviLoggerMessage instance.
+     *
+     * @return     string A formatted message.
+     *
+     * @author     David Zülke <dz@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function format(LoggerMessage $message)
+    {
+        return sprintf($this->getParameter('message_format', '[%1$s] %2$s'), strftime($this->getParameter('timestamp_format', '%c')), $message->__toString());
+    }
 }
-
-?>

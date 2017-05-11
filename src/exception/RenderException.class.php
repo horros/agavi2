@@ -33,5 +33,3 @@ namespace Agavi\Exception;
 class RenderException extends AgaviException
 {
 }
-
-?>

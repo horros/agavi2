@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Logging;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -15,6 +16,7 @@ namespace Agavi\Logging;
 
 use Agavi\Core\Context;
 use Agavi\Util\ParameterHolder;
+
 /**
  * AgaviLoggerLayout allows you to specify a message layout for log messages.
  *
@@ -31,82 +33,80 @@ use Agavi\Util\ParameterHolder;
  */
 abstract class LoggerLayout extends ParameterHolder
 {
-	/**
-	 * @var        Context A Context instance.
-	 */
-	protected $context = null;
+    /**
+     * @var        Context A Context instance.
+     */
+    protected $context = null;
 
-	/**
-	 * @var        string A message layout.
-	 */
-	protected $layout = null;
+    /**
+     * @var        string A message layout.
+     */
+    protected $layout = null;
 
-	/**
-	 * Initialize the Layout.
-	 *
-	 * @param      Context $context    A Context instance.
-	 * @param      array   $parameters An associative array of initialization parameters.
-	 *
-	 * @author     Veikko Mäkinen <mail@veikkomakinen.com>
-	 * @since      0.10.0
-	 */
-	public function initialize(Context $context, array $parameters = array())
-	{
-		$this->context = $context;
-		$this->parameters = $parameters;
-	}
+    /**
+     * Initialize the Layout.
+     *
+     * @param      Context $context    A Context instance.
+     * @param      array   $parameters An associative array of initialization parameters.
+     *
+     * @author     Veikko Mäkinen <mail@veikkomakinen.com>
+     * @since      0.10.0
+     */
+    public function initialize(Context $context, array $parameters = array())
+    {
+        $this->context = $context;
+        $this->parameters = $parameters;
+    }
 
-	/**
-	 * Retrieve the current application context.
-	 *
-	 * @return     Context A Context instance.
-	 *
-	 * @author     Sean Kerr <skerr@mojavi.org>
-	 * @since      0.10.0
-	 */
-	public final function getContext()
-	{
-		return $this->context;
-	}
+    /**
+     * Retrieve the current application context.
+     *
+     * @return     Context A Context instance.
+     *
+     * @author     Sean Kerr <skerr@mojavi.org>
+     * @since      0.10.0
+     */
+    final public function getContext()
+    {
+        return $this->context;
+    }
 
-	/**
-	 * Format a message.
-	 *
-	 * @param      LoggerMessage $message A Message instance.
-	 *
-	 * @return     string A formatted message.
-	 *
-	 * @author     Sean Kerr <skerr@mojavi.org>
-	 * @since      0.9.0
-	 */
-	abstract function format(LoggerMessage $message);
+    /**
+     * Format a message.
+     *
+     * @param      LoggerMessage $message A Message instance.
+     *
+     * @return     string A formatted message.
+     *
+     * @author     Sean Kerr <skerr@mojavi.org>
+     * @since      0.9.0
+     */
+    abstract function format(LoggerMessage $message);
 
-	/**
-	 * Retrieve the message layout.
-	 *
-	 * @return     string A message layout.
-	 *
-	 * @author     Sean Kerr <skerr@mojavi.org>
-	 * @since      0.9.0
-	 */
-	public function getLayout()
-	{
-		return $this->layout;
-	}
+    /**
+     * Retrieve the message layout.
+     *
+     * @return     string A message layout.
+     *
+     * @author     Sean Kerr <skerr@mojavi.org>
+     * @since      0.9.0
+     */
+    public function getLayout()
+    {
+        return $this->layout;
+    }
 
-	/**
-	 * Set the message layout.
-	 *
-	 * @param      string A message layout.
-	 *
-	 *
-	 * @author     Sean Kerr <skerr@mojavi.org>
-	 * @since      0.9.0
-	 */
-	public function setLayout($layout)
-	{
-		$this->layout = $layout;
-	}
+    /**
+     * Set the message layout.
+     *
+     * @param      string A message layout.
+     *
+     *
+     * @author     Sean Kerr <skerr@mojavi.org>
+     * @since      0.9.0
+     */
+    public function setLayout($layout)
+    {
+        $this->layout = $layout;
+    }
 }
-
-?>

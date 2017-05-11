@@ -23,5 +23,3 @@ Agavi::bootstrap('development');
 // | Call the controller's dispatch method on the default context              |
 // +---------------------------------------------------------------------------+
 \Agavi\Core\Context::getInstance('soap')->getDispatcher()->dispatch();
-
-?>

@@ -14,6 +14,7 @@
 // +---------------------------------------------------------------------------+
 
 namespace Agavi\Request;
+
 /**
  * Interface for RequestDataHolders that allow access to Parameters.
  *
@@ -30,27 +31,25 @@ namespace Agavi\Request;
  */
 interface ParametersRequestDataHolderInterface
 {
-	public function hasParameter($name);
-	
-	public function isParameterValueEmpty($name);
-	
-	public function &getParameter($name, $default = null);
-	
-	public function &getParameters();
-	
-	public function getParameterNames();
-	
-	public function getFlatParameterNames();
-	
-	public function setParameter($name, $value);
-	
-	public function setParameters(array $parameters);
-	
-	public function &removeParameter($name);
-	
-	public function clearParameters();
-	
-	public function mergeParameters(RequestDataHolder $other);
+    public function hasParameter($name);
+    
+    public function isParameterValueEmpty($name);
+    
+    public function &getParameter($name, $default = null);
+    
+    public function &getParameters();
+    
+    public function getParameterNames();
+    
+    public function getFlatParameterNames();
+    
+    public function setParameter($name, $value);
+    
+    public function setParameters(array $parameters);
+    
+    public function &removeParameter($name);
+    
+    public function clearParameters();
+    
+    public function mergeParameters(RequestDataHolder $other);
 }
-
-?>

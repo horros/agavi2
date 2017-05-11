@@ -16,46 +16,46 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 34740,
       'dstOffset' => 0,
       'name' => 'LMT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => 36000,
       'dstOffset' => 0,
       'name' => 'GST',
     ),
-    2 => 
+    2 =>
     array (
       'rawOffset' => 36000,
       'dstOffset' => 0,
       'name' => 'ChST',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -3944626740,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -2177487540,
       'type' => 1,
     ),
-    2 => 
+    2 =>
     array (
       'time' => 977493600,
       'type' => 2,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'ChST',
@@ -66,5 +66,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Pacific/Guam',
 );
-
-?>

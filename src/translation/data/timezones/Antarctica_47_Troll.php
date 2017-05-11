@@ -16,41 +16,41 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 0,
       'dstOffset' => 0,
       'name' => 'UTC',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => 0,
       'dstOffset' => 7200,
       'name' => 'CEST',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => 1108166400,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => 1111885200,
       'type' => 1,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'dynamic',
     'offset' => 0,
     'name' => '%s',
     'save' => 7200,
-    'start' => 
+    'start' =>
     array (
       'month' => 2,
       'date' => -1,
@@ -58,7 +58,7 @@ return array (
       'time' => 3600000,
       'type' => 2,
     ),
-    'end' => 
+    'end' =>
     array (
       'month' => 9,
       'date' => -1,
@@ -72,5 +72,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Antarctica/Troll',
 );
-
-?>

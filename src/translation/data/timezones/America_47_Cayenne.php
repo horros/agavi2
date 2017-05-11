@@ -16,35 +16,35 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => -14400,
       'dstOffset' => 0,
       'name' => 'GFT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => -10800,
       'dstOffset' => 0,
       'name' => 'GFT',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -1846269040,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -71092800,
       'type' => 1,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'GFT',
@@ -55,5 +55,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'America/Cayenne',
 );
-
-?>

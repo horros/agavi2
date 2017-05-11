@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Testing\Config;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -30,41 +31,38 @@ use Agavi\Config\ConfigCache;
  */
 class TestingConfigCache extends ConfigCache
 {
-	public static function handlersDirty()
-	{
-		return self::$handlersDirty;
-	}
-	
-	public static function getHandlerFiles()
-	{
-		return self::$handlerFiles;
-	}
-	
-	public static function getHandlers()
-	{
-		return self::$handlers;
-	}
+    public static function handlersDirty()
+    {
+        return self::$handlersDirty;
+    }
+    
+    public static function getHandlerFiles()
+    {
+        return self::$handlerFiles;
+    }
+    
+    public static function getHandlers()
+    {
+        return self::$handlers;
+    }
 
-	public static function resetHandlers()
-	{
-		self::$handlers = null;
-	}
+    public static function resetHandlers()
+    {
+        self::$handlers = null;
+    }
 
-	public static function setupHandlers()
-	{
-		parent::setupHandlers();
-	}
+    public static function setupHandlers()
+    {
+        parent::setupHandlers();
+    }
 
-	public static function getHandlerInfo($name)
-	{
-		return parent::getHandlerInfo($name);
-	}
+    public static function getHandlerInfo($name)
+    {
+        return parent::getHandlerInfo($name);
+    }
 
-	public static function callHandler($name, $config, $cache, $context, array $handlerInfo = null)
-	{
-		parent::callHandler($name, $config, $cache, $context, $handlerInfo);
-	}
+    public static function callHandler($name, $config, $cache, $context, array $handlerInfo = null)
+    {
+        parent::callHandler($name, $config, $cache, $context, $handlerInfo);
+    }
 }
-
-
-?>

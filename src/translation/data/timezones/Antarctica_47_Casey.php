@@ -16,50 +16,50 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 28800,
       'dstOffset' => 0,
       'name' => 'AWST',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => 39600,
       'dstOffset' => 0,
       'name' => 'CAST',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -31536000,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => 1255802400,
       'type' => 1,
     ),
-    2 => 
+    2 =>
     array (
       'time' => 1267714800,
       'type' => 0,
     ),
-    3 => 
+    3 =>
     array (
       'time' => 1319738400,
       'type' => 1,
     ),
-    4 => 
+    4 =>
     array (
       'time' => 1329843600,
       'type' => 0,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'AWST',
@@ -70,5 +70,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Antarctica/Casey',
 );
-
-?>

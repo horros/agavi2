@@ -33,29 +33,27 @@ use Agavi\Core\Context;
 
 abstract class XmlConfigHandler extends BaseConfigHandler implements XmlConfigHandlerInterface
 {
-	/**
-	 * @var        Context The context to work with (if available).
-	 */
-	protected $context = null;
-	
-	/**
-	 * Initialize this ConfigHandler.
-	 *
-	 * @param      Context $context    The context to work with (if available).
-	 * @param      array   $parameters An associative array of initialization parameters.
-	 *
-	 * @throws     <b>AgaviInitializationException</b> If an error occurs while
-	 *                                                 initializing the
-	 *                                                 ConfigHandler
-	 *
-	 * @author     David Zülke <dz@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function initialize(Context $context = null, $parameters = array())
-	{
-		$this->context = $context;
-		$this->setParameters($parameters);
-	}
+    /**
+     * @var        Context The context to work with (if available).
+     */
+    protected $context = null;
+    
+    /**
+     * Initialize this ConfigHandler.
+     *
+     * @param      Context $context    The context to work with (if available).
+     * @param      array   $parameters An associative array of initialization parameters.
+     *
+     * @throws     <b>AgaviInitializationException</b> If an error occurs while
+     *                                                 initializing the
+     *                                                 ConfigHandler
+     *
+     * @author     David Zülke <dz@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function initialize(Context $context = null, $parameters = array())
+    {
+        $this->context = $context;
+        $this->setParameters($parameters);
+    }
 }
-
-?>

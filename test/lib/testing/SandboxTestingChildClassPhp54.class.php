@@ -2,5 +2,5 @@
 
 class SandboxTestingChildClass extends SandboxTestingParentClass implements SandboxITestingChild
 {
-	use SandboxTestingTrait;
+    use SandboxTestingTrait;
 }

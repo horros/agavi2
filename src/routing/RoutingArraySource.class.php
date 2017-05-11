@@ -33,38 +33,36 @@ use Agavi\Util\ArrayPathDefinition;
  */
 class RoutingArraySource implements RoutingSourceInterface
 {
-	/**
-	 * @var        array An array with data.
-	 */
-	protected $data = array();
+    /**
+     * @var        array An array with data.
+     */
+    protected $data = array();
 
-	/**
-	 * Constructor.
-	 *
-	 * @param      array $data An array with data.
-	 *
-	 * @author     Dominik del Bondio <ddb@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function __construct(array $data)
-	{
-		$this->data = $data;
-	}
+    /**
+     * Constructor.
+     *
+     * @param      array $data An array with data.
+     *
+     * @author     Dominik del Bondio <ddb@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function __construct(array $data)
+    {
+        $this->data = $data;
+    }
 
-	/**
-	 * Retrieves the value for a given entry from the source.
-	 *
-	 * @param      array $parts An array with the name parts for the entry.
-	 * 
-	 * @return     mixed The value.
-	 *
-	 * @author     Dominik del Bondio <ddb@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function getSource(array $parts)
-	{
-		return ArrayPathDefinition::getValue($parts, $this->data);
-	}
+    /**
+     * Retrieves the value for a given entry from the source.
+     *
+     * @param      array $parts An array with the name parts for the entry.
+     *
+     * @return     mixed The value.
+     *
+     * @author     Dominik del Bondio <ddb@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function getSource(array $parts)
+    {
+        return ArrayPathDefinition::getValue($parts, $this->data);
+    }
 }
-
-?>

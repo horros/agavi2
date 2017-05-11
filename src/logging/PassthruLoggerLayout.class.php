@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Logging;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -16,7 +17,7 @@ namespace Agavi\Logging;
 /**
  * PassthruLoggerLayout is an AgaviLoggerLayout that will return the entire
  * AgaviLoggerMessage or parts of it, depending on the configuration.
- * 
+ *
  * Parameter "mode" controls the four possible modes of operation:
  *   'to_string' - return AgaviLoggerMessage::__toString() (default)
  *   'full'      - return the full AgaviLoggerMessage object
@@ -39,29 +40,27 @@ namespace Agavi\Logging;
  */
 class PassthruLoggerLayout extends LoggerLayout
 {
-	/**
-	 * Format a message.
-	 *
-	 * @param      LoggerMessage $message A LoggerMessage instance.
-	 *
-	 * @return     string A formatted message.
-	 *
-	 * @author     Bob Zoller <bob@agavi.org>
-	 * @since      0.10.0
-	 */
-	public function format(LoggerMessage $message)
-	{
-		switch($this->getParameter('mode', 'to_string')) {
-			case 'full':
-				return $message;
-			case 'message':
-				return $message->getMessage();
-			case 'parameter':
-				return $message->getParameter($this->getParameter('parameter', 'message'));
-			default:
-				return $message->__toString();
-		}
-	}
+    /**
+     * Format a message.
+     *
+     * @param      LoggerMessage $message A LoggerMessage instance.
+     *
+     * @return     string A formatted message.
+     *
+     * @author     Bob Zoller <bob@agavi.org>
+     * @since      0.10.0
+     */
+    public function format(LoggerMessage $message)
+    {
+        switch ($this->getParameter('mode', 'to_string')) {
+            case 'full':
+                return $message;
+            case 'message':
+                return $message->getMessage();
+            case 'parameter':
+                return $message->getParameter($this->getParameter('parameter', 'message'));
+            default:
+                return $message->__toString();
+        }
+    }
 }
-
-?>

@@ -16,56 +16,56 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => -21600,
       'dstOffset' => 0,
       'name' => 'CT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => -21600,
       'dstOffset' => 3600,
       'name' => 'CDT',
     ),
-    2 => 
+    2 =>
     array (
       'rawOffset' => -21600,
       'dstOffset' => 0,
       'name' => 'CST',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -1546279392,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => 547020000,
       'type' => 1,
     ),
-    2 => 
+    2 =>
     array (
       'time' => 559717200,
       'type' => 2,
     ),
-    3 => 
+    3 =>
     array (
       'time' => 578469600,
       'type' => 1,
     ),
-    4 => 
+    4 =>
     array (
       'time' => 591166800,
       'type' => 2,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'none',
     'offset' => -21600,
@@ -75,5 +75,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'America/El_Salvador',
 );
-
-?>

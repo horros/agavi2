@@ -16,62 +16,62 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 21200,
       'dstOffset' => 0,
       'name' => 'HMT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => 23400,
       'dstOffset' => 0,
       'name' => 'BURT',
     ),
-    2 => 
+    2 =>
     array (
       'rawOffset' => 19800,
       'dstOffset' => 0,
       'name' => 'IST',
     ),
-    3 => 
+    3 =>
     array (
       'rawOffset' => 19800,
       'dstOffset' => 3600,
       'name' => 'IST',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -2840162008,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -891582800,
       'type' => 1,
     ),
-    2 => 
+    2 =>
     array (
       'time' => -872058600,
       'type' => 2,
     ),
-    3 => 
+    3 =>
     array (
       'time' => -862637400,
       'type' => 3,
     ),
-    4 => 
+    4 =>
     array (
       'time' => -764145000,
       'type' => 2,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'IST',
@@ -82,5 +82,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Asia/Kolkata',
 );
-
-?>

@@ -17,14 +17,11 @@ use Agavi\Request\RequestDataHolder;
 class Default_IndexSuccessView extends SampleAppDefaultBaseView
 {
 
-	public function executeHtml(RequestDataHolder $rd)
-	{
-		$this->setupHtml($rd);
+    public function executeHtml(RequestDataHolder $rd)
+    {
+        $this->setupHtml($rd);
 
-		// set the title
-		$this->setAttribute('_title', $this->tm->_('Welcome to the Agavi Sample Application', 'default.layout'));
-	}
-
+        // set the title
+        $this->setAttribute('_title', $this->tm->_('Welcome to the Agavi Sample Application', 'default.layout'));
+    }
 }
-
-?>

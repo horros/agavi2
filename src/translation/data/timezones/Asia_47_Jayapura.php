@@ -16,40 +16,40 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 32400,
       'dstOffset' => 0,
       'name' => 'WIT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => 34200,
       'dstOffset' => 0,
       'name' => 'ACST',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -1172913768,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -799491600,
       'type' => 1,
     ),
-    2 => 
+    2 =>
     array (
       'time' => -189423000,
       'type' => 0,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'WIT',
@@ -60,5 +60,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Asia/Jayapura',
 );
-
-?>

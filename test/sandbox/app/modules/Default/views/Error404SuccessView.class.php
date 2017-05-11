@@ -2,12 +2,10 @@
 
 class Default_Error404SuccessView extends SandboxDefaultBaseView
 {
-	public function executeHtml(\Agavi\Request\RequestDataHolder $rd)
-	{
-		$this->setupHtml($rd);
+    public function executeHtml(\Agavi\Request\RequestDataHolder $rd)
+    {
+        $this->setupHtml($rd);
 
-		$this->getResponse()->setHttpStatusCode('404');
-	}
+        $this->getResponse()->setHttpStatusCode('404');
+    }
 }
-
-?>

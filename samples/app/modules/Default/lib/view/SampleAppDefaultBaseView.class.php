@@ -2,7 +2,7 @@
 
 class SampleAppDefaultBaseView extends SampleAppBaseView
 {
-	/*
+    /*
 		This is the base view all your module's views should extend. This way,
 		you can easily inject new functionality into all of this module's views.
 		
@@ -20,5 +20,3 @@ class SampleAppDefaultBaseView extends SampleAppBaseView
 		for specific modules in case you require this.
 	*/
 }
-
-?>

@@ -16,50 +16,50 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 14400,
       'dstOffset' => 0,
       'name' => 'MUT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => 14400,
       'dstOffset' => 3600,
       'name' => 'MUST',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -1988164200,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => 403041600,
       'type' => 1,
     ),
-    2 => 
+    2 =>
     array (
       'time' => 417034800,
       'type' => 0,
     ),
-    3 => 
+    3 =>
     array (
       'time' => 1224972000,
       'type' => 1,
     ),
-    4 => 
+    4 =>
     array (
       'time' => 1238274000,
       'type' => 0,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'none',
     'offset' => 14400,
@@ -69,5 +69,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Indian/Mauritius',
 );
-
-?>

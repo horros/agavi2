@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Testing;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -29,26 +30,24 @@ namespace Agavi\Testing;
  */
 abstract class BaseConstraintBecausePhpunitSucksAtBackwardsCompatibility extends \PHPUnit_Framework_Constraint
 {
-	/**
-	 * Overridden function to cover differences between PHPUnit 3.5 and 3.6.
-	 * Intentionally made final so people have to use match() from now on.
-	 * match() should be abstract really, but isn't, the usual PHPUnit quality...
-	 *
-	 * @param      mixed  $other The item to evaluate.
-	 * @param      string $description Additional information about the test (3.6+).
-	 * @param      bool   $returnResult Whether to return a result or throw an exception (3.6+).
-	 *
-	 * @author     David Zülke <david.zuelke@bitextender.com>
-	 * @since      1.0.7
-	 */
-	public function evaluate($other, $description = '', $returnResult = false)
-	{
-		if(version_compare(\PHPUnit_Runner_Version::id(), '3.6', '<')) {
-			return $this->matches($other);
-		} else {
-			return parent::evaluate($other, $description, $returnResult);
-		}
-	}
+    /**
+     * Overridden function to cover differences between PHPUnit 3.5 and 3.6.
+     * Intentionally made final so people have to use match() from now on.
+     * match() should be abstract really, but isn't, the usual PHPUnit quality...
+     *
+     * @param      mixed  $other The item to evaluate.
+     * @param      string $description Additional information about the test (3.6+).
+     * @param      bool   $returnResult Whether to return a result or throw an exception (3.6+).
+     *
+     * @author     David Zülke <david.zuelke@bitextender.com>
+     * @since      1.0.7
+     */
+    public function evaluate($other, $description = '', $returnResult = false)
+    {
+        if (version_compare(\PHPUnit_Runner_Version::id(), '3.6', '<')) {
+            return $this->matches($other);
+        } else {
+            return parent::evaluate($other, $description, $returnResult);
+        }
+    }
 }
-
-?>

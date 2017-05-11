@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\View;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -33,84 +34,82 @@ use Agavi\Util\Toolkit;
  */
 class StreamTemplateLayer extends TemplateLayer
 {
-	/**
-	 * Constructor.
-	 *
-	 * @param      array $parameters Initial parameters.
-	 *
-	 * @author     David Zülke <dz@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function __construct(array $parameters = array())
-	{
-		parent::__construct(array_merge(array(
-			'check' => false,
-			'scheme' => null,
-			'targets' => array(
-				'${template}',
-			),
-		), $parameters));
-	}
-	
-	/**
-	 * Get the full, resolved stream location name to the template resource.
-	 *
-	 * @return     string A PHP stream resource identifier.
-	 *
-	 * @throws     AgaviException If the template could not be found.
-	 *
-	 * @author     David Zülke <dz@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function getResourceStreamIdentifier()
-	{
-		$template = $this->getParameter('template');
-		
-		if($template === null) {
-			// no template set, we return null so nothing gets rendered
-			return null;
-		}
-		
-		$args = array();
-		if(Config::get('core.use_translation')) {
-			// i18n is enabled, build a list of sprintf args with the locale identifier
-			foreach(Locale::getLookupPath($this->context->getTranslationManager()->getCurrentLocaleIdentifier()) as $identifier) {
-				$args[] = array('locale' => $identifier);
-			}
-		}
-		
-		if(empty($args)) {
-			$args[] = array(); // add one empty arg to always trigger target lookups (even if i18n is disabled etc.)
-		}
-		
-		$scheme = $this->getParameter('scheme');
-		// FIXME: a simple workaround for broken ubuntu and debian packages (fixed already), we can remove that for final 0.11
-		if($scheme != 'file' && !in_array($scheme, stream_get_wrappers())) {
-			throw new AgaviException('Unknown stream wrapper "' . $scheme . '", must be one of "' . implode('", "', stream_get_wrappers()) . '".');
-		}
-		$check = $this->getParameter('check');
-		
-		$attempts = array();
-		
-		// try each of the patterns
-		foreach((array)$this->getParameter('targets', array()) as $pattern) {
-			// try pattern with each argument list
-			foreach($args as $arg) {
-				$target = Toolkit::expandVariables($pattern, array_merge(array_filter($this->getParameters(), 'is_scalar'), array_filter($this->getParameters(), 'is_null'), $arg));
-				// FIXME (should they fix it): don't add file:// because suhosin's include whitelist is empty by default, does not contain 'file' as allowed uri scheme
-				if($scheme != 'file') {
-					$target = $scheme . '://' . $target;
-				}
-				if(!$check || is_readable($target)) {
-					return $target;
-				}
-				$attempts[] = $target;
-			}
-		}
-		
-		// no template found, time to throw an exception
-		throw new AgaviException('Template "' . $template . '" could not be found. Paths tried:' . "\n" . implode("\n", $attempts));
-	}
+    /**
+     * Constructor.
+     *
+     * @param      array $parameters Initial parameters.
+     *
+     * @author     David Zülke <dz@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function __construct(array $parameters = array())
+    {
+        parent::__construct(array_merge(array(
+            'check' => false,
+            'scheme' => null,
+            'targets' => array(
+                '${template}',
+            ),
+        ), $parameters));
+    }
+    
+    /**
+     * Get the full, resolved stream location name to the template resource.
+     *
+     * @return     string A PHP stream resource identifier.
+     *
+     * @throws     AgaviException If the template could not be found.
+     *
+     * @author     David Zülke <dz@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function getResourceStreamIdentifier()
+    {
+        $template = $this->getParameter('template');
+        
+        if ($template === null) {
+            // no template set, we return null so nothing gets rendered
+            return null;
+        }
+        
+        $args = array();
+        if (Config::get('core.use_translation')) {
+            // i18n is enabled, build a list of sprintf args with the locale identifier
+            foreach (Locale::getLookupPath($this->context->getTranslationManager()->getCurrentLocaleIdentifier()) as $identifier) {
+                $args[] = array('locale' => $identifier);
+            }
+        }
+        
+        if (empty($args)) {
+            $args[] = array(); // add one empty arg to always trigger target lookups (even if i18n is disabled etc.)
+        }
+        
+        $scheme = $this->getParameter('scheme');
+        // FIXME: a simple workaround for broken ubuntu and debian packages (fixed already), we can remove that for final 0.11
+        if ($scheme != 'file' && !in_array($scheme, stream_get_wrappers())) {
+            throw new AgaviException('Unknown stream wrapper "' . $scheme . '", must be one of "' . implode('", "', stream_get_wrappers()) . '".');
+        }
+        $check = $this->getParameter('check');
+        
+        $attempts = array();
+        
+        // try each of the patterns
+        foreach ((array)$this->getParameter('targets', array()) as $pattern) {
+            // try pattern with each argument list
+            foreach ($args as $arg) {
+                $target = Toolkit::expandVariables($pattern, array_merge(array_filter($this->getParameters(), 'is_scalar'), array_filter($this->getParameters(), 'is_null'), $arg));
+                // FIXME (should they fix it): don't add file:// because suhosin's include whitelist is empty by default, does not contain 'file' as allowed uri scheme
+                if ($scheme != 'file') {
+                    $target = $scheme . '://' . $target;
+                }
+                if (!$check || is_readable($target)) {
+                    return $target;
+                }
+                $attempts[] = $target;
+            }
+        }
+        
+        // no template found, time to throw an exception
+        throw new AgaviException('Template "' . $template . '" could not be found. Paths tried:' . "\n" . implode("\n", $attempts));
+    }
 }
-
-?>

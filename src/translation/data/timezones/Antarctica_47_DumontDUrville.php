@@ -16,46 +16,46 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 36000,
       'dstOffset' => 0,
       'name' => 'PMT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => 0,
       'dstOffset' => 0,
       'name' => 'zzz',
     ),
-    2 => 
+    2 =>
     array (
       'rawOffset' => 36000,
       'dstOffset' => 0,
       'name' => 'DDUT',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -725846400,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -566992800,
       'type' => 1,
     ),
-    2 => 
+    2 =>
     array (
       'time' => -415497600,
       'type' => 2,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'DDUT',
@@ -66,5 +66,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Antarctica/DumontDUrville',
 );
-
-?>

@@ -16,103 +16,103 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => -25200,
       'dstOffset' => 0,
       'name' => 'MT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => -25200,
       'dstOffset' => 3600,
       'name' => 'MDT',
     ),
-    2 => 
+    2 =>
     array (
       'rawOffset' => -25200,
       'dstOffset' => 0,
       'name' => 'MST',
     ),
-    3 => 
+    3 =>
     array (
       'rawOffset' => -25200,
       'dstOffset' => 3600,
       'name' => 'MWT',
     ),
-    4 => 
+    4 =>
     array (
       'rawOffset' => -25200,
       'dstOffset' => 0,
       'name' => 'MWT',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -2717643600,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -1633273200,
       'type' => 1,
     ),
-    2 => 
+    2 =>
     array (
       'time' => -1615132800,
       'type' => 2,
     ),
-    3 => 
+    3 =>
     array (
       'time' => -1601823600,
       'type' => 1,
     ),
-    4 => 
+    4 =>
     array (
       'time' => -1583683200,
       'type' => 2,
     ),
-    5 => 
+    5 =>
     array (
       'time' => -880210800,
       'type' => 3,
     ),
-    6 => 
+    6 =>
     array (
       'time' => -820519140,
       'type' => 2,
     ),
-    7 => 
+    7 =>
     array (
       'time' => -812653140,
       'type' => 4,
     ),
-    8 => 
+    8 =>
     array (
       'time' => -94669200,
       'type' => 2,
     ),
-    9 => 
+    9 =>
     array (
       'time' => -84380400,
       'type' => 1,
     ),
-    10 => 
+    10 =>
     array (
       'time' => -68659200,
       'type' => 2,
     ),
-    11 => 
+    11 =>
     array (
       'time' => -56221200,
       'type' => 2,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'MST',
@@ -123,5 +123,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'America/Phoenix',
 );
-
-?>

@@ -7,5 +7,3 @@ class SandboxFilterTestsBaseView extends SandboxBaseView
 {
 
 }
-
-?>

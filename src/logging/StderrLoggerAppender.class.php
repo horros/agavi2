@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Logging;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -30,24 +31,22 @@ use Agavi\Core\Context;
  */
 class StderrLoggerAppender extends StreamLoggerAppender
 {
-	/**
-	 * Initialize the object.
-	 *
-	 * @param      Context $context A Context instance.
-	 * @param      array   $parameters An associative array of initialization parameters.
-	 *
-	 * @author     Bob Zoller <bob@agavi.org>
-	 * @since      0.10.0
-	 */
-	public function initialize(Context $context, array $parameters = array())
-	{
-		$parameters['destination'] = 'php://stderr';
-		// 'a' doesn't work on Linux
-		// http://bugs.php.net/bug.php?id=45303
-		$parameters['mode'] = 'w';
-		
-		parent::initialize($context, $parameters);
-	}
+    /**
+     * Initialize the object.
+     *
+     * @param      Context $context A Context instance.
+     * @param      array   $parameters An associative array of initialization parameters.
+     *
+     * @author     Bob Zoller <bob@agavi.org>
+     * @since      0.10.0
+     */
+    public function initialize(Context $context, array $parameters = array())
+    {
+        $parameters['destination'] = 'php://stderr';
+        // 'a' doesn't work on Linux
+        // http://bugs.php.net/bug.php?id=45303
+        $parameters['mode'] = 'w';
+        
+        parent::initialize($context, $parameters);
+    }
 }
-
-?>

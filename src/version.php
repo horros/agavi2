@@ -14,6 +14,7 @@
 // +---------------------------------------------------------------------------+
 
 use Agavi\Config\Config;
+
 /**
  * Version initialization script.
  *
@@ -37,24 +38,22 @@ Config::set('agavi.status', 'dev');
 Config::set('agavi.branch', 'master');
 
 Config::set('agavi.version',
-	Config::get('agavi.major_version') . '.' .
-	Config::get('agavi.minor_version') . '.' .
-	Config::get('agavi.micro_version') .
-	(Config::has('agavi.status')
-		? '-' . Config::get('agavi.status')
-		: '')
+    Config::get('agavi.major_version') . '.' .
+    Config::get('agavi.minor_version') . '.' .
+    Config::get('agavi.micro_version') .
+    (Config::has('agavi.status')
+        ? '-' . Config::get('agavi.status')
+        : '')
 );
 
 Config::set('agavi.release',
-	Config::get('agavi.name') . '/' .
-	Config::get('agavi.version')
+    Config::get('agavi.name') . '/' .
+    Config::get('agavi.version')
 );
 
 Config::set('agavi.url', 'http://www.agavi.org');
 
 Config::set('agavi_info',
-	Config::get('agavi.release') . ' (' .
-	Config::get('agavi.url') . ')'
+    Config::get('agavi.release') . ' (' .
+    Config::get('agavi.url') . ')'
 );
-
-?>

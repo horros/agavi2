@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Validator;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -34,40 +35,38 @@ namespace Agavi\Validator;
  */
 class OroperatorValidator extends OperatorValidator
 {
-	/**
-	 * Executes the child validators.
-	 * 
-	 * @return     bool True if at least one child validator succeeded.
-	 * 
-	 * @author     Uwe Mesecke <uwe@mesecke.net>
-	 * @since      0.11.0
-	 */
-	protected function validate()
-	{
-		$return = false;
-		/** @var Validator $child */
-		foreach($this->children as $child) {
-			$result = $child->execute($this->validationParameters);
-			$this->result = max($this->result, $result);
+    /**
+     * Executes the child validators.
+     *
+     * @return     bool True if at least one child validator succeeded.
+     *
+     * @author     Uwe Mesecke <uwe@mesecke.net>
+     * @since      0.11.0
+     */
+    protected function validate()
+    {
+        $return = false;
+        /** @var Validator $child */
+        foreach ($this->children as $child) {
+            $result = $child->execute($this->validationParameters);
+            $this->result = max($this->result, $result);
 
-			if($result == Validator::SUCCESS) {
-				// if one child validator succeeds, the whole operator succeeds
-				$return = true;
-				$this->result = $result;
-				if($this->getParameter('break')) {
-					break;
-				}
-			} elseif($result == Validator::CRITICAL) {
-				break;
-			}
-		}
-		
-		if(!$return) {
-			$this->throwError();
-		}
+            if ($result == Validator::SUCCESS) {
+                // if one child validator succeeds, the whole operator succeeds
+                $return = true;
+                $this->result = $result;
+                if ($this->getParameter('break')) {
+                    break;
+                }
+            } elseif ($result == Validator::CRITICAL) {
+                break;
+            }
+        }
+        
+        if (!$return) {
+            $this->throwError();
+        }
 
-		return $return;
-	}	
+        return $return;
+    }
 }
-
-?>

@@ -16,35 +16,35 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 19800,
       'dstOffset' => 0,
       'name' => 'IST',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => 20700,
       'dstOffset' => 0,
       'name' => 'NPT',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -1577943676,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => 504901800,
       'type' => 1,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'NPT',
@@ -55,5 +55,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Asia/Kathmandu',
 );
-
-?>

@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Testing;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -15,8 +16,8 @@ namespace Agavi\Testing;
 
 /**
  * RemoteTestCaseInterface is the interface that all remote tests must implement
- * 
- * 
+ *
+ *
  * @package    agavi
  * @subpackage testing
  *
@@ -30,5 +31,3 @@ namespace Agavi\Testing;
 interface RemoteTestCaseInterface extends FlowTestCaseInterface
 {
 }
-
-?>

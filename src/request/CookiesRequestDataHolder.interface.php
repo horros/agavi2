@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Request;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -29,27 +30,25 @@ namespace Agavi\Request;
  */
 interface CookiesRequestDataHolderInterface
 {
-	public function hasCookie($name);
-	
-	public function isCookieValueEmpty($name);
-	
-	public function &getCookie($name, $default = null);
-	
-	public function &getCookies();
-	
-	public function getCookieNames();
-	
-	public function getFlatCookieNames();
-	
-	public function setCookie($name, $value);
-	
-	public function setCookies(array $cookies);
-	
-	public function &removeCookie($name);
-	
-	public function clearCookies();
-	
-	public function mergeCookies(RequestDataHolder $other);
+    public function hasCookie($name);
+    
+    public function isCookieValueEmpty($name);
+    
+    public function &getCookie($name, $default = null);
+    
+    public function &getCookies();
+    
+    public function getCookieNames();
+    
+    public function getFlatCookieNames();
+    
+    public function setCookie($name, $value);
+    
+    public function setCookies(array $cookies);
+    
+    public function &removeCookie($name);
+    
+    public function clearCookies();
+    
+    public function mergeCookies(RequestDataHolder $other);
 }
-
-?>

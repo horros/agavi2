@@ -14,12 +14,13 @@
 // +---------------------------------------------------------------------------+
 
 namespace Agavi\Translation;
+
 use Agavi\Core\Context;
 
 /**
- * AgaviITranslator defines the interface for different translator 
+ * AgaviITranslator defines the interface for different translator
  * implementations (like gettext, XLIFF, ...)
- * 
+ *
  * @package    agavi
  * @subpackage translation
  *
@@ -33,53 +34,50 @@ use Agavi\Core\Context;
  */
 interface TranslatorInterface
 {
-	/**
-	 * Retrieve the current application context.
-	 *
-	 * @return     Context The current Context instance.
-	 *
-	 * @author     Dominik del Bondio <ddb@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function getContext();
+    /**
+     * Retrieve the current application context.
+     *
+     * @return     Context The current Context instance.
+     *
+     * @author     Dominik del Bondio <ddb@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function getContext();
 
-	/**
-	 * Initialize this Translator.
-	 *
-	 * @param      Context $context    The current application context.
-	 * @param      array   $parameters An associative array of initialization parameters
-	 *
-	 * @author     Dominik del Bondio <ddb@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function initialize(Context $context, array $parameters = array());
+    /**
+     * Initialize this Translator.
+     *
+     * @param      Context $context    The current application context.
+     * @param      array   $parameters An associative array of initialization parameters
+     *
+     * @author     Dominik del Bondio <ddb@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function initialize(Context $context, array $parameters = array());
 
-	/**
-	 * Translates a message into the defined language.
-	 *
-	 * @param      mixed  $message The message to be translated.
-	 * @param      string $domain  The domain of the message.
-	 * @param      Locale $locale  The locale to which the message should be
-	 *                         translated.
-	 *
-	 * @return     string The translated message.
-	 *
-	 * @author     Dominik del Bondio <ddb@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function translate($message, $domain, Locale $locale = null);
+    /**
+     * Translates a message into the defined language.
+     *
+     * @param      mixed  $message The message to be translated.
+     * @param      string $domain  The domain of the message.
+     * @param      Locale $locale  The locale to which the message should be
+     *                         translated.
+     *
+     * @return     string The translated message.
+     *
+     * @author     Dominik del Bondio <ddb@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function translate($message, $domain, Locale $locale = null);
 
-	/**
-	 * This method gets called by the translation manager when the default locale
-	 * has been changed.
-	 *
-	 * @param      Locale $newLocale The new default locale.
-	 *
-	 * @author     Dominik del Bondio <ddb@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function localeChanged($newLocale);
-
+    /**
+     * This method gets called by the translation manager when the default locale
+     * has been changed.
+     *
+     * @param      Locale $newLocale The new default locale.
+     *
+     * @author     Dominik del Bondio <ddb@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function localeChanged($newLocale);
 }
-
-?>

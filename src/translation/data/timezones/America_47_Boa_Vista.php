@@ -16,200 +16,200 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => -14400,
       'dstOffset' => 0,
       'name' => 'AMT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => -14400,
       'dstOffset' => 3600,
       'name' => 'AMST',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -1767211040,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -1206954000,
       'type' => 1,
     ),
-    2 => 
+    2 =>
     array (
       'time' => -1191358800,
       'type' => 0,
     ),
-    3 => 
+    3 =>
     array (
       'time' => -1175371200,
       'type' => 1,
     ),
-    4 => 
+    4 =>
     array (
       'time' => -1159822800,
       'type' => 0,
     ),
-    5 => 
+    5 =>
     array (
       'time' => -633816000,
       'type' => 1,
     ),
-    6 => 
+    6 =>
     array (
       'time' => -622065600,
       'type' => 0,
     ),
-    7 => 
+    7 =>
     array (
       'time' => -602276400,
       'type' => 1,
     ),
-    8 => 
+    8 =>
     array (
       'time' => -591829200,
       'type' => 0,
     ),
-    9 => 
+    9 =>
     array (
       'time' => -570744000,
       'type' => 1,
     ),
-    10 => 
+    10 =>
     array (
       'time' => -560206800,
       'type' => 0,
     ),
-    11 => 
+    11 =>
     array (
       'time' => -539121600,
       'type' => 1,
     ),
-    12 => 
+    12 =>
     array (
       'time' => -531349200,
       'type' => 0,
     ),
-    13 => 
+    13 =>
     array (
       'time' => -191361600,
       'type' => 1,
     ),
-    14 => 
+    14 =>
     array (
       'time' => -184194000,
       'type' => 0,
     ),
-    15 => 
+    15 =>
     array (
       'time' => -155160000,
       'type' => 1,
     ),
-    16 => 
+    16 =>
     array (
       'time' => -150066000,
       'type' => 0,
     ),
-    17 => 
+    17 =>
     array (
       'time' => -128894400,
       'type' => 1,
     ),
-    18 => 
+    18 =>
     array (
       'time' => -121122000,
       'type' => 0,
     ),
-    19 => 
+    19 =>
     array (
       'time' => -99950400,
       'type' => 1,
     ),
-    20 => 
+    20 =>
     array (
       'time' => -89586000,
       'type' => 0,
     ),
-    21 => 
+    21 =>
     array (
       'time' => -68414400,
       'type' => 1,
     ),
-    22 => 
+    22 =>
     array (
       'time' => -57963600,
       'type' => 0,
     ),
-    23 => 
+    23 =>
     array (
       'time' => 499752000,
       'type' => 1,
     ),
-    24 => 
+    24 =>
     array (
       'time' => 511239600,
       'type' => 0,
     ),
-    25 => 
+    25 =>
     array (
       'time' => 530596800,
       'type' => 1,
     ),
-    26 => 
+    26 =>
     array (
       'time' => 540270000,
       'type' => 0,
     ),
-    27 => 
+    27 =>
     array (
       'time' => 562132800,
       'type' => 1,
     ),
-    28 => 
+    28 =>
     array (
       'time' => 571201200,
       'type' => 0,
     ),
-    29 => 
+    29 =>
     array (
       'time' => 590040000,
       'type' => 0,
     ),
-    30 => 
+    30 =>
     array (
       'time' => 938664000,
       'type' => 0,
     ),
-    31 => 
+    31 =>
     array (
       'time' => 938923200,
       'type' => 1,
     ),
-    32 => 
+    32 =>
     array (
       'time' => 951620400,
       'type' => 0,
     ),
-    33 => 
+    33 =>
     array (
       'time' => 970977600,
       'type' => 1,
     ),
-    34 => 
+    34 =>
     array (
       'time' => 971578800,
       'type' => 0,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'AMT',
@@ -220,5 +220,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'America/Boa_Vista',
 );
-
-?>

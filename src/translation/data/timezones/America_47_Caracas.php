@@ -16,51 +16,51 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => -16060,
       'dstOffset' => 0,
       'name' => 'CMT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => -16200,
       'dstOffset' => 0,
       'name' => 'VET',
     ),
-    2 => 
+    2 =>
     array (
       'rawOffset' => -14400,
       'dstOffset' => 0,
       'name' => 'VET',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -2524505536,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -1826739140,
       'type' => 1,
     ),
-    2 => 
+    2 =>
     array (
       'time' => -157750200,
       'type' => 2,
     ),
-    3 => 
+    3 =>
     array (
       'time' => 1197183600,
       'type' => 1,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'VET',
@@ -71,5 +71,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'America/Caracas',
 );
-
-?>

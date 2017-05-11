@@ -7,5 +7,3 @@ class SandboxFilterTestsBaseController extends SandboxBaseController
 {
 
 }
-
-?>

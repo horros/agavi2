@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Routing;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -30,5 +31,3 @@ namespace Agavi\Routing;
 class XmlrpcepiphpRouting extends WebserviceRouting
 {
 }
-
-?>

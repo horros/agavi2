@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Request;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -32,45 +33,43 @@ use Agavi\Exception\InitializationException;
  */
 class SoapRequest extends WebserviceRequest
 {
-	/**
-	 * Constructor.
-	 *
-	 * @author     David Zülke <dz@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function __construct()
-	{
-		parent::__construct();
-		$this->setParameters(array(
-			'request_data_holder_class' => 'SoapRequestDataHolder',
-		));
-	}
-	
-	/**
-	 * Initialize this Request.
-	 *
-	 * @param      Context $context    A Context instance.
-	 * @param      array   $parameters An associative array of initialization parameters.
-	 *
-	 * @throws     InitializationException If an error occurs while
-	 *                                                 initializing this Request.
-	 *
-	 * @author     Veikko Mäkinen <mail@veikkomakinen.com>
-	 * @author     David Zülke <dz@bitxtender.com>
-	 * @since      0.9.0
-	 */
-	public function initialize(Context $context, array $parameters = array())
-	{
-		parent::initialize($context, $parameters);
-		
-		$rdhc = $this->getParameter('request_data_holder_class');
-		$this->setRequestData(new $rdhc(array(
-			constant("$rdhc::SOURCE_PARAMETERS") => array(),
-			constant("$rdhc::SOURCE_HEADERS") => array(),
-		)));
-		
-		$this->setMethod($this->getParameter('default_method', 'read'));
-	}
+    /**
+     * Constructor.
+     *
+     * @author     David Zülke <dz@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->setParameters(array(
+            'request_data_holder_class' => 'SoapRequestDataHolder',
+        ));
+    }
+    
+    /**
+     * Initialize this Request.
+     *
+     * @param      Context $context    A Context instance.
+     * @param      array   $parameters An associative array of initialization parameters.
+     *
+     * @throws     InitializationException If an error occurs while
+     *                                                 initializing this Request.
+     *
+     * @author     Veikko Mäkinen <mail@veikkomakinen.com>
+     * @author     David Zülke <dz@bitxtender.com>
+     * @since      0.9.0
+     */
+    public function initialize(Context $context, array $parameters = array())
+    {
+        parent::initialize($context, $parameters);
+        
+        $rdhc = $this->getParameter('request_data_holder_class');
+        $this->setRequestData(new $rdhc(array(
+            constant("$rdhc::SOURCE_PARAMETERS") => array(),
+            constant("$rdhc::SOURCE_HEADERS") => array(),
+        )));
+        
+        $this->setMethod($this->getParameter('default_method', 'read'));
+    }
 }
-
-?>

@@ -16,51 +16,51 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 28656,
       'dstOffset' => 0,
       'name' => 'MMT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => 28800,
       'dstOffset' => 0,
       'name' => 'WITA',
     ),
-    2 => 
+    2 =>
     array (
       'rawOffset' => 32400,
       'dstOffset' => 0,
       'name' => 'JST',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -1577951856,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -1172908656,
       'type' => 1,
     ),
-    2 => 
+    2 =>
     array (
       'time' => -880272000,
       'type' => 2,
     ),
-    3 => 
+    3 =>
     array (
       'time' => -766054800,
       'type' => 1,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'WITA',
@@ -71,5 +71,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Asia/Makassar',
 );
-
-?>

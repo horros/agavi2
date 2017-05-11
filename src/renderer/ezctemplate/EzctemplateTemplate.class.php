@@ -32,36 +32,34 @@ use Agavi\Core\Context;
  */
 class EzctemplateTemplate extends ezcTemplate implements EzctemplateTemplateInterface
 {
-	/**
-	 * @var        Context The Agavi Context.
-	 */
-	protected $context = null;
-	
-	/**
-	 * Retrieve the current application context.
-	 *
-	 * @return     Context The current Context instance.
-	 *
-	 * @author     David Zülke <dz@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public final function getContext()
-	{
-		return $this->context;
-	}
-	
-	/**
-	 * Retrieve the current application context.
-	 *
-	 * @param      Context $context The current Context instance.
-	 *
-	 * @author     David Zülke <dz@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public final function setContext(Context $context)
-	{
-		$this->context = $context;
-	}
+    /**
+     * @var        Context The Agavi Context.
+     */
+    protected $context = null;
+    
+    /**
+     * Retrieve the current application context.
+     *
+     * @return     Context The current Context instance.
+     *
+     * @author     David Zülke <dz@bitxtender.com>
+     * @since      0.11.0
+     */
+    final public function getContext()
+    {
+        return $this->context;
+    }
+    
+    /**
+     * Retrieve the current application context.
+     *
+     * @param      Context $context The current Context instance.
+     *
+     * @author     David Zülke <dz@bitxtender.com>
+     * @since      0.11.0
+     */
+    final public function setContext(Context $context)
+    {
+        $this->context = $context;
+    }
 }
-
-?>

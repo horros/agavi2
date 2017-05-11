@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Routing;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -30,46 +31,44 @@ use Agavi\User\User;
  */
 class RoutingUserSource implements RoutingSourceInterface
 {
-	/**
-	 * @var        User An user instance.
-	 */
-	protected $user = null;
+    /**
+     * @var        User An user instance.
+     */
+    protected $user = null;
 
-	/**
-	 * Constructor.
-	 *
-	 * @param      User $user An user instance.
-	 *
-	 * @author     Dominik del Bondio <ddb@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function __construct(User $user)
-	{
-		$this->user = $user;
-	}
+    /**
+     * Constructor.
+     *
+     * @param      User $user An user instance.
+     *
+     * @author     Dominik del Bondio <ddb@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function __construct(User $user)
+    {
+        $this->user = $user;
+    }
 
-	/**
-	 * Retrieves the value for a given entry from the source.
-	 *
-	 * @param      array $parts An array with the name parts for the entry.
-	 * 
-	 * @return     mixed The value.
-	 *
-	 * @author     Dominik del Bondio <ddb@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function getSource(array $parts)
-	{
-		if($parts[0] == 'authenticated') {
-			return (int) $this->user->isAuthenticated();
-		} elseif($parts[0] == 'credentials' && count($parts) > 1) {
-			// throw the 'credentials' entry away and check with the parameters left
-			array_shift($parts);
-			return (int) $this->user->hasCredentials($parts);
-		}
+    /**
+     * Retrieves the value for a given entry from the source.
+     *
+     * @param      array $parts An array with the name parts for the entry.
+     *
+     * @return     mixed The value.
+     *
+     * @author     Dominik del Bondio <ddb@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function getSource(array $parts)
+    {
+        if ($parts[0] == 'authenticated') {
+            return (int) $this->user->isAuthenticated();
+        } elseif ($parts[0] == 'credentials' && count($parts) > 1) {
+            // throw the 'credentials' entry away and check with the parameters left
+            array_shift($parts);
+            return (int) $this->user->hasCredentials($parts);
+        }
 
-		return null;
-	}
+        return null;
+    }
 }
-
-?>

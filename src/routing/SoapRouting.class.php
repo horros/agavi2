@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Routing;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -32,38 +33,36 @@ use Agavi\Core\Context;
  */
 class SoapRouting extends WebserviceRouting
 {
-	/**
-	 * Initialize the routing instance.
-	 *
-	 * @param      Context $context A Context instance.
-	 * @param      array   $parameters An array of initialization parameters.
-	 *
-	 * @author     David Zülke <dz@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function initialize(Context $context, array $parameters = array())
-	{
-		// must always be on
-		// don't do this after parent::initialize() as WebserviceRouting::initialize() checks the value already
-		$parameters['enabled'] = true;
-		
-		parent::initialize($context, $parameters);
-	}
-	
-	/**
-	 * Returns the local filesystem path to the WSDL file built from routing.xml.
-	 *
-	 * @return     string A fully qualified filesystem path.
-	 *
-	 * @author     David Zülke <dz@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function getWsdlPath()
-	{
-		$path = $this->getParameter('wsdl', Config::get('core.agavi_dir') . '/routing/soap/wsdl.xml');
-		
-		return ConfigCache::checkConfig($path, $this->context->getName());
-	}
+    /**
+     * Initialize the routing instance.
+     *
+     * @param      Context $context A Context instance.
+     * @param      array   $parameters An array of initialization parameters.
+     *
+     * @author     David Zülke <dz@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function initialize(Context $context, array $parameters = array())
+    {
+        // must always be on
+        // don't do this after parent::initialize() as WebserviceRouting::initialize() checks the value already
+        $parameters['enabled'] = true;
+        
+        parent::initialize($context, $parameters);
+    }
+    
+    /**
+     * Returns the local filesystem path to the WSDL file built from routing.xml.
+     *
+     * @return     string A fully qualified filesystem path.
+     *
+     * @author     David Zülke <dz@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function getWsdlPath()
+    {
+        $path = $this->getParameter('wsdl', Config::get('core.agavi_dir') . '/routing/soap/wsdl.xml');
+        
+        return ConfigCache::checkConfig($path, $this->context->getName());
+    }
 }
-
-?>

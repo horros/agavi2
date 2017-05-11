@@ -16,35 +16,35 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => -16200,
       'dstOffset' => 0,
       'name' => 'ANT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => -14400,
       'dstOffset' => 0,
       'name' => 'AST',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -1826738653,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -157750200,
       'type' => 1,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'AST',
@@ -55,5 +55,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'America/Curacao',
 );
-
-?>

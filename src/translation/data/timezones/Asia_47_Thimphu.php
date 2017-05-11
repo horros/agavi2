@@ -16,35 +16,35 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 19800,
       'dstOffset' => 0,
       'name' => 'IST',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => 21600,
       'dstOffset' => 0,
       'name' => 'BTT',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -706341516,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => 560025000,
       'type' => 1,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'BTT',
@@ -55,5 +55,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Asia/Thimphu',
 );
-
-?>

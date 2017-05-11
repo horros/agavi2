@@ -2,7 +2,7 @@
 
 class SampleAppConfidentialBaseController extends SampleAppBaseController
 {
-	/*
+    /*
 		This is the base Controller all your module's Controllers should extend. This way,
 		you can easily inject new functionality into all of this module's Controllers.
 		
@@ -19,13 +19,11 @@ class SampleAppConfidentialBaseController extends SampleAppBaseController
 		build.properties settings. Also, keep in mind that you can define templates
 		for specific modules in case you require this.
 	*/
-	
-	final public function isSecure()
-	{
-		// require authentication for all Controllers
-		// this is the "Confidential" module, after all ;)
-		return true;
-	}
+    
+    final public function isSecure()
+    {
+        // require authentication for all Controllers
+        // this is the "Confidential" module, after all ;)
+        return true;
+    }
 }
-
-?>

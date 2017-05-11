@@ -16,35 +16,35 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => -19176,
       'dstOffset' => 0,
       'name' => 'CMT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => -18000,
       'dstOffset' => 0,
       'name' => 'EST',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -2524502512,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -1946918424,
       'type' => 1,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'EST',
@@ -55,5 +55,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'America/Panama',
 );
-
-?>

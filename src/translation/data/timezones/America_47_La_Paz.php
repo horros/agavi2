@@ -16,46 +16,46 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => -16356,
       'dstOffset' => 0,
       'name' => 'CMT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => -16356,
       'dstOffset' => 3600,
       'name' => 'BOST',
     ),
-    2 => 
+    2 =>
     array (
       'rawOffset' => -14400,
       'dstOffset' => 0,
       'name' => 'BOT',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -2524505244,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -1205954844,
       'type' => 1,
     ),
-    2 => 
+    2 =>
     array (
       'time' => -1192307244,
       'type' => 2,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'BOT',
@@ -66,5 +66,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'America/La_Paz',
 );
-
-?>

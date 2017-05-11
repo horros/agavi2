@@ -16,35 +16,35 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 27000,
       'dstOffset' => 0,
       'name' => 'BNT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => 28800,
       'dstOffset' => 0,
       'name' => 'BNT',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -1383464380,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -1167636600,
       'type' => 1,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'BNT',
@@ -55,5 +55,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Asia/Brunei',
 );
-
-?>

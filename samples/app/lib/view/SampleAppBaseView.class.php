@@ -6,7 +6,7 @@ use Agavi\Exception\ViewException;
 
 class SampleAppBaseView extends View
 {
-	/*
+    /*
 		This is the base view all your application's views should extend.
 		This way, you can easily inject new functionality into all of your views.
 		
@@ -27,99 +27,97 @@ class SampleAppBaseView extends View
 		build.properties settings. Also, keep in mind that you can define templates
 		for specific modules in case you require this.
 	*/
-	
-	const DEFAULT_SLOT_LAYOUT_NAME = 'slot';
-	
-	/**
-	 * @var        Routing
-	 */
-	protected $ro;
-	
-	/**
-	 * @var        Request
-	 */
-	protected $rq;
-	
-	/**
-	 * @var        TranslationManager
-	 */
-	protected $tm;
-	
-	/**
-	 * @var        AgaviUser
-	 */
-	protected $us;
-	
-	public function initialize(ExecutionContainer $container)
-	{
-		parent::initialize($container);
-		
-		$this->ro = $this->getContext()->getRouting();
-		$this->rq = $this->getContext()->getRequest();
-		$this->tm = $this->getContext()->getTranslationManager();
-		$this->us = $this->getContext()->getUser();
-	}
-	
-	public final function execute(RequestDataHolder $rd)
-	{
-		throw new ViewException(sprintf(
-			'The View "%1$s" does not implement an "execute%3$s()" method to serve '.
-			'the Output Type "%2$s", and the base View "%4$s" does not implement an '.
-			'"execute%3$s()" method to handle this situation.',
-			get_class($this),
-			$this->container->getOutputType()->getName(),
-			ucfirst(strtolower($this->container->getOutputType()->getName())),
-			get_class()
-		));
-	}
-	
-	public function executeHtml(RequestDataHolder $rd)
-	{
-		throw new ViewException(sprintf(
-			'The View "%1$s" does not implement an "execute%3$s()" method to serve '.
-			'the Output Type "%2$s". It is recommended that you change the code of '.
-			'the method "execute%3$s()" in the base View "%4$s" that is throwing '.
-			'this exception to deal with this situation in a more appropriate '.
-			'way, for example by forwarding to the default 404 error Controller, or by '.
-			'showing some other meaningful error message to the user which explains '.
-			'that the operation was unsuccessful beacuse the desired Output Type is '.
-			'not implemented.',
-			get_class($this),
-			$this->container->getOutputType()->getName(),
-			ucfirst(strtolower($this->container->getOutputType()->getName())),
-			get_class()
-		));
-	}
-	
-	public function executeJson(RequestDataHolder $rd)
-	{
-		throw new ViewException(sprintf(
-			'The View "%1$s" does not implement an "execute%3$s()" method to serve '.
-			'the Output Type "%2$s". It is recommended that you change the code of '.
-			'the method "execute%3$s()" in the base View "%4$s" that is throwing '.
-			'this exception to deal with this situation in a more appropriate '.
-			'way, for example by forwarding to the default 404 error Controller, or by '.
-			'showing some other meaningful error message to the user which explains '.
-			'that the operation was unsuccessful beacuse the desired Output Type is '.
-			'not implemented.',
-			get_class($this),
-			$this->container->getOutputType()->getName(),
-			ucfirst(strtolower($this->container->getOutputType()->getName())),
-			get_class()
-		));
-	}
-	
-	public function setupHtml(RequestDataHolder $rd, $layoutName = null)
-	{
-		if($layoutName === null && $this->getContainer()->getParameter('is_slot', false)) {
-			$layoutName = self::DEFAULT_SLOT_LAYOUT_NAME;
-		} else {
-			// set a default title just to avoid warnings
-			$this->setAttribute('_title', '');
-		}
-		
-		$this->loadLayout($layoutName);
-	}
+    
+    const DEFAULT_SLOT_LAYOUT_NAME = 'slot';
+    
+    /**
+     * @var        Routing
+     */
+    protected $ro;
+    
+    /**
+     * @var        Request
+     */
+    protected $rq;
+    
+    /**
+     * @var        TranslationManager
+     */
+    protected $tm;
+    
+    /**
+     * @var        AgaviUser
+     */
+    protected $us;
+    
+    public function initialize(ExecutionContainer $container)
+    {
+        parent::initialize($container);
+        
+        $this->ro = $this->getContext()->getRouting();
+        $this->rq = $this->getContext()->getRequest();
+        $this->tm = $this->getContext()->getTranslationManager();
+        $this->us = $this->getContext()->getUser();
+    }
+    
+    final public function execute(RequestDataHolder $rd)
+    {
+        throw new ViewException(sprintf(
+            'The View "%1$s" does not implement an "execute%3$s()" method to serve '.
+            'the Output Type "%2$s", and the base View "%4$s" does not implement an '.
+            '"execute%3$s()" method to handle this situation.',
+            get_class($this),
+            $this->container->getOutputType()->getName(),
+            ucfirst(strtolower($this->container->getOutputType()->getName())),
+            get_class()
+        ));
+    }
+    
+    public function executeHtml(RequestDataHolder $rd)
+    {
+        throw new ViewException(sprintf(
+            'The View "%1$s" does not implement an "execute%3$s()" method to serve '.
+            'the Output Type "%2$s". It is recommended that you change the code of '.
+            'the method "execute%3$s()" in the base View "%4$s" that is throwing '.
+            'this exception to deal with this situation in a more appropriate '.
+            'way, for example by forwarding to the default 404 error Controller, or by '.
+            'showing some other meaningful error message to the user which explains '.
+            'that the operation was unsuccessful beacuse the desired Output Type is '.
+            'not implemented.',
+            get_class($this),
+            $this->container->getOutputType()->getName(),
+            ucfirst(strtolower($this->container->getOutputType()->getName())),
+            get_class()
+        ));
+    }
+    
+    public function executeJson(RequestDataHolder $rd)
+    {
+        throw new ViewException(sprintf(
+            'The View "%1$s" does not implement an "execute%3$s()" method to serve '.
+            'the Output Type "%2$s". It is recommended that you change the code of '.
+            'the method "execute%3$s()" in the base View "%4$s" that is throwing '.
+            'this exception to deal with this situation in a more appropriate '.
+            'way, for example by forwarding to the default 404 error Controller, or by '.
+            'showing some other meaningful error message to the user which explains '.
+            'that the operation was unsuccessful beacuse the desired Output Type is '.
+            'not implemented.',
+            get_class($this),
+            $this->container->getOutputType()->getName(),
+            ucfirst(strtolower($this->container->getOutputType()->getName())),
+            get_class()
+        ));
+    }
+    
+    public function setupHtml(RequestDataHolder $rd, $layoutName = null)
+    {
+        if ($layoutName === null && $this->getContainer()->getParameter('is_slot', false)) {
+            $layoutName = self::DEFAULT_SLOT_LAYOUT_NAME;
+        } else {
+            // set a default title just to avoid warnings
+            $this->setAttribute('_title', '');
+        }
+        
+        $this->loadLayout($layoutName);
+    }
 }
-
-?>

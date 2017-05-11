@@ -53,5 +53,3 @@ Config::set('core.app_dir', __DIR__);
 // |  - core.template_dir (defaults to "<core.app_dir>/templates")             |
 // +---------------------------------------------------------------------------+
 Agavi\Config\Config::set('app.namespace', '\Sandbox');
-
-?>

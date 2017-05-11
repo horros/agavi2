@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Validator;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2010 the Agavi Project.                                |
@@ -16,11 +17,11 @@ use Agavi\Util\Toolkit;
 
 /**
  * BooleanValidator verifies a parameter is a valid boolean
- * 
+ *
  * Accepted values are string 0/1, int 0/1, bool true/false, string yes/no,
- * string true/false, string on/off - basically all values that 
+ * string true/false, string on/off - basically all values that
  * {@see Toolkit::literalize()} will accept.
- * 
+ *
  * The value will be casted to the respective boolean unless it's exported. If
  * the export parameter is given, the value will be retained in its original
  * form.
@@ -38,43 +39,41 @@ use Agavi\Util\Toolkit;
  */
 class BooleanValidator extends Validator
 {
-	/**
-	 * Validates the input.
-	 * 
-	 * @return     bool The value is a valid boolean
-	 * 
-	 * @author     Felix Gilcher <felix.gilcher@bitextender.com>
-	 * @since      1.0.4
-	 */
-	protected function validate()
-	{
-		$value = & $this->getData($this->getArgument());
-		$castValue = $value;
-		
-		if(is_bool($castValue)) {
-			// noop
-		} elseif(1 === $castValue || '1' === $castValue) {
-			$castValue = true;
-		} elseif(0 === $castValue || '0' === $castValue) {
-			$castValue = false;
-		} elseif(is_string($castValue)) {
-			$castValue = Toolkit::literalize($castValue);
-		}
-		
-		if(is_bool($castValue)) {
-			if($this->hasParameter('export')) {
-				$this->export($castValue);
-			} else {
-				$value = $castValue;
-			}
-			
-			return true;
-		}
-		
-		$this->throwError('type');
-		
-		return false;
-	}
+    /**
+     * Validates the input.
+     *
+     * @return     bool The value is a valid boolean
+     *
+     * @author     Felix Gilcher <felix.gilcher@bitextender.com>
+     * @since      1.0.4
+     */
+    protected function validate()
+    {
+        $value = & $this->getData($this->getArgument());
+        $castValue = $value;
+        
+        if (is_bool($castValue)) {
+            // noop
+        } elseif (1 === $castValue || '1' === $castValue) {
+            $castValue = true;
+        } elseif (0 === $castValue || '0' === $castValue) {
+            $castValue = false;
+        } elseif (is_string($castValue)) {
+            $castValue = Toolkit::literalize($castValue);
+        }
+        
+        if (is_bool($castValue)) {
+            if ($this->hasParameter('export')) {
+                $this->export($castValue);
+            } else {
+                $value = $castValue;
+            }
+            
+            return true;
+        }
+        
+        $this->throwError('type');
+        
+        return false;
+    }
 }
-
-?>

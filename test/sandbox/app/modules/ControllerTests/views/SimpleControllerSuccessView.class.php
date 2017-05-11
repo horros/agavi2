@@ -5,10 +5,10 @@ use Sandbox\Modules\ControllerTests\Lib\View\SandboxControllerTestsBaseView;
 
 class SimpleControllerSuccessView extends SandboxControllerTestsBaseView
 {
-	public function executeHtml(\Agavi\Request\RequestDataHolder $rd)
-	{
-		$this->setupHtml($rd);
+    public function executeHtml(\Agavi\Request\RequestDataHolder $rd)
+    {
+        $this->setupHtml($rd);
 
-		$this->setAttribute('_title', 'SimpleAction');
-	}
+        $this->setAttribute('_title', 'SimpleAction');
+    }
 }

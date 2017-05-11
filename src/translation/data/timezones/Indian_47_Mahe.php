@@ -16,24 +16,24 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 14400,
       'dstOffset' => 0,
       'name' => 'SCT',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -2006653308,
       'type' => 0,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'SCT',
@@ -44,5 +44,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Indian/Mahe',
 );
-
-?>

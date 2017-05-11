@@ -10,10 +10,10 @@ use Agavi\Testing\UnitTestCase;
 
 class TestDispatcher extends Dispatcher
 {
-	public function redirect($to)
-	{
-		throw new \Exception('N/A');
-	}
+    public function redirect($to)
+    {
+        throw new \Exception('N/A');
+    }
 }
 
 /**
@@ -21,125 +21,125 @@ class TestDispatcher extends Dispatcher
  */
 class DispatcherTest extends UnitTestCase
 {
-	/** @var Dispatcher */
-	protected $_dispatcher = null;
+    /** @var Dispatcher */
+    protected $_dispatcher = null;
 
-	/** @var Context */
-	protected $_context = null;
-	public function setUp()
-	{
-		// ReInitialize the Context between tests to start fresh
-		$this->_context = $this->getContext();
-		$this->_dispatcher = $this->_context->getDispatcher();
-		$this->_dispatcher->initialize($this->_context, array());
-	}
+    /** @var Context */
+    protected $_context = null;
+    public function setUp()
+    {
+        // ReInitialize the Context between tests to start fresh
+        $this->_context = $this->getContext();
+        $this->_dispatcher = $this->_context->getDispatcher();
+        $this->_dispatcher->initialize($this->_context, array());
+    }
 
-	public function testNewController()
-	{
-		$controller = $this->_dispatcher;
-		$this->assertInstanceOf('Agavi\Dispatcher\Dispatcher', $controller);
-		$this->assertInstanceOf('Agavi\Core\Context', $controller->getContext());
-		$ctx1 = $controller->getContext();
-		$ctx2 = $this->getContext();
-		$this->assertSame($ctx1, $ctx2);
-	}
+    public function testNewController()
+    {
+        $controller = $this->_dispatcher;
+        $this->assertInstanceOf('Agavi\Dispatcher\Dispatcher', $controller);
+        $this->assertInstanceOf('Agavi\Core\Context', $controller->getContext());
+        $ctx1 = $controller->getContext();
+        $ctx2 = $this->getContext();
+        $this->assertSame($ctx1, $ctx2);
+    }
 
-	public function testControllerFileExists()
-	{
-		// controllerExists actually checks the filesystem, 
-		$this->assertTrue(file_exists(Config::get('core.app_dir') . '/modules/ControllerTests/controllers/ControllerTestController.class.php'));
-		$this->assertFalse(file_exists(Config::get('core.app_dir') . '/modules/ControllerTests/controllers/BunkController.class.php'));
-		$this->assertFalse(file_exists(Config::get('core.app_dir') . '/modules/Bunk/controllers/BunkController.class.php'));
-		$dispatcher = $this->_dispatcher;
-		$this->assertEquals(Config::get('core.app_dir') . '/modules/ControllerTests/controllers/ControllerTestController.class.php',$dispatcher->checkControllerFile('ControllerTests', 'ControllerTest'));
-		$this->assertFalse($dispatcher->checkControllerFile('ControllerTests', 'Bunk'), 'controllerFileExists did not return false for non-existing controller in existing module');
-		$this->assertFalse($dispatcher->checkControllerFile('Bunk', 'Bunk'), 'controllerFileExists did not return false for non-existing controller in non-existing module');
-	}
+    public function testControllerFileExists()
+    {
+        // controllerExists actually checks the filesystem,
+        $this->assertTrue(file_exists(Config::get('core.app_dir') . '/modules/ControllerTests/controllers/ControllerTestController.class.php'));
+        $this->assertFalse(file_exists(Config::get('core.app_dir') . '/modules/ControllerTests/controllers/BunkController.class.php'));
+        $this->assertFalse(file_exists(Config::get('core.app_dir') . '/modules/Bunk/controllers/BunkController.class.php'));
+        $dispatcher = $this->_dispatcher;
+        $this->assertEquals(Config::get('core.app_dir') . '/modules/ControllerTests/controllers/ControllerTestController.class.php', $dispatcher->checkControllerFile('ControllerTests', 'ControllerTest'));
+        $this->assertFalse($dispatcher->checkControllerFile('ControllerTests', 'Bunk'), 'controllerFileExists did not return false for non-existing controller in existing module');
+        $this->assertFalse($dispatcher->checkControllerFile('Bunk', 'Bunk'), 'controllerFileExists did not return false for non-existing controller in non-existing module');
+    }
 
-	public function testGetControllerFromModule()
-	{
-		// TODO: check all other existing naming schemes for controllers
+    public function testGetControllerFromModule()
+    {
+        // TODO: check all other existing naming schemes for controllers
 
-		$controller = $this->_dispatcher->createControllerInstance('ControllerTests', 'ControllerTest');
-		$this->assertInstanceOf('Sandbox\Modules\ControllerTests\Controllers\ControllerTestController', $controller);
-		$this->assertInstanceOf('Agavi\Controller\Controller', $controller);
+        $controller = $this->_dispatcher->createControllerInstance('ControllerTests', 'ControllerTest');
+        $this->assertInstanceOf('Sandbox\Modules\ControllerTests\Controllers\ControllerTestController', $controller);
+        $this->assertInstanceOf('Agavi\Controller\Controller', $controller);
+    }
 
-	}
+    /**
+     * @expectedException \Agavi\Exception\FileNotFoundException
+     */
+    public function testGetInvalidControllerFromModule()
+    {
+        $this->_dispatcher->createControllerInstance('ControllerTests', 'NonExistent');
+    }
 
-	/**
-	 * @expectedException \Agavi\Exception\FileNotFoundException
-	 */
-	public function testGetInvalidControllerFromModule() {
-		$this->_dispatcher->createControllerInstance('ControllerTests', 'NonExistent');
-	}
+    public function testGetContext()
+    {
+        $this->assertSame($this->getContext(), $this->getContext()->getDispatcher()->getContext());
+    }
 
-	public function testGetContext()
-	{
-		$this->assertSame($this->getContext(), $this->getContext()->getDispatcher()->getContext());
-	}
+    public function testCreateViewInstance()
+    {
+        $controller = $this->_dispatcher;
+        $this->assertInstanceOf(
+            'Sandbox\Modules\ControllerTests\Views\ControllerTestSuccessView',
+            $controller->createViewInstance('ControllerTests', 'ControllerTestSuccess')
+        );
+        $this->assertInstanceOf(
+            'Sandbox\Modules\ControllerTests\Views\ControllerTestErrorView',
+            $controller->createViewInstance('ControllerTests', 'ControllerTestError')
+        );
+    }
 
-	public function testCreateViewInstance()
-	{
-		$controller = $this->_dispatcher;
-		$this->assertInstanceOf(
-			'Sandbox\Modules\ControllerTests\Views\ControllerTestSuccessView',
-			$controller->createViewInstance('ControllerTests', 'ControllerTestSuccess')
-		);
-		$this->assertInstanceOf(
-			'Sandbox\Modules\ControllerTests\Views\ControllerTestErrorView',
-			$controller->createViewInstance('ControllerTests', 'ControllerTestError')
-		);
-	}
+    public function testModelExists()
+    {
+        $controller = $this->_dispatcher;
+        $this->assertTrue($controller->modelExists('ControllerTests', 'ControllerTest'));
+        $this->assertFalse($controller->modelExists('Test', 'Bunk'));
+        $this->assertFalse($controller->modelExists('Bunk', 'Bunk'));
+    }
 
-	public function testModelExists()
-	{
-		$controller = $this->_dispatcher;
-		$this->assertTrue($controller->modelExists('ControllerTests', 'ControllerTest'));
-		$this->assertFalse($controller->modelExists('Test', 'Bunk'));
-		$this->assertFalse($controller->modelExists('Bunk', 'Bunk'));
-	}
+    public function testModuleExists()
+    {
+        $controller = $this->_dispatcher;
+        $this->assertTrue($controller->moduleExists('ControllerTests'));
+        $this->assertFalse($controller->moduleExists('Bunk'));
+    }
 
-	public function testModuleExists()
-	{
-		$controller = $this->_dispatcher;
-		$this->assertTrue($controller->moduleExists('ControllerTests'));
-		$this->assertFalse($controller->moduleExists('Bunk'));
-	}
-
-	public function testViewExists()
-	{
-		$controller = $this->_dispatcher;
-		$this->assertTrue($controller->viewExists('ControllerTests', 'ControllerTestSuccess'));
-		$this->assertFalse($controller->viewExists('Test', 'Bunk'));
-		$this->assertFalse($controller->viewExists('Bunk', 'Bunk'));
-	}
-
+    public function testViewExists()
+    {
+        $controller = $this->_dispatcher;
+        $this->assertTrue($controller->viewExists('ControllerTests', 'ControllerTestSuccess'));
+        $this->assertFalse($controller->viewExists('Test', 'Bunk'));
+        $this->assertFalse($controller->viewExists('Bunk', 'Bunk'));
+    }
 
 
-	public function testGetOutputTypeInfo()
-	{
-		$controller = $this->_dispatcher;
 
-		$info_ex = array(
-			'http_headers' => array(
-				'Content-Type' => 'text/html; charset=UTF-8',
-			),
-		);
+    public function testGetOutputTypeInfo()
+    {
+        $controller = $this->_dispatcher;
 
-		$info = $controller->getOutputType();
-		$this->assertSame($info_ex, $info->getParameters());
+        $info_ex = array(
+            'http_headers' => array(
+                'Content-Type' => 'text/html; charset=UTF-8',
+            ),
+        );
 
-		$info_ex = array(
-		);
-		$info = $controller->getOutputType('controllerTest');
-		$this->assertSame($info_ex, $info->getParameters());
+        $info = $controller->getOutputType();
+        $this->assertSame($info_ex, $info->getParameters());
 
-		try {
-			$controller->getOutputType('nonexistant');
-			$this->fail('Expected AgaviException not thrown!');
-		} catch(AgaviException $e) {
-		}
-	}
+        $info_ex = array(
+        );
+        $info = $controller->getOutputType('controllerTest');
+        $this->assertSame($info_ex, $info->getParameters());
+
+        try {
+            $controller->getOutputType('nonexistant');
+            $this->fail('Expected AgaviException not thrown!');
+        } catch (AgaviException $e) {
+        }
+    }
 
 
 /* 
@@ -218,5 +218,3 @@ class DispatcherTest extends UnitTestCase
 	}
 */
 }
-
-?>

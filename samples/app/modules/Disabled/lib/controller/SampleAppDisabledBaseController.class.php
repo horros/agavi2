@@ -3,7 +3,7 @@
 
 class SampleAppDisabledBaseController extends SampleAppBaseController
 {
-	/*
+    /*
 		This is the base Controller all your module's Controllers should extend. This way,
 		you can easily inject new functionality into all of this module's Controllers.
 		
@@ -21,5 +21,3 @@ class SampleAppDisabledBaseController extends SampleAppBaseController
 		for specific modules in case you require this.
 	*/
 }
-
-?>

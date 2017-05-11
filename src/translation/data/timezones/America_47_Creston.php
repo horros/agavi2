@@ -16,40 +16,40 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => -25200,
       'dstOffset' => 0,
       'name' => 'MST',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => -28800,
       'dstOffset' => 0,
       'name' => 'PST',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -2713882436,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -1680454800,
       'type' => 1,
     ),
-    2 => 
+    2 =>
     array (
       'time' => -1627833600,
       'type' => 0,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'MST',
@@ -60,5 +60,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'America/Creston',
 );
-
-?>

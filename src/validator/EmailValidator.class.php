@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Validator;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -31,32 +32,30 @@ namespace Agavi\Validator;
  */
 class EmailValidator extends Validator
 {
-	/**
-	 * Validates the input.
-	 * 
-	 * @return     bool The input is a valid email address.
-	 * 
-	 * @author     Dominik del Bondio <ddb@bitxtender.com>
-	 * @author     Uwe Mesecke <uwe@mesecke.net>
-	 * @since      0.11.0
-	 */
-	protected function validate()
-	{
-		$data = $this->getData($this->getArgument());
-		if(!is_scalar($data)) {
-			// non scalar values would cause notices
-			$this->throwError();
-			return false;
-		}
-		
-		$extraChars = preg_quote('!#$%&\'*+-/=?^_`{|}~', '/');
-		if(!preg_match('/^[a-z0-9' . $extraChars . ']+(\.[a-z0-9' . $extraChars . ']+)*@[a-z0-9-]+(\.[a-z0-9-]+)*\.[a-z]{2,6}$/iD', $data)) {
-			$this->throwError();
-			return false;
-		}
-		
-		return true;
-	}
+    /**
+     * Validates the input.
+     *
+     * @return     bool The input is a valid email address.
+     *
+     * @author     Dominik del Bondio <ddb@bitxtender.com>
+     * @author     Uwe Mesecke <uwe@mesecke.net>
+     * @since      0.11.0
+     */
+    protected function validate()
+    {
+        $data = $this->getData($this->getArgument());
+        if (!is_scalar($data)) {
+            // non scalar values would cause notices
+            $this->throwError();
+            return false;
+        }
+        
+        $extraChars = preg_quote('!#$%&\'*+-/=?^_`{|}~', '/');
+        if (!preg_match('/^[a-z0-9' . $extraChars . ']+(\.[a-z0-9' . $extraChars . ']+)*@[a-z0-9-]+(\.[a-z0-9-]+)*\.[a-z]{2,6}$/iD', $data)) {
+            $this->throwError();
+            return false;
+        }
+        
+        return true;
+    }
 }
-
-?>

@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Storage;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -59,365 +60,363 @@ use Agavi\Exception\InitializationException;
  */
 class PdoSessionStorage extends SessionStorage
 {
-	/**
-	 * @var        \PDO A Database Connection.
-	 */
-	protected $connection;
+    /**
+     * @var        \PDO A Database Connection.
+     */
+    protected $connection;
 
-	/**
-	 * Initialize this Storage.
-	 *
-	 * @param      Context $context An Context instance.
-	 * @param      array   $parameters An associative array of initialization parameters.
-	 *
-	 * @throws     InitializationException If an error occurs while
-	 *                                                 initializing this Storage.
-	 *
-	 * @author     Sean Kerr <skerr@mojavi.org>
-	 * @author     Veikko Mäkinen <mail@veikkomakinen.com>
-	 * @author     Dominik del Bondio <ddb@bitxtender.com>
-	 * @since      0.10.0
-	 */
-	public function initialize(Context $context, array $parameters = array())
-	{
-		// initialize the parent
-		parent::initialize($context, $parameters);
+    /**
+     * Initialize this Storage.
+     *
+     * @param      Context $context An Context instance.
+     * @param      array   $parameters An associative array of initialization parameters.
+     *
+     * @throws     InitializationException If an error occurs while
+     *                                                 initializing this Storage.
+     *
+     * @author     Sean Kerr <skerr@mojavi.org>
+     * @author     Veikko Mäkinen <mail@veikkomakinen.com>
+     * @author     Dominik del Bondio <ddb@bitxtender.com>
+     * @since      0.10.0
+     */
+    public function initialize(Context $context, array $parameters = array())
+    {
+        // initialize the parent
+        parent::initialize($context, $parameters);
 
-		if(!$this->hasParameter('db_table')) {
-			// missing required 'db_table' parameter
-			$error = 'Factory configuration file is missing required "db_table" parameter for the Storage category';
-			throw new InitializationException($error);
-		}
+        if (!$this->hasParameter('db_table')) {
+            // missing required 'db_table' parameter
+            $error = 'Factory configuration file is missing required "db_table" parameter for the Storage category';
+            throw new InitializationException($error);
+        }
 
-		// use this object as the session handler
-		session_set_save_handler(
-			array($this, 'sessionOpen'),
-			array($this, 'sessionClose'),
-			array($this, 'sessionRead'),
-			array($this, 'sessionWrite'),
-			array($this, 'sessionDestroy'),
-			array($this, 'sessionGC')
-		);
-	}
+        // use this object as the session handler
+        session_set_save_handler(
+            array($this, 'sessionOpen'),
+            array($this, 'sessionClose'),
+            array($this, 'sessionRead'),
+            array($this, 'sessionWrite'),
+            array($this, 'sessionDestroy'),
+            array($this, 'sessionGC')
+        );
+    }
 
-	/**
-	 * Close a session.
-	 *
-	 * @return     bool true, if the session was closed, otherwise false.
-	 *
-	 * @author     Sean Kerr <skerr@mojavi.org>
-	 * @author     Dominik del Bondio <ddb@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function sessionClose()
-	{
-		if($this->connection) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+    /**
+     * Close a session.
+     *
+     * @return     bool true, if the session was closed, otherwise false.
+     *
+     * @author     Sean Kerr <skerr@mojavi.org>
+     * @author     Dominik del Bondio <ddb@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function sessionClose()
+    {
+        if ($this->connection) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-	/**
-	 * Destroy a session.
-	 *
-	 * @param      string $id A session ID.
-	 *
-	 * @return     bool true, if the session was destroyed, otherwise an
-	 *                  exception is thrown.
-	 *
-	 * @throws     <b>AgaviDatabaseException</b> If the session cannot be
-	 *                                           destroyed.
-	 *
-	 * @author     Sean Kerr <skerr@mojavi.org>
-	 * @author     Veikko Mäkinen <mail@veikkomakinen.com>
-	 * @author     Dominik del Bondio <ddb@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function sessionDestroy($id)
-	{
-		if(!$this->connection) {
-			return false;
-		}
-		
-		// get table/column
-		$db_table  = $this->getParameter('db_table');
-		$db_id_col = $this->getParameter('db_id_col', 'sess_id');
+    /**
+     * Destroy a session.
+     *
+     * @param      string $id A session ID.
+     *
+     * @return     bool true, if the session was destroyed, otherwise an
+     *                  exception is thrown.
+     *
+     * @throws     <b>AgaviDatabaseException</b> If the session cannot be
+     *                                           destroyed.
+     *
+     * @author     Sean Kerr <skerr@mojavi.org>
+     * @author     Veikko Mäkinen <mail@veikkomakinen.com>
+     * @author     Dominik del Bondio <ddb@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function sessionDestroy($id)
+    {
+        if (!$this->connection) {
+            return false;
+        }
+        
+        // get table/column
+        $db_table  = $this->getParameter('db_table');
+        $db_id_col = $this->getParameter('db_id_col', 'sess_id');
 
-		// delete the record associated with this id
-		$sql = sprintf('DELETE FROM %s WHERE %s = ?', $db_table, $db_id_col);
+        // delete the record associated with this id
+        $sql = sprintf('DELETE FROM %s WHERE %s = ?', $db_table, $db_id_col);
 
-		try {
-			$stmt = $this->connection->prepare($sql);
-			$result = $stmt->execute(array($id));
-			if(!$result) {
-				$errorInfo = $stmt->errorInfo();
-				$e = new \PDOException($errorInfo[2], $errorInfo[0]);
-				$e->errorInfo = $errorInfo;
-				throw $e;
-			}
-			return true;
-		} catch(\PDOException $e) {
-			$error = sprintf('PDOException was thrown when trying to manipulate session data. Message: "%s"', $e->getMessage());
-			throw new DatabaseException($error, 0, $e);
-		}
-	}
+        try {
+            $stmt = $this->connection->prepare($sql);
+            $result = $stmt->execute(array($id));
+            if (!$result) {
+                $errorInfo = $stmt->errorInfo();
+                $e = new \PDOException($errorInfo[2], $errorInfo[0]);
+                $e->errorInfo = $errorInfo;
+                throw $e;
+            }
+            return true;
+        } catch (\PDOException $e) {
+            $error = sprintf('PDOException was thrown when trying to manipulate session data. Message: "%s"', $e->getMessage());
+            throw new DatabaseException($error, 0, $e);
+        }
+    }
 
-	/**
-	 * Cleanup old sessions.
-	 *
-	 * @param      int $lifetime The lifetime of a session.
-	 *
-	 * @return     bool true, if old sessions have been cleaned, otherwise an
-	 *                  exception is thrown.
-	 *
-	 * @throws     DatabaseException If old sessions cannot be
-	 *                                           cleaned.
-	 *
-	 * @author     Sean Kerr <skerr@mojavi.org>
-	 * @author     Veikko Mäkinen <mail@veikkomakinen.com>
-	 * @author     Dominik del Bondio <ddb@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function sessionGC($lifetime)
-	{
-		if(!$this->connection) {
-			return false;
-		}
-		
-		// determine deletable session time
-		$time = time() - $lifetime;
-		$time = date($this->getParameter('date_format', 'U'), $time);
+    /**
+     * Cleanup old sessions.
+     *
+     * @param      int $lifetime The lifetime of a session.
+     *
+     * @return     bool true, if old sessions have been cleaned, otherwise an
+     *                  exception is thrown.
+     *
+     * @throws     DatabaseException If old sessions cannot be
+     *                                           cleaned.
+     *
+     * @author     Sean Kerr <skerr@mojavi.org>
+     * @author     Veikko Mäkinen <mail@veikkomakinen.com>
+     * @author     Dominik del Bondio <ddb@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function sessionGC($lifetime)
+    {
+        if (!$this->connection) {
+            return false;
+        }
+        
+        // determine deletable session time
+        $time = time() - $lifetime;
+        $time = date($this->getParameter('date_format', 'U'), $time);
 
-		// get table/column
-		$db_table    = $this->getParameter('db_table');
-		$db_time_col = $this->getParameter('db_time_col', 'sess_time');
+        // get table/column
+        $db_table    = $this->getParameter('db_table');
+        $db_time_col = $this->getParameter('db_time_col', 'sess_time');
 
-		// delete the records that are expired
-		$sql = sprintf('DELETE FROM %s WHERE %s < :time', $db_table, $db_time_col);
+        // delete the records that are expired
+        $sql = sprintf('DELETE FROM %s WHERE %s < :time', $db_table, $db_time_col);
 
-		try {
-			$stmt = $this->connection->prepare($sql);
-			if(is_numeric($time)) {
-				$time = (int)$time;
-				$stmt->bindValue(':time', $time, PDO::PARAM_INT);
-			} else {
-				$stmt->bindValue(':time', $time, PDO::PARAM_STR);
-			}
-			$result = $stmt->execute();
-			
-			if(!$result) {
-				$errorInfo = $stmt->errorInfo();
-				$e = new \PDOException($errorInfo[2], $errorInfo[0]);
-				$e->errorInfo = $errorInfo;
-				throw $e;
-			}
-			
-			return true;
-		} catch(\PDOException $e) {
-			$error = sprintf('PDOException was thrown when trying to manipulate session data. Message: "%s"', $e->getMessage());
-			throw new DatabaseException($error, 0, $e);
-		}
-	}
+        try {
+            $stmt = $this->connection->prepare($sql);
+            if (is_numeric($time)) {
+                $time = (int)$time;
+                $stmt->bindValue(':time', $time, PDO::PARAM_INT);
+            } else {
+                $stmt->bindValue(':time', $time, PDO::PARAM_STR);
+            }
+            $result = $stmt->execute();
+            
+            if (!$result) {
+                $errorInfo = $stmt->errorInfo();
+                $e = new \PDOException($errorInfo[2], $errorInfo[0]);
+                $e->errorInfo = $errorInfo;
+                throw $e;
+            }
+            
+            return true;
+        } catch (\PDOException $e) {
+            $error = sprintf('PDOException was thrown when trying to manipulate session data. Message: "%s"', $e->getMessage());
+            throw new DatabaseException($error, 0, $e);
+        }
+    }
 
-	/**
-	 * Open a session.
-	 *
-	 * @param      string $path The path is ignored.
-	 * @param      string $name The name is ignored.
-	 *
-	 * @return     bool true, if the session was opened, otherwise an exception
-	 *                  is thrown.
-	 *
-	 * @throws     <b>AgaviDatabaseException</b> If a connection with the database
-	 *                                           does not exist or cannot be
-	 *                                           created.
-	 *
-	 * @author     Sean Kerr <skerr@mojavi.org>
-	 * @author     Veikko Mäkinen <mail@veikkomakinen.com>
-	 * @author     Dominik del Bondio <ddb@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function sessionOpen($path, $name)
-	{
-		// what database are we using?
-		$database = $this->getParameter('database', null);
+    /**
+     * Open a session.
+     *
+     * @param      string $path The path is ignored.
+     * @param      string $name The name is ignored.
+     *
+     * @return     bool true, if the session was opened, otherwise an exception
+     *                  is thrown.
+     *
+     * @throws     <b>AgaviDatabaseException</b> If a connection with the database
+     *                                           does not exist or cannot be
+     *                                           created.
+     *
+     * @author     Sean Kerr <skerr@mojavi.org>
+     * @author     Veikko Mäkinen <mail@veikkomakinen.com>
+     * @author     Dominik del Bondio <ddb@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function sessionOpen($path, $name)
+    {
+        // what database are we using?
+        $database = $this->getParameter('database', null);
 
-		$this->connection = $this->getContext()->getDatabaseConnection($database);
-		if($this->connection === null || !$this->connection instanceof \PDO) {
-			$error = 'Database connection "' . $database . '" could not be found or is not a PDO database connection.';
-			throw new DatabaseException($error);
-		}
+        $this->connection = $this->getContext()->getDatabaseConnection($database);
+        if ($this->connection === null || !$this->connection instanceof \PDO) {
+            $error = 'Database connection "' . $database . '" could not be found or is not a PDO database connection.';
+            throw new DatabaseException($error);
+        }
 
-		return true;
-	}
+        return true;
+    }
 
-	/**
-	 * Read a session.
-	 *
-	 * @param      string $id A session ID.
-	 *
-	 * @return     bool true, if the session was read, otherwise an exception is
-	 *                  thrown.
-	 *
-	 * @throws     DatabaseException If the session cannot be read.
-	 *
-	 * @author     Sean Kerr <skerr@mojavi.org>
-	 * @author     Veikko Mäkinen <mail@veikkomakinen.com>
-	 * @author     Dominik del Bondio <ddb@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function sessionRead($id)
-	{
-		if(!$this->connection) {
-			return false;
-		}
-		
-		// get table/columns
-		$db_table    = $this->getParameter('db_table');
-		$db_data_col = $this->getParameter('db_data_col', 'sess_data');
-		$db_id_col   = $this->getParameter('db_id_col', 'sess_id');
-		$db_time_col = $this->getParameter('db_time_col', 'sess_time');
+    /**
+     * Read a session.
+     *
+     * @param      string $id A session ID.
+     *
+     * @return     bool true, if the session was read, otherwise an exception is
+     *                  thrown.
+     *
+     * @throws     DatabaseException If the session cannot be read.
+     *
+     * @author     Sean Kerr <skerr@mojavi.org>
+     * @author     Veikko Mäkinen <mail@veikkomakinen.com>
+     * @author     Dominik del Bondio <ddb@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function sessionRead($id)
+    {
+        if (!$this->connection) {
+            return false;
+        }
+        
+        // get table/columns
+        $db_table    = $this->getParameter('db_table');
+        $db_data_col = $this->getParameter('db_data_col', 'sess_data');
+        $db_id_col   = $this->getParameter('db_id_col', 'sess_id');
+        $db_time_col = $this->getParameter('db_time_col', 'sess_time');
 
-		try {
-			$sql = sprintf('SELECT %s FROM %s WHERE %s = ?', $db_data_col, $db_table, $db_id_col);
+        try {
+            $sql = sprintf('SELECT %s FROM %s WHERE %s = ?', $db_data_col, $db_table, $db_id_col);
 
-			$stmt = $this->connection->prepare($sql);
-			$result = $stmt->execute(array($id));
-			
-			if(!$result) {
-				$errorInfo = $stmt->errorInfo();
-				$e = new \PDOException($errorInfo[2], $errorInfo[0]);
-				$e->errorInfo = $errorInfo;
-				throw $e;
-			}
-			
-			if($result = $stmt->fetch(\PDO::FETCH_NUM)) {
-				$result = $result[0];
-				// pdo is returning the LOB as stream, so check if we had a lob (this seems to differ from db to db)
-				if(is_resource($result)) {
-					$result = stream_get_contents($result);
-				}
-				return $result;
-			}
+            $stmt = $this->connection->prepare($sql);
+            $result = $stmt->execute(array($id));
+            
+            if (!$result) {
+                $errorInfo = $stmt->errorInfo();
+                $e = new \PDOException($errorInfo[2], $errorInfo[0]);
+                $e->errorInfo = $errorInfo;
+                throw $e;
+            }
+            
+            if ($result = $stmt->fetch(\PDO::FETCH_NUM)) {
+                $result = $result[0];
+                // pdo is returning the LOB as stream, so check if we had a lob (this seems to differ from db to db)
+                if (is_resource($result)) {
+                    $result = stream_get_contents($result);
+                }
+                return $result;
+            }
 
-			return '';
-		} catch(\PDOException $e) {
-			$error = sprintf('PDOException was thrown when trying to manipulate session data. Message: "%s"', $e->getMessage());
-			throw new DatabaseException($error, 0, $e);
-		}
-	}
+            return '';
+        } catch (\PDOException $e) {
+            $error = sprintf('PDOException was thrown when trying to manipulate session data. Message: "%s"', $e->getMessage());
+            throw new DatabaseException($error, 0, $e);
+        }
+    }
 
-	/**
-	 * Write session data.
-	 *
-	 * @param      string $id  session ID.
-	 * @param      string $data A serialized chunk of session data.
-	 *
-	 * @return     bool true, if the session was written, otherwise an exception
-	 *                  is thrown.
-	 *
-	 * @throws     <b>AgaviDatabaseException</b> If session data cannot be
-	 *                                           written.
-	 *
-	 * @author     Sean Kerr <skerr@mojavi.org>
-	 * @author     Veikko Mäkinen <mail@veikkomakinen.com>
-	 * @author     Dominik del Bondio <ddb@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function sessionWrite($id, $data)
-	{
-		if(!$this->connection) {
-			return false;
-		}
-		
-		// get table/column
-		$db_table    = $this->getParameter('db_table');
-		$db_data_col = $this->getParameter('db_data_col', 'sess_data');
-		$db_id_col   = $this->getParameter('db_id_col', 'sess_id');
-		$db_time_col = $this->getParameter('db_time_col', 'sess_time');
+    /**
+     * Write session data.
+     *
+     * @param      string $id  session ID.
+     * @param      string $data A serialized chunk of session data.
+     *
+     * @return     bool true, if the session was written, otherwise an exception
+     *                  is thrown.
+     *
+     * @throws     <b>AgaviDatabaseException</b> If session data cannot be
+     *                                           written.
+     *
+     * @author     Sean Kerr <skerr@mojavi.org>
+     * @author     Veikko Mäkinen <mail@veikkomakinen.com>
+     * @author     Dominik del Bondio <ddb@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function sessionWrite($id, $data)
+    {
+        if (!$this->connection) {
+            return false;
+        }
+        
+        // get table/column
+        $db_table    = $this->getParameter('db_table');
+        $db_data_col = $this->getParameter('db_data_col', 'sess_data');
+        $db_id_col   = $this->getParameter('db_id_col', 'sess_id');
+        $db_time_col = $this->getParameter('db_time_col', 'sess_time');
 
-		$isOracle = $this->connection->getAttribute(\PDO::ATTR_DRIVER_NAME) == 'oracle';
-		$useLob = $this->getParameter('data_as_lob', true);
-		$columnType = ($isOracle || $useLob) ? \PDO::PARAM_LOB : \PDO::PARAM_STR;
+        $isOracle = $this->connection->getAttribute(\PDO::ATTR_DRIVER_NAME) == 'oracle';
+        $useLob = $this->getParameter('data_as_lob', true);
+        $columnType = ($isOracle || $useLob) ? \PDO::PARAM_LOB : \PDO::PARAM_STR;
 
-		if($isOracle) {
-			$sp = fopen('php://memory', 'r+');
-			fwrite($sp, $data);
-			rewind($sp);
-		} else {
-			$sp = $data;
-		}
+        if ($isOracle) {
+            $sp = fopen('php://memory', 'r+');
+            fwrite($sp, $data);
+            rewind($sp);
+        } else {
+            $sp = $data;
+        }
 
-		$ts = date($this->getParameter('date_format', 'U'));
-		if(is_numeric($ts)) {
-			$ts = (int)$ts;
-		}
+        $ts = date($this->getParameter('date_format', 'U'));
+        if (is_numeric($ts)) {
+            $ts = (int)$ts;
+        }
 
-		try {
-			// pretend the session does not exist and attempt to create it first
-			$sql = sprintf('INSERT INTO %s (%s, %s, %s) VALUES (:id, :data, :time)', $db_table, $db_id_col, $db_data_col, $db_time_col);
+        try {
+            // pretend the session does not exist and attempt to create it first
+            $sql = sprintf('INSERT INTO %s (%s, %s, %s) VALUES (:id, :data, :time)', $db_table, $db_id_col, $db_data_col, $db_time_col);
 
-			$stmt = $this->connection->prepare($sql);
-			$stmt->bindParam(':id', $id);
-			$stmt->bindParam(':data', $sp, $columnType);
-			if(is_int($ts)) {
-				$stmt->bindValue(':time', $ts, \PDO::PARAM_INT);
-			} else {
-				$stmt->bindValue(':time', $ts, \PDO::PARAM_STR);
-			}
-			$this->connection->beginTransaction();
-			if(!$stmt->execute()) {
-				$errorInfo = $stmt->errorInfo();
-				$e = new \PDOException($errorInfo[2], $errorInfo[0]);
-				$e->errorInfo = $errorInfo;
-				throw $e;
-			}
-			if(!$this->connection->commit()) {
-				$errorInfo = $stmt->errorInfo();
-				$e = new \PDOException($errorInfo[2], $errorInfo[0]);
-				$e->errorInfo = $errorInfo;
-				throw $e;
-			}
-		} catch(\PDOException $e) {
-			// something went wrong; probably a key collision, which means this session already exists
-			$this->connection->rollback();
+            $stmt = $this->connection->prepare($sql);
+            $stmt->bindParam(':id', $id);
+            $stmt->bindParam(':data', $sp, $columnType);
+            if (is_int($ts)) {
+                $stmt->bindValue(':time', $ts, \PDO::PARAM_INT);
+            } else {
+                $stmt->bindValue(':time', $ts, \PDO::PARAM_STR);
+            }
+            $this->connection->beginTransaction();
+            if (!$stmt->execute()) {
+                $errorInfo = $stmt->errorInfo();
+                $e = new \PDOException($errorInfo[2], $errorInfo[0]);
+                $e->errorInfo = $errorInfo;
+                throw $e;
+            }
+            if (!$this->connection->commit()) {
+                $errorInfo = $stmt->errorInfo();
+                $e = new \PDOException($errorInfo[2], $errorInfo[0]);
+                $e->errorInfo = $errorInfo;
+                throw $e;
+            }
+        } catch (\PDOException $e) {
+            // something went wrong; probably a key collision, which means this session already exists
+            $this->connection->rollback();
 
-			if($isOracle) {
-				$sql = sprintf('UPDATE %s SET %s = EMPTY_BLOB(), %s = :time WHERE %s = :id RETURNING %s INTO :data', $db_table, $db_data_col, $db_time_col, $db_id_col, $db_data_col);
-			} else {
-				$sql = sprintf('UPDATE %s SET %s = :data, %s = :time WHERE %s = :id', $db_table, $db_data_col, $db_time_col, $db_id_col);
-			}
+            if ($isOracle) {
+                $sql = sprintf('UPDATE %s SET %s = EMPTY_BLOB(), %s = :time WHERE %s = :id RETURNING %s INTO :data', $db_table, $db_data_col, $db_time_col, $db_id_col, $db_data_col);
+            } else {
+                $sql = sprintf('UPDATE %s SET %s = :data, %s = :time WHERE %s = :id', $db_table, $db_data_col, $db_time_col, $db_id_col);
+            }
 
-			$stmt = $this->connection->prepare($sql);
-			$stmt->bindParam(':data', $sp, $columnType);
-			if(is_int($ts)) {
-				$stmt->bindValue(':time', $ts, \PDO::PARAM_INT);
-			} else {
-				$stmt->bindValue(':time', $ts, \PDO::PARAM_STR);
-			}
-			$stmt->bindParam(':id', $id);
-			$this->connection->beginTransaction();
-			if(!$stmt->execute()) {
-				$errorInfo = $stmt->errorInfo();
-				$e = new \PDOException($errorInfo[2], $errorInfo[0]);
-				$e->errorInfo = $errorInfo;
-				throw $e;
-			}
-			if(!$this->connection->commit()) {
-				$errorInfo = $stmt->errorInfo();
-				$e = new \PDOException($errorInfo[2], $errorInfo[0]);
-				$e->errorInfo = $errorInfo;
-				throw $e;
-			}
-		} catch(\PDOException $e) {
-			$this->connection->rollback();
-			$error = sprintf('PDOException was thrown when trying to manipulate session data. Message: "%s"', $e->getMessage());
-			throw new DatabaseException($error, 0, $e);
-		}
-		
-		return true;
-	}
+            $stmt = $this->connection->prepare($sql);
+            $stmt->bindParam(':data', $sp, $columnType);
+            if (is_int($ts)) {
+                $stmt->bindValue(':time', $ts, \PDO::PARAM_INT);
+            } else {
+                $stmt->bindValue(':time', $ts, \PDO::PARAM_STR);
+            }
+            $stmt->bindParam(':id', $id);
+            $this->connection->beginTransaction();
+            if (!$stmt->execute()) {
+                $errorInfo = $stmt->errorInfo();
+                $e = new \PDOException($errorInfo[2], $errorInfo[0]);
+                $e->errorInfo = $errorInfo;
+                throw $e;
+            }
+            if (!$this->connection->commit()) {
+                $errorInfo = $stmt->errorInfo();
+                $e = new \PDOException($errorInfo[2], $errorInfo[0]);
+                $e->errorInfo = $errorInfo;
+                throw $e;
+            }
+        } catch (\PDOException $e) {
+            $this->connection->rollback();
+            $error = sprintf('PDOException was thrown when trying to manipulate session data. Message: "%s"', $e->getMessage());
+            throw new DatabaseException($error, 0, $e);
+        }
+        
+        return true;
+    }
 }
-
-?>

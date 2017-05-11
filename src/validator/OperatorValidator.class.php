@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Validator;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -16,9 +17,9 @@ use Agavi\Request\RequestDataHolder;
 
 /**
  * OperatorValidator
- * 
+ *
  * Operators group a couple if validators...
- * 
+ *
  * @package    agavi
  * @subpackage validator
  *
@@ -33,226 +34,224 @@ use Agavi\Request\RequestDataHolder;
  */
 abstract class OperatorValidator extends Validator implements ValidatorContainerInterface
 {
-	/**
-	 * @var        array The child validators.
-	 */
-	protected $children = array();
+    /**
+     * @var        array The child validators.
+     */
+    protected $children = array();
 
-	/**
-	 * @var        int The highest error severity in the container.
-	 */
-	protected $result = Validator::SUCCESS;
-	
+    /**
+     * @var        int The highest error severity in the container.
+     */
+    protected $result = Validator::SUCCESS;
+    
 
-	/**
-	 * Method for checking the validity of child validators.
-	 * 
-	 * Some operators (XOR and NOT) need a specific quantity of child
-	 * validators so they implement an algorithm that checks of the setup
-	 * is valid. This method is run first when execute() is invoked and
-	 * should throw an exception if the setup is invalid.
-	 * 
-	 * @throws     <b>AgaviValidatorException</b> If the  quantity of child 
-	 *                                           validators is invalid
-	 *
-	 * @author     Uwe Mesecke <uwe@mesecke.net>
-	 * @since      0.11.0
-	 */
-	protected function checkValidSetup()
-	{
-	}
-	
-	/**
-	 * Shutdown method, for shutting down the model etc.
-	 *
-	 * @author     Uwe Mesecke <uwe@mesecke.net>
-	 * @since      0.11.0
-	 */
-	public function shutdown()
-	{
-		/** @var Validator $child */
-		foreach($this->children as $child) {
-			$child->shutdown();
-		}
-	}
-	
+    /**
+     * Method for checking the validity of child validators.
+     *
+     * Some operators (XOR and NOT) need a specific quantity of child
+     * validators so they implement an algorithm that checks of the setup
+     * is valid. This method is run first when execute() is invoked and
+     * should throw an exception if the setup is invalid.
+     *
+     * @throws     <b>AgaviValidatorException</b> If the  quantity of child
+     *                                           validators is invalid
+     *
+     * @author     Uwe Mesecke <uwe@mesecke.net>
+     * @since      0.11.0
+     */
+    protected function checkValidSetup()
+    {
+    }
+    
+    /**
+     * Shutdown method, for shutting down the model etc.
+     *
+     * @author     Uwe Mesecke <uwe@mesecke.net>
+     * @since      0.11.0
+     */
+    public function shutdown()
+    {
+        /** @var Validator $child */
+        foreach ($this->children as $child) {
+            $child->shutdown();
+        }
+    }
+    
 
-	/**
-	 * Adds a validation result for a given field.
-	 *
-	 * @param      Validator $validator The validator.
-	 * @param      string $fieldname The name of the field which has been validated.
-	 * @param      int    $result The result of the validation.
-	 *
-	 * @author     Dominik del Bondio <ddb@bitxtender.com>
-	 * @since      0.11.0
-	 *
-	 * @deprecated 1.0.0
-	 */
-	public function addFieldResult($validator, $fieldname, $result)
-	{
-		if($this->parentContainer !== null) {
-			return $this->parentContainer->addFieldResult($validator, $fieldname, $result);
-		}
-		return null;
-	}
+    /**
+     * Adds a validation result for a given field.
+     *
+     * @param      Validator $validator The validator.
+     * @param      string $fieldname The name of the field which has been validated.
+     * @param      int    $result The result of the validation.
+     *
+     * @author     Dominik del Bondio <ddb@bitxtender.com>
+     * @since      0.11.0
+     *
+     * @deprecated 1.0.0
+     */
+    public function addFieldResult($validator, $fieldname, $result)
+    {
+        if ($this->parentContainer !== null) {
+            return $this->parentContainer->addFieldResult($validator, $fieldname, $result);
+        }
+        return null;
+    }
 
-	/**
-	 * Adds a intermediate result of an validator for the given argument
-	 *
-	 * @param      ValidationArgument $argument The argument
-	 * @param      int                $result The arguments result.
-	 * @param      Validator          $validator The validator (if the error was caused
-	 *                                     inside a validator).
-	 *
-	 * @author     Dominik del Bondio <dominik.del.bondio@bitextender.com>
-	 * @since      1.0.0
-	 */
-	public function addArgumentResult(ValidationArgument $argument, $result, $validator = null)
-	{
-		if($this->parentContainer !== null) {
-			return $this->parentContainer->addArgumentResult($argument, $result, $validator);
-		}
-		return null;
-	}
+    /**
+     * Adds a intermediate result of an validator for the given argument
+     *
+     * @param      ValidationArgument $argument The argument
+     * @param      int                $result The arguments result.
+     * @param      Validator          $validator The validator (if the error was caused
+     *                                     inside a validator).
+     *
+     * @author     Dominik del Bondio <dominik.del.bondio@bitextender.com>
+     * @since      1.0.0
+     */
+    public function addArgumentResult(ValidationArgument $argument, $result, $validator = null)
+    {
+        if ($this->parentContainer !== null) {
+            return $this->parentContainer->addArgumentResult($argument, $result, $validator);
+        }
+        return null;
+    }
 
-	/**
-	 * Adds an incident to the validation result. 
-	 *
-	 * @param      ValidationIncident $incident The incident.
-	 *
-	 * @author     Dominik del Bondio <ddb@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function addIncident(ValidationIncident $incident)
-	{
-		if($this->parentContainer !== null) {
-			return $this->parentContainer->addIncident($incident);
-		}
-		return null;
-	}
+    /**
+     * Adds an incident to the validation result.
+     *
+     * @param      ValidationIncident $incident The incident.
+     *
+     * @author     Dominik del Bondio <ddb@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function addIncident(ValidationIncident $incident)
+    {
+        if ($this->parentContainer !== null) {
+            return $this->parentContainer->addIncident($incident);
+        }
+        return null;
+    }
 
-	/**
-	 * Adds new child validator.
-	 * 
-	 * @param      Validator $validator The new child validator.
-	 *
-	 * @author     Uwe Mesecke <uwe@mesecke.net>
-	 * @since      0.11.0
-	 */
-	public function addChild(Validator $validator)
-	{
-		$name = $validator->getName();
-		if(isset($this->children[$name])) {
-			throw new \InvalidArgumentException('A validator with the name "' . $name . '" already exists');
-		}
+    /**
+     * Adds new child validator.
+     *
+     * @param      Validator $validator The new child validator.
+     *
+     * @author     Uwe Mesecke <uwe@mesecke.net>
+     * @since      0.11.0
+     */
+    public function addChild(Validator $validator)
+    {
+        $name = $validator->getName();
+        if (isset($this->children[$name])) {
+            throw new \InvalidArgumentException('A validator with the name "' . $name . '" already exists');
+        }
 
-		$this->children[$name] = $validator;
-		$validator->setParentContainer($this);
-	}
+        $this->children[$name] = $validator;
+        $validator->setParentContainer($this);
+    }
 
-	/**
-	 * Returns a named child validator.
-	 *
-	 * @param      string $name The child validator.
-	 *
-	 * @author     Dominik del Bondio <ddb@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function getChild($name)
-	{
-		if(!isset($this->children[$name])) {
-			throw new \InvalidArgumentException('A validator with the name "' . $name . '" does not exist');
-		}
+    /**
+     * Returns a named child validator.
+     *
+     * @param      string $name The child validator.
+     *
+     * @author     Dominik del Bondio <ddb@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function getChild($name)
+    {
+        if (!isset($this->children[$name])) {
+            throw new \InvalidArgumentException('A validator with the name "' . $name . '" does not exist');
+        }
 
-		return $this->children[$name];
-	}
+        return $this->children[$name];
+    }
 
-	/**
-	 * Returns all child validators.
-	 *
-	 * @return     Validator[] An array of Validator instances.
-	 *
-	 * @author     Dominik del Bondio <ddb@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function getChilds()
-	{
-		return $this->children;
-	}
+    /**
+     * Returns all child validators.
+     *
+     * @return     Validator[] An array of Validator instances.
+     *
+     * @author     Dominik del Bondio <ddb@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function getChilds()
+    {
+        return $this->children;
+    }
 
-	/**
-	 * Registers an array of validators.
-	 * 
-	 * @param      Validator[] $validators The array of validators.
-	 * 
-	 * @author     Uwe Mesecke <uwe@mesecke.net>
-	 * @since      0.11.0
-	 */
-	public function registerValidators(array $validators)
-	{
-		foreach($validators as $validator) {
-			$this->addChild($validator);
-		}
-	}
-	
-	/**
-	 * Gets parent's dependency manager.
-	 * 
-	 * @return     DependencyManager The parent's dependency manager.
-	 *
-	 * @author     Uwe Mesecke <uwe@mesecke.net>
-	 * @since      0.11.0
-	 */
-	public function getDependencyManager()
-	{
-		return $this->parentContainer->getDependencyManager();
-	}
+    /**
+     * Registers an array of validators.
+     *
+     * @param      Validator[] $validators The array of validators.
+     *
+     * @author     Uwe Mesecke <uwe@mesecke.net>
+     * @since      0.11.0
+     */
+    public function registerValidators(array $validators)
+    {
+        foreach ($validators as $validator) {
+            $this->addChild($validator);
+        }
+    }
+    
+    /**
+     * Gets parent's dependency manager.
+     *
+     * @return     DependencyManager The parent's dependency manager.
+     *
+     * @author     Uwe Mesecke <uwe@mesecke.net>
+     * @since      0.11.0
+     */
+    public function getDependencyManager()
+    {
+        return $this->parentContainer->getDependencyManager();
+    }
 
-	/**
-	 * Returns the result from the error manager.
-	 * 
-	 * @return     int The result of the validation process.
-	 * 
-	 * @author     Dominik del Bondio <ddb@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function getResult()
-	{
-		return $this->result;
-	}
+    /**
+     * Returns the result from the error manager.
+     *
+     * @return     int The result of the validation process.
+     *
+     * @author     Dominik del Bondio <ddb@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function getResult()
+    {
+        return $this->result;
+    }
 
-	/**
-	 * Executes the validator.
-	 * 
-	 * Executes the operators validate()-Method after checking the quantity
-	 * of child validators with checkValidSetup().
-	 * 
-	 * @param      RequestDataHolder $parameters The parameters which should be validated.
-	 *
-	 * @return     int The result of validation (SUCCESS, NONE, NOTICE, ERROR, CRITICAL).
-	 *
-	 * @author     Uwe Mesecke <uwe@mesecke.net>
-	 * @since      0.11.0
-	 */
-	public function execute(RequestDataHolder $parameters)
-	{
-		// check if we have a valid setup of validators
-		$this->checkValidSetup();
-		
-		$result = parent::execute($parameters);
-		if($result != Validator::SUCCESS && !$this->getParameter('skip_errors') && $this->result == Validator::CRITICAL) {
-			/*
+    /**
+     * Executes the validator.
+     *
+     * Executes the operators validate()-Method after checking the quantity
+     * of child validators with checkValidSetup().
+     *
+     * @param      RequestDataHolder $parameters The parameters which should be validated.
+     *
+     * @return     int The result of validation (SUCCESS, NONE, NOTICE, ERROR, CRITICAL).
+     *
+     * @author     Uwe Mesecke <uwe@mesecke.net>
+     * @since      0.11.0
+     */
+    public function execute(RequestDataHolder $parameters)
+    {
+        // check if we have a valid setup of validators
+        $this->checkValidSetup();
+        
+        $result = parent::execute($parameters);
+        if ($result != Validator::SUCCESS && !$this->getParameter('skip_errors') && $this->result == Validator::CRITICAL) {
+            /*
 			 * one of the child validators resulted with CRITICAL
 			 * we change our operator's result to CRITICAL, too so the
 			 * surrounding validator container is aware of the critical
 			 * result and can abort further validation... 
 			 */
-			$result = Validator::CRITICAL;
-		}
-		
-		return $result;
-	}
+            $result = Validator::CRITICAL;
+        }
+        
+        return $result;
+    }
 }
-
-?>

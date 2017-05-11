@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Renderer;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -33,184 +34,182 @@ use Agavi\View\TemplateLayer;
  */
 abstract class Renderer extends ParameterHolder
 {
-	/**
-	 * @var        Context An Context instance.
-	 */
-	protected $context = null;
+    /**
+     * @var        Context An Context instance.
+     */
+    protected $context = null;
 
-	/**
-	 * @var        string The context name.
-	 */
-	protected $contextName = null;
-	/**
-	 * @var        string A string with the default template file extension,
-	 *                    including the dot.
-	 */
-	protected $defaultExtension = '';
-	
-	/**
-	 * @var        string The name of the array that contains the template vars.
-	 */
-	protected $varName = 'template';
-	
-	/**
-	 * @var        string The name of the array that contains the slots output.
-	 */
-	protected $slotsVarName = 'slots';
-	
-	/**
-	 * @var        bool Whether or not the template vars should be extracted.
-	 */
-	protected $extractVars = false;
-	
-	/**
-	 * @var        array An array of objects to be exported for use in templates.
-	 */
-	protected $assigns = array();
-	
-	/**
-	 * @var        array An array of names for the "more" assigns.
-	 */
-	protected $moreAssignNames = array();
-	
-	/**
-	 * Pre-serialization callback.
-	 *
-	 * Will set the name of the context and exclude the instance from serializing.
-	 *
-	 * @author     David Zülke <dz@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function __sleep()
-	{
-		$this->contextName = $this->context->getName();
-		$arr = get_object_vars($this);
-		unset($arr['context']);
-		return array_keys($arr);
-	}
-	
-	/**
-	 * Post-unserialization callback.
-	 *
-	 * Will restore the context based on the names set by __sleep.
-	 *
-	 * @author     David Zülke <dz@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function __wakeup()
-	{
-		$this->context = Context::getInstance($this->contextName);
-		unset($this->contextName);
-	}
-	
-	/**
-	 * Initialize this Renderer.
-	 *
-	 * @param      Context $context The current application context.
-	 * @param      array   $parameters An associative array of initialization parameters.
-	 *
-	 * @author     David Zülke <dz@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function initialize(Context $context, array $parameters = array())
-	{
-		$this->context = $context;
-		
-		$this->setParameters($parameters);
-		
-		$this->varName = $this->getParameter('var_name', $this->varName);
-		$this->slotsVarName = $this->getParameter('slots_var_name', $this->slotsVarName);
-		$this->extractVars = $this->getParameter('extract_vars', $this->extractVars);
-		
-		$this->defaultExtension = $this->getParameter('default_extension', $this->defaultExtension);
-		
-		if(!$this->extractVars && $this->varName == $this->slotsVarName) {
-			throw new AgaviException('Template and Slots container variable names cannot be identical.');
-		}
-		
-		foreach($this->getParameter('assigns', array()) as $item => $var) {
-			$getter = 'get' . str_replace('_', '', $item);
-			if(is_callable(array($this->context, $getter))) {
-				if($var === null) {
-					// the name is null, which means this one should not be assigned
-					// we do this in here, not for the moreAssignNames, since those are checked later in the renderer
-					continue;
-				}
-				$this->assigns[$var] = $getter;
-			} else {
-				$this->moreAssignNames[$item] = $var;
-			}
-		}
-	}
-	
-	/**
-	 * Retrieve the current application context.
-	 *
-	 * @return     Context The current Context instance.
-	 *
-	 * @author     David Zülke <dz@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public final function getContext()
-	{
-		return $this->context;
-	}
-	
-	/**
-	 * Get the template file extension
-	 *
-	 * @return     string The extension, including a leading dot.
-	 *
-	 * @author     David Zülke <dz@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function getDefaultExtension()
-	{
-		return $this->defaultExtension;
-	}
-	
-	/**
-	 * Build an array of "more" assigns.
-	 *
-	 * @param      array $moreAssigns The values to be assigned.
-	 * @param      array $moreAssignNames Assigns name map.
-	 *
-	 * @return     array The data.
-	 *
-	 * @author     David Zülke <david.zuelke@bitextender.com>
-	 * @since      1.0.0
-	 */
-	protected static function &buildMoreAssigns(&$moreAssigns, $moreAssignNames)
-	{
-		$retval = array();
-		
-		foreach($moreAssigns as $name => &$value) {
-			if(isset($moreAssignNames[$name])) {
-				$name = $moreAssignNames[$name];
-			} elseif(array_key_exists($name, $moreAssignNames)) {
-				// the name is null, which means this one should not be assigned
-				continue;
-			}
-			$retval[$name] =& $value;
-		}
-		
-		return $retval;
-	}
-	
-	/**
-	 * Render the presentation and return the result.
-	 *
-	 * @param      TemplateLayer $layer The template layer to render.
-	 * @param      array         $attributes The template variables.
-	 * @param      array         $slots The slots.
-	 * @param      array         $moreAssigns Associative array of additional assigns.
-	 *
-	 * @return     string A rendered result.
-	 *
-	 * @author     David Zülke <dz@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	abstract public function render(TemplateLayer $layer, array &$attributes = array(), array &$slots = array(), array &$moreAssigns = array());
+    /**
+     * @var        string The context name.
+     */
+    protected $contextName = null;
+    /**
+     * @var        string A string with the default template file extension,
+     *                    including the dot.
+     */
+    protected $defaultExtension = '';
+    
+    /**
+     * @var        string The name of the array that contains the template vars.
+     */
+    protected $varName = 'template';
+    
+    /**
+     * @var        string The name of the array that contains the slots output.
+     */
+    protected $slotsVarName = 'slots';
+    
+    /**
+     * @var        bool Whether or not the template vars should be extracted.
+     */
+    protected $extractVars = false;
+    
+    /**
+     * @var        array An array of objects to be exported for use in templates.
+     */
+    protected $assigns = array();
+    
+    /**
+     * @var        array An array of names for the "more" assigns.
+     */
+    protected $moreAssignNames = array();
+    
+    /**
+     * Pre-serialization callback.
+     *
+     * Will set the name of the context and exclude the instance from serializing.
+     *
+     * @author     David Zülke <dz@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function __sleep()
+    {
+        $this->contextName = $this->context->getName();
+        $arr = get_object_vars($this);
+        unset($arr['context']);
+        return array_keys($arr);
+    }
+    
+    /**
+     * Post-unserialization callback.
+     *
+     * Will restore the context based on the names set by __sleep.
+     *
+     * @author     David Zülke <dz@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function __wakeup()
+    {
+        $this->context = Context::getInstance($this->contextName);
+        unset($this->contextName);
+    }
+    
+    /**
+     * Initialize this Renderer.
+     *
+     * @param      Context $context The current application context.
+     * @param      array   $parameters An associative array of initialization parameters.
+     *
+     * @author     David Zülke <dz@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function initialize(Context $context, array $parameters = array())
+    {
+        $this->context = $context;
+        
+        $this->setParameters($parameters);
+        
+        $this->varName = $this->getParameter('var_name', $this->varName);
+        $this->slotsVarName = $this->getParameter('slots_var_name', $this->slotsVarName);
+        $this->extractVars = $this->getParameter('extract_vars', $this->extractVars);
+        
+        $this->defaultExtension = $this->getParameter('default_extension', $this->defaultExtension);
+        
+        if (!$this->extractVars && $this->varName == $this->slotsVarName) {
+            throw new AgaviException('Template and Slots container variable names cannot be identical.');
+        }
+        
+        foreach ($this->getParameter('assigns', array()) as $item => $var) {
+            $getter = 'get' . str_replace('_', '', $item);
+            if (is_callable(array($this->context, $getter))) {
+                if ($var === null) {
+                    // the name is null, which means this one should not be assigned
+                    // we do this in here, not for the moreAssignNames, since those are checked later in the renderer
+                    continue;
+                }
+                $this->assigns[$var] = $getter;
+            } else {
+                $this->moreAssignNames[$item] = $var;
+            }
+        }
+    }
+    
+    /**
+     * Retrieve the current application context.
+     *
+     * @return     Context The current Context instance.
+     *
+     * @author     David Zülke <dz@bitxtender.com>
+     * @since      0.11.0
+     */
+    final public function getContext()
+    {
+        return $this->context;
+    }
+    
+    /**
+     * Get the template file extension
+     *
+     * @return     string The extension, including a leading dot.
+     *
+     * @author     David Zülke <dz@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function getDefaultExtension()
+    {
+        return $this->defaultExtension;
+    }
+    
+    /**
+     * Build an array of "more" assigns.
+     *
+     * @param      array $moreAssigns The values to be assigned.
+     * @param      array $moreAssignNames Assigns name map.
+     *
+     * @return     array The data.
+     *
+     * @author     David Zülke <david.zuelke@bitextender.com>
+     * @since      1.0.0
+     */
+    protected static function &buildMoreAssigns(&$moreAssigns, $moreAssignNames)
+    {
+        $retval = array();
+        
+        foreach ($moreAssigns as $name => &$value) {
+            if (isset($moreAssignNames[$name])) {
+                $name = $moreAssignNames[$name];
+            } elseif (array_key_exists($name, $moreAssignNames)) {
+                // the name is null, which means this one should not be assigned
+                continue;
+            }
+            $retval[$name] =& $value;
+        }
+        
+        return $retval;
+    }
+    
+    /**
+     * Render the presentation and return the result.
+     *
+     * @param      TemplateLayer $layer The template layer to render.
+     * @param      array         $attributes The template variables.
+     * @param      array         $slots The slots.
+     * @param      array         $moreAssigns Associative array of additional assigns.
+     *
+     * @return     string A rendered result.
+     *
+     * @author     David Zülke <dz@bitxtender.com>
+     * @since      0.11.0
+     */
+    abstract public function render(TemplateLayer $layer, array &$attributes = array(), array &$slots = array(), array &$moreAssigns = array());
 }
-
-?>

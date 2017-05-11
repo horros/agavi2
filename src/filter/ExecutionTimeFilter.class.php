@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Filter;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -19,7 +20,7 @@ use Agavi\Exception\FilterException;
 
 /**
  * ExecutionTimeFilter tracks the length of time it takes for an entire
- * request to be served starting with the dispatch and ending when the last 
+ * request to be served starting with the dispatch and ending when the last
  * controller request has been served.
  *
  * <b>Optional parameters:</b>
@@ -44,72 +45,70 @@ use Agavi\Exception\FilterException;
  */
 class ExecutionTimeFilter extends Filter implements GlobalFilterInterface, ControllerFilterInterface
 {
-	/**
-	 * Execute this filter.
-	 *
-	 * @param      FilterChain        $filterChain The filter chain.
-	 * @param      ExecutionContainer $container The current execution container.
-	 *
-	 * @throws     <b>AgaviFilterException</b> If an error occurs during execution.
-	 *
-	 * @author     David Zülke <dz@bitxtender.com>
-	 * @author     Sean Kerr <skerr@mojavi.org>
-	 * @since      0.9.0
-	 */
-	public function execute(FilterChain $filterChain, ExecutionContainer $container)
-	{
-		$comment = $this->getParameter('comment', false);
-		$replace = $this->getParameter('replace', false);
-		
-		$start = microtime(true);
-		$filterChain->execute($container);
-		
-		$response = $container->getResponse();
-		
-		$outputTypes = (array) $this->getParameter('output_types');
-		if(!$response->isContentMutable() || (is_array($outputTypes) && !in_array($response->getOutputType()->getName(), $outputTypes))) {
-			return;
-		}
-		
-		$time = (microtime(true) - $start);
-		
-		
-		if($replace) {
-			$output = $response->getContent();
-			$output = str_replace($replace, $time, $output);
-			$response->setContent($output);
-		}
-		
-		if($comment) {
-			if($comment === true) {
-				$comment = "\n\n<!-- This page took %s seconds to process -->";
-			}
-			$response->appendContent(sprintf($comment, $time));
-		}
-	}
+    /**
+     * Execute this filter.
+     *
+     * @param      FilterChain        $filterChain The filter chain.
+     * @param      ExecutionContainer $container The current execution container.
+     *
+     * @throws     <b>AgaviFilterException</b> If an error occurs during execution.
+     *
+     * @author     David Zülke <dz@bitxtender.com>
+     * @author     Sean Kerr <skerr@mojavi.org>
+     * @since      0.9.0
+     */
+    public function execute(FilterChain $filterChain, ExecutionContainer $container)
+    {
+        $comment = $this->getParameter('comment', false);
+        $replace = $this->getParameter('replace', false);
+        
+        $start = microtime(true);
+        $filterChain->execute($container);
+        
+        $response = $container->getResponse();
+        
+        $outputTypes = (array) $this->getParameter('output_types');
+        if (!$response->isContentMutable() || (is_array($outputTypes) && !in_array($response->getOutputType()->getName(), $outputTypes))) {
+            return;
+        }
+        
+        $time = (microtime(true) - $start);
+        
+        
+        if ($replace) {
+            $output = $response->getContent();
+            $output = str_replace($replace, $time, $output);
+            $response->setContent($output);
+        }
+        
+        if ($comment) {
+            if ($comment === true) {
+                $comment = "\n\n<!-- This page took %s seconds to process -->";
+            }
+            $response->appendContent(sprintf($comment, $time));
+        }
+    }
 
-	/**
-	 * Initialize this filter.
-	 *
-	 * @param      Context $context The current application context.
-	 * @param      array   $parameters An associative array of initialization parameters.
-	 *
-	 * @throws     FilterException If an error occurs during initialization.
-	 *
-	 * @author     Sean Kerr <skerr@mojavi.org>
-	 * @author     David Zülke <dz@bitxtender.com>
-	 * @since      0.9.0
-	 */
-	public function initialize(Context $context, array $parameters = array())
-	{
-		// set defaults
-		$this->setParameter('comment', true);
-		$this->setParameter('replace', null);
-		$this->setParameter('output_types', null);
+    /**
+     * Initialize this filter.
+     *
+     * @param      Context $context The current application context.
+     * @param      array   $parameters An associative array of initialization parameters.
+     *
+     * @throws     FilterException If an error occurs during initialization.
+     *
+     * @author     Sean Kerr <skerr@mojavi.org>
+     * @author     David Zülke <dz@bitxtender.com>
+     * @since      0.9.0
+     */
+    public function initialize(Context $context, array $parameters = array())
+    {
+        // set defaults
+        $this->setParameter('comment', true);
+        $this->setParameter('replace', null);
+        $this->setParameter('output_types', null);
 
-		// initialize parent
-		parent::initialize($context, $parameters);
-	}
+        // initialize parent
+        parent::initialize($context, $parameters);
+    }
 }
-
-?>

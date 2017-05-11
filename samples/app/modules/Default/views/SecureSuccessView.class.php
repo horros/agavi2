@@ -16,16 +16,13 @@ use Agavi\Request\RequestDataHolder;
 
 class Default_SecureSuccessView extends SampleAppDefaultBaseView
 {
-	public function executeHtml(RequestDataHolder $rd)
-	{
-		$this->setupHtml($rd);
+    public function executeHtml(RequestDataHolder $rd)
+    {
+        $this->setupHtml($rd);
 
-		// set the title
-		$this->setAttribute('_title', $this->tm->_('Permission Denied', 'default.ErrorControllers'));
-		
-		$this->getResponse()->setHttpStatusCode('403');
-	}
-
+        // set the title
+        $this->setAttribute('_title', $this->tm->_('Permission Denied', 'default.ErrorControllers'));
+        
+        $this->getResponse()->setHttpStatusCode('403');
+    }
 }
-
-?>

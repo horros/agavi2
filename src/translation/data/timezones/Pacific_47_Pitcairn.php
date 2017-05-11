@@ -16,35 +16,35 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => -30600,
       'dstOffset' => 0,
       'name' => 'PNT',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => -28800,
       'dstOffset' => 0,
       'name' => 'PST',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -2177421580,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => 893665800,
       'type' => 1,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'static',
     'name' => 'PST',
@@ -55,5 +55,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Pacific/Pitcairn',
 );
-
-?>

@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Storage;
+
 // +---------------------------------------------------------------------------+
 // | This file is part of the Agavi package.                                   |
 // | Copyright (c) 2005-2011 the Agavi Project.                                |
@@ -31,67 +32,65 @@ namespace Agavi\Storage;
  */
 class NullStorage extends Storage
 {
-	/**
-	 * Read data from this storage.
-	 *
-	 * The preferred format for a key is directory style so naming conflicts can
-	 * be avoided.
-	 *
-	 * @param      string $key A unique key identifying your data.
-	 *
-	 * @return     void Always null.
-	 *
-	 * @author     David Zülke <dz@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function read($key)
-	{
-		return null;
-	}
+    /**
+     * Read data from this storage.
+     *
+     * The preferred format for a key is directory style so naming conflicts can
+     * be avoided.
+     *
+     * @param      string $key A unique key identifying your data.
+     *
+     * @return     void Always null.
+     *
+     * @author     David Zülke <dz@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function read($key)
+    {
+        return null;
+    }
 
-	/**
-	 * Remove data from this storage.
-	 *
-	 * The preferred format for a key is directory style so naming conflicts can
-	 * be avoided.
-	 *
-	 * @param      string $key A unique key identifying your data.
-	 *
-	 * @return     null Always null.
-	 *
-	 * @author     David Zülke <dz@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function remove($key)
-	{
-		return null;
-	}
+    /**
+     * Remove data from this storage.
+     *
+     * The preferred format for a key is directory style so naming conflicts can
+     * be avoided.
+     *
+     * @param      string $key A unique key identifying your data.
+     *
+     * @return     null Always null.
+     *
+     * @author     David Zülke <dz@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function remove($key)
+    {
+        return null;
+    }
 
-	/**
-	 * Execute the shutdown procedure.
-	 *
-	 * @author     David Zülke <dz@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function shutdown()
-	{
-	}
+    /**
+     * Execute the shutdown procedure.
+     *
+     * @author     David Zülke <dz@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function shutdown()
+    {
+    }
 
-	/**
-	 * Write data to this storage.
-	 *
-	 * The preferred format for a key is directory style so naming conflicts can
-	 * be avoided.
-	 *
-	 * @param      string $key A unique key identifying your data.
-	 * @param      mixed  $data Data associated with your key.
-	 *
-	 * @author     David Zülke <dz@bitxtender.com>
-	 * @since      0.11.0
-	 */
-	public function write($key, $data)
-	{
-	}
+    /**
+     * Write data to this storage.
+     *
+     * The preferred format for a key is directory style so naming conflicts can
+     * be avoided.
+     *
+     * @param      string $key A unique key identifying your data.
+     * @param      mixed  $data Data associated with your key.
+     *
+     * @author     David Zülke <dz@bitxtender.com>
+     * @since      0.11.0
+     */
+    public function write($key, $data)
+    {
+    }
 }
-
-?>

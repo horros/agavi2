@@ -16,16 +16,13 @@ use Agavi\Request\RequestDataHolder;
 
 class Default_UnavailableSuccessView extends SampleAppDefaultBaseView
 {
-	public function executeHtml(RequestDataHolder $rd)
-	{
-		$this->setupHtml($rd);
+    public function executeHtml(RequestDataHolder $rd)
+    {
+        $this->setupHtml($rd);
 
-		// set the title
-		$this->setAttribute('_title', $this->tm->_('This Application is Unavailable', 'default.ErrorControllers'));
-		
-		$this->getResponse()->setHttpStatusCode('503');
-	}
-
+        // set the title
+        $this->setAttribute('_title', $this->tm->_('This Application is Unavailable', 'default.ErrorControllers'));
+        
+        $this->getResponse()->setHttpStatusCode('503');
+    }
 }
-
-?>

@@ -1,5 +1,6 @@
 <?php
 
-trait SandboxTestingTrait {
-	
+trait SandboxTestingTrait
+{
+    
 }

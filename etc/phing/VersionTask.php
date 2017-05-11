@@ -15,40 +15,38 @@
 
 class VersionTask extends Task
 {
-	public function main()
-	{
-		$agaviPath = realpath(getcwd() . '/src/agavi.php');
-		
-		if(!$agaviPath && !file_exists($agaviPath)) {
-			throw new BuildException('Agavi not found.');
-		}
+    public function main()
+    {
+        $agaviPath = realpath(getcwd() . '/src/agavi.php');
+        
+        if (!$agaviPath && !file_exists($agaviPath)) {
+            throw new BuildException('Agavi not found.');
+        }
 
-		require_once($agaviPath);
-		
-		$this->project->setUserProperty('agavi.version', Config::get('agavi.version'));
-		$this->project->setUserProperty('agavi.pear.version', sprintf("%d.%d.%d%s", 
-			Config::get('agavi.major_version'),
-			Config::get('agavi.minor_version'),
-			Config::get('agavi.micro_version'),
-			Config::has('agavi.status') ? Config::get('agavi.status') : ''
-		));
-		
-		$status = Config::get('agavi.status');
-		
-		if($status == 'dev') {
-			$status = 'devel';
-		} elseif(strpos($status, 'alpha') !== false) {
-			$status = 'alpha';
-		} elseif(strpos($status, 'beta') !== false) {
-			$status = 'beta';
-		} elseif(strpos($status, 'RC') !== false) {
-			$status = 'beta';
-		} else {
-			$status = 'stable';
-		}
-		
-		$this->project->setUserProperty('agavi.status', $status);
-	}
+        require_once($agaviPath);
+        
+        $this->project->setUserProperty('agavi.version', Config::get('agavi.version'));
+        $this->project->setUserProperty('agavi.pear.version', sprintf("%d.%d.%d%s",
+            Config::get('agavi.major_version'),
+            Config::get('agavi.minor_version'),
+            Config::get('agavi.micro_version'),
+            Config::has('agavi.status') ? Config::get('agavi.status') : ''
+        ));
+        
+        $status = Config::get('agavi.status');
+        
+        if ($status == 'dev') {
+            $status = 'devel';
+        } elseif (strpos($status, 'alpha') !== false) {
+            $status = 'alpha';
+        } elseif (strpos($status, 'beta') !== false) {
+            $status = 'beta';
+        } elseif (strpos($status, 'RC') !== false) {
+            $status = 'beta';
+        } else {
+            $status = 'stable';
+        }
+        
+        $this->project->setUserProperty('agavi.status', $status);
+    }
 }
-
-?>

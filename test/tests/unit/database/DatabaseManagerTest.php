@@ -1,5 +1,6 @@
 <?php
 namespace Agavi\Testing\Unit\Database;
+
 use Agavi\Testing\UnitTestCase;
 
 /**
@@ -8,22 +9,20 @@ use Agavi\Testing\UnitTestCase;
  */
 class DatabaseManagerTest extends UnitTestCase
 {
-	private $_dbm = null;
-	
-	public function setUp()
-	{
-		$this->_dbm = $this->getContext()->getDatabaseManager();
-	}
+    private $_dbm = null;
+    
+    public function setUp()
+    {
+        $this->_dbm = $this->getContext()->getDatabaseManager();
+    }
 
-	public function tearDown()
-	{
-		$this->_dbm = null;
-	}
+    public function tearDown()
+    {
+        $this->_dbm = null;
+    }
 
-	public function testInitialization()
-	{
-		$this->assertInstanceOf('Agavi\\Database\\DatabaseManager', $this->_dbm);
-	}
-
+    public function testInitialization()
+    {
+        $this->assertInstanceOf('Agavi\\Database\\DatabaseManager', $this->_dbm);
+    }
 }
-?>

@@ -16,98 +16,98 @@
  */
 
 return array (
-  'types' => 
+  'types' =>
   array (
-    0 => 
+    0 =>
     array (
       'rawOffset' => 19800,
       'dstOffset' => 0,
       'name' => 'IST',
     ),
-    1 => 
+    1 =>
     array (
       'rawOffset' => 19800,
       'dstOffset' => 3600,
       'name' => 'IST',
     ),
-    2 => 
+    2 =>
     array (
       'rawOffset' => 18000,
       'dstOffset' => 0,
       'name' => 'KART',
     ),
-    3 => 
+    3 =>
     array (
       'rawOffset' => 18000,
       'dstOffset' => 0,
       'name' => 'PKT',
     ),
-    4 => 
+    4 =>
     array (
       'rawOffset' => 18000,
       'dstOffset' => 3600,
       'name' => 'PKST',
     ),
   ),
-  'rules' => 
+  'rules' =>
   array (
-    0 => 
+    0 =>
     array (
       'time' => -1988166492,
       'type' => 0,
     ),
-    1 => 
+    1 =>
     array (
       'time' => -862637400,
       'type' => 1,
     ),
-    2 => 
+    2 =>
     array (
       'time' => -764145000,
       'type' => 0,
     ),
-    3 => 
+    3 =>
     array (
       'time' => -576135000,
       'type' => 2,
     ),
-    4 => 
+    4 =>
     array (
       'time' => 38775600,
       'type' => 3,
     ),
-    5 => 
+    5 =>
     array (
       'time' => 1018119660,
       'type' => 4,
     ),
-    6 => 
+    6 =>
     array (
       'time' => 1033840860,
       'type' => 3,
     ),
-    7 => 
+    7 =>
     array (
       'time' => 1212260400,
       'type' => 4,
     ),
-    8 => 
+    8 =>
     array (
       'time' => 1225476000,
       'type' => 3,
     ),
-    9 => 
+    9 =>
     array (
       'time' => 1239735600,
       'type' => 4,
     ),
-    10 => 
+    10 =>
     array (
       'time' => 1257012000,
       'type' => 3,
     ),
   ),
-  'finalRule' => 
+  'finalRule' =>
   array (
     'type' => 'none',
     'offset' => 18000,
@@ -117,5 +117,3 @@ return array (
   'version' => '(unknown)',
   'name' => 'Asia/Karachi',
 );
-
-?>
