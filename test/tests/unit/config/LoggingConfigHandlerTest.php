@@ -102,6 +102,7 @@ class TestLayout2 extends TestLayout
 
 class LoggingConfigHandlerTest extends ConfigHandlerTestBase
 {
+    /** @var Context */
     protected $context;
 
     public function setUp()
@@ -116,7 +117,7 @@ class LoggingConfigHandlerTest extends ConfigHandlerTestBase
      */
     protected function setLogger($name, LoggerInterface $logger)
     {
-        return $this->context->getLoggerManager()->setLogger($name, $logger);
+         $this->context->getLoggerManager()->setLogger($name, $logger);
     }
     
     /**
@@ -126,9 +127,9 @@ class LoggingConfigHandlerTest extends ConfigHandlerTestBase
      */
     public function setDefaultLoggerName($name)
     {
-        return $this->context->getLoggerManager()->setDefaultLoggerName($name);
+        $this->context->getLoggerManager()->setDefaultLoggerName($name);
     }
-    
+
     /**
      * @runInSeparateProcess
      */
@@ -146,26 +147,33 @@ class LoggingConfigHandlerTest extends ConfigHandlerTestBase
         $test2 = $this->context->getLoggerManager()->getLogger('test2');
         $test3 = $this->context->getLoggerManager()->getLogger('test3');
 
+        $t1appenders = $test1->getAppenders();
+        $t2appenders = $test2->getAppenders();
+
+        $t1lvl = $test1->getLevel();
+        $t2lvl = $test2->getLevel();
+        $t3lvl = $test3->getLevel();
+
         $this->assertInstanceOf('Agavi\\Tests\\Unit\\Config\\TestLogger1', $test1);
-        $this->assertSame(TestLogger::INFO, $test1->level);
-        $this->assertInstanceOf('Agavi\\Tests\\Unit\\Config\\TestAppender1', $test1->appenders['appender1']);
-        $this->assertInstanceOf('Agavi\\Tests\\Unit\\Config\\TestAppender2', $test1->appenders['appender2']);
-        $this->assertSame($test1->appenders['appender1'], $test2->appenders['appender1']);
-        $this->assertSame($test1->appenders['appender2'], $test2->appenders['appender2']);
+        $this->assertSame(TestLogger::INFO, $t1lvl);
+        $this->assertInstanceOf('Agavi\\Tests\\Unit\\Config\\TestAppender1', $t1appenders['appender1']);
+        $this->assertInstanceOf('Agavi\\Tests\\Unit\\Config\\TestAppender2', $t1appenders['appender2']);
+        $this->assertSame($t1appenders['appender1'], $t2appenders['appender1']);
+        $this->assertSame($t1appenders['appender2'], $t2appenders['appender2']);
 
 
         $this->assertInstanceOf('Agavi\\Tests\\Unit\\Config\\TestLogger2', $test2);
-        $this->assertSame(TestLogger::ERROR, $test2->level);
-        $this->assertInstanceOf('Agavi\\Tests\\Unit\\Config\\TestAppender1', $test2->appenders['appender1']);
-        $this->assertInstanceOf('Agavi\\Tests\\Unit\\Config\\TestAppender2', $test2->appenders['appender2']);
-        $this->assertInstanceOf('Agavi\\Tests\\Unit\\Config\\TestAppender3', $test2->appenders['appender3']);
+        $this->assertSame(TestLogger::ERROR, $t2lvl);
+        $this->assertInstanceOf('Agavi\\Tests\\Unit\\Config\\TestAppender1', $t2appenders['appender1']);
+        $this->assertInstanceOf('Agavi\\Tests\\Unit\\Config\\TestAppender2', $t2appenders['appender2']);
+        $this->assertInstanceOf('Agavi\\Tests\\Unit\\Config\\TestAppender3', $t2appenders['appender3']);
 
         $this->assertInstanceOf('Agavi\\Tests\\Unit\\Config\\TestLogger3', $test3);
-        $this->assertSame(TestLogger::INFO | TestLogger::ERROR, $test3->level);
+        $this->assertSame(TestLogger::INFO | TestLogger::ERROR, $t3lvl);
 
-        $a1 = $test2->appenders['appender1'];
-        $a2 = $test2->appenders['appender2'];
-        $a3 = $test2->appenders['appender3'];
+        $a1 = $t2appenders['appender1'];
+        $a2 = $t2appenders['appender2'];
+        $a3 = $t2appenders['appender3'];
 
         $this->assertInstanceOf('Agavi\\Tests\\Unit\\Config\\TestLayout1', $a1->layout);
         $this->assertSame(array(

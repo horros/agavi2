@@ -172,6 +172,7 @@ class RoutingTest extends PhpUnitTestCase
         $this->routing->setInput('/callbacks/stopper');
         try {
             $container = $this->routing->execute();
+            $this->assertTrue(is_object($container));
         } catch (AgaviException $e) {
             $this->fail('The onNotMatched callback of the childroute should not get called');
         }

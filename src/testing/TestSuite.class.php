@@ -27,6 +27,6 @@ namespace Agavi\Testing;
  *
  * @version    $Id$
  */
-class TestSuite extends \PHPUnit_Framework_TestSuite
+class TestSuite extends \PHPUnit\Framework\TestSuite
 {
 }

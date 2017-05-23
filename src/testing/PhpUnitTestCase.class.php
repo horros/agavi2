@@ -30,7 +30,7 @@ use Agavi\Util\Toolkit;
  *
  * @version    $Id$
  */
-abstract class PhpUnitTestCase extends \PHPUnit_Framework_TestCase
+abstract class PhpUnitTestCase extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var        string  the name of the environment to bootstrap in isolated tests.
@@ -183,6 +183,7 @@ abstract class PhpUnitTestCase extends \PHPUnit_Framework_TestCase
         $annotations = $this->getAnnotations();
         
         if (!empty($annotations['method']['agaviClearIsolationCache'])) {
+            file_put_contents('/tmp/cclean.txt', 'SETTING CLEARCACHE ' . $this->getName() . "\r\n", FILE_APPEND);
             $flag = true;
         } elseif (!empty($annotations['class']['agaviClearIsolationCache'])) {
             $flag = true;
@@ -267,7 +268,7 @@ abstract class PhpUnitTestCase extends \PHPUnit_Framework_TestCase
         
         // FIXME: added by phpunit 4.x
         if (class_exists('\PHPUnit_Util_Blacklist')) {
-            $blacklist = new \PHPUnit_Util_Blacklist;
+            $blacklist = new \PHPUnit\Util\Blacklist;
             $isBlacklisted = function ($file) use ($testFile, $blacklist) {
                 return $file === $testFile || $blacklist->isBlacklisted($file);
             };
@@ -328,9 +329,9 @@ abstract class PhpUnitTestCase extends \PHPUnit_Framework_TestCase
         
         // these constants are either used by out bootstrap wrapper script
         // (AGAVI_TESTING_ORIGINAL_PHPUNIT_BOOTSTRAP) or can be used by the user's
-        // bootstrap script (AGAVI_TESTING_IN_SEPERATE_PROCESS)
+        // bootstrap script (AGAVI_TESTING_IN_SEPARATE_PROCESS)
         $constants = sprintf('
-			define("AGAVI_TESTING_IN_SEPERATE_PROCESS", true);
+			define("AGAVI_TESTING_IN_SEPARATE_PROCESS", true);
 			define("AGAVI_TESTING_ORIGINAL_PHPUNIT_BOOTSTRAP", %s);
 			',
             var_export(isset($GLOBALS["__PHPUNIT_BOOTSTRAP"]) ? $GLOBALS["__PHPUNIT_BOOTSTRAP"] : null, true)

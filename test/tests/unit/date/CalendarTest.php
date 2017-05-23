@@ -729,8 +729,12 @@ class CalendarTest extends BaseCalendarTest
 
 // -------------------------------------
 
+    /*
+     * Properly comment out the test, PHPUnit complains if tests have no assertions
+     *
     public function testDOW_LOCALandYEAR_WOY()
     {
+
         // TODO: enable this test;
         return;
 
@@ -740,6 +744,8 @@ class CalendarTest extends BaseCalendarTest
 		 * invariant.  YEAR_WOY should keep the woy/dow invariant.  I've
 		 * added a new test that checks for this in place of the old call
 		 * to loop_addroll. - aliu */
+
+        /*
         $times = 20;
         $cal = $this->tm->createCalendar($this->tm->getLocale('de_DE'));
         $sdf = new DateFormat("YYYY'-W'ww-ee", Locale::getGermany());
@@ -747,27 +753,29 @@ class CalendarTest extends BaseCalendarTest
         /*
 		$sdf->applyLocalizedPattern("JJJJ'-W'ww-ee");
 		*/
+        /*
         $cal->clear();
         $cal->set(1997, DateDefinitions::DECEMBER, 25);
         $this->doYEAR_WOYLoop($cal, $sdf, $times);
-        //loop_addroll(cal, /*sdf,*/ times, UCAL_YEAR_WOY, UCAL_YEAR,  status);
+        //loop_addroll(cal, /*sdf,*//* times, UCAL_YEAR_WOY, UCAL_YEAR,  status);
         $this->yearAddTest($cal); // aliu
-        $this->loop_addroll($cal, /*sdf,*/ $times, DateDefinitions::DOW_LOCAL, DateDefinitions::DAY_OF_WEEK);
+        $this->loop_addroll($cal, /*sdf,*//* $times, DateDefinitions::DOW_LOCAL, DateDefinitions::DAY_OF_WEEK);
 
         $cal->clear();
         $cal->set(1998, DateDefinitions::DECEMBER, 25);
         $this->doYEAR_WOYLoop($cal, $sdf, $times);
-        //loop_addroll(cal, /*sdf,*/ times, UCAL_YEAR_WOY, UCAL_YEAR,  status);
+        //loop_addroll(cal, /*sdf,*//* times, UCAL_YEAR_WOY, UCAL_YEAR,  status);
         $this->yearAddTest($cal); // aliu
-        $this->loop_addroll($cal, /*sdf,*/ $times, DateDefinitions::DOW_LOCAL, DateDefinitions::DAY_OF_WEEK);
+        $this->loop_addroll($cal, /*sdf,*//* $times, DateDefinitions::DOW_LOCAL, DateDefinitions::DAY_OF_WEEK);
 
         $cal->clear();
         $cal->set(1582, DateDefinitions::OCTOBER, 1);
         $this->doYEAR_WOYLoop($cal, $sdf, $times);
-        //loop_addroll(cal, /*sdf,*/ times, Calendar::YEAR_WOY, Calendar::YEAR,  status);
+        //loop_addroll(cal, /*sdf,*//* times, Calendar::YEAR_WOY, Calendar::YEAR,  status);
         $this->yearAddTest($cal); // aliu
-        $this->loop_addroll($cal, /*sdf,*/ $times, DateDefinitions::DOW_LOCAL, DateDefinitions::DAY_OF_WEEK);
+        $this->loop_addroll($cal, /*sdf,*//* $times, DateDefinitions::DOW_LOCAL, DateDefinitions::DAY_OF_WEEK);
     }
+    */
 
     /**
      * Confirm that adding a YEAR and adding a YEAR_WOY work properly for
