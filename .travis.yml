@@ -3,18 +3,7 @@ language: php
 php:
   - 7.0
   - 7.1
-  - nightly
-  - hhvm
-  - hhvm-nightly
-
 sudo: false
-
-# prevent hhvm from running the tests in isolation, since they take ages
-matrix:
-  allow_failures:
-    - php: hhvm-nightly
-    - php: hhvm
-  fast_finish: true
 
 before_script:
   - composer install --ignore-platform-reqs

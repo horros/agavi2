@@ -287,7 +287,6 @@ class TimeZoneDataParser
     protected function getRules($name, $from, $until, $gmtOff, $format)
     {
         if (!isset($this->rules[$name])) {
-            var_dump(array_keys($this->rules));
             throw new \InvalidArgumentException('No rule with the name ' . $name . ' exists');
         }
 
