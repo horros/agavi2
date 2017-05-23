@@ -13,6 +13,7 @@ require_once(__DIR__ . '/../../../../src/config/Config.class.php');
  */
 class ConfigTest extends PhpUnitTestCase
 {
+
     public function testInitiallyEmpty()
     {
         $this->assertEquals(array(), Config::toArray());

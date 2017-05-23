@@ -285,6 +285,8 @@ class RoutingCasesTest extends UnitTestCase
             $this->fail('Expected AgaviException not thrown for declaring childs with the same name when inserting a new child hierarchy on overwriting a pattern!');
         } catch (AgaviException $e) {
         }
+        // If we don't fail, we succeed
+        $this->assertTrue(true);
     }
 
     /**

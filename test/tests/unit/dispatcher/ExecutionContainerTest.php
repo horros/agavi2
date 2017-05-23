@@ -10,5 +10,6 @@ class ExecutionContainerTest extends UnitTestCase
     {
         $container = $this->getContext()->getDispatcher()->createExecutionContainer('ControllerTests', 'SimpleController');
         $response = $container->execute();
+        $this->assertInstanceOf('Agavi\Response\Response', $response);
     }
 }

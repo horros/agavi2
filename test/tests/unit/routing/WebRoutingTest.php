@@ -512,6 +512,7 @@ class WebRoutingTest extends PhpUnitTestCase
             $this->fail('Failed asserting that onGenerate() is called');
         } catch (\Exception $e) {
             // successfully called
+            $this->assertTrue(true);
         }
     }
     

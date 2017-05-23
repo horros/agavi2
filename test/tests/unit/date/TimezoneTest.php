@@ -36,14 +36,14 @@ class TimeZoneTest extends BaseCalendarTest
         $zoneclone->setId("abc");
         $this->assertTrue($zoneclone->__is_not_equal($zone));
 
-/*
-TODO: is_equal doesn't work yet
+        /*
+        TODO: is_equal doesn't work yet
 
-		$zoneclone = clone $zone;
-		$this->assertTrue($zoneclone->__is_equal($zone));
-		$zoneclone->setRawOffset(45678);
-		$this->assertTrue($zoneclone->__is_not_equal($zone));
-*/
+                $zoneclone = clone $zone;
+                $this->assertTrue($zoneclone->__is_equal($zone));
+                $zoneclone->setRawOffset(45678);
+                $this->assertTrue($zoneclone->__is_not_equal($zone));
+        */
 
 //		logln("call uprv_timezone() which uses the host");
 //		logln("to get the difference in seconds between coordinated universal");
@@ -64,24 +64,25 @@ TODO: is_equal doesn't work yet
         if ($tzoffset != 28800) {
 //			logln("***** WARNING: If testing in the PST timezone, uprv_timezone should return 28800! *****");
         }
-        $this->assertEquals(0, $tzoffset % 1800, 't_timezone may be incorrect. It is not a multiple of 30min. It is ' . $tzoffset);
+        $this->assertEquals(0, $tzoffset % 1800,
+            't_timezone may be incorrect. It is not a multiple of 30min. It is ' . $tzoffset);
 
-/*
-		AgaviTimeZone::adoptDefault($zone);
-		$defaultzone = AgaviTimeZone::createDefault();
-		$this->assertFalse($defaultzone == $zone || !($defaultzone->__is_equal($zone)));
-		AgaviTimeZone::adoptDefault($saveDefault);
-*/
+        /*
+                AgaviTimeZone::adoptDefault($zone);
+                $defaultzone = AgaviTimeZone::createDefault();
+                $this->assertFalse($defaultzone == $zone || !($defaultzone->__is_equal($zone)));
+                AgaviTimeZone::adoptDefault($saveDefault);
+        */
     }
 
 // ---------------------------------------------------------------------------------
 
-/**
- * Test the setStartRule/setEndRule API calls.
- */
+    /**
+     * Test the setStartRule/setEndRule API calls.
+     */
     public function TestRuleAPI()
     {
-        $offset = 60*60*1000*1.75; // Pick a weird offset
+        $offset = 60 * 60 * 1000 * 1.75; // Pick a weird offset
         $zone = new SimpleTimeZone($this->tm, $offset, "TestZone");
         $this->assertFalse($zone->useDaylightTime());
 
@@ -97,10 +98,10 @@ TODO: is_equal doesn't work yet
 
         // Starting and ending hours, WALL TIME
         $startHour = (int)(2.25 * 3600000);
-        $endHour   = (int)(3.5  * 3600000);
+        $endHour = (int)(3.5 * 3600000);
 
         $zone->setStartRule(DateDefinitions::MARCH, 1, 0, $startHour);
-        $zone->setEndRule  (DateDefinitions::JULY, 1, 0, $endHour);
+        $zone->setEndRule(DateDefinitions::JULY, 1, 0, $endHour);
 
         $gc = $this->tm->createCalendar($zone);
 
@@ -113,14 +114,19 @@ TODO: is_equal doesn't work yet
         $expJulyOne = 646793100000.0;
         $this->assertEquals($expJulyOne, $julyOne);
 
-        $this->myTestUsingBinarySearch($zone, $this->date(90, DateDefinitions::JANUARY, 1), $this->date(90, DateDefinitions::JUNE, 15), $marchOne);
-        $this->myTestUsingBinarySearch($zone, $this->date(90, DateDefinitions::JUNE, 1), $this->date(90, DateDefinitions::DECEMBER, 31), $julyOne);
+        $this->myTestUsingBinarySearch($zone, $this->date(90, DateDefinitions::JANUARY, 1),
+            $this->date(90, DateDefinitions::JUNE, 15), $marchOne);
+        $this->myTestUsingBinarySearch($zone, $this->date(90, DateDefinitions::JUNE, 1),
+            $this->date(90, DateDefinitions::DECEMBER, 31), $julyOne);
 
-        $this->assertFalse($zone->inDaylightTime($marchOne - 1000) || !$zone->inDaylightTime($marchOne), 'Start rule broken');
-        $this->assertFalse(!$zone->inDaylightTime($julyOne - 1000) || $zone->inDaylightTime($julyOne), 'End rule broken');
+        $this->assertFalse($zone->inDaylightTime($marchOne - 1000) || !$zone->inDaylightTime($marchOne),
+            'Start rule broken');
+        $this->assertFalse(!$zone->inDaylightTime($julyOne - 1000) || $zone->inDaylightTime($julyOne),
+            'End rule broken');
 
         $zone->setStartYear(1991);
-        $this->assertFalse($zone->inDaylightTime($marchOne) || $zone->inDaylightTime($julyOne - 1000), 'Start year broken');
+        $this->assertFalse($zone->inDaylightTime($marchOne) || $zone->inDaylightTime($julyOne - 1000),
+            'Start year broken');
     }
 
 
@@ -132,23 +138,23 @@ TODO: is_equal doesn't work yet
         $cal->setTime($max);
         $this->assertNotEquals($startsInDST, $cal->inDaylightTime());
 
-/*
-		while(($max - $min) > $this->INTERVAL) {
-			$mid = ($min + $max) / 2;
-			$cal->setTime($mid);
-			if($cal->inDaylightTime() == $startsInDST) {
-				$min = $mid;
-			} else {
-				$max = $mid;
-			}
-		}
-		$min = 1000.0 * floor($min / 1000.0);
-		$max = 1000.0 * floor($max / 1000.0);
-		logln(tz.getID(id) + " Before: " + min/1000 + " = " +
-					dateToString(min,s,tz));
-		logln(tz.getID(id) + " After:  " + max/1000 + " = " +
-					dateToString(max,s,tz));
-*/
+        /*
+                while(($max - $min) > $this->INTERVAL) {
+                    $mid = ($min + $max) / 2;
+                    $cal->setTime($mid);
+                    if($cal->inDaylightTime() == $startsInDST) {
+                        $min = $mid;
+                    } else {
+                        $max = $mid;
+                    }
+                }
+                $min = 1000.0 * floor($min / 1000.0);
+                $max = 1000.0 * floor($max / 1000.0);
+                logln(tz.getID(id) + " Before: " + min/1000 + " = " +
+                            dateToString(min,s,tz));
+                logln(tz.getID(id) + " After:  " + max/1000 + " = " +
+                            dateToString(max,s,tz));
+        */
     }
 
     protected function myTestUsingBinarySearch($tz, $min, $max, $expectedBoundary)
@@ -206,7 +212,10 @@ TODO: is_equal doesn't work yet
 
         $gc = $this->tm->createCalendar();
         $gc->setTime($d);
-        $this->assertEquals(floatval(-7 * self::millisPerHour), $time_zone->getOffset(GregorianCalendar::AD, $gc->get(DateDefinitions::YEAR), $gc->get(DateDefinitions::MONTH), $gc->get(DateDefinitions::DATE), $gc->get(DateDefinitions::DAY_OF_WEEK), 0));
+        $this->assertEquals(floatval(-7 * self::millisPerHour),
+            $time_zone->getOffset(GregorianCalendar::AD, $gc->get(DateDefinitions::YEAR),
+                $gc->get(DateDefinitions::MONTH), $gc->get(DateDefinitions::DATE),
+                $gc->get(DateDefinitions::DAY_OF_WEEK), 0));
     }
 
 // -------------------------------------
@@ -214,306 +223,306 @@ TODO: is_equal doesn't work yet
     /**
      * Test the call which retrieves the available IDs.
      * /
-    public function testGetAvailableIDs913()
-    {
-        UnicodeString str;
-        UnicodeString *buf = new UnicodeString("TimeZone::createEnumeration() = { ");
-        int32_t s_length;
-        StringEnumeration* s = TimeZone::createEnumeration();
-        s_length = s->count(ec);
-        for (i = 0; i < s_length;++i) {
-                if (i > 0) *buf += ", ";
-                if ((i & 1) == 0) {
-                        *buf += *s->snext(ec);
-                } else {
-                        *buf += UnicodeString(s->next(NULL, ec), "");
-                }
+     * public function testGetAvailableIDs913()
+     * {
+     * UnicodeString str;
+     * UnicodeString *buf = new UnicodeString("TimeZone::createEnumeration() = { ");
+     * int32_t s_length;
+     * StringEnumeration* s = TimeZone::createEnumeration();
+     * s_length = s->count(ec);
+     * for (i = 0; i < s_length;++i) {
+     * if (i > 0) *buf += ", ";
+     * if ((i & 1) == 0) {
+     *buf += *s->snext(ec);
+     * } else {
+     *buf += UnicodeString(s->next(NULL, ec), "");
+     * }
+     *
+     * if((i % 5) == 4) {
+     * // replace s with a clone of itself
+     * StringEnumeration *s2 = s->clone();
+     * if(s2 == NULL || s_length != s2->count(ec)) {
+     * errln("TimezoneEnumeration.clone() failed");
+     * } else {
+     * delete s;
+     * s = s2;
+     * }
+     * }
+     * }
+     *buf += " };";
+     * logln(*buf);
+     *
+     * /* Confirm that the following zones can be retrieved: The first
+     * zone, the last zone, and one in-between.  This tests the binary
+     * search through the system zone data.
+     * /
+     * s->reset(ec);
+     * int32_t middle = s_length/2;
+     * for (i=0; i<s_length; ++i) {
+     * const UnicodeString* id = s->snext(ec);
+     * if (i==0 || i==middle || i==(s_length-1)) {
+     * TimeZone *z = TimeZone::createTimeZone(*id);
+     * if (z == 0) {
+     * errln(UnicodeString("FAIL: createTimeZone(") +
+     *id + ") -> 0");
+     * } else if (z->getID(str) != *id) {
+     * errln(UnicodeString("FAIL: createTimeZone(") +
+     *id + ") -> zone " + str);
+     * } else {
+     * logln(UnicodeString("OK: createTimeZone(") +
+     *id + ") succeeded");
+     * }
+     * delete z;
+     * }
+     * }
+     * delete s;
+     *
+     * buf->truncate(0);
+     *buf += "TimeZone::createEnumeration(GMT+01:00) = { ";
+     *
+     * s = TimeZone::createEnumeration(1 * AgaviDateDefinitions::MILLIS_PER_HOUR);
+     * s_length = s->count(ec);
+     * for (i = 0; i < s_length;++i) {
+     * if (i > 0) *buf += ", ";
+     *buf += *s->snext(ec);
+     * }
+     * delete s;
+     *buf += " };";
+     * logln(*buf);
+     *
+     *
+     * buf->truncate(0);
+     *buf += "TimeZone::createEnumeration(US) = { ";
+     *
+     * s = TimeZone::createEnumeration("US");
+     * s_length = s->count(ec);
+     * for (i = 0; i < s_length;++i) {
+     * if (i > 0) *buf += ", ";
+     *buf += *s->snext(ec);
+     * }
+     *buf += " };";
+     * logln(*buf);
+     *
+     * TimeZone *tz = TimeZone::createTimeZone("PST");
+     * if (tz != 0) logln("getTimeZone(PST) = " + tz->getID(str));
+     * else errln("FAIL: getTimeZone(PST) = null");
+     * delete tz;
+     * tz = TimeZone::createTimeZone("America/Los_Angeles");
+     * if (tz != 0) logln("getTimeZone(America/Los_Angeles) = " + tz->getID(str));
+     * else errln("FAIL: getTimeZone(PST) = null");
+     * delete tz;
+     *
+     * // @bug 4096694
+     * tz = TimeZone::createTimeZone("NON_EXISTENT");
+     * UnicodeString temp;
+     * if (tz == 0)
+     * errln("FAIL: getTimeZone(NON_EXISTENT) = null");
+     * else if (tz->getID(temp) != "GMT")
+     * errln("FAIL: getTimeZone(NON_EXISTENT) = " + temp);
+     * delete tz;
+     *
+     * delete buf;
+     * delete s;
+     * }
+     */
 
-                if((i % 5) == 4) {
-                        // replace s with a clone of itself
-                        StringEnumeration *s2 = s->clone();
-                        if(s2 == NULL || s_length != s2->count(ec)) {
-                                errln("TimezoneEnumeration.clone() failed");
-                        } else {
-                                delete s;
-                                s = s2;
-                        }
-                }
-        }
-        *buf += " };";
-        logln(*buf);
 
-        /* Confirm that the following zones can be retrieved: The first
-         * zone, the last zone, and one in-between.  This tests the binary
-         * search through the system zone data.
-         * /
-        s->reset(ec);
-        int32_t middle = s_length/2;
-        for (i=0; i<s_length; ++i) {
-                const UnicodeString* id = s->snext(ec);
-                if (i==0 || i==middle || i==(s_length-1)) {
-                TimeZone *z = TimeZone::createTimeZone(*id);
-                if (z == 0) {
-                        errln(UnicodeString("FAIL: createTimeZone(") +
-                                    *id + ") -> 0");
-                } else if (z->getID(str) != *id) {
-                        errln(UnicodeString("FAIL: createTimeZone(") +
-                                    *id + ") -> zone " + str);
-                } else {
-                        logln(UnicodeString("OK: createTimeZone(") +
-                                    *id + ") succeeded");
-                }
-                delete z;
-                }
-        }
-        delete s;
-
-        buf->truncate(0);
-        *buf += "TimeZone::createEnumeration(GMT+01:00) = { ";
-
-        s = TimeZone::createEnumeration(1 * AgaviDateDefinitions::MILLIS_PER_HOUR);
-        s_length = s->count(ec);
-        for (i = 0; i < s_length;++i) {
-                if (i > 0) *buf += ", ";
-                *buf += *s->snext(ec);
-        }
-        delete s;
-        *buf += " };";
-        logln(*buf);
-
-
-        buf->truncate(0);
-        *buf += "TimeZone::createEnumeration(US) = { ";
-
-        s = TimeZone::createEnumeration("US");
-        s_length = s->count(ec);
-        for (i = 0; i < s_length;++i) {
-                if (i > 0) *buf += ", ";
-                *buf += *s->snext(ec);
-        }
-        *buf += " };";
-        logln(*buf);
-
-        TimeZone *tz = TimeZone::createTimeZone("PST");
-        if (tz != 0) logln("getTimeZone(PST) = " + tz->getID(str));
-        else errln("FAIL: getTimeZone(PST) = null");
-        delete tz;
-        tz = TimeZone::createTimeZone("America/Los_Angeles");
-        if (tz != 0) logln("getTimeZone(America/Los_Angeles) = " + tz->getID(str));
-        else errln("FAIL: getTimeZone(PST) = null");
-        delete tz;
-
-        // @bug 4096694
-        tz = TimeZone::createTimeZone("NON_EXISTENT");
-        UnicodeString temp;
-        if (tz == 0)
-                errln("FAIL: getTimeZone(NON_EXISTENT) = null");
-        else if (tz->getID(temp) != "GMT")
-                errln("FAIL: getTimeZone(NON_EXISTENT) = " + temp);
-        delete tz;
-
-        delete buf;
-        delete s;
-}
-*/
-
-
-/**
- * NOTE: As of ICU 2.8, this test confirms that the "tz.alias"
- * file, used to build ICU alias zones, is working.  It also
- * looks at some genuine Olson compatibility IDs. [aliu]
- *
- * This test is problematic. It should really just confirm that
- * the list of compatibility zone IDs exist and are somewhat
- * meaningful (that is, they aren't all aliases of GMT). It goes a
- * bit further -- it hard-codes expectations about zone behavior,
- * when in fact zones are redefined quite frequently. ICU's build
- * process means that it is easy to update ICU to contain the
- * latest Olson zone data, but if a zone tested here changes, then
- * this test will fail.  I have updated the test for 1999j data,
- * but further updates will probably be required. Note that some
- * of the concerts listed below no longer apply -- in particular,
- * we do NOT overwrite real UNIX zones with 3-letter IDs. There
- * are two points of overlap as of 1999j: MET and EET. These are
- * both real UNIX zones, so we just use the official
- * definition. This test has been updated to reflect this.
- * 12/3/99 aliu
- *
- * Added tests for additional zones and aliases from the icuzones file.
- * Markus Scherer 2006-nov-06
- *
- * [srl - from java - 7/5/1998]
- * @bug 4130885
- * Certain short zone IDs, used since 1.1.x, are incorrect.
- *
- * The worst of these is:
- *
- * "CAT" (Central African Time) should be GMT+2:00, but instead returns a
- * zone at GMT-1:00. The zone at GMT-1:00 should be called EGT, CVT, EGST,
- * or AZOST, depending on which zone is meant, but in no case is it CAT.
- *
- * Other wrong zone IDs:
- *
- * ECT (European Central Time) GMT+1:00: ECT is Ecuador Time,
- * GMT-5:00. European Central time is abbreviated CEST.
- *
- * SST (Solomon Island Time) GMT+11:00. SST is actually Samoa Standard Time,
- * GMT-11:00. Solomon Island time is SBT.
- *
- * NST (New Zealand Time) GMT+12:00. NST is the abbreviation for
- * Newfoundland Standard Time, GMT-3:30. New Zealanders use NZST.
- *
- * AST (Alaska Standard Time) GMT-9:00. [This has already been noted in
- * another bug.] It should be "AKST". AST is Atlantic Standard Time,
- * GMT-4:00.
- *
- * PNT (Phoenix Time) GMT-7:00. PNT usually means Pitcairn Time,
- * GMT-8:30. There is no standard abbreviation for Phoenix time, as distinct
- * from MST with daylight savings.
- *
- * In addition to these problems, a number of zones are FAKE. That is, they
- * don't match what people use in the real world.
- *
- * FAKE zones:
- *
- * EET (should be EEST)
- * ART (should be EEST)
- * MET (should be IRST)
- * NET (should be AMST)
- * PLT (should be PKT)
- * BST (should be BDT)
- * VST (should be ICT)
- * CTT (should be CST) +
- * ACT (should be CST) +
- * AET (should be EST) +
- * MIT (should be WST) +
- * IET (should be EST) +
- * PRT (should be AST) +
- * CNT (should be NST)
- * AGT (should be ARST)
- * BET (should be EST) +
- *
- * + A zone with the correct name already exists and means something
- * else. E.g., EST usually indicates the US Eastern zone, so it cannot be
- * used for Brazil (BET).
- */
+    /**
+     * NOTE: As of ICU 2.8, this test confirms that the "tz.alias"
+     * file, used to build ICU alias zones, is working.  It also
+     * looks at some genuine Olson compatibility IDs. [aliu]
+     *
+     * This test is problematic. It should really just confirm that
+     * the list of compatibility zone IDs exist and are somewhat
+     * meaningful (that is, they aren't all aliases of GMT). It goes a
+     * bit further -- it hard-codes expectations about zone behavior,
+     * when in fact zones are redefined quite frequently. ICU's build
+     * process means that it is easy to update ICU to contain the
+     * latest Olson zone data, but if a zone tested here changes, then
+     * this test will fail.  I have updated the test for 1999j data,
+     * but further updates will probably be required. Note that some
+     * of the concerts listed below no longer apply -- in particular,
+     * we do NOT overwrite real UNIX zones with 3-letter IDs. There
+     * are two points of overlap as of 1999j: MET and EET. These are
+     * both real UNIX zones, so we just use the official
+     * definition. This test has been updated to reflect this.
+     * 12/3/99 aliu
+     *
+     * Added tests for additional zones and aliases from the icuzones file.
+     * Markus Scherer 2006-nov-06
+     *
+     * [srl - from java - 7/5/1998]
+     * @bug 4130885
+     * Certain short zone IDs, used since 1.1.x, are incorrect.
+     *
+     * The worst of these is:
+     *
+     * "CAT" (Central African Time) should be GMT+2:00, but instead returns a
+     * zone at GMT-1:00. The zone at GMT-1:00 should be called EGT, CVT, EGST,
+     * or AZOST, depending on which zone is meant, but in no case is it CAT.
+     *
+     * Other wrong zone IDs:
+     *
+     * ECT (European Central Time) GMT+1:00: ECT is Ecuador Time,
+     * GMT-5:00. European Central time is abbreviated CEST.
+     *
+     * SST (Solomon Island Time) GMT+11:00. SST is actually Samoa Standard Time,
+     * GMT-11:00. Solomon Island time is SBT.
+     *
+     * NST (New Zealand Time) GMT+12:00. NST is the abbreviation for
+     * Newfoundland Standard Time, GMT-3:30. New Zealanders use NZST.
+     *
+     * AST (Alaska Standard Time) GMT-9:00. [This has already been noted in
+     * another bug.] It should be "AKST". AST is Atlantic Standard Time,
+     * GMT-4:00.
+     *
+     * PNT (Phoenix Time) GMT-7:00. PNT usually means Pitcairn Time,
+     * GMT-8:30. There is no standard abbreviation for Phoenix time, as distinct
+     * from MST with daylight savings.
+     *
+     * In addition to these problems, a number of zones are FAKE. That is, they
+     * don't match what people use in the real world.
+     *
+     * FAKE zones:
+     *
+     * EET (should be EEST)
+     * ART (should be EEST)
+     * MET (should be IRST)
+     * NET (should be AMST)
+     * PLT (should be PKT)
+     * BST (should be BDT)
+     * VST (should be ICT)
+     * CTT (should be CST) +
+     * ACT (should be CST) +
+     * AET (should be EST) +
+     * MIT (should be WST) +
+     * IET (should be EST) +
+     * PRT (should be AST) +
+     * CNT (should be NST)
+     * AGT (should be ARST)
+     * BET (should be EST) +
+     *
+     * + A zone with the correct name already exists and means something
+     * else. E.g., EST usually indicates the US Eastern zone, so it cannot be
+     * used for Brazil (BET).
+     */
     public function testShortZoneIDs()
     {
-/*
-		int32_t i;
-		// Create a small struct to hold the array
-		struct
-		{
-				const char *id;
-				int32_t    offset;
-				UBool      daylight;
-		}
-		kReferenceList [] =
-*/
+        /*
+                int32_t i;
+                // Create a small struct to hold the array
+                struct
+                {
+                        const char *id;
+                        int32_t    offset;
+                        UBool      daylight;
+                }
+                kReferenceList [] =
+        */
         $kReferenceList = array(
-                                                            array('id' => "MIT", 'offset' => 780, 'daylight' => true),
-                                                            array('id' =>"HST", 'offset' =>  -600, 'daylight' => false),
-                                                            array('id' =>"AST", 'offset' =>  -540, 'daylight' => true),
-                                                            array('id' =>"PST", 'offset' =>  -480, 'daylight' => true),
-                                                            array('id' =>"PNT", 'offset' =>  -420, 'daylight' => false),
-                                                            array('id' =>"MST", 'offset' =>  -420, 'daylight' => false), // updated Aug 2003 aliu
-                                                            array('id' =>"CST", 'offset' =>  -360, 'daylight' => true),
-                                                            array('id' =>"IET", 'offset' =>  -300, 'daylight' => true),  // updated Jan 2006 srl
-                                                            array('id' =>"EST", 'offset' =>  -300, 'daylight' => false), // updated Aug 2003 aliu
-                                                            array('id' =>"PRT", 'offset' =>  -240, 'daylight' => false),
-                                                            array('id' =>"CNT", 'offset' =>  -210, 'daylight' => true),
-                                                            array('id' =>"AGT", 'offset' =>  -180, 'daylight' => false), // updated 30 Dec 2007
-                                                            array('id' =>"BET", 'offset' =>  -180, 'daylight' => true),
-                                                            // "CAT", -60, false, // Wrong:
-                                                            // As of bug 4130885, fix CAT (Central Africa)
-                                                            array('id' =>"CAT", 'offset' =>  120, 'daylight' => false), // Africa/Harare
-                                                            array('id' =>"GMT", 'offset' =>  0, 'daylight' => false),
-                                                            array('id' =>"UTC", 'offset' =>  0, 'daylight' => false), // ** srl: seems broken in C++
-                                                            array('id' =>"ECT", 'offset' =>  60, 'daylight' => true),
-                                                            array('id' =>"ART", 'offset' =>  120, 'daylight' => false),
-                                                            array('id' =>"EET", 'offset' =>  120, 'daylight' => true),
-                                                            array('id' =>"EAT", 'offset' =>  180, 'daylight' => false),
-                                                            array('id' =>"MET", 'offset' =>  60, 'daylight' => true), // updated 12/3/99 aliu
-                                                            array('id' =>"NET", 'offset' =>  240, 'daylight' => false), // updated 12/3/99 aliu
-                                                            array('id' =>"PLT", 'offset' =>  300, 'daylight' => false), // updated Aug 2003 aliu
-                                                            array('id' =>"IST", 'offset' =>  330, 'daylight' => false),
-                                                            array('id' =>"BST", 'offset' =>  360, 'daylight' => false),
-                                                            array('id' =>"VST", 'offset' =>  420, 'daylight' => false),
-                                                            array('id' =>"CTT", 'offset' =>  480, 'daylight' => false), // updated Aug 2003 aliu
-                                                            array('id' =>"JST", 'offset' =>  540, 'daylight' => false),
-                                                            array('id' =>"ACT", 'offset' =>  570, 'daylight' => false), // updated Aug 2003 aliu
-                                                            array('id' =>"AET", 'offset' =>  600, 'daylight' => true),
-                                                            array('id' =>"SST", 'offset' =>  660, 'daylight' => false),
-                                                            // "NST", 720, false,
-                                                            // As of bug 4130885, fix NST (New Zealand)
-                                                            array('id' =>"NST", 'offset' =>  720, 'daylight' => true), // Pacific/Auckland
-                                                            
-                                                            
-/* disabled until we support the old aliases at all
-															// From icuzones: 
-															array('id' =>"Etc/Unknown", 'offset' => 0, false),
+            array('id' => "MIT", 'offset' => 780, 'daylight' => true),
+            array('id' => "HST", 'offset' => -600, 'daylight' => false),
+            array('id' => "AST", 'offset' => -540, 'daylight' => true),
+            array('id' => "PST", 'offset' => -480, 'daylight' => true),
+            array('id' => "PNT", 'offset' => -420, 'daylight' => false),
+            array('id' => "MST", 'offset' => -420, 'daylight' => false), // updated Aug 2003 aliu
+            array('id' => "CST", 'offset' => -360, 'daylight' => true),
+            array('id' => "IET", 'offset' => -300, 'daylight' => true),  // updated Jan 2006 srl
+            array('id' => "EST", 'offset' => -300, 'daylight' => false), // updated Aug 2003 aliu
+            array('id' => "PRT", 'offset' => -240, 'daylight' => false),
+            array('id' => "CNT", 'offset' => -210, 'daylight' => true),
+            array('id' => "AGT", 'offset' => -180, 'daylight' => false), // updated 30 Dec 2007
+            array('id' => "BET", 'offset' => -180, 'daylight' => true),
+            // "CAT", -60, false, // Wrong:
+            // As of bug 4130885, fix CAT (Central Africa)
+            array('id' => "CAT", 'offset' => 120, 'daylight' => false), // Africa/Harare
+            array('id' => "GMT", 'offset' => 0, 'daylight' => false),
+            array('id' => "UTC", 'offset' => 0, 'daylight' => false), // ** srl: seems broken in C++
+            array('id' => "ECT", 'offset' => 60, 'daylight' => true),
+            array('id' => "ART", 'offset' => 120, 'daylight' => false),
+            array('id' => "EET", 'offset' => 120, 'daylight' => true),
+            array('id' => "EAT", 'offset' => 180, 'daylight' => false),
+            array('id' => "MET", 'offset' => 60, 'daylight' => true), // updated 12/3/99 aliu
+            array('id' => "NET", 'offset' => 240, 'daylight' => false), // updated 12/3/99 aliu
+            array('id' => "PLT", 'offset' => 300, 'daylight' => false), // updated Aug 2003 aliu
+            array('id' => "IST", 'offset' => 330, 'daylight' => false),
+            array('id' => "BST", 'offset' => 360, 'daylight' => false),
+            array('id' => "VST", 'offset' => 420, 'daylight' => false),
+            array('id' => "CTT", 'offset' => 480, 'daylight' => false), // updated Aug 2003 aliu
+            array('id' => "JST", 'offset' => 540, 'daylight' => false),
+            array('id' => "ACT", 'offset' => 570, 'daylight' => false), // updated Aug 2003 aliu
+            array('id' => "AET", 'offset' => 600, 'daylight' => true),
+            array('id' => "SST", 'offset' => 660, 'daylight' => false),
+            // "NST", 720, false,
+            // As of bug 4130885, fix NST (New Zealand)
+            array('id' => "NST", 'offset' => 720, 'daylight' => true), // Pacific/Auckland
 
-															array('id' =>"SystemV/AST4ADT", 'offset' => -240, 'daylight' => true),
-															array('id' =>"SystemV/EST5EDT", 'offset' => -300, 'daylight' => true),
-															array('id' =>"SystemV/CST6CDT", 'offset' => -360, 'daylight' => true),
-															array('id' =>"SystemV/MST7MDT", 'offset' => -420, 'daylight' => true),
-															array('id' =>"SystemV/PST8PDT", 'offset' => -480, 'daylight' => true),
-															array('id' =>"SystemV/YST9YDT", 'offset' => -540, 'daylight' => true),
-															array('id' =>"SystemV/AST4", 'offset' => -240, 'daylight' => false),
-#if U_ICU_VERSION_MAJOR_NUM>3 || U_ICU_VERSION_MINOR_NUM>=8
-															// CLDR 1.4.1 has an alias from SystemV/EST5 to America/Indianapolis
-															// which is incorrect because Indiana has started to observe DST.
-															// Re-enable this test once CLDR has fixed the alias.
-															// (For example, it could alias SystemV/EST5 to Etc/GMT+5.)
-															array('id' =>"SystemV/EST5", 'offset' => -300, 'daylight' => false),
-#endif
-															array('id' =>"SystemV/CST6", 'offset' => -360, 'daylight' => false),
-															array('id' =>"SystemV/MST7", 'offset' => -420, 'daylight' => false),
-															array('id' =>"SystemV/PST8", 'offset' => -480, 'daylight' => false),
-															array('id' =>"SystemV/YST9", 'offset' => -540, 'daylight' => false),
-															array('id' =>"SystemV/HST10", 'offset' => -600, 'daylight' => false),
-*/
+
+            /* disabled until we support the old aliases at all
+                                                                        // From icuzones:
+                                                                        array('id' =>"Etc/Unknown", 'offset' => 0, false),
+
+                                                                        array('id' =>"SystemV/AST4ADT", 'offset' => -240, 'daylight' => true),
+                                                                        array('id' =>"SystemV/EST5EDT", 'offset' => -300, 'daylight' => true),
+                                                                        array('id' =>"SystemV/CST6CDT", 'offset' => -360, 'daylight' => true),
+                                                                        array('id' =>"SystemV/MST7MDT", 'offset' => -420, 'daylight' => true),
+                                                                        array('id' =>"SystemV/PST8PDT", 'offset' => -480, 'daylight' => true),
+                                                                        array('id' =>"SystemV/YST9YDT", 'offset' => -540, 'daylight' => true),
+                                                                        array('id' =>"SystemV/AST4", 'offset' => -240, 'daylight' => false),
+            #if U_ICU_VERSION_MAJOR_NUM>3 || U_ICU_VERSION_MINOR_NUM>=8
+                                                                        // CLDR 1.4.1 has an alias from SystemV/EST5 to America/Indianapolis
+                                                                        // which is incorrect because Indiana has started to observe DST.
+                                                                        // Re-enable this test once CLDR has fixed the alias.
+                                                                        // (For example, it could alias SystemV/EST5 to Etc/GMT+5.)
+                                                                        array('id' =>"SystemV/EST5", 'offset' => -300, 'daylight' => false),
+            #endif
+                                                                        array('id' =>"SystemV/CST6", 'offset' => -360, 'daylight' => false),
+                                                                        array('id' =>"SystemV/MST7", 'offset' => -420, 'daylight' => false),
+                                                                        array('id' =>"SystemV/PST8", 'offset' => -480, 'daylight' => false),
+                                                                        array('id' =>"SystemV/YST9", 'offset' => -540, 'daylight' => false),
+                                                                        array('id' =>"SystemV/HST10", 'offset' => -600, 'daylight' => false),
+            */
         );
 
 
         $compatibilityMap = array(
-                // This list is copied from tz.alias.  If tz.alias
-                // changes, this list must be updated.  Current as of Mar 2007
-                "ACT" => "Australia/Darwin",
-                "AET" => "Australia/Sydney",
-                "AGT" => "America/Buenos_Aires",
-                "ART" => "Africa/Cairo",
-                "AST" => "America/Anchorage",
-                "BET" => "America/Sao_Paulo",
-                "BST" => "Asia/Dhaka", // # spelling changed in 2000h; was Asia/Dacca
-                "CAT" => "Africa/Harare",
-                "CNT" => "America/St_Johns",
-                "CST" => "America/Chicago",
-                "CTT" => "Asia/Shanghai",
-                "EAT" => "Africa/Addis_Ababa",
-                "ECT" => "Europe/Paris",
-                'EET' => 'Europe/Istanbul', # EET is a standard UNIX zone
-                // "EST" => "America/New_York", # Defined as -05:00
-                'EST' => 'EST',
-                // "HST" => "Pacific/Honolulu", # Defined as -10:00
-                'HST' => 'HST',
-                'GMT' => 'Etc/GMT',
-                "IET" => "America/Indianapolis",
-                "IST" => "Asia/Calcutta",
-                "JST" => "Asia/Tokyo",
-                'MET' => 'MET', # MET is a standard UNIX zone
-                "MIT" => "Pacific/Apia",
-                // "MST", "America/Denver", # Defined as -07:00
-                'MST' => 'MST',
-                "NET" => "Asia/Yerevan",
-                "NST" => "Pacific/Auckland",
-                "PLT" => "Asia/Karachi",
-                "PNT" => "America/Phoenix",
-                "PRT" => "America/Puerto_Rico",
-                "PST" => "America/Los_Angeles",
-                "SST" => "Pacific/Guadalcanal",
-                "UTC" => "Etc/GMT",
-                "VST" => "Asia/Saigon",
+            // This list is copied from tz.alias.  If tz.alias
+            // changes, this list must be updated.  Current as of Mar 2007
+            "ACT" => "Australia/Darwin",
+            "AET" => "Australia/Sydney",
+            "AGT" => "America/Buenos_Aires",
+            "ART" => "Africa/Cairo",
+            "AST" => "America/Anchorage",
+            "BET" => "America/Sao_Paulo",
+            "BST" => "Asia/Dhaka", // # spelling changed in 2000h; was Asia/Dacca
+            "CAT" => "Africa/Harare",
+            "CNT" => "America/St_Johns",
+            "CST" => "America/Chicago",
+            "CTT" => "Asia/Shanghai",
+            "EAT" => "Africa/Addis_Ababa",
+            "ECT" => "Europe/Paris",
+            'EET' => 'Europe/Istanbul', # EET is a standard UNIX zone
+            // "EST" => "America/New_York", # Defined as -05:00
+            'EST' => 'EST',
+            // "HST" => "Pacific/Honolulu", # Defined as -10:00
+            'HST' => 'HST',
+            'GMT' => 'Etc/GMT',
+            "IET" => "America/Indianapolis",
+            "IST" => "Asia/Calcutta",
+            "JST" => "Asia/Tokyo",
+            'MET' => 'MET', # MET is a standard UNIX zone
+            "MIT" => "Pacific/Apia",
+            // "MST", "America/Denver", # Defined as -07:00
+            'MST' => 'MST',
+            "NET" => "Asia/Yerevan",
+            "NST" => "Pacific/Auckland",
+            "PLT" => "Asia/Karachi",
+            "PNT" => "America/Phoenix",
+            "PRT" => "America/Puerto_Rico",
+            "PST" => "America/Los_Angeles",
+            "SST" => "Pacific/Guadalcanal",
+            "UTC" => "Etc/GMT",
+            "VST" => "Asia/Saigon",
         );
 
         foreach ($kReferenceList as $entry) {
@@ -522,7 +531,7 @@ TODO: is_equal doesn't work yet
             // Check existence.
             $tz = $this->tm->createTimeZone($itsID);
             if (!$tz) {
-                $this->fail('Time Zone ' . $itsID . '('.$entry['id'].') does not exist!');
+                $this->fail('Time Zone ' . $itsID . '(' . $entry['id'] . ') does not exist!');
             }
 
             // Check daylight usage.
@@ -531,32 +540,32 @@ TODO: is_equal doesn't work yet
 
             // Check offset
             $offsetInMinutes = $tz->getRawOffset() / 60000;
-            $this->assertEquals((float) $entry['offset'], $offsetInMinutes, $itsID);
+            $this->assertEquals((float)$entry['offset'], $offsetInMinutes, $itsID);
         }
 
 
-/*
-We don't support the old aliases (yet)
+        /*
+        We don't support the old aliases (yet)
 
 
-		foreach($compatibilityMap as $zone1 => $zone2) {
-			$tz1 = $this->tm->createTimeZone($zone1);
-			$tz2 = $this->tm->createTimeZone($zone2);
+                foreach($compatibilityMap as $zone1 => $zone2) {
+                    $tz1 = $this->tm->createTimeZone($zone1);
+                    $tz2 = $this->tm->createTimeZone($zone2);
 
-			$this->assertTrue($tz1, 'Could not find short ID zone ' . $zone1);
-			$this->assertTrue($tz2, 'Could not find long ID zone ' . $zone2);
+                    $this->assertTrue($tz1, 'Could not find short ID zone ' . $zone1);
+                    $this->assertTrue($tz2, 'Could not find long ID zone ' . $zone2);
 
-			// make NAME same so comparison will only look at the rest
-			$tz2->setId($tz1->getId());
+                    // make NAME same so comparison will only look at the rest
+                    $tz2->setId($tz1->getId());
 
-			$this->assertTrue($tz1->__is_equal($tz2));
-		}
-*/
+                    $this->assertTrue($tz1->__is_equal($tz2));
+                }
+        */
     }
 
-/**
- * Utility function for TestCustomParse
- */
+    /**
+     * Utility function for TestCustomParse
+     */
     protected function formatOffset($offset, $insertSep = true)
     {
         $rv = '';
@@ -565,45 +574,45 @@ We don't support the old aliases (yet)
             $sign = chr(0x002D);
             $offset = -$offset;
         }
-        
+
         $s = $offset % 60;
         $offset /= 60;
         $m = $offset % 60;
         $h = $offset / 60;
-        
+
         $rv .= ($sign);
         if ($h >= 10) {
-            $rv .= chr(0x0030 + ($h/10));
+            $rv .= chr(0x0030 + ($h / 10));
         } else {
             $rv .= chr(0x0030);
         }
-        $rv .= chr(0x0030 + ($h%10));
-        
+        $rv .= chr(0x0030 + ($h % 10));
+
         if ($insertSep) {
             $rv .= chr(0x003A); /* ':' */
         }
-        
+
         if ($m >= 10) {
-            $rv .= chr(0x0030 + ($m/10));
+            $rv .= chr(0x0030 + ($m / 10));
         } else {
             $rv .= chr(0x0030);
         }
-        $rv .= chr(0x0030 + ($m%10));
-        
+        $rv .= chr(0x0030 + ($m % 10));
+
         if ($s) {
             if ($insertSep) {
                 $rv .= chr(0x003A); /* ':' */
             }
             if ($s >= 10) {
-                $rv .= chr(0x0030 + ($s/10));
+                $rv .= chr(0x0030 + ($s / 10));
             } else {
                 $rv .= chr(0x0030);
             }
-            $rv .= chr(0x0030 + ($s%10));
+            $rv .= chr(0x0030 + ($s % 10));
         }
         return $rv;
     }
-    
+
     /**
      * Utility function for TestCustomParse, generating time zone ID
      * string for the give offset.
@@ -630,33 +639,33 @@ We don't support the old aliases (yet)
         $kUnparseable = 604800; // the number of seconds in a week. More than any offset should be.
 
         $kData = array(
-                // ID        Expected offset in seconds
-                array('customId' => "GMT",       'expectedOffset' => $kUnparseable), // Isn't custom. [returns normal GMT]
-                array('customId' => "GMT-YOUR.AD.HERE", 'expectedOffset' => $kUnparseable),
+            // ID        Expected offset in seconds
+            array('customId' => "GMT", 'expectedOffset' => $kUnparseable), // Isn't custom. [returns normal GMT]
+            array('customId' => "GMT-YOUR.AD.HERE", 'expectedOffset' => $kUnparseable),
 #				array('customId' => "GMT0",      'expectedOffset' => $kUnparseable),
 #				array('customId' => "GMT+0",     'expectedOffset' => (0)),
-                // {"GMT0",      kUnparseable), // ICU 2.8: An Olson zone ID
-                // {"GMT+0",     (0)), // ICU 2.8: An Olson zone ID
-                array('customId' => "GMT+1",     'expectedOffset' => (60*60)),
-                array('customId' => "GMT-0030",  'expectedOffset' => (-30*60)),
-                array('customId' => "GMT+15:99", 'expectedOffset' => $kUnparseable),
-                array('customId' => "GMT+",      'expectedOffset' => $kUnparseable),
-                array('customId' => "GMT-",      'expectedOffset' => $kUnparseable),
-                array('customId' => "GMT+0:",    'expectedOffset' => $kUnparseable),
-                array('customId' => "GMT-:",     'expectedOffset' => $kUnparseable),
-                array('customId' => "GMT-YOUR.AD.HERE",     'expectedOffset' => $kUnparseable),
-                array('customId' => "GMT+0010",  'expectedOffset' => (10*60)), // Interpret this as 00:10
-                array('customId' => "GMT-10",    'expectedOffset' => (-10*60*60)),
-                array('customId' => "GMT+30",    'expectedOffset' => $kUnparseable),
-                array('customId' => "GMT-3:30",  'expectedOffset' => (-(3*60+30)*60)),
-                array('customId' => "GMT-230",   'expectedOffset' => (-(2*60+30)*60)),
-                array('customId' => "GMT+05:13:05",'expectedOffset' => ((5*60+13)*60+5)),
-                array('customId' => "GMT-71023", 'expectedOffset' => (-((7*60+10)*60+23))),
-                array('customId' => "GMT+01:23:45:67", 'expectedOffset' => $kUnparseable),
-                array('customId' => "GMT+01:234",      'expectedOffset' => $kUnparseable),
-                array('customId' => "GMT-2:31:123",    'expectedOffset' => $kUnparseable),
-                array('customId' => "GMT+3:75",        'expectedOffset' => $kUnparseable),
-                array('customId' => "GMT-01010101",    'expectedOffset' => $kUnparseable),
+            // {"GMT0",      kUnparseable), // ICU 2.8: An Olson zone ID
+            // {"GMT+0",     (0)), // ICU 2.8: An Olson zone ID
+            array('customId' => "GMT+1", 'expectedOffset' => (60 * 60)),
+            array('customId' => "GMT-0030", 'expectedOffset' => (-30 * 60)),
+            array('customId' => "GMT+15:99", 'expectedOffset' => $kUnparseable),
+            array('customId' => "GMT+", 'expectedOffset' => $kUnparseable),
+            array('customId' => "GMT-", 'expectedOffset' => $kUnparseable),
+            array('customId' => "GMT+0:", 'expectedOffset' => $kUnparseable),
+            array('customId' => "GMT-:", 'expectedOffset' => $kUnparseable),
+            array('customId' => "GMT-YOUR.AD.HERE", 'expectedOffset' => $kUnparseable),
+            array('customId' => "GMT+0010", 'expectedOffset' => (10 * 60)), // Interpret this as 00:10
+            array('customId' => "GMT-10", 'expectedOffset' => (-10 * 60 * 60)),
+            array('customId' => "GMT+30", 'expectedOffset' => $kUnparseable),
+            array('customId' => "GMT-3:30", 'expectedOffset' => (-(3 * 60 + 30) * 60)),
+            array('customId' => "GMT-230", 'expectedOffset' => (-(2 * 60 + 30) * 60)),
+            array('customId' => "GMT+05:13:05", 'expectedOffset' => ((5 * 60 + 13) * 60 + 5)),
+            array('customId' => "GMT-71023", 'expectedOffset' => (-((7 * 60 + 10) * 60 + 23))),
+            array('customId' => "GMT+01:23:45:67", 'expectedOffset' => $kUnparseable),
+            array('customId' => "GMT+01:234", 'expectedOffset' => $kUnparseable),
+            array('customId' => "GMT-2:31:123", 'expectedOffset' => $kUnparseable),
+            array('customId' => "GMT+3:75", 'expectedOffset' => $kUnparseable),
+            array('customId' => "GMT-01010101", 'expectedOffset' => $kUnparseable),
         );
 
         foreach ($kData as $entry) {
@@ -670,10 +679,10 @@ We don't support the old aliases (yet)
                 $this->fail('Time Zone ' . $id . ' exists as "' . $zone->getResolvedId() . '" but we expected it to be unparseable');
             } elseif ($zone && $exp != $kUnparseable) {
                 $itsID = $zone->getId();
-                $ioffset = $zone->getRawOffset()/1000;
+                $ioffset = $zone->getRawOffset() / 1000;
                 $offset = $this->formatOffset($ioffset);
                 $expectedID = $this->formatTZID($ioffset);
-                 // JDK 1.3 creates custom zones with the ID "Custom"
+                // JDK 1.3 creates custom zones with the ID "Custom"
                 // JDK 1.4 creates custom zones with IDs of the form "GMT+02:00"
                 // ICU creates custom zones with IDs of the form "GMT+0200"
                 $this->assertNotEquals($exp, $kUnparseable);
@@ -683,12 +692,13 @@ We don't support the old aliases (yet)
         }
     }
 
+    /*
     public function testAliasedNames()
     {
         $kData[] = array(
                 /* Generated by org.unicode.cldr.tool.CountItems */
 
-                /* zoneID, canonical zoneID */
+                /* zoneID, canonical zoneID */ /*
                 array('from' => "Africa/Timbuktu", 'to' => "Africa/Bamako"),
                 array('from' => "America/Argentina/Buenos_Aires", 'to' => "America/Buenos_Aires"),
                 array('from' => "America/Argentina/Catamarca", 'to' => "America/Catamarca"),
@@ -804,7 +814,7 @@ We don't support the old aliases (yet)
                 array('from' => "Zulu", 'to' => "Etc/GMT"),
                 /* Total: 113 */
 
-        );
+        //);
 /* TODO: implement
 		TimeZone::EDisplayType styles[] = { TimeZone::SHORT, TimeZone::LONG };
 		UBool useDst[] = { false, true };
@@ -854,20 +864,20 @@ We don't support the old aliases (yet)
 				delete from;
 				delete to;
 		}
-*/
-    }
 
-/**
- * Test the basic functionality of the getDisplayName() API.
- *
- * @bug 4112869
- * @bug 4028006
- *
- * See also API change request A41.
- *
- * 4/21/98 - make smarter, so the test works if the ext resources
- * are present or not.
- */
+    }*/
+
+    /**
+     * Test the basic functionality of the getDisplayName() API.
+     *
+     * @bug 4112869
+     * @bug 4028006
+     *
+     * See also API change request A41.
+     *
+     * 4/21/98 - make smarter, so the test works if the ext resources
+     * are present or not.
+     */
     public function testDisplayName()
     {
         $enLocale = $this->tm->getLocale('en_US');
@@ -1151,5 +1161,7 @@ We don't support the old aliases (yet)
                 }
             }
         }
+        // If we don't fail we succeed
+        $this->assertTrue(true);
     }
 }

@@ -8,17 +8,60 @@ class ArrayPathDefintionTest extends PhpUnitTestCase
 {
     
     /**
-     * @dataProvider getPathPartData
+     * @dataProvider getPathPartDataWithoutExceptions
      */
-    public function testGetPartsFromPath($path, $expected, $expectedException)
+    public function testGetPartsFromPathWithoutExceptions($path, $expected)
     {
-        if (!empty($expectedException)) {
-            $this->setExpectedException($expectedException);
-        }
         $this->assertEquals($expected, ArrayPathDefinition::getPartsFromPath($path));
     }
+
+    /**
+     * @dataProvider getPathPartDataWithExceptions
+     * @expectedException \InvalidArgumentException
+     */
+    public function testGetPartsFromPathWithExceptions($path, $expected) {
+        ArrayPathDefinition::getPartsFromPath($path);
+    }
+
+    public function getPathPartDataWithExceptions() {
+        return array(
+            'brokenpath-1' => array(
+                'absolute[broken',
+                array(
+                    'parts' => array(
+                        'absolute',
+                        'broken'
+                    ),
+                    'absolute' => true,
+                ),
+                'InvalidArgumentException',
+            ),
+            'brokenpath-2' => array(
+                'absolute[broken]]',
+                array(
+                    'parts' => array(
+                        'absolute',
+                        'broken]'
+                    ),
+                    'absolute' => true,
+                ),
+                'InvalidArgumentException',
+            ),
+            'brokenpath-3' => array(
+                'absolute[[broken]',
+                array(
+                    'parts' => array(
+                        'absolute[',
+                        'broken'
+                    ),
+                    'absolute' => true,
+                ),
+                'InvalidArgumentException',
+            ),
+        );
+    }
     
-    public function getPathPartData()
+    public function getPathPartDataWithoutExceptions()
     {
         return array(
             'absolute,nopath' => array(
@@ -74,39 +117,6 @@ class ArrayPathDefintionTest extends PhpUnitTestCase
                     'absolute' => false,
                 ),
                 false,
-            ),
-            'brokenpath-1' => array(
-                'absolute[broken',
-                array(
-                    'parts' => array(
-                        'absolute',
-                        'broken'
-                    ),
-                    'absolute' => true,
-                ),
-                'InvalidArgumentException',
-            ),
-            'brokenpath-2' => array(
-                'absolute[broken]]',
-                array(
-                    'parts' => array(
-                        'absolute',
-                        'broken]'
-                    ),
-                    'absolute' => true,
-                ),
-                'InvalidArgumentException',
-            ),
-            'brokenpath-3' => array(
-                'absolute[[broken]',
-                array(
-                    'parts' => array(
-                        'absolute[',
-                        'broken'
-                    ),
-                    'absolute' => true,
-                ),
-                'InvalidArgumentException',
             ),
             'partStartsWithZero,ticket1189' => array(
                 '0[1]',

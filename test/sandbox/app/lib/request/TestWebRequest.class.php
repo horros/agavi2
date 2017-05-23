@@ -1,5 +1,5 @@
 <?php
-
+namespace Sandbox\Lib\Request;
 class TestWebRequest extends \Agavi\Request\WebRequest
 {
 
