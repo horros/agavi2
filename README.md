@@ -12,7 +12,7 @@
 
 ## Purpose
 
-Agavi is a *powerful, scalable PHP5 application framework* that follows the MVC
+Agavi is a *powerful, scalable PHP 7 application framework* that follows the MVC
 paradigm. It enables developers to write clean, maintainable and extensible
 code. Agavi puts choice and freedom over limiting conventions, and focuses on
 sustained quality rather than short-sighted decisions.
@@ -35,7 +35,7 @@ like HTTP, SOAP or even XML-RPC is a perfectly valid use case.
 
 ## Requirements and installation
 
-- PHP v5.5.0+ 
+- PHP v7.0+ 
 - required: `libxml`, `dom`, `SPL`, `Reflection` and `PCRE`
 - optional: `xsl`, `tokenizer`, `session`, `xmlrpc`, `soap`, `PDO`, `iconv`, `gettext`, `phing`
 
