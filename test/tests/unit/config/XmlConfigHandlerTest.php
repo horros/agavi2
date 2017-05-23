@@ -10,6 +10,9 @@ class XmlConfigHandlerTest extends ConfigHandlerTestBase
 {
     public function testParseXincludeSimple()
     {
+        if (strpos(PHP_OS, 'WIN') !== false) {
+            $this->markTestSkipped("Running on Windows, skipped.");
+        }
         $RACH = new ReturnArrayConfigHandler();
         $document = $this->parseConfiguration(Config::get('core.config_dir') . '/tests/xinclude_simple.xml');
         $actual = $this->includeCode($RACH->execute($document));
@@ -17,6 +20,7 @@ class XmlConfigHandlerTest extends ConfigHandlerTestBase
             'Name' => 'A',
         );
         $this->assertSame($expected, $actual);
+
     }
 
 
@@ -25,6 +29,11 @@ class XmlConfigHandlerTest extends ConfigHandlerTestBase
         if (defined('HHVM_VERSION')) {
             $this->markTestSkipped('This tests triggers a bug in HHVM. See https://github.com/facebook/hhvm/issues/4972 for details');
         }
+
+        if (strpos(PHP_OS, 'WIN') !== false) {
+            $this->markTestSkipped("Running on Windows, skipped.");
+        }
+
         $RACH = new ReturnArrayConfigHandler();
         $document = $this->parseConfiguration(Config::get('core.config_dir') . '/tests/xinclude_glob_simple.xml');
         $actual = $this->includeCode($RACH->execute($document));
@@ -37,6 +46,9 @@ class XmlConfigHandlerTest extends ConfigHandlerTestBase
 
     public function testParseXincludeGlobBrace()
     {
+        if (strpos(PHP_OS, 'WIN') !== false) {
+            $this->markTestSkipped("Running on Windows, skipped.");
+        }
         $RACH = new ReturnArrayConfigHandler();
         $document = $this->parseConfiguration(Config::get('core.config_dir') . '/tests/xinclude_glob_brace.xml');
         $actual = $this->includeCode($RACH->execute($document));
@@ -52,6 +64,11 @@ class XmlConfigHandlerTest extends ConfigHandlerTestBase
         if (defined('HHVM_VERSION')) {
             $this->markTestSkipped('This tests triggers a bug in HHVM. See https://github.com/facebook/hhvm/issues/4972 for details');
         }
+
+        if (strpos(PHP_OS, 'WIN') !== false) {
+            $this->markTestSkipped("Running on Windows, skipped.");
+        }
+
         $RACH = new ReturnArrayConfigHandler();
         $document = $this->parseConfiguration(Config::get('core.config_dir') . '/tests/xinclude_encoding.xml');
         $actual = $this->includeCode($RACH->execute($document));
@@ -63,6 +80,10 @@ class XmlConfigHandlerTest extends ConfigHandlerTestBase
 
     public function testParseEntities()
     {
+        if (strpos(PHP_OS, 'WIN') !== false) {
+            $this->markTestSkipped("Running on Windows, skipped.");
+        }
+
         $RACH = new ReturnArrayConfigHandler();
         $document = $this->parseConfiguration(Config::get('core.config_dir') . '/tests/entities.xml');
         $actual = $this->includeCode($RACH->execute($document));

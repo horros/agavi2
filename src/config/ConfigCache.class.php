@@ -525,7 +525,7 @@ class ConfigCache
             $data = file_get_contents($cache) . $data;
         }
 
-        $tmpName = tempnam($cacheDir, basename($cache));
+        $tmpName = @tempnam($cacheDir, basename($cache));
         if (@file_put_contents($tmpName, $data) !== false) {
             // that worked, but that doesn't mean we're safe yet
             // first, we cannot know if the destination directory really was writeable, as tempnam() falls back to the system temp dir
@@ -538,7 +538,7 @@ class ConfigCache
                 return;
             }
         }
-        
+
         // still here?
         // that means we could not write the cache file
         $error = 'Failed to write cache file "%s" generated from ' . 'configuration file "%s".';

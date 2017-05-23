@@ -1,6 +1,7 @@
 <?php
 namespace Agavi\Testing\Unit\Date;
 
+use Agavi\Config\ConfigCache;
 use Agavi\Date\Calendar;
 use Agavi\Date\DateDefinitions;
 use Agavi\Date\SimpleTimeZone;
@@ -191,6 +192,7 @@ TimeZoneBoundaryTest::showNN(int32_t n)
      */
     public function testBoundaries()
     {
+        ConfigCache::clear();
         $pst = $this->tm->createTimeZone("America/Los_Angeles");
         $tempcal = $this->tm->createCalendar($pst);
         $this->verifyMapping($tempcal, 1997, DateDefinitions::APRIL, 3, 0, 238904.0);

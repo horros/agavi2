@@ -27,7 +27,7 @@ if ($agaviTestSettings['environment']) {
 }
 
 if ($agaviTestSettings['bootstrap']) {
-    \Agavi\Testing\AgaviTesting::bootstrap($env);
+    \Agavi\Testing\PhpUnitCli::bootstrap($env);
 }
 
 if ($agaviTestSettings['defaultContext']) {
@@ -39,6 +39,8 @@ if (!defined('AGAVI_TESTING_BOOTSTRAPPED')) {
     define('AGAVI_TESTING_BOOTSTRAPPED', true);
 }
 
-if (AGAVI_TESTING_ORIGINAL_PHPUNIT_BOOTSTRAP) {
+if (defined('AGAVI_TESTING_ORIGINAL_PHPUNIT_BOOTSTRAP') && !is_null(AGAVI_TESTING_ORIGINAL_PHPUNIT_BOOTSTRAP)) {
     require_once(AGAVI_TESTING_ORIGINAL_PHPUNIT_BOOTSTRAP);
 }
+
+

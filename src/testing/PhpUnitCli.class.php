@@ -19,6 +19,7 @@ use Agavi\Core\Agavi;
 use Agavi\Exception\AgaviException;
 use Agavi\Util\RecursiveDirectoryFilterIterator;
 use Agavi\Util\Toolkit;
+use PHPUnit\TextUI\Command;
 
 /**
  * Main framework class used for running tests on the command line interface.
@@ -32,7 +33,7 @@ use Agavi\Util\Toolkit;
  *
  * @since      1.1.0
  */
-class PhpUnitCli extends \PHPUnit_TextUI_Command
+class PhpUnitCli extends Command
 {
     
     /**
@@ -171,16 +172,16 @@ EOT;
     {
         // ensure the bootstrap script doesn't run and bootstraps agavi another time
         define('AGAVI_TESTING_BOOTSTRAPPED', true);
-        Toolkit::clearCache();
+        //Toolkit::clearCache();
         $this->bootstrap($this->arguments['agaviEnvironment']);
-        
-        
+
         // use the default configuration only if another configuration was not given as command line argument
         $defaultConfigPath = Config::get('core.testing_dir') . '/config/phpunit.xml';
         if (empty($this->arguments['configuration']) && is_file($defaultConfigPath)) {
             $this->arguments['configuration'] = $defaultConfigPath;
         }
-        
+
+        $GLOBALS['AGAVI_PHPUNIT_XML'] = $this->arguments['configuration'];
         $this->arguments['configuration'] = $this->expandConfiguration($this->arguments['configuration']);
 
         if (count($this->options[1]) > 0) {
@@ -272,7 +273,7 @@ EOT;
      * @author     Dominik del Bondio <dominik.del.bondio@bitextender.com>
      * @since      1.1.0
      */
-    private static function expandConfiguration($file)
+    public static function expandConfiguration($file)
     {
         // file does not exist, let PHPUnit handle that case
         if (!is_readable($file) || !is_file($file)) {
@@ -292,9 +293,12 @@ EOT;
             $textNode->nodeValue = Toolkit::expandDirectives($textNode->nodeValue);
         }
         
-        $translatedFile = ConfigCache::getCacheName($file);
+        /*$translatedFile = ConfigCache::getCacheName($file);
         ConfigCache::writeCacheFile($file, $translatedFile, $doc->saveXML());
-        return $translatedFile;
+        return $translatedFile;*/
+        $fn = tempnam(sys_get_temp_dir(), 'phpunit.php');
+        file_put_contents($fn, $doc->saveXML());
+        return $fn;
     }
     
     /**
@@ -326,7 +330,7 @@ EOT;
         
         // bootstrap the framework for autoload, config handlers etc.
         Agavi::bootstrap($environment);
-        
+
         ini_set('include_path', get_include_path().PATH_SEPARATOR.dirname(__DIR__));
         
         $GLOBALS['AGAVI_CONFIG'] = Config::toArray();

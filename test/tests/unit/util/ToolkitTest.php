@@ -2,6 +2,7 @@
 namespace Agavi\Tests\Unit\Util;
 
 use Agavi\Config\Config;
+use Agavi\Exception\AgaviException;
 use Agavi\Testing\PhpUnitTestCase;
 use Agavi\Util\Toolkit;
 
@@ -80,16 +81,15 @@ class ToolkitTest extends PhpUnitTestCase
 
 
     /**
-     * @expectedException
+     * @expectedException \Agavi\Exception\AgaviException
      */
     public function testFloorDivideException()
     {
-        $this->setExpectedException('Agavi\\Exception\\AgaviException');
         Toolkit::floorDivide(6.9, 3.4, $rem);
     }
 
      /**
-     * @expectedException \PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Exception
      */
     public function testFloorDivideByZero()
     {

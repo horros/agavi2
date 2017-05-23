@@ -6,7 +6,7 @@
 		<autoload class="Sandbox\Lib\Model\SandboxBaseModel">%core.lib_dir%/model/SandboxBaseModel.class.php</autoload>
 		<autoload class="Sandbox\Lib\View\SandboxBaseView">%core.lib_dir%/view/SandboxBaseView.class.php</autoload>
 		
-		<autoload class="TestWebRequest">%core.lib_dir%/request/TestWebRequest.class.php</autoload>
+		<autoload class="Sandbox\Lib\Request\TestWebRequest">%core.lib_dir%/request/TestWebRequest.class.php</autoload>
 		
 		<autoload class="Agavi\Testing\Routing\TestingRouting">%core.app_dir%/../../lib/routing/TestingRouting.class.php</autoload>
 		<autoload class="Agavi\Testing\Routing\TestingWebRouting">%core.app_dir%/../../lib/routing/TestingWebRouting.class.php</autoload>
