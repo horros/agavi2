@@ -1,6 +1,6 @@
 {
     "name": "horros/agavi2",
-    "description": "Agavi2 is the resurrection of Agavi, a full-featured MVC-style framework for PHP5 with a strong focus on structure, code reusability and flexibility.",
+    "description": "Agavi2 is the resurrection of Agavi, a full-featured MVC-style framework for PHP 7 with a strong focus on structure, code reusability and flexibility.",
     "keywords": ["framework", "mvc"],
     "homepage": "http://agavi.org",
     "type": "library",
@@ -8,7 +8,7 @@
     "authors": [
         {
             "name": "Agavi Contributors",
-            "homepage": "https://github.com/agavi/agavi/graphs/contributors"
+            "homepage": "https://github.com/horros/agavi2/graphs/contributors"
         }
     ],
     "support": {
