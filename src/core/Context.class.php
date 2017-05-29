@@ -378,43 +378,64 @@ class Context
      */
     public function getModel($modelName, $moduleName = null, array $parameters = null)
     {
-        $origModelName = $modelName;
-        $modelName = Toolkit::canonicalName($modelName);
-        $class = str_replace('/', '_', $modelName) . 'Model';
+
+        $modelName = $origModelName = str_replace('.', '\\', $modelName);
+
+        // We have a namespace, get the name
+        if (strpos($modelName, '\\') !== false) {
+            // Remove any submodel-references
+            $modelName = substr($modelName, strrpos($modelName, '\\')+1);
+        }
         $file = null;
         $rc = null;
-        
+
+        // We have a namespace, get the name
+        if (strpos($modelName, '\\') !== false) {
+            $modelName = substr($modelName, strrpos($modelName, '\\')+1);
+        }
+
+        $ns = Config::get('app.namespace');
+
+        $class = $modelName;
+
         if ($moduleName === null) {
+
+            // If we have a base namespace defined, add it to the model name
+            if ($ns)
+                $class = $ns . '\\Models\\' . $origModelName . 'Model';
+
             // global model
             // let's try to autoload that baby
             if (!class_exists($class)) {
                 // it's not there. the hunt is on
-                $file = Config::get('core.model_dir') . '/' . $modelName . 'Model.class.php';
+                $file = Config::get('core.model_dir') . '/' . str_replace('\\', DIRECTORY_SEPARATOR, $origModelName) . 'Model.class.php';
+                require($file);
             }
+
         } else {
+
             try {
                 $this->dispatcher->initializeModule($moduleName);
             } catch (DisabledModuleException $e) {
                 // swallow, this will load the modules autoload but throw an exception
                 // if the module is disabled.
             }
+
+            if ($ns)
+                $class = $ns . '\\Modules\\' . $moduleName . '\\Models\\' . $origModelName . 'Model';
+
             // module model
-            // alternative name
-            $class = $moduleName . '_' . $class;
             // let's try to autoload the baby
             if (!class_exists($class)) {
                 // it's not there. the hunt is on
-                $file = Config::get('core.module_dir') . '/' . $moduleName . '/models/' . $modelName . 'Model.class.php';
+                $file = Config::get('core.module_dir') . '/' . $moduleName . '/models/' . str_replace('\\', DIRECTORY_SEPARATOR, $origModelName) . 'Model.class.php';
+                require($file);
             }
-        }
-
-        if (null !== $file && is_readable($file)) {
-            require($file);
         }
 
         if (!class_exists($class)) {
             // it's not there.
-            throw new AgaviException(sprintf("Couldn't find class for Model %s", $origModelName));
+            throw new AgaviException(sprintf("Couldn't find class %s for Model %s in file %s", $class, $modelName, $file));
         }
         
         // so if we're here, we found something, right? good.
