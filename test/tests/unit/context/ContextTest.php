@@ -54,12 +54,12 @@ class ContextTest extends PhpUnitTestCase
     public function dataGetModel()
     {
         return array(
-            'global normal model' => array('ContextTest', 'ContextTestModel', false),
-            'global singleton model' => array('ContextTestSingleton', 'ContextTestSingletonModel', true),
-            'global model in child path' => array('ContextTest.Child.Test', 'ContextTest_Child_TestModel', false),
-            'module normal model' => array('Test', 'ContextTest_TestModel', false, 'ContextTest'),
-            'module singleton model' => array('TestSingleton', 'ContextTest_TestSingletonModel', true, 'ContextTest'),
-            'module model in child path' => array('Parent.Child.Test', 'ContextTest_Parent_Child_TestModel', false, 'ContextTest'),
+            'global normal model' => array('ContextTest', 'Sandbox\Models\ContextTestModel', false),
+            'global singleton model' => array('ContextTestSingleton', 'Sandbox\Models\ContextTestSingletonModel', true),
+            'global model in child path' => array('ContextTest.Child.Test', 'Sandbox\Models\ContextTest\Child\TestModel', false),
+            'module normal model' => array('Test', 'Sandbox\Modules\ContextTest\Models\TestModel', false, 'ContextTest'),
+            'module singleton model' => array('TestSingleton', 'Sandbox\Modules\ContextTest\Models\TestSingletonModel', true, 'ContextTest'),
+            'module model in child path' => array('Parent.Child.Test', 'Sandbox\Modules\ContextTest\Models\Parent\Child\TestModel', false, 'ContextTest'),
         );
     }
     

@@ -1,6 +1,6 @@
 <?php
-
-class ContextTest_Child_TestModel extends \Agavi\Model\Model
+namespace Sandbox\Models\ContextTest\Child;
+class TestModel extends \Agavi\Model\Model
 {
     
 }
