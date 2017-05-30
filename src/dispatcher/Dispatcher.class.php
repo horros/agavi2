@@ -368,8 +368,8 @@ class Dispatcher extends ParameterHolder
     {
         $this->initializeModule($moduleName);
         
-        $controllerName = Toolkit::canonicalName(Toolkit::stripNamespace($controllerName));
-        $longControllerName = str_replace('/', '\\', $controllerName);
+
+        $longControllerName = str_replace('/', '\\', Toolkit::canonicalName(Toolkit::stripNamespace($controllerName)));
         $ns = Config::get('app.namespace');
 
         if (strlen($ns) > 0) {
@@ -466,15 +466,14 @@ class Dispatcher extends ParameterHolder
             // swallow
         }
 
-        $controllerName = Toolkit::canonicalName(Toolkit::stripNamespace($viewName));
-        $longControllerName = str_replace('/', '_', $controllerName);
+        $longViewName = str_replace('/', '\\', Toolkit::canonicalName(Toolkit::stripNamespace($viewName)));
         $ns = Config::get('app.namespace');
 
         if (strlen($ns) > 0 && strrpos($ns, '\\') !== strlen($ns)) {
             $ns .= '\\Modules\\' . $moduleName . '\\Views\\';
         }
-        $class = $ns . $longControllerName . 'View';
-
+        $class = $ns . $longViewName . 'View';
+        
         if (!class_exists($class)) {
             if (false !== ($file = $this->checkViewFile($moduleName, $viewName))) {
                 require($file);
