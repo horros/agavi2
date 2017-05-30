@@ -369,10 +369,10 @@ class Dispatcher extends ParameterHolder
         $this->initializeModule($moduleName);
         
         $controllerName = Toolkit::canonicalName(Toolkit::stripNamespace($controllerName));
-        $longControllerName = str_replace('/', '_', $controllerName);
+        $longControllerName = str_replace('/', '\\', $controllerName);
         $ns = Config::get('app.namespace');
 
-        if (strlen($ns) > 0 && strrpos($ns, '\\') !== strlen($ns)) {
+        if (strlen($ns) > 0) {
             $ns .= '\\Modules\\' . $moduleName . '\\Controllers\\';
         }
         $class = $ns . $longControllerName . 'Controller';
