@@ -2,199 +2,198 @@
 
 /**
  * Data file for timezone "Europe/Andorra".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\europe", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => 0,
       'dstOffset' => 0,
       'name' => 'WET',
     ),
-    1 =>
+    1 => 
     array (
       'rawOffset' => 3600,
       'dstOffset' => 0,
       'name' => 'CET',
     ),
-    2 =>
+    2 => 
     array (
       'rawOffset' => 3600,
       'dstOffset' => 3600,
       'name' => 'CEST',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -2177453164,
+      'time' => -2177453164.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => -733881600,
+      'time' => -733881600.0,
       'type' => 1,
     ),
-    2 =>
+    2 => 
     array (
-      'time' => 481078800,
+      'time' => 481078800.0,
       'type' => 2,
     ),
-    3 =>
+    3 => 
     array (
-      'time' => 496803600,
+      'time' => 496803600.0,
       'type' => 1,
     ),
-    4 =>
+    4 => 
     array (
-      'time' => 512528400,
+      'time' => 512528400.0,
       'type' => 2,
     ),
-    5 =>
+    5 => 
     array (
-      'time' => 528253200,
+      'time' => 528253200.0,
       'type' => 1,
     ),
-    6 =>
+    6 => 
     array (
-      'time' => 543978000,
+      'time' => 543978000.0,
       'type' => 2,
     ),
-    7 =>
+    7 => 
     array (
-      'time' => 559702800,
+      'time' => 559702800.0,
       'type' => 1,
     ),
-    8 =>
+    8 => 
     array (
-      'time' => 575427600,
+      'time' => 575427600.0,
       'type' => 2,
     ),
-    9 =>
+    9 => 
     array (
-      'time' => 591152400,
+      'time' => 591152400.0,
       'type' => 1,
     ),
-    10 =>
+    10 => 
     array (
-      'time' => 606877200,
+      'time' => 606877200.0,
       'type' => 2,
     ),
-    11 =>
+    11 => 
     array (
-      'time' => 622602000,
+      'time' => 622602000.0,
       'type' => 1,
     ),
-    12 =>
+    12 => 
     array (
-      'time' => 638326800,
+      'time' => 638326800.0,
       'type' => 2,
     ),
-    13 =>
+    13 => 
     array (
-      'time' => 654656400,
+      'time' => 654656400.0,
       'type' => 1,
     ),
-    14 =>
+    14 => 
     array (
-      'time' => 670381200,
+      'time' => 670381200.0,
       'type' => 2,
     ),
-    15 =>
+    15 => 
     array (
-      'time' => 686106000,
+      'time' => 686106000.0,
       'type' => 1,
     ),
-    16 =>
+    16 => 
     array (
-      'time' => 701830800,
+      'time' => 701830800.0,
       'type' => 2,
     ),
-    17 =>
+    17 => 
     array (
-      'time' => 717555600,
+      'time' => 717555600.0,
       'type' => 1,
     ),
-    18 =>
+    18 => 
     array (
-      'time' => 733280400,
+      'time' => 733280400.0,
       'type' => 2,
     ),
-    19 =>
+    19 => 
     array (
-      'time' => 749005200,
+      'time' => 749005200.0,
       'type' => 1,
     ),
-    20 =>
+    20 => 
     array (
-      'time' => 764730000,
+      'time' => 764730000.0,
       'type' => 2,
     ),
-    21 =>
+    21 => 
     array (
-      'time' => 780454800,
+      'time' => 780454800.0,
       'type' => 1,
     ),
-    22 =>
+    22 => 
     array (
-      'time' => 796179600,
+      'time' => 796179600.0,
       'type' => 2,
     ),
-    23 =>
+    23 => 
     array (
-      'time' => 811904400,
+      'time' => 811904400.0,
       'type' => 1,
     ),
-    24 =>
+    24 => 
     array (
-      'time' => 828234000,
+      'time' => 828234000.0,
       'type' => 2,
     ),
-    25 =>
+    25 => 
     array (
-      'time' => 846378000,
+      'time' => 846378000.0,
       'type' => 1,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'dynamic',
     'offset' => 3600,
     'name' => 'CE%sT',
     'save' => 3600,
-    'start' =>
+    'start' => 
     array (
       'month' => 2,
       'date' => -1,
       'day_of_week' => 1,
-      'time' => 3600000,
-      'type' => 2,
+      'time' => 3600000.0,
+      'type' => 2.0,
     ),
-    'end' =>
+    'end' => 
     array (
       'month' => 9,
       'date' => -1,
       'day_of_week' => 1,
-      'time' => 3600000,
-      'type' => 2,
+      'time' => 3600000.0,
+      'type' => 2.0,
     ),
     'startYear' => 1996,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\europe',
+  'version' => '2017b
+',
   'name' => 'Europe/Andorra',
 );
+
+?>

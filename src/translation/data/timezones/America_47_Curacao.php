@@ -2,56 +2,55 @@
 
 /**
  * Data file for timezone "America/Curacao".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\southamerica", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => -16200,
       'dstOffset' => 0,
-      'name' => 'ANT',
+      'name' => '-0430',
     ),
-    1 =>
+    1 => 
     array (
       'rawOffset' => -14400,
       'dstOffset' => 0,
       'name' => 'AST',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -1826738653,
+      'time' => -1826738653.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => -157750200,
+      'time' => -157750200.0,
       'type' => 1,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'static',
     'name' => 'AST',
     'offset' => -14400,
     'startYear' => 1966,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\southamerica',
+  'version' => '2017b
+',
   'name' => 'America/Curacao',
 );
+
+?>

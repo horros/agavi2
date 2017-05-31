@@ -2,138 +2,137 @@
 
 /**
  * Data file for timezone "America/Hermosillo".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\northamerica", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => -25200,
       'dstOffset' => 0,
       'name' => 'MST',
     ),
-    1 =>
+    1 => 
     array (
       'rawOffset' => -21600,
       'dstOffset' => 0,
       'name' => 'CST',
     ),
-    2 =>
+    2 => 
     array (
       'rawOffset' => -28800,
       'dstOffset' => 0,
       'name' => 'PST',
     ),
-    3 =>
+    3 => 
     array (
       'rawOffset' => -25200,
       'dstOffset' => 3600,
       'name' => 'MDT',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -1514739600,
+      'time' => -1514739600.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => -1343066400,
+      'time' => -1343066400.0,
       'type' => 1,
     ),
-    2 =>
+    2 => 
     array (
-      'time' => -1234807200,
+      'time' => -1234807200.0,
       'type' => 0,
     ),
-    3 =>
+    3 => 
     array (
-      'time' => -1220292000,
+      'time' => -1220292000.0,
       'type' => 1,
     ),
-    4 =>
+    4 => 
     array (
-      'time' => -1207159200,
+      'time' => -1207159200.0,
       'type' => 0,
     ),
-    5 =>
+    5 => 
     array (
-      'time' => -1191344400,
+      'time' => -1191344400.0,
       'type' => 1,
     ),
-    6 =>
+    6 => 
     array (
-      'time' => -873828000,
+      'time' => -873828000.0,
       'type' => 0,
     ),
-    7 =>
+    7 => 
     array (
-      'time' => -661539600,
+      'time' => -661539600.0,
       'type' => 2,
     ),
-    8 =>
+    8 => 
     array (
-      'time' => 28800,
+      'time' => 28800.0,
       'type' => 0,
     ),
-    9 =>
+    9 => 
     array (
-      'time' => 828867600,
+      'time' => 828867600.0,
       'type' => 3,
     ),
-    10 =>
+    10 => 
     array (
-      'time' => 846403200,
+      'time' => 846403200.0,
       'type' => 0,
     ),
-    11 =>
+    11 => 
     array (
-      'time' => 860317200,
+      'time' => 860317200.0,
       'type' => 3,
     ),
-    12 =>
+    12 => 
     array (
-      'time' => 877852800,
+      'time' => 877852800.0,
       'type' => 0,
     ),
-    13 =>
+    13 => 
     array (
-      'time' => 891766800,
+      'time' => 891766800.0,
       'type' => 3,
     ),
-    14 =>
+    14 => 
     array (
-      'time' => 909302400,
+      'time' => 909302400.0,
       'type' => 0,
     ),
-    15 =>
+    15 => 
     array (
-      'time' => 915174000,
+      'time' => 915174000.0,
       'type' => 0,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'static',
     'name' => 'MST',
     'offset' => -25200,
     'startYear' => 2000,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\northamerica',
+  'version' => '2017b
+',
   'name' => 'America/Hermosillo',
 );
+
+?>

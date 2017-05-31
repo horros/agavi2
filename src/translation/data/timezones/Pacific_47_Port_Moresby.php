@@ -2,56 +2,55 @@
 
 /**
  * Data file for timezone "Pacific/Port_Moresby".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\australasia", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => 35312,
       'dstOffset' => 0,
       'name' => 'PMMT',
     ),
-    1 =>
+    1 => 
     array (
       'rawOffset' => 36000,
       'dstOffset' => 0,
-      'name' => 'PGT',
+      'name' => '+10',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -2840176120,
+      'time' => -2840176120.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => -2366790512,
+      'time' => -2366790512.0,
       'type' => 1,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'static',
-    'name' => 'PGT',
+    'name' => '+10',
     'offset' => 36000,
     'startYear' => 1895,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\australasia',
+  'version' => '2017b
+',
   'name' => 'Pacific/Port_Moresby',
 );
+
+?>

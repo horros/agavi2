@@ -2,56 +2,55 @@
 
 /**
  * Data file for timezone "Pacific/Pitcairn".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\australasia", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => -30600,
       'dstOffset' => 0,
-      'name' => 'PNT',
+      'name' => '-0830',
     ),
-    1 =>
+    1 => 
     array (
       'rawOffset' => -28800,
       'dstOffset' => 0,
-      'name' => 'PST',
+      'name' => '-08',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -2177421580,
+      'time' => -2177421580.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => 893665800,
+      'time' => 893665800.0,
       'type' => 1,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'static',
-    'name' => 'PST',
+    'name' => '-08',
     'offset' => -28800,
     'startYear' => 1999,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\australasia',
+  'version' => '2017b
+',
   'name' => 'Pacific/Pitcairn',
 );
+
+?>

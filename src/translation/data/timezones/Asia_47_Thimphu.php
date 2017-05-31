@@ -2,56 +2,55 @@
 
 /**
  * Data file for timezone "Asia/Thimphu".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\asia", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => 19800,
       'dstOffset' => 0,
-      'name' => 'IST',
+      'name' => '+0530',
     ),
-    1 =>
+    1 => 
     array (
       'rawOffset' => 21600,
       'dstOffset' => 0,
-      'name' => 'BTT',
+      'name' => '+06',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -706341516,
+      'time' => -706341516.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => 560025000,
+      'time' => 560025000.0,
       'type' => 1,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'static',
-    'name' => 'BTT',
+    'name' => '+06',
     'offset' => 21600,
     'startYear' => 1988,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\asia',
+  'version' => '2017b
+',
   'name' => 'Asia/Thimphu',
 );
+
+?>

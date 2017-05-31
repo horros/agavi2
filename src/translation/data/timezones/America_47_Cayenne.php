@@ -2,56 +2,55 @@
 
 /**
  * Data file for timezone "America/Cayenne".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\southamerica", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => -14400,
       'dstOffset' => 0,
-      'name' => 'GFT',
+      'name' => '-04',
     ),
-    1 =>
+    1 => 
     array (
       'rawOffset' => -10800,
       'dstOffset' => 0,
-      'name' => 'GFT',
+      'name' => '-03',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -1846269040,
+      'time' => -1846269040.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => -71092800,
+      'time' => -71092800.0,
       'type' => 1,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'static',
-    'name' => 'GFT',
+    'name' => '-03',
     'offset' => -10800,
     'startYear' => 1968,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\southamerica',
+  'version' => '2017b
+',
   'name' => 'America/Cayenne',
 );
+
+?>

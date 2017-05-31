@@ -2,151 +2,150 @@
 
 /**
  * Data file for timezone "Australia/Perth".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\australasia", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => 28800,
       'dstOffset' => 0,
       'name' => 'AWT',
     ),
-    1 =>
+    1 => 
     array (
       'rawOffset' => 28800,
       'dstOffset' => 3600,
       'name' => 'AWDT',
     ),
-    2 =>
+    2 => 
     array (
       'rawOffset' => 28800,
       'dstOffset' => 0,
       'name' => 'AWST',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -2337925404,
+      'time' => -2337925404.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => -1672559940,
+      'time' => -1672559940.0,
       'type' => 1,
     ),
-    2 =>
+    2 => 
     array (
-      'time' => -1665385200,
+      'time' => -1665385200.0,
       'type' => 2,
     ),
-    3 =>
+    3 => 
     array (
-      'time' => -883634400,
+      'time' => -883634400.0,
       'type' => 1,
     ),
-    4 =>
+    4 => 
     array (
-      'time' => -876121200,
+      'time' => -876121200.0,
       'type' => 2,
     ),
-    5 =>
+    5 => 
     array (
-      'time' => -860392800,
+      'time' => -860392800.0,
       'type' => 1,
     ),
-    6 =>
+    6 => 
     array (
-      'time' => -844671600,
+      'time' => -844671600.0,
       'type' => 2,
     ),
-    7 =>
+    7 => 
     array (
-      'time' => -836467200,
+      'time' => -836467200.0,
       'type' => 0,
     ),
-    8 =>
+    8 => 
     array (
-      'time' => 152042400,
+      'time' => 152042400.0,
       'type' => 1,
     ),
-    9 =>
+    9 => 
     array (
-      'time' => 162928800,
+      'time' => 162928800.0,
       'type' => 2,
     ),
-    10 =>
+    10 => 
     array (
-      'time' => 436298400,
+      'time' => 436298400.0,
       'type' => 1,
     ),
-    11 =>
+    11 => 
     array (
-      'time' => 447184800,
+      'time' => 447184800.0,
       'type' => 2,
     ),
-    12 =>
+    12 => 
     array (
-      'time' => 690314400,
+      'time' => 690314400.0,
       'type' => 1,
     ),
-    13 =>
+    13 => 
     array (
-      'time' => 699386400,
+      'time' => 699386400.0,
       'type' => 2,
     ),
-    14 =>
+    14 => 
     array (
-      'time' => 1165082400,
+      'time' => 1165082400.0,
       'type' => 1,
     ),
-    15 =>
+    15 => 
     array (
-      'time' => 1174759200,
+      'time' => 1174759200.0,
       'type' => 2,
     ),
-    16 =>
+    16 => 
     array (
-      'time' => 1193508000,
+      'time' => 1193508000.0,
       'type' => 1,
     ),
-    17 =>
+    17 => 
     array (
-      'time' => 1206813600,
+      'time' => 1206813600.0,
       'type' => 2,
     ),
-    18 =>
+    18 => 
     array (
-      'time' => 1224957600,
+      'time' => 1224957600.0,
       'type' => 1,
     ),
-    19 =>
+    19 => 
     array (
-      'time' => 1238263200,
+      'time' => 1238263200.0,
       'type' => 2,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'none',
     'offset' => 28800,
     'startYear' => 2010,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\australasia',
+  'version' => '2017b
+',
   'name' => 'Australia/Perth',
 );
+
+?>

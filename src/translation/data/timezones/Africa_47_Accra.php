@@ -2,286 +2,279 @@
 
 /**
  * Data file for timezone "Africa/Accra".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\africa", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
-    array (
-      'rawOffset' => 0,
-      'dstOffset' => 0,
-      'name' => '',
-    ),
-    1 =>
-    array (
-      'rawOffset' => 0,
-      'dstOffset' => 1200,
-      'name' => 'GHST',
-    ),
-    2 =>
+    0 => 
     array (
       'rawOffset' => 0,
       'dstOffset' => 0,
       'name' => 'GMT',
     ),
-  ),
-  'rules' =>
-  array (
-    0 =>
+    1 => 
     array (
-      'time' => -1640995148,
+      'rawOffset' => 0,
+      'dstOffset' => 1200,
+      'name' => '+0020',
+    ),
+  ),
+  'rules' => 
+  array (
+    0 => 
+    array (
+      'time' => -1640995148.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => -1556841600,
+      'time' => -1556841600.0,
       'type' => 1,
     ),
-    2 =>
+    2 => 
     array (
-      'time' => -1546388400,
-      'type' => 2,
+      'time' => -1546388400.0,
+      'type' => 0,
     ),
-    3 =>
+    3 => 
     array (
-      'time' => -1525305600,
+      'time' => -1525305600.0,
       'type' => 1,
     ),
-    4 =>
+    4 => 
     array (
-      'time' => -1514852400,
-      'type' => 2,
+      'time' => -1514852400.0,
+      'type' => 0,
     ),
-    5 =>
+    5 => 
     array (
-      'time' => -1493769600,
+      'time' => -1493769600.0,
       'type' => 1,
     ),
-    6 =>
+    6 => 
     array (
-      'time' => -1483316400,
-      'type' => 2,
+      'time' => -1483316400.0,
+      'type' => 0,
     ),
-    7 =>
+    7 => 
     array (
-      'time' => -1462233600,
+      'time' => -1462233600.0,
       'type' => 1,
     ),
-    8 =>
+    8 => 
     array (
-      'time' => -1451780400,
-      'type' => 2,
+      'time' => -1451780400.0,
+      'type' => 0,
     ),
-    9 =>
+    9 => 
     array (
-      'time' => -1430611200,
+      'time' => -1430611200.0,
       'type' => 1,
     ),
-    10 =>
+    10 => 
     array (
-      'time' => -1420158000,
-      'type' => 2,
+      'time' => -1420158000.0,
+      'type' => 0,
     ),
-    11 =>
+    11 => 
     array (
-      'time' => -1399075200,
+      'time' => -1399075200.0,
       'type' => 1,
     ),
-    12 =>
+    12 => 
     array (
-      'time' => -1388622000,
-      'type' => 2,
+      'time' => -1388622000.0,
+      'type' => 0,
     ),
-    13 =>
+    13 => 
     array (
-      'time' => -1367539200,
+      'time' => -1367539200.0,
       'type' => 1,
     ),
-    14 =>
+    14 => 
     array (
-      'time' => -1357086000,
-      'type' => 2,
+      'time' => -1357086000.0,
+      'type' => 0,
     ),
-    15 =>
+    15 => 
     array (
-      'time' => -1336003200,
+      'time' => -1336003200.0,
       'type' => 1,
     ),
-    16 =>
+    16 => 
     array (
-      'time' => -1325550000,
-      'type' => 2,
+      'time' => -1325550000.0,
+      'type' => 0,
     ),
-    17 =>
+    17 => 
     array (
-      'time' => -1304380800,
+      'time' => -1304380800.0,
       'type' => 1,
     ),
-    18 =>
+    18 => 
     array (
-      'time' => -1293927600,
-      'type' => 2,
+      'time' => -1293927600.0,
+      'type' => 0,
     ),
-    19 =>
+    19 => 
     array (
-      'time' => -1272844800,
+      'time' => -1272844800.0,
       'type' => 1,
     ),
-    20 =>
+    20 => 
     array (
-      'time' => -1262391600,
-      'type' => 2,
+      'time' => -1262391600.0,
+      'type' => 0,
     ),
-    21 =>
+    21 => 
     array (
-      'time' => -1241308800,
+      'time' => -1241308800.0,
       'type' => 1,
     ),
-    22 =>
+    22 => 
     array (
-      'time' => -1230855600,
-      'type' => 2,
+      'time' => -1230855600.0,
+      'type' => 0,
     ),
-    23 =>
+    23 => 
     array (
-      'time' => -1209772800,
+      'time' => -1209772800.0,
       'type' => 1,
     ),
-    24 =>
+    24 => 
     array (
-      'time' => -1199319600,
-      'type' => 2,
+      'time' => -1199319600.0,
+      'type' => 0,
     ),
-    25 =>
+    25 => 
     array (
-      'time' => -1178150400,
+      'time' => -1178150400.0,
       'type' => 1,
     ),
-    26 =>
+    26 => 
     array (
-      'time' => -1167697200,
-      'type' => 2,
+      'time' => -1167697200.0,
+      'type' => 0,
     ),
-    27 =>
+    27 => 
     array (
-      'time' => -1146614400,
+      'time' => -1146614400.0,
       'type' => 1,
     ),
-    28 =>
+    28 => 
     array (
-      'time' => -1136161200,
-      'type' => 2,
+      'time' => -1136161200.0,
+      'type' => 0,
     ),
-    29 =>
+    29 => 
     array (
-      'time' => -1115078400,
+      'time' => -1115078400.0,
       'type' => 1,
     ),
-    30 =>
+    30 => 
     array (
-      'time' => -1104625200,
-      'type' => 2,
+      'time' => -1104625200.0,
+      'type' => 0,
     ),
-    31 =>
+    31 => 
     array (
-      'time' => -1083542400,
+      'time' => -1083542400.0,
       'type' => 1,
     ),
-    32 =>
+    32 => 
     array (
-      'time' => -1073089200,
-      'type' => 2,
+      'time' => -1073089200.0,
+      'type' => 0,
     ),
-    33 =>
+    33 => 
     array (
-      'time' => -1051920000,
+      'time' => -1051920000.0,
       'type' => 1,
     ),
-    34 =>
+    34 => 
     array (
-      'time' => -1041466800,
-      'type' => 2,
+      'time' => -1041466800.0,
+      'type' => 0,
     ),
-    35 =>
+    35 => 
     array (
-      'time' => -1020384000,
+      'time' => -1020384000.0,
       'type' => 1,
     ),
-    36 =>
+    36 => 
     array (
-      'time' => -1009930800,
-      'type' => 2,
+      'time' => -1009930800.0,
+      'type' => 0,
     ),
-    37 =>
+    37 => 
     array (
-      'time' => -988848000,
+      'time' => -988848000.0,
       'type' => 1,
     ),
-    38 =>
+    38 => 
     array (
-      'time' => -978394800,
-      'type' => 2,
+      'time' => -978394800.0,
+      'type' => 0,
     ),
-    39 =>
+    39 => 
     array (
-      'time' => -957312000,
+      'time' => -957312000.0,
       'type' => 1,
     ),
-    40 =>
+    40 => 
     array (
-      'time' => -946858800,
-      'type' => 2,
+      'time' => -946858800.0,
+      'type' => 0,
     ),
-    41 =>
+    41 => 
     array (
-      'time' => -925689600,
+      'time' => -925689600.0,
       'type' => 1,
     ),
-    42 =>
+    42 => 
     array (
-      'time' => -915236400,
-      'type' => 2,
+      'time' => -915236400.0,
+      'type' => 0,
     ),
-    43 =>
+    43 => 
     array (
-      'time' => -894153600,
+      'time' => -894153600.0,
       'type' => 1,
     ),
-    44 =>
+    44 => 
     array (
-      'time' => -883700400,
-      'type' => 2,
+      'time' => -883700400.0,
+      'type' => 0,
     ),
-    45 =>
+    45 => 
     array (
-      'time' => -862617600,
+      'time' => -862617600.0,
       'type' => 1,
     ),
-    46 =>
+    46 => 
     array (
-      'time' => -852164400,
-      'type' => 2,
+      'time' => -852164400.0,
+      'type' => 0,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'none',
     'offset' => 0,
     'startYear' => 1943,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\africa',
+  'version' => '2017b
+',
   'name' => 'Africa/Accra',
 );
+
+?>

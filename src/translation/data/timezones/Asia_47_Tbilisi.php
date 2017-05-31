@@ -2,460 +2,503 @@
 
 /**
  * Data file for timezone "Asia/Tbilisi".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\asia", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => 10751,
       'dstOffset' => 0,
       'name' => 'TBMT',
     ),
-    1 =>
+    1 => 
     array (
       'rawOffset' => 10800,
       'dstOffset' => 0,
-      'name' => 'TBIT',
+      'name' => '+03',
     ),
-    2 =>
+    2 => 
     array (
       'rawOffset' => 14400,
       'dstOffset' => 0,
-      'name' => 'TBIT',
+      'name' => '+04',
     ),
-    3 =>
-    array (
-      'rawOffset' => 14400,
-      'dstOffset' => 3600,
-      'name' => 'TBIST',
-    ),
-    4 =>
-    array (
-      'rawOffset' => 10800,
-      'dstOffset' => 3600,
-      'name' => 'TBIST',
-    ),
-    5 =>
-    array (
-      'rawOffset' => 10800,
-      'dstOffset' => 0,
-      'name' => 'GEST',
-    ),
-    6 =>
-    array (
-      'rawOffset' => 10800,
-      'dstOffset' => 0,
-      'name' => 'GET',
-    ),
-    7 =>
-    array (
-      'rawOffset' => 10800,
-      'dstOffset' => 3600,
-      'name' => 'GEST',
-    ),
-    8 =>
-    array (
-      'rawOffset' => 14400,
-      'dstOffset' => 0,
-      'name' => 'GEST',
-    ),
-    9 =>
-    array (
-      'rawOffset' => 14400,
-      'dstOffset' => 0,
-      'name' => 'GET',
-    ),
-    10 =>
+    3 => 
     array (
       'rawOffset' => 14400,
       'dstOffset' => 3600,
-      'name' => 'GEST',
+      'name' => '+05',
+    ),
+    4 => 
+    array (
+      'rawOffset' => 10800,
+      'dstOffset' => 3600,
+      'name' => '+04',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => null,
-      'type' => 6,
-    ),
-    1 =>
-    array (
-      'time' => -2840151551,
-      'type' => 0,
-    ),
-    2 =>
-    array (
-      'time' => -1441162751,
+      'time' => NULL,
       'type' => 1,
     ),
-    3 =>
+    1 => 
     array (
-      'time' => -405140400,
+      'time' => -2840151551.0,
+      'type' => 0,
+    ),
+    2 => 
+    array (
+      'time' => -1441162751.0,
+      'type' => 1,
+    ),
+    3 => 
+    array (
+      'time' => -405140400.0,
       'type' => 2,
     ),
-    4 =>
+    4 => 
     array (
-      'time' => 354916800,
+      'time' => 354916800.0,
       'type' => 3,
     ),
-    5 =>
+    5 => 
     array (
-      'time' => 354920400,
-      'type' => 7,
-    ),
-    6 =>
-    array (
-      'time' => 370724400,
-      'type' => 2,
-    ),
-    7 =>
-    array (
-      'time' => 370728000,
-      'type' => 6,
-    ),
-    8 =>
-    array (
-      'time' => 386452800,
-      'type' => 3,
-    ),
-    9 =>
-    array (
-      'time' => 386456400,
-      'type' => 7,
-    ),
-    10 =>
-    array (
-      'time' => 402260400,
-      'type' => 2,
-    ),
-    11 =>
-    array (
-      'time' => 402264000,
-      'type' => 6,
-    ),
-    12 =>
-    array (
-      'time' => 417988800,
-      'type' => 3,
-    ),
-    13 =>
-    array (
-      'time' => 417992400,
-      'type' => 7,
-    ),
-    14 =>
-    array (
-      'time' => 433796400,
-      'type' => 2,
-    ),
-    15 =>
-    array (
-      'time' => 433800000,
-      'type' => 6,
-    ),
-    16 =>
-    array (
-      'time' => 449618400,
-      'type' => 3,
-    ),
-    17 =>
-    array (
-      'time' => 449622000,
-      'type' => 7,
-    ),
-    18 =>
-    array (
-      'time' => 465343200,
-      'type' => 2,
-    ),
-    19 =>
-    array (
-      'time' => 465346800,
-      'type' => 6,
-    ),
-    20 =>
-    array (
-      'time' => 481068000,
-      'type' => 3,
-    ),
-    21 =>
-    array (
-      'time' => 481071600,
-      'type' => 7,
-    ),
-    22 =>
-    array (
-      'time' => 496792800,
-      'type' => 2,
-    ),
-    23 =>
-    array (
-      'time' => 496796400,
-      'type' => 6,
-    ),
-    24 =>
-    array (
-      'time' => 512517600,
-      'type' => 3,
-    ),
-    25 =>
-    array (
-      'time' => 512521200,
-      'type' => 7,
-    ),
-    26 =>
-    array (
-      'time' => 528242400,
-      'type' => 2,
-    ),
-    27 =>
-    array (
-      'time' => 528246000,
-      'type' => 6,
-    ),
-    28 =>
-    array (
-      'time' => 543967200,
-      'type' => 3,
-    ),
-    29 =>
-    array (
-      'time' => 543970800,
-      'type' => 7,
-    ),
-    30 =>
-    array (
-      'time' => 559692000,
-      'type' => 2,
-    ),
-    31 =>
-    array (
-      'time' => 559695600,
-      'type' => 6,
-    ),
-    32 =>
-    array (
-      'time' => 575416800,
-      'type' => 3,
-    ),
-    33 =>
-    array (
-      'time' => 575420400,
-      'type' => 7,
-    ),
-    34 =>
-    array (
-      'time' => 591141600,
-      'type' => 2,
-    ),
-    35 =>
-    array (
-      'time' => 591145200,
-      'type' => 6,
-    ),
-    36 =>
-    array (
-      'time' => 606866400,
-      'type' => 3,
-    ),
-    37 =>
-    array (
-      'time' => 606870000,
-      'type' => 7,
-    ),
-    38 =>
-    array (
-      'time' => 622591200,
-      'type' => 2,
-    ),
-    39 =>
-    array (
-      'time' => 622594800,
-      'type' => 6,
-    ),
-    40 =>
-    array (
-      'time' => 638316000,
-      'type' => 3,
-    ),
-    41 =>
-    array (
-      'time' => 638319600,
-      'type' => 7,
-    ),
-    42 =>
-    array (
-      'time' => 654645600,
-      'type' => 2,
-    ),
-    43 =>
-    array (
-      'time' => 654649200,
-      'type' => 6,
-    ),
-    44 =>
-    array (
-      'time' => 670370400,
+      'time' => 354920400.0,
       'type' => 4,
     ),
-    45 =>
+    6 => 
     array (
-      'time' => 670374000,
-      'type' => 7,
+      'time' => 370724400.0,
+      'type' => 2,
     ),
-    46 =>
+    7 => 
     array (
-      'time' => 671140800,
-      'type' => 5,
+      'time' => 370728000.0,
+      'type' => 1,
     ),
-    47 =>
+    8 => 
     array (
-      'time' => 686098800,
-      'type' => 6,
+      'time' => 386452800.0,
+      'type' => 3,
     ),
-    48 =>
+    9 => 
     array (
-      'time' => 686098800,
-      'type' => 6,
+      'time' => 386456400.0,
+      'type' => 4,
     ),
-    49 =>
+    10 => 
     array (
-      'time' => 694213200,
-      'type' => 6,
+      'time' => 402260400.0,
+      'type' => 2,
     ),
-    50 =>
+    11 => 
     array (
-      'time' => 701812800,
-      'type' => 7,
+      'time' => 402264000.0,
+      'type' => 1,
     ),
-    51 =>
+    12 => 
     array (
-      'time' => 701816400,
-      'type' => 7,
+      'time' => 417988800.0,
+      'type' => 3,
     ),
-    52 =>
+    13 => 
     array (
-      'time' => 717534000,
-      'type' => 6,
+      'time' => 417992400.0,
+      'type' => 4,
     ),
-    53 =>
+    14 => 
     array (
-      'time' => 717537600,
-      'type' => 6,
+      'time' => 433796400.0,
+      'type' => 2,
     ),
-    54 =>
+    15 => 
     array (
-      'time' => 733266000,
-      'type' => 7,
+      'time' => 433800000.0,
+      'type' => 1,
     ),
-    55 =>
+    16 => 
     array (
-      'time' => 733273200,
-      'type' => 7,
+      'time' => 449618400.0,
+      'type' => 3,
     ),
-    56 =>
+    17 => 
     array (
-      'time' => 748987200,
-      'type' => 6,
+      'time' => 449622000.0,
+      'type' => 4,
     ),
-    57 =>
+    18 => 
     array (
-      'time' => 748998000,
-      'type' => 6,
+      'time' => 465343200.0,
+      'type' => 2,
     ),
-    58 =>
+    19 => 
     array (
-      'time' => 764715600,
-      'type' => 7,
+      'time' => 465346800.0,
+      'type' => 1,
     ),
-    59 =>
+    20 => 
     array (
-      'time' => 764722800,
-      'type' => 7,
+      'time' => 481068000.0,
+      'type' => 3,
     ),
-    60 =>
+    21 => 
     array (
-      'time' => 778363200,
-      'type' => 8,
+      'time' => 481071600.0,
+      'type' => 4,
     ),
-    61 =>
+    22 => 
     array (
-      'time' => 780433200,
-      'type' => 9,
+      'time' => 496792800.0,
+      'type' => 2,
     ),
-    62 =>
+    23 => 
     array (
-      'time' => 780447600,
-      'type' => 6,
+      'time' => 496796400.0,
+      'type' => 1,
     ),
-    63 =>
+    24 => 
     array (
-      'time' => 796161600,
-      'type' => 10,
+      'time' => 512517600.0,
+      'type' => 3,
     ),
-    64 =>
+    25 => 
     array (
-      'time' => 796172400,
-      'type' => 7,
+      'time' => 512521200.0,
+      'type' => 4,
     ),
-    65 =>
+    26 => 
     array (
-      'time' => 811882800,
-      'type' => 9,
+      'time' => 528242400.0,
+      'type' => 2,
     ),
-    66 =>
+    27 => 
     array (
-      'time' => 811897200,
-      'type' => 6,
+      'time' => 528246000.0,
+      'type' => 1,
     ),
-    67 =>
+    28 => 
     array (
-      'time' => 828216000,
-      'type' => 10,
+      'time' => 543967200.0,
+      'type' => 3,
     ),
-    68 =>
+    29 => 
     array (
-      'time' => 828226800,
-      'type' => 7,
+      'time' => 543970800.0,
+      'type' => 4,
     ),
-    69 =>
+    30 => 
     array (
-      'time' => 844110000,
-      'type' => 10,
+      'time' => 559692000.0,
+      'type' => 2,
     ),
-    70 =>
+    31 => 
     array (
-      'time' => 846370800,
-      'type' => 6,
+      'time' => 559695600.0,
+      'type' => 1,
     ),
-    71 =>
+    32 => 
     array (
-      'time' => 1109624400,
-      'type' => 9,
+      'time' => 575416800.0,
+      'type' => 3,
+    ),
+    33 => 
+    array (
+      'time' => 575420400.0,
+      'type' => 4,
+    ),
+    34 => 
+    array (
+      'time' => 591141600.0,
+      'type' => 2,
+    ),
+    35 => 
+    array (
+      'time' => 591145200.0,
+      'type' => 1,
+    ),
+    36 => 
+    array (
+      'time' => 606866400.0,
+      'type' => 3,
+    ),
+    37 => 
+    array (
+      'time' => 606870000.0,
+      'type' => 4,
+    ),
+    38 => 
+    array (
+      'time' => 622591200.0,
+      'type' => 2,
+    ),
+    39 => 
+    array (
+      'time' => 622594800.0,
+      'type' => 1,
+    ),
+    40 => 
+    array (
+      'time' => 638316000.0,
+      'type' => 3,
+    ),
+    41 => 
+    array (
+      'time' => 638319600.0,
+      'type' => 4,
+    ),
+    42 => 
+    array (
+      'time' => 654645600.0,
+      'type' => 2,
+    ),
+    43 => 
+    array (
+      'time' => 654649200.0,
+      'type' => 1,
+    ),
+    44 => 
+    array (
+      'time' => 670370400.0,
+      'type' => 1,
+    ),
+    45 => 
+    array (
+      'time' => 670374000.0,
+      'type' => 4,
+    ),
+    46 => 
+    array (
+      'time' => 670374000.0,
+      'type' => 4,
+    ),
+    47 => 
+    array (
+      'time' => 686098800.0,
+      'type' => 1,
+    ),
+    48 => 
+    array (
+      'time' => 686098800.0,
+      'type' => 1,
+    ),
+    49 => 
+    array (
+      'time' => 694213200.0,
+      'type' => 1,
+    ),
+    50 => 
+    array (
+      'time' => 701816400.0,
+      'type' => 4,
+    ),
+    51 => 
+    array (
+      'time' => 701823600.0,
+      'type' => 4,
+    ),
+    52 => 
+    array (
+      'time' => 717537600.0,
+      'type' => 1,
+    ),
+    53 => 
+    array (
+      'time' => 717548400.0,
+      'type' => 1,
+    ),
+    54 => 
+    array (
+      'time' => 733266000.0,
+      'type' => 4,
+    ),
+    55 => 
+    array (
+      'time' => 733273200.0,
+      'type' => 4,
+    ),
+    56 => 
+    array (
+      'time' => 748987200.0,
+      'type' => 1,
+    ),
+    57 => 
+    array (
+      'time' => 748998000.0,
+      'type' => 1,
+    ),
+    58 => 
+    array (
+      'time' => 764715600.0,
+      'type' => 4,
+    ),
+    59 => 
+    array (
+      'time' => 764722800.0,
+      'type' => 4,
+    ),
+    60 => 
+    array (
+      'time' => 778363200.0,
+      'type' => 2,
+    ),
+    61 => 
+    array (
+      'time' => 780433200.0,
+      'type' => 2,
+    ),
+    62 => 
+    array (
+      'time' => 780447600.0,
+      'type' => 1,
+    ),
+    63 => 
+    array (
+      'time' => 796161600.0,
+      'type' => 3,
+    ),
+    64 => 
+    array (
+      'time' => 796172400.0,
+      'type' => 4,
+    ),
+    65 => 
+    array (
+      'time' => 811882800.0,
+      'type' => 2,
+    ),
+    66 => 
+    array (
+      'time' => 811897200.0,
+      'type' => 1,
+    ),
+    67 => 
+    array (
+      'time' => 828216000.0,
+      'type' => 3,
+    ),
+    68 => 
+    array (
+      'time' => 828226800.0,
+      'type' => 4,
+    ),
+    69 => 
+    array (
+      'time' => 844110000.0,
+      'type' => 3,
+    ),
+    70 => 
+    array (
+      'time' => 846370800.0,
+      'type' => 1,
+    ),
+    71 => 
+    array (
+      'time' => 859676400.0,
+      'type' => 4,
+    ),
+    72 => 
+    array (
+      'time' => 877820400.0,
+      'type' => 1,
+    ),
+    73 => 
+    array (
+      'time' => 891126000.0,
+      'type' => 4,
+    ),
+    74 => 
+    array (
+      'time' => 909270000.0,
+      'type' => 1,
+    ),
+    75 => 
+    array (
+      'time' => 922575600.0,
+      'type' => 4,
+    ),
+    76 => 
+    array (
+      'time' => 941324400.0,
+      'type' => 1,
+    ),
+    77 => 
+    array (
+      'time' => 954025200.0,
+      'type' => 4,
+    ),
+    78 => 
+    array (
+      'time' => 972774000.0,
+      'type' => 1,
+    ),
+    79 => 
+    array (
+      'time' => 985474800.0,
+      'type' => 4,
+    ),
+    80 => 
+    array (
+      'time' => 1004223600.0,
+      'type' => 1,
+    ),
+    81 => 
+    array (
+      'time' => 1017529200.0,
+      'type' => 4,
+    ),
+    82 => 
+    array (
+      'time' => 1035673200.0,
+      'type' => 1,
+    ),
+    83 => 
+    array (
+      'time' => 1048978800.0,
+      'type' => 4,
+    ),
+    84 => 
+    array (
+      'time' => 1067122800.0,
+      'type' => 1,
+    ),
+    85 => 
+    array (
+      'time' => 1080428400.0,
+      'type' => 4,
+    ),
+    86 => 
+    array (
+      'time' => 1099177200.0,
+      'type' => 1,
+    ),
+    87 => 
+    array (
+      'time' => 1109624400.0,
+      'type' => 2,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'static',
-    'name' => 'GET',
+    'name' => '+04',
     'offset' => 14400,
     'startYear' => 2006,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\asia',
+  'version' => '2017b
+',
   'name' => 'Asia/Tbilisi',
 );
+
+?>

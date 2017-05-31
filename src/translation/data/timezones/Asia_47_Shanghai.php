@@ -2,141 +2,140 @@
 
 /**
  * Data file for timezone "Asia/Shanghai".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\asia", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => 28800,
       'dstOffset' => 0,
       'name' => 'CT',
     ),
-    1 =>
+    1 => 
     array (
       'rawOffset' => 28800,
       'dstOffset' => 3600,
       'name' => 'CDT',
     ),
-    2 =>
+    2 => 
     array (
       'rawOffset' => 28800,
       'dstOffset' => 0,
       'name' => 'CST',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -2177481943,
+      'time' => -2177481943.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => -933494400,
+      'time' => -933494400.0,
       'type' => 1,
     ),
-    2 =>
+    2 => 
     array (
-      'time' => -923130000,
+      'time' => -923130000.0,
       'type' => 2,
     ),
-    3 =>
+    3 => 
     array (
-      'time' => -908784000,
+      'time' => -908784000.0,
       'type' => 1,
     ),
-    4 =>
+    4 => 
     array (
-      'time' => -891594000,
+      'time' => -891594000.0,
       'type' => 2,
     ),
-    5 =>
+    5 => 
     array (
-      'time' => -662716800,
+      'time' => -662716800.0,
       'type' => 0,
     ),
-    6 =>
+    6 => 
     array (
-      'time' => 515520000,
+      'time' => 515520000.0,
       'type' => 1,
     ),
-    7 =>
+    7 => 
     array (
-      'time' => 527007600,
+      'time' => 527007600.0,
       'type' => 2,
     ),
-    8 =>
+    8 => 
     array (
-      'time' => 545155200,
+      'time' => 545155200.0,
       'type' => 1,
     ),
-    9 =>
+    9 => 
     array (
-      'time' => 558457200,
+      'time' => 558457200.0,
       'type' => 2,
     ),
-    10 =>
+    10 => 
     array (
-      'time' => 576604800,
+      'time' => 576604800.0,
       'type' => 1,
     ),
-    11 =>
+    11 => 
     array (
-      'time' => 589906800,
+      'time' => 589906800.0,
       'type' => 2,
     ),
-    12 =>
+    12 => 
     array (
-      'time' => 608659200,
+      'time' => 608659200.0,
       'type' => 1,
     ),
-    13 =>
+    13 => 
     array (
-      'time' => 621961200,
+      'time' => 621961200.0,
       'type' => 2,
     ),
-    14 =>
+    14 => 
     array (
-      'time' => 640108800,
+      'time' => 640108800.0,
       'type' => 1,
     ),
-    15 =>
+    15 => 
     array (
-      'time' => 653410800,
+      'time' => 653410800.0,
       'type' => 2,
     ),
-    16 =>
+    16 => 
     array (
-      'time' => 671558400,
+      'time' => 671558400.0,
       'type' => 1,
     ),
-    17 =>
+    17 => 
     array (
-      'time' => 684860400,
+      'time' => 684860400.0,
       'type' => 2,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'none',
     'offset' => 28800,
     'startYear' => 1992,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\asia',
+  'version' => '2017b
+',
   'name' => 'Asia/Shanghai',
 );
+
+?>

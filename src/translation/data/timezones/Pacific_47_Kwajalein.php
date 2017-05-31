@@ -2,67 +2,66 @@
 
 /**
  * Data file for timezone "Pacific/Kwajalein".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\australasia", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => 39600,
       'dstOffset' => 0,
-      'name' => 'MHT',
+      'name' => '+11',
     ),
-    1 =>
+    1 => 
     array (
       'rawOffset' => -43200,
       'dstOffset' => 0,
-      'name' => 'KWAT',
+      'name' => '-12',
     ),
-    2 =>
+    2 => 
     array (
       'rawOffset' => 43200,
       'dstOffset' => 0,
-      'name' => 'MHT',
+      'name' => '+12',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -2177492960,
+      'time' => -2177492960.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => -7988400,
+      'time' => -7988400.0,
       'type' => 1,
     ),
-    2 =>
+    2 => 
     array (
-      'time' => 745848000,
+      'time' => 745848000.0,
       'type' => 2,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'static',
-    'name' => 'MHT',
+    'name' => '+12',
     'offset' => 43200,
     'startYear' => 1994,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\australasia',
+  'version' => '2017b
+',
   'name' => 'Pacific/Kwajalein',
 );
+
+?>

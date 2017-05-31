@@ -2,45 +2,44 @@
 
 /**
  * Data file for timezone "Antarctica/Vostok".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\antarctica", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => 21600,
       'dstOffset' => 0,
-      'name' => 'VOST',
+      'name' => '+06',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -380073600,
+      'time' => -380073600.0,
       'type' => 0,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'static',
-    'name' => 'VOST',
+    'name' => '+06',
     'offset' => 21600,
     'startYear' => 1958,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\antarctica',
+  'version' => '2017b
+',
   'name' => 'Antarctica/Vostok',
 );
+
+?>

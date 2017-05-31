@@ -2,67 +2,60 @@
 
 /**
  * Data file for timezone "Antarctica/DumontDUrville".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\antarctica", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => 36000,
       'dstOffset' => 0,
-      'name' => 'PMT',
+      'name' => '+10',
     ),
-    1 =>
+    1 => 
     array (
       'rawOffset' => 0,
       'dstOffset' => 0,
-      'name' => 'zzz',
-    ),
-    2 =>
-    array (
-      'rawOffset' => 36000,
-      'dstOffset' => 0,
-      'name' => 'DDUT',
+      'name' => '-00',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -725846400,
+      'time' => -725846400.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => -566992800,
+      'time' => -566992800.0,
       'type' => 1,
     ),
-    2 =>
+    2 => 
     array (
-      'time' => -415497600,
-      'type' => 2,
+      'time' => -415497600.0,
+      'type' => 0,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'static',
-    'name' => 'DDUT',
+    'name' => '+10',
     'offset' => 36000,
     'startYear' => 1957,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\antarctica',
+  'version' => '2017b
+',
   'name' => 'Antarctica/DumontDUrville',
 );
+
+?>

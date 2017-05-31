@@ -2,56 +2,55 @@
 
 /**
  * Data file for timezone "Asia/Brunei".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\asia", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => 27000,
       'dstOffset' => 0,
-      'name' => 'BNT',
+      'name' => '+0730',
     ),
-    1 =>
+    1 => 
     array (
       'rawOffset' => 28800,
       'dstOffset' => 0,
-      'name' => 'BNT',
+      'name' => '+08',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -1383464380,
+      'time' => -1383464380.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => -1167636600,
+      'time' => -1167636600.0,
       'type' => 1,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'static',
-    'name' => 'BNT',
+    'name' => '+08',
     'offset' => 28800,
     'startYear' => 1933,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\asia',
+  'version' => '2017b
+',
   'name' => 'Asia/Brunei',
 );
+
+?>

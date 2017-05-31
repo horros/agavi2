@@ -2,107 +2,106 @@
 
 /**
  * Data file for timezone "America/Barbados".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\northamerica", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => -14309,
       'dstOffset' => 0,
       'name' => 'BMT',
     ),
-    1 =>
+    1 => 
     array (
       'rawOffset' => -14400,
       'dstOffset' => 0,
       'name' => 'AT',
     ),
-    2 =>
+    2 => 
     array (
       'rawOffset' => -14400,
       'dstOffset' => 3600,
       'name' => 'ADT',
     ),
-    3 =>
+    3 => 
     array (
       'rawOffset' => -14400,
       'dstOffset' => 0,
       'name' => 'AST',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -1451678491,
+      'time' => -1451678491.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => -1199217691,
+      'time' => -1199217691.0,
       'type' => 1,
     ),
-    2 =>
+    2 => 
     array (
-      'time' => 234943200,
+      'time' => 234943200.0,
       'type' => 2,
     ),
-    3 =>
+    3 => 
     array (
-      'time' => 244616400,
+      'time' => 244616400.0,
       'type' => 3,
     ),
-    4 =>
+    4 => 
     array (
-      'time' => 261554400,
+      'time' => 261554400.0,
       'type' => 2,
     ),
-    5 =>
+    5 => 
     array (
-      'time' => 276066000,
+      'time' => 276066000.0,
       'type' => 3,
     ),
-    6 =>
+    6 => 
     array (
-      'time' => 293004000,
+      'time' => 293004000.0,
       'type' => 2,
     ),
-    7 =>
+    7 => 
     array (
-      'time' => 307515600,
+      'time' => 307515600.0,
       'type' => 3,
     ),
-    8 =>
+    8 => 
     array (
-      'time' => 325058400,
+      'time' => 325058400.0,
       'type' => 2,
     ),
-    9 =>
+    9 => 
     array (
-      'time' => 338706000,
+      'time' => 338706000.0,
       'type' => 3,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'none',
     'offset' => -14400,
     'startYear' => 1981,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\northamerica',
+  'version' => '2017b
+',
   'name' => 'America/Barbados',
 );
+
+?>

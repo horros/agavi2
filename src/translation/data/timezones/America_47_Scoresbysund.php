@@ -2,256 +2,253 @@
 
 /**
  * Data file for timezone "America/Scoresbysund".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\europe", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => -7200,
       'dstOffset' => 0,
-      'name' => 'CGT',
+      'name' => '-02',
     ),
-    1 =>
+    1 => 
     array (
       'rawOffset' => -7200,
       'dstOffset' => 3600,
-      'name' => 'CGST',
+      'name' => '-01',
     ),
-    2 =>
+    2 => 
     array (
       'rawOffset' => -3600,
       'dstOffset' => 0,
-      'name' => 'EGST',
+      'name' => '-01',
     ),
-    3 =>
-    array (
-      'rawOffset' => -3600,
-      'dstOffset' => 0,
-      'name' => 'EGT',
-    ),
-    4 =>
+    3 => 
     array (
       'rawOffset' => -3600,
       'dstOffset' => 3600,
-      'name' => 'EGST',
+      'name' => '+00',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -1686090728,
+      'time' => -1686090728.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => 323841600,
+      'time' => 323841600.0,
       'type' => 1,
     ),
-    2 =>
+    2 => 
     array (
-      'time' => 338961600,
+      'time' => 338961600.0,
       'type' => 0,
     ),
-    3 =>
+    3 => 
     array (
-      'time' => 354679200,
+      'time' => 354679200.0,
       'type' => 2,
     ),
-    4 =>
+    4 => 
     array (
-      'time' => 370400400,
+      'time' => 370400400.0,
+      'type' => 2,
+    ),
+    5 => 
+    array (
+      'time' => 386125200.0,
       'type' => 3,
     ),
-    5 =>
+    6 => 
     array (
-      'time' => 386125200,
-      'type' => 4,
+      'time' => 401850000.0,
+      'type' => 2,
     ),
-    6 =>
+    7 => 
     array (
-      'time' => 401850000,
+      'time' => 417574800.0,
       'type' => 3,
     ),
-    7 =>
+    8 => 
     array (
-      'time' => 417574800,
-      'type' => 4,
+      'time' => 433299600.0,
+      'type' => 2,
     ),
-    8 =>
+    9 => 
     array (
-      'time' => 433299600,
+      'time' => 449024400.0,
       'type' => 3,
     ),
-    9 =>
+    10 => 
     array (
-      'time' => 449024400,
-      'type' => 4,
+      'time' => 465354000.0,
+      'type' => 2,
     ),
-    10 =>
+    11 => 
     array (
-      'time' => 465354000,
+      'time' => 481078800.0,
       'type' => 3,
     ),
-    11 =>
+    12 => 
     array (
-      'time' => 481078800,
-      'type' => 4,
+      'time' => 496803600.0,
+      'type' => 2,
     ),
-    12 =>
+    13 => 
     array (
-      'time' => 496803600,
+      'time' => 512528400.0,
       'type' => 3,
     ),
-    13 =>
+    14 => 
     array (
-      'time' => 512528400,
-      'type' => 4,
+      'time' => 528253200.0,
+      'type' => 2,
     ),
-    14 =>
+    15 => 
     array (
-      'time' => 528253200,
+      'time' => 543978000.0,
       'type' => 3,
     ),
-    15 =>
+    16 => 
     array (
-      'time' => 543978000,
-      'type' => 4,
+      'time' => 559702800.0,
+      'type' => 2,
     ),
-    16 =>
+    17 => 
     array (
-      'time' => 559702800,
+      'time' => 575427600.0,
       'type' => 3,
     ),
-    17 =>
+    18 => 
     array (
-      'time' => 575427600,
-      'type' => 4,
+      'time' => 591152400.0,
+      'type' => 2,
     ),
-    18 =>
+    19 => 
     array (
-      'time' => 591152400,
+      'time' => 606877200.0,
       'type' => 3,
     ),
-    19 =>
+    20 => 
     array (
-      'time' => 606877200,
-      'type' => 4,
+      'time' => 622602000.0,
+      'type' => 2,
     ),
-    20 =>
+    21 => 
     array (
-      'time' => 622602000,
+      'time' => 638326800.0,
       'type' => 3,
     ),
-    21 =>
+    22 => 
     array (
-      'time' => 638326800,
-      'type' => 4,
+      'time' => 654656400.0,
+      'type' => 2,
     ),
-    22 =>
+    23 => 
     array (
-      'time' => 654656400,
+      'time' => 670381200.0,
       'type' => 3,
     ),
-    23 =>
+    24 => 
     array (
-      'time' => 670381200,
-      'type' => 4,
+      'time' => 686106000.0,
+      'type' => 2,
     ),
-    24 =>
+    25 => 
     array (
-      'time' => 686106000,
+      'time' => 701830800.0,
       'type' => 3,
     ),
-    25 =>
+    26 => 
     array (
-      'time' => 701830800,
-      'type' => 4,
+      'time' => 717555600.0,
+      'type' => 2,
     ),
-    26 =>
+    27 => 
     array (
-      'time' => 717555600,
+      'time' => 733280400.0,
       'type' => 3,
     ),
-    27 =>
+    28 => 
     array (
-      'time' => 733280400,
-      'type' => 4,
+      'time' => 749005200.0,
+      'type' => 2,
     ),
-    28 =>
+    29 => 
     array (
-      'time' => 749005200,
+      'time' => 764730000.0,
       'type' => 3,
     ),
-    29 =>
+    30 => 
     array (
-      'time' => 764730000,
-      'type' => 4,
+      'time' => 780454800.0,
+      'type' => 2,
     ),
-    30 =>
+    31 => 
     array (
-      'time' => 780454800,
+      'time' => 796179600.0,
       'type' => 3,
     ),
-    31 =>
+    32 => 
     array (
-      'time' => 796179600,
-      'type' => 4,
+      'time' => 811904400.0,
+      'type' => 2,
     ),
-    32 =>
+    33 => 
     array (
-      'time' => 811904400,
+      'time' => 828234000.0,
       'type' => 3,
     ),
-    33 =>
+    34 => 
     array (
-      'time' => 828234000,
-      'type' => 4,
-    ),
-    34 =>
-    array (
-      'time' => 846378000,
-      'type' => 3,
+      'time' => 846378000.0,
+      'type' => 2,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'dynamic',
     'offset' => -3600,
-    'name' => 'EG%sT',
+    'name' => 
+    array (
+      0 => '-01',
+      1 => '+00',
+    ),
     'save' => 3600,
-    'start' =>
+    'start' => 
     array (
       'month' => 2,
       'date' => -1,
       'day_of_week' => 1,
-      'time' => 3600000,
-      'type' => 2,
+      'time' => 3600000.0,
+      'type' => 2.0,
     ),
-    'end' =>
+    'end' => 
     array (
       'month' => 9,
       'date' => -1,
       'day_of_week' => 1,
-      'time' => 3600000,
-      'type' => 2,
+      'time' => 3600000.0,
+      'type' => 2.0,
     ),
     'startYear' => 1996,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\europe',
+  'version' => '2017b
+',
   'name' => 'America/Scoresbysund',
 );
+
+?>

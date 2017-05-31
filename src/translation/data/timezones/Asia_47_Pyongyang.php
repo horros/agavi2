@@ -2,78 +2,71 @@
 
 /**
  * Data file for timezone "Asia/Pyongyang".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\asia", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => 30600,
       'dstOffset' => 0,
       'name' => 'KST',
     ),
-    1 =>
-    array (
-      'rawOffset' => 32400,
-      'dstOffset' => 0,
-      'name' => 'JCST',
-    ),
-    2 =>
+    1 => 
     array (
       'rawOffset' => 32400,
       'dstOffset' => 0,
       'name' => 'JST',
     ),
-    3 =>
+    2 => 
     array (
       'rawOffset' => 32400,
       'dstOffset' => 0,
       'name' => 'KST',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -1948782180,
+      'time' => -1948782180.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => -1830414600,
+      'time' => -1830414600.0,
       'type' => 1,
     ),
-    2 =>
+    2 => 
     array (
-      'time' => -1017824400,
+      'time' => -768646800.0,
       'type' => 2,
     ),
-    3 =>
+    3 => 
     array (
-      'time' => -768646800,
-      'type' => 3,
+      'time' => 1439564400.0,
+      'type' => 0,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'static',
     'name' => 'KST',
-    'offset' => 32400,
-    'startYear' => 1946,
+    'offset' => 30600,
+    'startYear' => 2016,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\asia',
+  'version' => '2017b
+',
   'name' => 'Asia/Pyongyang',
 );
+
+?>

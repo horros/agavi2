@@ -2,72 +2,71 @@
 
 /**
  * Data file for timezone "Pacific/Nauru".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\australasia", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => 41400,
       'dstOffset' => 0,
-      'name' => 'NRT',
+      'name' => '+1130',
     ),
-    1 =>
+    1 => 
     array (
       'rawOffset' => 32400,
       'dstOffset' => 0,
-      'name' => 'JST',
+      'name' => '+09',
     ),
-    2 =>
+    2 => 
     array (
       'rawOffset' => 43200,
       'dstOffset' => 0,
-      'name' => 'NRT',
+      'name' => '+12',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -1545131260,
+      'time' => -1545131260.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => -877347000,
+      'time' => -877347000.0,
       'type' => 1,
     ),
-    2 =>
+    2 => 
     array (
-      'time' => -800960400,
+      'time' => -800960400.0,
       'type' => 0,
     ),
-    3 =>
+    3 => 
     array (
-      'time' => 294323400,
+      'time' => 294323400.0,
       'type' => 2,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'static',
-    'name' => 'NRT',
+    'name' => '+12',
     'offset' => 43200,
     'startYear' => 1980,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\australasia',
+  'version' => '2017b
+',
   'name' => 'Pacific/Nauru',
 );
+
+?>

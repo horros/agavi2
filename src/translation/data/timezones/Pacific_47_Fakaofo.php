@@ -2,56 +2,55 @@
 
 /**
  * Data file for timezone "Pacific/Fakaofo".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\australasia", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => -39600,
       'dstOffset' => 0,
-      'name' => 'TKT',
+      'name' => '-11',
     ),
-    1 =>
+    1 => 
     array (
       'rawOffset' => 46800,
       'dstOffset' => 0,
-      'name' => 'TKT',
+      'name' => '+13',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -2177411704,
+      'time' => -2177411704.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => 1325242800,
+      'time' => 1325242800.0,
       'type' => 1,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'static',
-    'name' => 'TKT',
+    'name' => '+13',
     'offset' => 46800,
     'startYear' => 2012,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\australasia',
+  'version' => '2017b
+',
   'name' => 'Pacific/Fakaofo',
 );
+
+?>

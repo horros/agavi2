@@ -2,127 +2,126 @@
 
 /**
  * Data file for timezone "Africa/Windhoek".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\africa", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => 5400,
       'dstOffset' => 0,
-      'name' => 'SWAT',
+      'name' => '+0130',
     ),
-    1 =>
+    1 => 
     array (
       'rawOffset' => 7200,
       'dstOffset' => 0,
       'name' => 'SAST',
     ),
-    2 =>
+    2 => 
     array (
       'rawOffset' => 7200,
       'dstOffset' => 3600,
       'name' => 'SAST',
     ),
-    3 =>
+    3 => 
     array (
       'rawOffset' => 7200,
       'dstOffset' => 0,
       'name' => 'CAT',
     ),
-    4 =>
+    4 => 
     array (
       'rawOffset' => 3600,
       'dstOffset' => 0,
       'name' => 'WAT',
     ),
-    5 =>
+    5 => 
     array (
       'rawOffset' => 3600,
       'dstOffset' => 3600,
       'name' => 'WAST',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -2458170504,
+      'time' => -2458170504.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => -2109288600,
+      'time' => -2109288600.0,
       'type' => 1,
     ),
-    2 =>
+    2 => 
     array (
-      'time' => -860976000,
+      'time' => -860976000.0,
       'type' => 2,
     ),
-    3 =>
+    3 => 
     array (
-      'time' => -845254800,
+      'time' => -845254800.0,
       'type' => 1,
     ),
-    4 =>
+    4 => 
     array (
-      'time' => 637970400,
+      'time' => 637970400.0,
       'type' => 3,
     ),
-    5 =>
+    5 => 
     array (
-      'time' => 765324000,
+      'time' => 765324000.0,
       'type' => 4,
     ),
-    6 =>
+    6 => 
     array (
-      'time' => 778640400,
+      'time' => 778640400.0,
       'type' => 5,
     ),
-    7 =>
+    7 => 
     array (
-      'time' => 796780800,
+      'time' => 796780800.0,
       'type' => 4,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'dynamic',
     'offset' => 3600,
     'name' => 'WA%sT',
     'save' => 3600,
-    'start' =>
+    'start' => 
     array (
       'month' => 8,
       'date' => '1',
       'day_of_week' => -1,
-      'time' => 7200000,
-      'type' => 0,
+      'time' => 7200000.0,
+      'type' => 0.0,
     ),
-    'end' =>
+    'end' => 
     array (
       'month' => 3,
       'date' => '1',
       'day_of_week' => -1,
-      'time' => 7200000,
-      'type' => 0,
+      'time' => 7200000.0,
+      'type' => 0.0,
     ),
     'startYear' => 1995,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\africa',
+  'version' => '2017b
+',
   'name' => 'Africa/Windhoek',
 );
+
+?>

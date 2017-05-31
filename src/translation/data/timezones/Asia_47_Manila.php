@@ -2,107 +2,106 @@
 
 /**
  * Data file for timezone "Asia/Manila".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\asia", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => 29040,
       'dstOffset' => 0,
       'name' => 'LMT',
     ),
-    1 =>
+    1 => 
     array (
       'rawOffset' => 28800,
       'dstOffset' => 0,
-      'name' => 'PHT',
+      'name' => '+08',
     ),
-    2 =>
+    2 => 
     array (
       'rawOffset' => 28800,
       'dstOffset' => 3600,
-      'name' => 'PHST',
+      'name' => '+09',
     ),
-    3 =>
+    3 => 
     array (
       'rawOffset' => 32400,
       'dstOffset' => 0,
-      'name' => 'JST',
+      'name' => '+09',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -3944621040,
+      'time' => -3944621040.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => -2229321840,
+      'time' => -2229321840.0,
       'type' => 1,
     ),
-    2 =>
+    2 => 
     array (
-      'time' => -1046678400,
+      'time' => -1046678400.0,
       'type' => 2,
     ),
-    3 =>
+    3 => 
     array (
-      'time' => -1038733200,
+      'time' => -1038733200.0,
       'type' => 1,
     ),
-    4 =>
+    4 => 
     array (
-      'time' => -873273600,
+      'time' => -873273600.0,
       'type' => 3,
     ),
-    5 =>
+    5 => 
     array (
-      'time' => -794221200,
+      'time' => -794221200.0,
       'type' => 1,
     ),
-    6 =>
+    6 => 
     array (
-      'time' => -496224000,
+      'time' => -496224000.0,
       'type' => 2,
     ),
-    7 =>
+    7 => 
     array (
-      'time' => -489315600,
+      'time' => -489315600.0,
       'type' => 1,
     ),
-    8 =>
+    8 => 
     array (
-      'time' => 259344000,
+      'time' => 259344000.0,
       'type' => 2,
     ),
-    9 =>
+    9 => 
     array (
-      'time' => 275151600,
+      'time' => 275151600.0,
       'type' => 1,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'none',
     'offset' => 28800,
     'startYear' => 1979,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\asia',
+  'version' => '2017b
+',
   'name' => 'Asia/Manila',
 );
+
+?>

@@ -473,7 +473,7 @@ class Dispatcher extends ParameterHolder
             $ns .= '\\Modules\\' . $moduleName . '\\Views\\';
         }
         $class = $ns . $longViewName . 'View';
-        
+
         if (!class_exists($class)) {
             if (false !== ($file = $this->checkViewFile($moduleName, $viewName))) {
                 require($file);

@@ -2,34 +2,33 @@
 
 /**
  * Data file for timezone "Etc/GMT-6".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\etcetera", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
   ),
-  'rules' =>
+  'rules' => 
   array (
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'static',
-    'name' => 'GMT-6',
+    'name' => '+06',
     'offset' => 21600,
     'startYear' => -2147483647,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\etcetera',
+  'version' => '2017b
+',
   'name' => 'Etc/GMT-6',
 );
+
+?>

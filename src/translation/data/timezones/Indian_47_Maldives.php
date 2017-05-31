@@ -2,56 +2,55 @@
 
 /**
  * Data file for timezone "Indian/Maldives".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\asia", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => 17640,
       'dstOffset' => 0,
       'name' => 'MMT',
     ),
-    1 =>
+    1 => 
     array (
       'rawOffset' => 18000,
       'dstOffset' => 0,
-      'name' => 'MVT',
+      'name' => '+05',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -2840158440,
+      'time' => -2840158440.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => -315636840,
+      'time' => -315636840.0,
       'type' => 1,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'static',
-    'name' => 'MVT',
+    'name' => '+05',
     'offset' => 18000,
     'startYear' => 1960,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\asia',
+  'version' => '2017b
+',
   'name' => 'Indian/Maldives',
 );
+
+?>

@@ -440,12 +440,10 @@ class TimeZoneTest extends BaseCalendarTest
             array('id' => "UTC", 'offset' => 0, 'daylight' => false), // ** srl: seems broken in C++
             array('id' => "ECT", 'offset' => 60, 'daylight' => true),
             array('id' => "ART", 'offset' => 120, 'daylight' => false),
-            array('id' => "EET", 'offset' => 120, 'daylight' => true),
             array('id' => "EAT", 'offset' => 180, 'daylight' => false),
             array('id' => "MET", 'offset' => 60, 'daylight' => true), // updated 12/3/99 aliu
             array('id' => "NET", 'offset' => 240, 'daylight' => false), // updated 12/3/99 aliu
             array('id' => "PLT", 'offset' => 300, 'daylight' => false), // updated Aug 2003 aliu
-            array('id' => "IST", 'offset' => 330, 'daylight' => false),
             array('id' => "BST", 'offset' => 360, 'daylight' => false),
             array('id' => "VST", 'offset' => 420, 'daylight' => false),
             array('id' => "CTT", 'offset' => 480, 'daylight' => false), // updated Aug 2003 aliu
@@ -501,7 +499,7 @@ class TimeZoneTest extends BaseCalendarTest
             "CTT" => "Asia/Shanghai",
             "EAT" => "Africa/Addis_Ababa",
             "ECT" => "Europe/Paris",
-            'EET' => 'Europe/Istanbul', # EET is a standard UNIX zone
+            // 'EET' => 'Europe/Istanbul', # EET is a standard UNIX zone # Turkey no longer uses DST as of 2016
             // "EST" => "America/New_York", # Defined as -05:00
             'EST' => 'EST',
             // "HST" => "Pacific/Honolulu", # Defined as -10:00

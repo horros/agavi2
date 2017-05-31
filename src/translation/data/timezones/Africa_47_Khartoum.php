@@ -2,222 +2,221 @@
 
 /**
  * Data file for timezone "Africa/Khartoum".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\africa", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => 7200,
       'dstOffset' => 0,
       'name' => 'CAT',
     ),
-    1 =>
+    1 => 
     array (
       'rawOffset' => 7200,
       'dstOffset' => 3600,
       'name' => 'CAST',
     ),
-    2 =>
+    2 => 
     array (
       'rawOffset' => 10800,
       'dstOffset' => 0,
       'name' => 'EAT',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -1230775808,
+      'time' => -1230775808.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => 10360800,
+      'time' => 10360800.0,
       'type' => 1,
     ),
-    2 =>
+    2 => 
     array (
-      'time' => 24786000,
+      'time' => 24786000.0,
       'type' => 0,
     ),
-    3 =>
+    3 => 
     array (
-      'time' => 41810400,
+      'time' => 41810400.0,
       'type' => 1,
     ),
-    4 =>
+    4 => 
     array (
-      'time' => 56322000,
+      'time' => 56322000.0,
       'type' => 0,
     ),
-    5 =>
+    5 => 
     array (
-      'time' => 73432800,
+      'time' => 73432800.0,
       'type' => 1,
     ),
-    6 =>
+    6 => 
     array (
-      'time' => 87944400,
+      'time' => 87944400.0,
       'type' => 0,
     ),
-    7 =>
+    7 => 
     array (
-      'time' => 104882400,
+      'time' => 104882400.0,
       'type' => 1,
     ),
-    8 =>
+    8 => 
     array (
-      'time' => 119480400,
+      'time' => 119480400.0,
       'type' => 0,
     ),
-    9 =>
+    9 => 
     array (
-      'time' => 136332000,
+      'time' => 136332000.0,
       'type' => 1,
     ),
-    10 =>
+    10 => 
     array (
-      'time' => 151016400,
+      'time' => 151016400.0,
       'type' => 0,
     ),
-    11 =>
+    11 => 
     array (
-      'time' => 167781600,
+      'time' => 167781600.0,
       'type' => 1,
     ),
-    12 =>
+    12 => 
     array (
-      'time' => 182552400,
+      'time' => 182552400.0,
       'type' => 0,
     ),
-    13 =>
+    13 => 
     array (
-      'time' => 199231200,
+      'time' => 199231200.0,
       'type' => 1,
     ),
-    14 =>
+    14 => 
     array (
-      'time' => 214174800,
+      'time' => 214174800.0,
       'type' => 0,
     ),
-    15 =>
+    15 => 
     array (
-      'time' => 230680800,
+      'time' => 230680800.0,
       'type' => 1,
     ),
-    16 =>
+    16 => 
     array (
-      'time' => 245710800,
+      'time' => 245710800.0,
       'type' => 0,
     ),
-    17 =>
+    17 => 
     array (
-      'time' => 262735200,
+      'time' => 262735200.0,
       'type' => 1,
     ),
-    18 =>
+    18 => 
     array (
-      'time' => 277246800,
+      'time' => 277246800.0,
       'type' => 0,
     ),
-    19 =>
+    19 => 
     array (
-      'time' => 294184800,
+      'time' => 294184800.0,
       'type' => 1,
     ),
-    20 =>
+    20 => 
     array (
-      'time' => 308782800,
+      'time' => 308782800.0,
       'type' => 0,
     ),
-    21 =>
+    21 => 
     array (
-      'time' => 325634400,
+      'time' => 325634400.0,
       'type' => 1,
     ),
-    22 =>
+    22 => 
     array (
-      'time' => 340405200,
+      'time' => 340405200.0,
       'type' => 0,
     ),
-    23 =>
+    23 => 
     array (
-      'time' => 357084000,
+      'time' => 357084000.0,
       'type' => 1,
     ),
-    24 =>
+    24 => 
     array (
-      'time' => 371941200,
+      'time' => 371941200.0,
       'type' => 0,
     ),
-    25 =>
+    25 => 
     array (
-      'time' => 388533600,
+      'time' => 388533600.0,
       'type' => 1,
     ),
-    26 =>
+    26 => 
     array (
-      'time' => 403477200,
+      'time' => 403477200.0,
       'type' => 0,
     ),
-    27 =>
+    27 => 
     array (
-      'time' => 419983200,
+      'time' => 419983200.0,
       'type' => 1,
     ),
-    28 =>
+    28 => 
     array (
-      'time' => 435013200,
+      'time' => 435013200.0,
       'type' => 0,
     ),
-    29 =>
+    29 => 
     array (
-      'time' => 452037600,
+      'time' => 452037600.0,
       'type' => 1,
     ),
-    30 =>
+    30 => 
     array (
-      'time' => 466635600,
+      'time' => 466635600.0,
       'type' => 0,
     ),
-    31 =>
+    31 => 
     array (
-      'time' => 483487200,
+      'time' => 483487200.0,
       'type' => 1,
     ),
-    32 =>
+    32 => 
     array (
-      'time' => 498171600,
+      'time' => 498171600.0,
       'type' => 0,
     ),
-    33 =>
+    33 => 
     array (
-      'time' => 947930400,
+      'time' => 947930400.0,
       'type' => 2,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'static',
     'name' => 'EAT',
     'offset' => 10800,
     'startYear' => 2001,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\africa',
+  'version' => '2017b
+',
   'name' => 'Africa/Khartoum',
 );
+
+?>

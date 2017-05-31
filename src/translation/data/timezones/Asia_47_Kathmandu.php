@@ -2,56 +2,55 @@
 
 /**
  * Data file for timezone "Asia/Kathmandu".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\asia", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => 19800,
       'dstOffset' => 0,
-      'name' => 'IST',
+      'name' => '+0530',
     ),
-    1 =>
+    1 => 
     array (
       'rawOffset' => 20700,
       'dstOffset' => 0,
-      'name' => 'NPT',
+      'name' => '+0545',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -1577943676,
+      'time' => -1577943676.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => 504901800,
+      'time' => 504901800.0,
       'type' => 1,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'static',
-    'name' => 'NPT',
+    'name' => '+0545',
     'offset' => 20700,
     'startYear' => 1986,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\asia',
+  'version' => '2017b
+',
   'name' => 'Asia/Kathmandu',
 );
+
+?>

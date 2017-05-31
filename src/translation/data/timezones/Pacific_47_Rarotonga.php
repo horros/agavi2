@@ -2,192 +2,185 @@
 
 /**
  * Data file for timezone "Pacific/Rarotonga".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\australasia", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => -37800,
       'dstOffset' => 0,
-      'name' => 'CKT',
+      'name' => '-1030',
     ),
-    1 =>
+    1 => 
     array (
       'rawOffset' => -36000,
       'dstOffset' => 0,
-      'name' => 'CKHST',
+      'name' => '-10',
     ),
-    2 =>
-    array (
-      'rawOffset' => -36000,
-      'dstOffset' => 0,
-      'name' => 'CKT',
-    ),
-    3 =>
+    2 => 
     array (
       'rawOffset' => -36000,
       'dstOffset' => 1800,
-      'name' => 'CKHST',
+      'name' => '-0930',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -2177414456,
+      'time' => -2177414456.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => 279714600,
+      'time' => 279714600.0,
       'type' => 1,
     ),
-    2 =>
+    2 => 
     array (
-      'time' => 289387800,
+      'time' => 289387800.0,
+      'type' => 1,
+    ),
+    3 => 
+    array (
+      'time' => 309952800.0,
       'type' => 2,
     ),
-    3 =>
+    4 => 
     array (
-      'time' => 309952800,
-      'type' => 3,
+      'time' => 320837400.0,
+      'type' => 1,
     ),
-    4 =>
+    5 => 
     array (
-      'time' => 320837400,
+      'time' => 341402400.0,
       'type' => 2,
     ),
-    5 =>
+    6 => 
     array (
-      'time' => 341402400,
-      'type' => 3,
+      'time' => 352287000.0,
+      'type' => 1,
     ),
-    6 =>
+    7 => 
     array (
-      'time' => 352287000,
+      'time' => 372852000.0,
       'type' => 2,
     ),
-    7 =>
+    8 => 
     array (
-      'time' => 372852000,
-      'type' => 3,
+      'time' => 384341400.0,
+      'type' => 1,
     ),
-    8 =>
+    9 => 
     array (
-      'time' => 384341400,
+      'time' => 404906400.0,
       'type' => 2,
     ),
-    9 =>
+    10 => 
     array (
-      'time' => 404906400,
-      'type' => 3,
+      'time' => 415791000.0,
+      'type' => 1,
     ),
-    10 =>
+    11 => 
     array (
-      'time' => 415791000,
+      'time' => 436356000.0,
       'type' => 2,
     ),
-    11 =>
+    12 => 
     array (
-      'time' => 436356000,
-      'type' => 3,
+      'time' => 447240600.0,
+      'type' => 1,
     ),
-    12 =>
+    13 => 
     array (
-      'time' => 447240600,
+      'time' => 467805600.0,
       'type' => 2,
     ),
-    13 =>
+    14 => 
     array (
-      'time' => 467805600,
-      'type' => 3,
+      'time' => 478690200.0,
+      'type' => 1,
     ),
-    14 =>
+    15 => 
     array (
-      'time' => 478690200,
+      'time' => 499255200.0,
       'type' => 2,
     ),
-    15 =>
+    16 => 
     array (
-      'time' => 499255200,
-      'type' => 3,
+      'time' => 510139800.0,
+      'type' => 1,
     ),
-    16 =>
+    17 => 
     array (
-      'time' => 510139800,
+      'time' => 530704800.0,
       'type' => 2,
     ),
-    17 =>
+    18 => 
     array (
-      'time' => 530704800,
-      'type' => 3,
+      'time' => 541589400.0,
+      'type' => 1,
     ),
-    18 =>
+    19 => 
     array (
-      'time' => 541589400,
+      'time' => 562154400.0,
       'type' => 2,
     ),
-    19 =>
+    20 => 
     array (
-      'time' => 562154400,
-      'type' => 3,
+      'time' => 573643800.0,
+      'type' => 1,
     ),
-    20 =>
+    21 => 
     array (
-      'time' => 573643800,
+      'time' => 594208800.0,
       'type' => 2,
     ),
-    21 =>
+    22 => 
     array (
-      'time' => 594208800,
-      'type' => 3,
+      'time' => 605093400.0,
+      'type' => 1,
     ),
-    22 =>
+    23 => 
     array (
-      'time' => 605093400,
+      'time' => 625658400.0,
       'type' => 2,
     ),
-    23 =>
+    24 => 
     array (
-      'time' => 625658400,
-      'type' => 3,
+      'time' => 636543000.0,
+      'type' => 1,
     ),
-    24 =>
+    25 => 
     array (
-      'time' => 636543000,
+      'time' => 657108000.0,
       'type' => 2,
     ),
-    25 =>
+    26 => 
     array (
-      'time' => 657108000,
-      'type' => 3,
-    ),
-    26 =>
-    array (
-      'time' => 667992600,
-      'type' => 2,
+      'time' => 667992600.0,
+      'type' => 1,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'none',
     'offset' => -36000,
     'startYear' => 1992,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\australasia',
+  'version' => '2017b
+',
   'name' => 'Pacific/Rarotonga',
 );
+
+?>

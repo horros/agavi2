@@ -2,116 +2,115 @@
 
 /**
  * Data file for timezone "Asia/Kuala_Lumpur".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\asia", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => 24925,
       'dstOffset' => 0,
       'name' => 'SMT',
     ),
-    1 =>
+    1 => 
     array (
       'rawOffset' => 25200,
       'dstOffset' => 0,
-      'name' => 'MALT',
+      'name' => '+07',
     ),
-    2 =>
+    2 => 
     array (
       'rawOffset' => 25200,
       'dstOffset' => 1200,
-      'name' => 'MALST',
+      'name' => '+0720',
     ),
-    3 =>
+    3 => 
     array (
       'rawOffset' => 26400,
       'dstOffset' => 0,
-      'name' => 'MALT',
+      'name' => '+0720',
     ),
-    4 =>
+    4 => 
     array (
       'rawOffset' => 27000,
       'dstOffset' => 0,
-      'name' => 'MALT',
+      'name' => '+0730',
     ),
-    5 =>
+    5 => 
     array (
       'rawOffset' => 32400,
       'dstOffset' => 0,
-      'name' => 'JST',
+      'name' => '+09',
     ),
-    6 =>
+    6 => 
     array (
       'rawOffset' => 28800,
       'dstOffset' => 0,
-      'name' => 'MYT',
+      'name' => '+08',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -2177477206,
+      'time' => -2177477206.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => -2038200925,
+      'time' => -2038200925.0,
       'type' => 1,
     ),
-    2 =>
+    2 => 
     array (
-      'time' => -1167634800,
+      'time' => -1167634800.0,
       'type' => 2,
     ),
-    3 =>
+    3 => 
     array (
-      'time' => -1073028000,
+      'time' => -1073028000.0,
       'type' => 3,
     ),
-    4 =>
+    4 => 
     array (
-      'time' => -894180000,
+      'time' => -894180000.0,
       'type' => 4,
     ),
-    5 =>
+    5 => 
     array (
-      'time' => -879665400,
+      'time' => -879665400.0,
       'type' => 5,
     ),
-    6 =>
+    6 => 
     array (
-      'time' => -767005200,
+      'time' => -767005200.0,
       'type' => 4,
     ),
-    7 =>
+    7 => 
     array (
-      'time' => 378664200,
+      'time' => 378664200.0,
       'type' => 6,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'static',
-    'name' => 'MYT',
+    'name' => '+08',
     'offset' => 28800,
     'startYear' => 1982,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\asia',
+  'version' => '2017b
+',
   'name' => 'Asia/Kuala_Lumpur',
 );
+
+?>
