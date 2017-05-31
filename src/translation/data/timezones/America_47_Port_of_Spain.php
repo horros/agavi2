@@ -2,45 +2,44 @@
 
 /**
  * Data file for timezone "America/Port_of_Spain".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\southamerica", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => -14400,
       'dstOffset' => 0,
       'name' => 'AST',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -1825098836,
+      'time' => -1825098836.0,
       'type' => 0,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'static',
     'name' => 'AST',
     'offset' => -14400,
     'startYear' => 1913,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\southamerica',
+  'version' => '2017b
+',
   'name' => 'America/Port_of_Spain',
 );
+
+?>

@@ -2,539 +2,538 @@
 
 /**
  * Data file for timezone "America/Sitka".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\northamerica", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => -32473,
       'dstOffset' => 0,
       'name' => 'LMT',
     ),
-    1 =>
+    1 => 
     array (
       'rawOffset' => -28800,
       'dstOffset' => 0,
       'name' => 'PST',
     ),
-    2 =>
+    2 => 
     array (
       'rawOffset' => -28800,
       'dstOffset' => 3600,
       'name' => 'PWT',
     ),
-    3 =>
+    3 => 
     array (
       'rawOffset' => -28800,
       'dstOffset' => 3600,
       'name' => 'PPT',
     ),
-    4 =>
+    4 => 
     array (
       'rawOffset' => -28800,
       'dstOffset' => 3600,
       'name' => 'PDT',
     ),
-    5 =>
+    5 => 
     array (
       'rawOffset' => -32400,
       'dstOffset' => 0,
       'name' => 'YST',
     ),
-    6 =>
+    6 => 
     array (
       'rawOffset' => -32400,
       'dstOffset' => 0,
       'name' => 'AKST',
     ),
-    7 =>
+    7 => 
     array (
       'rawOffset' => -32400,
       'dstOffset' => 3600,
       'name' => 'AKDT',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -3225365927,
+      'time' => -3225365927.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => -2188954727,
+      'time' => -2188954727.0,
       'type' => 1,
     ),
-    2 =>
+    2 => 
     array (
-      'time' => -883584000,
+      'time' => -883584000.0,
       'type' => 1,
     ),
-    3 =>
+    3 => 
     array (
-      'time' => -880207200,
+      'time' => -880207200.0,
       'type' => 2,
     ),
-    4 =>
+    4 => 
     array (
-      'time' => -769395600,
+      'time' => -769395600.0,
       'type' => 3,
     ),
-    5 =>
+    5 => 
     array (
-      'time' => -765385200,
+      'time' => -765385200.0,
       'type' => 1,
     ),
-    6 =>
+    6 => 
     array (
-      'time' => -757353600,
+      'time' => -757353600.0,
       'type' => 1,
     ),
-    7 =>
+    7 => 
     array (
-      'time' => -31507200,
+      'time' => -31507200.0,
       'type' => 1,
     ),
-    8 =>
+    8 => 
     array (
-      'time' => -21477600,
+      'time' => -21477600.0,
       'type' => 4,
     ),
-    9 =>
+    9 => 
     array (
-      'time' => -5756400,
+      'time' => -5756400.0,
       'type' => 1,
     ),
-    10 =>
+    10 => 
     array (
-      'time' => 9972000,
+      'time' => 9972000.0,
       'type' => 4,
     ),
-    11 =>
+    11 => 
     array (
-      'time' => 25693200,
+      'time' => 25693200.0,
       'type' => 1,
     ),
-    12 =>
+    12 => 
     array (
-      'time' => 41421600,
+      'time' => 41421600.0,
       'type' => 4,
     ),
-    13 =>
+    13 => 
     array (
-      'time' => 57747600,
+      'time' => 57747600.0,
       'type' => 1,
     ),
-    14 =>
+    14 => 
     array (
-      'time' => 73476000,
+      'time' => 73476000.0,
       'type' => 4,
     ),
-    15 =>
+    15 => 
     array (
-      'time' => 89197200,
+      'time' => 89197200.0,
       'type' => 1,
     ),
-    16 =>
+    16 => 
     array (
-      'time' => 104925600,
+      'time' => 104925600.0,
       'type' => 4,
     ),
-    17 =>
+    17 => 
     array (
-      'time' => 120646800,
+      'time' => 120646800.0,
       'type' => 1,
     ),
-    18 =>
+    18 => 
     array (
-      'time' => 126698400,
+      'time' => 126698400.0,
       'type' => 4,
     ),
-    19 =>
+    19 => 
     array (
-      'time' => 152096400,
+      'time' => 152096400.0,
       'type' => 1,
     ),
-    20 =>
+    20 => 
     array (
-      'time' => 162381600,
+      'time' => 162381600.0,
       'type' => 4,
     ),
-    21 =>
+    21 => 
     array (
-      'time' => 183546000,
+      'time' => 183546000.0,
       'type' => 1,
     ),
-    22 =>
+    22 => 
     array (
-      'time' => 199274400,
+      'time' => 199274400.0,
       'type' => 4,
     ),
-    23 =>
+    23 => 
     array (
-      'time' => 215600400,
+      'time' => 215600400.0,
       'type' => 1,
     ),
-    24 =>
+    24 => 
     array (
-      'time' => 230724000,
+      'time' => 230724000.0,
       'type' => 4,
     ),
-    25 =>
+    25 => 
     array (
-      'time' => 247050000,
+      'time' => 247050000.0,
       'type' => 1,
     ),
-    26 =>
+    26 => 
     array (
-      'time' => 262778400,
+      'time' => 262778400.0,
       'type' => 4,
     ),
-    27 =>
+    27 => 
     array (
-      'time' => 278499600,
+      'time' => 278499600.0,
       'type' => 1,
     ),
-    28 =>
+    28 => 
     array (
-      'time' => 294228000,
+      'time' => 294228000.0,
       'type' => 4,
     ),
-    29 =>
+    29 => 
     array (
-      'time' => 309949200,
+      'time' => 309949200.0,
       'type' => 1,
     ),
-    30 =>
+    30 => 
     array (
-      'time' => 325677600,
+      'time' => 325677600.0,
       'type' => 4,
     ),
-    31 =>
+    31 => 
     array (
-      'time' => 341398800,
+      'time' => 341398800.0,
       'type' => 1,
     ),
-    32 =>
+    32 => 
     array (
-      'time' => 357127200,
+      'time' => 357127200.0,
       'type' => 4,
     ),
-    33 =>
+    33 => 
     array (
-      'time' => 372848400,
+      'time' => 372848400.0,
       'type' => 1,
     ),
-    34 =>
+    34 => 
     array (
-      'time' => 388576800,
+      'time' => 388576800.0,
       'type' => 4,
     ),
-    35 =>
+    35 => 
     array (
-      'time' => 404902800,
+      'time' => 404902800.0,
       'type' => 1,
     ),
-    36 =>
+    36 => 
     array (
-      'time' => 420026400,
+      'time' => 420026400.0,
       'type' => 4,
     ),
-    37 =>
+    37 => 
     array (
-      'time' => 436352400,
+      'time' => 436352400.0,
       'type' => 1,
     ),
-    38 =>
+    38 => 
     array (
-      'time' => 436356000,
+      'time' => 436356000.0,
       'type' => 5,
     ),
-    39 =>
+    39 => 
     array (
-      'time' => 439030800,
+      'time' => 439030800.0,
       'type' => 6,
     ),
-    40 =>
+    40 => 
     array (
-      'time' => 452084400,
+      'time' => 452084400.0,
       'type' => 7,
     ),
-    41 =>
+    41 => 
     array (
-      'time' => 467805600,
+      'time' => 467805600.0,
       'type' => 6,
     ),
-    42 =>
+    42 => 
     array (
-      'time' => 483534000,
+      'time' => 483534000.0,
       'type' => 7,
     ),
-    43 =>
+    43 => 
     array (
-      'time' => 499255200,
+      'time' => 499255200.0,
       'type' => 6,
     ),
-    44 =>
+    44 => 
     array (
-      'time' => 514983600,
+      'time' => 514983600.0,
       'type' => 7,
     ),
-    45 =>
+    45 => 
     array (
-      'time' => 530704800,
+      'time' => 530704800.0,
       'type' => 6,
     ),
-    46 =>
+    46 => 
     array (
-      'time' => 544618800,
+      'time' => 544618800.0,
       'type' => 7,
     ),
-    47 =>
+    47 => 
     array (
-      'time' => 562154400,
+      'time' => 562154400.0,
       'type' => 6,
     ),
-    48 =>
+    48 => 
     array (
-      'time' => 576068400,
+      'time' => 576068400.0,
       'type' => 7,
     ),
-    49 =>
+    49 => 
     array (
-      'time' => 594208800,
+      'time' => 594208800.0,
       'type' => 6,
     ),
-    50 =>
+    50 => 
     array (
-      'time' => 607518000,
+      'time' => 607518000.0,
       'type' => 7,
     ),
-    51 =>
+    51 => 
     array (
-      'time' => 625658400,
+      'time' => 625658400.0,
       'type' => 6,
     ),
-    52 =>
+    52 => 
     array (
-      'time' => 638967600,
+      'time' => 638967600.0,
       'type' => 7,
     ),
-    53 =>
+    53 => 
     array (
-      'time' => 657108000,
+      'time' => 657108000.0,
       'type' => 6,
     ),
-    54 =>
+    54 => 
     array (
-      'time' => 671022000,
+      'time' => 671022000.0,
       'type' => 7,
     ),
-    55 =>
+    55 => 
     array (
-      'time' => 688557600,
+      'time' => 688557600.0,
       'type' => 6,
     ),
-    56 =>
+    56 => 
     array (
-      'time' => 702471600,
+      'time' => 702471600.0,
       'type' => 7,
     ),
-    57 =>
+    57 => 
     array (
-      'time' => 720007200,
+      'time' => 720007200.0,
       'type' => 6,
     ),
-    58 =>
+    58 => 
     array (
-      'time' => 733921200,
+      'time' => 733921200.0,
       'type' => 7,
     ),
-    59 =>
+    59 => 
     array (
-      'time' => 752061600,
+      'time' => 752061600.0,
       'type' => 6,
     ),
-    60 =>
+    60 => 
     array (
-      'time' => 765370800,
+      'time' => 765370800.0,
       'type' => 7,
     ),
-    61 =>
+    61 => 
     array (
-      'time' => 783511200,
+      'time' => 783511200.0,
       'type' => 6,
     ),
-    62 =>
+    62 => 
     array (
-      'time' => 796820400,
+      'time' => 796820400.0,
       'type' => 7,
     ),
-    63 =>
+    63 => 
     array (
-      'time' => 814960800,
+      'time' => 814960800.0,
       'type' => 6,
     ),
-    64 =>
+    64 => 
     array (
-      'time' => 828874800,
+      'time' => 828874800.0,
       'type' => 7,
     ),
-    65 =>
+    65 => 
     array (
-      'time' => 846410400,
+      'time' => 846410400.0,
       'type' => 6,
     ),
-    66 =>
+    66 => 
     array (
-      'time' => 860324400,
+      'time' => 860324400.0,
       'type' => 7,
     ),
-    67 =>
+    67 => 
     array (
-      'time' => 877860000,
+      'time' => 877860000.0,
       'type' => 6,
     ),
-    68 =>
+    68 => 
     array (
-      'time' => 891774000,
+      'time' => 891774000.0,
       'type' => 7,
     ),
-    69 =>
+    69 => 
     array (
-      'time' => 909309600,
+      'time' => 909309600.0,
       'type' => 6,
     ),
-    70 =>
+    70 => 
     array (
-      'time' => 923223600,
+      'time' => 923223600.0,
       'type' => 7,
     ),
-    71 =>
+    71 => 
     array (
-      'time' => 941364000,
+      'time' => 941364000.0,
       'type' => 6,
     ),
-    72 =>
+    72 => 
     array (
-      'time' => 954673200,
+      'time' => 954673200.0,
       'type' => 7,
     ),
-    73 =>
+    73 => 
     array (
-      'time' => 972813600,
+      'time' => 972813600.0,
       'type' => 6,
     ),
-    74 =>
+    74 => 
     array (
-      'time' => 986122800,
+      'time' => 986122800.0,
       'type' => 7,
     ),
-    75 =>
+    75 => 
     array (
-      'time' => 1004263200,
+      'time' => 1004263200.0,
       'type' => 6,
     ),
-    76 =>
+    76 => 
     array (
-      'time' => 1018177200,
+      'time' => 1018177200.0,
       'type' => 7,
     ),
-    77 =>
+    77 => 
     array (
-      'time' => 1035712800,
+      'time' => 1035712800.0,
       'type' => 6,
     ),
-    78 =>
+    78 => 
     array (
-      'time' => 1049626800,
+      'time' => 1049626800.0,
       'type' => 7,
     ),
-    79 =>
+    79 => 
     array (
-      'time' => 1067162400,
+      'time' => 1067162400.0,
       'type' => 6,
     ),
-    80 =>
+    80 => 
     array (
-      'time' => 1081076400,
+      'time' => 1081076400.0,
       'type' => 7,
     ),
-    81 =>
+    81 => 
     array (
-      'time' => 1099216800,
+      'time' => 1099216800.0,
       'type' => 6,
     ),
-    82 =>
+    82 => 
     array (
-      'time' => 1112526000,
+      'time' => 1112526000.0,
       'type' => 7,
     ),
-    83 =>
+    83 => 
     array (
-      'time' => 1130666400,
+      'time' => 1130666400.0,
       'type' => 6,
     ),
-    84 =>
+    84 => 
     array (
-      'time' => 1143975600,
+      'time' => 1143975600.0,
       'type' => 7,
     ),
-    85 =>
+    85 => 
     array (
-      'time' => 1162116000,
+      'time' => 1162116000.0,
       'type' => 6,
     ),
-    86 =>
+    86 => 
     array (
-      'time' => 1173610800,
+      'time' => 1173610800.0,
       'type' => 7,
     ),
-    87 =>
+    87 => 
     array (
-      'time' => 1194170400,
+      'time' => 1194170400.0,
       'type' => 6,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'dynamic',
     'offset' => -32400,
     'name' => 'AK%sT',
     'save' => 3600,
-    'start' =>
+    'start' => 
     array (
       'month' => 2,
       'date' => '8',
       'day_of_week' => -1,
-      'time' => 7200000,
-      'type' => 0,
+      'time' => 7200000.0,
+      'type' => 0.0,
     ),
-    'end' =>
+    'end' => 
     array (
       'month' => 10,
       'date' => '1',
       'day_of_week' => -1,
-      'time' => 7200000,
-      'type' => 0,
+      'time' => 7200000.0,
+      'type' => 0.0,
     ),
     'startYear' => 2007,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\northamerica',
+  'version' => '2017b
+',
   'name' => 'America/Sitka',
 );
+
+?>

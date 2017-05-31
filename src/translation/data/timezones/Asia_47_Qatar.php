@@ -2,56 +2,55 @@
 
 /**
  * Data file for timezone "Asia/Qatar".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\asia", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => 14400,
       'dstOffset' => 0,
-      'name' => 'GST',
+      'name' => '+04',
     ),
-    1 =>
+    1 => 
     array (
       'rawOffset' => 10800,
       'dstOffset' => 0,
-      'name' => 'AST',
+      'name' => '+03',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -1577935568,
+      'time' => -1577935568.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => 76190400,
+      'time' => 76190400.0,
       'type' => 1,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'static',
-    'name' => 'AST',
+    'name' => '+03',
     'offset' => 10800,
     'startYear' => 1973,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\asia',
+  'version' => '2017b
+',
   'name' => 'Asia/Qatar',
 );
+
+?>

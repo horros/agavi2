@@ -2,107 +2,106 @@
 
 /**
  * Data file for timezone "Australia/Darwin".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\australasia", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => 32400,
       'dstOffset' => 0,
       'name' => 'ACST',
     ),
-    1 =>
+    1 => 
     array (
       'rawOffset' => 34200,
       'dstOffset' => 0,
       'name' => 'ACT',
     ),
-    2 =>
+    2 => 
     array (
       'rawOffset' => 34200,
       'dstOffset' => 3600,
       'name' => 'ACDT',
     ),
-    3 =>
+    3 => 
     array (
       'rawOffset' => 34200,
       'dstOffset' => 0,
       'name' => 'ACST',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -2364108200,
+      'time' => -2364108200.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => -2230189200,
+      'time' => -2230189200.0,
       'type' => 1,
     ),
-    2 =>
+    2 => 
     array (
-      'time' => -1672565340,
+      'time' => -1672565340.0,
       'type' => 2,
     ),
-    3 =>
+    3 => 
     array (
-      'time' => -1665390600,
+      'time' => -1665390600.0,
       'type' => 3,
     ),
-    4 =>
+    4 => 
     array (
-      'time' => -883639800,
+      'time' => -883639800.0,
       'type' => 2,
     ),
-    5 =>
+    5 => 
     array (
-      'time' => -876126600,
+      'time' => -876126600.0,
       'type' => 3,
     ),
-    6 =>
+    6 => 
     array (
-      'time' => -860398200,
+      'time' => -860398200.0,
       'type' => 2,
     ),
-    7 =>
+    7 => 
     array (
-      'time' => -844677000,
+      'time' => -844677000.0,
       'type' => 3,
     ),
-    8 =>
+    8 => 
     array (
-      'time' => -828343800,
+      'time' => -828343800.0,
       'type' => 2,
     ),
-    9 =>
+    9 => 
     array (
-      'time' => -813227400,
+      'time' => -813227400.0,
       'type' => 3,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'none',
     'offset' => 34200,
     'startYear' => 1945,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\australasia',
+  'version' => '2017b
+',
   'name' => 'Australia/Darwin',
 );
+
+?>

@@ -2,221 +2,220 @@
 
 /**
  * Data file for timezone "Africa/Tunis".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\africa", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => 561,
       'dstOffset' => 0,
       'name' => 'PMT',
     ),
-    1 =>
+    1 => 
     array (
       'rawOffset' => 3600,
       'dstOffset' => 0,
       'name' => 'CET',
     ),
-    2 =>
+    2 => 
     array (
       'rawOffset' => 3600,
       'dstOffset' => 3600,
       'name' => 'CEST',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -2797202444,
+      'time' => -2797202444.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => -1855958961,
+      'time' => -1855958961.0,
       'type' => 1,
     ),
-    2 =>
+    2 => 
     array (
-      'time' => -969242400,
+      'time' => -969242400.0,
       'type' => 2,
     ),
-    3 =>
+    3 => 
     array (
-      'time' => -950493600,
+      'time' => -950493600.0,
       'type' => 1,
     ),
-    4 =>
+    4 => 
     array (
-      'time' => -941940000,
+      'time' => -941940000.0,
       'type' => 2,
     ),
-    5 =>
+    5 => 
     array (
-      'time' => -891136800,
+      'time' => -891136800.0,
       'type' => 1,
     ),
-    6 =>
+    6 => 
     array (
-      'time' => -877827600,
+      'time' => -877827600.0,
       'type' => 2,
     ),
-    7 =>
+    7 => 
     array (
-      'time' => -857257200,
+      'time' => -857257200.0,
       'type' => 1,
     ),
-    8 =>
+    8 => 
     array (
-      'time' => -844556400,
+      'time' => -844556400.0,
       'type' => 2,
     ),
-    9 =>
+    9 => 
     array (
-      'time' => -842918400,
+      'time' => -842918400.0,
       'type' => 1,
     ),
-    10 =>
+    10 => 
     array (
-      'time' => -842223600,
+      'time' => -842223600.0,
       'type' => 2,
     ),
-    11 =>
+    11 => 
     array (
-      'time' => -828230400,
+      'time' => -828230400.0,
       'type' => 1,
     ),
-    12 =>
+    12 => 
     array (
-      'time' => -812502000,
+      'time' => -812502000.0,
       'type' => 2,
     ),
-    13 =>
+    13 => 
     array (
-      'time' => -796269600,
+      'time' => -796269600.0,
       'type' => 1,
     ),
-    14 =>
+    14 => 
     array (
-      'time' => -781059600,
+      'time' => -781059600.0,
       'type' => 2,
     ),
-    15 =>
+    15 => 
     array (
-      'time' => -766634400,
+      'time' => -766634400.0,
       'type' => 1,
     ),
-    16 =>
+    16 => 
     array (
-      'time' => 231202800,
+      'time' => 231202800.0,
       'type' => 2,
     ),
-    17 =>
+    17 => 
     array (
-      'time' => 243903600,
+      'time' => 243903600.0,
       'type' => 1,
     ),
-    18 =>
+    18 => 
     array (
-      'time' => 262825200,
+      'time' => 262825200.0,
       'type' => 2,
     ),
-    19 =>
+    19 => 
     array (
-      'time' => 276044400,
+      'time' => 276044400.0,
       'type' => 1,
     ),
-    20 =>
+    20 => 
     array (
-      'time' => 581122800,
+      'time' => 581122800.0,
       'type' => 2,
     ),
-    21 =>
+    21 => 
     array (
-      'time' => 591145200,
+      'time' => 591145200.0,
       'type' => 1,
     ),
-    22 =>
+    22 => 
     array (
-      'time' => 606870000,
+      'time' => 606870000.0,
       'type' => 2,
     ),
-    23 =>
+    23 => 
     array (
-      'time' => 622594800,
+      'time' => 622594800.0,
       'type' => 1,
     ),
-    24 =>
+    24 => 
     array (
-      'time' => 641516400,
+      'time' => 641516400.0,
       'type' => 2,
     ),
-    25 =>
+    25 => 
     array (
-      'time' => 654649200,
+      'time' => 654649200.0,
       'type' => 1,
     ),
-    26 =>
+    26 => 
     array (
-      'time' => 1114902000,
+      'time' => 1114902000.0,
       'type' => 2,
     ),
-    27 =>
+    27 => 
     array (
-      'time' => 1128038400,
+      'time' => 1128038400.0,
       'type' => 1,
     ),
-    28 =>
+    28 => 
     array (
-      'time' => 1143334800,
+      'time' => 1143334800.0,
       'type' => 2,
     ),
-    29 =>
+    29 => 
     array (
-      'time' => 1162083600,
+      'time' => 1162083600.0,
       'type' => 1,
     ),
-    30 =>
+    30 => 
     array (
-      'time' => 1174784400,
+      'time' => 1174784400.0,
       'type' => 2,
     ),
-    31 =>
+    31 => 
     array (
-      'time' => 1193533200,
+      'time' => 1193533200.0,
       'type' => 1,
     ),
-    32 =>
+    32 => 
     array (
-      'time' => 1206838800,
+      'time' => 1206838800.0,
       'type' => 2,
     ),
-    33 =>
+    33 => 
     array (
-      'time' => 1224982800,
+      'time' => 1224982800.0,
       'type' => 1,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'none',
     'offset' => 3600,
     'startYear' => 2009,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\africa',
+  'version' => '2017b
+',
   'name' => 'Africa/Tunis',
 );
+
+?>

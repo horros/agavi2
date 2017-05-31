@@ -2,150 +2,149 @@
 
 /**
  * Data file for timezone "Pacific/Efate".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\australasia", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => 39600,
       'dstOffset' => 0,
-      'name' => 'VUT',
+      'name' => '+11',
     ),
-    1 =>
+    1 => 
     array (
       'rawOffset' => 39600,
       'dstOffset' => 3600,
-      'name' => 'VUST',
+      'name' => '+12',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -1829387596,
+      'time' => -1829387596.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => 433256400,
+      'time' => 433256400.0,
       'type' => 1,
     ),
-    2 =>
+    2 => 
     array (
-      'time' => 448977600,
+      'time' => 448977600.0,
       'type' => 0,
     ),
-    3 =>
+    3 => 
     array (
-      'time' => 467298000,
+      'time' => 467298000.0,
       'type' => 1,
     ),
-    4 =>
+    4 => 
     array (
-      'time' => 480427200,
+      'time' => 480427200.0,
       'type' => 0,
     ),
-    5 =>
+    5 => 
     array (
-      'time' => 496760400,
+      'time' => 496760400.0,
       'type' => 1,
     ),
-    6 =>
+    6 => 
     array (
-      'time' => 511876800,
+      'time' => 511876800.0,
       'type' => 0,
     ),
-    7 =>
+    7 => 
     array (
-      'time' => 528210000,
+      'time' => 528210000.0,
       'type' => 1,
     ),
-    8 =>
+    8 => 
     array (
-      'time' => 543931200,
+      'time' => 543931200.0,
       'type' => 0,
     ),
-    9 =>
+    9 => 
     array (
-      'time' => 559659600,
+      'time' => 559659600.0,
       'type' => 1,
     ),
-    10 =>
+    10 => 
     array (
-      'time' => 575380800,
+      'time' => 575380800.0,
       'type' => 0,
     ),
-    11 =>
+    11 => 
     array (
-      'time' => 591109200,
+      'time' => 591109200.0,
       'type' => 1,
     ),
-    12 =>
+    12 => 
     array (
-      'time' => 606830400,
+      'time' => 606830400.0,
       'type' => 0,
     ),
-    13 =>
+    13 => 
     array (
-      'time' => 622558800,
+      'time' => 622558800.0,
       'type' => 1,
     ),
-    14 =>
+    14 => 
     array (
-      'time' => 638280000,
+      'time' => 638280000.0,
       'type' => 0,
     ),
-    15 =>
+    15 => 
     array (
-      'time' => 654008400,
+      'time' => 654008400.0,
       'type' => 1,
     ),
-    16 =>
+    16 => 
     array (
-      'time' => 669729600,
+      'time' => 669729600.0,
       'type' => 0,
     ),
-    17 =>
+    17 => 
     array (
-      'time' => 686062800,
+      'time' => 686062800.0,
       'type' => 1,
     ),
-    18 =>
+    18 => 
     array (
-      'time' => 696340800,
+      'time' => 696340800.0,
       'type' => 0,
     ),
-    19 =>
+    19 => 
     array (
-      'time' => 719931600,
+      'time' => 719931600.0,
       'type' => 1,
     ),
-    20 =>
+    20 => 
     array (
-      'time' => 727790400,
+      'time' => 727790400.0,
       'type' => 0,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'none',
     'offset' => 39600,
     'startYear' => 1994,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\australasia',
+  'version' => '2017b
+',
   'name' => 'Pacific/Efate',
 );
+
+?>

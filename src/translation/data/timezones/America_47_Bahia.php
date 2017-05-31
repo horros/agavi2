@@ -2,361 +2,360 @@
 
 /**
  * Data file for timezone "America/Bahia".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\southamerica", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => -10800,
       'dstOffset' => 0,
-      'name' => 'BRT',
+      'name' => '-03',
     ),
-    1 =>
+    1 => 
     array (
       'rawOffset' => -10800,
       'dstOffset' => 3600,
-      'name' => 'BRST',
+      'name' => '-02',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -1767216356,
+      'time' => -1767216356.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => -1206957600,
+      'time' => -1206957600.0,
       'type' => 1,
     ),
-    2 =>
+    2 => 
     array (
-      'time' => -1191362400,
+      'time' => -1191362400.0,
       'type' => 0,
     ),
-    3 =>
+    3 => 
     array (
-      'time' => -1175374800,
+      'time' => -1175374800.0,
       'type' => 1,
     ),
-    4 =>
+    4 => 
     array (
-      'time' => -1159826400,
+      'time' => -1159826400.0,
       'type' => 0,
     ),
-    5 =>
+    5 => 
     array (
-      'time' => -633819600,
+      'time' => -633819600.0,
       'type' => 1,
     ),
-    6 =>
+    6 => 
     array (
-      'time' => -622069200,
+      'time' => -622069200.0,
       'type' => 0,
     ),
-    7 =>
+    7 => 
     array (
-      'time' => -602280000,
+      'time' => -602280000.0,
       'type' => 1,
     ),
-    8 =>
+    8 => 
     array (
-      'time' => -591832800,
+      'time' => -591832800.0,
       'type' => 0,
     ),
-    9 =>
+    9 => 
     array (
-      'time' => -570747600,
+      'time' => -570747600.0,
       'type' => 1,
     ),
-    10 =>
+    10 => 
     array (
-      'time' => -560210400,
+      'time' => -560210400.0,
       'type' => 0,
     ),
-    11 =>
+    11 => 
     array (
-      'time' => -539125200,
+      'time' => -539125200.0,
       'type' => 1,
     ),
-    12 =>
+    12 => 
     array (
-      'time' => -531352800,
+      'time' => -531352800.0,
       'type' => 0,
     ),
-    13 =>
+    13 => 
     array (
-      'time' => -191365200,
+      'time' => -191365200.0,
       'type' => 1,
     ),
-    14 =>
+    14 => 
     array (
-      'time' => -184197600,
+      'time' => -184197600.0,
       'type' => 0,
     ),
-    15 =>
+    15 => 
     array (
-      'time' => -155163600,
+      'time' => -155163600.0,
       'type' => 1,
     ),
-    16 =>
+    16 => 
     array (
-      'time' => -150069600,
+      'time' => -150069600.0,
       'type' => 0,
     ),
-    17 =>
+    17 => 
     array (
-      'time' => -128898000,
+      'time' => -128898000.0,
       'type' => 1,
     ),
-    18 =>
+    18 => 
     array (
-      'time' => -121125600,
+      'time' => -121125600.0,
       'type' => 0,
     ),
-    19 =>
+    19 => 
     array (
-      'time' => -99954000,
+      'time' => -99954000.0,
       'type' => 1,
     ),
-    20 =>
+    20 => 
     array (
-      'time' => -89589600,
+      'time' => -89589600.0,
       'type' => 0,
     ),
-    21 =>
+    21 => 
     array (
-      'time' => -68418000,
+      'time' => -68418000.0,
       'type' => 1,
     ),
-    22 =>
+    22 => 
     array (
-      'time' => -57967200,
+      'time' => -57967200.0,
       'type' => 0,
     ),
-    23 =>
+    23 => 
     array (
-      'time' => 499748400,
+      'time' => 499748400.0,
       'type' => 1,
     ),
-    24 =>
+    24 => 
     array (
-      'time' => 511236000,
+      'time' => 511236000.0,
       'type' => 0,
     ),
-    25 =>
+    25 => 
     array (
-      'time' => 530593200,
+      'time' => 530593200.0,
       'type' => 1,
     ),
-    26 =>
+    26 => 
     array (
-      'time' => 540266400,
+      'time' => 540266400.0,
       'type' => 0,
     ),
-    27 =>
+    27 => 
     array (
-      'time' => 562129200,
+      'time' => 562129200.0,
       'type' => 1,
     ),
-    28 =>
+    28 => 
     array (
-      'time' => 571197600,
+      'time' => 571197600.0,
       'type' => 0,
     ),
-    29 =>
+    29 => 
     array (
-      'time' => 592974000,
+      'time' => 592974000.0,
       'type' => 1,
     ),
-    30 =>
+    30 => 
     array (
-      'time' => 602042400,
+      'time' => 602042400.0,
       'type' => 0,
     ),
-    31 =>
+    31 => 
     array (
-      'time' => 624423600,
+      'time' => 624423600.0,
       'type' => 1,
     ),
-    32 =>
+    32 => 
     array (
-      'time' => 634701600,
+      'time' => 634701600.0,
       'type' => 0,
     ),
-    33 =>
+    33 => 
     array (
-      'time' => 656478000,
+      'time' => 656478000.0,
       'type' => 1,
     ),
-    34 =>
+    34 => 
     array (
-      'time' => 666756000,
+      'time' => 666756000.0,
       'type' => 0,
     ),
-    35 =>
+    35 => 
     array (
-      'time' => 687927600,
+      'time' => 687927600.0,
       'type' => 1,
     ),
-    36 =>
+    36 => 
     array (
-      'time' => 697600800,
+      'time' => 697600800.0,
       'type' => 0,
     ),
-    37 =>
+    37 => 
     array (
-      'time' => 719982000,
+      'time' => 719982000.0,
       'type' => 1,
     ),
-    38 =>
+    38 => 
     array (
-      'time' => 728445600,
+      'time' => 728445600.0,
       'type' => 0,
     ),
-    39 =>
+    39 => 
     array (
-      'time' => 750826800,
+      'time' => 750826800.0,
       'type' => 1,
     ),
-    40 =>
+    40 => 
     array (
-      'time' => 761709600,
+      'time' => 761709600.0,
       'type' => 0,
     ),
-    41 =>
+    41 => 
     array (
-      'time' => 782276400,
+      'time' => 782276400.0,
       'type' => 1,
     ),
-    42 =>
+    42 => 
     array (
-      'time' => 793159200,
+      'time' => 793159200.0,
       'type' => 0,
     ),
-    43 =>
+    43 => 
     array (
-      'time' => 813726000,
+      'time' => 813726000.0,
       'type' => 1,
     ),
-    44 =>
+    44 => 
     array (
-      'time' => 824004000,
+      'time' => 824004000.0,
       'type' => 0,
     ),
-    45 =>
+    45 => 
     array (
-      'time' => 844570800,
+      'time' => 844570800.0,
       'type' => 1,
     ),
-    46 =>
+    46 => 
     array (
-      'time' => 856058400,
+      'time' => 856058400.0,
       'type' => 0,
     ),
-    47 =>
+    47 => 
     array (
-      'time' => 876106800,
+      'time' => 876106800.0,
       'type' => 1,
     ),
-    48 =>
+    48 => 
     array (
-      'time' => 888717600,
+      'time' => 888717600.0,
       'type' => 0,
     ),
-    49 =>
+    49 => 
     array (
-      'time' => 908074800,
+      'time' => 908074800.0,
       'type' => 1,
     ),
-    50 =>
+    50 => 
     array (
-      'time' => 919562400,
+      'time' => 919562400.0,
       'type' => 0,
     ),
-    51 =>
+    51 => 
     array (
-      'time' => 938919600,
+      'time' => 938919600.0,
       'type' => 1,
     ),
-    52 =>
+    52 => 
     array (
-      'time' => 951616800,
+      'time' => 951616800.0,
       'type' => 0,
     ),
-    53 =>
+    53 => 
     array (
-      'time' => 970974000,
+      'time' => 970974000.0,
       'type' => 1,
     ),
-    54 =>
+    54 => 
     array (
-      'time' => 982461600,
+      'time' => 982461600.0,
       'type' => 0,
     ),
-    55 =>
+    55 => 
     array (
-      'time' => 1003028400,
+      'time' => 1003028400.0,
       'type' => 1,
     ),
-    56 =>
+    56 => 
     array (
-      'time' => 1013911200,
+      'time' => 1013911200.0,
       'type' => 0,
     ),
-    57 =>
+    57 => 
     array (
-      'time' => 1036292400,
+      'time' => 1036292400.0,
       'type' => 1,
     ),
-    58 =>
+    58 => 
     array (
-      'time' => 1045360800,
+      'time' => 1045360800.0,
       'type' => 0,
     ),
-    59 =>
+    59 => 
     array (
-      'time' => 1064372400,
+      'time' => 1064372400.0,
       'type' => 0,
     ),
-    60 =>
+    60 => 
     array (
-      'time' => 1318734000,
+      'time' => 1318734000.0,
       'type' => 1,
     ),
-    61 =>
+    61 => 
     array (
-      'time' => 1330221600,
+      'time' => 1330221600.0,
       'type' => 0,
     ),
-    62 =>
+    62 => 
     array (
-      'time' => 1350788400,
+      'time' => 1350788400.0,
       'type' => 0,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'static',
-    'name' => 'BRT',
+    'name' => '-03',
     'offset' => -10800,
     'startYear' => 2013,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\southamerica',
+  'version' => '2017b
+',
   'name' => 'America/Bahia',
 );
+
+?>

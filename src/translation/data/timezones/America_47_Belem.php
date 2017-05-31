@@ -2,196 +2,195 @@
 
 /**
  * Data file for timezone "America/Belem".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\southamerica", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => -10800,
       'dstOffset' => 0,
-      'name' => 'BRT',
+      'name' => '-03',
     ),
-    1 =>
+    1 => 
     array (
       'rawOffset' => -10800,
       'dstOffset' => 3600,
-      'name' => 'BRST',
+      'name' => '-02',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -1767213964,
+      'time' => -1767213964.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => -1206957600,
+      'time' => -1206957600.0,
       'type' => 1,
     ),
-    2 =>
+    2 => 
     array (
-      'time' => -1191362400,
+      'time' => -1191362400.0,
       'type' => 0,
     ),
-    3 =>
+    3 => 
     array (
-      'time' => -1175374800,
+      'time' => -1175374800.0,
       'type' => 1,
     ),
-    4 =>
+    4 => 
     array (
-      'time' => -1159826400,
+      'time' => -1159826400.0,
       'type' => 0,
     ),
-    5 =>
+    5 => 
     array (
-      'time' => -633819600,
+      'time' => -633819600.0,
       'type' => 1,
     ),
-    6 =>
+    6 => 
     array (
-      'time' => -622069200,
+      'time' => -622069200.0,
       'type' => 0,
     ),
-    7 =>
+    7 => 
     array (
-      'time' => -602280000,
+      'time' => -602280000.0,
       'type' => 1,
     ),
-    8 =>
+    8 => 
     array (
-      'time' => -591832800,
+      'time' => -591832800.0,
       'type' => 0,
     ),
-    9 =>
+    9 => 
     array (
-      'time' => -570747600,
+      'time' => -570747600.0,
       'type' => 1,
     ),
-    10 =>
+    10 => 
     array (
-      'time' => -560210400,
+      'time' => -560210400.0,
       'type' => 0,
     ),
-    11 =>
+    11 => 
     array (
-      'time' => -539125200,
+      'time' => -539125200.0,
       'type' => 1,
     ),
-    12 =>
+    12 => 
     array (
-      'time' => -531352800,
+      'time' => -531352800.0,
       'type' => 0,
     ),
-    13 =>
+    13 => 
     array (
-      'time' => -191365200,
+      'time' => -191365200.0,
       'type' => 1,
     ),
-    14 =>
+    14 => 
     array (
-      'time' => -184197600,
+      'time' => -184197600.0,
       'type' => 0,
     ),
-    15 =>
+    15 => 
     array (
-      'time' => -155163600,
+      'time' => -155163600.0,
       'type' => 1,
     ),
-    16 =>
+    16 => 
     array (
-      'time' => -150069600,
+      'time' => -150069600.0,
       'type' => 0,
     ),
-    17 =>
+    17 => 
     array (
-      'time' => -128898000,
+      'time' => -128898000.0,
       'type' => 1,
     ),
-    18 =>
+    18 => 
     array (
-      'time' => -121125600,
+      'time' => -121125600.0,
       'type' => 0,
     ),
-    19 =>
+    19 => 
     array (
-      'time' => -99954000,
+      'time' => -99954000.0,
       'type' => 1,
     ),
-    20 =>
+    20 => 
     array (
-      'time' => -89589600,
+      'time' => -89589600.0,
       'type' => 0,
     ),
-    21 =>
+    21 => 
     array (
-      'time' => -68418000,
+      'time' => -68418000.0,
       'type' => 1,
     ),
-    22 =>
+    22 => 
     array (
-      'time' => -57967200,
+      'time' => -57967200.0,
       'type' => 0,
     ),
-    23 =>
+    23 => 
     array (
-      'time' => 499748400,
+      'time' => 499748400.0,
       'type' => 1,
     ),
-    24 =>
+    24 => 
     array (
-      'time' => 511236000,
+      'time' => 511236000.0,
       'type' => 0,
     ),
-    25 =>
+    25 => 
     array (
-      'time' => 530593200,
+      'time' => 530593200.0,
       'type' => 1,
     ),
-    26 =>
+    26 => 
     array (
-      'time' => 540266400,
+      'time' => 540266400.0,
       'type' => 0,
     ),
-    27 =>
+    27 => 
     array (
-      'time' => 562129200,
+      'time' => 562129200.0,
       'type' => 1,
     ),
-    28 =>
+    28 => 
     array (
-      'time' => 571197600,
+      'time' => 571197600.0,
       'type' => 0,
     ),
-    29 =>
+    29 => 
     array (
-      'time' => 590036400,
+      'time' => 590036400.0,
       'type' => 0,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'static',
-    'name' => 'BRT',
+    'name' => '-03',
     'offset' => -10800,
     'startYear' => 1989,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\southamerica',
+  'version' => '2017b
+',
   'name' => 'America/Belem',
 );
+
+?>

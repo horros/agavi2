@@ -106,23 +106,18 @@ class TimeZoneDataParser
         $data = file_get_contents($file);
 
 
-        // find version info
-        // Try to detect it in the data file. If that fails,
-        // try to find the version -file, and use
-        // the current file as filename. If that fails, bail out.
-        if (!preg_match('/^#\s*@\(#\)\s*(?P<filename>\S+)\s+(?P<version>\S+)\s*$/m', $data, $meta)) {
-            if (file_exists(dirname($file) . '/version')) {
-                $meta = [
-                    'filename' => realpath($file),
-                    'version' => file_get_contents(dirname($file) . '/version')
-                ];
-            } else {
-                $meta = array(
-                    'filename' => '(unknown)',
-                    'version' => '(unknown)',
-                );
-            }
+        if (file_exists(dirname($file) . '/version')) {
+            $meta = [
+                'filename' => realpath($file),
+                'version' => file_get_contents(dirname($file) . '/version')
+            ];
+        } else {
+            $meta = array(
+                'filename' => '(unknown)',
+                'version' => '(unknown)',
+            );
         }
+
 
         $zoneLines = explode("\n", $data);
         // filter comments

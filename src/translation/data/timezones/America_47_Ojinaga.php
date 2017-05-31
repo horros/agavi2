@@ -2,190 +2,189 @@
 
 /**
  * Data file for timezone "America/Ojinaga".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\northamerica", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => -25200,
       'dstOffset' => 0,
       'name' => 'MST',
     ),
-    1 =>
+    1 => 
     array (
       'rawOffset' => -21600,
       'dstOffset' => 0,
       'name' => 'CST',
     ),
-    2 =>
+    2 => 
     array (
       'rawOffset' => -21600,
       'dstOffset' => 3600,
       'name' => 'CDT',
     ),
-    3 =>
+    3 => 
     array (
       'rawOffset' => -25200,
       'dstOffset' => 3600,
       'name' => 'MDT',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -1514739600,
+      'time' => -1514739600.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => -1343066400,
+      'time' => -1343066400.0,
       'type' => 1,
     ),
-    2 =>
+    2 => 
     array (
-      'time' => -1234807200,
+      'time' => -1234807200.0,
       'type' => 0,
     ),
-    3 =>
+    3 => 
     array (
-      'time' => -1220292000,
+      'time' => -1220292000.0,
       'type' => 1,
     ),
-    4 =>
+    4 => 
     array (
-      'time' => -1207159200,
+      'time' => -1207159200.0,
       'type' => 0,
     ),
-    5 =>
+    5 => 
     array (
-      'time' => -1191344400,
+      'time' => -1191344400.0,
       'type' => 1,
     ),
-    6 =>
+    6 => 
     array (
-      'time' => 820476000,
+      'time' => 820476000.0,
       'type' => 1,
     ),
-    7 =>
+    7 => 
     array (
-      'time' => 828864000,
+      'time' => 828864000.0,
       'type' => 2,
     ),
-    8 =>
+    8 => 
     array (
-      'time' => 846399600,
+      'time' => 846399600.0,
       'type' => 1,
     ),
-    9 =>
+    9 => 
     array (
-      'time' => 860313600,
+      'time' => 860313600.0,
       'type' => 2,
     ),
-    10 =>
+    10 => 
     array (
-      'time' => 877849200,
+      'time' => 877849200.0,
       'type' => 1,
     ),
-    11 =>
+    11 => 
     array (
-      'time' => 883634400,
+      'time' => 883634400.0,
       'type' => 1,
     ),
-    12 =>
+    12 => 
     array (
-      'time' => 891410400,
+      'time' => 891410400.0,
       'type' => 0,
     ),
-    13 =>
+    13 => 
     array (
-      'time' => 891766800,
+      'time' => 891766800.0,
       'type' => 3,
     ),
-    14 =>
+    14 => 
     array (
-      'time' => 909302400,
+      'time' => 909302400.0,
       'type' => 0,
     ),
-    15 =>
+    15 => 
     array (
-      'time' => 923216400,
+      'time' => 923216400.0,
       'type' => 3,
     ),
-    16 =>
+    16 => 
     array (
-      'time' => 941356800,
+      'time' => 941356800.0,
       'type' => 0,
     ),
-    17 =>
+    17 => 
     array (
-      'time' => 954666000,
+      'time' => 954666000.0,
       'type' => 3,
     ),
-    18 =>
+    18 => 
     array (
-      'time' => 972806400,
+      'time' => 972806400.0,
       'type' => 0,
     ),
-    19 =>
+    19 => 
     array (
-      'time' => 989139600,
+      'time' => 989139600.0,
       'type' => 3,
     ),
-    20 =>
+    20 => 
     array (
-      'time' => 1001836800,
+      'time' => 1001836800.0,
       'type' => 0,
     ),
-    21 =>
+    21 => 
     array (
-      'time' => 1018170000,
+      'time' => 1018170000.0,
       'type' => 3,
     ),
-    22 =>
+    22 => 
     array (
-      'time' => 1035705600,
+      'time' => 1035705600.0,
       'type' => 0,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'dynamic',
     'offset' => -25200,
     'name' => 'M%sT',
     'save' => 3600,
-    'start' =>
+    'start' => 
     array (
       'month' => 2,
       'date' => '8',
       'day_of_week' => -1,
-      'time' => 7200000,
-      'type' => 0,
+      'time' => 7200000.0,
+      'type' => 0.0,
     ),
-    'end' =>
+    'end' => 
     array (
       'month' => 10,
       'date' => '1',
       'day_of_week' => -1,
-      'time' => 7200000,
-      'type' => 0,
+      'time' => 7200000.0,
+      'type' => 0.0,
     ),
     'startYear' => 2002,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\northamerica',
+  'version' => '2017b
+',
   'name' => 'America/Ojinaga',
 );
+
+?>

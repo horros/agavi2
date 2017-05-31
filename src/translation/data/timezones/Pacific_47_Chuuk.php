@@ -2,45 +2,44 @@
 
 /**
  * Data file for timezone "Pacific/Chuuk".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\australasia", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => 36000,
       'dstOffset' => 0,
-      'name' => 'CHUT',
+      'name' => '+10',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -2177489228,
+      'time' => -2177489228.0,
       'type' => 0,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'static',
-    'name' => 'CHUT',
+    'name' => '+10',
     'offset' => 36000,
     'startYear' => 1901,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\australasia',
+  'version' => '2017b
+',
   'name' => 'Pacific/Chuuk',
 );
+
+?>

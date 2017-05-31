@@ -2,67 +2,66 @@
 
 /**
  * Data file for timezone "Pacific/Niue".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\australasia", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => -40800,
       'dstOffset' => 0,
-      'name' => 'NUT',
+      'name' => '-1120',
     ),
-    1 =>
+    1 => 
     array (
       'rawOffset' => -41400,
       'dstOffset' => 0,
-      'name' => 'NUT',
+      'name' => '-1130',
     ),
-    2 =>
+    2 => 
     array (
       'rawOffset' => -39600,
       'dstOffset' => 0,
-      'name' => 'NUT',
+      'name' => '-11',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -2177412020,
+      'time' => -2177412020.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => -599575200,
+      'time' => -599575200.0,
       'type' => 1,
     ),
-    2 =>
+    2 => 
     array (
-      'time' => 276089400,
+      'time' => 276089400.0,
       'type' => 2,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'static',
-    'name' => 'NUT',
+    'name' => '-11',
     'offset' => -39600,
     'startYear' => 1979,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\australasia',
+  'version' => '2017b
+',
   'name' => 'Pacific/Niue',
 );
+
+?>

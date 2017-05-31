@@ -2,89 +2,77 @@
 
 /**
  * Data file for timezone "America/Paramaribo".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\southamerica", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => -13252,
       'dstOffset' => 0,
       'name' => 'PMT',
     ),
-    1 =>
+    1 => 
     array (
       'rawOffset' => -13236,
       'dstOffset' => 0,
       'name' => 'PMT',
     ),
-    2 =>
+    2 => 
     array (
       'rawOffset' => -12600,
       'dstOffset' => 0,
-      'name' => 'NEGT',
+      'name' => '-0330',
     ),
-    3 =>
-    array (
-      'rawOffset' => -12600,
-      'dstOffset' => 0,
-      'name' => 'SRT',
-    ),
-    4 =>
+    3 => 
     array (
       'rawOffset' => -10800,
       'dstOffset' => 0,
-      'name' => 'SRT',
+      'name' => '-03',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -1861906760,
+      'time' => -1861906760.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => -1104524348,
+      'time' => -1104524348.0,
       'type' => 1,
     ),
-    2 =>
+    2 => 
     array (
-      'time' => -765317964,
+      'time' => -765317964.0,
       'type' => 2,
     ),
-    3 =>
+    3 => 
     array (
-      'time' => 185686200,
+      'time' => 465449400.0,
       'type' => 3,
     ),
-    4 =>
-    array (
-      'time' => 465449400,
-      'type' => 4,
-    ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'static',
-    'name' => 'SRT',
+    'name' => '-03',
     'offset' => -10800,
     'startYear' => 1985,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\southamerica',
+  'version' => '2017b
+',
   'name' => 'America/Paramaribo',
 );
+
+?>

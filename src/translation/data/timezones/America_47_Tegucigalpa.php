@@ -2,86 +2,85 @@
 
 /**
  * Data file for timezone "America/Tegucigalpa".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\northamerica", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => -21600,
       'dstOffset' => 0,
       'name' => 'CT',
     ),
-    1 =>
+    1 => 
     array (
       'rawOffset' => -21600,
       'dstOffset' => 3600,
       'name' => 'CDT',
     ),
-    2 =>
+    2 => 
     array (
       'rawOffset' => -21600,
       'dstOffset' => 0,
       'name' => 'CST',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -1538503868,
+      'time' => -1538503868.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => 547020000,
+      'time' => 547020000.0,
       'type' => 1,
     ),
-    2 =>
+    2 => 
     array (
-      'time' => 559717200,
+      'time' => 559717200.0,
       'type' => 2,
     ),
-    3 =>
+    3 => 
     array (
-      'time' => 578469600,
+      'time' => 578469600.0,
       'type' => 1,
     ),
-    4 =>
+    4 => 
     array (
-      'time' => 591166800,
+      'time' => 591166800.0,
       'type' => 2,
     ),
-    5 =>
+    5 => 
     array (
-      'time' => 1146981600,
+      'time' => 1146981600.0,
       'type' => 1,
     ),
-    6 =>
+    6 => 
     array (
-      'time' => 1154926800,
+      'time' => 1154926800.0,
       'type' => 2,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'none',
     'offset' => -21600,
     'startYear' => 2007,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\northamerica',
+  'version' => '2017b
+',
   'name' => 'America/Tegucigalpa',
 );
+
+?>

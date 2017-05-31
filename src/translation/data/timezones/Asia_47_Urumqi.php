@@ -2,45 +2,44 @@
 
 /**
  * Data file for timezone "Asia/Urumqi".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\asia", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => 21600,
       'dstOffset' => 0,
-      'name' => 'XJT',
+      'name' => '+06',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -1325483420,
+      'time' => -1325483420.0,
       'type' => 0,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'static',
-    'name' => 'XJT',
+    'name' => '+06',
     'offset' => 21600,
     'startYear' => 1928,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\asia',
+  'version' => '2017b
+',
   'name' => 'Asia/Urumqi',
 );
+
+?>

@@ -2,67 +2,66 @@
 
 /**
  * Data file for timezone "Africa/Monrovia".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\africa", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => -2588,
       'dstOffset' => 0,
       'name' => 'MMT',
     ),
-    1 =>
+    1 => 
     array (
       'rawOffset' => -2670,
       'dstOffset' => 0,
-      'name' => 'LRT',
+      'name' => 'MMT',
     ),
-    2 =>
+    2 => 
     array (
       'rawOffset' => 0,
       'dstOffset' => 0,
       'name' => 'GMT',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -2776979812,
+      'time' => -2776979812.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => -1604359012,
+      'time' => -1604359012.0,
       'type' => 1,
     ),
-    2 =>
+    2 => 
     array (
-      'time' => 73529070,
+      'time' => 63593070.0,
       'type' => 2,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'static',
     'name' => 'GMT',
     'offset' => 0,
     'startYear' => 1973,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\africa',
+  'version' => '2017b
+',
   'name' => 'Africa/Monrovia',
 );
+
+?>

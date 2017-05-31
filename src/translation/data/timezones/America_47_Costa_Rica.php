@@ -2,107 +2,106 @@
 
 /**
  * Data file for timezone "America/Costa_Rica".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\northamerica", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => -20173,
       'dstOffset' => 0,
       'name' => 'SJMT',
     ),
-    1 =>
+    1 => 
     array (
       'rawOffset' => -21600,
       'dstOffset' => 0,
       'name' => 'CT',
     ),
-    2 =>
+    2 => 
     array (
       'rawOffset' => -21600,
       'dstOffset' => 3600,
       'name' => 'CDT',
     ),
-    3 =>
+    3 => 
     array (
       'rawOffset' => -21600,
       'dstOffset' => 0,
       'name' => 'CST',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -2524501427,
+      'time' => -2524501427.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => -1545071027,
+      'time' => -1545071027.0,
       'type' => 1,
     ),
-    2 =>
+    2 => 
     array (
-      'time' => 288770400,
+      'time' => 288770400.0,
       'type' => 2,
     ),
-    3 =>
+    3 => 
     array (
-      'time' => 297234000,
+      'time' => 297234000.0,
       'type' => 3,
     ),
-    4 =>
+    4 => 
     array (
-      'time' => 320220000,
+      'time' => 320220000.0,
       'type' => 2,
     ),
-    5 =>
+    5 => 
     array (
-      'time' => 328683600,
+      'time' => 328683600.0,
       'type' => 3,
     ),
-    6 =>
+    6 => 
     array (
-      'time' => 664264800,
+      'time' => 664264800.0,
       'type' => 2,
     ),
-    7 =>
+    7 => 
     array (
-      'time' => 678344400,
+      'time' => 678344400.0,
       'type' => 3,
     ),
-    8 =>
+    8 => 
     array (
-      'time' => 695714400,
+      'time' => 695714400.0,
       'type' => 2,
     ),
-    9 =>
+    9 => 
     array (
-      'time' => 700635600,
+      'time' => 700635600.0,
       'type' => 3,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'none',
     'offset' => -21600,
     'startYear' => 1993,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\northamerica',
+  'version' => '2017b
+',
   'name' => 'America/Costa_Rica',
 );
+
+?>

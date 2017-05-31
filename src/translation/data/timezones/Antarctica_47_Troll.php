@@ -2,73 +2,72 @@
 
 /**
  * Data file for timezone "Antarctica/Troll".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\antarctica", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => 0,
       'dstOffset' => 0,
-      'name' => 'UTC',
+      'name' => '+00',
     ),
-    1 =>
+    1 => 
     array (
       'rawOffset' => 0,
       'dstOffset' => 7200,
-      'name' => 'CEST',
+      'name' => '+02',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => 1108166400,
+      'time' => 1108166400.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => 1111885200,
+      'time' => 1111885200.0,
       'type' => 1,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'dynamic',
     'offset' => 0,
     'name' => '%s',
     'save' => 7200,
-    'start' =>
+    'start' => 
     array (
       'month' => 2,
       'date' => -1,
       'day_of_week' => 1,
-      'time' => 3600000,
-      'type' => 2,
+      'time' => 3600000.0,
+      'type' => 2.0,
     ),
-    'end' =>
+    'end' => 
     array (
       'month' => 9,
       'date' => -1,
       'day_of_week' => 1,
-      'time' => 3600000,
-      'type' => 2,
+      'time' => 3600000.0,
+      'type' => 2.0,
     ),
     'startYear' => 2006,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\antarctica',
+  'version' => '2017b
+',
   'name' => 'Antarctica/Troll',
 );
+
+?>

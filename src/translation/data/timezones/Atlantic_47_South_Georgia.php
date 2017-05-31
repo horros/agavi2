@@ -2,45 +2,44 @@
 
 /**
  * Data file for timezone "Atlantic/South_Georgia".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\southamerica", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => -7200,
       'dstOffset' => 0,
-      'name' => 'GST',
+      'name' => '-02',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -2524512832,
+      'time' => -2524512832.0,
       'type' => 0,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'static',
-    'name' => 'GST',
+    'name' => '-02',
     'offset' => -7200,
     'startYear' => 1891,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\southamerica',
+  'version' => '2017b
+',
   'name' => 'Atlantic/South_Georgia',
 );
+
+?>

@@ -2,45 +2,44 @@
 
 /**
  * Data file for timezone "Pacific/Guadalcanal".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\australasia", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => 39600,
       'dstOffset' => 0,
-      'name' => 'SBT',
+      'name' => '+11',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -1806748788,
+      'time' => -1806748788.0,
       'type' => 0,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'static',
-    'name' => 'SBT',
+    'name' => '+11',
     'offset' => 39600,
     'startYear' => 1913,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\australasia',
+  'version' => '2017b
+',
   'name' => 'Pacific/Guadalcanal',
 );
+
+?>

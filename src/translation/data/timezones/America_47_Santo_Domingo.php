@@ -2,155 +2,154 @@
 
 /**
  * Data file for timezone "America/Santo_Domingo".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\northamerica", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => -16800,
       'dstOffset' => 0,
       'name' => 'SDMT',
     ),
-    1 =>
+    1 => 
     array (
       'rawOffset' => -18000,
       'dstOffset' => 0,
-      'name' => 'ET',
+      'name' => '',
     ),
-    2 =>
+    2 => 
     array (
       'rawOffset' => -18000,
       'dstOffset' => 3600,
       'name' => 'EDT',
     ),
-    3 =>
+    3 => 
     array (
       'rawOffset' => -18000,
       'dstOffset' => 0,
       'name' => 'EST',
     ),
-    4 =>
+    4 => 
     array (
       'rawOffset' => -18000,
       'dstOffset' => 1800,
-      'name' => 'EHDT',
+      'name' => '-0430',
     ),
-    5 =>
+    5 => 
     array (
       'rawOffset' => -14400,
       'dstOffset' => 0,
       'name' => 'AST',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -2524504824,
+      'time' => -2524504824.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => -1159773600,
+      'time' => -1159773600.0,
       'type' => 1,
     ),
-    2 =>
+    2 => 
     array (
-      'time' => -100119600,
+      'time' => -100119600.0,
       'type' => 2,
     ),
-    3 =>
+    3 => 
     array (
-      'time' => -89668800,
+      'time' => -89668800.0,
       'type' => 3,
     ),
-    4 =>
+    4 => 
     array (
-      'time' => -5770800,
+      'time' => -5770800.0,
       'type' => 4,
     ),
-    5 =>
+    5 => 
     array (
-      'time' => 4422600,
+      'time' => 4422600.0,
       'type' => 3,
     ),
-    6 =>
+    6 => 
     array (
-      'time' => 25678800,
+      'time' => 25678800.0,
       'type' => 4,
     ),
-    7 =>
+    7 => 
     array (
-      'time' => 33193800,
+      'time' => 33193800.0,
       'type' => 3,
     ),
-    8 =>
+    8 => 
     array (
-      'time' => 57733200,
+      'time' => 57733200.0,
       'type' => 4,
     ),
-    9 =>
+    9 => 
     array (
-      'time' => 64816200,
+      'time' => 64816200.0,
       'type' => 3,
     ),
-    10 =>
+    10 => 
     array (
-      'time' => 89182800,
+      'time' => 89182800.0,
       'type' => 4,
     ),
-    11 =>
+    11 => 
     array (
-      'time' => 96438600,
+      'time' => 96438600.0,
       'type' => 3,
     ),
-    12 =>
+    12 => 
     array (
-      'time' => 120632400,
+      'time' => 120632400.0,
       'type' => 4,
     ),
-    13 =>
+    13 => 
     array (
-      'time' => 127974600,
+      'time' => 127974600.0,
       'type' => 3,
     ),
-    14 =>
+    14 => 
     array (
-      'time' => 152082000,
+      'time' => 152082000.0,
       'type' => 5,
     ),
-    15 =>
+    15 => 
     array (
-      'time' => 972799200,
+      'time' => 972799200.0,
       'type' => 3,
     ),
-    16 =>
+    16 => 
     array (
-      'time' => 975823200,
+      'time' => 975823200.0,
       'type' => 5,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'static',
     'name' => 'AST',
     'offset' => -14400,
     'startYear' => 2001,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\northamerica',
+  'version' => '2017b
+',
   'name' => 'America/Santo_Domingo',
 );
+
+?>

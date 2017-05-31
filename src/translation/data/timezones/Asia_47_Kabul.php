@@ -2,56 +2,55 @@
 
 /**
  * Data file for timezone "Asia/Kabul".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\asia", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => 14400,
       'dstOffset' => 0,
-      'name' => 'AFT',
+      'name' => '+04',
     ),
-    1 =>
+    1 => 
     array (
       'rawOffset' => 16200,
       'dstOffset' => 0,
-      'name' => 'AFT',
+      'name' => '+0430',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -2524538208,
+      'time' => -2524538208.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => -788932800,
+      'time' => -788932800.0,
       'type' => 1,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'static',
-    'name' => 'AFT',
+    'name' => '+0430',
     'offset' => 16200,
     'startYear' => 1945,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\asia',
+  'version' => '2017b
+',
   'name' => 'Asia/Kabul',
 );
+
+?>

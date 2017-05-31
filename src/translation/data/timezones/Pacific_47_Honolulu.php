@@ -2,82 +2,81 @@
 
 /**
  * Data file for timezone "Pacific/Honolulu".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\northamerica", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => -37800,
       'dstOffset' => 0,
       'name' => 'HST',
     ),
-    1 =>
+    1 => 
     array (
       'rawOffset' => -37800,
       'dstOffset' => 3600,
       'name' => 'HDT',
     ),
-    2 =>
+    2 => 
     array (
       'rawOffset' => -36000,
       'dstOffset' => 0,
       'name' => 'HST',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -2334101314,
+      'time' => -2334101314.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => -1157283000,
+      'time' => -1157283000.0,
       'type' => 1,
     ),
-    2 =>
+    2 => 
     array (
-      'time' => -1155436200,
+      'time' => -1155436200.0,
       'type' => 0,
     ),
-    3 =>
+    3 => 
     array (
-      'time' => -880198200,
+      'time' => -880198200.0,
       'type' => 1,
     ),
-    4 =>
+    4 => 
     array (
-      'time' => -765376200,
+      'time' => -765376200.0,
       'type' => 0,
     ),
-    5 =>
+    5 => 
     array (
-      'time' => -712150200,
+      'time' => -712150200.0,
       'type' => 2,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'static',
     'name' => 'HST',
     'offset' => -36000,
     'startYear' => 1948,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\northamerica',
+  'version' => '2017b
+',
   'name' => 'Pacific/Honolulu',
 );
+
+?>

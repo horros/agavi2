@@ -2,71 +2,75 @@
 
 /**
  * Data file for timezone "Antarctica/Casey".
- * Compiled from olson file "(unknown)", version (unknown).
- *
- * @package    agavi
- * @subpackage translation
+ * Compiled from olson file "C:\Users\markus\Documents\olson\antarctica", version 2017b
+.
  *
  * @copyright  Authors
  * @copyright  The Agavi Project
  *
  * @since      0.11.0
- *
- * @version    $Id$
- */
+ **/
 
 return array (
-  'types' =>
+  'types' => 
   array (
-    0 =>
+    0 => 
     array (
       'rawOffset' => 28800,
       'dstOffset' => 0,
-      'name' => 'AWST',
+      'name' => '+08',
     ),
-    1 =>
+    1 => 
     array (
       'rawOffset' => 39600,
       'dstOffset' => 0,
-      'name' => 'CAST',
+      'name' => '+11',
     ),
   ),
-  'rules' =>
+  'rules' => 
   array (
-    0 =>
+    0 => 
     array (
-      'time' => -31536000,
+      'time' => -31536000.0,
       'type' => 0,
     ),
-    1 =>
+    1 => 
     array (
-      'time' => 1255802400,
+      'time' => 1255802400.0,
       'type' => 1,
     ),
-    2 =>
+    2 => 
     array (
-      'time' => 1267714800,
+      'time' => 1267714800.0,
       'type' => 0,
     ),
-    3 =>
+    3 => 
     array (
-      'time' => 1319738400,
+      'time' => 1319738400.0,
       'type' => 1,
     ),
-    4 =>
+    4 => 
     array (
-      'time' => 1329843600,
+      'time' => 1329843600.0,
       'type' => 0,
+    ),
+    5 => 
+    array (
+      'time' => 1477065600.0,
+      'type' => 1,
     ),
   ),
-  'finalRule' =>
+  'finalRule' => 
   array (
     'type' => 'static',
-    'name' => 'AWST',
-    'offset' => 28800,
-    'startYear' => 2013,
+    'name' => '+11',
+    'offset' => 39600,
+    'startYear' => 2017,
   ),
-  'source' => '(unknown)',
-  'version' => '(unknown)',
+  'source' => 'C:\\Users\\markus\\Documents\\olson\\antarctica',
+  'version' => '2017b
+',
   'name' => 'Antarctica/Casey',
 );
+
+?>
