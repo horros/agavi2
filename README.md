@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/horros/agavi2.png?label=ready&title=Ready)](https://waffle.io/horros/agavi2?utm_source=badge)
 # Agavi2
 
 [![Join the chat at https://gitter.im/agavi2/Lobby](https://badges.gitter.im/agavi2/Lobby.svg)](https://gitter.im/agavi2/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
